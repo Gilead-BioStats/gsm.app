@@ -1,0 +1,76 @@
+#' Structure {gsm} Metadata
+#'
+#' Map {gsm} metadata to the tabular structure expected by {safetyGraphics}
+#'
+#' @param meta `list` clindata::mapping_rawplus
+#'
+#' @importFrom purrr map_df
+#' @importFrom tidyr pivot_longer
+#' @importFrom tidyselect everything
+#' @importFrom rlang syms
+#' @import dplyr
+#'
+#' @examples
+#' metadata <- map_metadata()
+#'
+#' @export
+
+map_metadata <- function(meta = clindata::mapping_rawplus) {
+    metadata_tabular <- names(meta) %>%
+        map_df(function(domain) {
+            map_df(meta[[ domain ]], ~as.character(.x)) %>% 
+                pivot_longer(everything()) %>%
+                mutate(
+                    text_key = name,
+                    domain_gsm = domain,
+                    domain_sg = sub('^df', '', domain) %>% tolower,
+                    type = if_else(
+                        grepl('Col$', name),
+                        "column",
+                        "field"
+                    ),
+                    col_key = if_else(
+                        type == 'column',
+                        text_key,
+                        sub('Val.*$', 'Col', text_key)
+                    ),
+                    field_key = if_else(
+                        type == 'column',
+                        '',
+                        text_key
+                    ),
+                    label = name,
+                    description = name,
+                    standard_gsm = value
+                )
+        }) %>%
+        group_by(!!!syms(names(.) %>% .[. != 'standard_gsm'])) %>%
+        summarize(
+            standard_gsm = paste(unique(standard_gsm), collapse = ', ')
+        ) %>%
+        ungroup %>%
+        arrange(domain_sg, col_key, text_key) %>%
+        filter(type != 'field') # TODO: figure out how to pass fields to safetyGraphics
+
+    # Add an additional row for each domain that renames 'strIDCol' to 'id_col' for compatibility
+    # with {safetyGraphics}.
+    id_col <- metadata_tabular %>%
+        filter(
+            text_key == 'strIDCol'
+        ) %>%
+        mutate(
+            col_key = 'id_col',
+            text_key = 'id_col',
+            label = 'Subject ID',
+            description = 'Unique Subject Identifier'
+        )
+
+    metadata_tabular %>%
+        bind_rows(id_col) %>%
+        select(
+            domain_gsm, domain = domain_sg, text_key, value, col_key, field_key, type, label, description, standard_gsm
+        ) %>%
+        arrange(
+            domain, text_key
+        )
+}
