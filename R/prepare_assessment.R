@@ -46,12 +46,11 @@ prepare_assessment <- function(
         assess_function = NULL
     )
 ) {
-    domain_lower <- assessment$domain_name # as expected by {safetyGraphics}
-    domain_upper <- toupper(domain_lower)
-    domain_alt <- domain_upper
+    domain <- assessment$domain_name
+    domain_alt <- domain
     if (domain_alt == 'CONSENT')
         domain_alt = 'Consent'
-    domain_gsm <- paste0('df', domain_upper) # as expected by {gsm}
+    domain_lower <- sub('^df', '', domain) %>% tolower
 
     chart_function <- paste0('run_', domain_lower, '_assessment')
     chart_name <- paste0(domain_lower, '_assessment')
@@ -59,9 +58,9 @@ prepare_assessment <- function(
     run_assessment <- function(data, settings) {
         # Define list of data frames.
         dfs <- list(
-            dfSUBJ = data$subj
+            dfSUBJ = data$dfSUBJ
         )
-        dfs[[ domain_gsm ]] <- data[[ domain_lower ]]
+        dfs[[ domain ]] <- data[[ domain ]]
 
         # Run {gsm} data mapping function.
         input <- get(assessment$map_function, envir = as.environment('package:gsm'))(
@@ -88,7 +87,7 @@ prepare_assessment <- function(
         name = chart_name,
         label = paste0(domain_alt, " Assessment"),
         type = "plot",
-        domain = c(domain_lower, "subj"),
+        domain = c('dfSUBJ', domain),
         workflow = list(
             main = chart_function
         ),

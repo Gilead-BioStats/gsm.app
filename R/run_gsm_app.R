@@ -50,7 +50,7 @@ run_gsm_app <- function(
     meta = map_metadata(),
     domainData = NULL,
     assessments = NULL,
-    filterDomain = 'subj'
+    filterDomain = 'dfSUBJ'
 ) {
     domains <- unique(meta$domain)
 
@@ -58,7 +58,7 @@ run_gsm_app <- function(
     if (is.null(domainData)) {
         domainData = purrr::map(
             domains,
-            ~get(paste0('rawplus_', .), envir = as.environment('package:clindata'))
+            ~get(paste0('rawplus_', sub('^df', '', .) %>% tolower), envir = as.environment('package:clindata'))
         )
         names(domainData) <- domains
     }
@@ -66,10 +66,10 @@ run_gsm_app <- function(
     # TODO: use {gsm} assesssment workflows here.
     # Define one assessment per data domain.
     if (is.null(assessments)) {
-        assessments = domains[domains != 'subj'] %>%
+        assessments = domains[domains != 'dfSUBJ'] %>%
             purrr::map(function(domain) {
-                domain_alt <- toupper(domain)
-                if (domain == 'consent')
+                domain_alt <- sub('^df', '', domain)
+                if (domain_alt == 'CONSENT')
                     domain_alt = 'Consent'
 
                 prepare_assessment(

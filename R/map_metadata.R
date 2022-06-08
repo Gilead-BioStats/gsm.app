@@ -16,14 +16,14 @@
 #' @export
 
 map_metadata <- function(meta = clindata::mapping_rawplus) {
+    # For each data domain in the metadata:
     metadata_tabular <- names(meta) %>%
         map_df(function(domain) {
             map_df(meta[[ domain ]], ~as.character(.x)) %>% 
                 pivot_longer(everything()) %>%
                 mutate(
+                    domain = !!domain,
                     text_key = name,
-                    domain_gsm = domain,
-                    domain_sg = sub('^df', '', domain) %>% tolower,
                     type = if_else(
                         grepl('Col$', name),
                         "column",
@@ -49,7 +49,7 @@ map_metadata <- function(meta = clindata::mapping_rawplus) {
             standard_gsm = paste(unique(standard_gsm), collapse = ', ')
         ) %>%
         ungroup %>%
-        arrange(domain_sg, col_key, text_key) %>%
+        arrange(domain, col_key, text_key) %>%
         filter(type != 'field') # TODO: figure out how to pass fields to safetyGraphics
 
     # Add an additional row for each domain that renames 'strIDCol' to 'id_col' for compatibility
@@ -68,7 +68,7 @@ map_metadata <- function(meta = clindata::mapping_rawplus) {
     metadata_tabular %>%
         bind_rows(id_col) %>%
         select(
-            domain_gsm, domain = domain_sg, text_key, value, col_key, field_key, type, label, description, standard_gsm
+            domain, text_key, value, col_key, field_key, type, label, description, standard_gsm
         ) %>%
         arrange(
             domain, text_key
