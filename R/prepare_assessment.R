@@ -46,11 +46,39 @@ prepare_assessment <- function(
         assess_function = NULL
     )
 ) {
+    # check meta
+    stopifnot(
+        '[ meta ] is not a data frame' =
+            is.data.frame(meta)
+    )
+
+    # check domain name
+    stopifnot(
+        '[ assessment$domain_name ] is not a character value' =
+            is.character(assessment$domain_name)
+    )
+
     domain <- assessment$domain_name
     domain_alt <- domain
     if (domain_alt == 'CONSENT')
         domain_alt = 'Consent'
     domain_lower <- sub('^df', '', domain) %>% tolower
+
+    # check map function
+    stopifnot(
+        #'[ assessment$map_function ] is not a function' =
+        #    is.function(assessment$map_function),
+        '[ assessment$map_function ] is in {gsm} namespace' =
+            assessment$map_function %in% as.character(lsf.str('package:gsm'))
+    )
+
+    # check assess function
+    stopifnot(
+        #'[ assessment$assess_function ] is not a function' =
+        #    is.function(assessment$assess_function),
+        '[ assessment$assess_function ] is in {gsm} namespace' =
+            assessment$assess_function %in% as.character(lsf.str('package:gsm'))
+    )
 
     chart_function <- paste0('run_', domain_lower, '_assessment')
     chart_name <- paste0(domain_lower, '_assessment')
