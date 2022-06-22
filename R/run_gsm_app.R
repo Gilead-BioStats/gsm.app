@@ -83,6 +83,71 @@ run_gsm_app <- function(
             })
     }
 
+# Modify safetyGraphics YAML with gsm metadata
+#ae_assessment_yaml <- '
+#env: safetyGraphics
+#label: AE Assessment - Module
+#name: mod_assessment
+#type: module
+#package: gsmApp
+#domain:
+#  - dfSUBJ
+#  - dfAE
+#workflow:
+#  init: init_assessment (apply filterDomain steps)
+#  ui: mod_assessment_ui (pass workflow to both UI and server)
+#  server: mod_assessment_server > RunAssessment (handles domain subset, )
+#links:
+#  gsm: https://github.com/Gilead-BioStats/gsm
+#'
+
+# - module server
+#   - workflow
+#   - RunAssessment(workflow)
+#   - 
+
+# Modify safetyGraphics YAML with gsm metadata
+
+ae_assessment_yaml <- '
+env: safetyGraphics
+label: AE Assessment - Module
+name: ae_assessment_module
+type: module
+package: gsmApp
+domain:
+  - dfSUBJ
+  - dfAE
+workflow:
+  ui: mod_assessment_ui
+  server: mod_ae_assessment_server
+links:
+  gsm: https://github.com/Gilead-BioStats/gsm
+'
+
+assessments$ae_assessment_mod <- prepareChart(
+    yaml::read_yaml(text = ae_assessment_yaml)
+)
+
+pd_assessment_yaml <- '
+env: safetyGraphics
+label: PD Assessment - Module
+name: pd_assessment_module
+type: module
+package: gsmApp
+domain:
+  - dfSUBJ
+  - dfAE
+workflow:
+  ui: mod_assessment_ui
+  server: mod_pd_assessment_server
+links:
+  gsm: https://github.com/Gilead-BioStats/gsm
+'
+
+assessments$pd_assessment_mod <- prepareChart(
+    yaml::read_yaml(text = pd_assessment_yaml)
+)
+
     safetyGraphics::safetyGraphicsApp(
         meta = meta,
         domainData = domainData,
