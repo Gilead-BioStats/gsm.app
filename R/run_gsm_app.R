@@ -56,7 +56,7 @@ run_gsm_app <- function(
 
     # Define named list of data frames from {clindata}.
     if (is.null(domainData)) {
-        domainData = purrr::map(
+        domainData <- purrr::map(
             domains,
             ~get(paste0('rawplus_', sub('^df', '', .) %>% tolower), envir = as.environment('package:clindata'))
         )
@@ -66,13 +66,23 @@ run_gsm_app <- function(
     # TODO: use {gsm} assesssment workflows here.
     # Define one assessment per data domain.
     if (is.null(assessments)) {
-        assessments = domains[domains != 'dfSUBJ'] %>%
+        assessments <- domains[domains != 'dfSUBJ'] %>%
             purrr::map(function(domain) {
                 domain_alt <- sub('^df', '', domain)
                 if (domain_alt == 'CONSENT')
                     domain_alt = 'Consent'
+                domain_lower <- tolower(domain_alt)
 
-                prepare_assessment(
+                #prepare_assessment(
+                #    meta,
+                #    list(
+                #        domain_name = domain,
+                #        map_function = paste0(domain_alt, '_Map_Raw'),
+                #        assess_function = paste0(domain_alt, '_Assess')
+                #    )
+                #)
+
+                server <- mod_assessment_server(
                     meta,
                     list(
                         domain_name = domain,
@@ -80,78 +90,45 @@ run_gsm_app <- function(
                         assess_function = paste0(domain_alt, '_Assess')
                     )
                 )
+
+                server_name <- glue::glue('mod_{domain_lower}_assessment_server')
+                assign(
+                    server_name,
+                    server,
+                    envir = .GlobalEnv
+                )
+
+                assessment_yaml <- glue::glue('
+                    env: safetyGraphics
+                    label: {domain_alt} Assessment - Module
+                    name: {domain_lower}_assessment_module
+                    type: module
+                    package: gsmApp
+                    domain:
+                      - dfSUBJ
+                      - {domain}
+                    workflow:
+                      ui: mod_assessment_ui
+                      server: {server_name}
+                    links:
+                      gsm: https://github.com/Gilead-BioStats/gsm
+                ')
+
+                prepareChart(
+                    yaml::read_yaml(text = assessment_yaml)
+                )
             })
+
     }
-
-# Modify safetyGraphics YAML with gsm metadata
-#ae_assessment_yaml <- '
-#env: safetyGraphics
-#label: AE Assessment - Module
-#name: mod_assessment
-#type: module
-#package: gsmApp
-#domain:
-#  - dfSUBJ
-#  - dfAE
-#workflow:
-#  init: init_assessment (apply filterDomain steps)
-#  ui: mod_assessment_ui (pass workflow to both UI and server)
-#  server: mod_assessment_server > RunAssessment (handles domain subset, )
-#links:
-#  gsm: https://github.com/Gilead-BioStats/gsm
-#'
-
-# - module server
-#   - workflow
-#   - RunAssessment(workflow)
-#   - 
-
-# Modify safetyGraphics YAML with gsm metadata
-
-ae_assessment_yaml <- '
-env: safetyGraphics
-label: AE Assessment - Module
-name: ae_assessment_module
-type: module
-package: gsmApp
-domain:
-  - dfSUBJ
-  - dfAE
-workflow:
-  ui: mod_assessment_ui
-  server: mod_ae_assessment_server
-links:
-  gsm: https://github.com/Gilead-BioStats/gsm
-'
-
-assessments$ae_assessment_mod <- prepareChart(
-    yaml::read_yaml(text = ae_assessment_yaml)
-)
-
-pd_assessment_yaml <- '
-env: safetyGraphics
-label: PD Assessment - Module
-name: pd_assessment_module
-type: module
-package: gsmApp
-domain:
-  - dfSUBJ
-  - dfAE
-workflow:
-  ui: mod_assessment_ui
-  server: mod_pd_assessment_server
-links:
-  gsm: https://github.com/Gilead-BioStats/gsm
-'
-
-assessments$pd_assessment_mod <- prepareChart(
-    yaml::read_yaml(text = pd_assessment_yaml)
-)
 
     safetyGraphics::safetyGraphicsApp(
         meta = meta,
         domainData = domainData,
         charts = assessments,
-        filterDomain = filterDomain
+        filterDomain = filterDomain,
+        appName = '{gsm} Explorer',
+        hexPath = system.file('resources/hex-gsm.png', package = 'gsmApp'),
+        homeTabPath = system.file('resources/homeTab.html', package = 'gsmApp'),
+        launchBrowser = TRUE
     )
 }

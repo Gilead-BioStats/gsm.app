@@ -1,50 +1,3 @@
-make_input_row <- function(inputId, label, value = 0) {
-    div(
-        style = 'display:inline-block',
-        tags$label(
-            label,
-            `for` = inputId
-        ),
-        tags$input(
-            id = inputId,
-            type = 'number',
-            value = value,
-            class = 'input-small'
-        )
-        #numericInput(
-        #    inputId, # ns('threshold_upper'),
-        #    '', # 'Lower',
-        #    value = value#,
-        #    #class = 'input-small'
-        #)
-    )
-}
-
-mod_assessment_ui <- function(id) {
-    ns <- NS(id)
-
-    #tagList(
-    sidebarLayout(
-        sidebarPanel(
-            selectInput(
-                ns('method'),
-                'Method',
-                choices = c('poisson', 'wilcoxon')
-            ),
-            div(
-                h4('Threshold'),
-                span('('),
-                make_input_row(inputId = ns('threshold_lower'), label = '', value = -5),
-                span(':'),
-                make_input_row(inputId = ns('threshold_upper'), label = '', value = 5),
-                span(')')
-            )
-        ),
-        mainPanel(
-            plotOutput(ns('chart'))
-        )
-    )
-}
 
 mod_ae_assessment_server <- function(input, output, session, params) {
 #mod_assessment_server <- function(id) {
@@ -58,49 +11,7 @@ mod_ae_assessment_server <- function(input, output, session, params) {
         #    )
         #)
 
-        #threshold <- reactive({
-        observeEvent(input$method, {
-            if (input$method == 'poisson') {
-                updateNumericInput(
-                    session,
-                    'threshold_lower',
-                    value = -5,
-                    min = -Inf,
-                    max = Inf
-                )
-                shinyjs::enable('threshold_upper')
-                updateNumericInput(
-                    session,
-                    'threshold_upper',
-                    value = 5,
-                    min = -Inf,
-                    max = Inf
-                )
-            } else if (input$method == 'wilcoxon') {
-                updateNumericInput(
-                    session,
-                    'threshold_lower',
-                    value = 0.0001,
-                    min = 0,
-                    max = 1
-                )
-                updateNumericInput(
-                    session,
-                    'threshold_upper',
-                    value = NA,
-                    min = 0,
-                    max = 1
-                )
-                shinyjs::disable('threshold_upper')
-            }
-
-            #c(
-            #    input$threshold_lower,
-            #    ifelse(input$method == 'poisson', input$threshold_upper, NA)
-            #)
-        })# %>%
-        #bindCache(input$threshold_lower, input$threshold_upper) %>%
-        #bindEvent(input$method)
+    observe_method(input, session)
 
         # TODO: make assessment a reactive that passes objects to various outputs
         output$chart <- renderPlot({
