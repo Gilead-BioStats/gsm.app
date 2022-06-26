@@ -1,0 +1,35 @@
+name: PD_Assess
+label: Protocol Deviations
+domain: PD
+inputs: dfInput
+output:
+  type: list
+  items:
+    lTags:
+      type: list
+      purpose: describe
+    dfInput:
+      type: data frame
+      purpose: display
+    dfSummary:
+      type: data frame
+      purpose: display
+    chart:
+      type: chart
+      purpose: display
+params:
+  vThreshold:
+    default: null
+    type: numeric
+    min: -.inf
+    max: .inf
+    length: 2
+  strMethod:
+    default: poisson
+    type: character
+    options:
+      - poisson
+      - wilcoxon
+  strKRILabel:
+    default: "PDs/Week"
+    type: character

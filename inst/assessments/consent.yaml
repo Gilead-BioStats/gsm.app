@@ -1,0 +1,29 @@
+name: Consent_Assess
+label: Consents
+domain: CONSENT
+inputs: dfInput
+output:
+  type: list
+  items:
+    lTags:
+      type: list
+      purpose: describe
+    dfInput:
+      type: data frame
+      purpose: display
+    dfSummary:
+      type: data frame
+      purpose: display
+    chart:
+      type: chart
+      purpose: display
+params:
+  nThreshold:
+    default: 0.5
+    type: numeric
+    min: 0
+    max: .inf
+    length: 1
+  strKRILabel:
+    default: "# of Consent Issues"
+    type: character
