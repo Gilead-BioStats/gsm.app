@@ -1,6 +1,4 @@
-library(tidyverse)
 library(clindata)
 library(gsm)
-library(safetyGraphics)
 devtools::load_all() # library(gsmApp)
 run_gsm_app()

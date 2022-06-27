@@ -3,9 +3,9 @@
 #' Display {gsm} assessments in the {safetyGraphics} framework, an interactive R Shiny application.
 #'
 #' @param meta `data.frame` metadata returned by [map_metadata()]
-#' @param domainData `list` named list of data frames required by `assessments`
+#' @param domain_data `list` named list of data frames required by `assessments`
 #' @param assessments `list` list of assessments in the format expected by {safetyGraphics}
-#' @param filterDomain `character` name of data frame with which to subset on participant; must be
+#' @param filter_domain `character` name of data frame with which to subset on participant; must be
 #' one record per participant
 #'
 #' @importFrom purrr map
@@ -15,11 +15,11 @@
 #' meta <- map_metadata()
 #'
 #' domains <- unique(meta$domain)
-#' domainData = purrr::map(
+#' domain_data = purrr::map(
 #'     domains,
 #'     ~get(paste0('rawplus_', .), envir = as.environment('package:clindata'))
 #' )
-#' names(domainData) <- domains
+#' names(domain_data) <- domains
 #'
 #' assessments = domains[domains != 'subj'] %>%
 #'     purrr::map(function(domain) {
@@ -39,54 +39,48 @@
 #' 
 #' run_gsm_app(
 #'     meta = meta,
-#'     domainData = domainData,
+#'     domain_data = domain_data,
 #'     assessments = assessments,
-#'     filterDomain = 'subj'
+#'     filter_domain = 'subj'
 #' )
 #'
 #' @export
 
 run_gsm_app <- function(
     meta = map_metadata(),
-    domainData = NULL,
-    assessments = NULL,
-    filterDomain = 'dfSUBJ'
+    assessments = NULL, # get_assessments(),
+    domain_data = NULL,
+    filter_domain = 'dfSUBJ'
 ) {
     domains <- unique(meta$domain)
 
     # Define named list of data frames from {clindata}.
-    if (is.null(domainData)) {
-        domainData = purrr::map(
+    if (is.null(domain_data)) {
+        domain_data <- purrr::map(
             domains,
             ~get(paste0('rawplus_', sub('^df', '', .) %>% tolower), envir = as.environment('package:clindata'))
         )
-        names(domainData) <- domains
+        names(domain_data) <- domains
     }
 
-    # TODO: use {gsm} assesssment workflows here.
     # Define one assessment per data domain.
     if (is.null(assessments)) {
-        assessments = domains[domains != 'dfSUBJ'] %>%
+        assessments <- domains[domains != 'dfSUBJ'] %>%
             purrr::map(function(domain) {
                 domain_alt <- sub('^df', '', domain)
-                if (domain_alt == 'CONSENT')
-                    domain_alt = 'Consent'
 
-                prepare_assessment(
-                    meta,
-                    list(
-                        domain_name = domain,
-                        map_function = paste0(domain_alt, '_Map_Raw'),
-                        assess_function = paste0(domain_alt, '_Assess')
-                    )
-                )
+                prepare_assessment(domain_alt)
             })
     }
 
     safetyGraphics::safetyGraphicsApp(
         meta = meta,
-        domainData = domainData,
+        domainData = domain_data,
         charts = assessments,
-        filterDomain = filterDomain
+        filterDomain = filter_domain,
+        appName = '{gsm} Explorer',
+        hexPath = system.file('resources/hex-gsm.png', package = 'gsmApp'),
+        homeTabPath = system.file('resources/homeTab.html', package = 'gsmApp'),
+        launchBrowser = TRUE
     )
 }
