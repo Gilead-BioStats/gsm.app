@@ -1,3 +1,15 @@
+#' Define a Shiny server function given an assessment
+#'
+#' @param assessment `list` assessment specification
+#'
+#' @importFrom gsm RunAssessment
+#' @importFrom purrr imap keep map_dbl
+#' @importFrom shiny renderPlot
+#'
+#' @return `function` Shiny server function
+#'
+#' @export
+
 make_assessment_server <- function(
     assessment
 ) {
@@ -13,16 +25,16 @@ make_assessment_server <- function(
 
             # Get selected workflow.
             workflow <- assessment$workflows %>%
-                keep(~.x$tags$Label == input$workflow) %>%
+                purrr::keep(~.x$tags$Label == input$workflow) %>%
                 unlist(recursive = FALSE)
 
             # Update parameters.
             workflow$workflow[[ length(workflow$workflow) ]]$params <- assessment$params %>%
-                imap(function(value, key) {
+                purrr::imap(function(value, key) {
                     arg <- NULL
 
                     if (length(value$default) > 1) {
-                        arg = map_dbl(
+                        arg = purrr::map_dbl(
                             1:length(value$default),
                             ~input[[ paste0(key, '_', .x) ]]
                         )

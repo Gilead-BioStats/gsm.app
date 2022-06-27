@@ -9,6 +9,9 @@ map_metadata(meta = clindata::mapping_rawplus)
 \arguments{
 \item{meta}{\code{list} clindata::mapping_rawplus}
 }
+\value{
+\code{data.frame} {gsm} metadata in tabular form
+}
 \description{
 Map {gsm} metadata to the tabular structure expected by {safetyGraphics}
 }

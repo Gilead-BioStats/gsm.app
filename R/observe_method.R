@@ -1,5 +1,12 @@
+#' Update numeric inputs given change to method input.
+#'
+#' @param input `list` Shiny input
+#' @param session `list` Shiny session
+#'
+#' @importFrom shiny observeEvent updateNumericInput
+#' @importFrom shinyjs disable enable
+
 observe_method <- function(input, session) {
-    #threshold <- reactive({
     observeEvent(input$strMethod, {
         if (input$strMethod == 'poisson') {
             updateNumericInput(
@@ -34,12 +41,5 @@ observe_method <- function(input, session) {
             )
             shinyjs::disable('vThreshold_2')
         }
-
-        #c(
-        #    input$threshold_lower,
-        #    ifelse(input$method == 'poisson', input$threshold_upper, NA)
-        #)
-    })# %>%
-    #bindCache(input$threshold_lower, input$threshold_upper) %>%
-    #bindEvent(input$method)
+    })
 }

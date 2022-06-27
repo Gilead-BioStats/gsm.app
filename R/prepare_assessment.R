@@ -1,3 +1,20 @@
+#' Prepare {gsm} Assessment for Ingestion by {safetyGraphics}
+#'
+#' Define a chart object with the format expected by {safetyGraphics}, including required data
+#' domains, the charting function, and relevnat metadata.
+#'
+#' @param domain `character` name of data domain associated with assessment
+#' @param yaml_file `character` file path of .yaml file containing assessment metadata
+#' @param meta `data.frame` metadata returned by [map_metadata()]
+#' @param workflows `data.frame` metadata returned by [map_metadata()]
+#'
+#' @importFrom glue glue
+#' @importFrom purrr keep
+#' @importFrom safetyGraphics prepareChart
+#' @importFrom yaml read_yaml
+#'
+#' @export
+
 prepare_assessment <- function(
     domain,
     yaml_file = system.file(
@@ -5,8 +22,8 @@ prepare_assessment <- function(
         paste0(tolower(domain), '.yaml'),
         package = 'gsmApp'
     ),
-    meta = gsmApp::map_metadata(),
-    workflows = gsmApp::get_workflows(),
+    meta = map_metadata(),
+    workflows = get_metadata_from_yaml('workflows'),
     assessment = list(
         map_function = NULL,
         assess_function = NULL
@@ -15,9 +32,7 @@ prepare_assessment <- function(
     stopifnot(
         '[ meta ] is not a data frame' = is.data.frame(meta),
         '[ domain ] is not a character value' = is.character(domain),
-        #glue::glue('[ {domain} ] assessment YAML file not found') = file.exists(yaml),
         '[ {domain} ] assessment YAML file not found' = file.exists(yaml_file),
-        #'[ assessment$domain_name ] is not a character value' = is.character(assessment$domain_name),
         '[ assessment$map_function ] is in {gsm} namespace' = assessment$map_function %in% as.character(lsf.str('package:gsm')),
         '[ assessment$assess_function ] is in {gsm} namespace' = assessment$assess_function %in% as.character(lsf.str('package:gsm'))
     )

@@ -4,11 +4,13 @@
 #'
 #' @param meta `list` clindata::mapping_rawplus
 #'
+#' @import dplyr
 #' @importFrom purrr map_df
+#' @importFrom rlang syms
 #' @importFrom tidyr pivot_longer
 #' @importFrom tidyselect everything
-#' @importFrom rlang syms
-#' @import dplyr
+#'
+#' @return `data.frame` {gsm} metadata in tabular form
 #'
 #' @examples
 #' metadata <- map_metadata()
@@ -18,9 +20,9 @@
 map_metadata <- function(meta = clindata::mapping_rawplus) {
     # For each data domain in the metadata:
     metadata_tabular <- names(meta) %>%
-        map_df(function(domain) {
-            map_df(meta[[ domain ]], ~as.character(.x)) %>% 
-                pivot_longer(everything()) %>%
+        purrr::map_df(function(domain) {
+            purrr::map_df(meta[[ domain ]], ~as.character(.x)) %>% 
+                tidyr::pivot_longer(everything()) %>%
                 mutate(
                     domain = !!domain,
                     text_key = name,
