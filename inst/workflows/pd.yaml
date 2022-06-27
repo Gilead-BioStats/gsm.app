@@ -14,3 +14,4 @@ workflow:
     params:
       vThreshold: null
       strMethod: "poisson"
+      strKRILabel: "PDs/Week"

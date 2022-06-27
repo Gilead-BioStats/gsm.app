@@ -19,17 +19,17 @@ output:
       purpose: display
 params:
   vThreshold:
-    default: null
     type: numeric
+    label: Threshold
+    default:
+      - -5
+      - 5
     min: -.inf
     max: .inf
-    length: 2
   strMethod:
-    default: poisson
     type: character
+    label: Method
+    default: poisson
     options:
       - poisson
       - wilcoxon
-  strKRILabel:
-    default: "PDs/Week"
-    type: character

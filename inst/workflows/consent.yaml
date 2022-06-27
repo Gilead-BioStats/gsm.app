@@ -13,3 +13,4 @@ workflow:
     output: lResults
     params:
       nThreshold: 0.5
+      strKRILabel: "# of Consent Issues"

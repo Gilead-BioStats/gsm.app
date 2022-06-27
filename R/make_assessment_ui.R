@@ -2,6 +2,49 @@ make_assessment_ui <- function(assessment) {
     assessment_ui <- function(id) {
         ns <- NS(id)
 
+        inputs <- assessment$param %>%
+            imap(function(value, key) {
+                input <- NULL
+
+                # TODO: helper functions for each input type
+                if (value$type == 'character') {
+                    input = selectInput(
+                        inputId = ns(key),
+                        label = value$label,
+                        selected = value$default,
+                        choices = value$options
+                    )
+                } else if (value$type == 'numeric') {
+                    if (length(value$default) > 1) {
+                        input = imap(value$default, function(x, i) {
+                            numericInput(
+                                inputId = paste0(ns(key), '_', i),
+                                label = ifelse(
+                                    i == 1,
+                                    value$label,
+                                    ''
+                                ),
+                                value = x,
+                                min = value$min,
+                                max = value$max,
+                                step = 1
+                            )
+                        })
+                    } else {
+                        input = numericInput(
+                            inputId = ns(key),
+                            label = value$label,
+                            value = value$default,
+                            min = value$min,
+                            max = value$max,
+                            step = 1
+                        )
+                    }
+                }
+
+                input
+            })
+
         sidebarLayout(
             sidebarPanel(
                 selectInput(
@@ -12,20 +55,8 @@ make_assessment_ui <- function(assessment) {
                         ~.x$tags$Label
                     ),
                     selected = assessment$workflows[[1]]$tags$Label
-                )
-                #selectInput(
-                #    ns('method'),
-                #    'Method',
-                #    choices = c('poisson', 'wilcoxon')
-                #),
-                #div(
-                #    h4('Threshold'),
-                #    span('('),
-                #    make_input_row(inputId = ns('threshold_lower'), label = '', value = -5),
-                #    span(':'),
-                #    make_input_row(inputId = ns('threshold_upper'), label = '', value = 5),
-                #    span(')')
-                #)
+                ),
+                inputs
             ),
             mainPanel(
                 plotOutput(ns('chart'))

@@ -19,11 +19,8 @@ output:
       purpose: display
 params:
   nThreshold:
-    default: 0.5
     type: numeric
+    label: Threshold
+    default: 0.5
     min: 0
     max: .inf
-    length: 1
-  strKRILabel:
-    default: "# of Consent Issues"
-    type: character

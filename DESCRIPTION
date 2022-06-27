@@ -1,3 +1,4 @@
+TODO: update Imports and make sure {gsm} and {clindata} are attached
 Package: gsmApp
 Title: Run {gsm} Assessments in the {safetyGraphics} Framework
 Version: 0.1.0

@@ -69,7 +69,7 @@ run_gsm_app <- function(
             purrr::map(function(domain) {
                 domain_alt <- sub('^df', '', domain)
 
-                prepare_module(domain_alt)
+                prepare_assessment(domain_alt)
             })
     }
 

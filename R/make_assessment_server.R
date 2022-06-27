@@ -2,7 +2,7 @@ make_assessment_server <- function(
     assessment
 ) {
     assessment_server <- function(input, output, session, params) {
-        #observe_method(input, session)
+        observe_method(input, session)
 
         # TODO: make assessment a reactive that passes objects to various outputs
         output$chart <- renderPlot({
@@ -10,46 +10,39 @@ make_assessment_server <- function(
 
             data <- params()$data
             settings <- params()$settings
+
+            # Get selected workflow.
             workflow <- assessment$workflows %>%
-                keep(~.x$tags$Label == input$workflow)
-            browser()
+                keep(~.x$tags$Label == input$workflow) %>%
+                unlist(recursive = FALSE)
 
-            # TODO: run workflow (perhaps with gsm::RunAssessment)
+            # Update parameters.
+            workflow$workflow[[ length(workflow$workflow) ]]$params <- assessment$params %>%
+                imap(function(value, key) {
+                    arg <- NULL
 
-            # Define list of data frames.
-            #dfs <- list(
-            #    dfSUBJ = data$dfSUBJ
-            #)
-            #dfs[[ domain ]] <- data[[ domain ]]
+                    if (length(value$default) > 1) {
+                        arg = map_dbl(
+                            1:length(value$default),
+                            ~input[[ paste0(key, '_', .x) ]]
+                        )
+                    } else {
+                        arg = input[[ key ]]
+                    }
 
-            ## Run {gsm} data mapping function.
-            #dfInput <- get(assessment$map_function, envir = as.environment('package:gsm'))(
-            #    dfs = dfs,
-            #    lMapping = clindata::mapping_rawplus # TODO: convert settings to mapping
-            #)
-            ##dfInput <- gsm::AE_Map_Raw(dfs)
+                    arg
+                })
 
-            ## Run {gsm} assessment function.
-            #result <- get(assessment$assess_function, envir = as.environment('package:gsm'))(
-            #    dfInput,
-            #    strMethod = input$method,
-            #    vThreshold = c( # threshold()
-            #        input$threshold_lower,
-            #        ifelse(input$method == 'poisson', input$threshold_upper, NA)
-            #    )
-            #)
+            result <- gsm::RunAssessment(
+                workflow,
+                data,
+                # TODO: either pass around metadata in list structure (like {gsm} expects) or map
+                # metadata (like {safetyGraphics} expects) from data frame back to list
+                clindata::mapping_rawplus
+            )
 
-            ##assessment <- gsm::AE_Assess(
-            ##    dfInput,
-            ##    strMethod = input$method,
-            ##    vThreshold = c( # threshold()
-            ##        input$threshold_lower,
-            ##        ifelse(input$method == 'poisson', input$threshold_upper, NA)
-            ##    )
-            ##)
-
-            ## TODO: make chart interactive
-            #result$chart
+            # TODO: make chart interactive
+            result$lResults$chart
         })
     }
 

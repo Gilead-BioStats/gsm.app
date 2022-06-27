@@ -1,38 +1,38 @@
 observe_method <- function(input, session) {
     #threshold <- reactive({
-    observeEvent(input$method, {
-        if (input$method == 'poisson') {
+    observeEvent(input$strMethod, {
+        if (input$strMethod == 'poisson') {
             updateNumericInput(
                 session,
-                'threshold_lower',
+                'vThreshold_1',
                 value = -5,
                 min = -Inf,
                 max = Inf
             )
-            shinyjs::enable('threshold_upper')
+            shinyjs::enable('vThreshold_2')
             updateNumericInput(
                 session,
-                'threshold_upper',
+                'vThreshold_2',
                 value = 5,
                 min = -Inf,
                 max = Inf
             )
-        } else if (input$method == 'wilcoxon') {
+        } else if (input$strMethod == 'wilcoxon') {
             updateNumericInput(
                 session,
-                'threshold_lower',
+                'vThreshold_1',
                 value = 0.0001,
                 min = 0,
                 max = 1
             )
             updateNumericInput(
                 session,
-                'threshold_upper',
+                'vThreshold_2',
                 value = NA,
                 min = 0,
                 max = 1
             )
-            shinyjs::disable('threshold_upper')
+            shinyjs::disable('vThreshold_2')
         }
 
         #c(
