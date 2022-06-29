@@ -8,7 +8,7 @@
 #' @param filter_domain `character` name of data frame with which to subset on participant; must be
 #' one record per participant
 #'
-#' @importFrom purrr map
+#' @importFrom purrr map set_names
 #' @importFrom safetyGraphics safetyGraphicsApp
 #'
 #' @export
@@ -21,14 +21,20 @@ run_gsm_app <- function(
 ) {
     domains <- unique(meta$domain)
 
-    # Define named list of data frames from {clindata}.
+    # By default, use domain data from {clindata} as a fallback.
     if (is.null(domain_data)) {
-        domain_data <- purrr::map(
-            domains,
-            ~get(paste0('rawplus_', sub('^df', '', .) %>% tolower), envir = as.environment('package:clindata'))
-        )
-
-        names(domain_data) <- domains
+        domain_data <- domains %>%
+            purrr::map(
+                function(domain)
+                    do.call(
+                        `::`,
+                        list(
+                            'clindata',
+                            paste0('rawplus_', sub('^df', '', domain) %>% tolower)
+                        )
+                    )
+            ) %>%
+            purrr::set_names(domains)
     }
 
     # Define one assessment per data domain.

@@ -9,7 +9,7 @@
 #' @param workflows `data.frame` metadata returned by [map_metadata()]
 #'
 #' @importFrom glue glue
-#' @importFrom purrr keep
+#' @importFrom purrr keep map_chr
 #' @importFrom safetyGraphics prepareChart
 #' @importFrom yaml read_yaml
 #'
@@ -23,18 +23,19 @@ prepare_assessment <- function(
         package = 'gsmApp'
     ),
     meta = map_metadata(),
-    workflows = get_metadata_from_yaml('workflows'),
-    assessment = list(
-        map_function = NULL,
-        assess_function = NULL
-    )
+    workflows = get_metadata_from_yaml('workflows')
 ) {
     stopifnot(
-        '[ meta ] is not a data frame' = is.data.frame(meta),
+        # type checks
         '[ domain ] is not a character value' = is.character(domain),
-        '[ {domain} ] assessment YAML file not found' = file.exists(yaml_file),
-        '[ assessment$map_function ] is in {gsm} namespace' = assessment$map_function %in% as.character(lsf.str('package:gsm')),
-        '[ assessment$assess_function ] is in {gsm} namespace' = assessment$assess_function %in% as.character(lsf.str('package:gsm'))
+        '[ yaml_file ] is not a character value' = is.character(yaml_file),
+        '[ meta ] is not a data frame' = is.data.frame(meta),
+        '[ workflows ] is not a list' = is.list(workflows),
+
+        # logic checks
+        '[ domain ] not found in [ meta ]' = domain %in% sub('^df', '', unique(meta$domain)),
+        '[ yaml_file ] does not exist' = file.exists(yaml_file),
+        '[ domain ] not found in [ workflows ]' = domain %in% (workflows %>% purrr::map_chr(~.x$assessment))
     )
 
     domain_alt <- domain
@@ -44,7 +45,6 @@ prepare_assessment <- function(
     domain_df <- paste0('df', domain)
 
     assessment <- yaml::read_yaml(yaml_file)
-    # TODO: ensure workflows are found
     assessment$workflows <- purrr::keep(workflows, ~.x$assessment == domain)
     assessment$ui <- make_assessment_ui(assessment)
     assign(glue::glue('{domain_lower}_ui'), assessment$ui, envir = .GlobalEnv)

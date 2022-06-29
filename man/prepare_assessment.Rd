@@ -9,8 +9,7 @@ prepare_assessment(
   yaml_file = system.file("assessments", paste0(tolower(domain), ".yaml"), package =
     "gsmApp"),
   meta = map_metadata(),
-  workflows = get_metadata_from_yaml("workflows"),
-  assessment = list(map_function = NULL, assess_function = NULL)
+  workflows = get_metadata_from_yaml("workflows")
 )
 }
 \arguments{

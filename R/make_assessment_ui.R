@@ -2,7 +2,7 @@
 #'
 #' @param assessment `list` assessment specification
 #'
-#' @importFrom purrr imap
+#' @importFrom purrr imap map_chr
 #' @import shiny
 #'
 #' @return `function` Shiny UI function
@@ -61,7 +61,7 @@ make_assessment_ui <- function(assessment) {
                 shiny::selectInput(
                     ns('workflow'),
                     'KRI',
-                    choices = map_chr(
+                    choices = purrr::map_chr(
                         assessment$workflows,
                         ~.x$tags$Label
                     ),
