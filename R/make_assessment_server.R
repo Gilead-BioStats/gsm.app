@@ -1,28 +1,40 @@
+#' Define a Shiny server function given an assessment
+#'
+#' @param assessment `list` assessment specification
+#'
+#' @importFrom DiagrammeR renderGrViz
+#' @importFrom DT renderDT
+#' @importFrom gsm RunAssessment
+#' @importFrom purrr imap keep map_dbl
+#' @importFrom shiny renderPlot
+#'
+#' @return `function` Shiny server function
+#'
+#' @export
+
 make_assessment_server <- function(
     assessment
 ) {
     assessment_server <- function(input, output, session, params) {
         observe_method(input, session)
 
-        # TODO: make assessment a reactive that passes objects to various outputs
-        output$chart <- renderPlot({
-            #req(input$method)
-
+        run_workflow <- reactive({
             data <- params()$data
-            settings <- params()$settings
+            settings <- params()$settings %>%
+                map_meta_to_gsm()
 
             # Get selected workflow.
             workflow <- assessment$workflows %>%
-                keep(~.x$tags$Label == input$workflow) %>%
+                purrr::keep(~.x$tags$Label == input$workflow) %>%
                 unlist(recursive = FALSE)
 
             # Update parameters.
             workflow$workflow[[ length(workflow$workflow) ]]$params <- assessment$params %>%
-                imap(function(value, key) {
+                purrr::imap(function(value, key) {
                     arg <- NULL
 
                     if (length(value$default) > 1) {
-                        arg = map_dbl(
+                        arg = purrr::map_dbl(
                             1:length(value$default),
                             ~input[[ paste0(key, '_', .x) ]]
                         )
@@ -36,14 +48,25 @@ make_assessment_server <- function(
             result <- gsm::RunAssessment(
                 workflow,
                 data,
-                # TODO: either pass around metadata in list structure (like {gsm} expects) or map
-                # metadata (like {safetyGraphics} expects) from data frame back to list
-                clindata::mapping_rawplus
+                settings
             )
 
-            # TODO: make chart interactive
-            result$lResults$chart
+            result
         })
+
+        # TODO: make chart interactive
+        output$chart <- renderPlot({ run_workflow()$lResults$chart })
+
+        output$flowchart <- DiagrammeR::renderGrViz({
+            result <- run_workflow()
+            result$lChecks$flowchart[[1]]
+        })
+
+        output$data_summary <- DT::renderDT({ run_workflow()$lResults$dfSummary })
+        output$data_flagged <- DT::renderDT({ run_workflow()$lResults$dfFlagged })
+        output$data_analyzed <- DT::renderDT({ run_workflow()$lResults$dfAnalyzed })
+        output$data_transformed <- DT::renderDT({ run_workflow()$lResults$dfTransformed })
+        output$data_input <- DT::renderDT({ run_workflow()$lResults$dfInput })
     }
 
     assessment_server

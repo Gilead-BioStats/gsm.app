@@ -5,56 +5,22 @@
 \title{Run {safetyGraphics} Application}
 \usage{
 run_gsm_app(
-  meta = map_metadata(),
-  domainData = NULL,
+  meta = map_meta_to_safetyGraphics(),
   assessments = NULL,
-  filterDomain = "subj"
+  domain_data = NULL,
+  filter_domain = "dfSUBJ"
 )
 }
 \arguments{
 \item{meta}{\code{data.frame} metadata returned by \code{\link[=map_metadata]{map_metadata()}}}
 
-\item{domainData}{\code{list} named list of data frames required by \code{assessments}}
-
 \item{assessments}{\code{list} list of assessments in the format expected by {safetyGraphics}}
 
-\item{filterDomain}{\code{character} name of data frame with which to subset on participant; must be
+\item{domain_data}{\code{list} named list of data frames required by \code{assessments}}
+
+\item{filter_domain}{\code{character} name of data frame with which to subset on participant; must be
 one record per participant}
 }
 \description{
 Display {gsm} assessments in the {safetyGraphics} framework, an interactive R Shiny application.
-}
-\examples{
-meta <- map_metadata()
-
-domains <- unique(meta$domain)
-domainData = purrr::map(
-    domains,
-    ~get(paste0('rawplus_', .), envir = as.environment('package:clindata'))
-)
-names(domainData) <- domains
-
-assessments = domains[domains != 'subj'] \%>\%
-    purrr::map(function(domain) {
-        domain_alt <- toupper(domain)
-        if (domain == 'consent')
-            domain_alt = 'Consent'
-
-        prepare_assessment(
-            meta,
-            list(
-                domain_name = domain,
-                map_function = paste0(domain_alt, '_Map_Raw'),
-                assess_function = paste0(domain_alt, '_Assess')
-            )
-        )
-    })
-
-run_gsm_app(
-    meta = meta,
-    domainData = domainData,
-    assessments = assessments,
-    filterDomain = 'subj'
-)
-
 }

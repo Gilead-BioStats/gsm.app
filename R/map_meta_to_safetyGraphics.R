@@ -2,7 +2,7 @@
 #'
 #' Map {gsm} metadata to the tabular structure expected by {safetyGraphics}
 #'
-#' @param meta `list` clindata::mapping_rawplus
+#' @param meta_in `list` {gsm} metadata
 #'
 #' @import dplyr
 #' @importFrom purrr map_df
@@ -10,18 +10,18 @@
 #' @importFrom tidyr pivot_longer
 #' @importFrom tidyselect everything
 #'
-#' @return `data.frame` {gsm} metadata in tabular form
+#' @return `data.frame` {gsm} metadata in tabular form expected by {safetyGraphics}
 #'
 #' @examples
-#' metadata <- map_metadata()
+#' meta_safetyGraphics <- map_meta_to_safetyGraphics()
 #'
 #' @export
 
-map_metadata <- function(meta = clindata::mapping_rawplus) {
+map_meta_to_safetyGraphics <- function(meta_in = clindata::mapping_rawplus) {
     # For each data domain in the metadata:
-    metadata_tabular <- names(meta) %>%
+    meta_out <- names(meta_in) %>%
         purrr::map_df(function(domain) {
-            meta[[ domain ]] %>%
+            meta_in[[ domain ]] %>%
                 purrr::map_df(~as.character(.x)) %>% 
                 tidyr::pivot_longer(tidyselect::everything()) %>%
                 mutate(
@@ -62,12 +62,12 @@ map_metadata <- function(meta = clindata::mapping_rawplus) {
                 )
         }) %>%
         distinct %>%
-        select(domain, col_key, type, field_key, text_key, label, description, standard_gsm, multiple) %>%
+        select(domain, name, col_key, type, value, field_key, text_key, label, description, standard_gsm, multiple) %>%
         arrange(domain, col_key, type, field_key)
 
     # Add an additional row for each domain that renames 'strIDCol' to 'id_col' for compatibility
     # with {safetyGraphics}.
-    id_col <- metadata_tabular %>%
+    id_col <- meta_out %>%
         filter(
             text_key == 'strIDCol'
         ) %>%
@@ -78,8 +78,8 @@ map_metadata <- function(meta = clindata::mapping_rawplus) {
             description = 'Unique Subject Identifier'
         )
 
-    metadata_tabular %>%
+    meta_out %>%
         bind_rows(id_col) %>%
-        select(domain, col_key, type, field_key, text_key, label, description, standard_gsm, multiple) %>%
+        #select(domain, col_key, type, field_key, text_key, label, description, standard_gsm, multiple) %>%
         arrange(domain, col_key, type, field_key)
 }

@@ -1,7 +1,7 @@
 TODO: update Imports and make sure {gsm} and {clindata} are attached
 Package: gsmApp
 Title: Run {gsm} Assessments in the {safetyGraphics} Framework
-Version: 0.2.0
+Version: 0.3.0
 Authors@R: 
     person(
         "Spencer",
@@ -13,11 +13,16 @@ Description: What the package does (one paragraph).
 Imports:
     clindata,
     dplyr,
+    glue,
+    gsm,
     purrr,
     rlang,
     safetyGraphics,
+    shiny,
+    shinyjs,
     tidyr,
-    tidyselect
+    tidyselect,
+    yaml
 License: MIT + file LICENSE
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)

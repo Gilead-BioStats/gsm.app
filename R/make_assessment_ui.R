@@ -1,14 +1,27 @@
+#' Define a Shiny UI function given an assessment
+#'
+#' @param assessment `list` assessment specification
+#'
+#' @importFrom DiagrammeR grVizOutput
+#' @importFrom DT DTOutput
+#' @importFrom purrr imap map_chr
+#' @import shiny
+#'
+#' @return `function` Shiny UI function
+#'
+#' @export
+
 make_assessment_ui <- function(assessment) {
     assessment_ui <- function(id) {
-        ns <- NS(id)
+        ns <- shiny::NS(id)
 
         inputs <- assessment$param %>%
-            imap(function(value, key) {
+            purrr::imap(function(value, key) {
                 input <- NULL
 
                 # TODO: helper functions for each input type
                 if (value$type == 'character') {
-                    input = selectInput(
+                    input = shiny::selectInput(
                         inputId = ns(key),
                         label = value$label,
                         selected = value$default,
@@ -16,8 +29,8 @@ make_assessment_ui <- function(assessment) {
                     )
                 } else if (value$type == 'numeric') {
                     if (length(value$default) > 1) {
-                        input = imap(value$default, function(x, i) {
-                            numericInput(
+                        input = purrr::imap(value$default, function(x, i) {
+                            shiny::numericInput(
                                 inputId = paste0(ns(key), '_', i),
                                 label = ifelse(
                                     i == 1,
@@ -31,7 +44,7 @@ make_assessment_ui <- function(assessment) {
                             )
                         })
                     } else {
-                        input = numericInput(
+                        input = shiny::numericInput(
                             inputId = ns(key),
                             label = value$label,
                             value = value$default,
@@ -45,12 +58,12 @@ make_assessment_ui <- function(assessment) {
                 input
             })
 
-        sidebarLayout(
-            sidebarPanel(
-                selectInput(
+        shiny::sidebarLayout(
+            shiny::sidebarPanel(
+                shiny::selectInput(
                     ns('workflow'),
                     'KRI',
-                    choices = map_chr(
+                    choices = purrr::map_chr(
                         assessment$workflows,
                         ~.x$tags$Label
                     ),
@@ -58,8 +71,20 @@ make_assessment_ui <- function(assessment) {
                 ),
                 inputs
             ),
-            mainPanel(
-                plotOutput(ns('chart'))
+            shiny::mainPanel(
+                shiny::tabsetPanel(type = 'tabs',
+                    shiny::tabPanel('Chart', shiny::plotOutput(ns('chart'))),
+                    shiny::tabPanel('Flowchart', DiagrammeR::grVizOutput(ns('flowchart'))),
+                    shiny::tabPanel('Data',
+                        shiny::tabsetPanel(type = 'tabs',
+                            shiny::tabPanel('Input', DT::DTOutput(ns('data_input'))),
+                            shiny::tabPanel('Transformed', DT::DTOutput(ns('data_transformed'))),
+                            shiny::tabPanel('Analyzed', DT::DTOutput(ns('data_analyzed'))),
+                            shiny::tabPanel('Flagged', DT::DTOutput(ns('data_flagged'))),
+                            shiny::tabPanel('Summary', DT::DTOutput(ns('data_summary')))
+                        )
+                    )
+                )
             )
         )
     }

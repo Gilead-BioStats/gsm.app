@@ -5,43 +5,23 @@
 \title{Prepare {gsm} Assessment for Ingestion by {safetyGraphics}}
 \usage{
 prepare_assessment(
-  meta,
-  assessment = list(domain_name = NULL, map_function = NULL, assess_function = NULL)
+  domain,
+  yaml_file = system.file("assessments", paste0(tolower(domain), ".yaml"), package =
+    "gsmApp"),
+  meta = map_metadata(),
+  workflows = get_metadata_from_yaml("workflows")
 )
 }
 \arguments{
+\item{domain}{\code{character} name of data domain associated with assessment}
+
+\item{yaml_file}{\code{character} file path of .yaml file containing assessment metadata}
+
 \item{meta}{\code{data.frame} metadata returned by \code{\link[=map_metadata]{map_metadata()}}}
+
+\item{workflows}{\code{data.frame} metadata returned by \code{\link[=map_metadata]{map_metadata()}}}
 }
 \description{
 Define a chart object with the format expected by {safetyGraphics}, including required data
 domains, the charting function, and relevnat metadata.
-}
-\examples{
-# Prepare a single assessment.
-ae_assessment <- prepare_assessment(
-    map_metadata(),
-    list(
-        domain_name = 'ae',
-        map_function = 'AE_Map_Raw',
-        assess_function = 'AE_Assess'
-    )
-)
-
-# Prepare all assesments.
-assessments <- c('ae', 'pd', 'ie', 'consent') \%>\%
-    map(function(domain) {
-        domain_alt <- toupper(domain)
-        if (domain == 'consent')
-            domain_alt = 'Consent'
-
-        prepare_assessment(
-            map_metadata(),
-            list(
-                domain_name = domain,
-                map_function = paste0(domain_alt, '_Map_Raw'),
-                assess_function = paste0(domain_alt, '_Assess')
-            )
-        )
-    })
-
 }

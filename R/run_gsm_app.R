@@ -3,64 +3,38 @@
 #' Display {gsm} assessments in the {safetyGraphics} framework, an interactive R Shiny application.
 #'
 #' @param meta `data.frame` metadata returned by [map_metadata()]
-#' @param domain_data `list` named list of data frames required by `assessments`
 #' @param assessments `list` list of assessments in the format expected by {safetyGraphics}
+#' @param domain_data `list` named list of data frames required by `assessments`
 #' @param filter_domain `character` name of data frame with which to subset on participant; must be
 #' one record per participant
 #'
-#' @importFrom purrr map
+#' @importFrom purrr map set_names
 #' @importFrom safetyGraphics safetyGraphicsApp
-#'
-#' @examples
-#' meta <- map_metadata()
-#'
-#' domains <- unique(meta$domain)
-#' domain_data = purrr::map(
-#'     domains,
-#'     ~get(paste0('rawplus_', .), envir = as.environment('package:clindata'))
-#' )
-#' names(domain_data) <- domains
-#'
-#' assessments = domains[domains != 'subj'] %>%
-#'     purrr::map(function(domain) {
-#'         domain_alt <- toupper(domain)
-#'         if (domain == 'consent')
-#'             domain_alt = 'Consent'
-#'
-#'         prepare_assessment(
-#'             meta,
-#'             list(
-#'                 domain_name = domain,
-#'                 map_function = paste0(domain_alt, '_Map_Raw'),
-#'                 assess_function = paste0(domain_alt, '_Assess')
-#'             )
-#'         )
-#'     })
-#' 
-#' run_gsm_app(
-#'     meta = meta,
-#'     domain_data = domain_data,
-#'     assessments = assessments,
-#'     filter_domain = 'subj'
-#' )
 #'
 #' @export
 
 run_gsm_app <- function(
-    meta = map_metadata(),
+    meta = map_meta_to_safetyGraphics(),
     assessments = NULL, # get_assessments(),
     domain_data = NULL,
     filter_domain = 'dfSUBJ'
 ) {
     domains <- unique(meta$domain)
 
-    # Define named list of data frames from {clindata}.
+    # By default, use domain data from {clindata} as a fallback.
     if (is.null(domain_data)) {
-        domain_data <- purrr::map(
-            domains,
-            ~get(paste0('rawplus_', sub('^df', '', .) %>% tolower), envir = as.environment('package:clindata'))
-        )
-        names(domain_data) <- domains
+        domain_data <- domains %>%
+            purrr::map(
+                function(domain)
+                    do.call(
+                        `::`,
+                        list(
+                            'clindata',
+                            paste0('rawplus_', sub('^df', '', domain) %>% tolower)
+                        )
+                    )
+            ) %>%
+            purrr::set_names(domains)
     }
 
     # Define one assessment per data domain.
@@ -73,6 +47,7 @@ run_gsm_app <- function(
             })
     }
 
+    # Launch app.
     safetyGraphics::safetyGraphicsApp(
         meta = meta,
         domainData = domain_data,
