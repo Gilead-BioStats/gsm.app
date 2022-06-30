@@ -2,6 +2,8 @@
 #'
 #' @param assessment `list` assessment specification
 #'
+#' @importFrom DiagrammeR renderGrViz
+#' @importFrom DT renderDT
 #' @importFrom gsm RunAssessment
 #' @importFrom purrr imap keep map_dbl
 #' @importFrom shiny renderPlot
@@ -16,10 +18,7 @@ make_assessment_server <- function(
     assessment_server <- function(input, output, session, params) {
         observe_method(input, session)
 
-        # TODO: make assessment a reactive that passes objects to various outputs
-        output$chart <- renderPlot({
-            #req(input$method)
-
+        run_workflow <- reactive({
             data <- params()$data
             settings <- params()$settings %>%
                 map_meta_to_gsm()
@@ -52,9 +51,22 @@ make_assessment_server <- function(
                 settings
             )
 
-            # TODO: make chart interactive
-            result$lResults$chart
+            result
         })
+
+        # TODO: make chart interactive
+        output$chart <- renderPlot({ run_workflow()$lResults$chart })
+
+        output$flowchart <- DiagrammeR::renderGrViz({
+            result <- run_workflow()
+            result$lChecks$flowchart[[1]]
+        })
+
+        output$data_summary <- DT::renderDT({ run_workflow()$lResults$dfSummary })
+        output$data_flagged <- DT::renderDT({ run_workflow()$lResults$dfFlagged })
+        output$data_analyzed <- DT::renderDT({ run_workflow()$lResults$dfAnalyzed })
+        output$data_transformed <- DT::renderDT({ run_workflow()$lResults$dfTransformed })
+        output$data_input <- DT::renderDT({ run_workflow()$lResults$dfInput })
     }
 
     assessment_server
