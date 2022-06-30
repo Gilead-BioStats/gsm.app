@@ -5,7 +5,7 @@
 \title{Run {safetyGraphics} Application}
 \usage{
 run_gsm_app(
-  meta = map_metadata(),
+  meta = map_meta_to_safetyGraphics(),
   assessments = NULL,
   domain_data = NULL,
   filter_domain = "dfSUBJ"
