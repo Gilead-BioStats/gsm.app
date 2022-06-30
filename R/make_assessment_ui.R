@@ -72,14 +72,18 @@ make_assessment_ui <- function(assessment) {
                 inputs
             ),
             shiny::mainPanel(
-                tabsetPanel(type = "tabs",
-                    tabPanel("Chart", shiny::plotOutput(ns("chart"))),
-                    tabPanel("Flowchart", DiagrammeR::grVizOutput(ns("flowchart"))),
-                    tabPanel("Data: Summary", DT::DTOutput(ns("data_summary"))),
-                    tabPanel("Data: Flagged", DT::DTOutput(ns("data_flagged"))),
-                    tabPanel("Data: Analyzed", DT::DTOutput(ns("data_analyzed"))),
-                    tabPanel("Data: Transformed", DT::DTOutput(ns("data_transformed"))),
-                    tabPanel("Data: Input", DT::DTOutput(ns("data_input")))
+                shiny::tabsetPanel(type = 'tabs',
+                    shiny::tabPanel('Chart', shiny::plotOutput(ns('chart'))),
+                    shiny::tabPanel('Flowchart', DiagrammeR::grVizOutput(ns('flowchart'))),
+                    shiny::tabPanel('Data',
+                        shiny::tabsetPanel(type = 'tabs',
+                            shiny::tabPanel('Input', DT::DTOutput(ns('data_input'))),
+                            shiny::tabPanel('Transformed', DT::DTOutput(ns('data_transformed'))),
+                            shiny::tabPanel('Analyzed', DT::DTOutput(ns('data_analyzed'))),
+                            shiny::tabPanel('Flagged', DT::DTOutput(ns('data_flagged'))),
+                            shiny::tabPanel('Summary', DT::DTOutput(ns('data_summary')))
+                        )
+                    )
                 )
             )
         )
