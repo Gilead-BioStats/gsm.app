@@ -21,11 +21,11 @@ map_metadata <- function(meta = clindata::mapping_rawplus) {
     # For each data domain in the metadata:
     metadata_tabular <- names(meta) %>%
         purrr::map_df(function(domain) {
-            purrr::map_df(meta[[ domain ]], ~as.character(.x)) %>% 
-                tidyr::pivot_longer(everything()) %>%
+            meta[[ domain ]] %>%
+                purrr::map_df(~as.character(.x)) %>% 
+                tidyr::pivot_longer(tidyselect::everything()) %>%
                 mutate(
                     domain = !!domain,
-                    text_key = name,
                     type = if_else(
                         grepl('Col$', name),
                         "column",
@@ -33,26 +33,37 @@ map_metadata <- function(meta = clindata::mapping_rawplus) {
                     ),
                     col_key = if_else(
                         type == 'column',
-                        text_key,
-                        sub('Val.*$', 'Col', text_key)
+                        name,
+                        name %>%
+                            sub('^v', 'str', .) %>%
+                            sub('Val.*$', 'Col', .) %>% # TODO: update rawplus metadata to be consistent and then...
+                            sub('ConsentStatus', 'Value', .) %>% # TODO: ...remove hard code
+                            sub('ConsentType', 'Type', .) %>% # TODO: ...remove hard code
+                            sub('ExpectedResult', 'Value', .) # TODO: ...remove hard code
                     ),
                     field_key = if_else(
-                        type == 'column',
-                        '',
-                        text_key
+                        type == 'field',
+                        value,
+                        ''
                     ),
-                    label = name,
-                    description = name,
-                    standard_gsm = value
+                    text_key = if_else(
+                        type == 'column',
+                        col_key,
+                        paste0(sub('Col', 'Values', col_key), '--', field_key)
+                    ),
+                    label = text_key %>%
+                        sub('^[a-z]*', '', .) %>% # remove type prefix
+                        gsub('([a-z]|ID)([A-Z])', '\\1 \\2', ., perl = TRUE) %>% # camelCase to camel Case
+                        sub('--', ': ', .) %>%
+                        sub('Col', 'Column', .),
+                    description = label,
+                    standard_gsm = value,
+                    multiple = FALSE
                 )
         }) %>%
-        group_by(!!!syms(names(.) %>% .[. != 'standard_gsm'])) %>%
-        summarize(
-            standard_gsm = paste(unique(standard_gsm), collapse = ', ')
-        ) %>%
-        ungroup %>%
-        arrange(domain, col_key, text_key) %>%
-        filter(type != 'field') # TODO: figure out how to pass fields to safetyGraphics
+        distinct %>%
+        select(domain, col_key, type, field_key, text_key, label, description, standard_gsm, multiple) %>%
+        arrange(domain, col_key, type, field_key)
 
     # Add an additional row for each domain that renames 'strIDCol' to 'id_col' for compatibility
     # with {safetyGraphics}.
@@ -69,10 +80,6 @@ map_metadata <- function(meta = clindata::mapping_rawplus) {
 
     metadata_tabular %>%
         bind_rows(id_col) %>%
-        select(
-            domain, text_key, value, col_key, field_key, type, label, description, standard_gsm
-        ) %>%
-        arrange(
-            domain, text_key
-        )
+        select(domain, col_key, type, field_key, text_key, label, description, standard_gsm, multiple) %>%
+        arrange(domain, col_key, type, field_key)
 }

@@ -21,7 +21,8 @@ make_assessment_server <- function(
             #req(input$method)
 
             data <- params()$data
-            settings <- params()$settings
+            settings <- params()$settings %>%
+                map_meta_to_gsm()
 
             # Get selected workflow.
             workflow <- assessment$workflows %>%
@@ -48,9 +49,7 @@ make_assessment_server <- function(
             result <- gsm::RunAssessment(
                 workflow,
                 data,
-                # TODO: either pass around metadata in list structure (like {gsm} expects) or map
-                # metadata (like {safetyGraphics} expects) from data frame back to list
-                clindata::mapping_rawplus
+                settings
             )
 
             # TODO: make chart interactive

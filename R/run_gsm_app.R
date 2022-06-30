@@ -14,7 +14,7 @@
 #' @export
 
 run_gsm_app <- function(
-    meta = map_metadata(),
+    meta = map_meta_to_safetyGraphics(),
     assessments = NULL, # get_assessments(),
     domain_data = NULL,
     filter_domain = 'dfSUBJ'
