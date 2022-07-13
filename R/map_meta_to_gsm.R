@@ -27,7 +27,7 @@ map_meta_to_gsm <- function(meta_in) {
 
             if (domain_key == 'dfAE') {
                 metadata = metadata %>%
-                    list_modify(
+                    purrr::list_modify(
                         strSeriousVal = metadata[[ 'strSeriousValues' ]],
                         strTreatmentEmergentVal = metadata[[ 'strTreatmentEmergentValues' ]]
                     )
@@ -35,7 +35,7 @@ map_meta_to_gsm <- function(meta_in) {
 
             if (domain_key == 'dfCONSENT') {
                 metadata = metadata %>%
-                    list_modify(
+                    purrr::list_modify(
                         strConsentTypeValue = metadata[[ 'strTypeValues' ]],
                         strConsentStatusValue = metadata[[ 'strValueValues' ]]
                     )
@@ -43,7 +43,7 @@ map_meta_to_gsm <- function(meta_in) {
 
             if (domain_key == 'dfIE') {
                 metadata = metadata %>%
-                    list_modify(
+                    purrr::list_modify(
                         vCategoryValues = metadata[[ 'strCategoryValues' ]],
                         vExpectedResultValues = metadata[[ 'strValueValues' ]]
                     )
@@ -51,7 +51,7 @@ map_meta_to_gsm <- function(meta_in) {
 
             if (domain_key == 'dfPD') {
                 metadata = metadata %>%
-                    list_modify(
+                    purrr::list_modify(
                         strImportantVal = metadata[[ 'strImportantValues' ]]
                     )
             }

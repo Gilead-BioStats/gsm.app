@@ -4,6 +4,7 @@
 #'
 #' @importFrom DiagrammeR grVizOutput
 #' @importFrom DT DTOutput
+#' @importFrom plotly plotlyOutput
 #' @importFrom purrr imap map_chr
 #' @import shiny
 #'
@@ -74,6 +75,7 @@ make_assessment_ui <- function(assessment) {
             shiny::mainPanel(
                 shiny::tabsetPanel(type = 'tabs',
                     shiny::tabPanel('Chart', shiny::plotOutput(ns('chart'))),
+                    shiny::tabPanel('Chartly', plotly::plotlyOutput(ns('chartly'))),
                     shiny::tabPanel('Flowchart', DiagrammeR::grVizOutput(ns('flowchart'))),
                     shiny::tabPanel('Data',
                         shiny::tabsetPanel(type = 'tabs',
