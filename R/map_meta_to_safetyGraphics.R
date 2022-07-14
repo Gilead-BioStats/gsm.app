@@ -17,7 +17,9 @@
 #'
 #' @export
 
-map_meta_to_safetyGraphics <- function(meta_in = clindata::mapping_rawplus) {
+map_meta_to_safetyGraphics <- function(
+    meta_in = system.file('mappings', 'mapping_rawplus.yaml', package = 'gsm') %>% read_yaml() # clindata::mapping_rawplus
+) {
     # For each data domain in the metadata:
     meta_out <- names(meta_in) %>%
         purrr::map_df(function(domain) {

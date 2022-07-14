@@ -26,13 +26,17 @@ run_gsm_app <- function(
         domain_data <- domains %>%
             purrr::map(
                 function(domain)
-                    do.call(
-                        `::`,
-                        list(
-                            'clindata',
-                            paste0('rawplus_', sub('^df', '', domain) %>% tolower)
+                    if (domain == 'dfDISP') { # TODO: remove hard code for disposition
+                        clindata::rawplus_subj
+                    } else {
+                        do.call(
+                            `::`,
+                            list(
+                                'clindata',
+                                paste0('rawplus_', sub('^df', '', domain) %>% tolower)
+                            )
                         )
-                    )
+                    }
             ) %>%
             purrr::set_names(domains)
     }
@@ -47,11 +51,34 @@ run_gsm_app <- function(
             })
     }
 
+    study_table_yaml <- glue::glue('
+        env: safetyGraphics
+        label: Study Table
+        name: study_table
+        type: module
+        package: gsmApp
+        domain:
+          - dfSUBJ
+          - dfAE
+          - dfPD
+          - dfIE
+          - dfCONSENT
+        workflow:
+          ui: study_table_ui
+          server: study_table_server
+        links:
+          gsm: https://github.com/Gilead-BioStats/gsm
+          gsmApp: https://github.com/Gilead-BioStats/gsmApp
+    ')
+    study_table_list <- prepareChart(
+        yaml::read_yaml(text = study_table_yaml)
+    )
+
     # Launch app.
     safetyGraphics::safetyGraphicsApp(
         meta = meta,
         domainData = domain_data,
-        charts = assessments,
+        charts = c(assessments, list(study_table_list)),
         filterDomain = filter_domain,
         appName = '{gsm} Explorer',
         hexPath = system.file('resources/hex-gsm.png', package = 'gsmApp'),

@@ -17,7 +17,9 @@
 #'
 #' @export
 
-map_metadata <- function(meta = clindata::mapping_rawplus) {
+map_metadata <- function(
+    meta = system.file('mappings', 'mapping_rawplus.yaml', package = 'gsm') %>% read_yaml() # clindata::mapping_rawplus
+) {
     # For each data domain in the metadata:
     metadata_tabular <- names(meta) %>%
         purrr::map_df(function(domain) {
