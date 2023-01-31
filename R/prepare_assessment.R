@@ -22,7 +22,7 @@ prepare_assessment <- function(
         paste0(tolower(domain), '.yaml'),
         package = 'gsmApp'
     ),
-    meta = map_metadata(),
+    meta = map_meta_to_safetyGraphics(),
     workflows = get_metadata_from_yaml('workflows')
 ) {
     stopifnot(

@@ -4,7 +4,7 @@
 #'
 #' @importFrom DiagrammeR renderGrViz
 #' @importFrom DT renderDT
-#' @importFrom gsm RunAssessment
+#' @importFrom gsm RunWorkflow
 #' @importFrom plotly config ggplotly renderPlotly
 #' @importFrom purrr imap keep map_dbl
 #' @importFrom shiny renderPlot
@@ -46,7 +46,7 @@ make_assessment_server <- function(
                     arg
                 })
 
-            result <- gsm::RunAssessment(
+            result <- gsm::RunWorkflow(
                 workflow,
                 data,
                 settings
@@ -76,6 +76,8 @@ make_assessment_server <- function(
         output$data_analyzed <- DT::renderDT({ run_workflow()$lResults$dfAnalyzed })
         output$data_transformed <- DT::renderDT({ run_workflow()$lResults$dfTransformed })
         output$data_input <- DT::renderDT({ run_workflow()$lResults$dfInput })
+
+        run_workflow
     }
 
     assessment_server

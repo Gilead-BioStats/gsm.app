@@ -15,74 +15,96 @@
 
 run_gsm_app <- function(
     meta = map_meta_to_safetyGraphics(),
-    assessments = NULL, # get_assessments(),
+    workflows = NULL,
     domain_data = NULL,
     filter_domain = 'dfSUBJ'
 ) {
+    stopifnot(
+        '[ meta ] must be a list.' = is.list(meta)
+    )
+
     domains <- unique(meta$domain)
 
     # By default, use domain data from {clindata} as a fallback.
     if (is.null(domain_data)) {
         domain_data <- domains %>%
-            purrr::map(
-                function(domain)
-                    if (domain == 'dfDISP') { # TODO: remove hard code for disposition
-                        clindata::rawplus_subj
-                    } else {
-                        do.call(
-                            `::`,
-                            list(
-                                'clindata',
-                                paste0('rawplus_', sub('^df', '', domain) %>% tolower)
-                            )
-                        )
-                    }
-            ) %>%
+            purrr::map(function(domain) {
+                standard <- 'rawplus'
+                domain <- domain %>%
+                    sub('pd', 'protdev')
+
+                # TODO: avoid hard-coding standard and manipulating domain names
+                if (domain %in% c('dfDATACHG', 'dfDATAENT', 'dfQUERY')) {
+                    standard <- 'edc'
+
+                    domain <- domain %>%
+                        sub('DATACHG', 'data_change_rate', .) %>%
+                        sub('DATAENT', 'data_entry_lag', .)
+                }
+
+                do.call(
+                    `::`,
+                    list(
+                        'clindata',
+                        paste0(standard, '_', sub('^df', '', domain) %>% tolower)
+                    )
+                )
+            }) %>%
             purrr::set_names(domains)
     }
 
-    # Define one assessment per data domain.
-    if (is.null(assessments)) {
-        assessments <- domains[domains != 'dfSUBJ'] %>%
-            purrr::map(function(domain) {
-                domain_alt <- sub('^df', '', domain)
-
-                prepare_assessment(domain_alt)
-            })
+    # TODO: update to generate workflow modules instead of assessment modules?
+    if (is.null(workflows)) {
+        workflows <- NULL
     }
+    # Define one assessment per data domain.
+    #if (is.null(assessments)) {
+    #    assessments <- domains[domains != 'dfSUBJ'] %>%
+    #        purrr::map(function(domain) {
+    #            domain_alt <- sub('^df', '', domain)
 
-    study_table_yaml <- glue::glue('
-        env: safetyGraphics
-        label: Study Table
-        name: study_table
-        type: module
-        package: gsmApp
-        domain:
-          - dfSUBJ
-          - dfAE
-          - dfPD
-          - dfIE
-          - dfCONSENT
-        workflow:
-          ui: study_table_ui
-          server: study_table_server
-        links:
-          gsm: https://github.com/Gilead-BioStats/gsm
-          gsmApp: https://github.com/Gilead-BioStats/gsmApp
-    ')
-    study_table_list <- prepareChart(
-        yaml::read_yaml(text = study_table_yaml)
-    )
+    #            prepare_assessment(domain_alt)
+    #        })
+    #}
 
-    # Launch app.
-    safetyGraphics::safetyGraphicsApp(
-        meta = meta,
-        domainData = domain_data,
-        charts = c(assessments, list(study_table_list)),
-        filterDomain = filter_domain,
-        appName = '{gsm} Explorer',
-        hexPath = system.file('resources/hex-gsm.png', package = 'gsmApp'),
-        homeTabPath = system.file('resources/homeTab.html', package = 'gsmApp'),
-        launchBrowser = TRUE
-    )
+    #study_table_yaml <- glue::glue('
+    #    env: safetyGraphics
+    #    label: Study Table
+    #    name: study_table
+    #    type: module
+    #    package: gsmApp
+    #    domain:
+    #      - dfAE
+    #      - dfCONSENT
+    #      - dfDATACHG
+    #      - dfDATAENT
+    #      - dfENROLL
+    #      - dfIE
+    #      - dfPD
+    #      - dfQUERY
+    #      - dfSDRGCOMP
+    #      - dfSTUDCOMP
+    #      - dfSUBJ
+    #    workflow:
+    #      ui: study_table_ui
+    #      server: study_table_server
+    #    links:
+    #      gsm: https://github.com/Gilead-BioStats/gsm
+    #      gsmApp: https://github.com/Gilead-BioStats/gsmApp
+    #')
+    #study_table_list <- prepareChart(
+    #    yaml::read_yaml(text = study_table_yaml)
+    #)
+
+    ## Launch app.
+    #safetyGraphics::safetyGraphicsApp(
+    #    meta = meta,
+    #    domainData = domain_data,
+    #    charts = c(assessments, list(study_table_list)),
+    #    filterDomain = filter_domain,
+    #    appName = '{gsm} Explorer',
+    #    hexPath = system.file('resources/hex-gsm.png', package = 'gsmApp'),
+    #    homeTabPath = system.file('resources/homeTab.html', package = 'gsmApp'),
+    #    launchBrowser = TRUE
+    #)
 }
