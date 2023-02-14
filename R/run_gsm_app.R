@@ -53,19 +53,15 @@ run_gsm_app <- function(
             purrr::set_names(domains)
     }
 
-    # TODO: update to generate workflow modules instead of assessment modules?
+    # Define one module per workflow.
     if (is.null(workflows)) {
-        workflows <- NULL
+        workflows <- system.file('workflow', package = 'gsm') %>%
+            list.files('^kri\\d{4}\\.yaml$', full.name = TRUE) %>%
+            purrr::map(function(workflow_path) {
+                workflow_id <- tools::file_path_sans_ext(workflow_path)
+                prepare_workflow(workflow_id)
+            })
     }
-    # Define one assessment per data domain.
-    #if (is.null(assessments)) {
-    #    assessments <- domains[domains != 'dfSUBJ'] %>%
-    #        purrr::map(function(domain) {
-    #            domain_alt <- sub('^df', '', domain)
-
-    #            prepare_assessment(domain_alt)
-    #        })
-    #}
 
     #study_table_yaml <- glue::glue('
     #    env: safetyGraphics
@@ -96,15 +92,15 @@ run_gsm_app <- function(
     #    yaml::read_yaml(text = study_table_yaml)
     #)
 
-    ## Launch app.
-    #safetyGraphics::safetyGraphicsApp(
-    #    meta = meta,
-    #    domainData = domain_data,
-    #    charts = c(assessments, list(study_table_list)),
-    #    filterDomain = filter_domain,
-    #    appName = '{gsm} Explorer',
-    #    hexPath = system.file('resources/hex-gsm.png', package = 'gsmApp'),
-    #    homeTabPath = system.file('resources/homeTab.html', package = 'gsmApp'),
-    #    launchBrowser = TRUE
-    #)
+    # Launch app.
+    safetyGraphics::safetyGraphicsApp(
+        meta = meta,
+        domainData = domain_data,
+        charts = workflows,#c(workflows, list(study_table_list)),
+        filterDomain = filter_domain,
+        appName = '{gsm} Explorer',
+        hexPath = system.file('resources/hex-gsm.png', package = 'gsmApp'),
+        homeTabPath = system.file('resources/homeTab.html', package = 'gsmApp'),
+        launchBrowser = TRUE
+    )
 }
