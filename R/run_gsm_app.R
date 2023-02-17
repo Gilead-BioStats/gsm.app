@@ -106,7 +106,7 @@ run_gsm_app <- function(
         charts = workflows,#c(workflows, list(overview_table_list)),
         filterDomain = filter_domain,
         appName = '{gsm} Explorer',
-        hexPath = system.file('resources/hex-gsm.png', package = 'gsmApp'),
+        hexPath = system.file('resources/gsm.png', package = 'gsmApp'),
         homeTabPath = system.file('resources/homeTab.html', package = 'gsmApp'),
         launchBrowser = TRUE
     )

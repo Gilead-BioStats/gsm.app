@@ -1,6 +1,6 @@
-TODO: update Imports and make sure {gsm} and {clindata} are attached
+TODO: make sure {gsm} and {clindata} are attached
 Package: gsmApp
-Title: Run {gsm} Assessments in the {safetyGraphics} Framework
+Title: {gsm} Shiny Application
 Version: 0.4.0
 Authors@R: 
     person(
@@ -9,27 +9,31 @@ Authors@R:
         email = "spencer.childress@gilead.com",
         role = c("aut", "cre")
     )
-Description: What the package does (one paragraph).
+Description: Run {gsm} Assessments in the {safetyGraphics} Framework
+Depends: 
+    R (>= 2.10)
 Imports:
-    clindata,
+    DiagrammeR,
     dplyr,
+    DT,
     glue,
     gsm,
+    gt,
+    plotly,
     purrr,
     rlang,
     safetyGraphics,
     shiny,
     shinyjs,
+    tibble,
     tidyr,
     tidyselect,
     yaml
+Suggests: 
+    testthat (>= 3.0.0)
 License: MIT + file LICENSE
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.2.2
-Suggests: 
-    testthat (>= 3.0.0)
 Config/testthat/edition: 3
-Depends: 
-    R (>= 2.10)
 LazyData: true
