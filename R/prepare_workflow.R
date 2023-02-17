@@ -24,20 +24,20 @@ prepare_workflow <- function(
             package = 'gsm'
         )
     ),
-    meta = gsmApp::meta
+    meta = gsmApp::meta_data_frame
     #workflows = get_metadata_from_yaml('workflows')
 ) {
     stopifnot(
         # type checks
-        #'[ domain ] is not a character value' = is.character(domain),
+        # '[ domain ] is not a character value' = is.character(domain),
         '[ workflow_id ] is not a character value' = is.character(workflow_id),
         '[ workflow ] is not a list' = is.list(workflow),
         '[ meta ] is not a data frame' = is.data.frame(meta)
 
         # logic checks
-        #'[ domain ] not found in [ meta ]' = domain %in% sub('^df', '', unique(meta$domain)),
-        #'[ yaml_file ] does not exist' = file.exists(yaml_file)
-        #'[ domain ] not found in [ workflows ]' = domain %in% (workflows %>% purrr::map_chr(~.x$workflow))
+        # '[ domain ] not found in [ meta ]' = domain %in% sub('^df', '', unique(meta$domain)),
+        # '[ yaml_file ] does not exist' = file.exists(yaml_file)
+        # '[ domain ] not found in [ workflows ]' = domain %in% (workflows %>% purrr::map_chr(~.x$workflow))
     )
 
     workflow_meta <- gsm::meta_workflow %>%

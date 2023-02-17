@@ -17,11 +17,11 @@
 #' @return `data.frame` {gsm} metadata in tabular form expected by {safetyGraphics}
 #'
 #' @examples
-#' meta_safetyGraphics <- map_meta_to_safetyGraphics()
+#' meta <- map_meta_to_data_frame()
 #'
 #' @export
 
-map_meta_to_safetyGraphics <- function(
+map_meta_to_data_frame <- function(
     meta_in = c(
         yaml::read_yaml(system.file('mappings', 'mapping_rawplus.yaml', package = 'gsm')),
         yaml::read_yaml(system.file('mappings', 'mapping_edc.yaml', package = 'gsm'))
@@ -58,20 +58,22 @@ map_meta_to_safetyGraphics <- function(
                             sub('NonImportant', 'Important', .) %>%
                             sub('GradeAny', 'Grade', .) %>%
                             sub('GradeHigh', 'Grade', .)
-                    )
-                ) %>%
-                group_by(key) %>%
-                mutate(
+                    ),
+                #) %>%
+                #group_by(key) %>%
+                #mutate(
                     # field key
                     field_key = case_when(
                         type == 'column' ~ '',
-                        type == 'field' & n() == 1 ~ gsub('^str|Val$', '', key),
-                        type == 'field' & n() >= 2 ~ gsub('^str|Val$', '', key) %>%
-                            paste0(row_number())
-                    )
-                ) %>%
-                ungroup() %>%
-                mutate(
+                        type == 'field' ~ gsub('^str|Val$', '', key) %>%
+                            paste(value),
+                        #type == 'field' & n() == 1 ~ gsub('^str|Val$', '', key),
+                        #type == 'field' & n() >= 2 ~ gsub('^str|Val$', '', key) %>%
+                        #    paste0(row_number())
+                    ),
+                #) %>%
+                #ungroup() %>%
+                #mutate(
                     text_key = if_else(
                         type == 'column',
                         col_key,

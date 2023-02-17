@@ -17,67 +17,47 @@ make_workflow_server <- function(
     workflow
 ) {
     workflow_server <- function(input, output, session, params) {
-    #    observe_method(input, session)
+        #observe_method(input, session)
 
-    #    run_workflow <- reactive({
-    #        data <- params()$data
-    #        settings <- params()$settings %>%
-    #            map_meta_to_gsm()
+        output$workflow_steps <- shiny::renderPrint({
+            jsonlite::toJSON(
+                workflow$steps,
+                auto_unbox = TRUE,
+                digits = 4,
+                pretty = TRUE
+            )
+        })
 
-    #        # Get selected workflow.
-    #        workflow <- workflow$workflows %>%
-    #            purrr::keep(~.x$tags$Label == input$workflow) %>%
-    #            unlist(recursive = FALSE)
+        run_workflow <- reactive({
+            data <- params()$data
+            settings <- params()$settings
+            result <- RunWorkflow(
+                lWorkflow = workflow,
+                lData = data,
+                lMapping = settings,
+                #bQuiet = FALSE,
+                bFlowchart = TRUE
+            )
 
-    #        # Update parameters.
-    #        workflow$workflow[[ length(workflow$workflow) ]]$params <- workflow$params %>%
-    #            purrr::imap(function(value, key) {
-    #                arg <- NULL
+            result
+        })
 
-    #                if (length(value$default) > 1) {
-    #                    arg = purrr::map_dbl(
-    #                        1:length(value$default),
-    #                        ~input[[ paste0(key, '_', .x) ]]
-    #                    )
-    #                } else {
-    #                    arg = input[[ key ]]
-    #                }
+        # Charts
+        output$scatter_plot <- gsm::renderScatterPlot({ run_workflow()$lResults$lCharts$scatterJS })
+        output$bar_chart_score <- gsm::renderBarChart({ run_workflow()$lResults$lCharts$barScoreJS })
+        output$bar_chart_metric <- gsm::renderBarChart({ run_workflow()$lResults$lCharts$barMetricJS })
 
-    #                arg
-    #            })
+        # Flowchart
+        output$flowchart <- DiagrammeR::renderGrViz({ run_workflow()$lChecks$flowchart[[1]] })
 
-    #        result <- gsm::RunWorkflow(
-    #            workflow,
-    #            data,
-    #            settings
-    #        )
+        # Data
+        output$data_summary <- DT::renderDT({ run_workflow()$lResults$lData$dfSummary })
+        output$data_flagged <- DT::renderDT({ run_workflow()$lResults$lData$dfFlagged })
+        output$data_analyzed <- DT::renderDT({ run_workflow()$lResults$lData$dfAnalyzed })
+        output$data_transformed <- DT::renderDT({ run_workflow()$lResults$lData$dfTransformed })
+        output$data_input <- DT::renderDT({ run_workflow()$lData$dfInput })
 
-    #        result
-    #    })
-
-    #    # Chart
-    #    output$chart <- shiny::renderPlot({ run_workflow()$lResults$chart })
-    #    output$chartly <- plotly::renderPlotly({
-    #        plotly::ggplotly(run_workflow()$lResults$chart, tooltip = 'text') %>%
-    #            plotly::config(
-    #                displayModeBar = FALSE
-    #            )
-    #    })
-
-    #    # Flowchart
-    #    output$flowchart <- DiagrammeR::renderGrViz({
-    #        result <- run_workflow()
-    #        result$lChecks$flowchart[[1]]
-    #    })
-
-    #    # Data
-    #    output$data_summary <- DT::renderDT({ run_workflow()$lResults$dfSummary })
-    #    output$data_flagged <- DT::renderDT({ run_workflow()$lResults$dfFlagged })
-    #    output$data_analyzed <- DT::renderDT({ run_workflow()$lResults$dfAnalyzed })
-    #    output$data_transformed <- DT::renderDT({ run_workflow()$lResults$dfTransformed })
-    #    output$data_input <- DT::renderDT({ run_workflow()$lResults$dfInput })
-
-    #    run_workflow
+        run_workflow
     }
 
     workflow_server

@@ -14,32 +14,35 @@
 #' @export
 
 run_gsm_app <- function(
-    meta = map_meta_to_safetyGraphics(),
+    meta = gsmApp::meta_data_frame,#map_meta_to_safetyGraphics(),
     workflows = NULL,
     domain_data = NULL,
     filter_domain = 'dfSUBJ'
 ) {
     stopifnot(
-        '[ meta ] must be a list.' = is.list(meta)
+        '[ meta ] must be a data frame.' = is.data.frame(meta)
     )
 
     domains <- unique(meta$domain)
 
+    # TODO: use gsm::mapping_domain
     # By default, use domain data from {clindata} as a fallback.
     if (is.null(domain_data)) {
         domain_data <- domains %>%
             purrr::map(function(domain) {
                 standard <- 'rawplus'
                 domain <- domain %>%
-                    sub('pd', 'protdev')
+                    sub('SUBJ', 'DM', .) %>%
+                    sub('PD', 'PROTDEV', .)
 
                 # TODO: avoid hard-coding standard and manipulating domain names
                 if (domain %in% c('dfDATACHG', 'dfDATAENT', 'dfQUERY')) {
                     standard <- 'edc'
 
                     domain <- domain %>%
+                        sub('DATAENT', 'data_entry_lag', .) %>%
                         sub('DATACHG', 'data_change_rate', .) %>%
-                        sub('DATAENT', 'data_entry_lag', .)
+                        sub('QUERY', 'queries', .)
                 }
 
                 do.call(
@@ -58,15 +61,19 @@ run_gsm_app <- function(
         workflows <- system.file('workflow', package = 'gsm') %>%
             list.files('^kri\\d{4}\\.yaml$', full.name = TRUE) %>%
             purrr::map(function(workflow_path) {
-                workflow_id <- tools::file_path_sans_ext(workflow_path)
+                workflow_id <- workflow_path %>%
+                    tools::file_path_sans_ext() %>%
+                    stringr::str_split_1('/') %>%
+                    tail(1)
+
                 prepare_workflow(workflow_id)
             })
     }
 
-    #study_table_yaml <- glue::glue('
+    #overview_table_yaml <- glue::glue('
     #    env: safetyGraphics
     #    label: Study Table
-    #    name: study_table
+    #    name: overview_table
     #    type: module
     #    package: gsmApp
     #    domain:
@@ -82,21 +89,21 @@ run_gsm_app <- function(
     #      - dfSTUDCOMP
     #      - dfSUBJ
     #    workflow:
-    #      ui: study_table_ui
-    #      server: study_table_server
+    #      ui: overview_table_ui
+    #      server: overview_table_server
     #    links:
     #      gsm: https://github.com/Gilead-BioStats/gsm
     #      gsmApp: https://github.com/Gilead-BioStats/gsmApp
-    #')
-    #study_table_list <- prepareChart(
-    #    yaml::read_yaml(text = study_table_yaml)
+    # ')
+    #overview_table_list <- prepareChart(
+    #    yaml::read_yaml(text = overview_table_yaml)
     #)
 
     # Launch app.
     safetyGraphics::safetyGraphicsApp(
         meta = meta,
         domainData = domain_data,
-        charts = workflows,#c(workflows, list(study_table_list)),
+        charts = workflows,#c(workflows, list(overview_table_list)),
         filterDomain = filter_domain,
         appName = '{gsm} Explorer',
         hexPath = system.file('resources/hex-gsm.png', package = 'gsmApp'),

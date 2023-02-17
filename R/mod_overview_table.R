@@ -10,14 +10,14 @@
 #' @export
 
 #make_assessment_ui <- function(assessment) {
-    study_table_ui <- function(id) {
+    overview_table_ui <- function(id) {
         ns <- shiny::NS(id)
 
         shiny::sidebarLayout(
             shiny::sidebarPanel(
             ),
             shiny::mainPanel(
-                gt::gt_output(ns('study_table'))
+                gt::gt_output(ns('overview_table'))
             )
         )
     }
@@ -29,7 +29,7 @@
 #'
 #' @param assessment `list` assessment specification
 #'
-#' @importFrom gsm Study_Assess Study_Table
+#' @importFrom gsm Study_Assess Overview_Table
 #' @import gt
 #' @import shiny
 #'
@@ -40,8 +40,8 @@
 #make_assessment_server <- function(
 #    assessment
 #) {
-    study_table_server <- function(input, output, session, params) {
-        output$study_table <- gt::render_gt({
+    overview_table_server <- function(input, output, session, params) {
+        output$overview_table <- gt::render_gt({
             data <- params()$data
             mapping <- params()$settings %>%
                 map_meta_to_gsm()
@@ -57,9 +57,9 @@
                 purrr::compact() %>%
                 purrr::map_df(~ .x$dfSummary)
 
-            study_table <- gsm::Study_Table(summary)
+            overview_table <- gsm::Overview_Table(summary)
 
-            overview_tbl <- study_table$df_summary %>%
+            overview_tbl <- overview_table$df_summary %>%
                 dplyr::mutate(
                     dplyr::across(
                         tidyselect::everything(),
@@ -88,10 +88,10 @@
                     locations = gt::cells_body(columns = -Title, rows = 1:2)
                 )
 
-            if (!is.null(study_table$footnote)) {
+            if (!is.null(overview_table$footnote)) {
                 overview_tbl %>%
                     gt::tab_footnote(
-                        footnote = study_table$footnote,
+                        footnote = overview_table$footnote,
                         locations = gt::cells_column_labels(
                             columns = Title
                         )
