@@ -5,21 +5,22 @@
 \title{Run {safetyGraphics} Application}
 \usage{
 run_gsm_app(
-  meta = map_meta_to_safetyGraphics(),
-  assessments = NULL,
-  domain_data = NULL,
+  meta = gsmApp::meta_data_frame,
+  workflows = NULL,
+  domain_data = list(dfSUBJ = clindata::rawplus_dm, dfAE = clindata::rawplus_ae, dfPD =
+    clindata::rawplus_protdev),
   filter_domain = "dfSUBJ"
 )
 }
 \arguments{
 \item{meta}{\code{data.frame} metadata returned by \code{\link[=map_metadata]{map_metadata()}}}
 
-\item{assessments}{\code{list} list of assessments in the format expected by {safetyGraphics}}
-
 \item{domain_data}{\code{list} named list of data frames required by \code{assessments}}
 
 \item{filter_domain}{\code{character} name of data frame with which to subset on participant; must be
 one record per participant}
+
+\item{assessments}{\code{list} list of assessments in the format expected by {safetyGraphics}}
 }
 \description{
 Display {gsm} assessments in the {safetyGraphics} framework, an interactive R Shiny application.

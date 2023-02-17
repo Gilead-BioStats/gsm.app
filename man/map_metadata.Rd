@@ -4,7 +4,10 @@
 \alias{map_metadata}
 \title{Structure {gsm} Metadata}
 \usage{
-map_metadata(meta = clindata::mapping_rawplus)
+map_metadata(
+  meta = system.file("mappings", "mapping_rawplus.yaml", package = "gsm") \%>\%
+    read_yaml()
+)
 }
 \arguments{
 \item{meta}{\code{list} clindata::mapping_rawplus}
