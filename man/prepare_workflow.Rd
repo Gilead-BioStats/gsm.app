@@ -8,7 +8,11 @@ prepare_workflow(
   workflow_id,
   workflow = yaml::read_yaml(system.file("workflow", glue::glue("{workflow_id}.yaml"),
     package = "gsm")),
-  meta = gsmApp::meta_data_frame
+  meta = gsmApp::meta_data_frame,
+  assessment_params = yaml::read_yaml(system.file("assessment_params.yaml", package =
+    "gsmApp")),
+  method_thresholds = yaml::read_yaml(system.file("method_thresholds.yaml", package =
+    "gsmApp"))
 )
 }
 \arguments{

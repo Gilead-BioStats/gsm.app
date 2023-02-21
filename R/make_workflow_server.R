@@ -15,7 +15,8 @@
 
 make_workflow_server <- function(
     workflow,
-    assess_parameters
+    assess_parameters,
+    method_thresholds
 ) {
     workflow_server <- function(input, output, session, params) {
         #observe_method(input, session)

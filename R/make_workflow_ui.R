@@ -15,7 +15,8 @@
 
 make_workflow_ui <- function(
     workflow,
-    assess_parameters
+    assess_parameters,
+    method_thresholds
 ) {
     workflow_ui <- function(id) {
         ns <- shiny::NS(id)
@@ -33,45 +34,14 @@ make_workflow_ui <- function(
         defaults <- assess_parameters[[ tolower(assessment$name) ]]
 
         inputs <- assessment$params %>%
-            purrr::imap(function(value, key) {
+            purrr::imap(function(param, key) {
                 default <- defaults[[ key ]]
                 input <- NULL
 
-                # TODO: helper functions for each input type
                 if (default$type == 'character') {
-                    input = shiny::selectInput(
-                        inputId = ns(key),
-                        label = default$label,
-                        selected = default$default,
-                        choices = default$options
-                    )
+                    input = input_character(ns(key), default)
                 } else if (default$type == 'numeric') {
-                    if (length(default$default) > 1) {
-                        input = default$default %>%
-                            purrr::imap(function(x, i) {
-                                shiny::numericInput(
-                                    inputId = paste0(ns(key), '_', i),
-                                    label = ifelse(
-                                        i == 1,
-                                        default$label,
-                                        ''
-                                    ),
-                                    value = x,
-                                    min = default$min,
-                                    max = default$max,
-                                    step = .1
-                                )
-                            })
-                    } else {
-                        input = shiny::numericInput(
-                            inputId = ns(key),
-                            label = default$label,
-                            value = default$default,
-                            min = default$min,
-                            max = default$max,
-                            step = 1
-                        )
-                    }
+                    input = input_numeric(ns(key), default)
                 }
 
                 input

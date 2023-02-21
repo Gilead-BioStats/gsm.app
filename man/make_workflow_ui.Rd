@@ -4,7 +4,7 @@
 \alias{make_workflow_ui}
 \title{Define a Shiny UI function given an workflow}
 \usage{
-make_workflow_ui(workflow)
+make_workflow_ui(workflow, assess_parameters, method_thresholds)
 }
 \arguments{
 \item{workflow}{\code{list} workflow specification}

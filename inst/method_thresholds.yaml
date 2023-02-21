@@ -1,0 +1,16 @@
+NormalApprox:
+  default:
+    - -3
+    - -2
+    - 2
+    - 3
+Poisson:
+  default:
+    - -7
+    - -5
+    - 5
+    - 7
+Identity:
+  default:
+    - 0.00006
+    - 0.01

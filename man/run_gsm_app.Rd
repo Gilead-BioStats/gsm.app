@@ -7,8 +7,7 @@
 run_gsm_app(
   meta = gsmApp::meta_data_frame,
   workflows = NULL,
-  domain_data = list(dfSUBJ = clindata::rawplus_dm, dfAE = clindata::rawplus_ae, dfPD =
-    clindata::rawplus_protdev),
+  domain_data = NULL,
   filter_domain = "dfSUBJ"
 )
 }

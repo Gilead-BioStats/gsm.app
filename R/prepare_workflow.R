@@ -25,13 +25,18 @@ prepare_workflow <- function(
         )
     ),
     meta = gsmApp::meta_data_frame,
-    assess_parameters = yaml::read_yaml(
+    assessment_params = yaml::read_yaml(
         system.file(
-            'assess_parameters.yaml',
+            'assessment_params.yaml',
+            package = 'gsmApp'
+        )
+    ),
+    method_thresholds = yaml::read_yaml(
+        system.file(
+            'method_thresholds.yaml',
             package = 'gsmApp'
         )
     )
-    #workflows = get_metadata_from_yaml('workflows')
 ) {
     stopifnot(
         # type checks
@@ -39,7 +44,7 @@ prepare_workflow <- function(
         '[ workflow_id ] is not a character value' = is.character(workflow_id),
         '[ workflow ] is not a list' = is.list(workflow),
         '[ meta ] is not a data frame' = is.data.frame(meta),
-        '[ assess_parameters ] is not a list' = is.list(assess_parameters)
+        '[ assessment_params ] is not a list' = is.list(assessment_params)
 
         # logic checks
         # '[ domain ] not found in [ meta ]' = domain %in% sub('^df', '', unique(meta$domain)),
@@ -64,10 +69,10 @@ prepare_workflow <- function(
         workflow$step_output == 'dfInput'
     ] %>% stringr::str_split_1(' ')
 
-    workflow$ui <- make_workflow_ui(workflow, assess_parameters)
+    workflow$ui <- make_workflow_ui(workflow, assessment_params, method_thresholds)
     assign(glue::glue('{workflow_id}_ui'), workflow$ui, envir = .GlobalEnv)
 
-    workflow$server <- make_workflow_server(workflow, assess_parameters)
+    workflow$server <- make_workflow_server(workflow, assessment_params, method_thresholds)
     assign(glue::glue('{workflow_id}_server'), workflow$server, envir = .GlobalEnv)
 
     workflow_yaml <- glue::glue('
