@@ -21,15 +21,6 @@ make_workflow_server <- function(
     workflow_server <- function(input, output, session, params) {
         #observe_method(input, session)
 
-        output$workflow_steps <- shiny::renderPrint({
-            jsonlite::toJSON(
-                workflow$steps,
-                auto_unbox = TRUE,
-                digits = 4,
-                pretty = TRUE
-            )
-        })
-
         run_workflow <- reactive({
             data <- params()$data
             settings <- params()$settings
@@ -102,6 +93,16 @@ make_workflow_server <- function(
         output$data_analyzed <- DT::renderDT({ run_workflow()$lResults$lData$dfAnalyzed })
         output$data_transformed <- DT::renderDT({ run_workflow()$lResults$lData$dfTransformed })
         output$data_input <- DT::renderDT({ run_workflow()$lData$dfInput })
+
+        # workflow
+        output$workflow_steps <- shiny::renderPrint({
+            jsonlite::toJSON(
+                run_workflow()$steps,
+                auto_unbox = TRUE,
+                digits = 4,
+                pretty = TRUE
+            )
+        })
 
         run_workflow
     }

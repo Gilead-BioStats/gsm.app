@@ -8,17 +8,13 @@ input_numeric <- function(id, default) {
     input <- NULL
 
     if (length(default$default) > 1) {
-        input = default$default %>%
+        inputs <- default$default %>%
             purrr::imap(function(value, i) {
                 div(
-                    style = 'display: inline-block; width: 24%',
+                    style = 'width: 24%',
                     shiny::numericInput(
                         inputId = paste0(id, '_', i),
-                        label = ifelse(
-                            i == 1,
-                            default$label,
-                            ''
-                        ),
+                        label = '',
                         value = value,
                         min = default$min,
                         max = default$max,
@@ -26,6 +22,14 @@ input_numeric <- function(id, default) {
                     )
                 )
             })
+
+        input = div(
+            tag('label', default$label),
+            div(
+                inputs,
+                style = 'display: flex; justify-content: space-between'
+            )
+        )
     } else {
         input = shiny::numericInput(
             inputId = id,
