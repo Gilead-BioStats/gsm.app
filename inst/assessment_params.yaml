@@ -1,4 +1,4 @@
-ae_assess:
+AE_Assess:
   strGroup:
     type: character
     label: Group
@@ -30,7 +30,7 @@ ae_assess:
     default: 30
     min: 0
     max: .inf
-pd_assess:
+PD_Assess_Rate:
   strGroup:
     type: character
     label: Group

@@ -15,7 +15,7 @@
 
 make_workflow_server <- function(
     workflow,
-    assess_parameters,
+    assessment_params,
     method_thresholds
 ) {
     workflow_server <- function(input, output, session, params) {
@@ -38,13 +38,13 @@ make_workflow_server <- function(
                 match(
                     'assess',
                     workflow$steps %>%
-                        map_chr(~sub('^.*_', '', .x$name)) %>%
+                        map_chr(~sub('.*(assess).*', '\\1', .x$name, TRUE)) %>%
                         tolower()
                 )
             ]]
 
             # TODO: allow for nonexistent assessment
-            defaults <- assess_parameters[[ tolower(assessment$name) ]]
+            defaults <- assessment_params[[ assessment$name ]]
 
             params <- assessment$params %>%
                 purrr::imap(function(param, key) {
@@ -72,7 +72,7 @@ make_workflow_server <- function(
                 match(
                     'assess',
                     workflow$steps %>%
-                        map_chr(~sub('^.*_', '', .x$name)) %>%
+                        map_chr(~sub('.*(assess).*', '\\1', .x$name, TRUE)) %>%
                         tolower()
                 )
             ]]$params <- params

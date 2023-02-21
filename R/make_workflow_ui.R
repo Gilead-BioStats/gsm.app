@@ -15,7 +15,7 @@
 
 make_workflow_ui <- function(
     workflow,
-    assess_parameters,
+    assessment_params,
     method_thresholds
 ) {
     workflow_ui <- function(id) {
@@ -25,13 +25,13 @@ make_workflow_ui <- function(
             match(
                 'assess',
                 workflow$steps %>%
-                    map_chr(~sub('^.*_', '', .x$name)) %>%
+                    map_chr(~sub('.*(assess).*', '\\1', .x$name, TRUE)) %>%
                     tolower()
             )
         ]]
 
         # TODO: allow for nonexistent assessment
-        defaults <- assess_parameters[[ tolower(assessment$name) ]]
+        defaults <- assessment_params[[ assessment$name ]]
 
         inputs <- assessment$params %>%
             purrr::imap(function(param, key) {
