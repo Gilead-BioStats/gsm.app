@@ -14,7 +14,8 @@
 #' @export
 
 make_workflow_server <- function(
-    workflow
+    workflow,
+    assess_parameters
 ) {
     workflow_server <- function(input, output, session, params) {
         #observe_method(input, session)
@@ -31,6 +32,50 @@ make_workflow_server <- function(
         run_workflow <- reactive({
             data <- params()$data
             settings <- params()$settings
+
+            assessment <- workflow$steps[[
+                match(
+                    'assess',
+                    workflow$steps %>%
+                        map_chr(~sub('^.*_', '', .x$name)) %>%
+                        tolower()
+                )
+            ]]
+
+            # TODO: allow for nonexistent assessment
+            defaults <- assess_parameters[[ tolower(assessment$name) ]]
+
+            params <- assessment$params %>%
+                purrr::imap(function(param, key) {
+                    default <- defaults[[ key ]]
+                    value <- NULL
+
+                    # TODO: helper functions for each input type
+                    if (default$type == 'character') {
+                        value = input[[ key ]]
+                    } else if (default$type == 'numeric') {
+                        if (length(default$default) > 1) {
+                            value = names(input) %>%
+                                keep(~grepl(key, .x)) %>%
+                                map_dbl(~input[[ .x ]]) %>%
+                                sort()
+                        } else {
+                            value = input[[ key ]]
+                        }
+                    }
+
+                    value
+                })
+
+            workflow$steps[[ 
+                match(
+                    'assess',
+                    workflow$steps %>%
+                        map_chr(~sub('^.*_', '', .x$name)) %>%
+                        tolower()
+                )
+            ]]$params <- params
+
             result <- RunWorkflow(
                 lWorkflow = workflow,
                 lData = data,

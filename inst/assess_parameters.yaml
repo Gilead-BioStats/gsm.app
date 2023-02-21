@@ -1,0 +1,62 @@
+ae_assess:
+  strGroup:
+    type: character
+    label: Group
+    default: 'Site'
+    options:
+      - Site
+      - Country
+  vThreshold:
+    type: numeric
+    label: Threshold
+    default:
+      - -3
+      - -2
+      - 2
+      - 3
+    min: -.inf
+    max: .inf
+  strMethod:
+    type: character
+    label: Method
+    default: poisson
+    options:
+      - NormalApprox
+      - Poisson
+      - Identity
+  nMinDenominator:
+    type: numeric
+    label: Minimum Denominator
+    default: 30
+    min: 0
+    max: .inf
+consent:
+  nThreshold:
+    type: numeric
+    label: Threshold
+    default: 0.5
+    min: 0
+    max: .inf
+ie:
+  nThreshold:
+    type: numeric
+    label: Threshold
+    default: 0.5
+    min: 0
+    max: .inf
+pd:
+  vThreshold:
+    type: numeric
+    label: Threshold
+    default:
+      - -5
+      - 5
+    min: -.inf
+    max: .inf
+  strMethod:
+    type: character
+    label: Method
+    default: poisson
+    options:
+      - poisson
+      - wilcoxon

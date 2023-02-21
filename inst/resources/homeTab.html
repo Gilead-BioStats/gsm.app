@@ -1,47 +1,72 @@
-<article class="markdown-body entry-content container-lg" itemprop="text">
-<h1 dir="auto"><a id="user-content-gilead-statistical-monitoring-gsm-r-package" class="anchor" aria-hidden="true" href="#gilead-statistical-monitoring-gsm-r-package"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Gilead Statistical Monitoring {gsm} R package</h1>
-<p dir="auto">The {gsm} package provides a standardized workflow that leverages Key Risk Indicators (KRIs) and thresholds to conduct study-level Risk Based Monitoring (RBM) for clinical trials. This README provides a high-level overview of {gsm}; see the <a href="/Gilead-BioStats/gsm/blob/dev/silver-potato-cfe8c2fb.pages.github.io">package website</a> for additional details.</p>
-<h1 dir="auto"><a id="user-content-background" class="anchor" aria-hidden="true" href="#background"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Background</h1>
-<p dir="auto">The {gsm} package performs risk assessments primarily focused on detecting differences in quality at the site-level. "High quality" is defined as the absence of errors that matter. We interpret this as focusing on detecting potential issues related to critical data or process across the major risk categories of safety, efficacy, disposition, treatment, and general quality, where each category consists of one or more risk assessment(s). Each risk assessment will analyze the data to flag sites with potential issues and provide a visualization to help the user understand the issue. Some relevant references are provided below.</p>
-<ul dir="auto">
-<li>Centralized Statistical Monitoring: <a href="https://documents.pub/reader/full/centralized-statistical-monitoring-to-detect-data-integrity-issues-statisticalcentralized" rel="nofollow">1</a>, <a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC7308734/" rel="nofollow">2</a>, <a href="https://www.magiworld.org/Journal/2014/1411_Centralized.pdf" rel="nofollow">3</a></li>
-<li>EMA/FDA Guidance on Risk Based Management: <a href="https://www.fda.gov/media/121479/download" rel="nofollow">1</a>, <a href="https://www.fda.gov/media/116754/download" rel="nofollow">2</a>, <a href="https://www.fda.gov/media/129527/download" rel="nofollow">3</a>, <a href="https://www.ema.europa.eu/en/documents/scientific-guideline/reflection-paper-risk-based-quality-management-clinical-trials_en.pdf" rel="nofollow">4</a></li>
-<li>Risk Based Quality Management: <a href="https://www.acrohealth.org/wp-content/uploads/2019/10/CRO-Forum-RBQM-Oversight-Paper-FINAL-Oct-2019.pdf" rel="nofollow">1</a>, <a href="http://www.transceleratebiopharmainc.com/wp-content/uploads/2017/09/Risk-Based-Quality-Managment.pdf" rel="nofollow">2</a>, <a href="https://www.magiworld.org/Journal/2014/1411_Centralized.pdf" rel="nofollow">3</a></li>
-<li>Related tools: <a href="https://cluepoints.com/" rel="nofollow">1</a>, <a href="https://www.saama.com/case-study/rbm-success-story/" rel="nofollow">2</a></li>
+<!-- badges: start -->
+
+<p><a href="https://github.com/Gilead-BioStats/gsm/actions"><img src="https://github.com/Gilead-BioStats/gsm/workflows/R-CMD-check-main/badge.svg" alt="R-CMD-check"/></a> </p>
+
+<!-- badges: end -->
+
+<h1>Gilead Statistical Monitoring {gsm} R package</h1>
+
+<p>The {gsm} package provides a standardized workflow that leverages Key Risk Indicators (KRIs) and thresholds to conduct study-level Risk Based Monitoring (RBM) for clinical trials. This README provides a high-level overview of {gsm}; see the <a href="silver-potato-cfe8c2fb.pages.github.io/">package website</a> for additional details.</p>
+
+<h1>Background</h1>
+
+<p>The {gsm} package performs risk assessments primarily focused on detecting differences in quality at the site-level. &ldquo;High quality&rdquo; is defined as the absence of errors that matter. We interpret this as focusing on detecting potential issues related to critical data or process across the major risk categories of safety, efficacy, disposition, treatment, and general quality, where each category consists of one or more risk assessment(s). Each risk assessment will analyze the data to flag sites with potential issues and provide a visualization to help the user understand the issue. Some relevant references are provided below. </p>
+
+<ul>
+<li>Centralized Statistical Monitoring: <a href="https://documents.pub/reader/full/centralized-statistical-monitoring-to-detect-data-integrity-issues-statisticalcentralized">1</a>, <a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC7308734/">2</a>, <a href="https://www.magiworld.org/Journal/2014/1411_Centralized.pdf">3</a></li>
+<li>EMA/FDA Guidance on Risk Based Management: <a href="https://www.fda.gov/media/121479/download">1</a>, <a href="https://www.fda.gov/media/116754/download">2</a>, <a href="https://www.fda.gov/media/129527/download">3</a>, <a href="https://www.ema.europa.eu/en/documents/scientific-guideline/reflection-paper-risk-based-quality-management-clinical-trials_en.pdf">4</a></li>
+<li>Risk Based Quality Management: <a href="https://www.acrohealth.org/wp-content/uploads/2019/10/CRO-Forum-RBQM-Oversight-Paper-FINAL-Oct-2019.pdf">1</a>, <a href="http://www.transceleratebiopharmainc.com/wp-content/uploads/2017/09/Risk-Based-Quality-Managment.pdf">2</a>, <a href="https://www.magiworld.org/Journal/2014/1411_Centralized.pdf">3</a></li>
+<li>Related tools: <a href="https://cluepoints.com/">1</a>, <a href="https://www.saama.com/case-study/rbm-success-story/">2</a></li>
 </ul>
-<h1 dir="auto"><a id="user-content-process-overview" class="anchor" aria-hidden="true" href="#process-overview"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Process Overview</h1>
-<p dir="auto">The {gsm} package establishes a data pipeline for RBM using R. The package provides a framework that allows users to <strong>assess</strong> and <strong>visualize</strong> site-level risk in clinical trial data. The package currently provides assessments for the following domains:</p>
-<ol dir="auto">
-<li>Adverse Event Frequency</li>
-<li>Serious Adverse Event Frequency</li>
-<li>Protocol Deviation Frequency</li>
-<li>Important Protocol Deviation Frequency</li>
+
+<h1>Process Overview</h1>
+
+<p>The {gsm} package establishes a data pipeline for RBM using R. The package provides a framework that allows users to <strong>assess</strong> and <strong>visualize</strong> site-level risk in clinical trial data. The package currently provides assessments for the following domains:</p>
+
+<ol>
+<li> Adverse Event Frequency</li>
+<li> Serious Adverse Event Frequency</li>
+<li> Protocol Deviation Frequency</li>
+<li> Important Protocol Deviation Frequency</li>
+<li> Lab Abnormality Frequency</li>
+<li> Subject Discontinuation Frequency</li>
+<li> Treatment Discontinuation</li>
+<li> Query Rate</li>
+<li> Query Age</li>
+<li>Data Entry Lag</li>
+<li>Data Change Rate</li>
+<li>Screen Failure</li>
 </ol>
-<p dir="auto">All {gsm} assessments use a standardized 6 step data pipeline:</p>
-<ol dir="auto">
-<li><strong>Map</strong> (<em>Optional</em>) - Converts <code>raw</code> data to <code>input</code> data.</li>
-<li><strong>Transform</strong> - Converts <code>input</code> data to <code>transformed</code> data.</li>
-<li><strong>Analyze</strong> - Converts <code>transformed</code> data to <code>analyzed</code> data.</li>
-<li><strong>Threshold</strong> - Uses <code>analyzed</code> data to create one or more numeric <code>thresholds</code>.</li>
-<li><strong>Flag</strong> - Uses <code>analyzed</code> data and numeric <code>thresholds</code> to create <code>flagged</code> data.</li>
-<li><strong>Summarize</strong> - Selects key columns from <code>flagged</code> data to create <code>summary</code> data.</li>
+
+<p>All {gsm} assessments use a standardized 6 step data pipeline: </p>
+
+<ol>
+<li> <strong>Map</strong> (<em>Optional</em>) - Converts <code>raw</code> data to <code>input</code> data.</li>
+<li> <strong>Transform</strong> - Converts <code>input</code> data to <code>transformed</code> data.</li>
+<li> <strong>Analyze</strong> - Converts <code>transformed</code> data to <code>analyzed</code> data.</li>
+<li> <strong>Threshold</strong> - Uses <code>analyzed</code> data to create one or more numeric <code>thresholds</code>.</li>
+<li> <strong>Flag</strong> - Uses <code>analyzed</code> data and numeric <code>thresholds</code> to create <code>flagged</code> data.</li>
+<li> <strong>Summarize</strong> - Selects key columns from <code>flagged</code> data to create <code>summary</code> data.</li>
 </ol>
-<p dir="auto">To learn more about {gsm}\'s data pipeline, visit the <a href="https://silver-potato-cfe8c2fb.pages.github.io/articles/DataPipeline.html" rel="nofollow">Data Pipeline Vignette</a>.</p>
-<h1 dir="auto"><a id="user-content-quality-control" class="anchor" aria-hidden="true" href="#quality-control"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Quality Control</h1>
-<p dir="auto">Since {gsm} is designed for use in a <a href="https://en.wikipedia.org/wiki/Good_clinical_practice" rel="nofollow">GCP</a> framework, we have conducted extensive quality control as part of our development process. In particular, we do the following:</p>
-<ul dir="auto">
-<li><strong>Qualification Workflow</strong> - All assessments have been Qualified as described in the Qualification Workflow Vignette. A Qualification Report Vignette is generated and attached to each release.</li>
+
+<p>To learn more about {gsm}&#39;s data pipeline, visit the <a href="https://silver-potato-cfe8c2fb.pages.github.io/articles/DataPipeline.html">Data Pipeline Vignette</a>.</p>
+
+<h1>Quality Control</h1>
+
+<p>Since {gsm} is designed for use in a <a href="https://en.wikipedia.org/wiki/Good_clinical_practice">GCP</a> framework, we have conducted extensive quality control as part of our development process. In particular, we do the following:  </p>
+
+<ul>
+<li><strong>Qualification Workflow</strong> - All assessments have been Qualified as described in the Qualification Workflow Vignette. A Qualification Report Vignette is generated and attached to each release. </li>
 <li><strong>Unit Tests</strong> - Unit tests are written for all core functions.</li>
 <li><strong>Contributor Guidelines</strong> - Detailed contributor guidelines including step-by-step processes for code development and releases are provided as a vignette.</li>
 <li><strong>Data Model</strong> - Vignettes providing detailed descriptions of the data model.</li>
-<li><strong>Code Examples</strong> - The Cookbook Vignette provides a series of simple examples, and all functions include examples as part of Roxygen documentation.</li>
+<li><strong>Code Examples</strong> - The Cookbook Vignette provides a series of simple examples, and all functions include examples as part of Roxygen documentation. </li>
 <li><strong>Code Review</strong> - Code review is conducted using GitHub Pull Requests (PRs), and a log of all PRs is included in the Qualification Report Vignette.</li>
 <li><strong>Function Documentation</strong> - Detailed documentation for each function is maintained with Roxygen.</li>
 <li><strong>Package Checks</strong> - Standard package checks are run using GitHub Actions and must be passing before PRs are merged.</li>
 <li><strong>Data Specifications</strong> - Machine-readable data specifications are maintained for all KRIs. Specifications are automatically added to relevant function documentation.</li>
-<li><strong>Continuous Integration</strong> - Continuous integration is provided via GitHub Actions.</li>
-<li><strong>Regression Testing</strong> - Extensive QC and testing is done before each release.</li>
-<li><strong>Code Formatting</strong> - Code is formatted with {styler} before each release.</li>
+<li><strong>Continuous Integration</strong> - Continuous integration is provided via GitHub Actions. </li>
+<li><strong>Regression Testing</strong> - Extensive QC and testing is done before each release. </li>
+<li><strong>Code Formatting</strong> - Code is formatted with {styler} before each release. </li>
 </ul>
-<p dir="auto">Additional detail, including links to functional documentation and vignettes, is available in the <a href="/Gilead-BioStats/gsm/blob/dev/silver-potato-cfe8c2fb.pages.github.io">package website</a>.</p>
-</article>
+

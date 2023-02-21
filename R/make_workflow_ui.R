@@ -13,66 +13,72 @@
 #'
 #' @export
 
-make_workflow_ui <- function(workflow) {
+make_workflow_ui <- function(
+    workflow,
+    assess_parameters
+) {
     workflow_ui <- function(id) {
         ns <- shiny::NS(id)
 
-        inputs <- workflow$steps %>%
-            purrr::imap(function(value, i) {
+        assessment <- workflow$steps[[
+            match(
+                'assess',
+                workflow$steps %>%
+                    map_chr(~sub('^.*_', '', .x$name)) %>%
+                    tolower()
+            )
+        ]]
+
+        # TODO: allow for nonexistent assessment
+        defaults <- assess_parameters[[ tolower(assessment$name) ]]
+
+        inputs <- assessment$params %>%
+            purrr::imap(function(value, key) {
+                default <- defaults[[ key ]]
                 input <- NULL
 
                 # TODO: helper functions for each input type
-                #if (value$type == 'character') {
-                #    input = shiny::selectInput(
-                #        inputId = ns(key),
-                #        label = value$label,
-                #        selected = value$default,
-                #        choices = value$options
-                #    )
-                #} else if (value$type == 'numeric') {
-                #    if (length(value$default) > 1) {
-                #        input = purrr::imap(value$default, function(x, i) {
-                #            shiny::numericInput(
-                #                inputId = paste0(ns(key), '_', i),
-                #                label = ifelse(
-                #                    i == 1,
-                #                    value$label,
-                #                    ''
-                #                ),
-                #                value = x,
-                #                min = value$min,
-                #                max = value$max,
-                #                step = 1
-                #            )
-                #        })
-                #    } else {
-                #        input = shiny::numericInput(
-                #            inputId = ns(key),
-                #            label = value$label,
-                #            value = value$default,
-                #            min = value$min,
-                #            max = value$max,
-                #            step = 1
-                #        )
-                #    }
-                #}
+                if (default$type == 'character') {
+                    input = shiny::selectInput(
+                        inputId = ns(key),
+                        label = default$label,
+                        selected = default$default,
+                        choices = default$options
+                    )
+                } else if (default$type == 'numeric') {
+                    if (length(default$default) > 1) {
+                        input = default$default %>%
+                            purrr::imap(function(x, i) {
+                                shiny::numericInput(
+                                    inputId = paste0(ns(key), '_', i),
+                                    label = ifelse(
+                                        i == 1,
+                                        default$label,
+                                        ''
+                                    ),
+                                    value = x,
+                                    min = default$min,
+                                    max = default$max,
+                                    step = .1
+                                )
+                            })
+                    } else {
+                        input = shiny::numericInput(
+                            inputId = ns(key),
+                            label = default$label,
+                            value = default$default,
+                            min = default$min,
+                            max = default$max,
+                            step = 1
+                        )
+                    }
+                }
 
                 input
             })
 
         shiny::sidebarLayout(
-            shiny::sidebarPanel(
-                #shiny::selectInput(
-                #    ns('workflow'),
-                #    'KRI',
-                #    choices = purrr::map_chr(
-                #        workflow$workflows,
-                #        ~.x$tags$Label
-                #    ),
-                #    selected = workflow$workflows[[1]]$tags$Label
-                #),
-                #inputs
-            ),
+            shiny::sidebarPanel(inputs),
             shiny::mainPanel(
                 shiny::tabsetPanel(type = 'tabs',
                     shiny::tabPanel('Scatter Plot', gsm::scatterPlotOutput(ns('scatter_plot'))),
