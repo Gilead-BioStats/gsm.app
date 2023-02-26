@@ -79,8 +79,49 @@ make_workflow_server <- function(
             result
         })
 
+        observe({ 
+            updateSelectInput(
+                session,
+                'site_select',
+                choices = c(
+                    'None',
+                    unique(
+                        params()$data$dfSUBJ[[
+                            params()$settings$dfSUBJ$strSiteCol
+                        ]]
+                    )
+                )
+            )
+        })
+
         # Charts
         output$scatter_plot <- gsm::renderScatterPlot({ run_workflow()$lResults$lCharts$scatterJS })
+        #output$scatter_plot_experimental <- htmlwidgets::shinyRenderWidget({
+        #    result <- run_workflow()
+        #    # TODO: pass custom click callaback to ScatterPlot
+        #    scatterPlot(
+        #        result$lResults$lData$dfSummmary,
+        #        MakeDfConfig(
+        #            strMethod = 'method',
+        #            strGroup = 'group',
+        #            strAbbreviation = 'domain',
+        #            strMetric = 'metric',
+        #            strNumerator = 'numerator',
+        #            strDenominator = 'denominator',
+        #            vThreshold = c(-3,-2,2,3)
+        #        ),
+        #        result$lResults$lData$dfBounds,
+        #        addSiteSelect = FALSE,
+        #        clickCallback = JS(sprintf(
+        #            '(data) => {
+        #                console.table(data);
+        #                // get class/id of container of this module > pull the prefix before dash
+        #                // Shiny.setInputValue("%s", data);
+        #            });',
+        #            session$ns("site_select")
+        #        ))
+        #    )
+        #})
         output$bar_chart_score <- gsm::renderBarChart({ run_workflow()$lResults$lCharts$barScoreJS })
         output$bar_chart_metric <- gsm::renderBarChart({ run_workflow()$lResults$lCharts$barMetricJS })
 

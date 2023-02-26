@@ -25,12 +25,18 @@ prepare_workflow <- function(
         )
     ),
     meta = gsmApp::meta_data_frame,
-    assessment_params = yaml::read_yaml(
-        system.file(
-            'assessment_params.yaml',
-            package = 'gsmApp'
-        )
-    ),
+    assessment_params = system.file('assessment_params', package = 'gsmApp') %>%
+        list.files(full.names = TRUE) %>%
+        map(function(file) {
+            name <- file %>%
+                tools::file_path_sans_ext() %>%
+                stringr::str_split_1('/') %>%
+                tail(1)
+            yaml::read_yaml(file) %>%
+                list() %>%
+                rlang::set_names(name)
+        }) %>%
+        unlist(FALSE),
     method_thresholds = yaml::read_yaml(
         system.file(
             'method_thresholds.yaml',

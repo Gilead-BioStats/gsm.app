@@ -48,10 +48,19 @@ make_workflow_ui <- function(
             })
 
         shiny::sidebarLayout(
-            shiny::sidebarPanel(inputs),
+            shiny::sidebarPanel(
+                selectInput(
+                    'site_select',
+                    'Site',
+                    'None'
+                ),
+                inputs
+            ),
+            # TODO: figure out how to define custom widgets rather than gsm::widgets
             shiny::mainPanel(
                 shiny::tabsetPanel(type = 'tabs',
                     shiny::tabPanel('Scatter Plot', gsm::scatterPlotOutput(ns('scatter_plot'))),
+                    #shiny::tabPanel('Scatter Plot - Experimental', htmlwidgets::shinyWidgetOutput(ns('scatter_plot_experimental'))),
                     shiny::tabPanel('Bar Chart - Score', gsm::barChartOutput(ns('bar_chart_score'))),
                     shiny::tabPanel('Bar Chart - Metric', gsm::barChartOutput(ns('bar_chart_metric'))),
                     shiny::tabPanel('Flowchart', DiagrammeR::grVizOutput(ns('flowchart'))),
