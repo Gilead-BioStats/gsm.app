@@ -6,6 +6,7 @@
 #' @importFrom shiny observeEvent updateNumericInput
 #' @importFrom shinyjs disable enable
 
+# TODO: avoid runnning assessment twice - once on method change and again on threshold change
 observe_method <- function(input, session, workflow, thresholds) {
     observeEvent(input$strMethod, {
         if (!is.null(workflow)) {

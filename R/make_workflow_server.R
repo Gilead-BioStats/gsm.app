@@ -86,7 +86,6 @@ make_workflow_server <- function(
 
                     value
                 })
-            print(params)
 
             workflow$steps[[ 
                 match(
@@ -124,6 +123,8 @@ make_workflow_server <- function(
         #})
 
         # Charts
+        output$bar_chart_score <- gsm::renderBarChart({ run_workflow()$lResults$lCharts$barScoreJS })
+        output$bar_chart_metric <- gsm::renderBarChart({ run_workflow()$lResults$lCharts$barMetricJS })
         output$scatter_plot <- gsm::renderScatterPlot({ run_workflow()$lResults$lCharts$scatterJS })
         #output$scatter_plot_experimental <- htmlwidgets::shinyRenderWidget({
         #    result <- run_workflow()
@@ -151,8 +152,6 @@ make_workflow_server <- function(
         #        ))
         #    )
         #})
-        output$bar_chart_score <- gsm::renderBarChart({ run_workflow()$lResults$lCharts$barScoreJS })
-        output$bar_chart_metric <- gsm::renderBarChart({ run_workflow()$lResults$lCharts$barMetricJS })
 
         # Flowchart
         output$flowchart <- DiagrammeR::renderGrViz({ run_workflow()$lChecks$flowchart[[1]] })
