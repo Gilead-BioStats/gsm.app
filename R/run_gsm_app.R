@@ -59,8 +59,8 @@ run_gsm_app <- function(
     # Define one module per workflow.
     if (is.null(workflows)) {
         workflows <- system.file('workflow', package = 'gsm') %>%
-            #list.files('^kri\\d{4}\\.yaml$', full.name = TRUE) %>%
-            list.files('^kri000[1-7]\\.yaml$', full.name = TRUE) %>%
+            list.files('^kri\\d{4}\\.yaml$', full.name = TRUE) %>%
+            #list.files('^kri000[1-4]\\.yaml$', full.name = TRUE) %>%
             purrr::map(function(workflow_path) {
                 workflow_id <- workflow_path %>%
                     tools::file_path_sans_ext() %>%

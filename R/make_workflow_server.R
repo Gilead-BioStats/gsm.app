@@ -22,10 +22,22 @@ make_workflow_server <- function(
         #observe_method(input, session)
 
         run_workflow <- reactive({
+            # TODO: figure out why multi-input-domain workflows return a named list of data frames
+            # (every workflow except enrollment) and single-input-domain workflows return the data
+            # frame itself (enrollment workflow)
             data <- params()$data
             settings <- params()$settings
 
-            assessment <- workflow$steps[[
+            mapping_step <- workflow$steps[[
+                match(
+                    '_map_',
+                    workflow$steps %>%
+                        map_chr(~sub('.*(_map_).*', '\\1', .x$name, TRUE)) %>%
+                        tolower()
+                )
+            ]]
+
+            assessment_step <- workflow$steps[[
                 match(
                     'assess',
                     workflow$steps %>%
@@ -34,10 +46,24 @@ make_workflow_server <- function(
                 )
             ]]
 
-            # TODO: allow for nonexistent assessment
-            defaults <- assessment_params[[ assessment$name ]]
+            # TODO: figure out whether {gsm} or {safetyGraphics} needs an update when a single data
+            # frame is returned by `params()` (probably safetyGraphics, which returns a named list
+            # if multiple data frames are specified, and the data frame itself otherwise)
+            if (!'list' %in% class(data)) {
+                data <- list(data)
+                names(data) <- mapping_step$inputs
+            }
 
-            params <- assessment$params %>%
+            if (all(!mapping_step$inputs %in% names(settings))) {
+                browser()
+                settings <- list(settings)
+                names(settings) <- mapping_step$inputs
+            }
+
+            # TODO: allow for nonexistent assessment
+            defaults <- assessment_params[[ assessment_step$name ]]
+
+            params <- assessment_step$params %>%
                 purrr::imap(function(param, key) {
                     default <- defaults[[ key ]]
                     value <- NULL
@@ -72,7 +98,7 @@ make_workflow_server <- function(
                 lWorkflow = workflow,
                 lData = data,
                 lMapping = settings,
-                #bQuiet = FALSE,
+                bQuiet = FALSE,
                 bFlowchart = TRUE
             )
 
@@ -129,6 +155,7 @@ make_workflow_server <- function(
         output$flowchart <- DiagrammeR::renderGrViz({ run_workflow()$lChecks$flowchart[[1]] })
 
         # Data
+        # TODO: workflow runs redundantly here?
         output$data_summary <- DT::renderDT({ run_workflow()$lResults$lData$dfSummary })
         output$data_flagged <- DT::renderDT({ run_workflow()$lResults$lData$dfFlagged })
         output$data_analyzed <- DT::renderDT({ run_workflow()$lResults$lData$dfAnalyzed })
