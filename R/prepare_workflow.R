@@ -17,6 +17,7 @@
 
 prepare_workflow <- function(
     workflow_id,
+    domain_data,
     workflow = yaml::read_yaml(
         system.file(
             'workflow',
@@ -25,7 +26,7 @@ prepare_workflow <- function(
         )
     ),
     meta = gsmApp::meta_data_frame,
-    assessment_params = system.file('assessment_params', package = 'gsmApp') %>%
+    assessments = system.file('assessments', package = 'gsmApp') %>%
         list.files(full.names = TRUE) %>%
         map(function(file) {
             name <- file %>%
@@ -37,9 +38,10 @@ prepare_workflow <- function(
                 rlang::set_names(name)
         }) %>%
         unlist(FALSE),
-    method_thresholds = yaml::read_yaml(
+    thresholds = yaml::read_yaml(
         system.file(
-            'method_thresholds.yaml',
+            'params',
+            'vThreshold.yaml',
             package = 'gsmApp'
         )
     )
@@ -50,7 +52,7 @@ prepare_workflow <- function(
         '[ workflow_id ] is not a character value' = is.character(workflow_id),
         '[ workflow ] is not a list' = is.list(workflow),
         '[ meta ] is not a data frame' = is.data.frame(meta),
-        '[ assessment_params ] is not a list' = is.list(assessment_params)
+        '[ assessments ] is not a list' = is.list(assessments)
 
         # logic checks
         # '[ domain ] not found in [ meta ]' = domain %in% sub('^df', '', unique(meta$domain)),
@@ -75,10 +77,11 @@ prepare_workflow <- function(
         workflow$step_output == 'dfInput'
     ] %>% stringr::str_split_1(' ')
 
-    workflow$ui <- make_workflow_ui(workflow, assessment_params, method_thresholds)
+    workflow$ui <- make_workflow_ui(workflow, assessments)
     assign(glue::glue('{workflow_id}_ui'), workflow$ui, envir = .GlobalEnv)
 
-    workflow$server <- make_workflow_server(workflow, assessment_params, method_thresholds)
+    # TODO: avoid passing data in here - better to use safetyGraphics::params()$data
+    workflow$server <- make_workflow_server(workflow, assessments, thresholds, domain_data)
     assign(glue::glue('{workflow_id}_server'), workflow$server, envir = .GlobalEnv)
 
     workflow_yaml <- glue::glue('

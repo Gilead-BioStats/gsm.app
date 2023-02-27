@@ -15,11 +15,12 @@
 
 make_workflow_server <- function(
     workflow,
-    assessment_params,
-    method_thresholds
+    assessments,
+    thresholds,
+    domain_data
 ) {
     workflow_server <- function(input, output, session, params) {
-        #observe_method(input, session)
+        observe_method(input, session, workflow, thresholds)
 
         run_workflow <- reactive({
             # TODO: figure out why multi-input-domain workflows return a named list of data frames
@@ -50,18 +51,19 @@ make_workflow_server <- function(
             # frame is returned by `params()` (probably safetyGraphics, which returns a named list
             # if multiple data frames are specified, and the data frame itself otherwise)
             if (!'list' %in% class(data)) {
-                data <- list(data)
-                names(data) <- mapping_step$inputs
+                data <- domain_data[mapping_step$inputs]
+                # TODO: figure out why to do about participant subset
+                #data <- list(data)
+                #names(data) <- mapping_step$inputs
             }
 
             if (all(!mapping_step$inputs %in% names(settings))) {
-                browser()
                 settings <- list(settings)
                 names(settings) <- mapping_step$inputs
             }
 
             # TODO: allow for nonexistent assessment
-            defaults <- assessment_params[[ assessment_step$name ]]
+            defaults <- assessments[[ assessment_step$name ]]
 
             params <- assessment_step$params %>%
                 purrr::imap(function(param, key) {
@@ -84,6 +86,7 @@ make_workflow_server <- function(
 
                     value
                 })
+            print(params)
 
             workflow$steps[[ 
                 match(
@@ -98,27 +101,27 @@ make_workflow_server <- function(
                 lWorkflow = workflow,
                 lData = data,
                 lMapping = settings,
-                bQuiet = FALSE,
+                #bQuiet = FALSE,
                 bFlowchart = TRUE
             )
 
             result
         })
 
-        observe({ 
-            updateSelectInput(
-                session,
-                'site_select',
-                choices = c(
-                    'None',
-                    unique(
-                        params()$data$dfSUBJ[[
-                            params()$settings$dfSUBJ$strSiteCol
-                        ]]
-                    )
-                )
-            )
-        })
+        #observe({ 
+        #    updateSelectInput(
+        #        session,
+        #        'site_select',
+        #        choices = c(
+        #            'None',
+        #            unique(
+        #                params()$data$dfSUBJ[[
+        #                    params()$settings$dfSUBJ$strSiteCol
+        #                ]]
+        #            )
+        #        )
+        #    )
+        #})
 
         # Charts
         output$scatter_plot <- gsm::renderScatterPlot({ run_workflow()$lResults$lCharts$scatterJS })

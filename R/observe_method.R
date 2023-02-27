@@ -6,40 +6,43 @@
 #' @importFrom shiny observeEvent updateNumericInput
 #' @importFrom shinyjs disable enable
 
-observe_method <- function(input, session) {
+observe_method <- function(input, session, workflow, thresholds) {
     observeEvent(input$strMethod, {
-        if (input$strMethod == 'poisson') {
-            updateNumericInput(
-                session,
-                'vThreshold_1',
-                value = -5,
-                min = -Inf,
-                max = Inf
-            )
-            shinyjs::enable('vThreshold_2')
-            updateNumericInput(
-                session,
-                'vThreshold_2',
-                value = 5,
-                min = -Inf,
-                max = Inf
-            )
-        } else if (input$strMethod == 'wilcoxon') {
-            updateNumericInput(
-                session,
-                'vThreshold_1',
-                value = 0.0001,
-                min = 0,
-                max = 1
-            )
-            updateNumericInput(
-                session,
-                'vThreshold_2',
-                value = NA,
-                min = 0,
-                max = 1
-            )
-            shinyjs::disable('vThreshold_2')
+        if (!is.null(workflow)) {
+            assessment_step <- workflow$steps[[
+                match(
+                    'assess',
+                    workflow$steps %>%
+                        map_chr(~sub('.*(assess).*', '\\1', .x$name, TRUE)) %>%
+                        tolower()
+                )
+            ]]
+
+            thresholds <- thresholds[[ input$strMethod ]]
+
+            if (assessment_step$name %in% names(thresholds)) {
+                assessment_thresholds <- thresholds[[ assessment_step$name ]]
+            } else {
+                assessment_thresholds <- thresholds$default
+            }
+
+            for (i in 1:4) {
+                if (i <= (length(assessment_thresholds))) {
+                    shinyjs::enable(glue::glue('vThreshold_{i}'))
+                    updateNumericInput(
+                        session,
+                        glue::glue('vThreshold_{i}'),
+                        value = assessment_thresholds[i]
+                    )
+                } else {
+                    updateNumericInput(
+                        session,
+                        glue::glue('vThreshold_{i}'),
+                        value = NA
+                    )
+                    shinyjs::disable(glue::glue('vThreshold_{i}'))
+                }
+            }
         }
     })
 }

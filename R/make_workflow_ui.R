@@ -15,8 +15,7 @@
 
 make_workflow_ui <- function(
     workflow,
-    assessment_params,
-    method_thresholds
+    assessments
 ) {
     workflow_ui <- function(id) {
         ns <- shiny::NS(id)
@@ -31,7 +30,7 @@ make_workflow_ui <- function(
         ]]
 
         # TODO: allow for nonexistent assessment
-        defaults <- assessment_params[[ assessment$name ]]
+        defaults <- assessments[[ assessment$name ]]
 
         inputs <- assessment$params %>%
             purrr::imap(function(param, key) {
@@ -49,11 +48,11 @@ make_workflow_ui <- function(
 
         shiny::sidebarLayout(
             shiny::sidebarPanel(
-                selectInput(
-                    'site_select',
-                    'Site',
-                    'None'
-                ),
+            #    selectInput(
+            #        'site_select',
+            #        'Site',
+            #        'None'
+            #    ),
                 inputs
             ),
             # TODO: figure out how to define custom widgets rather than gsm::widgets
