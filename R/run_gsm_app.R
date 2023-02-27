@@ -23,8 +23,7 @@ run_gsm_app <- function(
         '[ meta ] must be a data frame.' = is.data.frame(meta)
     )
 
-    domains <- unique(meta$domain) %>%
-        .[. %in% c('dfSUBJ', 'dfAE', 'dfPD')]
+    domains <- unique(meta$domain)
 
     # TODO: use gsm::mapping_domain
     # By default, use domain data from {clindata} as a fallback.
@@ -60,8 +59,7 @@ run_gsm_app <- function(
     # Define one module per workflow.
     if (is.null(workflows)) {
         workflows <- system.file('workflow', package = 'gsm') %>%
-            #list.files('^kri\\d{4}\\.yaml$', full.name = TRUE) %>%
-            list.files('^kri000[1-4]\\.yaml$', full.name = TRUE) %>%
+            list.files('^kri\\d{4}\\.yaml$', full.name = TRUE) %>%
             purrr::map(function(workflow_path) {
                 workflow_id <- workflow_path %>%
                     tools::file_path_sans_ext() %>%

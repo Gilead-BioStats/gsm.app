@@ -23,17 +23,17 @@ input_numeric <- function(id, default) {
                 )
             })
 
-        input = div(
-            tag('label', default$label),
+        input = #div(
+            #tag('label', get_input_label(default$label)),
             div(
                 inputs,
                 style = 'display: flex; justify-content: space-between'
             )
-        )
+        #)
     } else {
         input = shiny::numericInput(
             inputId = id,
-            label = default$label,
+            label = '',#get_input_label(default$label),
             value = default$default,
             min = default$min,
             max = default$max,

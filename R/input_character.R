@@ -7,7 +7,7 @@
 input_character <- function(id, default) {
     shiny::selectInput(
         inputId = id,
-        label = default$label,
+        label = '',
         selected = default$default,
         choices = default$options
     )
