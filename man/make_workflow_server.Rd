@@ -4,7 +4,7 @@
 \alias{make_workflow_server}
 \title{Define a Shiny server function given an workflow}
 \usage{
-make_workflow_server(workflow)
+make_workflow_server(workflow, assess_parameters, method_thresholds)
 }
 \arguments{
 \item{workflow}{\code{list} workflow specification}

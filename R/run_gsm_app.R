@@ -66,7 +66,7 @@ run_gsm_app <- function(
                     stringr::str_split_1('/') %>%
                     tail(1)
 
-                prepare_workflow(workflow_id)
+                prepare_workflow(workflow_id, domain_data)
             })
     }
 

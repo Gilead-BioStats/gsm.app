@@ -1,0 +1,41 @@
+NormalApprox:
+  default:
+    - -3
+    - -2
+    - 2
+    - 3
+Poisson:
+  default:
+    - -7
+    - -5
+    - 5
+    - 7
+Fisher:
+  default:
+    - 0.01
+    - 0.05
+Identity:
+  AE_Assess:
+    - 0.00006
+    - 0.01
+  PD_Assess_Rate:
+    - 0.000895
+    - 0.003059
+  LB_Assess:
+    - 3.491
+    - 5.172
+  Disp_Assess:
+    - 3.491
+    - 5.172
+  QueryRate_Assess:
+    - 0.00006
+    - 0.01
+  QueryAge_Assess:
+    - 3.491
+    - 5.172
+  DataEntry_Assess:
+    - 3.491
+    - 5.172
+  DataChg_Assess:
+    - 3.491
+    - 5.172

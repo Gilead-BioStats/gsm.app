@@ -13,71 +13,59 @@
 #'
 #' @export
 
-make_workflow_ui <- function(workflow) {
+make_workflow_ui <- function(
+    workflow,
+    assessments
+) {
     workflow_ui <- function(id) {
         ns <- shiny::NS(id)
 
-        inputs <- workflow$steps %>%
-            purrr::imap(function(value, i) {
+        assessment <- workflow$steps[[
+            match(
+                'assess',
+                workflow$steps %>%
+                    map_chr(~sub('.*(assess).*', '\\1', .x$name, TRUE)) %>%
+                    tolower()
+            )
+        ]]
+
+        # TODO: allow for nonexistent assessment
+        defaults <- assessments[[ assessment$name ]]
+
+        inputs <- assessment$params %>%
+            purrr::imap(function(param, key) {
+                default <- defaults[[ key ]]
                 input <- NULL
 
-                # TODO: helper functions for each input type
-                #if (value$type == 'character') {
-                #    input = shiny::selectInput(
-                #        inputId = ns(key),
-                #        label = value$label,
-                #        selected = value$default,
-                #        choices = value$options
-                #    )
-                #} else if (value$type == 'numeric') {
-                #    if (length(value$default) > 1) {
-                #        input = purrr::imap(value$default, function(x, i) {
-                #            shiny::numericInput(
-                #                inputId = paste0(ns(key), '_', i),
-                #                label = ifelse(
-                #                    i == 1,
-                #                    value$label,
-                #                    ''
-                #                ),
-                #                value = x,
-                #                min = value$min,
-                #                max = value$max,
-                #                step = 1
-                #            )
-                #        })
-                #    } else {
-                #        input = shiny::numericInput(
-                #            inputId = ns(key),
-                #            label = value$label,
-                #            value = value$default,
-                #            min = value$min,
-                #            max = value$max,
-                #            step = 1
-                #        )
-                #    }
-                #}
+                if (default$type == 'character') {
+                    input = input_character(ns(key), default)
+                } else if (default$type == 'numeric') {
+                    input = input_numeric(ns(key), default)
+                }
 
-                input
+                div(
+                    strong(get_input_label(default$label)),
+                    input,
+                    title = get_input_tooltip(default$label)
+                )
             })
 
         shiny::sidebarLayout(
             shiny::sidebarPanel(
-                #shiny::selectInput(
-                #    ns('workflow'),
-                #    'KRI',
-                #    choices = purrr::map_chr(
-                #        workflow$workflows,
-                #        ~.x$tags$Label
-                #    ),
-                #    selected = workflow$workflows[[1]]$tags$Label
-                #),
-                #inputs
+            #    selectInput(
+            #        'site_select',
+            #        'Site',
+            #        'None'
+            #    ),
+                inputs
             ),
+            # TODO: figure out how to define custom widgets rather than gsm::widgets
             shiny::mainPanel(
                 shiny::tabsetPanel(type = 'tabs',
+                    shiny::tabPanel('KRI Score', gsm::barChartOutput(ns('bar_chart_score'))),
+                    shiny::tabPanel('KRI Metric', gsm::barChartOutput(ns('bar_chart_metric'))),
                     shiny::tabPanel('Scatter Plot', gsm::scatterPlotOutput(ns('scatter_plot'))),
-                    shiny::tabPanel('Bar Chart - Score', gsm::barChartOutput(ns('bar_chart_score'))),
-                    shiny::tabPanel('Bar Chart - Metric', gsm::barChartOutput(ns('bar_chart_metric'))),
+                    #shiny::tabPanel('Scatter Plot - Experimental', htmlwidgets::shinyWidgetOutput(ns('scatter_plot_experimental'))),
                     shiny::tabPanel('Flowchart', DiagrammeR::grVizOutput(ns('flowchart'))),
                     shiny::tabPanel('Data',
                         shiny::tabsetPanel(type = 'tabs',

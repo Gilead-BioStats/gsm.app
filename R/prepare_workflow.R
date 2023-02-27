@@ -17,6 +17,7 @@
 
 prepare_workflow <- function(
     workflow_id,
+    domain_data,
     workflow = yaml::read_yaml(
         system.file(
             'workflow',
@@ -24,15 +25,34 @@ prepare_workflow <- function(
             package = 'gsm'
         )
     ),
-    meta = gsmApp::meta_data_frame
-    #workflows = get_metadata_from_yaml('workflows')
+    meta = gsmApp::meta_data_frame,
+    assessments = system.file('assessments', package = 'gsmApp') %>%
+        list.files(full.names = TRUE) %>%
+        map(function(file) {
+            name <- file %>%
+                tools::file_path_sans_ext() %>%
+                stringr::str_split_1('/') %>%
+                tail(1)
+            yaml::read_yaml(file) %>%
+                list() %>%
+                rlang::set_names(name)
+        }) %>%
+        unlist(FALSE),
+    thresholds = yaml::read_yaml(
+        system.file(
+            'params',
+            'vThreshold.yaml',
+            package = 'gsmApp'
+        )
+    )
 ) {
     stopifnot(
         # type checks
         # '[ domain ] is not a character value' = is.character(domain),
         '[ workflow_id ] is not a character value' = is.character(workflow_id),
         '[ workflow ] is not a list' = is.list(workflow),
-        '[ meta ] is not a data frame' = is.data.frame(meta)
+        '[ meta ] is not a data frame' = is.data.frame(meta),
+        '[ assessments ] is not a list' = is.list(assessments)
 
         # logic checks
         # '[ domain ] not found in [ meta ]' = domain %in% sub('^df', '', unique(meta$domain)),
@@ -57,10 +77,11 @@ prepare_workflow <- function(
         workflow$step_output == 'dfInput'
     ] %>% stringr::str_split_1(' ')
 
-    workflow$ui <- make_workflow_ui(workflow)
+    workflow$ui <- make_workflow_ui(workflow, assessments)
     assign(glue::glue('{workflow_id}_ui'), workflow$ui, envir = .GlobalEnv)
 
-    workflow$server <- make_workflow_server(workflow)
+    # TODO: avoid passing data in here - better to use safetyGraphics::params()$data
+    workflow$server <- make_workflow_server(workflow, assessments, thresholds, domain_data)
     assign(glue::glue('{workflow_id}_server'), workflow$server, envir = .GlobalEnv)
 
     workflow_yaml <- glue::glue('
