@@ -70,40 +70,35 @@ run_gsm_app <- function(
             })
     }
 
-    #overview_table_yaml <- glue::glue('
-    #    env: safetyGraphics
-    #    label: Study Table
-    #    name: overview_table
-    #    type: module
-    #    package: gsmApp
-    #    domain:
-    #      - dfAE
-    #      - dfCONSENT
-    #      - dfDATACHG
-    #      - dfDATAENT
-    #      - dfENROLL
-    #      - dfIE
-    #      - dfPD
-    #      - dfQUERY
-    #      - dfSDRGCOMP
-    #      - dfSTUDCOMP
-    #      - dfSUBJ
-    #    workflow:
-    #      ui: overview_table_ui
-    #      server: overview_table_server
-    #    links:
-    #      gsm: https://github.com/Gilead-BioStats/gsm
-    #      gsmApp: https://github.com/Gilead-BioStats/gsmApp
-    # ')
-    #overview_table_list <- prepareChart(
-    #    yaml::read_yaml(text = overview_table_yaml)
-    #)
+    # TODO: see if workflows (safetyGraphics modules) are reactive
+    overview_table_ui <- make_overview_table_ui(
+        workflows
+    )
+    overview_table_server <- make_overview_table_server(
+        workflows
+    )
+    overview_table <- safetyGraphics::prepareChart(list(
+        env = 'safetyGraphics',
+        label = 'Study Overview',
+        name = 'overview_table',
+        type = 'module',
+        package = 'gsmApp',
+        domain = domains,
+        workflow = list(
+            ui = 'overview_table_ui',
+            server = 'overview_table_server'
+        ),
+        links = list(
+            gsm = 'https://github.com/Gilead-BioStats/gsm',
+            gsmApp = 'https://github.com/Gilead-BioStats/gsmApp'
+        )
+    ))
 
     # Launch app.
     safetyGraphics::safetyGraphicsApp(
         meta = meta,
         domainData = domain_data,
-        charts = workflows,#c(workflows, list(overview_table_list)),
+        charts = c(list(overview_table), workflows),
         filterDomain = filter_domain,
         appName = '{gsm} Explorer',
         hexPath = system.file('resources/gsm.png', package = 'gsmApp'),
