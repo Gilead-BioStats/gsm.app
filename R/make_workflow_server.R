@@ -107,7 +107,7 @@ make_workflow_server <- function(
             result
         })
 
-        #observe({ 
+        #observe({
         #    updateSelectInput(
         #        session,
         #        'site_select',
@@ -173,6 +173,8 @@ make_workflow_server <- function(
                 pretty = TRUE
             )
         })
+
+        workflow$assessment <- run_workflow
 
         run_workflow
     }

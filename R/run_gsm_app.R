@@ -24,37 +24,7 @@ run_gsm_app <- function(
     )
 
     domains <- unique(meta$domain)
-
-    # TODO: use gsm::mapping_domain
-    # By default, use domain data from {clindata} as a fallback.
-    if (is.null(domain_data)) {
-        domain_data <- domains %>%
-            purrr::map(function(domain) {
-                standard <- 'rawplus'
-                domain <- domain %>%
-                    sub('SUBJ', 'DM', .) %>%
-                    sub('PD', 'PROTDEV', .)
-
-                # TODO: avoid hard-coding standard and manipulating domain names
-                if (domain %in% c('dfDATACHG', 'dfDATAENT', 'dfQUERY')) {
-                    standard <- 'edc'
-
-                    domain <- domain %>%
-                        sub('DATAENT', 'data_entry_lag', .) %>%
-                        sub('DATACHG', 'data_change_rate', .) %>%
-                        sub('QUERY', 'queries', .)
-                }
-
-                do.call(
-                    `::`,
-                    list(
-                        'clindata',
-                        paste0(standard, '_', sub('^df', '', domain) %>% tolower)
-                    )
-                )
-            }) %>%
-            purrr::set_names(domains)
-    }
+    domain_data <- get_domain_data(domain_data, domains)
 
     # Define one module per workflow.
     if (is.null(workflows)) {
@@ -70,29 +40,7 @@ run_gsm_app <- function(
             })
     }
 
-    # TODO: see if workflows (safetyGraphics modules) are reactive
-    overview_table_ui <- make_overview_table_ui(
-        workflows
-    )
-    overview_table_server <- make_overview_table_server(
-        workflows
-    )
-    overview_table <- safetyGraphics::prepareChart(list(
-        env = 'safetyGraphics',
-        label = 'Study Overview',
-        name = 'overview_table',
-        type = 'module',
-        package = 'gsmApp',
-        domain = domains,
-        workflow = list(
-            ui = 'overview_table_ui',
-            server = 'overview_table_server'
-        ),
-        links = list(
-            gsm = 'https://github.com/Gilead-BioStats/gsm',
-            gsmApp = 'https://github.com/Gilead-BioStats/gsmApp'
-        )
-    ))
+    overview_table <- prepare_overview_table(workflows, domains)
 
     # Launch app.
     safetyGraphics::safetyGraphicsApp(
