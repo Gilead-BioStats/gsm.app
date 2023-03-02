@@ -18,19 +18,19 @@ make_overview_table_server <- function(workflows) {
             mapping <- params()$settings
 
             # TODO: pull assessments from other modules
-            #assessment <- gsm::Study_Assess(
-            #    lData = data,
-            #    lMapping = mapping
-            #    #bQuiet = FALSE
-            #)
+            assessment <- gsm::Study_Assess(
+                lData = data,
+                lMapping = mapping
+                #bQuiet = FALSE
+            )
             # TODO: map workflows to module server output
             #assessment <- workflows %>%
             #    purrr::map(~.x$workflow$server) %>%
             #    rlang::set_names(names(workflows))
 
-            #gsm::Overview_Table(
-            #    workflows
-            #)
+            gsm::Overview_Table(
+                assessment
+            )
         })
     }
 
