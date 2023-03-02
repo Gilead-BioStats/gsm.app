@@ -1,4 +1,4 @@
-#' Define a Shiny server function given an workflow
+#' Define a Shiny server function given a workflow
 #'
 #' @param workflow `list` workflow specification
 #'
@@ -19,13 +19,11 @@ make_workflow_server <- function(
     thresholds,
     domain_data
 ) {
-    workflow_server <- function(input, output, session, params) {
+    workflow_server <- function(input, output, session, params, module_outputs) {
         observe_method(input, session, workflow, thresholds)
 
+        # TODO: separate assessment step from other steps - might want to avoid using RunWorkflow
         run_workflow <- reactive({
-            # TODO: figure out why multi-input-domain workflows return a named list of data frames
-            # (every workflow except enrollment) and single-input-domain workflows return the data
-            # frame itself (enrollment workflow)
             data <- params()$data
             settings <- params()$settings
 
@@ -65,7 +63,7 @@ make_workflow_server <- function(
             # TODO: allow for nonexistent assessment
             defaults <- assessments[[ assessment_step$name ]]
 
-            params <- assessment_step$params %>%
+            assessment_params <- assessment_step$params %>%
                 purrr::imap(function(param, key) {
                     default <- defaults[[ key ]]
                     value <- NULL
@@ -94,7 +92,7 @@ make_workflow_server <- function(
                         map_chr(~sub('.*(assess).*', '\\1', .x$name, TRUE)) %>%
                         tolower()
                 )
-            ]]$params <- params
+            ]]$params <- assessment_params
 
             result <- RunWorkflow(
                 lWorkflow = workflow,
@@ -103,7 +101,7 @@ make_workflow_server <- function(
                 #bQuiet = FALSE,
                 bFlowchart = TRUE
             )
-
+module_outputs[[ workflow$name ]] <- result
             result
         })
 

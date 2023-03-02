@@ -100,7 +100,9 @@ links:
   gsmApp: "https://github.com/Gilead-BioStats/gsmApp"
 ')
 
-    prepareChart(
+    workflowPrepared <- prepareChart(
         yaml::read_yaml(text = workflow_yaml)
     )
+    workflowPrepared$workflow <- workflow
+    workflowPrepared
 }
