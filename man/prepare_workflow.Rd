@@ -6,12 +6,19 @@
 \usage{
 prepare_workflow(
   workflow_id,
+  domain_data,
   workflow = yaml::read_yaml(system.file("workflow", glue::glue("{workflow_id}.yaml"),
     package = "gsm")),
   meta = gsmApp::meta_data_frame,
-  assessment_params = yaml::read_yaml(system.file("assessment_params.yaml", package =
-    "gsmApp")),
-  method_thresholds = yaml::read_yaml(system.file("method_thresholds.yaml", package =
+  assessments = system.file("assessments", package = "gsmApp") \%>\%
+    list.files(full.names = TRUE) \%>\% map(function(file) {
+     name <- file \%>\%
+    tools::file_path_sans_ext() \%>\% stringr::str_split_1("/") \%>\% tail(1)
+    
+    yaml::read_yaml(file) \%>\% list() \%>\% rlang::set_names(name)
+ }) \%>\%
+    unlist(FALSE),
+  thresholds = yaml::read_yaml(system.file("params", "vThreshold.yaml", package =
     "gsmApp"))
 )
 }

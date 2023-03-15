@@ -4,7 +4,7 @@
 \alias{observe_method}
 \title{Update numeric inputs given change to method input.}
 \usage{
-observe_method(input, session)
+observe_method(input, session, workflow, thresholds)
 }
 \arguments{
 \item{input}{\code{list} Shiny input}

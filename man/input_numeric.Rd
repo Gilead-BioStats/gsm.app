@@ -4,12 +4,12 @@
 \alias{input_numeric}
 \title{Generates nuemric input}
 \usage{
-input_numeric(key, default)
+input_numeric(id, default)
 }
 \arguments{
-\item{key}{\code{character} Input ID}
+\item{id}{\code{character} Input ID}
 
-\item{default}{\code{numeric} Input value}
+\item{default}{\code{numeric} Input metadata}
 }
 \description{
 Generates nuemric input

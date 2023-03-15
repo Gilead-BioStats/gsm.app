@@ -19,43 +19,44 @@ make_overview_table_server <- function(workflows) {
 
             data <- params()$data
             mapping <- params()$settings
+            browser()
 
-            # TODO: figure out how to retrieve non-null module outputs
-            active_workflows <- names(workflows) %>%
-                map(~module_outputs[[ .x ]]) %>%
-                keep(~!is.null(.x))
-            cli::cli_alert_info('active workflows: {names(active_workflows)}')
+            ## TODO: figure out how to retrieve non-null module outputs
+            #active_workflows <- names(workflows) %>%
+            #    map(~module_outputs[[ .x ]]) %>%
+            #    keep(~!is.null(.x))
+            #cli::cli_alert_info('active workflows: {names(active_workflows)}')
 
-            if (length(active_workflows)) {
-                inactive_workflows <- setdiff(workflow_ids, names(active_workflows))
-            } else {
-                inactive_workflows <- workflow_ids
-            }
-            cli::cli_alert_info('inactive workflows: {inactive_workflows}')
+            #if (length(active_workflows)) {
+            #    inactive_workflows <- setdiff(workflow_ids, names(active_workflows))
+            #} else {
+            #    inactive_workflows <- workflow_ids
+            #}
+            #cli::cli_alert_info('inactive workflows: {inactive_workflows}')
 
-            # TODO: pull assessments from other modules
-            assessment <- active_workflows
-            if (length(inactive_workflows)) {
-                walk(inactive_workflows, function(workflow_id) {
-                    workflow <- workflows[
-                        map_chr(workflows, ~.x$name) == workflow_id
-                    ][[1]]$workflow
-                    assessment[[ workflow_id ]] <- gsm::RunWorkflow(
-                        workflow,
-                        data,
-                        mapping
-                    )
-                    browser()
-                })
-            }
-            # TODO: map workflows to module server output
-            #assessment <- workflows %>%
-            #    purrr::map(~.x$workflow$server) %>%
-            #    rlang::set_names(names(workflows))
-browser()
-            gsm::Overview_Table(
-                assessment
-            )
+            ## TODO: pull assessments from other modules
+            #assessment <- active_workflows
+            #if (length(inactive_workflows)) {
+            #    walk(inactive_workflows, function(workflow_id) {
+            #        workflow <- workflows[
+            #            map_chr(workflows, ~.x$name) == workflow_id
+            #        ][[1]]$workflow
+            #        assessment[[ workflow_id ]] <- gsm::RunWorkflow(
+            #            workflow,
+            #            data,
+            #            mapping
+            #        )
+            #        browser()
+            #    })
+            #}
+            ## TODO: map workflows to module server output
+            ##assessment <- workflows %>%
+            ##    purrr::map(~.x$workflow$server) %>%
+            ##    rlang::set_names(names(workflows))
+
+            #gsm::Overview_Table(
+            #    assessment
+            #)
         })
     }
 

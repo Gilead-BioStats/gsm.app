@@ -101,61 +101,20 @@ make_workflow_server <- function(
                 #bQuiet = FALSE,
                 bFlowchart = TRUE
             )
-module_outputs[[ workflow$name ]] <- result
+
             result
         })
-
-        #observe({
-        #    updateSelectInput(
-        #        session,
-        #        'site_select',
-        #        choices = c(
-        #            'None',
-        #            unique(
-        #                params()$data$dfSUBJ[[
-        #                    params()$settings$dfSUBJ$strSiteCol
-        #                ]]
-        #            )
-        #        )
-        #    )
-        #})
 
         # Charts
         output$bar_chart_score <- gsm::renderBarChart({ run_workflow()$lResults$lCharts$barScoreJS })
         output$bar_chart_metric <- gsm::renderBarChart({ run_workflow()$lResults$lCharts$barMetricJS })
         output$scatter_plot <- gsm::renderScatterPlot({ run_workflow()$lResults$lCharts$scatterJS })
-        #output$scatter_plot_experimental <- htmlwidgets::shinyRenderWidget({
-        #    result <- run_workflow()
-        #    # TODO: pass custom click callaback to ScatterPlot
-        #    scatterPlot(
-        #        result$lResults$lData$dfSummmary,
-        #        MakeDfConfig(
-        #            strMethod = 'method',
-        #            strGroup = 'group',
-        #            strAbbreviation = 'domain',
-        #            strMetric = 'metric',
-        #            strNumerator = 'numerator',
-        #            strDenominator = 'denominator',
-        #            vThreshold = c(-3,-2,2,3)
-        #        ),
-        #        result$lResults$lData$dfBounds,
-        #        addSiteSelect = FALSE,
-        #        clickCallback = JS(sprintf(
-        #            '(data) => {
-        #                console.table(data);
-        #                // get class/id of container of this module > pull the prefix before dash
-        #                // Shiny.setInputValue("%s", data);
-        #            });',
-        #            session$ns("site_select")
-        #        ))
-        #    )
-        #})
 
         # Flowchart
         output$flowchart <- DiagrammeR::renderGrViz({ run_workflow()$lChecks$flowchart[[1]] })
 
-        # Data
         # TODO: workflow runs redundantly here?
+        # Data
         output$data_summary <- DT::renderDT({ run_workflow()$lResults$lData$dfSummary })
         output$data_flagged <- DT::renderDT({ run_workflow()$lResults$lData$dfFlagged })
         output$data_analyzed <- DT::renderDT({ run_workflow()$lResults$lData$dfAnalyzed })

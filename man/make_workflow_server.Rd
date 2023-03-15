@@ -2,9 +2,9 @@
 % Please edit documentation in R/make_workflow_server.R
 \name{make_workflow_server}
 \alias{make_workflow_server}
-\title{Define a Shiny server function given an workflow}
+\title{Define a Shiny server function given a workflow}
 \usage{
-make_workflow_server(workflow, assess_parameters, method_thresholds)
+make_workflow_server(workflow, assessments, thresholds, domain_data)
 }
 \arguments{
 \item{workflow}{\code{list} workflow specification}
@@ -13,5 +13,5 @@ make_workflow_server(workflow, assess_parameters, method_thresholds)
 \code{function} Shiny server function
 }
 \description{
-Define a Shiny server function given an workflow
+Define a Shiny server function given a workflow
 }
