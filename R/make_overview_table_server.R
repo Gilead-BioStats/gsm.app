@@ -13,20 +13,18 @@
 make_overview_table_server <- function(workflows) {
     overview_table_server <- function(input, output, session, params, module_outputs) {
         output$overview_table <- DT::renderDT({
-            workflow_ids <- intersect(
-                map_chr(workflows, ~.x$name),
-                names(module_outputs)
-            )
+            #workflow_ids <- intersect(
+            #    map_chr(workflows, ~.x$name),
+            #    names(module_outputs)
+            #)
 
-            cli::cli_alert_info('workflows: {workflow_ids}')
+            #cli::cli_alert_info('workflows: {workflow_ids}')
 
-            assessment <- list()
-            for (workflow_id in workflow_ids) {
-                cli::cli_alert_info('running {workflow_id}')
-                #req(module_outputs[[ workflow_id ]])
-                result <- module_outputs[[ workflow_id ]]()
-                assessment[[ workflow_id ]] <- result
-            }
+            assessment <- reactiveValuesToList(module_outputs) %>%
+                imap(function(workflow, workflow_id) {
+                    cli::cli_alert_info('running {workflow_id}')
+                    workflow()
+                })
 
             gsm::Overview_Table(
                 assessment

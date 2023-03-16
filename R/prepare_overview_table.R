@@ -9,7 +9,7 @@ prepare_overview_table <- function(workflows, domains) {
     overview_table <- safetyGraphics::prepareChart(list(
         env = 'safetyGraphics',
         label = 'Study Overview',
-        name = 'overview_table',
+        name = '.overview_table',
         type = 'module',
         package = 'gsmApp',
         domain = domains,

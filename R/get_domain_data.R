@@ -6,8 +6,14 @@ get_domain_data <- function(domain_data, domains) {
             purrr::map(function(domain) {
                 standard <- 'rawplus'
                 domain <- domain %>%
-                    sub('SUBJ', 'DM', .) %>%
-                    sub('PD', 'PROTDEV', .)
+                    sub('SUBJ', 'DM', .)
+
+                if (domain %in% c('dfPD')) {
+                    standard <- 'ctms'
+
+                    domain <- domain %>%
+                        sub('PD', 'PROTDEV', .)
+                }
 
                 # TODO: avoid hard-coding standard and manipulating domain names
                 if (domain %in% c('dfDATACHG', 'dfDATAENT', 'dfQUERY')) {
