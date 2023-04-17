@@ -25,13 +25,13 @@ run_gsm_app <- function(
 
     domains <- unique(meta$domain) %>%
         .[. %in% c('dfSUBJ', 'dfAE', 'dfPD')]
-    domain_data <- get_domain_data(domain_data, domains)
+    domain_data <- get_domain_data(domain_data, domains, map_meta_to_list(meta))
 
     # Define one module per workflow.
     if (is.null(workflows)) {
         workflows <- system.file('workflow', package = 'gsm') %>%
-            list.files('^kri\\d{4}\\.yaml$', full.name = TRUE) %>%
-            #list.files('^kri000[1-4]\\.yaml$', full.name = TRUE) %>%
+            #list.files('^kri\\d{4}\\.yaml$', full.name = TRUE) %>%
+            list.files('^kri000[1-4]\\.yaml$', full.name = TRUE) %>%
             purrr::map(function(workflow_path) {
                 workflow_id <- workflow_path %>%
                     tools::file_path_sans_ext() %>%
@@ -42,14 +42,14 @@ run_gsm_app <- function(
             })
     }
 
-    overview_table <- prepare_overview_table(workflows, domains)
+    #overview_table <- prepare_overview_table(workflows, domains)
 
     # Launch app.
     safetyGraphics::safetyGraphicsApp(
         meta = meta,
         domainData = domain_data,
-        charts = c(list(overview_table), workflows),
-        #charts = workflows,
+        #charts = c(list(overview_table), workflows),
+        charts = workflows,
         filterDomain = filter_domain,
         appName = '{gsm} Explorer',
         hexPath = system.file('resources/gsm.png', package = 'gsmApp'),

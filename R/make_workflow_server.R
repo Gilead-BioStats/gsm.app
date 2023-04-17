@@ -106,9 +106,9 @@ make_workflow_server <- function(
         })
 
         # Charts
-        output$bar_chart_score <- gsm::renderBarChart({ run_workflow()$lResults$lCharts$barScoreJS })
-        output$bar_chart_metric <- gsm::renderBarChart({ run_workflow()$lResults$lCharts$barMetricJS })
-        output$scatter_plot <- gsm::renderScatterPlot({ run_workflow()$lResults$lCharts$scatterJS })
+        output$bar_chart_score <- gsm::renderWidget_BarChart({ run_workflow()$lResults$lCharts$barScoreJS })
+        output$bar_chart_metric <- gsm::renderWidget_BarChart({ run_workflow()$lResults$lCharts$barMetricJS })
+        output$scatter_plot <- gsm::renderWidget_ScatterPlot({ run_workflow()$lResults$lCharts$scatterJS })
 
         # Flowchart
         output$flowchart <- DiagrammeR::renderGrViz({ run_workflow()$lChecks$flowchart[[1]] })
