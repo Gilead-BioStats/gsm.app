@@ -20,8 +20,8 @@ get_domain_data <- function(domain_data, domains, meta) {
                     standard <- 'edc'
 
                     domain <- domain %>%
-                        sub('DATAENT', 'data_entry_lag', .) %>%
-                        sub('DATACHG', 'data_change_rate', .) %>%
+                        sub('DATAENT', 'data_pages', .) %>%
+                        sub('DATACHG', 'data_points', .) %>%
                         sub('QUERY', 'queries', .)
                 }
 

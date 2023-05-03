@@ -69,6 +69,7 @@ make_workflow_ui <- function(
                     shiny::tabPanel('Flowchart', DiagrammeR::grVizOutput(ns('flowchart'))),
                     shiny::tabPanel('Data',
                         shiny::tabsetPanel(type = 'tabs',
+                            # TODO: add raw data and filter it by events on the charts
                             shiny::tabPanel('Input', DT::DTOutput(ns('data_input'))),
                             shiny::tabPanel('Transformed', DT::DTOutput(ns('data_transformed'))),
                             shiny::tabPanel('Analyzed', DT::DTOutput(ns('data_analyzed'))),

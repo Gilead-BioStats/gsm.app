@@ -66,7 +66,7 @@ map_meta_to_data_frame <- function(
                     field_key = case_when(
                         type == 'column' ~ '',
                         type == 'field' ~ gsub('^str|Val$', '', key) %>%
-                            paste(value),
+                            paste(gsub('[^0-9a-z]', '-', value, ignore.case = TRUE)),
                         #type == 'field' & n() == 1 ~ gsub('^str|Val$', '', key),
                         #type == 'field' & n() >= 2 ~ gsub('^str|Val$', '', key) %>%
                         #    paste0(row_number())
