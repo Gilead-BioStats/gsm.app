@@ -2,7 +2,7 @@
 #'
 #' @param workflow `list` workflow specification
 #'
-#' @importFrom gsm scatterPlotOutput barChartOutput
+#' @importFrom gsm Widget_ScatterPlotOutput Widget_BarChartOutput
 #' @importFrom DiagrammeR grVizOutput
 #' @importFrom DT DTOutput
 #' @importFrom plotly plotlyOutput
@@ -62,11 +62,11 @@ make_workflow_ui <- function(
             # TODO: figure out how to define custom widgets rather than gsm::widgets
             shiny::mainPanel(
                 shiny::tabsetPanel(type = 'tabs',
-                    shiny::tabPanel('KRI Score', gsm::barChartOutput(ns('bar_chart_score'))),
-                    shiny::tabPanel('KRI Metric', gsm::barChartOutput(ns('bar_chart_metric'))),
-                    shiny::tabPanel('Scatter Plot', gsm::scatterPlotOutput(ns('scatter_plot'))),
+                    shiny::tabPanel('KRI Score', gsm::Widget_BarChartOutput(ns('bar_chart_score'))),
+                    shiny::tabPanel('KRI Metric', gsm::Widget_BarChartOutput(ns('bar_chart_metric'))),
+                    shiny::tabPanel('Scatter Plot', gsm::Widget_ScatterPlotOutput(ns('scatter_plot'))),
                     #shiny::tabPanel('Scatter Plot - Experimental', htmlwidgets::shinyWidgetOutput(ns('scatter_plot_experimental'))),
-                    shiny::tabPanel('Flowchart', DiagrammeR::grVizOutput(ns('flowchart'))),
+                    #shiny::tabPanel('Flowchart', DiagrammeR::grVizOutput(ns('flowchart'))),
                     shiny::tabPanel('Data',
                         shiny::tabsetPanel(type = 'tabs',
                             shiny::tabPanel('Input', DT::DTOutput(ns('data_input'))),

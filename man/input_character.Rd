@@ -4,12 +4,12 @@
 \alias{input_character}
 \title{Generates character input}
 \usage{
-input_character(key, default)
+input_character(id, default)
 }
 \arguments{
-\item{key}{\code{character} Input ID}
+\item{id}{\code{character} Input ID}
 
-\item{default}{\code{character} Input value}
+\item{default}{\code{character} Input metadata}
 }
 \description{
 Generates character input

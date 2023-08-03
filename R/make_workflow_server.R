@@ -4,7 +4,7 @@
 #'
 #' @importFrom DiagrammeR renderGrViz
 #' @importFrom DT renderDT
-#' @importFrom gsm RunWorkflow
+#' @importFrom gsm renderWidget_BarChart renderWidget_ScatterPlot RunWorkflow
 #' @importFrom plotly config ggplotly renderPlotly
 #' @importFrom purrr imap keep map_dbl
 #' @importFrom shiny renderPlot
@@ -123,9 +123,9 @@ make_workflow_server <- function(
         #})
 
         # Charts
-        output$bar_chart_score <- gsm::renderBarChart({ run_workflow()$lResults$lCharts$barScoreJS })
-        output$bar_chart_metric <- gsm::renderBarChart({ run_workflow()$lResults$lCharts$barMetricJS })
-        output$scatter_plot <- gsm::renderScatterPlot({ run_workflow()$lResults$lCharts$scatterJS })
+        output$bar_chart_score <- gsm::renderWidget_BarChart({ run_workflow()$lResults$lCharts$barScoreJS })
+        output$bar_chart_metric <- gsm::renderWidget_BarChart({ run_workflow()$lResults$lCharts$barMetricJS })
+        output$scatter_plot <- gsm::renderWidget_ScatterPlot({ run_workflow()$lResults$lCharts$scatterJS })
         #output$scatter_plot_experimental <- htmlwidgets::shinyRenderWidget({
         #    result <- run_workflow()
         #    # TODO: pass custom click callaback to ScatterPlot
@@ -154,7 +154,7 @@ make_workflow_server <- function(
         #})
 
         # Flowchart
-        output$flowchart <- DiagrammeR::renderGrViz({ run_workflow()$lChecks$flowchart[[1]] })
+        #output$flowchart <- DiagrammeR::renderGrViz({ run_workflow()$lChecks$flowchart[[1]] })
 
         # Data
         # TODO: workflow runs redundantly here?
