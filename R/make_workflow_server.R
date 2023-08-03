@@ -99,9 +99,9 @@ make_workflow_server <- function(
             result <- RunWorkflow(
                 lWorkflow = workflow,
                 lData = data,
-                lMapping = settings,
-                #bQuiet = FALSE,
-                bFlowchart = TRUE
+                lMapping = settings
+                #bQuiet = FALSE
+                #bFlowchart = TRUE
             )
 
             result
