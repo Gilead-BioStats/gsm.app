@@ -1,10 +1,10 @@
 #' Run {safetyGraphics} Application
 #'
-#' Display {gsm} assessments in the {safetyGraphics} framework, an interactive R Shiny application.
+#' Display {gsm} workflows in the {safetyGraphics} framework, an interactive R Shiny application.
 #'
 #' @param meta `data.frame` metadata returned by [map_metadata()]
-#' @param assessments `list` list of assessments in the format expected by {safetyGraphics}
-#' @param domain_data `list` named list of data frames required by `assessments`
+#' @param workflows `list` list of workflows in the format expected by {safetyGraphics}
+#' @param domain_data `list` named list of data frames required by `workflows`
 #' @param filter_domain `character` name of data frame with which to subset on participant; must be
 #' one record per participant
 #'
@@ -29,7 +29,8 @@ run_gsm_app <- function(
     # Define one module per workflow.
     if (is.null(workflows)) {
         workflows <- system.file('workflow', package = 'gsm') %>%
-            list.files('^kri\\d{4}\\.yaml$', full.name = TRUE) %>%
+            list.files('^kri000[12567].yaml$', full.name = TRUE) %>%
+            #list.files('^kri\\d{4}\\.yaml$', full.name = TRUE) %>%
             purrr::map(function(workflow_path) {
                 workflow_id <- workflow_path %>%
                     tools::file_path_sans_ext() %>%
@@ -40,17 +41,17 @@ run_gsm_app <- function(
             })
     }
 
-    overview_table <- prepare_overview_table(workflows, domains)
+    #overview_table <- prepare_overview_table(workflows, domains)
 
     # Launch app.
     safetyGraphics::safetyGraphicsApp(
         meta = meta,
         domainData = domain_data,
-        charts = c(list(overview_table), workflows),
+        charts = workflows,#c(list(overview_table), workflows),
         filterDomain = filter_domain,
-        appName = '{gsm} Explorer',
-        hexPath = system.file('resources/gsm.png', package = 'gsmApp'),
-        homeTabPath = system.file('resources/homeTab.html', package = 'gsmApp'),
+        #appName = '{gsm} Explorer',
+        #hexPath = system.file('resources/hex.png', package = 'gsmApp'),
+        #homeTabPath = system.file('resources/gsm-readme.html', package = 'gsmApp'),
         launchBrowser = TRUE
     )
 }
