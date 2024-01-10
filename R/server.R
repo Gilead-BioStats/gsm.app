@@ -1,32 +1,35 @@
 server <- function(input, output, session, snapshot) {
-    output$study_overview <- DT::renderDT({
-        gsm::Overview_Table(
-            snapshot$lStudyAssessResults
-        )
-    })
-
     #filteredData <- reactive({
     #    browser()
     #})
 
-    output$scatter_plot <- gsm::renderWidget_ScatterPlot({
-        snapshot$lStudyAssessResults[[ input$metric ]]$lResults$lCharts$scatterJS
-    })
+    # Study
+    study_overview_server('study_overview', snapshot)
 
-    output$bar_chart_score <- gsm::renderWidget_BarChart({
-        snapshot$lStudyAssessResults[[ input$metric ]]$lResults$lCharts$barScoreJS
-    })
+    # Metric
+    update_metric_select(session, snapshot)
+    metric_details_server(
+        'metric_details',
+        snapshot,
+        reactive(input$metric)
+    )
 
-    output$bar_chart_metric <- gsm::renderWidget_BarChart({
-        snapshot$lStudyAssessResults[[ input$metric ]]$lResults$lCharts$barMetricJS
-    })
+    # Site
+    update_site_select(session, snapshot)
+    site_details_server(
+        'site_details',
+        snapshot,
+        reactive(input$site)
+    )
 
-    ## Render Summary Table
-    #output$summaryTable <- renderDataTable({
-    #    # DataTables based on filteredData()
-    #    datatable(filteredData(), options = list(pageLength = 10))
-    #})
- 
+    # Participant
+    update_participant_select(session, snapshot)
+    participant_details_server(
+        'participant_details',
+        snapshot,
+        reactive(input$participant)
+    )
+
     ## Reset action
     #observeEvent(input$reset, {
     #    # Code to reset the selections
