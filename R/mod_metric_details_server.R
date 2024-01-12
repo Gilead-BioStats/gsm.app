@@ -15,11 +15,23 @@ metric_details_server <- function(id, snapshot, metric) {
             snapshot$lStudyAssessResults[[ metric() ]]$lResults$lCharts$barMetricJS
         })
 
-        ## Render Summary Table
-        #output$summaryTable <- renderDataTable({
-        #    # DataTables based on filteredData()
-        #    req(metric)
-        #    datatable(filteredData(), options = list(pageLength = 10))
-        #})
+        output$results <- DT::renderDT({
+            req(metric())
+
+            DT::datatable(
+                data = snapshot$lStudyAssessResults[[ metric() ]]$lResults$lData$dfSummary %>%
+                    mutate(
+                        Metric = round(Metric, 3),
+                        Score = round(Score, 2)
+                    ) %>%
+                    arrange(desc(abs(.data$Score))),
+                options = list(
+                    lengthChange = FALSE,
+                    paging = FALSE,
+                    searching = FALSE
+                ),
+                rownames = FALSE
+            )
+        })
     })
 }

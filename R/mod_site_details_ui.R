@@ -6,11 +6,11 @@ site_details_ui <- function(id) {
         shiny::tabsetPanel(
             shiny::tabPanel(
                 'Site Info',
-                'site_metadata'
+                DT::DTOutput(ns('site_metadata'))
             ),
             shiny::tabPanel(
                 'Site Participants',
-                'participants'
+                DT::DTOutput(ns('participants'))
             )
         )
     )
