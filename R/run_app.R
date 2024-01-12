@@ -1,4 +1,4 @@
-run_app <- function(snapshot) {
+run_app <- function(snapshot = gsmApp::snapshot) {
     shinyApp(
         ui = ui(snapshot),
         server = function(input, output, session) {
