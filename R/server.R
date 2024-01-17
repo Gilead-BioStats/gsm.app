@@ -1,21 +1,18 @@
 server <- function(input, output, session, snapshot) {
-    #filteredData <- reactive({
-    #    browser()
-    #})
-
     # Study
     study_overview_server('study_overview', snapshot)
 
     # Metric
-    update_metric_select(session, snapshot)
+    update_metric_select(input, output, session, snapshot)
     metric_details_server(
         'metric_details',
         snapshot,
-        reactive(input$metric)
+        reactive(input$metric),
+        reactive(input$site)
     )
 
     # Site
-    update_site_select(session, snapshot)
+    update_site_select(input, output, session, snapshot)
     site_details_server(
         'site_details',
         snapshot,
@@ -23,7 +20,7 @@ server <- function(input, output, session, snapshot) {
     )
 
     # Participant
-    update_participant_select(session, snapshot)
+    update_participant_select(input, output, session, snapshot)
     participant_details_server(
         'participant_details',
         snapshot,

@@ -12,8 +12,8 @@ ui <- function(snapshot) {
                 ),
                 shiny::mainPanel(
                     shiny::tabsetPanel(
-                        study_overview_ui('study_overview'),
                         metric_details_ui('metric_details'),
+                        study_overview_ui('study_overview'),
                         site_details_ui('site_details'),
                         participant_details_ui('participant_details')
                     )

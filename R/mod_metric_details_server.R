@@ -1,8 +1,25 @@
-metric_details_server <- function(id, snapshot, metric) {
+metric_details_server <- function(id, snapshot, metric, site) {
     moduleServer(id, function(input, output, session) {
-        output$scatter_plot <- gsm::renderWidget_ScatterPlot({
+        output$scatter_plot <- render_widget_scatter_plot({
             req(metric())
-            snapshot$lStudyAssessResults[[ metric() ]]$lResults$lCharts$scatterJS
+
+            if (metric() == 'None')
+                return(NULL)
+
+            gsm_output <- snapshot$lStudyAssessResults[[ metric() ]]
+            data <- gsm_output$lResults$lData$dfSummary
+            config <- snapshot$lInputs$lMeta$meta_workflow %>%
+                filter(
+                    .data$workflowid == metric()
+                )
+            bounds <- gsm_output$lResults$lData$dfBounds
+
+            widget_scatter_plot(
+                data,
+                config,
+                bounds,
+                site()
+            )
         })
 
         output$bar_chart_score <- gsm::renderWidget_BarChart({

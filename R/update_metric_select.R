@@ -1,4 +1,4 @@
-update_metric_select <- function(session, snapshot) {
+update_metric_select <- function(input, output, session, snapshot) {
     workflow_metadata <- snapshot$lInput$lMeta$meta_workflow %>%
         filter(
             # Remove inactive workflows.
