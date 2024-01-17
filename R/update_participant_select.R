@@ -1,5 +1,4 @@
 update_participant_select <- function(input, output, session, snapshot) {
-    print(names(snapshot$lInputs$lData$dfSUBJ))
     participant_metadata <- snapshot$lInputs$lData$dfSUBJ %>%
         filter(
             .data[[ snapshot$lInputs$lMapping$dfSUBJ$strEnrollCol ]] == snapshot$lInputs$lMapping$dfSUBJ$strEnrollVal

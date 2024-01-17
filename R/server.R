@@ -1,5 +1,54 @@
 server <- function(input, output, session, snapshot) {
     # Study
+    observeEvent(input$metric, {
+        metadata <- snapshot$lInputs$lMeta$meta_workflow %>%
+            filter(
+                .data$workflowid == input$metric
+            ) %>%
+            as.list()
+
+        code <- paste(
+            c(
+                "const table = document",
+                "    .getElementById('study_overview-site_overview_table')",
+                "    .getElementsByTagName('table')[0];",
+                "console.log(table);",
+                "",
+                paste0(
+                    "const th = table.querySelector('[aria-label=\"",
+                    metadata$abbreviation,
+                    "\"]');"
+                ),
+                "console.log(th);",
+                "th.classList.toggle('the-chosen-one');"
+                #"",
+                #"const getChildIndex = function(node) {",
+                #"    return Array.prototype.indexOf.call(node.parentNode.childNodes, node);",
+                #"}",
+                #"",
+                #"const columnIndex = getChildIndex(th);",
+                #"console.log(columnIndex);",
+                #"",
+                #"const column = table.getElementsBy
+            ),
+            collapse = '\n'
+        )
+
+        if (input$metric != 'None') {
+            cli::cli_alert_info(
+                'Custom JS:\n'
+            )
+            cat(code)
+            shinyjs::runjs(code)
+browser()
+        }
+
+        #updateTabsetPanel(
+        #    session,
+        #    'main_panel',
+        #    'Metric Details'
+        #)
+    })
     study_overview_server('study_overview', snapshot)
 
     # Metric

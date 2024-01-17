@@ -2,6 +2,9 @@
 ui <- function(snapshot) {
     return(
         shiny::fluidPage(
+            includeCSS(
+                system.file('www', 'styles.css', package = 'gsmApp')
+            ),
             shiny::titlePanel('GSM - Deep Dive'),
             shiny::sidebarLayout(
                 shiny::sidebarPanel(
@@ -12,10 +15,12 @@ ui <- function(snapshot) {
                 ),
                 shiny::mainPanel(
                     shiny::tabsetPanel(
-                        metric_details_ui('metric_details'),
                         study_overview_ui('study_overview'),
+                        metric_details_ui('metric_details'),
                         site_details_ui('site_details'),
-                        participant_details_ui('participant_details')
+                        participant_details_ui('participant_details'),
+                        id = 'main_panel',
+                        selected = 'Study Overview'
                     )
                 )
             )
