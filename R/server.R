@@ -7,6 +7,7 @@ server <- function(input, output, session, snapshot) {
             ) %>%
             as.list()
 
+        # TODO: de-highlight previous KRI
         code <- paste(
             c(
                 "const table = document",
@@ -38,9 +39,9 @@ server <- function(input, output, session, snapshot) {
             cli::cli_alert_info(
                 'Custom JS:\n'
             )
-            cat(code)
+
             shinyjs::runjs(code)
-browser()
+
         }
 
         #updateTabsetPanel(

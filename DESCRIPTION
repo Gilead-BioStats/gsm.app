@@ -1,4 +1,6 @@
-TODO: make sure {gsm} and {clindata} are attached
+TODO:
+    - add custom click callback code to {gsm}
+    - consider deleting or reducing the size of the raw data
 Package: gsmApp
 Title: {gsm} Shiny Application
 Version: 0.6.0

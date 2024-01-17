@@ -2,6 +2,7 @@
 ui <- function(snapshot) {
     return(
         shiny::fluidPage(
+            shinyjs::useShinyjs(),
             includeCSS(
                 system.file('www', 'styles.css', package = 'gsmApp')
             ),
