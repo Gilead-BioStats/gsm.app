@@ -1,5 +1,9 @@
+#' Metric Details UI
+#'
+#' @export
+
 metric_details_ui <- function(id) {
-    ns <- NS(id)
+    ns <- shiny::NS(id)
 
     ui <- shiny::tabPanel(
         'Metric Details',

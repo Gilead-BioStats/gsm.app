@@ -1,5 +1,9 @@
+#' Site Details UI
+#'
+#' @export
+
 site_details_ui <- function(id) {
-    ns <- NS(id)
+    ns <- shiny::NS(id)
 
     ui <- shiny::tabPanel(
         'Site Details',

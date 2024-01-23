@@ -1,16 +1,19 @@
-# Define UI
+#' Define UI
+#'
+#' @export
+
 ui <- function(snapshot) {
     return(
         shiny::fluidPage(
             shinyjs::useShinyjs(),
-            includeCSS(
+            htmltools::includeCSS(
                 system.file('www', 'styles.css', package = 'gsmApp')
             ),
             shiny::titlePanel('GSM - Deep Dive'),
             shiny::sidebarLayout(
                 shiny::sidebarPanel(
                     shiny::selectInput('metric', 'Metric', choices = c('None')),
-                    shiny::selectInput('site', 'Site', choices = c('None')),
+                    shiny::selectInput('site', 'Site', choices = c('10')),# 'None')),
                     shiny::selectInput('participant', 'Participant', choices = c('None')),
                     shiny::actionButton('reset', 'Reset All')
                 ),
@@ -21,7 +24,12 @@ ui <- function(snapshot) {
                         site_details_ui('site_details'),
                         participant_details_ui('participant_details'),
                         id = 'main_panel',
-                        selected = 'Study Overview'
+                        selected = c(
+                            # 'Study Overview'
+                            # 'Metric Details'
+                            'Site Details'
+                            # 'Participant Details
+                        )
                     )
                 )
             )

@@ -1,21 +1,71 @@
+#' Site Details Server
+#'
+#' @export
+
 site_details_server <- function(id, snapshot, site) {
-    moduleServer(id, function(input, output, session) {
-        site_metadata <- reactive({
-            req(site())
+    shiny::moduleServer(id, function(input, output, session) {
+        # ---- site data
+        site_data <- reactive({
+            shiny::req(site())
 
             mapping <- snapshot$lInputs$lMapping$dfSITE
             data <- snapshot$lInputs$lMeta$meta_site %>%
-                filter(
+                dplyr::filter(
                     .data[[ mapping$strSiteCol ]] == site()
                 )
 
             return(data)
         })
 
-        output$site_metadata <- DT::renderDT({
-            req(site_metadata())
+        # ---- screening data
+        #dfENROLL <- get_domain(
+        #    snapshot,
+        #    'dfENROLL',
+        #    'strSiteCol',
+        #    site()
+        #)
 
-            data <- site_metadata() %>%
+        # ---- screening data
+        dfSUBJ <- get_domain(
+            snapshot,
+            'dfSUBJ',
+            'strSiteCol',
+            site()
+        )
+
+        # ---- enrollment data
+        #dfSUBJ <- reactive({
+        #    req(site())
+
+        #    mapping <- snapshot$lInputs$lMapping$dfSUBJ
+        #    data <- snapshot$lInputs$lData$dfSUBJ %>%
+        #        filter(
+        #            .data[[ mapping$strSiteCol ]] == site()
+        #        )
+
+        #    return(list(
+        #        mapping = mapping,
+        #        data = data
+        #    ))
+        #})
+
+        # ---- disposition summary
+        #disposition <- reactive({
+        #    req(
+        #        site(),
+        #        dfENROLL(),
+        #        dfSUBJ()
+        #    )
+
+        #    screening <- table(dfENROLL()$data[[ dfENROLL()$mapping$strScreenFailCol ]])
+        #    enrollment <- table(dfENROLL()$data[[ dfENROLL()$mapping$strScreenFailCol ]])
+        #})
+
+        # ---- site table
+        output$site_data <- DT::renderDT({
+            req(site_data())
+
+            data <- site_data() %>%
                 tidyr::pivot_longer(
                     everything()
                 ) %>%
@@ -41,29 +91,17 @@ site_details_server <- function(id, snapshot, site) {
             )
         })
 
-        site_participants <- reactive({
-            req(site())
-
-            mapping <- snapshot$lInputs$lMapping$dfSUBJ
-            data <- snapshot$lInputs$lData$dfSUBJ %>%
-                filter(
-                    .data[[ mapping$strSiteCol ]] == site()
-                )
-
-            return(data)
-        })
-
+        # ---- participant table
         output$participants <- DT::renderDT({
-            req(site_metadata())
-
-            mapping <- snapshot$lInputs$lMapping$dfSUBJ
-            data <- site_participants() %>%
-                select(
-                    'ID' = mapping$strIDCol,
-                    'Study Start Date' = mapping$strStudyStartDate,
-                    'Time on Study' = mapping$strTimeOnStudyCol,
-                    'Treatment Start Date' = mapping$strTreatmentStartDate,
-                    'Time on Treatment' = mapping$strTimeOnTreatmentCol
+            shiny::req(dfSUBJ())
+browser()
+            data <- dfSUBJ()$data %>%
+                dplyr::select(
+                    'ID' = dfSUBJ()$mapping$strIDCol,
+                    'Study Start Date' = dfSUBJ()$mapping$strStudyStartDate,
+                    'Time on Study' = dfSUBJ()$mapping$strTimeOnStudyCol,
+                    'Treatment Start Date' = dfSUBJ()$mapping$strTreatmentStartDate,
+                    'Time on Treatment' = dfSUBJ()$mapping$strTimeOnTreatmentCol
                 )
 
             return(data)

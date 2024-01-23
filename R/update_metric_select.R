@@ -1,34 +1,38 @@
+#' Update Metric Select
+#'
+#' @export
+
 update_metric_select <- function(input, output, session, snapshot) {
     workflow_metadata <- snapshot$lInput$lMeta$meta_workflow %>%
-        filter(
+        dplyr::filter(
             # Remove inactive workflows.
             .data$workflowid %in% (
                 snapshot$lInput$lMeta$config_workflow %>%
-                    filter(
+                    dplyr::filter(
                         .data$active == TRUE
                     ) %>%
-                    pull(workflowid)
+                    dplyr::pull(workflowid)
             ),
             # Remove unevaluated workflows.
             .data$workflowid %in% (
                 names(snapshot$lStudyAssessResults)
             )
         ) %>%
-        mutate(
+        dplyr::mutate(
             # Sort workflows: site KRIs > country KRIs > QTLs.
-            group_order = case_when(
+            group_order = dplyr::case_when(
                 substring(.data$workflowid, 1, 3) == 'kri' ~ 0,
                 substring(.data$workflowid, 1, 3) == 'cou' ~ 1,
                 substring(.data$workflowid, 1, 3) == 'qtl' ~ 2,
                 TRUE ~ 3
             )
         ) %>%
-        arrange(
+        dplyr::arrange(
             .data$group_order, .data$workflowid
         )
 
     choices <- workflow_metadata$workflowid %>%
-        setNames(
+        stats::setNames(
             glue::glue(
                 '{
                     workflow_metadata$metric
@@ -38,7 +42,7 @@ update_metric_select <- function(input, output, session, snapshot) {
             )
         )
 
-    updateSelectInput(
+    shiny::updateSelectInput(
         session,
         'metric',
         choices = choices

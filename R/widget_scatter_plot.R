@@ -1,3 +1,5 @@
+#' Generate Scatter Plot Widget
+#'
 #' @export
 
 widget_scatter_plot <- function(

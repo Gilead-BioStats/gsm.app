@@ -1,5 +1,9 @@
+#' Study Overview UI
+#'
+#' @export
+
 study_overview_ui <- function(id) {
-    ns <- NS(id)
+    ns <- shiny::NS(id)
 
     ui <- shiny::tabPanel(
         "Study Overview",

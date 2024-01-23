@@ -1,8 +1,12 @@
+#' Define Server
+#'
+#' @export
+
 server <- function(input, output, session, snapshot) {
     # Study
-    observeEvent(input$metric, {
+    shiny::observeEvent(input$metric, {
         metadata <- snapshot$lInputs$lMeta$meta_workflow %>%
-            filter(
+            dplyr::filter(
                 .data$workflowid == input$metric
             ) %>%
             as.list()
@@ -85,7 +89,7 @@ server <- function(input, output, session, snapshot) {
     site_details_server(
         'site_details',
         snapshot,
-        reactive(input$site)
+        shiny::reactive(input$site)
     )
 
     # Participant
@@ -93,7 +97,7 @@ server <- function(input, output, session, snapshot) {
     participant_details_server(
         'participant_details',
         snapshot,
-        reactive(input$participant)
+        shiny::reactive(input$participant)
     )
 
     ## Reset action

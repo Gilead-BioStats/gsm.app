@@ -1,11 +1,15 @@
+#' Update Site Select
+#'
+#' @export
+
 update_site_select <- function(input, output, session, snapshot) {
     # Update site input when client-side selection occurs.
-    observeEvent(input$site, {
+    shiny::observeEvent(input$site, {
         cli::cli_alert_info(
             'Selected site: {input$site}'
         )
 
-        updateSelectInput(
+        shiny::updateSelectInput(
             session,
             'site',
             selected = input$site
@@ -14,20 +18,20 @@ update_site_select <- function(input, output, session, snapshot) {
 
     # Capture list of site IDs.
     site_metadata <- snapshot$lInputs$lMeta$meta_site %>%
-        filter(
+        dplyr::filter(
             .data[[ snapshot$lInputs$lMapping$dfSITE$strSiteCol ]] %in% (
                 snapshot$lInputs$lData$dfSUBJ[[
                     snapshot$lInputs$lMapping$dfSUBJ$strSiteCol
                 ]] %>% unique() %>% sort()
             )
         ) %>%
-        arrange(
+        dplyr::arrange(
             .data[[ snapshot$lInputs$lMapping$dfSITE$strSiteCol ]]
         )
 
     # Include investigator name in each option.
     choices <- site_metadata[[ snapshot$lInputs$lMapping$dfSITE$strSiteCol ]] %>%
-        setNames(
+        stats::setNames(
             glue::glue(
                 '{
                     site_metadata[[ snapshot$lInputs$lMapping$dfSITE$strSiteCol ]]
@@ -37,7 +41,7 @@ update_site_select <- function(input, output, session, snapshot) {
             )
         )
 
-    updateSelectInput(
+    shiny::updateSelectInput(
         session,
         'site',
         choices = c(

@@ -1,5 +1,9 @@
+#' Participant Details Server
+#'
+#' @export
+
 participant_details_server <- function(id, snapshot, participant) {
-    moduleServer(id, function(input, output, session) {
+    shiny::moduleServer(id, function(input, output, session) {
         #print(participant())
     })
 }
