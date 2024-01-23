@@ -10,38 +10,57 @@ server <- function(input, output, session, snapshot) {
         # TODO: de-highlight previous KRI
         code <- paste(
             c(
-                "const table = document",
-                "    .getElementById('study_overview-site_overview_table')",
-                "    .getElementsByTagName('table')[0];",
-                "console.log(table);",
-                "",
-                paste0(
-                    "const th = table.querySelector('[aria-label=\"",
-                    metadata$abbreviation,
-                    "\"]');"
-                ),
-                "console.log(th);",
-                "th.classList.toggle('the-chosen-one');"
-                #"",
-                #"const getChildIndex = function(node) {",
-                #"    return Array.prototype.indexOf.call(node.parentNode.childNodes, node);",
-                #"}",
-                #"",
-                #"const columnIndex = getChildIndex(th);",
-                #"console.log(columnIndex);",
-                #"",
-                #"const column = table.getElementsBy
+                # table
+                'const table = document',
+                '    .getElementById("study_overview-site_overview_table")',
+                '    .getElementsByTagName("table")[0];',
+                'console.log(table);',
+                '',
+                '[].forEach.call(',
+                '    table.querySelectorAll("th,td"),',
+                '    function(cell) {',
+                '        cell.classList.remove("selected-kri");',
+                '    }',
+                ');',
+                '',
+
+                # table header cell
+                'const th = table.querySelector("[aria-label=\'' %>%
+                    paste0(
+                        metadata$abbreviation,
+                        '\']");'
+                    ),
+                'console.log(th);',
+                'th.classList.toggle("selected-kri");',
+                '',
+
+                # column index
+                'const getChildIndex = function(node) {',
+                '    return Array.prototype.indexOf.call(node.parentNode.childNodes, node);',
+                '}',
+                '',
+                'const columnIndex = getChildIndex(th);',
+                'console.log(columnIndex);',
+                '',
+
+                # table body cells
+                'const tds = table.querySelectorAll(`tr td:nth-child(${columnIndex + 1})`);',
+                'console.log(tds);',
+                '',
+                '[].forEach.call(tds, function(td) {',
+                '    td.classList.toggle("selected-kri");',
+                '});'
             ),
             collapse = '\n'
         )
 
         if (input$metric != 'None') {
             cli::cli_alert_info(
-                'Custom JS:\n'
+                'Custom JS:'
             )
+            cat(code)
 
             shinyjs::runjs(code)
-
         }
 
         #updateTabsetPanel(

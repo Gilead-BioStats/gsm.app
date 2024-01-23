@@ -1,3 +1,11 @@
-.the-chosen-one {
-    border: 2px dotted #555;
+#study_overview-site_overview_table th:nth-child(5),
+#study_overview-site_overview_table td:nth-child(5) {
+    background: #ffccc74d !important;
+}
+#study_overview-site_overview_table th:nth-child(6),
+#study_overview-site_overview_table td:nth-child(6) {
+    background: #fffdf1 !important;
+}
+#study_overview-site_overview_table .selected-kri {
+    background: #deebf7;
 }
