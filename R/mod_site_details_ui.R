@@ -10,7 +10,10 @@ site_details_ui <- function(id) {
         shiny::tabsetPanel(
             shiny::tabPanel(
                 'Site Info',
-                DT::DTOutput(ns('site_metadata'))
+                htmltools::h2('Participant Disposition'),
+                DT::DTOutput(ns('participant_disposition_table')),
+                htmltools::h2('Site Metadata'),
+                DT::DTOutput(ns('site_metadata_table'))
             ),
             shiny::tabPanel(
                 'Site Participants',

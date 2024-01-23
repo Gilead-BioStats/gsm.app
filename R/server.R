@@ -4,75 +4,7 @@
 
 server <- function(input, output, session, snapshot) {
     # Study
-    shiny::observeEvent(input$metric, {
-        metadata <- snapshot$lInputs$lMeta$meta_workflow %>%
-            dplyr::filter(
-                .data$workflowid == input$metric
-            ) %>%
-            as.list()
-
-        # TODO: de-highlight previous KRI
-        code <- paste(
-            c(
-                # table
-                'const table = document',
-                '    .getElementById("study_overview-site_overview_table")',
-                '    .getElementsByTagName("table")[0];',
-                'console.log(table);',
-                '',
-                '[].forEach.call(',
-                '    table.querySelectorAll("th,td"),',
-                '    function(cell) {',
-                '        cell.classList.remove("selected-kri");',
-                '    }',
-                ');',
-                '',
-
-                # table header cell
-                'const th = table.querySelector("[aria-label=\'' %>%
-                    paste0(
-                        metadata$abbreviation,
-                        '\']");'
-                    ),
-                'console.log(th);',
-                'th.classList.toggle("selected-kri");',
-                '',
-
-                # column index
-                'const getChildIndex = function(node) {',
-                '    return Array.prototype.indexOf.call(node.parentNode.childNodes, node);',
-                '}',
-                '',
-                'const columnIndex = getChildIndex(th);',
-                'console.log(columnIndex);',
-                '',
-
-                # table body cells
-                'const tds = table.querySelectorAll(`tr td:nth-child(${columnIndex + 1})`);',
-                'console.log(tds);',
-                '',
-                '[].forEach.call(tds, function(td) {',
-                '    td.classList.toggle("selected-kri");',
-                '});'
-            ),
-            collapse = '\n'
-        )
-
-        if (input$metric != 'None') {
-            cli::cli_alert_info(
-                'Custom JS:'
-            )
-            cat(code)
-
-            shinyjs::runjs(code)
-        }
-
-        #updateTabsetPanel(
-        #    session,
-        #    'main_panel',
-        #    'Metric Details'
-        #)
-    })
+    add_metric_observer(snapshot, reactive(input$metric))
     study_overview_server('study_overview', snapshot)
 
     # Metric

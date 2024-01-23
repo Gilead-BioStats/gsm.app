@@ -5,7 +5,7 @@
 site_details_server <- function(id, snapshot, site) {
     shiny::moduleServer(id, function(input, output, session) {
         # ---- site data
-        site_data <- reactive({
+        site_metadata <- reactive({
             shiny::req(site())
 
             mapping <- snapshot$lInputs$lMapping$dfSITE
@@ -17,15 +17,15 @@ site_details_server <- function(id, snapshot, site) {
             return(data)
         })
 
-        # ---- screening data
-        #dfENROLL <- get_domain(
-        #    snapshot,
-        #    'dfENROLL',
-        #    'strSiteCol',
-        #    site()
-        #)
+        # ---- screening disposition
+        dfENROLL <- get_domain(
+            snapshot,
+            'dfENROLL',
+            'strSiteCol',
+            site()
+        )
 
-        # ---- screening data
+        # ---- demographics
         dfSUBJ <- get_domain(
             snapshot,
             'dfSUBJ',
@@ -33,50 +33,76 @@ site_details_server <- function(id, snapshot, site) {
             site()
         )
 
-        # ---- enrollment data
-        #dfSUBJ <- reactive({
-        #    req(site())
-
-        #    mapping <- snapshot$lInputs$lMapping$dfSUBJ
-        #    data <- snapshot$lInputs$lData$dfSUBJ %>%
-        #        filter(
-        #            .data[[ mapping$strSiteCol ]] == site()
-        #        )
-
-        #    return(list(
-        #        mapping = mapping,
-        #        data = data
-        #    ))
-        #})
+        # ---- study disposition
+        dfSTUDCOMP <- get_domain(
+            snapshot,
+            'dfSTUDCOMP',
+            'strIDCol',
+            dfSUBJ()$data[[ dfSUBJ()$mapping$strIDCol ]]
+        )
 
         # ---- disposition summary
-        #disposition <- reactive({
-        #    req(
-        #        site(),
-        #        dfENROLL(),
-        #        dfSUBJ()
-        #    )
+        disposition <- reactive({
+            req(
+                #dfENROLL(),
+                dfSUBJ()
+                #dfSTUDCOMP()
+            )
 
-        #    screening <- table(dfENROLL()$data[[ dfENROLL()$mapping$strScreenFailCol ]])
-        #    enrollment <- table(dfENROLL()$data[[ dfENROLL()$mapping$strScreenFailCol ]])
-        #})
+            screening_disposition <- table(
+                dfENROLL()$data[[
+                    dfENROLL()$mapping$strScreenFailCol
+                ]]
+            )
+
+            study_disposition <- table(
+                dfSTUDCOMP()$data[[
+                    dfSTUDCOMP()$mapping$strStudyDiscontinuationReasonCol
+                ]]
+            )
+            browser()
+            return(study_disposition)
+        })
+
+        output$participant_disposition_table <- DT::renderDT({
+            dplyr::bind_rows(
+                dfENROLL()$data$enrollyn %>%
+                    table() %>%
+                    data.frame() %>%
+                    dplyr::mutate(
+                        domain = 'dfENROLL'
+                    ),
+                dfSUBJ()$data$enrollyn %>%
+                    table() %>%
+                    data.frame() %>%
+                    dplyr::mutate(
+                        domain = 'dfSUBJ'
+                    ),
+                dfSTUDCOMP()$data$compreas %>%
+                    table() %>%
+                    data.frame() %>%
+                    dplyr::mutate(
+                        domain = 'dfSTUDCOMP'
+                    )
+            )
+        })
 
         # ---- site table
-        output$site_data <- DT::renderDT({
-            req(site_data())
+        output$site_metadata_table <- DT::renderDT({
+            req(site_metadata())
 
-            data <- site_data() %>%
+            data <- site_metadata() %>%
                 tidyr::pivot_longer(
                     everything()
                 ) %>%
-                mutate(
+                dplyr::mutate(
                     Characteristic = name %>%
                         gsub('_', ' ', .) %>%
                         gsub('\\b([a-z])', '\\U\\1', ., perl = TRUE) %>%
                         sub('pi', 'PI', ., TRUE) %>%
                         sub('id', 'ID', ., TRUE)
                 ) %>%
-                select(
+                dplyr::select(
                     Characteristic, Value = value
                 )
 
@@ -94,7 +120,7 @@ site_details_server <- function(id, snapshot, site) {
         # ---- participant table
         output$participants <- DT::renderDT({
             shiny::req(dfSUBJ())
-browser()
+
             data <- dfSUBJ()$data %>%
                 dplyr::select(
                     'ID' = dfSUBJ()$mapping$strIDCol,

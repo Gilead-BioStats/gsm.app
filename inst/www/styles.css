@@ -6,6 +6,6 @@
 #study_overview-site_overview_table td:nth-child(6) {
     background: #fffdf1 !important;
 }
-#study_overview-site_overview_table .selected-kri {
+#study_overview-site_overview_table .selected-metric {
     background: #deebf7;
 }
