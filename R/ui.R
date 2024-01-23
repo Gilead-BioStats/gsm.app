@@ -13,7 +13,7 @@ ui <- function(snapshot) {
             shiny::sidebarLayout(
                 shiny::sidebarPanel(
                     shiny::selectInput('metric', 'Metric', choices = c('None')),
-                    shiny::selectInput('site', 'Site', choices = c('10')),# 'None')),
+                    shiny::selectInput('site', 'Site', choices = c('None')),
                     shiny::selectInput('participant', 'Participant', choices = c('None')),
                     shiny::actionButton('reset', 'Reset All')
                 ),
@@ -25,10 +25,10 @@ ui <- function(snapshot) {
                         participant_details_ui('participant_details'),
                         id = 'main_panel',
                         selected = c(
-                            # 'Study Overview'
+                            'Study Overview'
                             # 'Metric Details'
-                            'Site Details'
-                            # 'Participant Details
+                            # 'Site Details'
+                            # 'Participant Details'
                         )
                     )
                 )

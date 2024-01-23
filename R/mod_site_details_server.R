@@ -92,8 +92,11 @@ site_details_server <- function(id, snapshot, site) {
             req(site_metadata())
 
             data <- site_metadata() %>%
+                dplyr::mutate(
+                    dplyr::across(tidyselect::everything(), as.character)
+                ) %>%
                 tidyr::pivot_longer(
-                    everything()
+                    tidyselect::everything()
                 ) %>%
                 dplyr::mutate(
                     Characteristic = name %>%
@@ -106,15 +109,15 @@ site_details_server <- function(id, snapshot, site) {
                     Characteristic, Value = value
                 )
 
-            DT::datatable(
-                data,
-                options = list(
-                    lengthChange = FALSE,
-                    paging = FALSE,
-                    searching = FALSE
-                ),
-                rownames = FALSE
-            )
+            data %>%
+                DT::datatable(
+                    options = list(
+                        lengthChange = FALSE,
+                        paging = FALSE,
+                        searching = FALSE
+                    ),
+                    rownames = FALSE
+                )
         })
 
         # ---- participant table
@@ -130,7 +133,35 @@ site_details_server <- function(id, snapshot, site) {
                     'Time on Treatment' = dfSUBJ()$mapping$strTimeOnTreatmentCol
                 )
 
-            return(data)
+            table <- data %>%
+                DT::datatable(
+                    callback = htmlwidgets::JS('
+                        table.on("click", "td:nth-child(1)", function(d) {
+                            const participant_id = d.currentTarget.innerText;
+
+                            console.log(
+                                `Selected participant ID: ${participant_id}`
+                            );
+
+                            const namespace = "gsmApp";
+
+                            Shiny.setInputValue(
+                                "participant",
+                                participant_id
+                            );
+                        })
+                    '),
+                    options = list(
+                        autoWidth = TRUE,
+                        lengthChange = FALSE,
+                        paging = FALSE,
+                        searching = FALSE,
+                        selection = 'none'
+                    ),
+                    rownames = FALSE,
+                )
+
+            return(table)
         })
     })
 }

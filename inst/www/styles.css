@@ -1,3 +1,5 @@
+/* study overview */
+
 #study_overview-site_overview_table th:nth-child(5),
 #study_overview-site_overview_table td:nth-child(5) {
     background: #ffccc74d !important;
@@ -8,4 +10,11 @@
 }
 #study_overview-site_overview_table .selected-metric {
     background: #deebf7;
+}
+
+/* site details */
+
+#site_details-participant td:nth-child(1) {
+    color: blue;
+    text-decoration: underline;
 }
