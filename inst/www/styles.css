@@ -14,7 +14,8 @@
 
 /* site details */
 
-#site_details-participant td:nth-child(1) {
+#site_details-participants td:nth-child(1) {
+    cursor: pointer;
     color: blue;
     text-decoration: underline;
 }
