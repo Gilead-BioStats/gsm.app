@@ -8,7 +8,7 @@ get_domain <- function(
     subset_col = NULL,
     subset_val = NULL
 ) {
-    shiny::reactive({
+   shiny::reactive({
         if (!is.null(subset_val))
             shiny::req(subset_val)
 
@@ -29,4 +29,33 @@ get_domain <- function(
             data = data
         ))
     })
+}
+
+t_get_domain <- function(
+        snapshot,
+        domain,
+        subset_col = NULL,
+        subset_val = NULL
+) {
+
+        if (!is.null(subset_val))
+            shiny::req(subset_val)
+
+        mapping <- snapshot$lInputs$lMapping[[ domain ]]
+        data <- snapshot$lInputs$lData[[ domain ]]
+
+        if (!is.null(subset_col) && !is.null(subset_val)) {
+            data <- data %>%
+                dplyr::filter(
+                    .data[[
+                        mapping[[ subset_col ]]
+                    ]] %in% !!subset_val
+                )
+        }
+
+        return(list(
+            mapping = mapping,
+            data = data
+        ))
+
 }

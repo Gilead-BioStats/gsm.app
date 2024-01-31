@@ -1,167 +1,291 @@
 #' Site Details Server
 #'
+#' @import stringr
+#'
 #' @export
 
 site_details_server <- function(id, snapshot, site) {
-    shiny::moduleServer(id, function(input, output, session) {
-        # ---- site data
-        site_metadata <- reactive({
-            shiny::req(site())
-
-            mapping <- snapshot$lInputs$lMapping$dfSITE
-            data <- snapshot$lInputs$lMeta$meta_site %>%
-                dplyr::filter(
-                    .data[[ mapping$strSiteCol ]] == site()
-                )
-
-            return(data)
-        })
+    moduleServer(id, function(input, output, session) {
 
         # ---- screening disposition
-        dfENROLL <- get_domain(
-            snapshot,
-            'dfENROLL',
-            'strSiteCol',
-            site()
-        )
+        dfENROLL <- reactive({
+            t_get_domain(
+                snapshot,
+                'dfENROLL',
+                'strSiteCol',
+                site()
+            )
+        })
 
         # ---- demographics
-        dfSUBJ <- get_domain(
-            snapshot,
-            'dfSUBJ',
-            'strSiteCol',
-            site()
-        )
+        dfSUBJ <- reactive({
+            t_get_domain(
+                snapshot,
+                'dfSUBJ',
+                'strSiteCol',
+                site()
+            )
+        })
+
+        # ---- demographics
+        dfAE <- ({
+            t_get_domain(
+                snapshot,
+                'dfAE'#,
+               # 'strSiteCol',
+                #site()
+            )
+        })
 
         # ---- study disposition
-        dfSTUDCOMP <- get_domain(
-            snapshot,
-            'dfSTUDCOMP',
-            'strIDCol',
-            dfSUBJ()$data[[ dfSUBJ()$mapping$strIDCol ]]
-        )
-
-        # ---- disposition summary
-        disposition <- reactive({
-            req(
-                #dfENROLL(),
-                dfSUBJ()
-                #dfSTUDCOMP()
-            )
-
-            screening_disposition <- table(
-                dfENROLL()$data[[
-                    dfENROLL()$mapping$strScreenFailCol
-                ]]
-            )
-
-            study_disposition <- table(
-                dfSTUDCOMP()$data[[
-                    dfSTUDCOMP()$mapping$strStudyDiscontinuationReasonCol
-                ]]
-            )
-            browser()
-            return(study_disposition)
-        })
-
-        output$participant_disposition_table <- DT::renderDT({
-            dplyr::bind_rows(
-                dfENROLL()$data$enrollyn %>%
-                    table() %>%
-                    data.frame() %>%
-                    dplyr::mutate(
-                        domain = 'dfENROLL'
-                    ),
-                dfSUBJ()$data$enrollyn %>%
-                    table() %>%
-                    data.frame() %>%
-                    dplyr::mutate(
-                        domain = 'dfSUBJ'
-                    ),
-                dfSTUDCOMP()$data$compreas %>%
-                    table() %>%
-                    data.frame() %>%
-                    dplyr::mutate(
-                        domain = 'dfSTUDCOMP'
-                    )
+        dfSTUDCOMP <- reactive({
+            t_get_domain(
+                snapshot,
+                'dfSTUDCOMP',
+                'strIDCol',
+                dfSUBJ()$data[[ dfSUBJ()$mapping$strIDCol ]]
             )
         })
 
-        # ---- site table
-        output$site_metadata_table <- DT::renderDT({
-            req(site_metadata())
 
-            data <- site_metadata() %>%
-                dplyr::mutate(
-                    dplyr::across(tidyselect::everything(), as.character)
-                ) %>%
-                tidyr::pivot_longer(
-                    tidyselect::everything()
-                ) %>%
-                dplyr::mutate(
-                    Characteristic = name %>%
-                        gsub('_', ' ', .) %>%
-                        gsub('\\b([a-z])', '\\U\\1', ., perl = TRUE) %>%
-                        sub('pi', 'PI', ., TRUE) %>%
-                        sub('id', 'ID', ., TRUE)
-                ) %>%
-                dplyr::select(
-                    Characteristic, Value = value
-                )
+        ### Participant Status Functions
 
-            data %>%
-                DT::datatable(
-                    options = list(
-                        lengthChange = FALSE,
-                        paging = FALSE,
-                        searching = FALSE
-                    ),
-                    rownames = FALSE
-                )
+        participant_list <- reactive({
+
+            list(
+                screened = list(
+                    eligible = sum(dfSUBJ()$data$enrollyn == "Y"),
+                    ineligible = sum(dfSUBJ()$data$enrollyn == "N")
+                ),
+                enrolled = list(
+                    completed = sum(dfSTUDCOMP()$data$compyn == "Y"),
+                    discontinued = sum(dfSTUDCOMP()$data$compyn == "N"),
+                    active = sum(!c(dfSTUDCOMP()$data$compyn %in% c("Y","N")))
+                ),
+                discontinued_reasons = dfSTUDCOMP()$data$compreas
+            )
+
         })
 
-        # ---- participant table
-        output$participants <- DT::renderDT({
-            shiny::req(dfSUBJ())
+        output$participant_status_list <- renderUI({
+#
+#             print(site())
+#             print(participant_list())
 
-            data <- dfSUBJ()$data %>%
-                dplyr::select(
-                    'ID' = dfSUBJ()$mapping$strIDCol,
-                    'Study Start Date' = dfSUBJ()$mapping$strStudyStartDate,
-                    'Time on Study' = dfSUBJ()$mapping$strTimeOnStudyCol,
-                    'Treatment Start Date' = dfSUBJ()$mapping$strTreatmentStartDate,
-                    'Time on Treatment' = dfSUBJ()$mapping$strTimeOnTreatmentCol
-                )
+            participantStudyNestedList(participant_list())
 
-            table <- data %>%
-                DT::datatable(
-                    callback = htmlwidgets::JS('
-                        table.on("click", "td:nth-child(1)", function(d) {
-                            const participant_id = d.currentTarget.innerText;
-
-                            console.log(
-                                `Selected participant ID: ${participant_id}`
-                            );
-
-                            const namespace = "gsmApp";
-
-                            Shiny.setInputValue(
-                                "participant",
-                                participant_id
-                            );
-                        })
-                    '),
-                    options = list(
-                        autoWidth = TRUE,
-                        lengthChange = FALSE,
-                        paging = FALSE,
-                        searching = FALSE,
-                        selection = 'none'
-                    ),
-                    rownames = FALSE,
-                )
-
-            return(table)
         })
+
+
+
+
+
+
+
+
     })
 }
+
+# site_details_server <- function(id, snapshot, site) {
+#     shiny::moduleServer(id, function(input, output, session) {
+#         # ---- site data
+#         site_metadata <- reactive({
+#             shiny::req(site())
+#
+#             mapping <- snapshot$lInputs$lMapping$dfSITE
+#             data <- snapshot$lInputs$lMeta$meta_site %>%
+#                 dplyr::filter(
+#                     .data[[ mapping$strSiteCol ]] == site()
+#                 )
+#
+#             return(data)
+#         })
+#
+#         # ---- screening disposition
+#         dfENROLL <- get_domain(
+#             snapshot,
+#             'dfENROLL',
+#             'strSiteCol',
+#             site()
+#         )
+#
+#         # ---- demographics
+#         dfSUBJ <- get_domain(
+#             snapshot,
+#             'dfSUBJ',
+#             'strSiteCol',
+#             site()
+#         )
+# #
+#         # ---- demographics
+#         dfAE <- get_domain(
+#             snapshot,
+#             'dfAE'#,
+#            # 'strSiteCol',
+#             #site()
+#         )
+#
+#         # ---- study disposition
+#         dfSTUDCOMP <- get_domain(
+#             snapshot,
+#             'dfSTUDCOMP',
+#             'strIDCol',
+#             dfSUBJ()$data[[ dfSUBJ()$mapping$strIDCol ]]
+#         )
+#
+#         # ---- disposition summary
+#         disposition <- reactive({
+#             req(
+#                 #dfENROLL(),
+#                 dfSUBJ()
+#                 #dfSTUDCOMP()
+#             )
+#
+#             screening_disposition <- table(
+#                 dfENROLL()$data[[
+#                     dfENROLL()$mapping$strScreenFailCol
+#                 ]]
+#             )
+#
+#             study_disposition <- table(
+#                 dfSTUDCOMP()$data[[
+#                     dfSTUDCOMP()$mapping$strStudyDiscontinuationReasonCol
+#                 ]]
+#             )
+#             browser()
+#             return(study_disposition)
+#         })
+#
+#         output$participant_disposition_table <- DT::renderDT({
+#
+#                 list(
+#                     screened = list(
+#                         eligible = sum(dfSUBJ()$data$enrollyn == "Y"),
+#                         ineligible = sum(dfSUBJ()$data$enrollyn == "N")
+#                     ),
+#                     enrolled = list(
+#                         completed = sum(dfSTUDCOMP()$data$compyn == "Y"),
+#                         discontinued = sum(dfSTUDCOMP()$data$compyn == "N"),
+#                         active = sum(!c(dfSTUDCOMP()$data$compyn %in% c("Y","N")))
+#                     ),
+#                     discontinued_reasons = dfSTUDCOMP()$data$compreas
+#                 )
+#
+#          #   print(dfSTUDCOMP()$data$compreas)
+#          #   print(dfSTUDCOMP()$data$compyn)
+#         #    print(rbind(sub_table_screened,
+#         #                sub_table_enrolled))
+#
+#
+#             combined_table <- dplyr::bind_rows(
+#                 dfENROLL()$data$enrollyn %>%
+#                     table() %>%
+#                     data.frame() %>%
+#                     dplyr::mutate(
+#                         Domain = 'dfENROLL'
+#                     ),
+#                 dfSUBJ()$data$enrollyn %>%
+#                     table() %>%
+#                     data.frame() %>%
+#                     dplyr::mutate(
+#                         Domain = 'dfSUBJ'
+#                     ),
+#                 dfSTUDCOMP()$data$compreas %>%
+#                     table() %>%
+#                     data.frame() %>%
+#                     dplyr::mutate(
+#                         Domain = 'dfSTUDCOMP'
+#                     )
+#             )
+#
+#             colnames(combined_table) <- c("Variable", colnames(combined_table)[-1])
+#
+#             combined_table
+#         })
+#
+#         # ---- site table
+#         output$site_metadata_table <- DT::renderDT({
+#             req(site_metadata())
+#
+#             data <- site_metadata() %>%
+#                 dplyr::mutate(
+#                     dplyr::across(tidyselect::everything(), as.character)
+#                 ) %>%
+#                 tidyr::pivot_longer(
+#                     tidyselect::everything()
+#                 ) %>%
+#                 dplyr::mutate(
+#                     Characteristic = name %>%
+#                         gsub('_', ' ', .) %>%
+#                         gsub('\\b([a-z])', '\\U\\1', ., perl = TRUE) %>%
+#                         sub('pi', 'PI', ., TRUE) %>%
+#                         sub('id', 'ID', ., TRUE)
+#                 ) %>%
+#                 dplyr::select(
+#                     Characteristic, Value = value
+#                 )
+#
+#             data %>%
+#                 DT::datatable(
+#                     options = list(
+#                         lengthChange = FALSE,
+#                         paging = FALSE,
+#                         searching = FALSE
+#                     ),
+#                     rownames = FALSE
+#                 )
+#         })
+#
+#         # ---- participant table
+#         output$participants <- DT::renderDT({
+#             shiny::req(dfSUBJ())
+#             # shiny::req(dfSTUDCOMP())
+#             # shiny::req(dfAE())
+#            # shiny::req(dfPD())
+#
+#             # print(dfSUBJ()$data |> select("enrollyn"))
+#             # print(dfSTUDCOMP()$data)
+#          #   print(dfAE()$data |> select("aeser"))
+#         #    print(dfPD()$data |> select("deemedimportant"))
+#
+#             data <- dfSUBJ()$data %>%
+#                 dplyr::select(
+#                     'ID' = dfSUBJ()$mapping$strIDCol,
+#                     'Study Start Date' = dfSUBJ()$mapping$strStudyStartDate,
+#                     'Time on Study' = dfSUBJ()$mapping$strTimeOnStudyCol,
+#                     'Treatment Start Date' = dfSUBJ()$mapping$strTreatmentStartDate,
+#                     'Time on Treatment' = dfSUBJ()$mapping$strTimeOnTreatmentCol
+#                 )
+#
+#             table <- data %>%
+#                 DT::datatable(
+#                     callback = htmlwidgets::JS('
+#                         table.on("click", "td:nth-child(1)", function(d) {
+#                             const participant_id = d.currentTarget.innerText;
+#
+#                             console.log(
+#                                 `Selected participant ID: ${participant_id}`
+#                             );
+#
+#                             const namespace = "gsmApp";
+#
+#                             Shiny.setInputValue(
+#                                 "participant",
+#                                 participant_id
+#                             );
+#                         })
+#                     '),
+#                     options = list(
+#                         autoWidth = TRUE,
+#                         lengthChange = FALSE,
+#                         paging = FALSE,
+#                         searching = FALSE,
+#                         selection = 'none'
+#                     ),
+#                     rownames = FALSE,
+#                 )
+#
+#             return(table)
+#         })
+#     })
+# }

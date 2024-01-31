@@ -3,6 +3,25 @@
 #' @export
 
 server <- function(input, output, session, snapshot) {
+
+    # Side Panel
+
+    output$text_output_name <- renderText({
+        snapshot$lSnapshot$status_study$nickname
+    })
+
+    output$text_output_study_id <- renderText({
+        snapshot$lSnapshot$status_study$studyid
+    })
+
+    output$text_output_snapshot_date <- renderText({
+        format(snapshot$lSnapshotDate, "%Y-%m-%d")
+    })
+
+    output$meta_tag_list <- renderUI({
+        side_panel_meta_tag_list(snapshot)
+    })
+
     # Study
     add_metric_observer(snapshot, reactive(input$metric))
     study_overview_server('study_overview', snapshot)
@@ -21,7 +40,7 @@ server <- function(input, output, session, snapshot) {
     site_details_server(
         'site_details',
         snapshot,
-        shiny::reactive(input$site)
+        reactive({input$site})
     )
 
     # Participant

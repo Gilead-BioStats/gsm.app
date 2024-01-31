@@ -4,7 +4,7 @@
 \alias{ui}
 \title{Define UI}
 \usage{
-ui(snapshot)
+ui()
 }
 \description{
 Define UI

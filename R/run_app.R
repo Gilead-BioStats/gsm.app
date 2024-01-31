@@ -1,10 +1,16 @@
 #' Run App
 #'
+#' @import shiny
+#' @import bslib
+#' @import dplyr
+#' @import purrr
+#' @import stringr
+#'
 #' @export
 
 run_app <- function(snapshot = gsmApp::snapshot) {
-    shiny::shinyApp(
-        ui = ui(snapshot),
+    shinyApp(
+        ui = ui(),
         server = function(input, output, session) {
             server(input, output, session, snapshot)
         }
