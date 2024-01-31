@@ -9,12 +9,6 @@ participantStudyNestedList <- function(participant_list = NULL) {
 
     req(participant_list)
 
-    print(names(participant_list))
-
-    print("discontinued_reasons" %in% names(participant_list))
-
-    print(participant_list[["discontinued_reasons"]])
-
     if (length(participant_list[["discontinued_reasons"]]) != 0) {
 
         discontinued_reasons <- participant_list[["discontinued_reasons"]]
