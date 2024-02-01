@@ -7,6 +7,41 @@
 site_details_server <- function(id, snapshot, site) {
     moduleServer(id, function(input, output, session) {
 
+        ##
+
+        observeEvent(site(),{
+
+            if (site() == "None") {
+
+                ## Show placeholders
+
+                shinyjs::hide("card_site_metadata_list")
+                shinyjs::hide("card_participant_status")
+                shinyjs::hide("card_participants")
+                shinyjs::show("card_placeholder_site_metadata_list")
+                shinyjs::show("card_placeholder_participant_status")
+                shinyjs::show("card_placeholder_participants")
+
+
+            } else {
+
+                ## Hide placeholders
+
+                shinyjs::hide("card_placeholder_site_metadata_list")
+                shinyjs::hide("card_placeholder_participant_status")
+                shinyjs::hide("card_placeholder_participants")
+                shinyjs::show("card_site_metadata_list")
+                shinyjs::show("card_participant_status")
+                shinyjs::show("card_participants")
+
+
+            }
+
+
+        }, ignoreInit = TRUE)
+
+
+
         # ---- screening disposition
         dfENROLL <- reactive({
             t_get_domain(
@@ -27,13 +62,23 @@ site_details_server <- function(id, snapshot, site) {
             )
         })
 
-        # ---- demographics
-        dfAE <- ({
+        # ---- AEs and SAEs
+        dfAE <- reactive({
             t_get_domain(
                 snapshot,
-                'dfAE'#,
-               # 'strSiteCol',
-                #site()
+                'dfAE',
+                'strIDCol',
+                dfSUBJ()$data[[ dfSUBJ()$mapping$strIDCol ]]
+            )
+        })
+
+        # ---- AEs and SAEs
+        dfPD <- reactive({
+            t_get_domain(
+                snapshot,
+                'dfPD',
+                'strIDCol',
+                dfSUBJ()$data[[ dfSUBJ()$mapping$strIDCol ]]
             )
         })
 
@@ -68,20 +113,107 @@ site_details_server <- function(id, snapshot, site) {
         })
 
         output$participant_status_list <- renderUI({
-#
-#             print(site())
-#             print(participant_list())
 
             participantStudyNestedList(participant_list())
 
         })
 
 
+        #### Site Participants Tab
 
 
+        # ---- participant table
+        output$participants <- DT::renderDT({
+
+            req(dfSUBJ())
+            req(dfAE())
+            req(dfPD())
 
 
+            data <- dfSUBJ()$data %>%
+                dplyr::select(
+                    'ID' = dfSUBJ()$mapping$strIDCol,
+                    'Days on Study' = dfSUBJ()$mapping$strTimeOnStudyCol,
+                    'Days on Treatment' = dfSUBJ()$mapping$strTimeOnTreatmentCol
+                )
 
+            dfAEs <- dfAE()$data |>
+                select("subjid", "aeser") |>
+                group_by(.data$subjid) |>
+                summarize(AEs = n(),
+                          SAEs = sum(.data$aeser == "Y"))
+
+            dfPDs <- dfPD()$data |>
+                select("subjectenrollmentnumber", "deemedimportant") |>
+                group_by(.data$subjectenrollmentnumber) |>
+                summarize(PDs = n(),
+                          IPDs = sum(deemedimportant == "Yes"))
+
+
+            data <- data |>
+                left_join(dfAEs, c("ID" = "subjid")) |>
+                left_join(dfPDs, c("ID" = "subjectenrollmentnumber")) |>
+                arrange(.data$ID)
+
+            table <- data %>%
+                DT::datatable(
+                    callback = htmlwidgets::JS('
+                        table.on("click", "td:nth-child(1)", function(d) {
+                            const participant_id = d.currentTarget.innerText;
+
+                            console.log(
+                                `Selected participant ID: ${participant_id}`
+                            );
+
+                            const namespace = "gsmApp";
+
+                            Shiny.setInputValue(
+                                "participant",
+                                participant_id
+                            );
+                        })
+                    '),
+
+                    class = "compact",
+                    options = list(
+                        lengthChange = FALSE,
+                        paging = FALSE,
+                        searching = FALSE,
+                        selection = 'none',
+                        columnDefs = list(
+                            list(width = "80px", targets = c(1,2)),
+                            list(width = "15px", targets = c(0,3,4,5,6)),
+                            list(className = "dt-center", targets = c(0:6))
+                        )
+                    ),
+                    rownames = FALSE,
+                )
+
+            return(table)
+        })
+
+        # ---- site data
+        site_metadata <- reactive({
+            shiny::req(site())
+
+            mapping <- snapshot$lInputs$lMapping$dfSITE
+            data <- snapshot$lInputs$lMeta$meta_site %>%
+                dplyr::filter(
+                    .data[[ mapping$strSiteCol ]] == site()
+                )
+
+            return(data)
+        })
+
+
+        output$site_metadata_list <- renderUI({
+
+            enrolled_subjects <- dfSUBJ()$data |> filter(.data$enrollyn == "Y") |> select("subjid")
+            enrolled_subjects <- enrolled_subjects$subjid
+
+            site_details_meta_data_list(site_metadata(), enrolled_subjects = enrolled_subjects)
+
+        })
 
     })
 }
@@ -203,38 +335,7 @@ site_details_server <- function(id, snapshot, site) {
 #             combined_table
 #         })
 #
-#         # ---- site table
-#         output$site_metadata_table <- DT::renderDT({
-#             req(site_metadata())
-#
-#             data <- site_metadata() %>%
-#                 dplyr::mutate(
-#                     dplyr::across(tidyselect::everything(), as.character)
-#                 ) %>%
-#                 tidyr::pivot_longer(
-#                     tidyselect::everything()
-#                 ) %>%
-#                 dplyr::mutate(
-#                     Characteristic = name %>%
-#                         gsub('_', ' ', .) %>%
-#                         gsub('\\b([a-z])', '\\U\\1', ., perl = TRUE) %>%
-#                         sub('pi', 'PI', ., TRUE) %>%
-#                         sub('id', 'ID', ., TRUE)
-#                 ) %>%
-#                 dplyr::select(
-#                     Characteristic, Value = value
-#                 )
-#
-#             data %>%
-#                 DT::datatable(
-#                     options = list(
-#                         lengthChange = FALSE,
-#                         paging = FALSE,
-#                         searching = FALSE
-#                     ),
-#                     rownames = FALSE
-#                 )
-#         })
+
 #
 #         # ---- participant table
 #         output$participants <- DT::renderDT({

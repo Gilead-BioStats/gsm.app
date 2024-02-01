@@ -1,6 +1,7 @@
 #' Run App
 #'
 #' @import shiny
+#' @import shinyjs
 #' @import bslib
 #' @import dplyr
 #' @import purrr
