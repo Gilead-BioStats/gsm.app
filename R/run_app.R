@@ -6,6 +6,7 @@
 #' @import dplyr
 #' @import purrr
 #' @import stringr
+#' @import tidyr
 #'
 #' @export
 

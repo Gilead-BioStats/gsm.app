@@ -5,12 +5,14 @@
 participant_details_server <- function(id, snapshot, participant) {
     shiny::moduleServer(id, function(input, output, session) {
         # ---- demographics
-        dfSUBJ <- get_domain(
-            snapshot,
-            'dfSUBJ',
-            'strIDCol',
-            participant()
-        )
+        dfSUBJ <- reactive({
+            t_get_domain(
+                snapshot,
+                'dfSUBJ',
+                'strIDCol',
+                participant()
+            )
+        })
 
         # ---- site table
         output$participant_metadata_table <- DT::renderDT({
@@ -49,14 +51,21 @@ participant_details_server <- function(id, snapshot, participant) {
         output$domain_data_table <- DT::renderDT({
             req(input$domain)
 
-            domain <- get_domain(
+            domain <- t_get_domain(
                 snapshot,
                 input$domain,
                 'strIDCol',
                 participant()
             )
 
-            domain()$data %>%
+            mapping <- domain$mapping |>
+                as.data.frame() |>
+                pivot_longer(everything())
+
+            domain <- domain$data |>
+                select(any_of(mapping$value))
+
+            domain |>
                 DT::datatable(
                     rownames = FALSE
                 )
