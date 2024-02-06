@@ -1,0 +1,31 @@
+#' Metric Details UI
+#'
+#' @export
+
+metric_details_ui <- function(id) {
+    ns <- shiny::NS(id)
+
+    ui <- shiny::tabPanel(
+        'Metric Details',
+        shiny::tabsetPanel(
+            shiny::tabPanel(
+                'Scatter Plot',
+                widget_scatter_plot_output(ns('scatter_plot'))
+            ),
+            shiny::tabPanel(
+                'Bar Chart (KRI Value)',
+                gsm::Widget_BarChartOutput(ns('bar_chart_metric'))
+            ),
+            shiny::tabPanel(
+                'Bar Chart (KRI Score)',
+                gsm::Widget_BarChartOutput(ns('bar_chart_score'))
+            ),
+            shiny::tabPanel(
+                'Analysis Output',
+                DT::DTOutput(ns('results'))
+            )
+        )
+    )
+
+    return(ui)
+}
