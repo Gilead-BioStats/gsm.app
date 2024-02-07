@@ -21,6 +21,10 @@ metric_details_ui <- function(id) {
                 gsm::Widget_BarChartOutput(ns('bar_chart_score'))
             ),
             shiny::tabPanel(
+                'Time Series',
+                gsm::Widget_TimeSeriesOutput(ns('time_series'))
+            ),
+            shiny::tabPanel(
                 'Analysis Output',
                 DT::DTOutput(ns('results'))
             )

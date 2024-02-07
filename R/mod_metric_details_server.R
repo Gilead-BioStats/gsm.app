@@ -36,6 +36,11 @@ metric_details_server <- function(id, snapshot, metric, site) {
             snapshot$lCharts[[ metric() ]]$barMetricJS
         })
 
+        output$time_series <- gsm::renderWidget_TimeSeries({
+            shiny::req(metric())
+            snapshot$lCharts[[ metric() ]]$timeSeriesContinuousJS
+        })
+
         output$results <- DT::renderDT({
             shiny::req(metric())
 
