@@ -15,10 +15,10 @@ workflows <- gsm::MakeWorkflowList(
     paste0('kri', sprintf('%04d', c(1:4, 6:7, 9, 12)))
 )
 
-snapshot <- gsm::Make_Snapshot(
-    lData = data,
-    lAssessments = workflows
-) %T>%
-    gsm::Save_Snapshot('data-raw')
+snap_one <- Make_Snapshot(strAnalysisDate = "2022-01-01", lAssessments = workflows)
+snap_two <- Make_Snapshot(strAnalysisDate = "2022-02-01", lPrevSnapshot = snap_one, lAssessments = workflows)
+snapshot <- Make_Snapshot(strAnalysisDate = "2022-03-01", lPrevSnapshot = snap_two, lAssessments = workflows)
 
-usethis::use_data(snapshot)
+gsm::Save_Snapshot(snapshot, 'data-raw')
+
+usethis::use_data(snapshot, overwrite = TRUE)
