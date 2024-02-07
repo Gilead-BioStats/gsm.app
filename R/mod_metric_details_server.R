@@ -28,12 +28,12 @@ metric_details_server <- function(id, snapshot, metric, site) {
 
         output$bar_chart_score <- gsm::renderWidget_BarChart({
             shiny::req(metric())
-            snapshot$lStudyAssessResults[[ metric() ]]$lResults$lCharts$barScoreJS
+            snapshot$lCharts[[ metric() ]]$barScoreJS
         })
 
         output$bar_chart_metric <- gsm::renderWidget_BarChart({
             shiny::req(metric())
-            snapshot$lStudyAssessResults[[ metric() ]]$lResults$lCharts$barMetricJS
+            snapshot$lCharts[[ metric() ]]$barMetricJS
         })
 
         output$results <- DT::renderDT({

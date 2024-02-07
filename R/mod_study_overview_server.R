@@ -15,10 +15,10 @@ study_overview_server <- function(id, snapshot) {
 
         kri_color_count <- reactive({
 
-            snapshot$lSnapshot$results_summary |>
+            snapshot$lSnapshot$rpt_site_kri_details |>
                 filter(grepl('^kri', workflowid)) |>
-                transmute(Color = ifelse(abs(flag)  == 2,"Red",
-                                         ifelse(abs(flag)  ==1, "Amber", "Other"))) |>
+                transmute(Color = ifelse(abs(flag_value)  == 2,"Red",
+                                         ifelse(abs(flag_value)  ==1, "Amber", "Other"))) |>
                 group_by(Color) |>
                 summarize(n = n())
 
