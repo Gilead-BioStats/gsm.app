@@ -39,20 +39,14 @@ metric_details_server <- function(id, snapshot, metric, site) {
         output$results <- DT::renderDT({
             shiny::req(metric())
 
-            DT::datatable(
-                data = snapshot$lStudyAssessResults[[ metric() ]]$lResults$lData$dfSummary %>%
-                    dplyr::mutate(
-                        Metric = round(Metric, 3),
-                        Score = round(Score, 2)
-                    ) %>%
-                    dplyr::arrange(dplyr::desc(abs(.data$Score))),
-                options = list(
-                    lengthChange = FALSE,
-                    paging = FALSE,
-                    searching = FALSE
-                ),
-                rownames = FALSE
+            sites <- snapshot$lSnapshot$rpt_site_details %>%
+                select("siteid", "country", "status", "enrolled_participants")
+
+            make_summary_table(
+                snapshot$lStudyAssessResults[[ metric() ]],
+                sites
             )
+
         })
     })
 }

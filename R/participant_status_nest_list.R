@@ -5,7 +5,7 @@
 #' @export
 #' @keywords internal
 
-participantStudyNestedList <- function(participant_list = NULL) {
+participant_status_nest_list <- function(participant_list = NULL) {
 
     req(participant_list)
 

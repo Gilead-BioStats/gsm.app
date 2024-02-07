@@ -7,11 +7,11 @@
 #' @export
 #' @keywords internal
 
-MakeSummaryTable <- function(lAssessment, dfSite = NULL) {
+make_summary_table <- function(lAssessment, dfSite = NULL) {
     active <- lAssessment[!sapply(lAssessment, is.data.frame)]
-    map(active, function(kri) {
-        if (kri$bStatus) {
-            dfSummary <- kri$lResults$lData$dfSummary
+
+    if (active$bStatus) {
+            dfSummary <- active$lResults$lData$dfSummary
 
             if (!is.null(dfSite)) {
                 dfSummary <- dfSummary %>%
@@ -29,7 +29,7 @@ MakeSummaryTable <- function(lAssessment, dfSite = NULL) {
                     ) %>%
                     arrange(desc(abs(.data$Score))) %>%
                     mutate(
-                        Flag = map(.data$Flag, kri_directionality_logo),
+                        Flag = map(.data$Flag, gsm::kri_directionality_logo),
                         across(
                             where(is.numeric),
                             ~ round(.x, 3)
@@ -42,16 +42,19 @@ MakeSummaryTable <- function(lAssessment, dfSite = NULL) {
                             "Status" = "status",
                             "Subjects" = "enrolled_participants"
                         )),
-                        everything()
+                        "Metric",
+                        "Score",
+                        "Flag"
                     ) %>%
                     DT::datatable(
-                        rownames = FALSE
+                        rownames = FALSE,
+                        class = "compact",
+                        options = list(
+                            lengthChange = FALSE,
+                            paging = FALSE,
+                            searching = FALSE,
+                            selection = 'none')
                     )
-            } else {
-                htmltools::p("Nothing flagged for this KRI.")
             }
-        } else {
-            htmltools::strong("Workflow failed.")
         }
-    })
 }
