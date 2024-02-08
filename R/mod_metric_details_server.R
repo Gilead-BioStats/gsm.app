@@ -10,6 +10,8 @@ metric_details_server <- function(id, snapshot, metric, site) {
             if (metric() == 'None')
                 return(NULL)
 
+           # snapshot$lCharts[[ metric() ]]$scatterJS
+
             gsm_output <- snapshot$lStudyAssessResults[[ metric() ]]
             data <- gsm_output$lResults$lData$dfSummary
             config <- snapshot$lInputs$lMeta$meta_workflow %>%

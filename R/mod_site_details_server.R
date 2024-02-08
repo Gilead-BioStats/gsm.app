@@ -44,7 +44,7 @@ site_details_server <- function(id, snapshot, site) {
 
         # ---- screening disposition
         dfENROLL <- reactive({
-            t_get_domain(
+            get_domain(
                 snapshot,
                 'dfENROLL',
                 'strSiteCol',
@@ -54,7 +54,7 @@ site_details_server <- function(id, snapshot, site) {
 
         # ---- demographics
         dfSUBJ <- reactive({
-            t_get_domain(
+            get_domain(
                 snapshot,
                 'dfSUBJ',
                 'strSiteCol',
@@ -64,7 +64,7 @@ site_details_server <- function(id, snapshot, site) {
 
         # ---- AEs and SAEs
         dfAE <- reactive({
-            t_get_domain(
+            get_domain(
                 snapshot,
                 'dfAE',
                 'strIDCol',
@@ -74,7 +74,7 @@ site_details_server <- function(id, snapshot, site) {
 
         # ---- AEs and SAEs
         dfPD <- reactive({
-            t_get_domain(
+            get_domain(
                 snapshot,
                 'dfPD',
                 'strIDCol',
@@ -84,7 +84,7 @@ site_details_server <- function(id, snapshot, site) {
 
         # ---- study disposition
         dfSTUDCOMP <- reactive({
-            t_get_domain(
+            get_domain(
                 snapshot,
                 'dfSTUDCOMP',
                 'strIDCol',

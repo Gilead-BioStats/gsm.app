@@ -6,7 +6,7 @@ participant_details_server <- function(id, snapshot, participant) {
     shiny::moduleServer(id, function(input, output, session) {
         # ---- demographics
         dfSUBJ <- reactive({
-            t_get_domain(
+            get_domain(
                 snapshot,
                 'dfSUBJ',
                 'strIDCol',
@@ -51,7 +51,7 @@ participant_details_server <- function(id, snapshot, participant) {
         output$domain_data_table <- DT::renderDT({
             req(input$domain)
 
-            domain <- t_get_domain(
+            domain <- get_domain(
                 snapshot,
                 input$domain,
                 'strIDCol',
