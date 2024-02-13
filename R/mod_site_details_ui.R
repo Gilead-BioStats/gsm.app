@@ -1,7 +1,5 @@
 #' Site Details UI
 #'
-#' @import stringr
-#'
 #' @export
 
 site_details_ui <- function(id) {

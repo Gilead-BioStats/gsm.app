@@ -11,7 +11,7 @@ study_overview_ui <- function(id) {
                 div(class = "card-body",
                     style = "overflow-x: auto;",
                     h4(class = "card-title", "Overview"),
-                    div(#style = "padding-bottom: 3em;",
+                    div(style = "padding-bottom: 1em;",
                         span(class = "badge rounded-pill text-dark",
                              style = "background-color: #ffccc74d; font-size: 1.01em; padding: .55em",
                              textOutput(ns("red_kri"), inline = TRUE)),
@@ -19,9 +19,6 @@ study_overview_ui <- function(id) {
                              style = "background-color: #fffdf1; font-size: 1.05em; padding: .55em",
                              textOutput(ns("amber_kri"), inline = TRUE))
                     ),
-                   # h5(class = "card-subtitle mb-2 text-muted", "Some other information here."),
-                    hr(),
-
                     DT::DTOutput(ns('site_overview_table'))
                 )
             )
