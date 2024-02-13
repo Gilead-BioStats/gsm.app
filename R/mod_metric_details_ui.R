@@ -10,7 +10,7 @@ metric_details_ui <- function(id) {
         shiny::tabsetPanel(
             shiny::tabPanel(
                 'Scatter Plot',
-                gsm::Widget_ScatterPlotOutput(ns('scatter_plot'))
+                widget_scatter_plot_output(ns('scatter_plot'))
             ),
             shiny::tabPanel(
                 'Bar Chart (KRI Value)',
