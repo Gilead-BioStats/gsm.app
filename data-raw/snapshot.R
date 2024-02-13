@@ -1,3 +1,5 @@
+devtools::install_github("Gilead-BioStats/gsm@fix-1495")
+
 library(magrittr)
 library(gsm)
 
