@@ -24,8 +24,6 @@ participant_summary_tag_list <- function(participant_data = NULL) {
         ) |>
         tagList()
 
-    print(tag_return)
-
     return(tag_return)
 
 }
