@@ -10,7 +10,7 @@ metric_details_server <- function(id, snapshot, metric, site) {
         output$scatter_plot <- gsm::renderWidget_ScatterPlot({
             shiny::req(metric())
             snapshot$lCharts[[ metric() ]]$scatterJS$x$selectedGroupIDs <- site()
-            snapshot$lCharts[[ metric() ]]$scatterJS$x$bIsShiny <- TRUE
+            snapshot$lCharts[[ metric() ]]$scatterJS$x$bHideDropdown <- TRUE
             snapshot$lCharts[[ metric() ]]$scatterJS$x$siteSelectLabelValue <- ""
             snapshot$lCharts[[ metric() ]]$scatterJS
             snapshot$lCharts[[ metric() ]]$scatterJS
@@ -19,7 +19,7 @@ metric_details_server <- function(id, snapshot, metric, site) {
         output$bar_chart_score <- gsm::renderWidget_BarChart({
             shiny::req(metric())
             snapshot$lCharts[[ metric() ]]$barScoreJS$x$selectedGroupIDs <- site()
-            snapshot$lCharts[[ metric() ]]$barScoreJS$x$bIsShiny <- TRUE
+            snapshot$lCharts[[ metric() ]]$barScoreJS$x$bHideDropdown <- TRUE
             snapshot$lCharts[[ metric() ]]$barScoreJS$x$siteSelectLabelValue <- ""
             snapshot$lCharts[[ metric() ]]$barScoreJS
         })
@@ -27,13 +27,14 @@ metric_details_server <- function(id, snapshot, metric, site) {
         output$bar_chart_metric <- gsm::renderWidget_BarChart({
             shiny::req(metric())
             snapshot$lCharts[[ metric() ]]$barMetricJS$x$selectedGroupIDs <- site()
-            snapshot$lCharts[[ metric() ]]$barMetricJS$x$bIsShiny <- TRUE
+            snapshot$lCharts[[ metric() ]]$barMetricJS$x$bHideDropdown <- TRUE
             snapshot$lCharts[[ metric() ]]$barMetricJS$x$siteSelectLabelValue <- ""
             snapshot$lCharts[[ metric() ]]$barMetricJS
         })
 
         output$time_series <- gsm::renderWidget_TimeSeries({
             shiny::req(metric())
+            snapshot$lCharts[[ metric() ]]$timeSeriesContinuousJS$x$selectedGroupIDs <- site()
             snapshot$lCharts[[ metric() ]]$timeSeriesContinuousJS
         })
 
