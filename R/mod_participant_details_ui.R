@@ -14,7 +14,7 @@ participant_details_ui <- function(id) {
                     div(class = "card-body",
                         h5(class = "card-title", "Participant Metadata"),
                         hr(),
-                        div(class = "card text-white bg-secondary",
+                        div(class = "card placeholder",
                             div(class = "card-body",
                                 div(class = "card-text",
                                     "Please select a participant.")
@@ -39,7 +39,7 @@ participant_details_ui <- function(id) {
                     div(class = "card-body",
                         h5(class = "card-title", "Participant Domain"),
                         hr(),
-                        div(class = "card text-white bg-secondary",
+                        div(class = "card placeholder",
                             div(class = "card-body",
                                 div(class = "card-text",
                                     "Please select a participant.")

@@ -17,7 +17,7 @@ site_details_ui <- function(id) {
                             div(class = "card-body",
                                 h5(class = "card-title", "Site Metadata"),
                                 hr(),
-                                div(class = "card text-white bg-secondary",
+                                div(class = "card placeholder",
                                     div(class = "card-body",
                                         div(class = "card-text",
                                             "Please select a site.")
@@ -47,7 +47,7 @@ site_details_ui <- function(id) {
                             div(class = "card-body",
                                 h5(class = "card-title", "Participant Status"),
                                 hr(),
-                                div(class = "card text-white bg-secondary",
+                                div(class = "card placeholder",
                                     div(class = "card-body",
                                         div(class = "card-text",
                                             "Please select a site.")
@@ -79,7 +79,7 @@ site_details_ui <- function(id) {
                     div(class = "card-body",
                         h5(class = "card-title", "Site Participants"),
                         br(),
-                        div(class = "card text-white bg-secondary",
+                        div(class = "card placeholder",
                             div(class = "card-body",
                                 div(class = "card-text",
                                     "Please select a site.")
