@@ -19,3 +19,29 @@
     color: blue;
     text-decoration: underline;
 }
+
+.nav-pills .nav-link.active, pills > li > a.active {
+    /* #0dcaf0 !important; */
+    background-color: var(--bs-light);
+    color: var(--bs-dark);
+    font-weight: 500;
+ /*   text-decoration: underline;
+    text-decoration-color: var(--bs-dark);
+    text-decoration-thickness: 2px;
+    text-underline-offset: 8px; */
+}
+
+.nav-pills .nav-link, .nav-pills .nav-tabs > li {
+    /* #0dcaf0 !important; */
+    background-color: var(--bs-light);
+    font-weight: 500;
+    color: var(--bs-secondary);
+}
+
+.placeholder {
+    background-color: var(--bs-info);
+    font-weight: 500;
+    color: black !important;
+    width: 100%;
+}
+

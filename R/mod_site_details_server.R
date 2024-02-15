@@ -1,6 +1,5 @@
 #' Site Details Server
 #'
-#' @import stringr
 #'
 #' @export
 
@@ -44,7 +43,7 @@ site_details_server <- function(id, snapshot, site) {
 
         # ---- screening disposition
         dfENROLL <- reactive({
-            t_get_domain(
+            get_domain(
                 snapshot,
                 'dfENROLL',
                 'strSiteCol',
@@ -54,7 +53,7 @@ site_details_server <- function(id, snapshot, site) {
 
         # ---- demographics
         dfSUBJ <- reactive({
-            t_get_domain(
+            get_domain(
                 snapshot,
                 'dfSUBJ',
                 'strSiteCol',
@@ -64,7 +63,7 @@ site_details_server <- function(id, snapshot, site) {
 
         # ---- AEs and SAEs
         dfAE <- reactive({
-            t_get_domain(
+            get_domain(
                 snapshot,
                 'dfAE',
                 'strIDCol',
@@ -74,7 +73,7 @@ site_details_server <- function(id, snapshot, site) {
 
         # ---- AEs and SAEs
         dfPD <- reactive({
-            t_get_domain(
+            get_domain(
                 snapshot,
                 'dfPD',
                 'strIDCol',
@@ -84,7 +83,7 @@ site_details_server <- function(id, snapshot, site) {
 
         # ---- study disposition
         dfSTUDCOMP <- reactive({
-            t_get_domain(
+            get_domain(
                 snapshot,
                 'dfSTUDCOMP',
                 'strIDCol',
@@ -137,22 +136,22 @@ site_details_server <- function(id, snapshot, site) {
                     'Days on Treatment' = dfSUBJ()$mapping$strTimeOnTreatmentCol
                 )
 
-            dfAEs <- dfAE()$data |>
-                select("subjid", "aeser") |>
-                group_by(.data$subjid) |>
+            dfAEs <- dfAE()$data %>%
+                select("subjid", "aeser") %>%
+                group_by(.data$subjid) %>%
                 summarize(AEs = n(),
                           SAEs = sum(.data$aeser == "Y"))
 
-            dfPDs <- dfPD()$data |>
-                select("subjectenrollmentnumber", "deemedimportant") |>
-                group_by(.data$subjectenrollmentnumber) |>
+            dfPDs <- dfPD()$data %>%
+                select("subjectenrollmentnumber", "deemedimportant") %>%
+                group_by(.data$subjectenrollmentnumber) %>%
                 summarize(PDs = n(),
                           IPDs = sum(deemedimportant == "Yes"))
 
 
-            data <- data |>
-                left_join(dfAEs, c("ID" = "subjid")) |>
-                left_join(dfPDs, c("ID" = "subjectenrollmentnumber")) |>
+            data <- data %>%
+                left_join(dfAEs, c("ID" = "subjid")) %>%
+                left_join(dfPDs, c("ID" = "subjectenrollmentnumber")) %>%
                 arrange(.data$ID)
 
             table <- data %>%
@@ -208,7 +207,7 @@ site_details_server <- function(id, snapshot, site) {
 
         output$site_metadata_list <- renderUI({
 
-            enrolled_subjects <- dfSUBJ()$data |> filter(.data$enrollyn == "Y") |> select("subjid")
+            enrolled_subjects <- dfSUBJ()$data %>% filter(.data$enrollyn == "Y") %>% select("subjid")
             enrolled_subjects <- enrolled_subjects$subjid
 
             site_details_meta_data_list(site_metadata(), enrolled_subjects = enrolled_subjects)
