@@ -1,3 +1,6 @@
+devtools::install_github("Gilead-BioStats/gsm@fix-1495")
+
+
 library(magrittr)
 library(gsm)
 
@@ -22,3 +25,4 @@ snapshot <- Make_Snapshot(strAnalysisDate = "2022-03-01", lPrevSnapshot = snap_t
 gsm::Save_Snapshot(snapshot, 'data-raw')
 
 usethis::use_data(snapshot, overwrite = TRUE)
+

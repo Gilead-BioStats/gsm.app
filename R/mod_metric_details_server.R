@@ -4,55 +4,48 @@
 
 metric_details_server <- function(id, snapshot, metric, site) {
     shiny::moduleServer(id, function(input, output, session) {
-        output$scatter_plot <- render_widget_scatter_plot({
+
+        output$scatter_plot <- gsm::renderWidget_ScatterPlot({
             shiny::req(metric())
-
-            if (metric() == 'None')
-                return(NULL)
-
-            gsm_output <- snapshot$lStudyAssessResults[[ metric() ]]
-            data <- gsm_output$lResults$lData$dfSummary
-            config <- snapshot$lInputs$lMeta$meta_workflow %>%
-                dplyr::filter(
-                    .data$workflowid == metric()
-                )
-            bounds <- gsm_output$lResults$lData$dfBounds
-
-            widget_scatter_plot(
-                data,
-                config,
-                bounds,
-                site()
-            )
+            snapshot$lCharts[[ metric() ]]$scatterJS$x$selectedGroupIDs <- site()
+            snapshot$lCharts[[ metric() ]]$scatterJS$x$bHideDropdown <- TRUE
+            snapshot$lCharts[[ metric() ]]$scatterJS$x$siteSelectLabelValue <- ""
+            snapshot$lCharts[[ metric() ]]$scatterJS
         })
 
         output$bar_chart_score <- gsm::renderWidget_BarChart({
             shiny::req(metric())
+            snapshot$lCharts[[ metric() ]]$barScoreJS$x$selectedGroupIDs <- site()
+            snapshot$lCharts[[ metric() ]]$barScoreJS$x$bHideDropdown <- TRUE
+            snapshot$lCharts[[ metric() ]]$barScoreJS$x$siteSelectLabelValue <- ""
             snapshot$lCharts[[ metric() ]]$barScoreJS
         })
 
         output$bar_chart_metric <- gsm::renderWidget_BarChart({
             shiny::req(metric())
+            snapshot$lCharts[[ metric() ]]$barMetricJS$x$selectedGroupIDs <- site()
+            snapshot$lCharts[[ metric() ]]$barMetricJS$x$bHideDropdown <- TRUE
+            snapshot$lCharts[[ metric() ]]$barMetricJS$x$siteSelectLabelValue <- ""
             snapshot$lCharts[[ metric() ]]$barMetricJS
+        })
+
+        output$time_series <- gsm::renderWidget_TimeSeries({
+            shiny::req(metric())
+            snapshot$lCharts[[ metric() ]]$timeSeriesContinuousJS$x$selectedGroupIDs <- site()
+            snapshot$lCharts[[ metric() ]]$timeSeriesContinuousJS
         })
 
         output$results <- DT::renderDT({
             shiny::req(metric())
 
-            DT::datatable(
-                data = snapshot$lStudyAssessResults[[ metric() ]]$lResults$lData$dfSummary %>%
-                    dplyr::mutate(
-                        Metric = round(Metric, 3),
-                        Score = round(Score, 2)
-                    ) %>%
-                    dplyr::arrange(dplyr::desc(abs(.data$Score))),
-                options = list(
-                    lengthChange = FALSE,
-                    paging = FALSE,
-                    searching = FALSE
-                ),
-                rownames = FALSE
+            sites <- snapshot$lSnapshot$rpt_site_details %>%
+                select("siteid", "country", "status", "enrolled_participants")
+
+            make_summary_table(
+                snapshot$lStudyAssessResults[[ metric() ]],
+                sites
             )
+
         })
     })
 }
