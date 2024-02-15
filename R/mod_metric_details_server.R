@@ -13,7 +13,6 @@ metric_details_server <- function(id, snapshot, metric, site) {
             snapshot$lCharts[[ metric() ]]$scatterJS$x$bHideDropdown <- TRUE
             snapshot$lCharts[[ metric() ]]$scatterJS$x$siteSelectLabelValue <- ""
             snapshot$lCharts[[ metric() ]]$scatterJS
-            snapshot$lCharts[[ metric() ]]$scatterJS
         })
 
         output$bar_chart_score <- gsm::renderWidget_BarChart({
