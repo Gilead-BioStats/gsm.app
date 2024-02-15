@@ -13,7 +13,7 @@ ui <- div(class = "row",
                     div(class = "card mb-3",
                         style = "border-top: solid #0dcaf0; margin-top: 4px;",
                         div(class = "card-body",
-                            widget_scatter_plot_output(ns('scatter_plot'))
+                            gsm::Widget_ScatterPlotOutput(ns('scatter_plot'))
                         )
                     )
                 ),
