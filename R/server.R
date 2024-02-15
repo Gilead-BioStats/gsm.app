@@ -7,11 +7,11 @@ server <- function(input, output, session, snapshot) {
     # Side Panel
 
     output$text_output_name <- renderText({
-        snapshot$lSnapshot$status_study$nickname
+        snapshot$lInputs$lMeta$meta_study$nickname
     })
 
     output$text_output_study_id <- renderText({
-        snapshot$lSnapshot$status_study$studyid
+        snapshot$lInputs$lMeta$meta_study$protocol_number
     })
 
     output$text_output_snapshot_date <- renderText({
