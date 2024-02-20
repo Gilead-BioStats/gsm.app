@@ -15,8 +15,10 @@ participant_details_server <- function(id, snapshot, participant) {
 
                 shinyjs::hide("card_participant_domain_data")
                 shinyjs::hide("card_participant_meta_data")
+                shinyjs::hide("card_placeholder_metric_summary_data")
                 shinyjs::show("card_placeholder_participant_meta_data")
                 shinyjs::show("card_placeholder_participant_domain_data")
+                shinyjs::show("card_placeholder_participant_metric_summary_data")
 
 
             } else {
@@ -25,8 +27,10 @@ participant_details_server <- function(id, snapshot, participant) {
 
                 shinyjs::hide("card_placeholder_participant_meta_data")
                 shinyjs::hide("card_placeholder_participant_domain_data")
+                shinyjs::hide("card_placeholder_participant_metric_summary_data")
                 shinyjs::show("card_participant_domain_data")
                 shinyjs::show("card_participant_meta_data")
+                shinyjs::show("card_participant_metric_summary_data")
 
 
             }
@@ -75,6 +79,14 @@ participant_details_server <- function(id, snapshot, participant) {
                 )
 
             participant_summary_tag_list(data)
+
+        })
+
+        output$participant_metric_summary <- renderUI({
+
+            print("Begin")
+
+            participant_metric_summary_tag_list(participant(), snapshot)
 
         })
 
