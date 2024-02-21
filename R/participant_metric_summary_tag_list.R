@@ -5,8 +5,9 @@
 #' @export
 #' @keywords internal
 
-participant_metric_summary_tag_list <- function(participant, snapshot) {
+participant_metric_summary_tag_list <- function(id, participant, snapshot) {
 
+    req(id)
     req(participant)
 
     domain_list = list(
@@ -40,14 +41,19 @@ participant_metric_summary_tag_list <- function(participant, snapshot) {
 
 
     tag_return <- domain_names |>
-        map(function(x) tags$div(
-            class = "col-12",
-            style = "font-weight: 500;",
-            tags$div(style = "display: flex; justify-content: space-between;",
-                     tags$div(class = "card-text",
-                              style = "text-align: left; white-space: nowrap;", domain_list[[x]]),
-                     tags$div(class = "text-secondary", style = "border-bottom: 1px dotted; width: 95%; margin-bottom: .4em; margin-right: .4em; margin-left: .4em;"),
-                     tags$div(class = "card-text", style = "text-align: right; white-space: nowrap;", data_aggregated[data_aggregated$metric == x, "row_count"]))
+        map(function(x)
+            tags$div(
+                class = "col-12",
+                style = "font-weight: 500;",
+                tags$div(style = "display: flex; justify-content: space-between;",
+                         tags$div(class = "card-text",
+                                  style = "text-align: left; white-space: nowrap;",
+                                  actionLink(inputId = paste0(id,x),
+                                             label = domain_list[[x]],
+                                             style = "color:  var(--bs-secondary);")),
+                         tags$div(class = "text-secondary", style = "border-bottom: 1px dotted; width: 95%; margin-bottom: .4em; margin-right: .4em; margin-left: .4em;"),
+                         tags$div(class = "card-text",
+                                  style = "text-align: right; white-space: nowrap;", data_aggregated[data_aggregated$metric == x, "row_count"]))
         )) |>
         tags$div(
             class = "row p-2"

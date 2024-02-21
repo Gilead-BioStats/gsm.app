@@ -84,19 +84,41 @@ participant_details_server <- function(id, snapshot, participant) {
 
         output$participant_metric_summary <- renderUI({
 
-            print("Begin")
+            participant_metric_summary_tag_list(session$ns(""), participant(), snapshot)
 
-            participant_metric_summary_tag_list(participant(), snapshot)
+        })
 
+
+        domain_filter <- reactiveVal(
+            NULL
+        )
+
+        observeEvent(input$`dfAE`,{
+            domain_filter("dfAE")
+            })
+        observeEvent(input$`dfPD`,{
+            domain_filter("dfPD")
+        })
+        observeEvent(input$`dfENROLL`,{
+            domain_filter("dfENROLL")
+        })
+        observeEvent(input$`dfSTUDCOMP`,{
+            domain_filter("dfSTUDCOMP")
+        })
+        observeEvent(input$`dfSDRGCOMP`,{
+            domain_filter("dfSDRGCOMP")
+        })
+        observeEvent(input$`dfQUERY`,{
+            domain_filter("dfQUERY")
         })
 
         # ---- domain data table
         output$domain_data_table <- DT::renderDT({
-            req(input$domain)
+            req(domain_filter())
 
             domain <- get_domain(
                 snapshot,
-                input$domain,
+                domain_filter(),
                 'strIDCol',
                 participant()
             )

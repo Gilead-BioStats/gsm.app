@@ -77,25 +77,8 @@ participant_details_ui <- function(id) {
                         class = "card mb-3",
                         style = "border-top: solid #0dcaf0;",
                         div(class = "card-body",
-                            div(class = "row",
-                                div(class = "col-12 col-sm-6 col-md-6 col-l-7 col-xl-8 col-xxl-9",
-                                    h5(class = "card-title", "Participant Domain")
-                                    ),
-                                div(class = "col-12 col-sm-6 col-md-6 col-l-3 col-xl-3 col-xxl-3 ms-auto",
-                                    selectInput(
-                                        ns('domain'),
-                                        label = NULL,
-                                        choices = c('Adverse Events' = 'dfAE',
-                                          'Protocol Deviations' = 'dfPD',
-                                          'Enrollment' = 'dfENROLL',
-                                          'Study Disposition' = 'dfSTUDCOMP',
-                                          'Treatment Disposition' = 'dfSDRGCOMP',
-                                          'Queries' = 'dfQUERY'
-                                        ),
-                                        selected = 'dfAE'
-                                    ))
-                                ),
-                                    DT::DTOutput(ns('domain_data_table'))
+                            h5(class = "card-title", "Participant Domain"),
+                            DT::DTOutput(ns('domain_data_table'))
                                 )
                             )
                         )
