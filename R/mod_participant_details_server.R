@@ -15,23 +15,24 @@ participant_details_server <- function(id, snapshot, participant) {
 
                 shinyjs::hide("card_participant_domain_data")
                 shinyjs::hide("card_participant_meta_data")
-                shinyjs::hide("card_placeholder_metric_summary_data")
+                shinyjs::hide("card_participant_metric_summary_data")
+                shinyjs::hide("card_placeholder_participant_domain_data_no_metric")
                 shinyjs::show("card_placeholder_participant_meta_data")
                 shinyjs::show("card_placeholder_participant_domain_data")
                 shinyjs::show("card_placeholder_participant_metric_summary_data")
-
+                #card_placeholder_participant_domain_data_no_metric
 
             } else {
 
-                ## Hide placeholders
+                ## Hide placeholder
 
+                shinyjs::hide("card_participant_domain_data")
                 shinyjs::hide("card_placeholder_participant_meta_data")
-                shinyjs::hide("card_placeholder_participant_domain_data")
                 shinyjs::hide("card_placeholder_participant_metric_summary_data")
-                shinyjs::show("card_participant_domain_data")
+                shinyjs::hide("card_placeholder_participant_domain_data")
                 shinyjs::show("card_participant_meta_data")
                 shinyjs::show("card_participant_metric_summary_data")
-
+                shinyjs::show("card_placeholder_participant_domain_data_no_metric")
 
             }
 
@@ -95,21 +96,39 @@ participant_details_server <- function(id, snapshot, participant) {
 
         observeEvent(input$`dfAE`,{
             domain_filter("dfAE")
+            shinyjs::hide("card_placeholder_participant_domain_data")
+            shinyjs::hide("card_placeholder_participant_domain_data_no_metric")
+            shinyjs::show("card_participant_domain_data")
             })
         observeEvent(input$`dfPD`,{
             domain_filter("dfPD")
+            shinyjs::hide("card_placeholder_participant_domain_data")
+            shinyjs::hide("card_placeholder_participant_domain_data_no_metric")
+            shinyjs::show("card_participant_domain_data")
         })
         observeEvent(input$`dfENROLL`,{
             domain_filter("dfENROLL")
+            shinyjs::hide("card_placeholder_participant_domain_data")
+            shinyjs::hide("card_placeholder_participant_domain_data_no_metric")
+            shinyjs::show("card_participant_domain_data")
         })
         observeEvent(input$`dfSTUDCOMP`,{
             domain_filter("dfSTUDCOMP")
+            shinyjs::hide("card_placeholder_participant_domain_data")
+            shinyjs::hide("card_placeholder_participant_domain_data_no_metric")
+            shinyjs::show("card_participant_domain_data")
         })
         observeEvent(input$`dfSDRGCOMP`,{
             domain_filter("dfSDRGCOMP")
+            shinyjs::hide("card_placeholder_participant_domain_data")
+            shinyjs::hide("card_placeholder_participant_domain_data_no_metric")
+            shinyjs::show("card_participant_domain_data")
         })
         observeEvent(input$`dfQUERY`,{
             domain_filter("dfQUERY")
+            shinyjs::hide("card_placeholder_participant_domain_data")
+            shinyjs::hide("card_placeholder_participant_domain_data_no_metric")
+            shinyjs::show("card_participant_domain_data")
         })
 
         # ---- domain data table

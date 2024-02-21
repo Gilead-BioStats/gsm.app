@@ -73,6 +73,22 @@ participant_details_ui <- function(id) {
                     )
                 ),
                 shinyjs::hidden(
+                    div(id = ns("card_placeholder_participant_domain_data_no_metric"),
+                        class = "card mb-3",
+                        style = "border-top: solid #0dcaf0",
+                        div(class = "card-body",
+                            h5(class = "card-title", "Participant Domain"),
+                            hr(),
+                            div(class = "card placeholder",
+                                div(class = "card-body",
+                                    div(class = "card-text",
+                                        "Please select a metric in the Metric Summary Card above.")
+                                )
+                            )
+                        )
+                    )
+                ),
+                shinyjs::hidden(
                     div(id = ns("card_participant_domain_data"),
                         class = "card mb-3",
                         style = "border-top: solid #0dcaf0;",
