@@ -51,8 +51,4 @@ server <- function(input, output, session, snapshot) {
         shiny::reactive(input$participant)
     )
 
-    ## Reset action
-    #observeEvent(input$reset, {
-    #    # Code to reset the selections
-    #})
 }

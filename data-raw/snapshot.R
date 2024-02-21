@@ -1,4 +1,4 @@
-devtools::install_github("Gilead-BioStats/gsm@fix-1495")
+devtools::install_github("Gilead-BioStats/gsm@dev")
 
 
 library(magrittr)
@@ -20,7 +20,6 @@ workflows <- gsm::MakeWorkflowList(
 
 snap_one <- Make_Snapshot(strAnalysisDate = "2022-01-01", lAssessments = workflows)
 snap_two <- Make_Snapshot(strAnalysisDate = "2022-02-01", lPrevSnapshot = snap_one, lAssessments = workflows)
-snapshot <- Make_Snapshot(strAnalysisDate = "2022-03-01", lPrevSnapshot = snap_two, lAssessments = workflows)
 
 gsm::Save_Snapshot(snapshot, 'data-raw')
 

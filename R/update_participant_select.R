@@ -14,12 +14,6 @@ update_participant_select <- function(input, output, session, snapshot) {
             'participant',
             selected = input$participant
         )
-
-        #updateTabsetPanel(
-        #    session,
-        #    'main_panel',
-        #    'Participant Details'
-        #)
     })
 
     participant_metadata <- snapshot$lInputs$lData$dfSUBJ %>%

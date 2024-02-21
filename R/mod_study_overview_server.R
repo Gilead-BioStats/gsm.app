@@ -5,7 +5,7 @@
 study_overview_server <- function(id, snapshot) {
     shiny::moduleServer(id, function(input, output, session) {
 
-        output$site_overview_table <- DT::renderDT({
+        output$site_overview_table <- DT::renderDataTable({
             gsm::Overview_Table(
                 snapshot$lStudyAssessResults
             )
