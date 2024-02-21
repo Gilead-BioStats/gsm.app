@@ -26,13 +26,14 @@ update_participant_select <- function(input, output, session, snapshot) {
 
     choices <- participant_metadata[[ snapshot$lInputs$lMapping$dfSUBJ$strIDCol ]]
 
-    shiny::updateSelectInput(
+    shiny::updateSelectizeInput(
         session,
         'participant',
         choices = c(
             'None',
             choices
-        )
+        ),
+        server = TRUE
     )
 }
 

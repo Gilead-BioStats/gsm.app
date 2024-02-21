@@ -35,7 +35,7 @@ ui <- function() {
                                 div(class = "col-12 col-sm-6 col-md-12 col-lg-12 col-xxl-12",
                                     selectInput('metric', strong('Metric'), choices = c('None')),
                                     selectInput('site', strong('Site'), choices = c('None')),
-                                    selectiInput('participant', strong('Participant'), choices = c('None')),
+                                    selectizeInput('participant', strong('Participant'), choices = "None"),
                                     actionButton('reset', 'Reset All')
                                 )
                             )
