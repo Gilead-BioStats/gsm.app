@@ -6,6 +6,15 @@
 \usage{
 server(input, output, session, snapshot)
 }
+\arguments{
+\item{input}{Shiny inputs}
+
+\item{output}{Shiny outputs}
+
+\item{session}{Shiny session}
+
+\item{snapshot}{The snapshot \code{list} object passed from \code{run_app()}}
+}
 \description{
 Define Server
 }

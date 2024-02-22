@@ -1,5 +1,7 @@
 #' Site Details UI
 #'
+#' @param id A namespace id
+#'
 #' @export
 
 site_details_ui <- function(id) {

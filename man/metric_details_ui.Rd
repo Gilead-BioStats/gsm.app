@@ -6,6 +6,9 @@
 \usage{
 metric_details_ui(id)
 }
+\arguments{
+\item{id}{The namespace id}
+}
 \description{
 Metric Details UI
 }

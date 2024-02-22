@@ -1,5 +1,7 @@
 #' Participant Details UI
 #'
+#' @param id The namespace id
+#'
 #' @export
 
 participant_details_ui <- function(id) {

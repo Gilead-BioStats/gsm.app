@@ -6,6 +6,9 @@
 \usage{
 participant_details_ui(id)
 }
+\arguments{
+\item{id}{The namespace id}
+}
 \description{
 Participant Details UI
 }

@@ -1,5 +1,9 @@
 #' Participant Details Server
 #'
+#' @param id The namespace id
+#' @param snapshot The snapshot `list` object passed from `run_app()`
+#' @param participant The reactive value provided by the participant input from `server`
+#'
 #' @export
 
 participant_details_server <- function(id, snapshot, participant) {
@@ -57,7 +61,7 @@ participant_details_server <- function(id, snapshot, participant) {
 
             mapping_column <- read.csv(system.file('rbmLibrary', 'mapping_column.csv', package = 'gsmApp')) %>%
                 filter(
-                    gsm_domain_key == 'dfSUBJ'
+                    .data$gsm_domain_key == 'dfSUBJ'
                 )
 
             data <- dfSUBJ()$data %>%
@@ -66,7 +70,7 @@ participant_details_server <- function(id, snapshot, participant) {
                 pivot_longer(everything()) %>%
                 left_join(mapping_column, by = c("name" = "default")) %>%
                 mutate(
-                    Characteristic = ifelse(!is.na(description), description, name)
+                    Characteristic = ifelse(!is.na(.data$description), .data$description, .data$name)
                 ) %>%
                 select(
                     "Characteristic",

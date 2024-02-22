@@ -1,5 +1,8 @@
 #' Add Metric Observer
 #'
+#' @param snapshot The snapshot `list` object that is passed on from `run_app()`
+#' @param metric A reactive value of the metric input found in the `ui` function.
+#'
 #' @export
 
 add_metric_observer <- function(snapshot, metric) {

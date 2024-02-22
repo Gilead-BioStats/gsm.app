@@ -1,5 +1,10 @@
 #' Metric Details Server
 #'
+#' @param id The namespace id
+#' @param snapshot The snapshot `list` object passed from `run_app()`
+#' @param metric The reactive value provided by the metric input from `server`
+#' @param site The reactive value provided by the site input from `server`
+#'
 #' @export
 
 metric_details_server <- function(id, snapshot, metric, site) {

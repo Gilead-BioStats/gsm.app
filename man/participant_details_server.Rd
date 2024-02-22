@@ -6,6 +6,13 @@
 \usage{
 participant_details_server(id, snapshot, participant)
 }
+\arguments{
+\item{id}{The namespace id}
+
+\item{snapshot}{The snapshot \code{list} object passed from \code{run_app()}}
+
+\item{participant}{The reactive value provided by the participant input from \code{server}}
+}
 \description{
 Participant Details Server
 }

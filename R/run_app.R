@@ -1,12 +1,15 @@
 #' Run App
 #'
+#' @param snapshot A `list` object containing the data for a snapshot. It funnels into every function of the application.
+#'
 #' @import shiny
-#' @import shinyjs
+#' @importFrom shinyjs hide hidden show useShinyjs
 #' @import bslib
 #' @import dplyr
 #' @import purrr
 #' @import stringr
 #' @import tidyr
+#' @importFrom utils read.csv
 #'
 #' @export
 

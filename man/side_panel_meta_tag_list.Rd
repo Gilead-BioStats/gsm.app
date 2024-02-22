@@ -6,6 +6,9 @@
 \usage{
 side_panel_meta_tag_list(snapshot)
 }
+\arguments{
+\item{snapshot}{The snapshot \code{list} object passed from \code{run_app()}}
+}
 \description{
 Meta Tag List for Side Panel
 }

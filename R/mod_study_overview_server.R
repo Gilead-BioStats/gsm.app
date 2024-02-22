@@ -1,5 +1,8 @@
 #' Study Overview Server
 #'
+#' @param id The namespace id
+#' @param snapshot The snapshot `list` object passed from `run_app()`
+#'
 #' @export
 
 study_overview_server <- function(id, snapshot) {
@@ -16,10 +19,10 @@ study_overview_server <- function(id, snapshot) {
         kri_color_count <- reactive({
 
             snapshot$lSnapshot$rpt_site_kri_details %>%
-                filter(grepl('^kri', workflowid)) %>%
-                transmute(Color = ifelse(abs(flag_value)  == 2,"Red",
-                                         ifelse(abs(flag_value)  ==1, "Amber", "Other"))) %>%
-                group_by(Color) %>%
+                filter(grepl('^kri', .data$workflowid)) %>%
+                transmute(Color = ifelse(abs(.data$flag_value)  == 2,"Red",
+                                         ifelse(abs(.data$flag_value)  ==1, "Amber", "Other"))) %>%
+                group_by(.data$Color) %>%
                 summarize(n = n())
 
         })

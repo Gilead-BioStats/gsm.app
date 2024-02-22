@@ -1,5 +1,10 @@
 #' Update Site Select
 #'
+#' @param input Shiny inputs
+#' @param output Shiny outputs
+#' @param session Shiny session
+#' @param snapshot The snapshot `list` object passed from `run_app()`
+#'
 #' @export
 
 update_site_select <- function(input, output, session, snapshot) {

@@ -1,5 +1,10 @@
 #' Define Server
 #'
+#' @param input Shiny inputs
+#' @param output Shiny outputs
+#' @param session Shiny session
+#' @param snapshot The snapshot `list` object passed from `run_app()`
+#'
 #' @export
 
 server <- function(input, output, session, snapshot) {

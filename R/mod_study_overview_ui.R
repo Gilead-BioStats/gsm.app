@@ -1,5 +1,7 @@
 #' Study Overview UI
 #'
+#' @param id A namespace id
+#'
 #' @export
 
 study_overview_ui <- function(id) {
