@@ -35,11 +35,10 @@ ui <- function() {
                                 div(class = "col-12 col-sm-6 col-md-12 col-lg-12 col-xxl-12",
                                     selectInput('metric', strong('Metric'), choices = c('None')),
                                     selectInput('site', strong('Site'), choices = c('None')),
-                                    selectInput('participant', strong('Participant'), choices = c('None')),
+                                    selectizeInput('participant', strong('Participant'), choices = "None"),
                                     actionButton('reset', 'Reset All')
                                 )
                             )
-
                         )
                     )
                 ),
@@ -58,39 +57,7 @@ ui <- function() {
                         position = "fixed-top",#"static-top",
                         bg = "white"
                     )
-                      # tabsetPanel(
-                      #      study_overview_ui('study_overview'),
-                      #      metric_details_ui('metric_details'),
-                      #      site_details_ui('site_details'),
-                      #      participant_details_ui('participant_details'),
-                      # id = 'main_panel',
-                      # selected = c(
-                      #     'Study Overview'
-                      # ),
-                      # type = "pills"
-                      # )
                 )
-
             )
-            # sidebarLayout(
-            #     sidebarPanel(
-            #         selectInput('metric', 'Metric', choices = c('None')),
-            #         selectInput('site', 'Site', choices = c('None')),
-            #         selectInput('participant', 'Participant', choices = c('None')),
-            #         actionButton('reset', 'Reset All')
-            #     ),
-            #     mainPanel(
-            #         tabsetPanel(
-            #             study_overview_ui('study_overview'),
-            #             metric_details_ui('metric_details'),
-            #             site_details_ui('site_details'),
-            #             participant_details_ui('participant_details'),
-            #             id = 'main_panel',
-            #             selected = c(
-            #                 'Study Overview'
-            #             )
-            #         )
-            #     )
-            # )
         )
 }
