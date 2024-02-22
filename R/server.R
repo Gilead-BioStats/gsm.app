@@ -52,7 +52,9 @@ server <- function(input, output, session, snapshot) {
     )
 
     observeEvent(input$participant, {
-        nav_select("primary_nav_bar", "Participant Details")
+        if (input$participant != "None" & input$participant != "") {
+            nav_select("primary_nav_bar", "Participant Details")
+        }
     }, ignoreInit = TRUE)
 
 }
