@@ -51,4 +51,8 @@ server <- function(input, output, session, snapshot) {
         shiny::reactive(input$participant)
     )
 
+    observeEvent(input$participant, {
+        nav_select("primary_nav_bar", "Participant Details")
+    }, ignoreInit = TRUE)
+
 }
