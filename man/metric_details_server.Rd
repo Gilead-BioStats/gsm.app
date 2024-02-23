@@ -6,6 +6,15 @@
 \usage{
 metric_details_server(id, snapshot, metric, site)
 }
+\arguments{
+\item{id}{The namespace id}
+
+\item{snapshot}{The snapshot \code{list} object passed from \code{run_app()}}
+
+\item{metric}{The reactive value provided by the metric input from \code{server}}
+
+\item{site}{The reactive value provided by the site input from \code{server}}
+}
 \description{
 Metric Details Server
 }

@@ -1,5 +1,7 @@
 #' Metric Details UI
 #'
+#' @param id The namespace id
+#'
 #' @export
 
 metric_details_ui <- function(id) {

@@ -6,6 +6,13 @@
 \usage{
 site_details_server(id, snapshot, site)
 }
+\arguments{
+\item{id}{The namespace id}
+
+\item{snapshot}{The snapshot \code{list} object passed from \code{run_app()}}
+
+\item{site}{The reactive value provided by the site input from \code{server}}
+}
 \description{
 Site Details Server
 }

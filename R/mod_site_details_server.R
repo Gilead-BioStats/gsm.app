@@ -1,5 +1,8 @@
 #' Site Details Server
 #'
+#' @param id The namespace id
+#' @param snapshot The snapshot `list` object passed from `run_app()`
+#' @param site The reactive value provided by the site input from `server`
 #'
 #' @export
 
@@ -121,13 +124,15 @@ site_details_server <- function(id, snapshot, site) {
         #### Site Participants Tab
 
 
+
+
+
         # ---- participant table
         output$participants <- DT::renderDT({
 
             req(dfSUBJ())
             req(dfAE())
             req(dfPD())
-
 
             data <- dfSUBJ()$data %>%
                 dplyr::select(
@@ -146,7 +151,7 @@ site_details_server <- function(id, snapshot, site) {
                 select("subjectenrollmentnumber", "deemedimportant") %>%
                 group_by(.data$subjectenrollmentnumber) %>%
                 summarize(PDs = n(),
-                          IPDs = sum(deemedimportant == "Yes"))
+                          IPDs = sum(.data$deemedimportant == "Yes"))
 
 
             data <- data %>%

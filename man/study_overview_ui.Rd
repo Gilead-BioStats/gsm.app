@@ -6,6 +6,9 @@
 \usage{
 study_overview_ui(id)
 }
+\arguments{
+\item{id}{A namespace id}
+}
 \description{
 Study Overview UI
 }

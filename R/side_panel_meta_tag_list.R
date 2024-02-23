@@ -1,5 +1,7 @@
 #' Meta Tag List for Side Panel
 #'
+#' @param snapshot The snapshot `list` object passed from `run_app()`
+#'
 #' @import shiny
 #' @import bslib
 #'

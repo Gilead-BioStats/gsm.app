@@ -6,6 +6,9 @@
 \usage{
 site_details_ui(id)
 }
+\arguments{
+\item{id}{A namespace id}
+}
 \description{
 Site Details UI
 }

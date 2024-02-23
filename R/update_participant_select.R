@@ -1,5 +1,10 @@
 #' Update Participant Select
 #'
+#' @param input Shiny inputs
+#' @param output Shiny outputs
+#' @param session Shiny session
+#' @param snapshot The snapshot `list` object passed from `run_app()`
+#'
 #' @export
 
 update_participant_select <- function(input, output, session, snapshot) {
@@ -14,12 +19,6 @@ update_participant_select <- function(input, output, session, snapshot) {
             'participant',
             selected = input$participant
         )
-
-        #updateTabsetPanel(
-        #    session,
-        #    'main_panel',
-        #    'Participant Details'
-        #)
     })
 
     participant_metadata <- snapshot$lInputs$lData$dfSUBJ %>%
@@ -32,13 +31,14 @@ update_participant_select <- function(input, output, session, snapshot) {
 
     choices <- participant_metadata[[ snapshot$lInputs$lMapping$dfSUBJ$strIDCol ]]
 
-    shiny::updateSelectInput(
+    shiny::updateSelectizeInput(
         session,
         'participant',
         choices = c(
             'None',
             choices
-        )
+        ),
+        server = TRUE
     )
 }
 

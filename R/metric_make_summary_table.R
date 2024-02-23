@@ -42,6 +42,8 @@ make_summary_table <- function(lAssessment, dfSite = NULL) {
                             "Status" = "status",
                             "Subjects" = "enrolled_participants"
                         )),
+                        "Numerator",
+                        "Denominator",
                         "Metric",
                         "Score",
                         "Flag"

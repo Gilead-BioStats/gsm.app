@@ -45,3 +45,10 @@
     width: 100%;
 }
 
+.navbar-collapse, .nav-item > li {
+    font-weight: 500;
+}
+
+#primary_nav_bar {
+     margin-left: 7.5rem
+}

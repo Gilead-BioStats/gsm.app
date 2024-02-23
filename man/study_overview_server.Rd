@@ -6,6 +6,11 @@
 \usage{
 study_overview_server(id, snapshot)
 }
+\arguments{
+\item{id}{The namespace id}
+
+\item{snapshot}{The snapshot \code{list} object passed from \code{run_app()}}
+}
 \description{
 Study Overview Server
 }

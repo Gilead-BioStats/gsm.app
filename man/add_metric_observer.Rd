@@ -6,6 +6,11 @@
 \usage{
 add_metric_observer(snapshot, metric)
 }
+\arguments{
+\item{snapshot}{The snapshot \code{list} object that is passed on from \code{run_app()}}
+
+\item{metric}{A reactive value of the metric input found in the \code{ui} function.}
+}
 \description{
 Add Metric Observer
 }

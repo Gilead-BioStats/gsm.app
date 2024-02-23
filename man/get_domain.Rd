@@ -6,6 +6,15 @@
 \usage{
 get_domain(snapshot, domain, subset_col = NULL, subset_val = NULL)
 }
+\arguments{
+\item{snapshot}{The snapshot \code{list} object that is passed from \code{run_app()}}
+
+\item{domain}{The type of data and subsequent metrics you would like to see.}
+
+\item{subset_col}{The id column that will be selected from the domain.}
+
+\item{subset_val}{The specific value that the subset_col will be filtered by.}
+}
 \description{
 Get Domain Mapping and Data
 }

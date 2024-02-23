@@ -1,0 +1,141 @@
+gsm_domain_key,gsm_column_key,default,description,format
+dfADAE,strGradeCol,AETOXGR,AE Standard Toxicity Grade,character
+dfADAE,strIDCol,USUBJID,Unique subject identifier,character
+dfADAE,strSeriousCol,AESER,"An indication of whether the adverse event is determined to be ""serious,"" based on what is defined in the regulations/protocol.",character
+dfADAE,strTreatmentEmergentCol,TRTEMFL,Treatment Emergent Analysis Flag,character
+dfADSL,strCustomGroupCol,RegionID,Unique region identifier,character
+dfADSL,strEndCol,TRTEDT,Date of Last Exposure to Treatment,date
+dfADSL,strIDCol,USUBJID,Unique subject identifier,character
+dfADSL,strRandDateCol,RANDDT,Date of Randomization,date
+dfADSL,strRandFlagCol,RANDFL,Randomization flag,character
+dfADSL,strSiteCol,SITEID,Unique site identifier,character
+dfADSL,strStartCol,TRTSDT,Treatment start date,date
+dfADSL,strStudyCol,STUDYID,Study identifier,character
+dfADSL,strStudyCompletionFlagCol,COMPLSFL,Study completion flag,character
+dfADSL,strStudyDiscontinuationReasonCol,DCSREAS,Reason for study discontinuation,character
+dfADSL,strTimeOnStudyCol,SDUR,Time on study,integer
+dfADSL,strTimeOnTreatmentCol,TDUR,Time on treatment,integer
+dfADSL,strTreatmentCompletionFlagCol,COMPLTFL,Treatment completion flag,character
+dfADSL,strTreatmentDiscontinuationReasonCol,DCTREAS,Reason for treatment discontinuation,character
+dfAE,strEndDateCol,aeen_dt,End Date,date
+dfAE,strGradeCol,aetoxgr,Grade,character
+dfAE,strIDCol,subjid,Subject ID,character
+dfAE,strNonSeriousCol,aeser,Serious,character
+dfAE,strPTCol,mdrpt_nsv,Dictionary-derived Term,character
+dfAE,strSeriousCol,aeser,Serious,character
+dfAE,strSOCCol,mdrsoc_nsv,Body System or Organ Class,character
+dfAE,strStartDateCol,aest_dt,Start Date,date
+dfAE,strTreatmentEmergentCol,treatmentemergent,Treatment-emergent,character
+dfCONSENT,strConsentStatusCol,consyn,Consent status,character
+dfCONSENT,strConsentTypeCol,conscat,Consent type,character
+dfCONSENT,strDateCol,consdt,Consent date,date
+dfCONSENT,strIDCol,subjid,Unique subject identifier,character
+dfDATACHG,strDataPointIDCol,datapointid,Data Point ID,character
+dfDATACHG,strFieldCol,fieldoid,Field,character
+dfDATACHG,strFormCol,formoid,Form,character
+dfDATACHG,strIDCol,subjectname,Subject ID,character
+dfDATACHG,strLogNumberCol,log_number,Log Number,integer
+dfDATACHG,strNChangesCol,n_changes,# Changes,integer
+dfDATACHG,strRequiredCol,isrequired,Required,logical
+dfDATACHG,strStudyCol,protocolname,Study ID,character
+dfDATACHG,strVisitCol,visit,Visit,character
+dfDATAENT,strDataEntryLagCol,data_entry_lag,Data Entry Lag (days),integer
+dfDATAENT,strEntryDateCol,min_entereddate,Entry Date,date
+dfDATAENT,strFormCol,formoid,Form,character
+dfDATAENT,strIDCol,subjectname,Subject ID,character
+dfDATAENT,strStudyCol,protocolname,Study ID,character
+dfDATAENT,strVisitCol,visit,Visit,character
+dfDATAENT,strVisitDateCol,visit_date,Visit Date,date
+dfENROLL,strCountryCol,country,Country,character
+dfENROLL,strCustomGroupCol,invid,Custom Group,character
+dfENROLL,strEnrollmentDateCol,enroll_dt,Enrollment Date,date
+dfENROLL,strIDCol,subjectid,Subject ID,character
+dfENROLL,strScreenFailCol,enrollyn,Screen Fail,character
+dfENROLL,strScreenFailReasonCol,sfreas,Screen Fail Reason,character
+dfENROLL,strSiteCol,invid,Site ID,character
+dfENROLL,strStudyCol,studyid,Study ID,character
+dfIE,strCategoryCol,iecat,Category,character
+dfIE,strIDCol,subjid,Unique subject identifier,character
+dfIE,strResultCol,ieorres,Result,character
+dfIE,strVersionCol,tiver,Version,character
+dfLB,strAlertCol,alertsimplified,Alert,character
+dfLB,strDateCol,lb_dt,Date,date
+dfLB,strGradeCol,toxgrg_nsv,Grade,character
+dfLB,strIDCol,subjid,Subject ID,character
+dfLB,strResultCol,siresn,Result,numeric
+dfLB,strTestCol,lbtstnam,Test,character
+dfLB,strTreatmentEmergentCol,treatmentemergent,Treatment-emergent,character
+dfLB,strVisitCol,visnam,Visit,character
+dfPD,strCategoryCol,gileadcategory,Category,character
+dfPD,strDateCol,deviationdate,Date,date
+dfPD,strIDCol,subjectenrollmentnumber,Subject ID,character
+dfPD,strImportantCol,deemedimportant,Important,character
+dfPD,strNonImportantCol,deemedimportant,Important,character
+dfQUERY,strAnswerDateCol,answered,Answer Date,date
+dfQUERY,strCreationDateCol,created,Creation Date,date
+dfQUERY,strDataPointIDCol,datapointid,Data Point ID,character
+dfQUERY,strFieldCol,fieldoid,Field,character
+dfQUERY,strFormCol,formoid,Form,character
+dfQUERY,strIDCol,subjectname,Subject ID,character
+dfQUERY,strLogNumberCol,log_number,Log Number,integer
+dfQUERY,strMarkingGroupCol,markinggroup,Marking Group,character
+dfQUERY,strQueryAgeCol,queryage,Query Age (days),integer
+dfQUERY,strResolutionDateCol,resolved,Resolution Date,date
+dfQUERY,strStatusCol,querystatus,Status,character
+dfQUERY,strStudyCol,protocolname,Study ID,character
+dfQUERY,strVisitCol,visit,Visit,character
+dfSDRGCOMP,strIDCol,subjid,Subject ID,character
+dfSDRGCOMP,strTreatmentPhaseCol,phase,Treatment Phase,character
+dfSDRGCOMP,strTreatmentCol,extrt,Treatment,character
+dfSDRGCOMP,strTreatmentDiscontinuationFlagCol,sdrgyn,Treatment Discontinuation Flag,character
+dfSDRGCOMP,strTreatmentDiscontinuationReasonCol,sdrgreas,Treatment Discontinuation Reason,character
+dfSITE,strAccountCol,account,Account,character
+dfSITE,strActivationDateCol,site_active_dt,Is Site Active?,character
+dfSITE,strCityCol,city,City,character
+dfSITE,strCountryCol,country,Country,character
+dfSITE,strPICol,pi_number,PI Number,character
+dfSITE,strPIFirstNameCol,pi_first_name,PI First Name,character
+dfSITE,strPILastNameCol,pi_last_name,PI Last Name,character
+dfSITE,strSatelliteCol,is_satellite,Is Site a Satellite location?,logical
+dfSITE,strSiteCol,site_num,Site Number,character
+dfSITE,strStateCol,state,State,character
+dfSITE,strStatusCol,site_status,Site Status,character
+dfSITE,strStudyCol,protocol,Study ID,character
+dfSTUDCOMP,strIDCol,subjid,Subject ID,character
+dfSTUDCOMP,strStudyDiscontinuationFlagCol,compyn,Study Discontinuation Flag,character
+dfSTUDCOMP,strStudyDiscontinuationReasonCol,compreas,Study Discontinuation Reason,character
+dfSTUDY,strActFirstPatientFirstVisitCol,act_fpfv,Actual first patient first visit,date
+dfSTUDY,strActLastPatientFirstVisitCol,act_lpfv,Actual last patient first visit,date
+dfSTUDY,strActLastPatientLastVisitCol,act_lplv,Actual last patient last visit,date
+dfSTUDY,strActualSitesCol,num_site_actl,Ac Site Actl,integer
+dfSTUDY,strActualSubjectsCol,num_enrolled_subj_m,Number of Enrolled Subjects,integer
+dfSTUDY,strEstFirstPatientFirstVisitCol,est_fpfv,Estimated first patient first visit,date
+dfSTUDY,strEstLastPatientFirstVisitCol,est_lpfv,Estimated last patient first visit,date
+dfSTUDY,strEstLastPatientLastVisitCol,est_lplv,Estimated last patient last visit,date
+dfSTUDY,strIndicationCol,protocol_indication,Protocol Indication,character
+dfSTUDY,strNicknameCol,nickname,Nickname,character
+dfSTUDY,strPhaseCol,phase,Phase,character
+dfSTUDY,strPlannedSitesCol,num_plan_site,Pl Plan Site,integer
+dfSTUDY,strPlannedSubjectsCol,num_plan_subj,Pl Plan Subj,integer
+dfSTUDY,strProductCol,product,Product,character
+dfSTUDY,strRBMFlagCol,x_rbm_flg,Risk Based Monitoring Flag,character
+dfSTUDY,strRBMFlagExcludeCol,x_rbm_flg,Risk Based Monitoring Flag,character
+dfSTUDY,strRBMFlagIncludeCol,x_rbm_flg,Risk Based Monitoring Flag,character
+dfSTUDY,strStatusCol,status,Status,character
+dfSTUDY,strStudyCol,protocol_number,Study ID,character
+dfSTUDY,strTherapeuticAreaCol,therapeutic_area,Therapeutic Area,character
+dfSTUDY,strTitleCol,protocol_title,Title Number,character
+dfSTUDY,strTypeCol,protocol_type,Type Number,character
+dfSUBJ,strCountryCol,country,Country,character
+dfSUBJ,strCustomGroupCol,invid,Custom Group,character
+dfSUBJ,strEDCIDCol,subject_nsv,Subject ID (EDC),character
+dfSUBJ,strEnrollCol,enrollyn,Enrolled,character
+dfSUBJ,strIDCol,subjid,Subject ID,character
+dfSUBJ,strSiteCol,invid,Site ID,character
+dfSUBJ,strStudyCol,studyid,Study ID,character
+dfSUBJ,strStudyEndDateCol,lastparticipantdate,Study End Date,date
+dfSUBJ,strStudyStartDateCol,firstparticipantdate,Study Start Date,date
+dfSUBJ,strTimeOnStudyCol,timeonstudy,Time on Study (days),integer
+dfSUBJ,strTimeOnTreatmentCol,timeontreatment,Time on Treatment (days),integer
+dfSUBJ,strTreatmentEndDateCol,lastdosedate,Treatment End Date,date
+dfSUBJ,strTreatmentStartDateCol,firstdosedate,Treatment Start Date,date

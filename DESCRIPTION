@@ -12,24 +12,23 @@ Description: Run {gsm} Assessments in the {safetyGraphics} Framework
 Depends: 
     R (>= 2.10)
 Imports:
+    bslib,
+    cli,
     dplyr,
     DT,
     glue,
     gsm,
-    gt,
-    plotly,
+    htmltools,
+    htmlwidgets,
     purrr,
-    rlang,
-    safetyGraphics,
     shiny,
     shinyjs,
-    tibble,
+    stringr,
     tidyr,
-    tidyselect,
     yaml
 Suggests: 
     testthat (>= 3.0.0)
-License: MIT + file LICENSE
+License: Apache License (>= 2)
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.2.3

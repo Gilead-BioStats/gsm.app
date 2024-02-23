@@ -1,5 +1,10 @@
 #' Define Server
 #'
+#' @param input Shiny inputs
+#' @param output Shiny outputs
+#' @param session Shiny session
+#' @param snapshot The snapshot `list` object passed from `run_app()`
+#'
 #' @export
 
 server <- function(input, output, session, snapshot) {
@@ -51,8 +56,10 @@ server <- function(input, output, session, snapshot) {
         shiny::reactive(input$participant)
     )
 
-    ## Reset action
-    #observeEvent(input$reset, {
-    #    # Code to reset the selections
-    #})
+    observeEvent(input$participant, {
+        if (input$participant != "None" & input$participant != "") {
+            nav_select("primary_nav_bar", "Participant Details")
+        }
+    }, ignoreInit = TRUE)
+
 }

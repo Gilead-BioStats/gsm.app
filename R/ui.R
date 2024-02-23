@@ -35,61 +35,29 @@ ui <- function() {
                                 div(class = "col-12 col-sm-6 col-md-12 col-lg-12 col-xxl-12",
                                     selectInput('metric', strong('Metric'), choices = c('None')),
                                     selectInput('site', strong('Site'), choices = c('None')),
-                                    selectInput('participant', strong('Participant'), choices = c('None')),
+                                    selectizeInput('participant', strong('Participant'), choices = "None"),
                                     actionButton('reset', 'Reset All')
                                 )
                             )
-
                         )
                     )
                 ),
                 div(class = "col-12 col-sm-12 col-md-8 col-lg-9 col-xxl-10",
                     navset_bar(
-                        nav_panel(title = div(style = "font-weight: 500; margin-left: 7.5rem", "Study Overview"),
+                        nav_panel(title = "Study Overview",
                                   study_overview_ui('study_overview')),
-                        nav_panel(title = div(style = "font-weight: 500;", "Metric Details"),
+                        nav_panel(title = "Metric Details",
                                   metric_details_ui('metric_details'),
                                   site_details_ui('site_details')),
-                        nav_panel(title = div(style = "font-weight: 500;", "Participant Details"),
+                        nav_panel(title = "Participant Details",
                                   participant_details_ui('participant_details')),
+                        id = "primary_nav_bar",
                         title = "GSM Deep Dive App",
                         padding = c("0rem","0rem","0rem","0rem"),
                         position = "fixed-top",#"static-top",
                         bg = "white"
                     )
-                      # tabsetPanel(
-                      #      study_overview_ui('study_overview'),
-                      #      metric_details_ui('metric_details'),
-                      #      site_details_ui('site_details'),
-                      #      participant_details_ui('participant_details'),
-                      # id = 'main_panel',
-                      # selected = c(
-                      #     'Study Overview'
-                      # ),
-                      # type = "pills"
-                      # )
                 )
-
             )
-            # sidebarLayout(
-            #     sidebarPanel(
-            #         selectInput('metric', 'Metric', choices = c('None')),
-            #         selectInput('site', 'Site', choices = c('None')),
-            #         selectInput('participant', 'Participant', choices = c('None')),
-            #         actionButton('reset', 'Reset All')
-            #     ),
-            #     mainPanel(
-            #         tabsetPanel(
-            #             study_overview_ui('study_overview'),
-            #             metric_details_ui('metric_details'),
-            #             site_details_ui('site_details'),
-            #             participant_details_ui('participant_details'),
-            #             id = 'main_panel',
-            #             selected = c(
-            #                 'Study Overview'
-            #             )
-            #         )
-            #     )
-            # )
         )
 }

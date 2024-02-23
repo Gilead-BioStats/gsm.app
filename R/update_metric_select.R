@@ -1,5 +1,10 @@
 #' Update Metric Select
 #'
+#' @param input Shiny inputs
+#' @param output Shiny outputs
+#' @param session Shiny session
+#' @param snapshot The snapshot `list` object passed from `run_app()`
+#'
 #' @export
 
 update_metric_select <- function(input, output, session, snapshot) {
@@ -11,7 +16,7 @@ update_metric_select <- function(input, output, session, snapshot) {
                     dplyr::filter(
                         .data$active == TRUE
                     ) %>%
-                    dplyr::pull(workflowid)
+                    dplyr::pull(.data$workflowid)
             ),
             # Remove unevaluated workflows.
             .data$workflowid %in% (
