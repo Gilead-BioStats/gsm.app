@@ -18,19 +18,13 @@ Imports:
     DT,
     glue,
     gsm,
-    gt,
     htmltools,
     htmlwidgets,
-    plotly,
     purrr,
-    rlang,
-    safetyGraphics,
     shiny,
     shinyjs,
     stringr,
-    tibble,
     tidyr,
-    tidyselect,
     yaml
 Suggests: 
     testthat (>= 3.0.0)

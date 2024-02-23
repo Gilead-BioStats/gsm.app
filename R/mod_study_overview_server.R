@@ -29,13 +29,13 @@ study_overview_server <- function(id, snapshot) {
 
         output$red_kri <- renderText({
 
-            paste0(kri_color_count() %>% filter(Color == "Red") %>% select(n), " Red KRIs")
+            paste0(kri_color_count() %>% filter(.data$Color == "Red") %>% select(n), " Red KRIs")
 
         })
 
         output$amber_kri <- renderText({
 
-            paste0(kri_color_count() %>% filter(Color == "Amber") %>% select(n), " Amber KRIs")
+            paste0(kri_color_count() %>% filter(.data$Color == "Amber") %>% select(n), " Amber KRIs")
 
         })
 
