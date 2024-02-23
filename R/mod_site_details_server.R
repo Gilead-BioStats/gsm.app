@@ -134,9 +134,6 @@ site_details_server <- function(id, snapshot, site) {
             req(dfAE())
             req(dfPD())
 
-            print(dfAE())
-
-
             data <- dfSUBJ()$data %>%
                 dplyr::select(
                     'ID' = dfSUBJ()$mapping$strIDCol,

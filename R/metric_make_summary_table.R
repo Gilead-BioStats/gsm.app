@@ -13,8 +13,6 @@ make_summary_table <- function(lAssessment, dfSite = NULL) {
     if (active$bStatus) {
             dfSummary <- active$lResults$lData$dfSummary
 
-            print(colnames(dfSummary))
-
             if (!is.null(dfSite)) {
                 dfSummary <- dfSummary %>%
                     left_join(
