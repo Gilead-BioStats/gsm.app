@@ -11,3 +11,4 @@ if (!interactive()) {
 
 # Launch the app
 gsmApp::run_app()
+

@@ -20,6 +20,7 @@ Imports:
     gsm,
     htmltools,
     htmlwidgets,
+    magrittr,
     purrr,
     shiny,
     shinyjs,

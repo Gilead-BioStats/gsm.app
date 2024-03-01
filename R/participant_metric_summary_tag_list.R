@@ -1,7 +1,5 @@
 #' Creates taglist to summarize participants at a particular site
 #' @param participant_data A combined data set with the required metrics.
-#' @import shiny
-#' @import stringr
 #' @export
 #' @keywords internal
 
@@ -10,7 +8,7 @@ participant_metric_summary_tag_list <- function(id, participant, snapshot) {
     req(id)
     req(participant)
 
-    domain_list = list(
+    domain_list <- list(
         'dfAE' = 'Adverse Events',
         'dfPD' = 'Protocol Deviations',
         'dfENROLL' = 'Enrollment',
@@ -18,16 +16,16 @@ participant_metric_summary_tag_list <- function(id, participant, snapshot) {
         'dfSDRGCOMP' = 'Treatment Disposition',
         'dfQUERY' = 'Queries')
 
-    domain_names = names(domain_list)
+    domain_names <- names(domain_list)
 
-    data_aggregated = data.frame(
+    data_aggregated <- data.frame(
         metric = c(),
         row_count = c()
     )
 
     for (i in 1:length(domain_names)) {
 
-        data <-  get_domain(
+        data <- get_domain(
             snapshot,
             domain = domain_names[i],
             'strIDCol',
@@ -41,7 +39,7 @@ participant_metric_summary_tag_list <- function(id, participant, snapshot) {
 
 
     tag_return <- domain_names |>
-        map(function(x)
+        purrr::map(function(x)
             tags$div(
                 class = "col-12",
                 style = "font-weight: 500;",

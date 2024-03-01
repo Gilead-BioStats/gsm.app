@@ -2,9 +2,6 @@
 #'
 #' @param snapshot The snapshot `list` object passed from `run_app()`
 #'
-#' @import shiny
-#' @import bslib
-#'
 #' @export
 
 
@@ -22,7 +19,7 @@ side_panel_meta_tag_list <- function(snapshot) {
     colnames(meta) <- c("Indication", "TA", "Phase", "Sites", "Subjects")
 
     meta_tags <- colnames(meta) |>
-        map(function(x) tags$div(
+        purrr::map(function(x) tags$div(
             class = "col-12",
             style = "font-weight: 500;",
             tags$div(style = "display: flex; justify-content: space-between;",

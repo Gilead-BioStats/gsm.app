@@ -1,9 +1,4 @@
 #' Define UI
-#'
-#' @import shiny
-#' @import bslib
-#' @import stringr
-#'
 #' @export
 
 ui <- function() {

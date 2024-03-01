@@ -59,7 +59,7 @@ participant_details_server <- function(id, snapshot, participant) {
 
             req(dfSUBJ())
 
-            mapping_column <- read.csv(system.file('rbmLibrary', 'mapping_column.csv', package = 'gsmApp')) %>%
+            mapping_column <- utils::read.csv(system.file('rbmLibrary', 'mapping_column.csv', package = 'gsmApp')) %>%
                 filter(
                     .data$gsm_domain_key == 'dfSUBJ'
                 )
@@ -142,7 +142,7 @@ participant_details_server <- function(id, snapshot, participant) {
 
             mapping <- domain$mapping |>
                 as.data.frame() |>
-                pivot_longer(everything())
+                tidyr::pivot_longer(everything())
 
             domain <- domain$data |>
                 select(any_of(mapping$value))
@@ -153,10 +153,7 @@ participant_details_server <- function(id, snapshot, participant) {
                       paging = FALSE,
                       searching = FALSE,
                       selection = 'none',
-                      scrollX = TRUE#,
-                      # columnDefs = list(
-                      #     list(className = "dt-center", targets = c(0:6))
-                      # )
+                      scrollX = TRUE
                   ),
                   rownames = FALSE,
                 )

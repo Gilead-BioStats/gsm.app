@@ -1,9 +1,6 @@
 #' Create Summary table in KRIReport.Rmd for each KRI
 #' @param lAssessment `list` List of KRI assessments from `params` within `KRIReport.Rmd`.
 #' @param dfSite `data.frame` Optional site-level metadata.
-#' @importFrom htmltools p
-#' @importFrom htmltools strong
-#' @importFrom DT datatable
 #' @export
 #' @keywords internal
 
@@ -29,7 +26,7 @@ make_summary_table <- function(lAssessment, dfSite = NULL) {
                     ) %>%
                     arrange(desc(abs(.data$Score))) %>%
                     mutate(
-                        Flag = map(.data$Flag, gsm::kri_directionality_logo),
+                        Flag = purrr::map(.data$Flag, gsm::kri_directionality_logo),
                         across(
                             where(is.numeric),
                             ~ round(.x, 3)

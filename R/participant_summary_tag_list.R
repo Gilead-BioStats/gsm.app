@@ -1,7 +1,5 @@
 #' Creates taglist to summarize participants at a particular site
 #' @param participant_data A combined data set with the required metrics.
-#' @import shiny
-#' @import stringr
 #' @export
 #' @keywords internal
 
