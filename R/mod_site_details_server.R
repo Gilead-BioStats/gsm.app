@@ -142,13 +142,13 @@ site_details_server <- function(id, snapshot, site) {
                 )
 
             dfAEs <- dfAE()$data %>%
-                select("subjid", "aeser") %>%
+                dplyr::select("subjid", "aeser") %>%
                 group_by(.data$subjid) %>%
                 summarize(AEs = n(),
                           SAEs = sum(.data$aeser == "Y"))
 
             dfPDs <- dfPD()$data %>%
-                select("subjectenrollmentnumber", "deemedimportant") %>%
+                dplyr::select("subjectenrollmentnumber", "deemedimportant") %>%
                 group_by(.data$subjectenrollmentnumber) %>%
                 summarize(PDs = n(),
                           IPDs = sum(.data$deemedimportant == "Yes"))
@@ -212,7 +212,7 @@ site_details_server <- function(id, snapshot, site) {
 
         output$site_metadata_list <- renderUI({
 
-            enrolled_subjects <- dfSUBJ()$data %>% filter(.data$enrollyn == "Y") %>% select("subjid")
+            enrolled_subjects <- dfSUBJ()$data %>% filter(.data$enrollyn == "Y") %>% dplyr::select("subjid")
             enrolled_subjects <- enrolled_subjects$subjid
 
             site_details_meta_data_list(site_metadata(), enrolled_subjects = enrolled_subjects)

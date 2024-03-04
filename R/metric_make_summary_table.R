@@ -13,7 +13,7 @@ make_summary_table <- function(lAssessment, dfSite = NULL) {
             if (!is.null(dfSite)) {
                 dfSummary <- dfSummary %>%
                     left_join(
-                        dfSite %>% select("siteid", "country", "status", "enrolled_participants"),
+                        dfSite %>% dplyr::select("siteid", "country", "status", "enrolled_participants"),
                         c("GroupID" = "siteid")
                     )
             }
@@ -32,7 +32,7 @@ make_summary_table <- function(lAssessment, dfSite = NULL) {
                             ~ round(.x, 3)
                         )
                     ) %>%
-                    select(
+                    dplyr::select(
                         any_of(c(
                             "Site" = "GroupID",
                             "Country" = "country",

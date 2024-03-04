@@ -65,14 +65,14 @@ participant_details_server <- function(id, snapshot, participant) {
                 )
 
             data <- dfSUBJ()$data %>%
-                select(any_of(as.character(dfSUBJ()$mapping))) %>%
+                dplyr::select(any_of(as.character(dfSUBJ()$mapping))) %>%
                 mutate(across(everything(), as.character)) %>%
                 pivot_longer(everything()) %>%
                 left_join(mapping_column, by = c("name" = "default")) %>%
                 mutate(
                     Characteristic = ifelse(!is.na(.data$description), .data$description, .data$name)
                 ) %>%
-                select(
+                dplyr::select(
                     "Characteristic",
                     "Value" = "value"
                 )
@@ -145,7 +145,7 @@ participant_details_server <- function(id, snapshot, participant) {
                 tidyr::pivot_longer(everything())
 
             domain <- domain$data |>
-                select(any_of(mapping$value))
+                dplyr::select(any_of(mapping$value))
 
             domain |>
                 DT::datatable(class = "compact",

@@ -10,7 +10,7 @@ side_panel_meta_tag_list <- function(snapshot) {
     meta <- snapshot$lInputs$lMeta$meta_study
 
     meta <- meta |>
-        select("protocol_indication",
+        dplyr::select("protocol_indication",
                "therapeutic_area",
                "phase",
                "num_plan_site",
