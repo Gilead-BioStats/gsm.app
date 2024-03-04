@@ -2,11 +2,19 @@
 "_PACKAGE"
 
 ## usethis namespace: start
+#' @import bslib
 #' @import htmltools
 #' @import shiny
 #' @importFrom bslib bs_theme
-#' @importFrom DT DTOutput
+#' @importFrom bslib navset_bar
+#' @importFrom dplyr filter
+#' @importFrom dplyr group_by
+#' @importFrom dplyr n
+#' @importFrom dplyr select
+#' @importFrom dplyr summarize
+#' @importFrom dplyr transmute
 #' @importFrom DT datatable
+#' @importFrom DT DTOutput
 #' @importFrom DT renderDT
 #' @importFrom htmlwidgets JS
 #' @importFrom purrr map
