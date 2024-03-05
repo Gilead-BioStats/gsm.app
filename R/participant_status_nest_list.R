@@ -21,7 +21,7 @@ participant_status_nest_list <- function(participant_list = NULL) {
                 lapply(1:length(discontinued_reasons_unique), function(x) {
 
                     tags$li(
-                        div(class = "row",
+                        div(class = "row pe-2",
                             div(style = "display: flex; justify-content: space-between;",
                                 div(style = "text-align: left; white-space: nowrap;", str_trunc(str_to_sentence(discontinued_reasons_unique[x]), 25)),
                                 div(style = "border-bottom: 1px dotted; width: 95%; margin-bottom: .4em; margin-right: .4em; margin-left: .4em;"),
@@ -42,10 +42,10 @@ participant_status_nest_list <- function(participant_list = NULL) {
 
     participant_tag_list <- tagList(
 
-        div(class = "rounded-2 px-1",
+     #   div(class = "rounded-2 px-1",
 
 
-                    div(class = "row",
+            div(class = "row px-2",
                         style = "font-weight: 500;",
                     div(style = "display: flex; justify-content: space-between;",
                         div(style = "text-align: left; white-space: nowrap;", "Screened"),
@@ -53,9 +53,9 @@ participant_status_nest_list <- function(participant_list = NULL) {
                         div(style = "text-align: right;", sum(participant_list[["screened"]]$eligible, participant_list[["screened"]]$ineligible ))
                     )
                 ),
-            tags$ul(
+            tags$ul(class = "my-0",
                 tags$li(
-                    div(class = "row",
+                    div(class = "row pe-2",
                         div(style = "display: flex; justify-content: space-between;",
                             div(style = "text-align: left; white-space: nowrap;",  "Eligible"),
                             div(style = "border-bottom: 1px dotted; width: 95%; margin-bottom: .4em; margin-right: .4em; margin-left: .4em;"),
@@ -63,27 +63,27 @@ participant_status_nest_list <- function(participant_list = NULL) {
                         )
                 )),
                 tags$li(
-                    div(class = "row",
+                    div(class = "row pe-2",
                         div(style = "display: flex; justify-content: space-between;",
                             div(style = "text-align: left; white-space: nowrap;",  "Ineligible"),
                             div(style = "border-bottom: 1px dotted; width: 95%; margin-bottom: .4em; margin-right: .4em; margin-left: .4em;"),
                             div(style = "text-align: right;", sum(participant_list[["screened"]]$ineligible ))
                         )
                 ))),
-                tags$div(class = "row",
+                tags$div(class = "row px-2",
                         style = "font-weight: 500;",
                         div(style = "display: flex; justify-content: space-between;",
                             div(style = "text-align: left; white-space: nowrap;", "Enrolled"),
                             div(style = "border-bottom: 1px dotted; width: 95%; margin-bottom: .4em; margin-right: .4em; margin-left: .4em;"),
-                            div(style = "text-align: right;", sum(participant_list[["enrolled"]]$eligible, participant_list[["enrolled"]]$ineligible ))
+                            div(style = "text-align: right;", sum(participant_list[["screened"]]$eligible, na.rm = TRUE) + sum(participant_list[["screened"]]$ineligible, na.rm = TRUE))
                         )
 
                 ),
-                tags$ul(
+                tags$ul(class = "my-0",
 
 
                 tags$li(
-                    div(class = "row",
+                    div(class = "row pe-2",
                         div(style = "display: flex; justify-content: space-between;",
                             div(style = "text-align: left; white-space: nowrap;",  "Active"),
                             div(style = "border-bottom: 1px dotted; width: 95%; margin-bottom: .4em; margin-right: .4em; margin-left: .4em;"),
@@ -92,7 +92,7 @@ participant_status_nest_list <- function(participant_list = NULL) {
                     )
                 ),
                 tags$li(
-                    div(class = "row",
+                    div(class = "row pe-2",
                         div(style = "display: flex; justify-content: space-between;",
                             div(style = "text-align: left; white-space: nowrap;",  "Completed"),
                             div(style = "border-bottom: 1px dotted; width: 95%; margin-bottom: .4em; margin-right: .4em; margin-left: .4em;"),
@@ -101,7 +101,7 @@ participant_status_nest_list <- function(participant_list = NULL) {
                 ))
                 ,
                 tags$li(
-                    div(class = "row",
+                    div(class = "row pe-2",
                         div(style = "display: flex; justify-content: space-between;",
                             div(style = "text-align: left; white-space: nowrap;",  "Discontinued"),
                             div(style = "border-bottom: 1px dotted; width: 95%; margin-bottom: .4em; margin-right: .4em; margin-left: .4em;"),
@@ -111,8 +111,7 @@ participant_status_nest_list <- function(participant_list = NULL) {
                     discontinued_tags
                 )                ),
             )
-        )
-
+       # )
 
     return(participant_tag_list)
 

@@ -215,7 +215,7 @@ site_details_server <- function(id, snapshot, site) {
             enrolled_subjects <- dfSUBJ()$data %>% filter(.data$enrollyn == "Y") %>% select("subjid")
             enrolled_subjects <- enrolled_subjects$subjid
 
-            site_details_meta_data_list(site_metadata(), enrolled_subjects = enrolled_subjects)
+            site_details_meta_data_list(site_metadata(), enrolled_subjects = enrolled_subjects, participant_list = participant_list())
 
         })
 

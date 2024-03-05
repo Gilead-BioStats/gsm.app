@@ -5,9 +5,10 @@
 #' @export
 #' @keywords internal
 
-site_details_meta_data_list <- function(meta_data = NULL, enrolled_subjects = NULL) {
+site_details_meta_data_list <- function(meta_data = NULL, enrolled_subjects = NULL, participant_list = NULL) {
 
     req(meta_data)
+    req(participant_list)
    # req(enrolled_subjects)
 
     meta_data <- meta_data |>
@@ -15,8 +16,7 @@ site_details_meta_data_list <- function(meta_data = NULL, enrolled_subjects = NU
                "Investigator" = str_trunc(paste0("pi_last_name", ", ", "pi_first_name"), 25),
                "City" = "city",
                "State" = "state",
-               "Country" = "country",
-               "Enrolled Subjects" = length(unique("enrolled_subjects")))
+               "Country" = "country")
 
     meta_data <- as.list(meta_data)
 
@@ -31,9 +31,13 @@ site_details_meta_data_list <- function(meta_data = NULL, enrolled_subjects = NU
                      tags$div(class = "card-text", style = "text-align: right; white-space: nowrap;", meta_data[x]))
         )) |>
         tags$div(
-            class = "row p-2"
-        ) |>
-        tagList()
+            class = "row px-2"
+        )
+
+    tag_return <- tagList(
+        tag_return,
+        participant_status_nest_list(participant_list)
+    )
 
     return(tag_return)
 
