@@ -24,8 +24,8 @@ make_summary_table <- function(lAssessment, dfSite = NULL) {
                     filter(
                         .data$Flag != 0
                     ) %>%
-                    arrange(desc(abs(.data$Score))) %>%
-                    mutate(
+                    dplyr::arrange(desc(abs(.data$Score))) %>%
+                    dplyr::mutate(
                         Flag = purrr::map(.data$Flag, gsm::kri_directionality_logo),
                         across(
                             where(is.numeric),

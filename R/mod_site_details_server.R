@@ -157,7 +157,7 @@ site_details_server <- function(id, snapshot, site) {
             data <- data %>%
                 left_join(dfAEs, c("ID" = "subjid")) %>%
                 left_join(dfPDs, c("ID" = "subjectenrollmentnumber")) %>%
-                arrange(.data$ID)
+                dplyr::arrange(.data$ID)
 
             table <- data %>%
                 DT::datatable(
