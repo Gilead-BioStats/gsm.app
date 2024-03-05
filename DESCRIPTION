@@ -22,6 +22,7 @@ Imports:
     htmlwidgets,
     magrittr,
     purrr,
+    rlang,
     shiny,
     shinyjs,
     stringr,

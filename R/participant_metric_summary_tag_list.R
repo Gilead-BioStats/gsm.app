@@ -38,7 +38,7 @@ participant_metric_summary_tag_list <- function(id, participant, snapshot) {
     }
 
 
-    tag_return <- domain_names |>
+    tag_return <- domain_names %>%
         purrr::map(function(x)
             tags$div(
                 class = "col-12",
@@ -52,10 +52,10 @@ participant_metric_summary_tag_list <- function(id, participant, snapshot) {
                          tags$div(class = "text-secondary", style = "border-bottom: 1px dotted; width: 95%; margin-bottom: .4em; margin-right: .4em; margin-left: .4em;"),
                          tags$div(class = "card-text",
                                   style = "text-align: right; white-space: nowrap;", data_aggregated[data_aggregated$metric == x, "row_count"]))
-        )) |>
+        )) %>%
         tags$div(
             class = "row p-2"
-        ) |>
+        ) %>%
         tagList()
 
     return(tag_return)

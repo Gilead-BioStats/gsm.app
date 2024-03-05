@@ -44,7 +44,7 @@ metric_details_server <- function(id, snapshot, metric, site) {
             shiny::req(metric())
 
             sites <- snapshot$lSnapshot$rpt_site_details %>%
-                select("siteid", "country", "status", "enrolled_participants")
+                dplyr::select("siteid", "country", "status", "enrolled_participants")
 
             make_summary_table(
                 snapshot$lStudyAssessResults[[ metric() ]],

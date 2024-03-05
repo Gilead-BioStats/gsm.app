@@ -12,8 +12,8 @@ make_summary_table <- function(lAssessment, dfSite = NULL) {
 
             if (!is.null(dfSite)) {
                 dfSummary <- dfSummary %>%
-                    left_join(
-                        dfSite %>% select("siteid", "country", "status", "enrolled_participants"),
+                    dplyr::left_join(
+                        dfSite %>% dplyr::select("siteid", "country", "status", "enrolled_participants"),
                         c("GroupID" = "siteid")
                     )
             }
@@ -24,15 +24,15 @@ make_summary_table <- function(lAssessment, dfSite = NULL) {
                     filter(
                         .data$Flag != 0
                     ) %>%
-                    arrange(desc(abs(.data$Score))) %>%
-                    mutate(
+                    dplyr::arrange(desc(abs(.data$Score))) %>%
+                    dplyr::mutate(
                         Flag = purrr::map(.data$Flag, gsm::kri_directionality_logo),
                         across(
                             where(is.numeric),
                             ~ round(.x, 3)
                         )
                     ) %>%
-                    select(
+                    dplyr::select(
                         any_of(c(
                             "Site" = "GroupID",
                             "Country" = "country",

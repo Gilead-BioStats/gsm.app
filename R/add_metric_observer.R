@@ -68,11 +68,5 @@ add_metric_observer <- function(snapshot, metric) {
 
             shinyjs::runjs(code)
         }
-
-        #updateTabsetPanel(
-        #    session,
-        #    'main_panel',
-        #    'Metric Details'
-        #)
     })
 }

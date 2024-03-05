@@ -19,23 +19,23 @@ study_overview_server <- function(id, snapshot) {
         kri_color_count <- reactive({
 
             snapshot$lSnapshot$rpt_site_kri_details %>%
-                filter(grepl('^kri', .data$workflowid)) %>%
-                transmute(Color = ifelse(abs(.data$flag_value)  == 2,"Red",
+                dplyr::filter(grepl('^kri', .data$workflowid)) %>%
+                dplyr::transmute(Color = ifelse(abs(.data$flag_value)  == 2,"Red",
                                          ifelse(abs(.data$flag_value)  ==1, "Amber", "Other"))) %>%
-                group_by(.data$Color) %>%
-                summarize(n = n())
+                dplyr::group_by(.data$Color) %>%
+                dplyr::summarize(n = n())
 
         })
 
         output$red_kri <- renderText({
 
-            paste0(kri_color_count() %>% filter(.data$Color == "Red") %>% select(n), " Red KRIs")
+            paste0(kri_color_count() %>% dplyr::filter(.data$Color == "Red") %>% dplyr::select(n), " Red KRIs")
 
         })
 
         output$amber_kri <- renderText({
 
-            paste0(kri_color_count() %>% filter(.data$Color == "Amber") %>% select(n), " Amber KRIs")
+            paste0(kri_color_count() %>% dplyr::filter(.data$Color == "Amber") %>% dplyr::select(n), " Amber KRIs")
 
         })
 

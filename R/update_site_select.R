@@ -27,7 +27,9 @@ update_site_select <- function(input, output, session, snapshot) {
             .data[[ snapshot$lInputs$lMapping$dfSITE$strSiteCol ]] %in% (
                 snapshot$lInputs$lData$dfSUBJ[[
                     snapshot$lInputs$lMapping$dfSUBJ$strSiteCol
-                ]] %>% unique() %>% sort()
+                ]] %>%
+                    unique() %>%
+                    sort()
             )
         ) %>%
         dplyr::arrange(
