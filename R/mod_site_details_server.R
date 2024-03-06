@@ -6,7 +6,7 @@
 #'
 #' @export
 
-site_details_server <- function(id, snapshot, site) {
+site_details_server <- function(id, snapshot, site, metric) {
     moduleServer(id, function(input, output, session) {
 
         ##
@@ -114,11 +114,23 @@ site_details_server <- function(id, snapshot, site) {
 
         })
 
-        output$participant_status_list <- renderUI({
+        output$metric_metadata_list <- renderText({
 
-            participant_status_nest_list(participant_list())
+            # snapshot$lInputs$lMeta$config_param %>%
+            #     filter(workflowid == metric()) %>%
+            #     .$param %>% as.vector(.)
+
+            snapshot$lInputs$lMeta$meta_workflow %>%
+                filter(workflowid == metric()) %>%
+                select(metric, numerator, denominator)
 
         })
+
+        # output$participant_status_list <- renderUI({
+        #
+        #     participant_status_nest_list(participant_list())
+        #
+        # })
 
 
         #### Site Participants Tab

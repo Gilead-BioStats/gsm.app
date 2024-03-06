@@ -40,6 +40,19 @@ site_details_ui <- function(id) {
                     )
                     )
                 ),
+                div(class = "col-12 col-sm-6 col-md-6 col-lg-3 col-xxl-3",
+                    div(id = ns("card_placeholder_metric_meta_data"),
+                        class = "card mb-3",
+                        style = "border-top: solid #0dcaf0",
+                        div(class = "card-body",
+                            h5(class = "card-title", "Site Metadata"),
+                            hr(),
+                            p(class = "card-text",
+                              uiOutput(ns("metric_metadata_list"))
+                            )
+                        )
+                    )
+                    ),
                 div(class = "col-12 col-sm-12 col-md-12 col-lg-8 col-xxl-6",
                     div(id = ns("card_placeholder_participants"),
                         class = "card mb-3",

@@ -45,7 +45,8 @@ server <- function(input, output, session, snapshot) {
     site_details_server(
         'site_details',
         snapshot,
-        reactive({input$site})
+        reactive({input$site}),
+        reactive({input$metric})
     )
 
     # Participant

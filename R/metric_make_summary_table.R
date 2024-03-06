@@ -21,6 +21,8 @@ make_summary_table <- function(lAssessment, dfSite = NULL) {
                     )
             }
 
+            print(dfSummary)
+
             if (nrow(dfSummary) > 0 &
                 any(c(-2, -1, 1, 2) %in% unique(dfSummary$Flag))) {
                 dfSummary %>%
