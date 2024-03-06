@@ -11,5 +11,11 @@ Run {gsm} Assessments in the {safetyGraphics} Framework.
 \author{
 \strong{Maintainer}: Spencer Childress \email{spencer.childress@gilead.com}
 
+Authors:
+\itemize{
+  \item Taylor Rodgers \email{Taylor.Rodgers@atorusresearch.com}
+  \item Matt Roumaya \email{Matt.Roumaya@atorusresearch.com}
+}
+
 }
 \keyword{internal}
