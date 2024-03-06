@@ -143,68 +143,28 @@ site_details_server <- function(id, snapshot, site, metric) {
         # ---- participant table
         output$participants <- DT::renderDT({
 
-            req(dfSUBJ())
-            req(dfAE())
-            req(dfPD())
+            participant_metrics <- snapshot$lStudyAssessResults[[metric()]]$lData$dfInput %>%
+                filter(SiteID == site())
 
-            data <- dfSUBJ()$data %>%
-                dplyr::select(
-                    'ID' = dfSUBJ()$mapping$strIDCol,
-                    'Days on Study' = dfSUBJ()$mapping$strTimeOnStudyCol,
-                    'Days on Treatment' = dfSUBJ()$mapping$strTimeOnTreatmentCol
-                )
+            table <- DT::datatable(
+                snapshot$lStudyAssessResults[[metric()]]$lData$dfInput %>%
+                    filter(SiteID == site()),
+                class = "compact",
+                options = list(
+                    lengthChange = FALSE,
+                    paging = FALSE,
+                    searching = FALSE,
+                    selection = 'none'
+                ),
+                rownames = FALSE
+            )
 
-            dfAEs <- dfAE()$data %>%
-                select("subjid", "aeser") %>%
-                group_by(.data$subjid) %>%
-                summarize(AEs = n(),
-                          SAEs = sum(.data$aeser == "Y"))
+            if ("Rate" %in% colnames(participant_metrics)) {
 
-            dfPDs <- dfPD()$data %>%
-                select("subjectenrollmentnumber", "deemedimportant") %>%
-                group_by(.data$subjectenrollmentnumber) %>%
-                summarize(PDs = n(),
-                          IPDs = sum(.data$deemedimportant == "Yes"))
+                table <- table %>%
+                    DT::formatRound("Rate", digits = 5)
 
-
-            data <- data %>%
-                left_join(dfAEs, c("ID" = "subjid")) %>%
-                left_join(dfPDs, c("ID" = "subjectenrollmentnumber")) %>%
-                arrange(.data$ID)
-
-            table <- data %>%
-                DT::datatable(
-                    callback = htmlwidgets::JS('
-                        table.on("click", "td:nth-child(1)", function(d) {
-                            const participant_id = d.currentTarget.innerText;
-
-                            console.log(
-                                `Selected participant ID: ${participant_id}`
-                            );
-
-                            const namespace = "gsmApp";
-
-                            Shiny.setInputValue(
-                                "participant",
-                                participant_id
-                            );
-                        })
-                    '),
-
-                    class = "compact",
-                    options = list(
-                        lengthChange = FALSE,
-                        paging = FALSE,
-                        searching = FALSE,
-                        selection = 'none',
-                        columnDefs = list(
-                            list(width = "80px", targets = c(1,2)),
-                            list(width = "15px", targets = c(0,3,4,5,6)),
-                            list(className = "dt-center", targets = c(0:6))
-                        )
-                    ),
-                    rownames = FALSE,
-                )
+            }
 
             return(table)
         })

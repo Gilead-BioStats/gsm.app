@@ -5,10 +5,6 @@
 
 site_details_metric_meta_data_list <- function(config_params = NULL, meta_workflow = NULL) {
 
-    print(config_params)
-    print(paste(config_params$value, collapse = ", "))
-
-
     return_tags <- tagList(
 
         tags$div(

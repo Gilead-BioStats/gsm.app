@@ -10,7 +10,12 @@ site_details_ui <- function(id) {
     ui <- tagList(
         shinyjs::useShinyjs(),
         div(class = "row",
-            div(class = "col-12 col-sm-6 col-md-6 col-lg-3 col-xxl-3",
+
+            div(class = "col-12 col-sm-12 col-md-12 col-lg-10 col-xxl-3",
+                div(class = "row",
+
+
+            div(class = "col-12 col-sm-6 col-md-6 col-lg-6 col-xxl-12",# "col-12 col-sm-6 col-md-6 col-lg-3 col-xxl-3",
                 div(id = ns("card_placeholder_metric_meta_data"),
                     class = "card mb-3",
                     style = "border-top: solid #0dcaf0",
@@ -23,7 +28,7 @@ site_details_ui <- function(id) {
                     )
                 )
             ),
-            div(class = "col-12 col-sm-6 col-md-6 col-lg-3 col-xxl-3",
+            div(class = "col-12 col-sm-6 col-md-6 col-lg-6 col-xxl-12",#"col-12 col-sm-6 col-md-6 col-lg-3 col-xxl-3",
                 div(id = ns("card_placeholder_site_metadata_list"),
                     class = "card mb-3",
                     style = "border-top: solid #0dcaf0",
@@ -53,9 +58,10 @@ site_details_ui <- function(id) {
                     )
                     )
                 )
+                )
             ),
-        div(class = "row",
-                div(class = "col-12 col-sm-12 col-md-12 col-lg-10 col-xxl-9",
+       # div(class = "row",
+                div(class = "col-12 col-sm-12 col-md-12 col-lg-12 col-xxl-9",
                     div(id = ns("card_placeholder_participants"),
                         class = "card mb-3",
                         style = "border-top: solid #0dcaf0",
