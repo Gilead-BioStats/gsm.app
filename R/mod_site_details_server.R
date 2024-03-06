@@ -43,7 +43,6 @@ site_details_server <- function(id, snapshot, site, metric) {
         }, ignoreInit = TRUE)
 
 
-
         # ---- screening disposition
         dfENROLL <- reactive({
             get_domain(
@@ -114,15 +113,17 @@ site_details_server <- function(id, snapshot, site, metric) {
 
         })
 
-        output$metric_metadata_list <- renderText({
+        output$metric_metadata_list <- renderUI({
 
-            # snapshot$lInputs$lMeta$config_param %>%
-            #     filter(workflowid == metric()) %>%
-            #     .$param %>% as.vector(.)
+            config_param <- snapshot$lInputs$lMeta$config_param %>%
+                filter(workflowid == metric(),
+                       param == "vThreshold")
 
-            snapshot$lInputs$lMeta$meta_workflow %>%
+            meta_workflow <- snapshot$lInputs$lMeta$meta_workflow %>%
                 filter(workflowid == metric()) %>%
                 select(metric, numerator, denominator)
+
+            site_details_metric_meta_data_list(config_param, meta_workflow)
 
         })
 
