@@ -142,22 +142,22 @@ site_details_server <- function(id, snapshot, site) {
                 )
 
             dfAEs <- dfAE()$data %>%
-                select("subjid", "aeser") %>%
-                group_by(.data$subjid) %>%
-                summarize(AEs = n(),
+                dplyr::select("subjid", "aeser") %>%
+                dplyr::group_by(.data$subjid) %>%
+                dplyr::summarize(AEs = n(),
                           SAEs = sum(.data$aeser == "Y"))
 
             dfPDs <- dfPD()$data %>%
-                select("subjectenrollmentnumber", "deemedimportant") %>%
-                group_by(.data$subjectenrollmentnumber) %>%
-                summarize(PDs = n(),
+                dplyr::select("subjectenrollmentnumber", "deemedimportant") %>%
+                dplyr::group_by(.data$subjectenrollmentnumber) %>%
+                dplyr::summarize(PDs = n(),
                           IPDs = sum(.data$deemedimportant == "Yes"))
 
 
             data <- data %>%
-                left_join(dfAEs, c("ID" = "subjid")) %>%
-                left_join(dfPDs, c("ID" = "subjectenrollmentnumber")) %>%
-                arrange(.data$ID)
+                dplyr::left_join(dfAEs, c("ID" = "subjid")) %>%
+                dplyr::left_join(dfPDs, c("ID" = "subjectenrollmentnumber")) %>%
+                dplyr::arrange(.data$ID)
 
             table <- data %>%
                 DT::datatable(
