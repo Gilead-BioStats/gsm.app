@@ -7,6 +7,18 @@ Authors@R:
         "Childress",
         email = "spencer.childress@gilead.com",
         role = c("aut", "cre")
+    ),
+    person(
+        "Taylor",
+        "Rodgers",
+        email = "Taylor.Rodgers@atorusresearch.com",
+        role = c("aut")
+    ),
+    person(
+       "Matt",
+       "Roumaya",
+       email = "Matt.Roumaya@atorusresearch.com",
+       role = c("aut")
     )
 Description: Run {gsm} Assessments in the {safetyGraphics} Framework.
 Depends: 
