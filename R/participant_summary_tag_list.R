@@ -7,7 +7,7 @@
 
 participant_summary_tag_list <- function(participant_data = NULL) {
 
-    labels <- c("SubjID", "SiteID", participant_data$Characteristic[!participant_data$Characteristic %in% c("SiteID", "SubjID")])
+    labels <- participant_data$Characteristic
 
     tag_return <- labels |>
         map(function(x) tags$div(

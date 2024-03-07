@@ -140,12 +140,19 @@ participant_details_server <- function(id, snapshot, participant) {
                 participant()
             )
 
-            mapping <- domain$mapping |>
-                as.data.frame() |>
-                pivot_longer(everything())
 
-            domain <- domain$data |>
-                select(any_of(mapping$value))
+            if (input$show_hide_columns == "Hide") {
+
+                mapping <- domain$mapping |>
+                    as.data.frame() |>
+                    pivot_longer(everything())
+
+                domain <- domain$data |>
+                    select(any_of(mapping$value))
+
+            } else {
+                domain <- domain$data
+            }
 
             domain |>
                 DT::datatable(class = "compact",

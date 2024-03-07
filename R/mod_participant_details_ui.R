@@ -96,6 +96,11 @@ participant_details_ui <- function(id) {
                         style = "border-top: solid #0dcaf0;",
                         div(class = "card-body",
                             h5(class = "card-title", "Participant Domain"),
+                            radioButtons(ns("show_hide_columns"),
+                                         label = "Show all columns?",
+                                         choices = c("Hide", "Show"),
+                                         selected = "Hide",
+                                         inline = TRUE),
                             DT::DTOutput(ns('domain_data_table'))
                                 )
                             )
