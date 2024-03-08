@@ -3,6 +3,7 @@
 #' @param id The namespace id
 #' @param snapshot The snapshot `list` object passed from `run_app()`
 #' @param site The reactive value provided by the site input from `server`
+#' @param metric The selected metric.
 #'
 #' @export
 
@@ -116,12 +117,12 @@ site_details_server <- function(id, snapshot, site, metric) {
         output$metric_metadata_list <- renderUI({
 
             config_param <- snapshot$lInputs$lMeta$config_param %>%
-                filter(workflowid == metric(),
-                       param == "vThreshold")
+                filter(.data$workflowid == metric(),
+                       .data$param == "vThreshold")
 
             meta_workflow <- snapshot$lInputs$lMeta$meta_workflow %>%
-                filter(workflowid == metric()) %>%
-                select(metric, numerator, denominator)
+                filter(.data$workflowid == metric()) %>%
+                select("metric", "numerator", "denominator")
 
             site_details_metric_meta_data_list(config_param, meta_workflow)
 
@@ -144,7 +145,7 @@ site_details_server <- function(id, snapshot, site, metric) {
         output$participants <- DT::renderDT({
 
             participant_metrics <- snapshot$lStudyAssessResults[[metric()]]$lData$dfInput %>%
-                filter(SiteID == site())
+                filter(.data$SiteID == site())
 
             table <- DT::datatable(
                 snapshot$lStudyAssessResults[[metric()]]$lData$dfInput %>%
