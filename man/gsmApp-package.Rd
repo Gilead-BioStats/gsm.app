@@ -8,6 +8,13 @@
 \description{
 Run {gsm} Assessments in the {safetyGraphics} Framework.
 }
+\seealso{
+Useful links:
+\itemize{
+  \item \url{https://automatic-adventure-63wkll6.pages.github.io/}
+}
+
+}
 \author{
 \strong{Maintainer}: Spencer Childress \email{spencer.childress@gilead.com}
 

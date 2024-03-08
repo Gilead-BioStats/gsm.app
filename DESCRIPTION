@@ -22,7 +22,7 @@ Authors@R:
        role = c("aut")
     )
     )
-Description: Run {gsm} Assessments in the {safetyGraphics} Framework.
+Description: Explore the results of {gsm} assessments.
 Depends: 
     R (>= 2.10)
 Imports:
