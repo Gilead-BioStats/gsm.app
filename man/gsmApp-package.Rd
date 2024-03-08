@@ -6,7 +6,7 @@
 \alias{gsmApp-package}
 \title{gsmApp: {gsm} Shiny Application}
 \description{
-Run {gsm} Assessments in the {safetyGraphics} Framework.
+Explore the results of {gsm} assessments.
 }
 \seealso{
 Useful links:
