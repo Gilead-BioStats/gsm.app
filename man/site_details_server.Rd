@@ -4,7 +4,7 @@
 \alias{site_details_server}
 \title{Site Details Server}
 \usage{
-site_details_server(id, snapshot, site)
+site_details_server(id, snapshot, site, metric)
 }
 \arguments{
 \item{id}{The namespace id}
@@ -12,6 +12,8 @@ site_details_server(id, snapshot, site)
 \item{snapshot}{The snapshot \code{list} object passed from \code{run_app()}}
 
 \item{site}{The reactive value provided by the site input from \code{server}}
+
+\item{metric}{The selected metric.}
 }
 \description{
 Site Details Server

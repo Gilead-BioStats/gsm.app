@@ -97,7 +97,7 @@ participant_details_server <- function(id, snapshot, participant) {
             shinyjs::hide("card_placeholder_participant_domain_data")
             shinyjs::hide("card_placeholder_participant_domain_data_no_metric")
             shinyjs::show("card_participant_domain_data")
-            })
+        })
         observeEvent(input$`dfPD`,{
             domain_filter("dfPD")
             shinyjs::hide("card_placeholder_participant_domain_data")
@@ -156,16 +156,13 @@ participant_details_server <- function(id, snapshot, participant) {
 
             domain |>
                 DT::datatable(class = "compact",
-                  options = list(
-                      paging = FALSE,
-                      searching = FALSE,
-                      selection = 'none',
-                      scrollX = TRUE#,
-                      # columnDefs = list(
-                      #     list(className = "dt-center", targets = c(0:6))
-                      # )
-                  ),
-                  rownames = FALSE,
+                              options = list(
+                                  paging = FALSE,
+                                  searching = FALSE,
+                                  selection = 'none',
+                                  scrollX = TRUE
+                              ),
+                              rownames = FALSE,
                 )
         })
     })

@@ -32,8 +32,8 @@ participant_details_ui <- function(id) {
                             h5(class = "card-title", "Participant Metadata"),
                             hr(),
                             uiOutput(ns('participant_summary'))))
-                    )
-                ),
+                )
+            ),
             div(class = "col-12 col-sm-8 col-md-6 col-lg-5 col-xl-3 col-xxl-3",
                 div(id = ns("card_placeholder_participant_metric_summary_data"),
                     class = "card mb-3",
@@ -102,12 +102,12 @@ participant_details_ui <- function(id) {
                                          selected = "Hide",
                                          inline = TRUE),
                             DT::DTOutput(ns('domain_data_table'))
-                                )
-                            )
                         )
+                    )
+                )
             )
-            )
-         )
+        )
+    )
 
     return(ui)
 }
