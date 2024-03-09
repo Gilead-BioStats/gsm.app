@@ -15,4 +15,4 @@ library(gsmApp)
 gsmApp::run_app()
 ```
 
-![](https://github.com/Gilead-BioStats/gsmApp/blob/fix-91/inst/resources/gsmApp.gif)
+![](https://github.com/Gilead-BioStats/gsmApp/blob/7c279f7b84f7d7fd34018766ff2e3d4aee99db25/inst/resources/gsmApp.gif)
