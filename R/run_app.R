@@ -6,9 +6,9 @@
 
 run_app <- function(snapshot = gsmApp::snapshot) {
   shinyApp(
-    ui = ui(),
+    ui = gsmApp::ui(),
     server = function(input, output, session) {
-      server(input, output, session, snapshot)
+      gsmApp::server(input, output, session, snapshot)
     }
   )
 }
