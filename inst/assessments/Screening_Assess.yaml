@@ -1,0 +1,31 @@
+strGroup:
+  type: character
+  label: Group
+  default: 'Site'
+  options:
+    - Site
+    - Country
+vThreshold:
+  type: numeric
+  label: Threshold
+  default:
+    - -3
+    - -2
+    - 2
+    - 3
+  min: -.inf
+  max: .inf
+strMethod:
+  type: character
+  label: Method
+  default: NormalApprox
+  options:
+    - NormalApprox
+    - Fisher
+    - Identity
+nMinDenominator:
+  type: numeric
+  label: Minimum Denominator
+  default: 3
+  min: 0
+  max: .inf
