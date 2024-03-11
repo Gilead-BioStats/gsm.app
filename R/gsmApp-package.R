@@ -3,6 +3,7 @@
 
 ## usethis namespace: start
 #' @import bslib
+#' @import gsm
 #' @import htmltools
 #' @import shiny
 #' @importFrom bslib bs_theme

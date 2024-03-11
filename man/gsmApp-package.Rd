@@ -6,7 +6,14 @@
 \alias{gsmApp-package}
 \title{gsmApp: {gsm} Shiny Application}
 \description{
-Run {gsm} Assessments in the {safetyGraphics} Framework.
+Explore the results of {gsm} assessments.
+}
+\seealso{
+Useful links:
+\itemize{
+  \item \url{https://automatic-adventure-63wkll6.pages.github.io/}
+}
+
 }
 \author{
 \strong{Maintainer}: Spencer Childress \email{spencer.childress@gilead.com}
