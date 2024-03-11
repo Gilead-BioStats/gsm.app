@@ -4,9 +4,14 @@
 #'
 #' @export
 
-run_app <- function(snapshot = gsmApp::snapshot) {
+run_app <- function(snapshot = NULL) {
+
+    if (is.null(snapshot)) {
+        snapshot <- gsmApp::read_snapshot()
+    }
+
   shinyApp(
-    ui = gsmApp::ui(),
+    ui = ui(),
     server = function(input, output, session) {
       gsmApp::server(input, output, session, snapshot)
     }

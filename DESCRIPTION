@@ -35,6 +35,7 @@ Imports:
     htmltools,
     htmlwidgets,
     magrittr,
+    parallel,
     purrr,
     rlang,
     shiny,
