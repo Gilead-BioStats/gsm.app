@@ -32,8 +32,8 @@ participant_details_ui <- function(id) {
                             h5(class = "card-title", "Participant Metadata"),
                             hr(),
                             uiOutput(ns('participant_summary'))))
-                    )
-                ),
+                )
+            ),
             div(class = "col-12 col-sm-8 col-md-6 col-lg-5 col-xl-3 col-xxl-3",
                 div(id = ns("card_placeholder_participant_metric_summary_data"),
                     class = "card mb-3",
@@ -96,13 +96,18 @@ participant_details_ui <- function(id) {
                         style = "border-top: solid #0dcaf0;",
                         div(class = "card-body",
                             h5(class = "card-title", "Participant Domain"),
+                            radioButtons(ns("show_hide_columns"),
+                                         label = "Show all columns?",
+                                         choices = c("Hide", "Show"),
+                                         selected = "Hide",
+                                         inline = TRUE),
                             DT::DTOutput(ns('domain_data_table'))
-                                )
-                            )
                         )
+                    )
+                )
             )
-            )
-         )
+        )
+    )
 
     return(ui)
 }

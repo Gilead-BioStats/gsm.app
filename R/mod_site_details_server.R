@@ -3,10 +3,11 @@
 #' @param id The namespace id
 #' @param snapshot The snapshot `list` object passed from `run_app()`
 #' @param site The reactive value provided by the site input from `server`
+#' @param metric The selected metric.
 #'
 #' @export
 
-site_details_server <- function(id, snapshot, site) {
+site_details_server <- function(id, snapshot, site, metric) {
     moduleServer(id, function(input, output, session) {
 
         ##
@@ -41,7 +42,6 @@ site_details_server <- function(id, snapshot, site) {
 
 
         }, ignoreInit = TRUE)
-
 
 
         # ---- screening disposition
@@ -114,11 +114,25 @@ site_details_server <- function(id, snapshot, site) {
 
         })
 
-        output$participant_status_list <- renderUI({
+        output$metric_metadata_list <- renderUI({
 
-            participant_status_nest_list(participant_list())
+            config_param <- snapshot$lInputs$lMeta$config_param %>%
+                filter(.data$workflowid == metric(),
+                       .data$param == "vThreshold")
+
+            meta_workflow <- snapshot$lInputs$lMeta$meta_workflow %>%
+                filter(.data$workflowid == metric()) %>%
+                select("metric", "numerator", "denominator")
+
+            site_details_metric_meta_data_list(config_param, meta_workflow)
 
         })
+
+        # output$participant_status_list <- renderUI({
+        #
+        #     participant_status_nest_list(participant_list())
+        #
+        # })
 
 
         #### Site Participants Tab
@@ -130,68 +144,28 @@ site_details_server <- function(id, snapshot, site) {
         # ---- participant table
         output$participants <- DT::renderDT({
 
-            req(dfSUBJ())
-            req(dfAE())
-            req(dfPD())
+            participant_metrics <- snapshot$lStudyAssessResults[[metric()]]$lData$dfInput %>%
+                filter(.data$SiteID == site())
 
-            data <- dfSUBJ()$data %>%
-                dplyr::select(
-                    'ID' = dfSUBJ()$mapping$strIDCol,
-                    'Days on Study' = dfSUBJ()$mapping$strTimeOnStudyCol,
-                    'Days on Treatment' = dfSUBJ()$mapping$strTimeOnTreatmentCol
-                )
+            table <- DT::datatable(
+                snapshot$lStudyAssessResults[[metric()]]$lData$dfInput %>%
+                    filter(SiteID == site()),
+                class = "compact",
+                options = list(
+                    lengthChange = FALSE,
+                    paging = FALSE,
+                    searching = FALSE,
+                    selection = 'none'
+                ),
+                rownames = FALSE
+            )
 
-            dfAEs <- dfAE()$data %>%
-                dplyr::select("subjid", "aeser") %>%
-                group_by(.data$subjid) %>%
-                summarize(AEs = n(),
-                          SAEs = sum(.data$aeser == "Y"))
+            if ("Rate" %in% colnames(participant_metrics)) {
 
-            dfPDs <- dfPD()$data %>%
-                dplyr::select("subjectenrollmentnumber", "deemedimportant") %>%
-                group_by(.data$subjectenrollmentnumber) %>%
-                summarize(PDs = n(),
-                          IPDs = sum(.data$deemedimportant == "Yes"))
+                table <- table %>%
+                    DT::formatRound("Rate", digits = 5)
 
-
-            data <- data %>%
-                left_join(dfAEs, c("ID" = "subjid")) %>%
-                left_join(dfPDs, c("ID" = "subjectenrollmentnumber")) %>%
-                dplyr::arrange(.data$ID)
-
-            table <- data %>%
-                DT::datatable(
-                    callback = htmlwidgets::JS('
-                        table.on("click", "td:nth-child(1)", function(d) {
-                            const participant_id = d.currentTarget.innerText;
-
-                            console.log(
-                                `Selected participant ID: ${participant_id}`
-                            );
-
-                            const namespace = "gsmApp";
-
-                            Shiny.setInputValue(
-                                "participant",
-                                participant_id
-                            );
-                        })
-                    '),
-
-                    class = "compact",
-                    options = list(
-                        lengthChange = FALSE,
-                        paging = FALSE,
-                        searching = FALSE,
-                        selection = 'none',
-                        columnDefs = list(
-                            list(width = "80px", targets = c(1,2)),
-                            list(width = "15px", targets = c(0,3,4,5,6)),
-                            list(className = "dt-center", targets = c(0:6))
-                        )
-                    ),
-                    rownames = FALSE,
-                )
+            }
 
             return(table)
         })
@@ -212,10 +186,10 @@ site_details_server <- function(id, snapshot, site) {
 
         output$site_metadata_list <- renderUI({
 
-            enrolled_subjects <- dfSUBJ()$data %>% filter(.data$enrollyn == "Y") %>% dplyr::select("subjid")
+            enrolled_subjects <- dfSUBJ()$data %>% filter(.data$enrollyn == "Y") %>% select("subjid")
             enrolled_subjects <- enrolled_subjects$subjid
 
-            site_details_meta_data_list(site_metadata(), enrolled_subjects = enrolled_subjects)
+            site_details_meta_data_list(site_metadata(), enrolled_subjects = enrolled_subjects, participant_list = participant_list())
 
         })
 

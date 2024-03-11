@@ -4,7 +4,11 @@
 \alias{site_details_meta_data_list}
 \title{Creates taglist to summarize participants at a particular site}
 \usage{
-site_details_meta_data_list(meta_data = NULL, enrolled_subjects = NULL)
+site_details_meta_data_list(
+  meta_data = NULL,
+  enrolled_subjects = NULL,
+  participant_list = NULL
+)
 }
 \arguments{
 \item{combinedData}{\code{data.frame} A combined data set with the required metrics.}

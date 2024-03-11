@@ -59,20 +59,20 @@ participant_details_server <- function(id, snapshot, participant) {
 
             req(dfSUBJ())
 
-            mapping_column <- utils::read.csv(system.file('rbmLibrary', 'mapping_column.csv', package = 'gsmApp')) %>%
+            mapping_column <- read.csv(system.file('rbmLibrary', 'mapping_column.csv', package = 'gsmApp')) %>%
                 filter(
                     .data$gsm_domain_key == 'dfSUBJ'
                 )
 
             data <- dfSUBJ()$data %>%
-                dplyr::select(any_of(as.character(dfSUBJ()$mapping))) %>%
+                select(any_of(as.character(dfSUBJ()$mapping))) %>%
                 mutate(across(everything(), as.character)) %>%
                 pivot_longer(everything()) %>%
                 left_join(mapping_column, by = c("name" = "default")) %>%
                 mutate(
                     Characteristic = ifelse(!is.na(.data$description), .data$description, .data$name)
                 ) %>%
-                dplyr::select(
+                select(
                     "Characteristic",
                     "Value" = "value"
                 )
@@ -97,7 +97,7 @@ participant_details_server <- function(id, snapshot, participant) {
             shinyjs::hide("card_placeholder_participant_domain_data")
             shinyjs::hide("card_placeholder_participant_domain_data_no_metric")
             shinyjs::show("card_participant_domain_data")
-            })
+        })
         observeEvent(input$`dfPD`,{
             domain_filter("dfPD")
             shinyjs::hide("card_placeholder_participant_domain_data")
@@ -140,22 +140,29 @@ participant_details_server <- function(id, snapshot, participant) {
                 participant()
             )
 
-            mapping <- domain$mapping |>
-                as.data.frame() |>
-                tidyr::pivot_longer(everything())
 
-            domain <- domain$data |>
-                dplyr::select(any_of(mapping$value))
+            if (input$show_hide_columns == "Hide") {
+
+                mapping <- domain$mapping |>
+                    as.data.frame() |>
+                    pivot_longer(everything())
+
+                domain <- domain$data |>
+                    select(any_of(mapping$value))
+
+            } else {
+                domain <- domain$data
+            }
 
             domain |>
                 DT::datatable(class = "compact",
-                  options = list(
-                      paging = FALSE,
-                      searching = FALSE,
-                      selection = 'none',
-                      scrollX = TRUE
-                  ),
-                  rownames = FALSE,
+                              options = list(
+                                  paging = FALSE,
+                                  searching = FALSE,
+                                  selection = 'none',
+                                  scrollX = TRUE
+                              ),
+                              rownames = FALSE,
                 )
         })
     })

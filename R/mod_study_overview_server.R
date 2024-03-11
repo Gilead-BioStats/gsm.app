@@ -7,7 +7,6 @@
 
 study_overview_server <- function(id, snapshot) {
     shiny::moduleServer(id, function(input, output, session) {
-
         output$site_overview_table <- DT::renderDataTable({
             gsm::Overview_Table(
                 snapshot$lStudyAssessResults
@@ -17,30 +16,21 @@ study_overview_server <- function(id, snapshot) {
         ## KRI Color KPIs
 
         kri_color_count <- reactive({
-
             snapshot$lSnapshot$rpt_site_kri_details %>%
-                filter(grepl('^kri', .data$workflowid)) %>%
-                transmute(Color = ifelse(abs(.data$flag_value)  == 2,"Red",
-                                         ifelse(abs(.data$flag_value)  ==1, "Amber", "Other"))) %>%
-                group_by(.data$Color) %>%
-                summarize(n = n())
-
+                dplyr::filter(grepl("^kri", .data$workflowid)) %>%
+                dplyr::transmute(Color = ifelse(abs(.data$flag_value) == 2, "Red",
+                                                ifelse(abs(.data$flag_value) == 1, "Amber", "Other")
+                )) %>%
+                dplyr::group_by(.data$Color) %>%
+                dplyr::summarize(n = n())
         })
 
         output$red_kri <- renderText({
-
-            paste0(kri_color_count() %>% filter(.data$Color == "Red") %>% dplyr::select(n), " Red KRIs")
-
+            paste0(kri_color_count() %>% dplyr::filter(.data$Color == "Red") %>% dplyr::select(n), " Red KRIs")
         })
 
         output$amber_kri <- renderText({
-
-            paste0(kri_color_count() %>% filter(.data$Color == "Amber") %>% dplyr::select(n), " Amber KRIs")
-
+            paste0(kri_color_count() %>% dplyr::filter(.data$Color == "Amber") %>% dplyr::select(n), " Amber KRIs")
         })
-
-
     })
 }
-
-
