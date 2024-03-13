@@ -67,8 +67,6 @@ ui <- function() {
                         title = "Participant Details",
                         participant_details_ui("participant_details")
                     ),
-                    bslib::nav_panel(title = "scatter",
-                                     modScatterUI("scatter")),
                     id = "primary_nav_bar",
                     title = "GSM Deep Dive App",
                     padding = c("0rem", "0rem", "0rem", "0rem"),
