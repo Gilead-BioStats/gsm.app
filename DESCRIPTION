@@ -36,6 +36,7 @@ Imports:
     htmlwidgets,
     magrittr,
     parallel,
+    pkgload,
     purrr,
     rlang,
     shiny,
