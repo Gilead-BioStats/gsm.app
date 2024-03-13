@@ -9,6 +9,9 @@
 
 metric_details_server <- function(id, snapshot, metric, site) {
     shiny::moduleServer(id, function(input, output, session) {
+
+        browser()
+
         output$scatter_plot <- gsm::renderWidget_ScatterPlot({
             shiny::req(metric())
             snapshot$lCharts[[metric()]]$scatterJS$x$selectedGroupIDs <- site()
