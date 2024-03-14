@@ -36,7 +36,6 @@ Imports:
     htmltools,
     htmlwidgets,
     magrittr,
-    parallel,
     pkgload,
     purrr,
     qs,
