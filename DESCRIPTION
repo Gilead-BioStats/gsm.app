@@ -12,7 +12,7 @@ Authors@R:
     person(
         "Taylor",
         "Rodgers",
-        email = "Taylor.Rodgers@atorusresearch.com",
+        email = "Taylor.Rodgers@freestateanalytics.com",
         role = c("aut")
     ),
     person(
