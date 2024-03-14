@@ -31,6 +31,7 @@
 #' @importFrom parallel parLapply
 #' @importFrom parallel stopCluster
 #' @importFrom purrr map
+#' @importFrom qs qread
 #' @importFrom rlang .data
 #' @importFrom shinyjs hidden
 #' @importFrom shinyjs hide

@@ -27,12 +27,12 @@ assessment_with_date <- list(
     lSnapshot = snap_two$lSnapshot
     )
 
-saveRDS(assessment_with_date, here::here("data", "snapshot_lSnapshot.rda"))
+qs::qsave(assessment_with_date, here::here("data", "snapshot_lSnapshot.qs"))
 
 purrr::iwalk(snap_two, function(data, nm) {
 
     if (!nm %in% c("lSnapshotDate", "lSnapshot")) {
-        saveRDS(data, file = here::here("data", paste0("snapshot_", nm, ".rda")))
+        qs::qsave(data, file = here::here("data", paste0("snapshot_", nm, ".qs")))
     }
 
 })

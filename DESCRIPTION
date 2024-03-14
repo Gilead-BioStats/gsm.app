@@ -28,6 +28,7 @@ Depends:
 Imports:
     bslib,
     cli,
+    clindata,
     dplyr,
     DT,
     glue,
@@ -38,6 +39,7 @@ Imports:
     parallel,
     pkgload,
     purrr,
+    qs,
     rlang,
     shiny,
     shinyjs,
