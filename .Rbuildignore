@@ -6,3 +6,6 @@ _\.new\.png$
 ^docs$
 ^pkgdown$
 ^\.github$
+^app.R$
+^rsconnect$
+^data-raw$
