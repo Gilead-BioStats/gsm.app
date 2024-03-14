@@ -8,7 +8,7 @@
 #' }
 #' @export
 read_snapshot <- function() {
-    scattered_snapshots <- list.files(system.file("data", package = "gsmApp"), full.names = TRUE)
+    scattered_snapshots <- list.files(system.file("sampledata", package = "gsmApp"), full.names = TRUE)
 
     all <- purrr::map(scattered_snapshots, function(x){
         qs::qread(x)
