@@ -50,7 +50,15 @@ server <- function(input, output, session, snapshot) {
     )
 
     # Participant
-    update_participant_select(input, output, session, snapshot)
+
+    update_participant_select(input, output, session, snapshot, "None")
+
+    observeEvent(input$site, {
+        updateSelectizeInput(session, "participant", selected = "None")
+        update_participant_select(input, output, session, snapshot, input$site)
+
+    }, ignoreInit = TRUE)
+
     participant_details_server(
         'participant_details',
         snapshot,
