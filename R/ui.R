@@ -1,5 +1,9 @@
-#' Define UI
-#' @export
+#' Shiny UI function
+#'
+#' This function defines the user interface for your Shiny web application.
+#' It specifies the layout of the web page and the interface elements it contains.
+#'
+#' @return A Shiny UI object
 
 ui <- function() {
     fluidPage(
@@ -20,7 +24,7 @@ ui <- function() {
                 class = "col-12 col-sm-12 col-md-4 col-lg-3 col-xxl-2 border-end",
                 div(
                     class = "card mb-3",
-                    style = "max-width: 40rem; min-width: 17rem; border-top: solid #0dcaf0;",
+                    style = "border-top: solid #0dcaf0;",
                     div(
                         class = "card-body",
                         div(
