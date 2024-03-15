@@ -27,6 +27,7 @@
 #' @importFrom DT renderDT
 #' @importFrom htmlwidgets JS
 #' @importFrom purrr map
+#' @importFrom qs qread
 #' @importFrom rlang .data
 #' @importFrom shinyjs hidden
 #' @importFrom shinyjs hide

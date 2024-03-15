@@ -50,7 +50,15 @@ server <- function(input, output, session, snapshot) {
     )
 
     # Participant
-    update_participant_select(input, output, session, snapshot)
+
+    update_participant_select(input, output, session, snapshot, "None")
+
+    observeEvent(input$site, {
+        updateSelectizeInput(session, "participant", selected = "None")
+        update_participant_select(input, output, session, snapshot, input$site)
+
+    }, ignoreInit = TRUE)
+
     participant_details_server(
         'participant_details',
         snapshot,
@@ -65,5 +73,13 @@ server <- function(input, output, session, snapshot) {
             nav_select("primary_nav_bar", "Participant Details")
         }
     }, ignoreInit = TRUE)
+
+    observeEvent(input$reset, {
+
+        update_metric_select(input, output, session, snapshot)
+        updateSelectInput(session, "site", selected = "None")
+        updateSelectizeInput(session, "participant", selected = "None")
+
+    })
 
 }

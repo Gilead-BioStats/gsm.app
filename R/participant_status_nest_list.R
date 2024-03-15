@@ -42,9 +42,6 @@ participant_status_nest_list <- function(participant_list = NULL) {
 
     participant_tag_list <- tagList(
 
-        #   div(class = "rounded-2 px-1",
-
-
         div(class = "row px-2",
             style = "font-weight: 500;",
             div(style = "display: flex; justify-content: space-between;",
@@ -111,38 +108,9 @@ participant_status_nest_list <- function(participant_list = NULL) {
                     discontinued_tags
                 )                ),
     )
-    # )
+
 
     return(participant_tag_list)
 
-
-
-    #
-    #
-    #     # participant_tagList <- colnames(meta) |>
-    #     #     map(function(x) tags$div(
-    #     #         class = "col-12",
-    #     #         tags$div(style = "display: flex; justify-content: space-between;",
-    #     #                  tags$div(class = "card-text",
-    #     #                           style = "text-align: left; white-space: nowrap;", x),
-    #     #                  tags$div(class = "text-secondary", style = "border-bottom: 1px dotted; width: 95%; margin-bottom: .4em; margin-right: .4em; margin-left: .4em;"),
-    #     #                  tags$div(class = "card-text", style = "text-align: right; white-space: nowrap;", meta[x]))
-    #     #     )) |>
-    #     #     tags$div(
-    #     #         class = "row"
-    #     #     ) |>
-    #     #     tagList()
-    #
-    #     participant_tagList |> combinedData$Variable |>
-    #         map(function(x) tags$div(
-    #             class = "col-12",
-    #             tags$div(style = "display: flex; justify-content: space-between;",
-    #                      tags$div(class = "card-text",
-    #                               style = "text-align: left; white-space: nowrap;", ))
-    #
-    #         ))
-    #
-    #
-    #     return(participant_tagList)
 
 }

@@ -149,7 +149,7 @@ site_details_server <- function(id, snapshot, site, metric) {
 
             table <- DT::datatable(
                 snapshot$lStudyAssessResults[[metric()]]$lData$dfInput %>%
-                    filter(SiteID == site()),
+                    filter(.data$SiteID == site()),
                 class = "compact",
                 options = list(
                     lengthChange = FALSE,
@@ -157,7 +157,20 @@ site_details_server <- function(id, snapshot, site, metric) {
                     searching = FALSE,
                     selection = 'none'
                 ),
-                rownames = FALSE
+                rownames = FALSE,
+                callback = htmlwidgets::JS('
+                    table.on("click", "td:nth-child(1)", function(d) {
+                        const participant_id = d.currentTarget.innerText;
+                        console.log(
+                            `Selected participant ID: ${participant_id}`
+                        );
+                        const namespace = "gsmApp";
+                        Shiny.setInputValue(
+                            "participant",
+                            participant_id
+                        );
+                    })
+                ')
             )
 
             if ("Rate" %in% colnames(participant_metrics)) {
