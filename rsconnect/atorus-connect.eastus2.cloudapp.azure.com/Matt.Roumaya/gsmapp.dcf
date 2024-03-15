@@ -1,0 +1,11 @@
+name: gsmapp
+title:
+username: Matt.Roumaya
+account: Matt.Roumaya
+server: atorus-connect.eastus2.cloudapp.azure.com
+hostUrl: https://atorus-connect.eastus2.cloudapp.azure.com/__api__
+appId: 379
+bundleId: 2024
+url: https://atorus-connect.eastus2.cloudapp.azure.com:443/content/0095db05-4a00-4473-989d-e75ebea82e53/
+when: 1710363231.81885
+lastSyncTime: 1710363231.81886

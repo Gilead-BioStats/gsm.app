@@ -65,6 +65,9 @@ server <- function(input, output, session, snapshot) {
         shiny::reactive(input$participant)
     )
 
+    # scatter
+    modScatterServer("scatter", snapshot, reactive({input$site}))
+
     observeEvent(input$participant, {
         if (input$participant != "None" & input$participant != "") {
             nav_select("primary_nav_bar", "Participant Details")
