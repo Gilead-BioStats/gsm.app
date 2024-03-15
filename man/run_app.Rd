@@ -4,7 +4,7 @@
 \alias{run_app}
 \title{Run App}
 \usage{
-run_app(snapshot = gsmApp::snapshot)
+run_app(snapshot = NULL)
 }
 \arguments{
 \item{snapshot}{A \code{list} object containing the data for a snapshot. It funnels into every function of the application.}

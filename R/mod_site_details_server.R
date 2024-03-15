@@ -149,7 +149,7 @@ site_details_server <- function(id, snapshot, site, metric) {
 
             table <- DT::datatable(
                 snapshot$lStudyAssessResults[[metric()]]$lData$dfInput %>%
-                    filter(SiteID == site()),
+                    filter(.data$SiteID == site()),
                 class = "compact",
                 options = list(
                     lengthChange = FALSE,
