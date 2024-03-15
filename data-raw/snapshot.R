@@ -27,12 +27,12 @@ assessment_with_date <- list(
     lSnapshot = snap_two$lSnapshot
     )
 
-qs::qsave(assessment_with_date, here::here("data", "snapshot_lSnapshot.qs"))
+qs::qsave(assessment_with_date, here::here("inst", "sampledata", "snapshot_lSnapshot.qs"))
 
 purrr::iwalk(snap_two, function(data, nm) {
 
     if (!nm %in% c("lSnapshotDate", "lSnapshot")) {
-        qs::qsave(data, file = here::here("data", paste0("snapshot_", nm, ".qs")))
+        qs::qsave(data, file = here::here("inst", "sampledata", paste0("snapshot_", nm, ".qs")))
     }
 
 })
