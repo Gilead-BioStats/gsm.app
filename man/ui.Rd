@@ -2,10 +2,14 @@
 % Please edit documentation in R/ui.R
 \name{ui}
 \alias{ui}
-\title{Define UI}
+\title{Shiny UI function}
 \usage{
 ui()
 }
+\value{
+A Shiny UI object
+}
 \description{
-Define UI
+This function defines the user interface for your Shiny web application.
+It specifies the layout of the web page and the interface elements it contains.
 }
