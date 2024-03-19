@@ -33,6 +33,7 @@ Imports:
     DT,
     glue,
     gsm,
+    here,
     htmltools,
     htmlwidgets,
     magrittr,
@@ -43,7 +44,8 @@ Imports:
     shiny,
     shinyjs,
     stringr,
-    tidyr
+    tidyr,
+    usethis
 Suggests: 
     shinytest2,
     testthat (>= 3.0.0)

@@ -4,6 +4,7 @@
 #' @param output Shiny outputs
 #' @param session Shiny session
 #' @param snapshot The snapshot `list` object passed from `run_app()`
+#' @param site The user-selected site.
 #'
 #' @export
 
@@ -27,7 +28,7 @@ update_participant_select <- function(input, output, session, snapshot, site) {
 
       participant_metadata <- participant_metadata %>%
           dplyr::filter(
-              siteid == site
+              .data$siteid == site
           ) %>%
           dplyr::filter(
               .data[[snapshot$lInputs$lMapping$dfSUBJ$strEnrollCol]] == snapshot$lInputs$lMapping$dfSUBJ$strEnrollVal
