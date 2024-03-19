@@ -61,6 +61,12 @@
     <loc>https://automatic-adventure-63wkll6.pages.github.io/reference/pipe.html</loc>
   </url>
   <url>
+    <loc>https://automatic-adventure-63wkll6.pages.github.io/reference/pkgloadHack.html</loc>
+  </url>
+  <url>
+    <loc>https://automatic-adventure-63wkll6.pages.github.io/reference/read_snapshot.html</loc>
+  </url>
+  <url>
     <loc>https://automatic-adventure-63wkll6.pages.github.io/reference/run_app.html</loc>
   </url>
   <url>
@@ -82,9 +88,6 @@
     <loc>https://automatic-adventure-63wkll6.pages.github.io/reference/site_details_ui.html</loc>
   </url>
   <url>
-    <loc>https://automatic-adventure-63wkll6.pages.github.io/reference/snapshot.html</loc>
-  </url>
-  <url>
     <loc>https://automatic-adventure-63wkll6.pages.github.io/reference/study_overview_server.html</loc>
   </url>
   <url>
@@ -98,6 +101,9 @@
   </url>
   <url>
     <loc>https://automatic-adventure-63wkll6.pages.github.io/reference/update_participant_select.html</loc>
+  </url>
+  <url>
+    <loc>https://automatic-adventure-63wkll6.pages.github.io/reference/update_sample_data.html</loc>
   </url>
   <url>
     <loc>https://automatic-adventure-63wkll6.pages.github.io/reference/update_site_select.html</loc>
