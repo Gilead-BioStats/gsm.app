@@ -14,4 +14,4 @@ library(gsmApp)
 gsmApp::run_app()
 ```
 
-![](inst/resources/gsmApp.gif)
+![](https://github.com/Gilead-BioStats/gsmApp/assets/40671730/f02c12d0-f009-4b1b-9d0a-35f643f66f5b)
