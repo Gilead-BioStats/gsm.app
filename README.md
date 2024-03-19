@@ -15,3 +15,8 @@ gsmApp::run_app()
 ```
 
 ![](https://github.com/Gilead-BioStats/gsmApp/assets/40671730/f02c12d0-f009-4b1b-9d0a-35f643f66f5b)
+
+
+## Sample App
+
+You can use the app with sample data [here](https://mattroumaya.shinyapps.io/gsmApp/).
