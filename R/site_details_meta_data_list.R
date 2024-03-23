@@ -11,15 +11,21 @@ site_details_meta_data_list <- function(meta_data = NULL, enrolled_subjects = NU
   # req(enrolled_subjects)
 
   meta_data <- meta_data %>%
-    transmute(
-      "Site ID" = "site_num",
-      "Investigator" = str_trunc(paste0("pi_last_name", ", ", "pi_first_name"), 25),
-      "City" = "city",
-      "State" = "state",
-      "Country" = "country"
-    )
-
-  meta_data <- as.list(meta_data)
+      dplyr::mutate(
+          "Site ID" = .data$site_num,
+          "Investigator" = str_trunc(paste0(
+              .data$pi_last_name, ", ", .data$pi_first_name
+          ), 25),
+          "City" = .data$city,
+          "State" = .data$state,
+          "Country" = .data$country
+      ) %>%
+      dplyr::select("Site ID",
+                    "Investigator",
+                    "City",
+                    "State",
+                    "Country") %>%
+      as.list()
 
   tag_return <- names(meta_data) %>%
     map(function(x) {
