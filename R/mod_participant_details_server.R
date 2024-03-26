@@ -163,6 +163,7 @@ participant_details_server <- function(id, snapshot, participant) {
                                   scrollX = TRUE
                               ),
                               rownames = FALSE,
+                              selection = "none"
                 )
         })
     })

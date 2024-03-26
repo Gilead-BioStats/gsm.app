@@ -158,6 +158,7 @@ site_details_server <- function(id, snapshot, site, metric) {
                     selection = 'none'
                 ),
                 rownames = FALSE,
+                selection = "none",
                 callback = htmlwidgets::JS('
                     table.on("click", "td:nth-child(1)", function(d) {
                         const participant_id = d.currentTarget.innerText;
@@ -181,7 +182,7 @@ site_details_server <- function(id, snapshot, site, metric) {
             }
 
             return(table)
-        })
+        }, selection = "none")
 
         # ---- site data
         site_metadata <- reactive({

@@ -53,7 +53,8 @@ make_summary_table <- function(lAssessment, dfSite = NULL) {
                         paging = FALSE,
                         searching = FALSE,
                         selection = "none"
-                    )
+                    ),
+                    selection = "none"
                 )
         }
     }
