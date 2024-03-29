@@ -56,6 +56,7 @@ server <- function(input, output, session, snapshot) {
     observeEvent(input$site, {
         updateSelectizeInput(session, "participant", selected = "None")
         update_participant_select(input, output, session, snapshot, input$site)
+        nav_select("primary_nav_bar", "Metric Details")
 
     }, ignoreInit = TRUE)
 
