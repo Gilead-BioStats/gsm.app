@@ -57,5 +57,4 @@ make_summary_table <- function(lAssessment, dfSite = NULL) {
         )
     }
   }
-
 }

@@ -20,7 +20,7 @@ Useful links:
 
 Authors:
 \itemize{
-  \item Taylor Rodgers \email{Taylor.Rodgers@atorusresearch.com}
+  \item Taylor Rodgers \email{Taylor.Rodgers@freestateanalytics.com}
   \item Matt Roumaya \email{Matt.Roumaya@atorusresearch.com}
 }
 

@@ -66,7 +66,7 @@ add_metric_observer <- function(snapshot, metric) {
       # )
       # cat(code)
 
-      shinyjs::runjs(code)
+      # shinyjs::runjs(code)
     }
   })
 }

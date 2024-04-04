@@ -1,6 +1,6 @@
 Package: gsmApp
 Title: {gsm} Shiny Application
-Version: 0.6.0
+Version: 1.0.0
 Authors@R:
     c(
     person(
@@ -12,7 +12,7 @@ Authors@R:
     person(
         "Taylor",
         "Rodgers",
-        email = "Taylor.Rodgers@atorusresearch.com",
+        email = "Taylor.Rodgers@freestateanalytics.com",
         role = c("aut")
     ),
     person(
@@ -28,19 +28,24 @@ Depends:
 Imports:
     bslib,
     cli,
+    clindata,
     dplyr,
     DT,
     glue,
     gsm,
+    here,
     htmltools,
     htmlwidgets,
     magrittr,
+    pkgload,
     purrr,
+    qs,
     rlang,
     shiny,
     shinyjs,
     stringr,
-    tidyr
+    tidyr,
+    usethis
 Suggests: 
     shinytest2,
     testthat (>= 3.0.0)

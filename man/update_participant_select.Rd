@@ -4,7 +4,7 @@
 \alias{update_participant_select}
 \title{Update Participant Select}
 \usage{
-update_participant_select(input, output, session, snapshot)
+update_participant_select(input, output, session, snapshot, site)
 }
 \arguments{
 \item{input}{Shiny inputs}
@@ -14,6 +14,8 @@ update_participant_select(input, output, session, snapshot)
 \item{session}{Shiny session}
 
 \item{snapshot}{The snapshot \code{list} object passed from \code{run_app()}}
+
+\item{site}{The user-selected site.}
 }
 \description{
 Update Participant Select

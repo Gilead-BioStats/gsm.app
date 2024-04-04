@@ -4,10 +4,11 @@
 #' @param output Shiny outputs
 #' @param session Shiny session
 #' @param snapshot The snapshot `list` object passed from `run_app()`
+#' @param site The user-selected site.
 #'
 #' @export
 
-update_participant_select <- function(input, output, session, snapshot) {
+update_participant_select <- function(input, output, session, snapshot, site) {
   # Update participant input when client-side selection occurs.
   shiny::observeEvent(input$participant, {
     cli::cli_alert_info(
@@ -21,13 +22,30 @@ update_participant_select <- function(input, output, session, snapshot) {
     )
   })
 
-  participant_metadata <- snapshot$lInputs$lData$dfSUBJ %>%
-    dplyr::filter(
-      .data[[snapshot$lInputs$lMapping$dfSUBJ$strEnrollCol]] == snapshot$lInputs$lMapping$dfSUBJ$strEnrollVal
-    ) %>%
-    dplyr::arrange(
-      .data[[snapshot$lInputs$lMapping$dfSUBJ$strIDCol]]
-    )
+  participant_metadata <- snapshot$lInputs$lData$dfSUBJ
+
+  if (site != "None") {
+    participant_metadata <- participant_metadata %>%
+      dplyr::filter(
+        .data$siteid == site
+      ) %>%
+      dplyr::filter(
+        .data[[snapshot$lInputs$lMapping$dfSUBJ$strEnrollCol]] == snapshot$lInputs$lMapping$dfSUBJ$strEnrollVal
+      ) %>%
+      dplyr::arrange(
+        .data[[snapshot$lInputs$lMapping$dfSUBJ$strIDCol]]
+      )
+  } else {
+    participant_metadata <- participant_metadata %>%
+      dplyr::filter(
+        .data[[snapshot$lInputs$lMapping$dfSUBJ$strEnrollCol]] == snapshot$lInputs$lMapping$dfSUBJ$strEnrollVal
+      ) %>%
+      dplyr::arrange(
+        .data[[snapshot$lInputs$lMapping$dfSUBJ$strIDCol]]
+      )
+  }
+
+
 
   choices <- participant_metadata[[snapshot$lInputs$lMapping$dfSUBJ$strIDCol]]
 

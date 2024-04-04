@@ -15,10 +15,3 @@
 #'
 #' TODO
 "meta_list"
-
-#' snapshot
-#'
-#' @format A list from {gsm}
-#'
-#' TODO
-"snapshot"

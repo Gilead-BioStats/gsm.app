@@ -21,7 +21,20 @@ workflows <- gsm::MakeWorkflowList(
 snap_one <- Make_Snapshot(strAnalysisDate = "2022-01-01", lAssessments = workflows)
 snap_two <- Make_Snapshot(strAnalysisDate = "2022-02-01", lPrevSnapshot = snap_one, lAssessments = workflows)
 
-gsm::Save_Snapshot(snapshot, 'data-raw')
 
-usethis::use_data(snapshot, overwrite = TRUE)
+assessment_with_date <- list(
+    lSnapshotDate = snap_two$lSnapshotDate,
+    lSnapshot = snap_two$lSnapshot
+    )
+
+qs::qsave(assessment_with_date, here::here("inst", "sampledata", "snapshot_lSnapshot.qs"))
+
+purrr::iwalk(snap_two, function(data, nm) {
+
+    if (!nm %in% c("lSnapshotDate", "lSnapshot")) {
+        qs::qsave(data, file = here::here("inst", "sampledata", paste0("snapshot_", nm, ".qs")))
+    }
+
+})
+
 
