@@ -196,4 +196,4 @@ site_details_server <- function(id, snapshot, site, metric) {
       site_details_meta_data_list(site_metadata(), enrolled_subjects = enrolled_subjects, participant_list = participant_list())
     })
   })
-}
+
