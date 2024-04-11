@@ -162,16 +162,15 @@ site_details_server <- function(id, snapshot, site, metric) {
                         );
                     })
                 ')
-      )
-            return(table)
-        }, selection = "none")
-      if ("Rate" %in% colnames(participant_metrics)) {
-        table <- table %>%
-          DT::formatRound("Rate", digits = 5)
-      }
+                )
 
-      return(table)
-    })
+          if ("Rate" %in% colnames(participant_metrics)) {
+            table <- table %>%
+              DT::formatRound("Rate", digits = 5)
+          }
+
+            return(table)
+            }, selection = "none")
 
     # ---- site data
     site_metadata <- reactive({
@@ -195,5 +194,7 @@ site_details_server <- function(id, snapshot, site, metric) {
 
       site_details_meta_data_list(site_metadata(), enrolled_subjects = enrolled_subjects, participant_list = participant_list())
     })
-  })
+
+    })
+}
 
