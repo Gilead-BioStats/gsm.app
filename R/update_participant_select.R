@@ -25,28 +25,24 @@ update_participant_select <- function(input, output, session, snapshot, site) {
   participant_metadata <- snapshot$lInputs$lData$dfSUBJ
 
   if (site != "None") {
-
-      participant_metadata <- participant_metadata %>%
-          dplyr::filter(
-              .data$siteid == site
-          ) %>%
-          dplyr::filter(
-              .data[[snapshot$lInputs$lMapping$dfSUBJ$strEnrollCol]] == snapshot$lInputs$lMapping$dfSUBJ$strEnrollVal
-          ) %>%
-          dplyr::arrange(
-              .data[[snapshot$lInputs$lMapping$dfSUBJ$strIDCol]]
-          )
-
-  } else {
-
-      participant_metadata <- participant_metadata %>%
-          dplyr::filter(
-          .data[[snapshot$lInputs$lMapping$dfSUBJ$strEnrollCol]] == snapshot$lInputs$lMapping$dfSUBJ$strEnrollVal
+    participant_metadata <- participant_metadata %>%
+      dplyr::filter(
+        .data$siteid == site
       ) %>%
-          dplyr::arrange(
-              .data[[snapshot$lInputs$lMapping$dfSUBJ$strIDCol]]
-          )
-
+      dplyr::filter(
+        .data[[snapshot$lInputs$lMapping$dfSUBJ$strEnrollCol]] == snapshot$lInputs$lMapping$dfSUBJ$strEnrollVal
+      ) %>%
+      dplyr::arrange(
+        .data[[snapshot$lInputs$lMapping$dfSUBJ$strIDCol]]
+      )
+  } else {
+    participant_metadata <- participant_metadata %>%
+      dplyr::filter(
+        .data[[snapshot$lInputs$lMapping$dfSUBJ$strEnrollCol]] == snapshot$lInputs$lMapping$dfSUBJ$strEnrollVal
+      ) %>%
+      dplyr::arrange(
+        .data[[snapshot$lInputs$lMapping$dfSUBJ$strIDCol]]
+      )
   }
 
 

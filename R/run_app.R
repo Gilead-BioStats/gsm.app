@@ -5,10 +5,9 @@
 #' @export
 
 run_app <- function(snapshot = NULL) {
-
-    if (is.null(snapshot)) {
-        snapshot <- gsmApp::read_snapshot()
-    }
+  if (is.null(snapshot)) {
+    snapshot <- gsmApp::read_snapshot()
+  }
 
   shinyApp(
     ui = ui(),
