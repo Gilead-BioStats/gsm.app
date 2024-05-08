@@ -137,18 +137,19 @@ site_details_server <- function(id, snapshot, site, metric) {
       participant_metrics <- snapshot$lStudyAssessResults[[metric()]]$lData$dfInput %>%
         filter(.data$SiteID == site())
 
-      table <- DT::datatable(
-        snapshot$lStudyAssessResults[[metric()]]$lData$dfInput %>%
-          filter(.data$SiteID == site()),
-        class = "compact",
-        options = list(
-          lengthChange = FALSE,
-          paging = FALSE,
-          searching = FALSE,
-          selection = "none"
-        ),
-        rownames = FALSE,
-        callback = htmlwidgets::JS('
+            table <- DT::datatable(
+                snapshot$lStudyAssessResults[[metric()]]$lData$dfInput %>%
+                    filter(.data$SiteID == site()),
+                class = "compact",
+                options = list(
+                    lengthChange = FALSE,
+                    paging = FALSE,
+                    searching = FALSE,
+                    selection = 'none'
+                ),
+                rownames = FALSE,
+                selection = "none",
+                callback = htmlwidgets::JS('
                     table.on("click", "td:nth-child(1)", function(d) {
                         const participant_id = d.currentTarget.innerText;
                         console.log(
@@ -161,15 +162,15 @@ site_details_server <- function(id, snapshot, site, metric) {
                         );
                     })
                 ')
-      )
+                )
 
-      if ("Rate" %in% colnames(participant_metrics)) {
-        table <- table %>%
-          DT::formatRound("Rate", digits = 5)
-      }
+          if ("Rate" %in% colnames(participant_metrics)) {
+            table <- table %>%
+              DT::formatRound("Rate", digits = 5)
+          }
 
-      return(table)
-    })
+            return(table)
+            }, selection = "none")
 
     # ---- site data
     site_metadata <- reactive({
@@ -193,5 +194,7 @@ site_details_server <- function(id, snapshot, site, metric) {
 
       site_details_meta_data_list(site_metadata(), enrolled_subjects = enrolled_subjects, participant_list = participant_list())
     })
-  })
+
+    })
 }
+

@@ -6,12 +6,14 @@
 #' @export
 
 study_overview_server <- function(id, snapshot) {
-  shiny::moduleServer(id, function(input, output, session) {
-    output$site_overview_table <- DT::renderDataTable({
-      gsm::Overview_Table(
-        snapshot$lStudyAssessResults
-      )
-    })
+    shiny::moduleServer(id, function(input, output, session) {
+        output$site_overview_table <- DT::renderDataTable({
+            tb <- gsm::Overview_Table(
+                snapshot$lStudyAssessResults
+            )
+            tb$x$selection <- "none"
+            tb
+        })
 
     ## KRI Color KPIs
 

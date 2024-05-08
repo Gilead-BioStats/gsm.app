@@ -10,14 +10,14 @@ make_summary_table <- function(lAssessment, dfSite = NULL) {
   if (active$bStatus) {
     dfSummary <- active$lResults$lData$dfSummary
 
-    if (!is.null(dfSite)) {
-      dfSummary <- dfSummary %>%
-        dplyr::left_join(
-          dfSite %>% dplyr::select("siteid", "country", "status", "enrolled_participants"),
-          c("GroupID" = "siteid")
-        )
-    }
-
+        if (!is.null(dfSite)) {
+            dfSummary <- dfSummary %>%
+                dplyr::left_join(
+                    dfSite %>% dplyr::select("siteid", "country", "status", "enrolled_participants"),
+                    c("GroupID" = "siteid")
+                )
+        }
+    
     if (nrow(dfSummary) > 0 &
       any(c(-2, -1, 1, 2) %in% unique(dfSummary$Flag))) {
       dfSummary %>%
