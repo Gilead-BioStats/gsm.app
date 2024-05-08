@@ -16,7 +16,7 @@ site_details_meta_data_list <- function(meta_data = NULL, enrolled_subjects = NU
                 "Investigator" = str_trunc(paste0(.data$pi_last_name, ", ", .data$pi_first_name), 25),
                 "City" = .data$city,
                 "State" = .data$state,
-                "Country" = .data$country)
+                "Country" = .data$country) %>%
       as.list()
 
   tag_return <- names(meta_data) %>%
