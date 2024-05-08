@@ -9,7 +9,6 @@ HTMLWidgets.widget({
         const lLabels = HTMLWidgets.dataframeToD3(x.lLabels)[0]
         lLabels.selectedGroupIDs = x.selectedGroupIDs
 
-
         lLabels.clickCallback = function(d) {
             // Update site dropdown.
             const siteDropdown = document

@@ -144,16 +144,16 @@ participant_details_server <- function(id, snapshot, participant) {
       }
 
       domain %>%
-        DT::datatable(
-          class = "compact",
-          options = list(
-            paging = FALSE,
-            searching = FALSE,
-            selection = "none",
-            scrollX = TRUE
-          ),
-          rownames = FALSE,
-        )
+          DT::datatable(class = "compact",
+                        options = list(
+                            paging = FALSE,
+                            searching = FALSE,
+                            selection = 'none',
+                            scrollX = TRUE
+                        ),
+                        rownames = FALSE,
+                        selection = "none"
+          )
     })
   })
 }

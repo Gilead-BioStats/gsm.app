@@ -53,5 +53,14 @@
      margin-left: 7.5rem
 }
 
+/* Column for left hand side inputs */
+
+@media (min-width: 1250px) {
+  .input-div {
+    min-width: 300px;
+    max-width: 4300px;
+  }
+}
+
 
 
