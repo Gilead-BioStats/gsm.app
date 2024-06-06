@@ -9,14 +9,21 @@ study_overview_server <- function(id, snapshot) {
     shiny::moduleServer(id, function(input, output, session) {
         output$site_overview_table <- DT::renderDataTable({
             tb <- gsm::Overview_Table(
-                snapshot$lStudyAssessResults
+                snapshot$lStudyAssessResults,
+                gsm::Site_Map_Raw(
+                    dfs = list(
+                        dfSITE = snapshot$lInputs$lMeta$meta_site,
+                        dfSUBJ = snapshot$lInputs$lData$dfSUBJ
+                    ),
+                    lMapping = snapshot$lInputs$lMapping,
+                    dfConfig = snapshot$lInputs$lMeta$config_param
+                )
             )
             tb$x$selection <- "none"
             tb
         })
 
     ## KRI Color KPIs
-
     kri_color_count <- reactive({
       snapshot$lSnapshot$rpt_site_kri_details %>%
         dplyr::filter(grepl("^kri", .data$workflowid)) %>%

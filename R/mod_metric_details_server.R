@@ -11,6 +11,7 @@ metric_details_server <- function(id, snapshot, metric, site) {
   shiny::moduleServer(id, function(input, output, session) {
     output$scatter_plot <- gsm::renderWidget_ScatterPlot({
       shiny::req(metric())
+      print(site())
       snapshot$lCharts[[metric()]]$scatterJS$x$selectedGroupIDs <- site()
       snapshot$lCharts[[metric()]]$scatterJS$x$bHideDropdown <- TRUE
       snapshot$lCharts[[metric()]]$scatterJS$x$siteSelectLabelValue <- ""
