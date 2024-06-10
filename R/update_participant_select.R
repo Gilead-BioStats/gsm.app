@@ -11,9 +11,9 @@
 update_participant_select <- function(input, output, session, snapshot, site) {
   # Update participant input when client-side selection occurs.
   shiny::observeEvent(input$participant, {
-    # cli::cli_alert_info(
-    #   "Selected participant: {input$participant}"
-    # )
+    cli::cli_alert_info(
+      "Selected participant: {input$participant}"
+    )
 
     shiny::updateSelectInput(
       session,
