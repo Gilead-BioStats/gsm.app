@@ -5,7 +5,7 @@
 #' @format A data frame with ...
 #'
 #' TODO
-"meta_data_frame"
+'meta_data_frame'
 
 #' meta_data_frmae
 #'
@@ -14,4 +14,4 @@
 #' @format A list with ...
 #'
 #' TODO
-"meta_list"
+'meta_list'

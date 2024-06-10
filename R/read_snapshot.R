@@ -8,7 +8,7 @@
 #' }
 #' @export
 read_snapshot <- function() {
-  sampledata <- qs::qread(system.file("sampledata", "snapshot.qs", package = "gsmApp"))
+    sampledata <- qs::qread(system.file('sampledata', 'snapshot.qs', package = 'gsmApp'))
 
-  return(sampledata)
+    return(sampledata)
 }
