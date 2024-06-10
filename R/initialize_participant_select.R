@@ -9,9 +9,9 @@
 
 initialize_participant_select <- function(input, output, session, snapshot) {
     participant_metadata <- snapshot$lInputs$lData$dfSUBJ %>%
-        dplyr::filter(
-            .data[[snapshot$lInputs$lMapping$dfSUBJ$strEnrollCol]] == snapshot$lInputs$lMapping$dfSUBJ$strEnrollVal
-        ) %>%
+        #dplyr::filter(
+        #    .data[[snapshot$lInputs$lMapping$dfSUBJ$strEnrollCol]] == snapshot$lInputs$lMapping$dfSUBJ$strEnrollVal
+        #) %>%
         dplyr::arrange(
             .data[[snapshot$lInputs$lMapping$dfSUBJ$strIDCol]]
         )

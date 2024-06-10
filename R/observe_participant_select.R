@@ -7,7 +7,7 @@ observe_participant_select <- function(participant) {
                 'Selected participant: {participant()}'
             )
 
-            shiny::updateSelectInput(
+            shiny::updateSelectizeInput(
                 inputId = 'participant',
                 selected = participant()
             )
@@ -19,13 +19,4 @@ observe_participant_select <- function(participant) {
         },
         ignoreInit = TRUE
     )
-
-    # observeEvent(input$participant,
-    #    {
-    #        if (input$participant != "None" & input$participant != "") {
-    #            nav_select("primary_nav_bar", "Participant Details")
-    #        }
-    #    },
-    #    ignoreInit = TRUE
-    # )
 }

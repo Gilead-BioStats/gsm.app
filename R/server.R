@@ -39,7 +39,7 @@ server <- function(input, output, session, snapshot) {
     # ----
     # Site
     initialize_site_select(input, output, session, snapshot)
-    observe_site_select(reactives$site)
+    observe_site_select(reactives$site, snapshot)
     site_details_server(
         'site_details',
         snapshot,

@@ -1,4 +1,4 @@
-observe_site_select <- function(site) {
+observe_site_select <- function(site, snapshot) {
     # Update site input when client-side selection occurs.
     shiny::observeEvent(
         site(),
@@ -16,30 +16,24 @@ observe_site_select <- function(site) {
             nav_select("primary_nav_bar", "Metric Details")
 
             # Update list of participants when a site is selected.
-            if (site() != "None") {
-                participant_metadata <- snapshot$lInputs$lData$dfSUBJ %>%
-                    dplyr::filter(
-                        .data[[ snapshot$lInputs$lMapping$dfSUBJ$strSiteCol ]] == site()
-                    ) %>%
-                    dplyr::filter(
-                        .data[[ snapshot$lInputs$lMapping$dfSUBJ$strEnrollCol ]] == snapshot$lInputs$lMapping$dfSUBJ$strEnrollVal
-                    ) %>%
-                    dplyr::arrange(
-                        .data[[ snapshot$lInputs$lMapping$dfSUBJ$strIDCol ]]
-                    )
-
-                choices <- participant_metadata[[snapshot$lInputs$lMapping$dfSUBJ$strIDCol]]
-
-                shiny::updateSelectizeInput(
-                    inputId = "participant",
-                    choices = c(
-                        "None",
-                        choices
-                    ),
-                    selected = 'None',
-                    server = TRUE
+            updateSelectizeInput(
+                inputId = 'participant',
+                selected = 'None',
+                choices = c(
+                    'None',
+                    snapshot$lInputs$lData$dfSUBJ %>%
+                        dplyr::filter(
+                            site() == 'None' | .data[[ snapshot$lInputs$lMapping$dfSUBJ$strSiteCol ]] == site()
+                        ) %>%
+                        #dplyr::filter(
+                        #    .data[[ snapshot$lInputs$lMapping$dfSUBJ$strEnrollCol ]] == snapshot$lInputs$lMapping$dfSUBJ$strEnrollVal
+                        #) %>%
+                        dplyr::pull(
+                            .data[[ snapshot$lInputs$lMapping$dfSUBJ$strIDCol ]]
+                        ) %>%
+                        sort()
                 )
-            }
+            )
         },
         ignoreInit = TRUE
     )
