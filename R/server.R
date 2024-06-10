@@ -28,6 +28,7 @@ server <- function(input, output, session, snapshot) {
     # ----
     # Metric
     initialize_metric_select(input, output, session, snapshot)
+    observe_metric_select(snapshot, reactives$metric)
     metric_details_server(
         'metric_details',
         snapshot,
@@ -38,6 +39,7 @@ server <- function(input, output, session, snapshot) {
     # ----
     # Site
     initialize_site_select(input, output, session, snapshot)
+    observe_site_select(reactives$site)
     site_details_server(
         'site_details',
         snapshot,
@@ -48,6 +50,7 @@ server <- function(input, output, session, snapshot) {
     # ----
     # Participant
     initialize_participant_select(input, output, session, snapshot)
+    observe_participant_select(reactives$participant)
     participant_details_server(
         'participant_details',
         snapshot,
