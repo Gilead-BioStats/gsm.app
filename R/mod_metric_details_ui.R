@@ -45,17 +45,17 @@ metric_details_ui <- function(id) {
                         )
                     )
                 ),
-                shiny::tabPanel(
-                    'Time Series',
-                    div(
-                        class = 'card mb-3',
-                        style = 'border-top: solid #0dcaf0; margin-top: 4px;',
-                        div(
-                            class = 'card-body',
-                            gsm::Widget_TimeSeriesOutput(ns('time_series'))
-                        )
-                    )
-                ),
+                #shiny::tabPanel(
+                #    'Time Series',
+                #    div(
+                #        class = 'card mb-3',
+                #        style = 'border-top: solid #0dcaf0; margin-top: 4px;',
+                #        div(
+                #            class = 'card-body',
+                #            gsm::Widget_TimeSeriesOutput(ns('time_series'))
+                #        )
+                #    )
+                #),
                 shiny::tabPanel(
                     'Analysis Output',
                     div(
