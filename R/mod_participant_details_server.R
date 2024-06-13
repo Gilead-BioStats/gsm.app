@@ -95,12 +95,12 @@ participant_details_server <- function(id, snapshot, participant) {
             shinyjs::hide('card_placeholder_participant_domain_data_no_metric')
             shinyjs::show('card_participant_domain_data')
         })
-        observeEvent(input$`dfENROLL`, {
-            domain_filter('dfENROLL')
-            shinyjs::hide('card_placeholder_participant_domain_data')
-            shinyjs::hide('card_placeholder_participant_domain_data_no_metric')
-            shinyjs::show('card_participant_domain_data')
-        })
+        #observeEvent(input$`dfENROLL`, {
+        #    domain_filter('dfENROLL')
+        #    shinyjs::hide('card_placeholder_participant_domain_data')
+        #    shinyjs::hide('card_placeholder_participant_domain_data_no_metric')
+        #    shinyjs::show('card_participant_domain_data')
+        #})
         observeEvent(input$`dfSTUDCOMP`, {
             domain_filter('dfSTUDCOMP')
             shinyjs::hide('card_placeholder_participant_domain_data')
@@ -113,12 +113,12 @@ participant_details_server <- function(id, snapshot, participant) {
             shinyjs::hide('card_placeholder_participant_domain_data_no_metric')
             shinyjs::show('card_participant_domain_data')
         })
-        observeEvent(input$`dfQUERY`, {
-            domain_filter('dfQUERY')
-            shinyjs::hide('card_placeholder_participant_domain_data')
-            shinyjs::hide('card_placeholder_participant_domain_data_no_metric')
-            shinyjs::show('card_participant_domain_data')
-        })
+        #observeEvent(input$`dfQUERY`, {
+        #    domain_filter('dfQUERY')
+        #    shinyjs::hide('card_placeholder_participant_domain_data')
+        #    shinyjs::hide('card_placeholder_participant_domain_data_no_metric')
+        #    shinyjs::show('card_participant_domain_data')
+        #})
 
         # ---- domain data table
         output$domain_data_table <- DT::renderDT({
@@ -130,7 +130,6 @@ participant_details_server <- function(id, snapshot, participant) {
                 'strIDCol',
                 participant()
             )
-
 
             if (input$show_hide_columns == 'Hide') {
                 mapping <- domain$mapping %>%

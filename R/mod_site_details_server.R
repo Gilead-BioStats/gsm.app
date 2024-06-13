@@ -135,12 +135,64 @@ site_details_server <- function(id, snapshot, site, metric) {
         # ---- participant table
         output$participants <- DT::renderDT(
             {
+                shiny::req(dfSUBJ())
+
+                # TODO: standardize ID column across metrics
+                # ---- get the correct ID column depending on the metric
+                id_col <- switch(metric(),
+                    kri0001 = dfSUBJ()$mapping$strIDCol,
+                    kri0002 = dfSUBJ()$mapping$strIDCol,
+                    kri0003 = dfSUBJ()$mapping$strIDCol,
+                    kri0004 = dfSUBJ()$mapping$strIDCol,
+                    kri0005 = dfSUBJ()$mapping$strIDCol,
+                    kri0006 = dfSUBJ()$mapping$strIDCol,
+                    kri0007 = dfSUBJ()$mapping$strIDCol,
+                    kri0008 = dfSUBJ()$mapping$strEDCIDCol,
+                    kri0009 = dfSUBJ()$mapping$strEDCIDCol,
+                    kri0010 = dfSUBJ()$mapping$strEDCIDCol,
+                    kri0011 = dfSUBJ()$mapping$strEDCIDCol,
+                    kri0012 = dfSUBJ()$mapping$strIDCol
+                )
+                print(id_col)
+
                 participant_metrics <- snapshot$lStudyAssessResults[[metric()]]$lData$dfInput %>%
-                    filter(.data$SiteID == site())
+                    filter(
+                        .data$SiteID == site()
+                    )
+
+                if (id_col != dfSUBJ()$mapping$strIDCol) {
+                    participant_metrics <- participant_metrics %>%
+                        left_join(
+                            dfSUBJ()$data %>%
+                                select(id_col, dfSUBJ()$mapping$strIDCol),
+                            by = c('SubjectID' = id_col)
+                        ) %>%
+                        mutate(
+                            SubjectID = .data[[dfSUBJ()$mapping$strIDCol]]
+                        ) %>%
+                        select(
+                            -any_of(dfSUBJ()$mapping$strIDCol)
+                        )
+                }
+
+                if (metric() == 'kri0012') {
+                    participant_metrics <- participant_metrics %>%
+                        left_join(
+                            dfENROLL()$data %>%
+                                select(dfENROLL()$mapping$strIDCol, dfSUBJ()$mapping$strIDCol),
+                            by = c('SubjectID' = dfENROLL()$mapping$strIDCol)
+                        ) %>%
+                        mutate(
+                            SubjectID = .data[[dfSUBJ()$mapping$strIDCol]]
+                        ) %>%
+                        select(
+                            -any_of(dfENROLL()$mapping$strIDCol)
+                        ) %>%
+                        relocate(SubjectID)
+                }
 
                 table <- DT::datatable(
-                    snapshot$lStudyAssessResults[[metric()]]$lData$dfInput %>%
-                        filter(.data$SiteID == site()),
+                    participant_metrics,
                     class = 'compact',
                     options = list(
                         lengthChange = FALSE,
@@ -151,18 +203,18 @@ site_details_server <- function(id, snapshot, site, metric) {
                     rownames = FALSE,
                     selection = 'none',
                     callback = htmlwidgets::JS('
-                    table.on("click", "td:nth-child(1)", function(d) {
-                        const participant_id = d.currentTarget.innerText;
-                        console.log(
-                            `Selected participant ID: ${participant_id}`
-                        );
-                        const namespace = "gsmApp";
-                        Shiny.setInputValue(
-                            "participant",
-                            participant_id
-                        );
-                    })
-                ')
+                        table.on("click", "td:nth-child(1)", function(d) {
+                            const participant_id = d.currentTarget.innerText;
+                            console.log(
+                                `Selected participant ID: ${participant_id}`
+                            );
+                            const namespace = "gsmApp";
+                            Shiny.setInputValue(
+                                "participant",
+                                participant_id
+                            );
+                        })
+                    ')
                 )
 
                 if ('Rate' %in% colnames(participant_metrics)) {

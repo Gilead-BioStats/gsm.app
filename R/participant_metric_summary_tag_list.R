@@ -10,10 +10,10 @@ participant_metric_summary_tag_list <- function(id, participant, snapshot) {
     domain_list <- list(
         'dfAE' = 'Adverse Events',
         'dfPD' = 'Protocol Deviations',
-        'dfENROLL' = 'Enrollment',
+        #'dfENROLL' = 'Enrollment',
         'dfSTUDCOMP' = 'Study Disposition',
-        'dfSDRGCOMP' = 'Treatment Disposition',
-        'dfQUERY' = 'Queries'
+        'dfSDRGCOMP' = 'Treatment Disposition'
+        #'dfQUERY' = 'Queries'
     )
 
     domain_names <- names(domain_list)
