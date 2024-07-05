@@ -53,9 +53,10 @@ License: Apache License (>= 2)
 Encoding: UTF-8
 Remotes:
     clindata=Gilead-BioStats/clindata,
-    gsm=Gilead-BioStats/gsm
+    gsm=Gilead-BioStats/gsm,
+    qs=traversc/qs
 Roxygen: list(markdown = TRUE)
-RoxygenNote: 7.3.1
+RoxygenNote: 7.3.2
 Config/testthat/edition: 3
 LazyData: true
 LazyDataCompression: bzip2
