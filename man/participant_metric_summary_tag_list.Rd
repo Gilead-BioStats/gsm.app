@@ -12,4 +12,9 @@ participant_metric_summary_tag_list(id, participant, snapshot)
 \description{
 Creates taglist to summarize participants at a particular site
 }
+\keyword{'Enrollment',}
+\keyword{'Queries'}
+\keyword{=}
+\keyword{dfENROLL'}
+\keyword{dfQUERY'}
 \keyword{internal}
