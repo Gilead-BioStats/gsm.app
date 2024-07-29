@@ -4,6 +4,10 @@
 # gsmApp: Shiny application for `gsm` assessments
 
 <!-- badges: start -->
+
+[![R-CMD-check](https://github.com/Gilead-BioStats/gsmApp/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/Gilead-BioStats/gsmApp/actions/workflows/R-CMD-check.yaml)
+[![Codecov test
+coverage](https://codecov.io/gh/Gilead-BioStats/gsmApp/graph/badge.svg)](https://app.codecov.io/gh/Gilead-BioStats/gsmApp)
 <!-- badges: end -->
 
 `gsmApp` is a Shiny application that enables drill-down functionality
