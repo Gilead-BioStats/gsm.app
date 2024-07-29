@@ -1,7 +1,6 @@
 #' Observe Metric Select
 #'
-#' @param snapshot The snapshot `list` object that is passed on from `run_app()`
-#' @param metric A reactive value of the metric input found in the `ui` function.
+#' @inheritParams shared-params
 #'
 #' @export
 

@@ -7,7 +7,7 @@
 study_overview_ui(id)
 }
 \arguments{
-\item{id}{A namespace id}
+\item{id}{The namespace id for this module.}
 }
 \description{
 Study Overview UI

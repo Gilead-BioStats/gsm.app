@@ -1,6 +1,6 @@
 #' Study Overview UI
 #'
-#' @param id A namespace id
+#' @inheritParams shared-params
 #'
 #' @export
 

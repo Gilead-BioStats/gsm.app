@@ -7,7 +7,8 @@
 get_domain(snapshot, domain, subset_col = NULL, subset_val = NULL)
 }
 \arguments{
-\item{snapshot}{The snapshot \code{list} object that is passed from \code{run_app()}}
+\item{snapshot}{A \code{list} object containing the data for a snapshot. This
+object funnels into virtually every function of the application.}
 
 \item{domain}{The type of data and subsequent metrics you would like to see.}
 

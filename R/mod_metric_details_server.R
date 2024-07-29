@@ -1,9 +1,6 @@
 #' Metric Details Server
 #'
-#' @param id The namespace id
-#' @param snapshot The snapshot `list` object passed from `run_app()`
-#' @param metric The reactive value provided by the metric input from `server`
-#' @param site The reactive value provided by the site input from `server`
+#' @inheritParams shared-params
 #'
 #' @export
 

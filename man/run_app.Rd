@@ -7,7 +7,8 @@
 run_app(snapshot = NULL)
 }
 \arguments{
-\item{snapshot}{A \code{list} object containing the data for a snapshot. It funnels into every function of the application.}
+\item{snapshot}{A \code{list} object containing the data for a snapshot. This
+object funnels into virtually every function of the application.}
 }
 \description{
 Run App

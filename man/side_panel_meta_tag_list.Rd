@@ -7,7 +7,8 @@
 side_panel_meta_tag_list(snapshot)
 }
 \arguments{
-\item{snapshot}{The snapshot \code{list} object passed from \code{run_app()}}
+\item{snapshot}{A \code{list} object containing the data for a snapshot. This
+object funnels into virtually every function of the application.}
 }
 \description{
 Meta Tag List for Side Panel

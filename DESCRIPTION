@@ -17,7 +17,6 @@ Depends:
 Imports:
     bslib,
     cli,
-    clindata,
     dplyr,
     DT,
     glue,
@@ -25,19 +24,20 @@ Imports:
     htmltools,
     htmlwidgets,
     magrittr,
-    pkgload,
     purrr,
     qs,
     rlang,
     shiny,
     shinyjs,
     stringr,
-    tidyr,
-    usethis
+    tidyr
 Suggests: 
+    clindata,
     here,
+    pkgload,
     shinytest2,
-    testthat (>= 3.0.0)
+    testthat (>= 3.0.0),
+    usethis
 Remotes:
     clindata=Gilead-BioStats/clindata,
     gsm=Gilead-BioStats/gsm@main,

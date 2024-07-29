@@ -6,9 +6,6 @@
 \usage{
 site_details_metric_meta_data_list(config_params = NULL, meta_workflow = NULL)
 }
-\arguments{
-\item{combinedData}{\code{data.frame} A combined data set with the required metrics.}
-}
 \description{
 Creates taglist to summarize participants at a particular site
 }

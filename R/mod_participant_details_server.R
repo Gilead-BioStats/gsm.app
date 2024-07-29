@@ -1,7 +1,6 @@
 #' Participant Details Server
 #'
-#' @param id The namespace id
-#' @param snapshot The snapshot `list` object passed from `run_app()`
+#' @inheritParams shared-params
 #' @param participant The reactive value provided by the participant input from `server`
 #'
 #' @export

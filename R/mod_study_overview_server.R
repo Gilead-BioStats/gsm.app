@@ -1,7 +1,6 @@
 #' Study Overview Server
 #'
-#' @param id The namespace id
-#' @param snapshot The snapshot `list` object passed from `run_app()`
+#' @inheritParams shared-params
 #'
 #' @export
 

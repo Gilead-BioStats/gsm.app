@@ -7,9 +7,10 @@
 observe_metric_select(snapshot, metric)
 }
 \arguments{
-\item{snapshot}{The snapshot \code{list} object that is passed on from \code{run_app()}}
+\item{snapshot}{A \code{list} object containing the data for a snapshot. This
+object funnels into virtually every function of the application.}
 
-\item{metric}{A reactive value of the metric input found in the \code{ui} function.}
+\item{metric}{The reactive value provided by the metric input from \code{server}}
 }
 \description{
 Observe Metric Select
