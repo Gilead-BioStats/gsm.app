@@ -188,7 +188,7 @@ site_details_server <- function(id, snapshot, site, metric) {
                         select(
                             -any_of(dfENROLL()$mapping$strIDCol)
                         ) %>%
-                        relocate(SubjectID)
+                        dplyr::relocate(.data$SubjectID)
                 }
 
                 table <- DT::datatable(

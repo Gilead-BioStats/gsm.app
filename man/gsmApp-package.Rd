@@ -4,14 +4,16 @@
 \name{gsmApp-package}
 \alias{gsmApp}
 \alias{gsmApp-package}
-\title{gsmApp: {gsm} Shiny Application}
+\title{gsmApp: gsm Shiny Application}
 \description{
-Explore the results of {gsm} assessments.
+Explore the results of gsm assessments.
 }
 \seealso{
 Useful links:
 \itemize{
-  \item \url{https://automatic-adventure-63wkll6.pages.github.io/}
+  \item \url{https://gilead-biostats.github.io/gsmApp/}
+  \item \url{https://github.com/Gilead-BioStats/gsmApp}
+  \item Report bugs at \url{https://github.com/Gilead-BioStats/gsmApp/issues}
 }
 
 }
@@ -21,7 +23,7 @@ Useful links:
 Authors:
 \itemize{
   \item Taylor Rodgers \email{Taylor.Rodgers@freestateanalytics.com}
-  \item Matt Roumaya \email{Matt.Roumaya@atorusresearch.com}
+  \item Matt Roumaya \email{matthewroumaya@gmail.com} (\href{https://orcid.org/0000-0002-8009-2771}{ORCID})
 }
 
 }

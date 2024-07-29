@@ -1,5 +1,5 @@
 Package: gsmApp
-Title: {gsm} Shiny Application
+Title: gsm Shiny Application
 Version: 1.0.0
 Authors@R: c(
     person("Spencer", "Childress", , "spencer.childress@gilead.com", role = c("aut", "cre")),
@@ -7,7 +7,7 @@ Authors@R: c(
     person("Matt", "Roumaya", , "matthewroumaya@gmail.com", role = "aut",
            comment = c(ORCID = "0000-0002-8009-2771"))
   )
-Description: Explore the results of {gsm} assessments.
+Description: Explore the results of gsm assessments.
 License: Apache License (>= 2)
 URL: https://gilead-biostats.github.io/gsmApp/,
     https://github.com/Gilead-BioStats/gsmApp
@@ -22,7 +22,6 @@ Imports:
     DT,
     glue,
     gsm,
-    here,
     htmltools,
     htmlwidgets,
     magrittr,
@@ -36,6 +35,7 @@ Imports:
     tidyr,
     usethis
 Suggests: 
+    here,
     shinytest2,
     testthat (>= 3.0.0)
 Remotes:

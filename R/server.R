@@ -60,7 +60,7 @@ server <- function(input, output, session, snapshot) {
     # ----
     # Reset
     observeEvent(input$reset, {
-        update_metric_select(input, output, session, snapshot)
+        initialize_metric_select(input, output, session, snapshot)
         updateSelectInput(session, 'site', selected = 'None')
         updateSelectizeInput(session, 'participant', selected = 'None')
     })
