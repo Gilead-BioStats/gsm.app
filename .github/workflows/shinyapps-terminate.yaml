@@ -1,0 +1,44 @@
+name: Terminate shinyapps.io App on PR Close
+on:
+  pull_request:
+    types: [closed]
+
+jobs:
+  terminate-shinyapp:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Set PR_NUMBER and REPO_NAME
+        run: |
+          echo "PR_NUMBER=${{ github.event.pull_request.number }}" >> $GITHUB_ENV
+          echo "REPO_NAME=${GITHUB_REPOSITORY##*/}" >> $GITHUB_ENV
+
+      - uses: r-lib/actions/setup-r@v2
+
+      - name: Terminate Shiny App
+        env:
+          SHINYAPPS_TOKEN: ${{ secrets.SHINYAPPS_TOKEN }}
+          SHINYAPPS_SECRET: ${{ secrets.SHINYAPPS_SECRET }}
+        run: |
+          install.packages("rsconnect")
+          appname <- paste(
+            Sys.getenv("REPO_NAME"),
+            "pr",
+            Sys.getenv("PR_NUMBER"),
+            sep = "_"
+          )
+          rsconnect::setAccountInfo(
+            name = "openrbqm",
+            token = Sys.getenv("SHINYAPPS_TOKEN"),
+            secret = Sys.getenv("SHINYAPPS_SECRET")
+          )
+          tryCatch(
+            rsconnect::terminateApp(appName = appname),
+            error = function(e) {
+              if (grepl("^No application named", e$message)) {
+                message(e$message)
+              } else {
+                signalCondition(e)
+              }
+            }
+          )
+        shell: Rscript {0}
