@@ -9,3 +9,5 @@ _\.new\.png$
 ^app.R$
 ^rsconnect$
 ^data-raw$
+^CODE_OF_CONDUCT\.md$
+^README\.Rmd$

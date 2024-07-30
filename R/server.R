@@ -1,9 +1,6 @@
 #' Define Server
 #'
-#' @param input Shiny inputs
-#' @param output Shiny outputs
-#' @param session Shiny session
-#' @param snapshot The snapshot `list` object passed from `run_app()`
+#' @inheritParams shared-params
 #'
 #' @export
 
@@ -60,7 +57,7 @@ server <- function(input, output, session, snapshot) {
     # ----
     # Reset
     observeEvent(input$reset, {
-        update_metric_select(input, output, session, snapshot)
+        initialize_metric_select(input, output, session, snapshot)
         updateSelectInput(session, 'site', selected = 'None')
         updateSelectizeInput(session, 'participant', selected = 'None')
     })

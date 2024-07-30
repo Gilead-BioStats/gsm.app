@@ -3,7 +3,7 @@
 \docType{data}
 \name{meta_list}
 \alias{meta_list}
-\title{meta_data_frmae}
+\title{meta_list}
 \format{
 A list with ...
 

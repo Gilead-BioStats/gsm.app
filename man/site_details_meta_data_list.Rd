@@ -10,9 +10,6 @@ site_details_meta_data_list(
   participant_list = NULL
 )
 }
-\arguments{
-\item{combinedData}{\code{data.frame} A combined data set with the required metrics.}
-}
 \description{
 Creates taglist to summarize participants at a particular site
 }

@@ -1,6 +1,6 @@
 #' Metric Details UI
 #'
-#' @param id The namespace id
+#' @inheritParams shared-params
 #'
 #' @export
 

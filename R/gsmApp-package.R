@@ -27,9 +27,7 @@
 #' @importFrom DT datatable
 #' @importFrom DT DTOutput
 #' @importFrom DT renderDT
-#' @importFrom here here
 #' @importFrom htmlwidgets JS
-#' @importFrom pkgload load_all
 #' @importFrom purrr map
 #' @importFrom qs qread
 #' @importFrom rlang .data
@@ -40,7 +38,6 @@
 #' @importFrom stringr str_to_sentence
 #' @importFrom stringr str_trunc
 #' @importFrom tidyr pivot_longer
-#' @importFrom usethis ui_yeah
 #' @importFrom utils read.csv
 ## usethis namespace: end
 NULL

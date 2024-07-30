@@ -1,7 +1,6 @@
 #' Run App
 #'
-#' @param snapshot A `list` object containing the data for a snapshot. It funnels into every function of the application.
-#'
+#' @inheritParams shared-params
 #' @export
 
 run_app <- function(snapshot = NULL) {

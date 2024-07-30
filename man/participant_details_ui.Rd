@@ -7,7 +7,7 @@
 participant_details_ui(id)
 }
 \arguments{
-\item{id}{The namespace id}
+\item{id}{The namespace id for this module.}
 }
 \description{
 Participant Details UI

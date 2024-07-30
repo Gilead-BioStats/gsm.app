@@ -1,6 +1,6 @@
 #' Create Summary table in KRIReport.Rmd for each KRI
-#' @param lAssessment `list` List of KRI assessments from `params` within `KRIReport.Rmd`.
-#' @param dfSite `data.frame` Optional site-level metadata.
+#'
+#' @inheritParams shared-params
 #' @export
 #' @keywords internal
 

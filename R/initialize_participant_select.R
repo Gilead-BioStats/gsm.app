@@ -1,9 +1,6 @@
 #' Initialize Participant Select
 #'
-#' @param input Shiny inputs
-#' @param output Shiny outputs
-#' @param session Shiny session
-#' @param snapshot The snapshot `list` object passed from `run_app()`
+#' @inheritParams shared-params
 #'
 #' @export
 

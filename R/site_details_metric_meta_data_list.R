@@ -1,5 +1,5 @@
 #' Creates taglist to summarize participants at a particular site
-#' @param combinedData `data.frame` A combined data set with the required metrics.
+#' @inheritParams shared-params
 #' @export
 #' @keywords internal
 

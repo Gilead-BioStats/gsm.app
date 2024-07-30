@@ -7,7 +7,7 @@
 read_snapshot()
 }
 \value{
-\code{list} {gsm} snapshot object.
+\code{list} gsm snapshot object.
 }
 \description{
 Read and assemble snapshot from \code{inst}.

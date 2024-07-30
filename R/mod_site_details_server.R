@@ -1,9 +1,6 @@
 #' Site Details Server
 #'
-#' @param id The namespace id
-#' @param snapshot The snapshot `list` object passed from `run_app()`
-#' @param site The reactive value provided by the site input from `server`
-#' @param metric The selected metric.
+#' @inheritParams shared-params
 #'
 #' @export
 
@@ -188,7 +185,7 @@ site_details_server <- function(id, snapshot, site, metric) {
                         select(
                             -any_of(dfENROLL()$mapping$strIDCol)
                         ) %>%
-                        relocate(SubjectID)
+                        dplyr::relocate(.data$SubjectID)
                 }
 
                 table <- DT::datatable(
