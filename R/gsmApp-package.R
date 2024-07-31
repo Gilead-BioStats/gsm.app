@@ -7,9 +7,6 @@
 #' @import shiny
 #' @importFrom cli cli_alert
 #' @importFrom cli cli_alert_info
-#' @importFrom DT datatable
-#' @importFrom DT DTOutput
-#' @importFrom DT renderDT
 #' @importFrom htmlwidgets JS
 #' @importFrom purrr map
 #' @importFrom qs qread
