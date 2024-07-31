@@ -13,12 +13,12 @@ initialize_participant_select <- function(input, output, session, snapshot) {
 
   shiny::updateSelectizeInput(
     session,
-    'participant',
+    "participant",
     choices = c(
-      'None',
+      "None",
       choices
     ),
-    selected = 'None',
+    selected = "None",
     server = TRUE
   )
 }

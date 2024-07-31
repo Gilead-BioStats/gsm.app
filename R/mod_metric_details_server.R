@@ -9,7 +9,7 @@ metric_details_server <- function(id, snapshot, metric, site) {
       shiny::req(metric())
       snapshot$lCharts[[metric()]]$scatterJS$x$selectedGroupIDs <- site()
       snapshot$lCharts[[metric()]]$scatterJS$x$bHideDropdown <- TRUE
-      snapshot$lCharts[[metric()]]$scatterJS$x$siteSelectLabelValue <- ''
+      snapshot$lCharts[[metric()]]$scatterJS$x$siteSelectLabelValue <- ""
       snapshot$lCharts[[metric()]]$scatterJS
     })
 
@@ -17,7 +17,7 @@ metric_details_server <- function(id, snapshot, metric, site) {
       shiny::req(metric())
       snapshot$lCharts[[metric()]]$barScoreJS$x$selectedGroupIDs <- site()
       snapshot$lCharts[[metric()]]$barScoreJS$x$bHideDropdown <- TRUE
-      snapshot$lCharts[[metric()]]$barScoreJS$x$siteSelectLabelValue <- ''
+      snapshot$lCharts[[metric()]]$barScoreJS$x$siteSelectLabelValue <- ""
       snapshot$lCharts[[metric()]]$barScoreJS
     })
 
@@ -25,7 +25,7 @@ metric_details_server <- function(id, snapshot, metric, site) {
       shiny::req(metric())
       snapshot$lCharts[[metric()]]$barMetricJS$x$selectedGroupIDs <- site()
       snapshot$lCharts[[metric()]]$barMetricJS$x$bHideDropdown <- TRUE
-      snapshot$lCharts[[metric()]]$barMetricJS$x$siteSelectLabelValue <- ''
+      snapshot$lCharts[[metric()]]$barMetricJS$x$siteSelectLabelValue <- ""
       snapshot$lCharts[[metric()]]$barMetricJS
     })
 
@@ -39,7 +39,7 @@ metric_details_server <- function(id, snapshot, metric, site) {
       shiny::req(metric())
 
       sites <- snapshot$lSnapshot$rpt_site_details %>%
-        dplyr::select('siteid', 'country', 'status', 'enrolled_participants')
+        dplyr::select("siteid", "country", "status", "enrolled_participants")
 
       make_summary_table(
         snapshot$lStudyAssessResults[[metric()]],

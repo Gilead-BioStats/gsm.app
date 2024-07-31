@@ -18,15 +18,15 @@ server <- function(input, output, session, snapshot) {
   # ----
   # Study
   # add_metric_observer(snapshot, reactives$metric)
-  study_overview_server('study_overview', snapshot)
-  modScatterServer('scatter', snapshot, reactives$site)
+  study_overview_server("study_overview", snapshot)
+  modScatterServer("scatter", snapshot, reactives$site)
 
   # ----
   # Metric
   initialize_metric_select(input, output, session, snapshot)
   observe_metric_select(snapshot, reactives$metric)
   metric_details_server(
-    'metric_details',
+    "metric_details",
     snapshot,
     reactives$metric,
     reactives$site
@@ -37,7 +37,7 @@ server <- function(input, output, session, snapshot) {
   initialize_site_select(input, output, session, snapshot)
   observe_site_select(reactives$site, snapshot)
   site_details_server(
-    'site_details',
+    "site_details",
     snapshot,
     reactives$site,
     reactives$metric
@@ -48,7 +48,7 @@ server <- function(input, output, session, snapshot) {
   initialize_participant_select(input, output, session, snapshot)
   observe_participant_select(reactives$participant)
   participant_details_server(
-    'participant_details',
+    "participant_details",
     snapshot,
     reactives$participant
   )
@@ -57,7 +57,7 @@ server <- function(input, output, session, snapshot) {
   # Reset
   observeEvent(input$reset, {
     initialize_metric_select(input, output, session, snapshot)
-    updateSelectInput(session, 'site', selected = 'None')
-    updateSelectizeInput(session, 'participant', selected = 'None')
+    updateSelectInput(session, "site", selected = "None")
+    updateSelectizeInput(session, "participant", selected = "None")
   })
 }

@@ -4,17 +4,17 @@ observe_participant_select <- function(participant) {
     participant(),
     {
       cli_alert_info(
-        'Selected participant: {participant()}'
+        "Selected participant: {participant()}"
       )
 
       shiny::updateSelectizeInput(
-        inputId = 'participant',
+        inputId = "participant",
         selected = participant()
       )
 
       # Navigate to participant details when a participant is selected.
-      if (participant() != 'None' && participant() != '') {
-        bslib::nav_select('primary_nav_bar', 'Participant Details')
+      if (participant() != "None" && participant() != "") {
+        bslib::nav_select("primary_nav_bar", "Participant Details")
       }
     },
     ignoreInit = TRUE

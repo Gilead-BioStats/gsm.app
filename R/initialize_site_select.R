@@ -24,15 +24,15 @@ initialize_site_select <- function(input, output, session, snapshot) {
   choices <- site_metadata[[strSiteCol]] %>%
     stats::setNames(
       glue::glue(
-        '{site_metadata[[strSiteCol]]} ({site_metadata[[strPILastNameCol]]})'
+        "{site_metadata[[strSiteCol]]} ({site_metadata[[strPILastNameCol]]})"
       )
     )
 
   shiny::updateSelectInput(
     session,
-    'site',
+    "site",
     choices = c(
-      'None',
+      "None",
       choices
     )
   )

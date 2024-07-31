@@ -4,11 +4,11 @@ observe_site_select <- function(site, snapshot) {
     site(),
     {
       cli_alert_info(
-        'Selected site: {site()}'
+        "Selected site: {site()}"
       )
 
       shiny::updateSelectInput(
-        inputId = 'site',
+        inputId = "site",
         selected = site()
       )
 
@@ -17,19 +17,19 @@ observe_site_select <- function(site, snapshot) {
 
       # Update list of participants when a site is selected.
       updateSelectizeInput(
-        inputId = 'participant',
-        selected = 'None',
+        inputId = "participant",
+        selected = "None",
         choices = c(
-          'None',
+          "None",
           snapshot$lInputs$lData$dfSUBJ %>%
             dplyr::filter(
-              site() == 'None' | .data[[ snapshot$lInputs$lMapping$dfSUBJ$strSiteCol ]] == site()
+              site() == "None" | .data[[snapshot$lInputs$lMapping$dfSUBJ$strSiteCol]] == site()
             ) %>%
-            #dplyr::filter(
+            # dplyr::filter(
             #  .data[[ snapshot$lInputs$lMapping$dfSUBJ$strEnrollCol ]] == snapshot$lInputs$lMapping$dfSUBJ$strEnrollVal
-            #) %>%
+            # ) %>%
             dplyr::pull(
-              .data[[ snapshot$lInputs$lMapping$dfSUBJ$strIDCol ]]
+              .data[[snapshot$lInputs$lMapping$dfSUBJ$strIDCol]]
             ) %>%
             sort()
         )

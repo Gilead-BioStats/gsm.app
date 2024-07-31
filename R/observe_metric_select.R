@@ -8,7 +8,7 @@ observe_metric_select <- function(snapshot, metric) {
     metric(),
     {
       cli_alert_info(
-        'Selected metric: {metric()}'
+        "Selected metric: {metric()}"
       )
 
       metadata <- snapshot$lInputs$lMeta$meta_workflow %>%
@@ -21,18 +21,18 @@ observe_metric_select <- function(snapshot, metric) {
       code <- paste(
         c(
           # table
-          'const table = document',
+          "const table = document",
           '  .getElementById("study_overview-site_overview_table")',
           '  .getElementsByTagName("table")[0];',
-          'console.log(table);',
-          '',
-          '[].forEach.call(',
+          "console.log(table);",
+          "",
+          "[].forEach.call(",
           '  table.querySelectorAll("th,td"),',
-          '  function(cell) {',
+          "  function(cell) {",
           '    cell.classList.remove("selected-metric");',
-          '  }',
-          ');',
-          '',
+          "  }",
+          ");",
+          "",
 
           # table header cell
           'const th = table.querySelector("[aria-label=\'' %>%
@@ -40,28 +40,28 @@ observe_metric_select <- function(snapshot, metric) {
               metadata$abbreviation,
               '\']");'
             ),
-          'console.log(th);',
+          "console.log(th);",
           'th.classList.toggle("selected-metric");',
-          '',
+          "",
 
           # column index
-          'const getChildIndex = function(node) {',
-          '  return Array.prototype.indexOf.call(node.parentNode.childNodes, node);',
-          '}',
-          '',
-          'const columnIndex = getChildIndex(th);',
-          'console.log(columnIndex);',
-          '',
+          "const getChildIndex = function(node) {",
+          "  return Array.prototype.indexOf.call(node.parentNode.childNodes, node);",
+          "}",
+          "",
+          "const columnIndex = getChildIndex(th);",
+          "console.log(columnIndex);",
+          "",
 
           # table body cells
-          'const tds = table.querySelectorAll(`tr td:nth-child(${columnIndex + 1})`);',
-          'console.log(tds);',
-          '',
-          '[].forEach.call(tds, function(td) {',
+          "const tds = table.querySelectorAll(`tr td:nth-child(${columnIndex + 1})`);",
+          "console.log(tds);",
+          "",
+          "[].forEach.call(tds, function(td) {",
           '  td.classList.toggle("selected-metric");',
-          '});'
+          "});"
         ),
-        collapse = '\n'
+        collapse = "\n"
       )
     }
   )

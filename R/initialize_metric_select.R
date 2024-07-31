@@ -22,9 +22,9 @@ initialize_metric_select <- function(input, output, session, snapshot) {
     dplyr::mutate(
       # Sort workflows: site KRIs > country KRIs > QTLs.
       group_order = dplyr::case_when(
-        substring(.data$workflowid, 1, 3) == 'kri' ~ 0,
-        substring(.data$workflowid, 1, 3) == 'cou' ~ 1,
-        substring(.data$workflowid, 1, 3) == 'qtl' ~ 2,
+        substring(.data$workflowid, 1, 3) == "kri" ~ 0,
+        substring(.data$workflowid, 1, 3) == "cou" ~ 1,
+        substring(.data$workflowid, 1, 3) == "qtl" ~ 2,
         TRUE ~ 3
       )
     ) %>%
@@ -35,13 +35,13 @@ initialize_metric_select <- function(input, output, session, snapshot) {
   choices <- workflow_metadata$workflowid %>%
     stats::setNames(
       glue::glue(
-        '{workflow_metadata$metric} ({workflow_metadata$group})'
+        "{workflow_metadata$metric} ({workflow_metadata$group})"
       )
     )
 
   shiny::updateSelectInput(
     session,
-    'metric',
+    "metric",
     choices = choices
   )
 }

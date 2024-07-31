@@ -12,8 +12,8 @@ make_summary_table <- function(lAssessment, dfSite = NULL) {
     if (!is.null(dfSite)) {
       dfSummary <- dfSummary %>%
         dplyr::left_join(
-          dfSite %>% dplyr::select('siteid', 'country', 'status', 'enrolled_participants'),
-          c('GroupID' = 'siteid')
+          dfSite %>% dplyr::select("siteid", "country", "status", "enrolled_participants"),
+          c("GroupID" = "siteid")
         )
     }
 
@@ -32,25 +32,25 @@ make_summary_table <- function(lAssessment, dfSite = NULL) {
         ) %>%
         dplyr::select(
           any_of(c(
-            'Site' = 'GroupID',
-            'Country' = 'country',
-            'Status' = 'status',
-            'Subjects' = 'enrolled_participants'
+            "Site" = "GroupID",
+            "Country" = "country",
+            "Status" = "status",
+            "Subjects" = "enrolled_participants"
           )),
-          'Numerator',
-          'Denominator',
-          'Metric',
-          'Score',
-          'Flag'
+          "Numerator",
+          "Denominator",
+          "Metric",
+          "Score",
+          "Flag"
         ) %>%
         DT::datatable(
           rownames = FALSE,
-          class = 'compact',
+          class = "compact",
           options = list(
             lengthChange = FALSE,
             paging = FALSE,
             searching = FALSE,
-            selection = 'none'
+            selection = "none"
           )
         )
     }

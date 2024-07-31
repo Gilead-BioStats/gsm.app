@@ -8,24 +8,24 @@ site_details_server <- function(id, snapshot, site, metric) {
     observeEvent(
       site(),
       {
-        if (site() == 'None') {
+        if (site() == "None") {
           ## Show placeholders
 
-          shinyjs::hide('card_site_metadata_list')
-          shinyjs::hide('card_participant_status')
-          shinyjs::hide('card_participants')
-          shinyjs::show('card_placeholder_site_metadata_list')
-          shinyjs::show('card_placeholder_participant_status')
-          shinyjs::show('card_placeholder_participants')
+          shinyjs::hide("card_site_metadata_list")
+          shinyjs::hide("card_participant_status")
+          shinyjs::hide("card_participants")
+          shinyjs::show("card_placeholder_site_metadata_list")
+          shinyjs::show("card_placeholder_participant_status")
+          shinyjs::show("card_placeholder_participants")
         } else {
           ## Hide placeholders
 
-          shinyjs::hide('card_placeholder_site_metadata_list')
-          shinyjs::hide('card_placeholder_participant_status')
-          shinyjs::hide('card_placeholder_participants')
-          shinyjs::show('card_site_metadata_list')
-          shinyjs::show('card_participant_status')
-          shinyjs::show('card_participants')
+          shinyjs::hide("card_placeholder_site_metadata_list")
+          shinyjs::hide("card_placeholder_participant_status")
+          shinyjs::hide("card_placeholder_participants")
+          shinyjs::show("card_site_metadata_list")
+          shinyjs::show("card_participant_status")
+          shinyjs::show("card_participants")
         }
       },
       ignoreInit = TRUE
@@ -36,8 +36,8 @@ site_details_server <- function(id, snapshot, site, metric) {
     dfENROLL <- reactive({
       get_domain(
         snapshot,
-        'dfENROLL',
-        'strSiteCol',
+        "dfENROLL",
+        "strSiteCol",
         site()
       )
     })
@@ -46,8 +46,8 @@ site_details_server <- function(id, snapshot, site, metric) {
     dfSUBJ <- reactive({
       get_domain(
         snapshot,
-        'dfSUBJ',
-        'strSiteCol',
+        "dfSUBJ",
+        "strSiteCol",
         site()
       )
     })
@@ -56,8 +56,8 @@ site_details_server <- function(id, snapshot, site, metric) {
     dfAE <- reactive({
       get_domain(
         snapshot,
-        'dfAE',
-        'strIDCol',
+        "dfAE",
+        "strIDCol",
         dfSUBJ()$data[[dfSUBJ()$mapping$strIDCol]]
       )
     })
@@ -66,8 +66,8 @@ site_details_server <- function(id, snapshot, site, metric) {
     dfPD <- reactive({
       get_domain(
         snapshot,
-        'dfPD',
-        'strIDCol',
+        "dfPD",
+        "strIDCol",
         dfSUBJ()$data[[dfSUBJ()$mapping$strIDCol]]
       )
     })
@@ -76,8 +76,8 @@ site_details_server <- function(id, snapshot, site, metric) {
     dfSTUDCOMP <- reactive({
       get_domain(
         snapshot,
-        'dfSTUDCOMP',
-        'strIDCol',
+        "dfSTUDCOMP",
+        "strIDCol",
         dfSUBJ()$data[[dfSUBJ()$mapping$strIDCol]]
       )
     })
@@ -88,13 +88,13 @@ site_details_server <- function(id, snapshot, site, metric) {
     participant_list <- reactive({
       list(
         screened = list(
-          eligible = sum(dfSUBJ()$data$enrollyn == 'Y'),
-          ineligible = sum(dfSUBJ()$data$enrollyn == 'N')
+          eligible = sum(dfSUBJ()$data$enrollyn == "Y"),
+          ineligible = sum(dfSUBJ()$data$enrollyn == "N")
         ),
         enrolled = list(
-          completed = sum(dfSTUDCOMP()$data$compyn == 'Y'),
-          discontinued = sum(dfSTUDCOMP()$data$compyn == 'N'),
-          active = sum(!c(dfSTUDCOMP()$data$compyn %in% c('Y', 'N')))
+          completed = sum(dfSTUDCOMP()$data$compyn == "Y"),
+          discontinued = sum(dfSTUDCOMP()$data$compyn == "N"),
+          active = sum(!c(dfSTUDCOMP()$data$compyn %in% c("Y", "N")))
         ),
         discontinued_reasons = dfSTUDCOMP()$data$compreas
       )
@@ -104,12 +104,12 @@ site_details_server <- function(id, snapshot, site, metric) {
       config_param <- snapshot$lInputs$lMeta$config_param %>%
         filter(
           .data$workflowid == metric(),
-          .data$param == 'vThreshold'
+          .data$param == "vThreshold"
         )
 
       meta_workflow <- snapshot$lInputs$lMeta$meta_workflow %>%
         filter(.data$workflowid == metric()) %>%
-        select('metric', 'numerator', 'denominator')
+        select("metric", "numerator", "denominator")
 
       site_details_metric_meta_data_list(config_param, meta_workflow)
     })
@@ -135,18 +135,18 @@ site_details_server <- function(id, snapshot, site, metric) {
         # TODO: standardize ID column across metrics
         # ---- get the correct ID column depending on the metric
         id_col <- switch(metric(),
-                         kri0001 = dfSUBJ()$mapping$strIDCol,
-                         kri0002 = dfSUBJ()$mapping$strIDCol,
-                         kri0003 = dfSUBJ()$mapping$strIDCol,
-                         kri0004 = dfSUBJ()$mapping$strIDCol,
-                         kri0005 = dfSUBJ()$mapping$strIDCol,
-                         kri0006 = dfSUBJ()$mapping$strIDCol,
-                         kri0007 = dfSUBJ()$mapping$strIDCol,
-                         kri0008 = dfSUBJ()$mapping$strEDCIDCol,
-                         kri0009 = dfSUBJ()$mapping$strEDCIDCol,
-                         kri0010 = dfSUBJ()$mapping$strEDCIDCol,
-                         kri0011 = dfSUBJ()$mapping$strEDCIDCol,
-                         kri0012 = dfSUBJ()$mapping$strIDCol
+          kri0001 = dfSUBJ()$mapping$strIDCol,
+          kri0002 = dfSUBJ()$mapping$strIDCol,
+          kri0003 = dfSUBJ()$mapping$strIDCol,
+          kri0004 = dfSUBJ()$mapping$strIDCol,
+          kri0005 = dfSUBJ()$mapping$strIDCol,
+          kri0006 = dfSUBJ()$mapping$strIDCol,
+          kri0007 = dfSUBJ()$mapping$strIDCol,
+          kri0008 = dfSUBJ()$mapping$strEDCIDCol,
+          kri0009 = dfSUBJ()$mapping$strEDCIDCol,
+          kri0010 = dfSUBJ()$mapping$strEDCIDCol,
+          kri0011 = dfSUBJ()$mapping$strEDCIDCol,
+          kri0012 = dfSUBJ()$mapping$strIDCol
         )
         print(id_col)
 
@@ -160,7 +160,7 @@ site_details_server <- function(id, snapshot, site, metric) {
             left_join(
               dfSUBJ()$data %>%
                 select(id_col, dfSUBJ()$mapping$strIDCol),
-              by = c('SubjectID' = id_col)
+              by = c("SubjectID" = id_col)
             ) %>%
             mutate(
               SubjectID = .data[[dfSUBJ()$mapping$strIDCol]]
@@ -170,12 +170,12 @@ site_details_server <- function(id, snapshot, site, metric) {
             )
         }
 
-        if (metric() == 'kri0012') {
+        if (metric() == "kri0012") {
           participant_metrics <- participant_metrics %>%
             left_join(
               dfENROLL()$data %>%
                 select(dfENROLL()$mapping$strIDCol, dfSUBJ()$mapping$strIDCol),
-              by = c('SubjectID' = dfENROLL()$mapping$strIDCol)
+              by = c("SubjectID" = dfENROLL()$mapping$strIDCol)
             ) %>%
             mutate(
               SubjectID = .data[[dfSUBJ()$mapping$strIDCol]]
@@ -188,15 +188,15 @@ site_details_server <- function(id, snapshot, site, metric) {
 
         table <- DT::datatable(
           participant_metrics,
-          class = 'compact',
+          class = "compact",
           options = list(
             lengthChange = FALSE,
             paging = FALSE,
             searching = FALSE,
-            selection = 'none'
+            selection = "none"
           ),
           rownames = FALSE,
-          selection = 'none',
+          selection = "none",
           callback = htmlwidgets::JS('
             table.on("click", "td:nth-child(1)", function(d) {
               const participant_id = d.currentTarget.innerText;
@@ -212,14 +212,14 @@ site_details_server <- function(id, snapshot, site, metric) {
           ')
         )
 
-        if ('Rate' %in% colnames(participant_metrics)) {
+        if ("Rate" %in% colnames(participant_metrics)) {
           table <- table %>%
-            DT::formatRound('Rate', digits = 5)
+            DT::formatRound("Rate", digits = 5)
         }
 
         return(table)
       },
-      selection = 'none'
+      selection = "none"
     )
 
     # ---- site data
@@ -237,8 +237,8 @@ site_details_server <- function(id, snapshot, site, metric) {
 
     output$site_metadata_list <- renderUI({
       enrolled_subjects <- dfSUBJ()$data %>%
-        filter(.data$enrollyn == 'Y') %>%
-        select('subjid')
+        filter(.data$enrollyn == "Y") %>%
+        select("subjid")
       enrolled_subjects <- enrolled_subjects$subjid
 
       site_details_meta_data_list(site_metadata(), enrolled_subjects = enrolled_subjects, participant_list = participant_list())
