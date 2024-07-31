@@ -67,7 +67,7 @@ jobs:
             }
           }
           rsconnect::setAccountInfo(
-            name = "openrbqm"",
+            name = "openrbqm",
             token = Sys.getenv("SHINYAPPS_TOKEN"),
             secret = Sys.getenv("SHINYAPPS_SECRET")
           )
