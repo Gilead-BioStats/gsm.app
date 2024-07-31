@@ -54,20 +54,23 @@ jobs:
       - name: Install packages
         run: |
           install.packages("pak")
-          # These packages are sometimes corrupted as far as rsconnect is
-          # concerned. I suspect they're installed more directly than it can
-          # trace.
-          extras <- c(
-            "devtools",
-            "pkgdown",
-            "AsioHeaders",
-            "cpp11",
-            "progress"
+          pak::pak("sessioninfo")
+
+          # Update anything that was installed from cache, etc. rsconnect needs
+          # to know how to download the package.
+          installed_packages <- sessioninfo::package_info()
+          sources <- tolower(installed_packages$source)
+          has_other_source <- !(
+            startsWith(sources, "cran") |
+              startsWith(sources, "github") |
+              startsWith(sources, "biocon") |
+              grepl("r-universe", sources)
           )
-          remove.packages(intersect(extras, rownames(installed.packages())))
-          pak::pak(extras)
+          weird_packages <- installed_packages$package[has_other_source]
+          remove.packages(weird_packages)
           pak::pak()
           pak::pak("rsconnect")
+          pak::pak(weird_packages)
         shell: Rscript {0}
 
       - name: Push to shinyapps.io
