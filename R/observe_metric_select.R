@@ -3,7 +3,6 @@
 #' @inheritParams shared-params
 #'
 #' @export
-
 observe_metric_select <- function(snapshot, metric) {
   shiny::observeEvent(
     metric(),

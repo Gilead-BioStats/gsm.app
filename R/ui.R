@@ -4,7 +4,6 @@
 #' It specifies the layout of the web page and the interface elements it contains.
 #'
 #' @return A Shiny UI object
-
 ui <- function() {
   fluidPage(
     class = 'bg-light',
