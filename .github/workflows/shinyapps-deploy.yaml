@@ -51,7 +51,7 @@ jobs:
 
       - uses: r-lib/actions/setup-r-dependencies@v2
         with:
-          extra-packages: any::devtools, any::xml2, any::rsconnect
+          extra-packages: any::devtools, any::xml2, any::rsconnect, any::AsioHeaders, any::cpp11, any::progress
 
       - name: Push to shinyapps.io
         env:
