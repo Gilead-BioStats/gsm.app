@@ -51,19 +51,12 @@ jobs:
         with:
           use-public-rspm: true
 
-      - uses: r-lib/actions/setup-r-dependencies@v2
-        with:
-          # Cover everything it might decide it wants. rsconnect is being
-          # finicky.
-          extra-packages: |
-            any::devtools
-            any::xml2
-            any::rsconnect
-            any::AsioHeaders
-            any::cpp11
-            any::progress
-            any::tzdb
-            any::sessioninfo
+      - name: Install packages mostly manually
+        run: |
+          install.packages("pak")
+          pak::pak()
+          pak::pak("rsconnect")
+        shell: Rscript {0}
 
       - name: Push to shinyapps.io
         env:
