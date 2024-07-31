@@ -3,7 +3,7 @@ observe_site_select <- function(site, snapshot) {
     shiny::observeEvent(
         site(),
         {
-            cli::cli_alert_info(
+            cli_alert_info(
                 'Selected site: {site()}'
             )
 
@@ -13,7 +13,7 @@ observe_site_select <- function(site, snapshot) {
             )
 
             # Navigate to site details when a site is selected.
-            nav_select("primary_nav_bar", "Metric Details")
+            bslib::nav_select("primary_nav_bar", "Metric Details")
 
             # Update list of participants when a site is selected.
             updateSelectizeInput(

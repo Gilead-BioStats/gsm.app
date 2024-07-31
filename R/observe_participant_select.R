@@ -3,7 +3,7 @@ observe_participant_select <- function(participant) {
     shiny::observeEvent(
         participant(),
         {
-            cli::cli_alert_info(
+            cli_alert_info(
                 'Selected participant: {participant()}'
             )
 
@@ -14,7 +14,7 @@ observe_participant_select <- function(participant) {
 
             # Navigate to participant details when a participant is selected.
             if (participant() != 'None' && participant() != '') {
-                nav_select('primary_nav_bar', 'Participant Details')
+                bslib::nav_select('primary_nav_bar', 'Participant Details')
             }
         },
         ignoreInit = TRUE
