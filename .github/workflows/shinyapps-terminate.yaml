@@ -29,7 +29,7 @@ jobs:
             Sys.getenv("REPO_NAME"),
             "pr",
             Sys.getenv("PR_NUMBER"),
-            sep = "_"
+            sep = "-"
           )
           rsconnect::setAccountInfo(
             name = "openrbqm",

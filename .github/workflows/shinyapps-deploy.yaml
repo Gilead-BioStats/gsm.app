@@ -83,9 +83,9 @@ jobs:
           pr_number <- Sys.getenv("PR_NUMBER")
 
           if (deployment_type != "prod") {
-            appname <- paste(appname, deployment_type, sep = "_")
+            appname <- paste(appname, deployment_type, sep = "-")
             if (nzchar(pr_number)) {
-              appname <- paste(appname, pr_number, sep = "_")
+              appname <- paste(appname, pr_number, sep = "-")
             }
           }
           rsconnect::setAccountInfo(
