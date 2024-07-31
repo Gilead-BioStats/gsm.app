@@ -16,8 +16,8 @@ jobs:
 
       - name: Terminate Shiny App
         env:
-          SHINYAPPS_TOKEN: ${{ secrets.SHINYAPPS_TOKEN }}
-          SHINYAPPS_SECRET: ${{ secrets.SHINYAPPS_SECRET }}
+          SHINYAPPSIO_TOKEN: ${{ secrets.SHINYAPPSIO_TOKEN }}
+          SHINYAPPSIO_SECRET: ${{ secrets.SHINYAPPSIO_SECRET }}
         run: |
           install.packages("rsconnect")
           appname <- paste(
@@ -28,8 +28,8 @@ jobs:
           )
           rsconnect::setAccountInfo(
             name = "openrbqm",
-            token = Sys.getenv("SHINYAPPS_TOKEN"),
-            secret = Sys.getenv("SHINYAPPS_SECRET")
+            token = Sys.getenv("SHINYAPPSIO_TOKEN"),
+            secret = Sys.getenv("SHINYAPPSIO_SECRET")
           )
           tryCatch(
             rsconnect::terminateApp(appName = appname),
