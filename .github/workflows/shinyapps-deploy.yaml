@@ -68,9 +68,10 @@ jobs:
           )
           weird_packages <- installed_packages$package[has_other_source]
           remove.packages(weird_packages)
+          pak::pak(weird_packages)
+
           pak::pak()
           pak::pak("rsconnect")
-          pak::pak(weird_packages)
         shell: Rscript {0}
 
       - name: Push to shinyapps.io

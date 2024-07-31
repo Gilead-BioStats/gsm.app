@@ -36,14 +36,19 @@ jobs:
             token = Sys.getenv("SHINYAPPSIO_TOKEN"),
             secret = Sys.getenv("SHINYAPPSIO_SECRET")
           )
+          app_error <- function(e) {
+            if (grepl("^No application named", e$message)) {
+              message(e$message)
+            } else {
+              signalCondition(e)
+            }
+          }
           tryCatch(
             rsconnect::terminateApp(appName = appname),
-            error = function(e) {
-              if (grepl("^No application named", e$message)) {
-                message(e$message)
-              } else {
-                signalCondition(e)
-              }
-            }
+            error = app_error
+          )
+          tryCatch(
+            rsconnect::purgeApp(appName = appname),
+            error = app_error
           )
         shell: Rscript {0}
