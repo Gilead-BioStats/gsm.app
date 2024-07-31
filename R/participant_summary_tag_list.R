@@ -8,7 +8,7 @@ participant_summary_tag_list <- function(participant_data = NULL) {
   labels <- participant_data$Characteristic
 
   tag_return <- labels %>%
-    map(function(x) {
+    purrr::map(function(x) {
       tags$div(
         class = "col-12",
         style = "font-weight: 500;",

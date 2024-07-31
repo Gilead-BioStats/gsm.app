@@ -7,8 +7,6 @@
 #' @import shiny
 #' @importFrom cli cli_alert
 #' @importFrom cli cli_alert_info
-#' @importFrom htmlwidgets JS
-#' @importFrom purrr map
 #' @importFrom qs qread
 #' @importFrom rlang .data
 #' @importFrom shinyjs hidden

@@ -7,7 +7,6 @@ site_details_meta_data_list <- function(meta_data = NULL, enrolled_subjects = NU
   req(participant_list)
   # req(enrolled_subjects)
 
-
   meta_data <- meta_data %>%
     dplyr::mutate(
       "Site ID" = .data$site_num,
@@ -20,7 +19,7 @@ site_details_meta_data_list <- function(meta_data = NULL, enrolled_subjects = NU
     as.list()
 
   tag_return <- names(meta_data) %>%
-    map(function(x) {
+    purrr::map(function(x) {
       tags$div(
         class = "col-12",
         style = "font-weight: 500;",
