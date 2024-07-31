@@ -58,6 +58,8 @@ jobs:
 
       - name: Install packages
         run: |
+          install.packages("pak")
+
           # These packages are sometimes corrupted as far as rsconnect is
           # concerned. I suspect they're installed more directly than it can
           # trace.
