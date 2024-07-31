@@ -21,6 +21,8 @@ on:
 jobs:
   shinyapps-deploy:
     runs-on: ubuntu-latest
+    env:
+      GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
     steps:
       - name: Extract repository name
         run: echo "REPO_NAME=${GITHUB_REPOSITORY##*/}" >> $GITHUB_ENV
@@ -61,6 +63,7 @@ jobs:
             any::cpp11
             any::progress
             any::tzdb
+            any::sessioninfo
 
       - name: Push to shinyapps.io
         env:

@@ -6,6 +6,8 @@ on:
 jobs:
   terminate-shinyapp:
     runs-on: ubuntu-latest
+    env:
+      GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
     steps:
       - name: Set PR_NUMBER and REPO_NAME
         run: |
