@@ -17,9 +17,20 @@ participant_status_nest_list <- function(participant_list = NULL) {
               class = "row pe-2",
               div(
                 style = "display: flex; justify-content: space-between;",
-                div(style = "text-align: left; white-space: nowrap;", str_trunc(str_to_sentence(discontinued_reasons_unique[x]), 25)),
-                div(style = "border-bottom: 1px dotted; width: 95%; margin-bottom: .4em; margin-right: .4em; margin-left: .4em;"),
-                div(style = "text-align: right;", sum(discontinued_reasons == discontinued_reasons_unique[x]))
+                div(
+                  style = "text-align: left; white-space: nowrap;",
+                  stringr::str_trunc(
+                    stringr::str_to_sentence(discontinued_reasons_unique[x]),
+                    25
+                  )
+                ),
+                div(
+                  style = "border-bottom: 1px dotted; width: 95%; margin-bottom: .4em; margin-right: .4em; margin-left: .4em;"
+                ),
+                div(
+                  style = "text-align: right;",
+                  sum(discontinued_reasons == discontinued_reasons_unique[x])
+                )
               )
             )
           )

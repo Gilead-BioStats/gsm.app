@@ -52,7 +52,7 @@ participant_details_server <- function(id, snapshot, participant) {
     output$participant_summary <- renderUI({
       req(dfSUBJ())
 
-      mapping_column <- read.csv(
+      mapping_column <- utils::read.csv(
         system.file("rbmLibrary", "mapping_column.csv", package = "gsmApp")
       ) %>%
         dplyr::filter(.data$gsm_domain_key == "dfSUBJ")
