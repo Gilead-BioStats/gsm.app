@@ -2,12 +2,9 @@
 '_PACKAGE'
 
 ## usethis namespace: start
-#' @import bslib
 #' @import gsm
 #' @import htmltools
 #' @import shiny
-#' @importFrom bslib bs_theme
-#' @importFrom bslib navset_bar
 #' @importFrom cli cli_alert
 #' @importFrom cli cli_alert_info
 #' @importFrom dplyr across
