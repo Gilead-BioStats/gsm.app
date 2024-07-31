@@ -52,20 +52,24 @@ participant_details_server <- function(id, snapshot, participant) {
     output$participant_summary <- renderUI({
       req(dfSUBJ())
 
-      mapping_column <- read.csv(system.file("rbmLibrary", "mapping_column.csv", package = "gsmApp")) %>%
-        filter(
-          .data$gsm_domain_key == "dfSUBJ"
-        )
+      mapping_column <- read.csv(
+        system.file("rbmLibrary", "mapping_column.csv", package = "gsmApp")
+      ) %>%
+        dplyr::filter(.data$gsm_domain_key == "dfSUBJ")
 
       data <- dfSUBJ()$data %>%
-        select(any_of(as.character(dfSUBJ()$mapping))) %>%
-        mutate(across(everything(), as.character)) %>%
-        pivot_longer(everything()) %>%
-        left_join(mapping_column, by = c("name" = "default")) %>%
-        mutate(
+        dplyr::select(
+          dplyr::any_of(as.character(dfSUBJ()$mapping))
+        ) %>%
+        dplyr::mutate(
+          dplyr::across(dplyr::everything(), as.character)
+        ) %>%
+        tidyr::pivot_longer(dplyr::everything()) %>%
+        dplyr::left_join(mapping_column, by = c("name" = "default")) %>%
+        dplyr::mutate(
           Characteristic = ifelse(!is.na(.data$description), .data$description, .data$name)
         ) %>%
-        select(
+        dplyr::select(
           "Characteristic",
           "Value" = "value"
         )
@@ -133,10 +137,10 @@ participant_details_server <- function(id, snapshot, participant) {
       if (input$show_hide_columns == "Hide") {
         mapping <- domain$mapping %>%
           as.data.frame() %>%
-          pivot_longer(everything())
+          tidyr::pivot_longer(dplyr::everything())
 
         domain <- domain$data %>%
-          select(any_of(mapping$value))
+          dplyr::select(dplyr::any_of(mapping$value))
       } else {
         domain <- domain$data
       }

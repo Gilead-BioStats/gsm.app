@@ -102,14 +102,14 @@ site_details_server <- function(id, snapshot, site, metric) {
 
     output$metric_metadata_list <- renderUI({
       config_param <- snapshot$lInputs$lMeta$config_param %>%
-        filter(
+        dplyr::filter(
           .data$workflowid == metric(),
           .data$param == "vThreshold"
         )
 
       meta_workflow <- snapshot$lInputs$lMeta$meta_workflow %>%
-        filter(.data$workflowid == metric()) %>%
-        select("metric", "numerator", "denominator")
+        dplyr::filter(.data$workflowid == metric()) %>%
+        dplyr::select("metric", "numerator", "denominator")
 
       site_details_metric_meta_data_list(config_param, meta_workflow)
     })
@@ -151,37 +151,40 @@ site_details_server <- function(id, snapshot, site, metric) {
         print(id_col)
 
         participant_metrics <- snapshot$lStudyAssessResults[[metric()]]$lData$dfInput %>%
-          filter(
+          dplyr::filter(
             .data$SiteID == site()
           )
 
         if (id_col != dfSUBJ()$mapping$strIDCol) {
           participant_metrics <- participant_metrics %>%
-            left_join(
+            dplyr::left_join(
               dfSUBJ()$data %>%
-                select(id_col, dfSUBJ()$mapping$strIDCol),
+                dplyr::select(id_col, dfSUBJ()$mapping$strIDCol),
               by = c("SubjectID" = id_col)
             ) %>%
-            mutate(
+            dplyr::mutate(
               SubjectID = .data[[dfSUBJ()$mapping$strIDCol]]
             ) %>%
-            select(
-              -any_of(dfSUBJ()$mapping$strIDCol)
+            dplyr::select(
+              -dplyr::any_of(dfSUBJ()$mapping$strIDCol)
             )
         }
 
         if (metric() == "kri0012") {
           participant_metrics <- participant_metrics %>%
-            left_join(
+            dplyr::left_join(
               dfENROLL()$data %>%
-                select(dfENROLL()$mapping$strIDCol, dfSUBJ()$mapping$strIDCol),
+                dplyr::select(
+                  dfENROLL()$mapping$strIDCol,
+                  dfSUBJ()$mapping$strIDCol
+                ),
               by = c("SubjectID" = dfENROLL()$mapping$strIDCol)
             ) %>%
-            mutate(
+            dplyr::mutate(
               SubjectID = .data[[dfSUBJ()$mapping$strIDCol]]
             ) %>%
-            select(
-              -any_of(dfENROLL()$mapping$strIDCol)
+            dplyr::select(
+              -dplyr::any_of(dfENROLL()$mapping$strIDCol)
             ) %>%
             dplyr::relocate(.data$SubjectID)
         }
@@ -237,8 +240,8 @@ site_details_server <- function(id, snapshot, site, metric) {
 
     output$site_metadata_list <- renderUI({
       enrolled_subjects <- dfSUBJ()$data %>%
-        filter(.data$enrollyn == "Y") %>%
-        select("subjid")
+        dplyr::filter(.data$enrollyn == "Y") %>%
+        dplyr::select("subjid")
       enrolled_subjects <- enrolled_subjects$subjid
 
       site_details_meta_data_list(site_metadata(), enrolled_subjects = enrolled_subjects, participant_list = participant_list())
