@@ -3,7 +3,6 @@
 
 ## usethis namespace: start
 #' @import gsm
-#' @import htmltools
 #' @import shiny
 #' @importFrom cli cli_alert
 #' @importFrom cli cli_alert_info
