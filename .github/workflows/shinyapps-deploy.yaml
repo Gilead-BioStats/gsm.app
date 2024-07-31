@@ -53,8 +53,8 @@ jobs:
 
       - name: Push to shinyapps.io
         env:
-          SHINYAPPS_TOKEN: ${{ secrets.SHINYAPPS_TOKEN }}
-          SHINYAPPS_SECRET: ${{ secrets.SHINYAPPS_SECRET }}
+          SHINYAPPSIO_TOKEN: ${{ secrets.SHINYAPPSIO_TOKEN }}
+          SHINYAPPSIO_SECRET: ${{ secrets.SHINYAPPSIO_SECRET }}
         run: |
           appname <- Sys.getenv("REPO_NAME")
           deployment_type <- Sys.getenv("DEPLOYMENT_TYPE")
@@ -68,8 +68,8 @@ jobs:
           }
           rsconnect::setAccountInfo(
             name = "openrbqm",
-            token = Sys.getenv("SHINYAPPS_TOKEN"),
-            secret = Sys.getenv("SHINYAPPS_SECRET")
+            token = Sys.getenv("SHINYAPPSIO_TOKEN"),
+            secret = Sys.getenv("SHINYAPPSIO_SECRET")
           )
           rsconnect::deployApp(
             appName = appname,
