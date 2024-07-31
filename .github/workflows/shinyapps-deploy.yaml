@@ -49,7 +49,7 @@ jobs:
 
       - uses: r-lib/actions/setup-r-dependencies@v2
         with:
-          extra-packages: any::rsconnect
+          extra-packages: any::devtools, any::xml2, any::rsconnect
 
       - name: Push to shinyapps.io
         env:
