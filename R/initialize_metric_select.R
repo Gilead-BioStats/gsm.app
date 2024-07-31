@@ -34,9 +34,7 @@ initialize_metric_select <- function(input, output, session, snapshot) {
 
   choices <- workflow_metadata$workflowid %>%
     stats::setNames(
-      glue::glue(
-        "{workflow_metadata$metric} ({workflow_metadata$group})"
-      )
+      glue::glue("{workflow_metadata$metric} ({workflow_metadata$group})")
     )
 
   shiny::updateSelectInput(
