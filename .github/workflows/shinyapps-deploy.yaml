@@ -51,9 +51,21 @@ jobs:
         with:
           use-public-rspm: true
 
-      - name: Install packages mostly manually
+      - name: Install packages
         run: |
           install.packages("pak")
+          # These packages are sometimes corrupted as far as rsconnect is
+          # concerned. I suspect they're installed more directly than it can
+          # trace.
+          extras <- c(
+            "devtools",
+            "pkgdown",
+            "AsioHeaders",
+            "cpp11",
+            "progress"
+          )
+          remove.packages(intersect(extras, rownames(installed.packages())))
+          pak::pak(extras)
           pak::pak()
           pak::pak("rsconnect")
         shell: Rscript {0}
