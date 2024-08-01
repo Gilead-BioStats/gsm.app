@@ -3,10 +3,16 @@
 #' @inheritParams shared-params
 #'
 #' @export
-side_panel_meta_tag_list <- function(snapshot) {
-    meta <- snapshot$lInputs$lMeta$meta_study
+side_panel_meta_tag_list <- function(dfStudy) {
 
-    meta <- meta %>%
+    dfStudyFiltered <- dfStudy %>%
+        dplyr::filter(Param %in% c('protocol_indication',
+                         'therapeutic_area',
+                         'phase',
+                         'num_plan_site',
+                         'num_enrolled_subj_m')) %>%
+        dplyr::select("Param", "Value") %>%
+        tidyr::pivot_wider(names_from = "Param", values_from = "Value")  %>%
         dplyr::select(
             'protocol_indication',
             'therapeutic_area',
@@ -15,9 +21,9 @@ side_panel_meta_tag_list <- function(snapshot) {
             'num_enrolled_subj_m'
         )
 
-    colnames(meta) <- c('Indication', 'TA', 'Phase', 'Sites', 'Subjects')
+    colnames(dfStudyFiltered) <- c('Indication', 'TA', 'Phase', 'Sites', 'Subjects')
 
-    meta_tags <- colnames(meta) %>%
+    meta_tags <- colnames(dfStudyFiltered) %>%
         purrr::map(function(x) {
             tags$div(
                 class = 'col-12',
@@ -29,7 +35,7 @@ side_panel_meta_tag_list <- function(snapshot) {
                         style = 'text-align: left; white-space: nowrap;', x
                     ),
                     tags$div(class = 'text-secondary', style = 'border-bottom: 1px dotted; width: 95%; margin-bottom: .4em; margin-right: .4em; margin-left: .4em;'),
-                    tags$div(class = 'card-text', style = 'text-align: right; white-space: nowrap;', meta[x])
+                    tags$div(class = 'card-text', style = 'text-align: right; white-space: nowrap;', dfStudyFiltered[x])
                 )
             )
         }) %>%

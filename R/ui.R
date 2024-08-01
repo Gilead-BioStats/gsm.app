@@ -7,6 +7,7 @@
 
 ui <- function() {
     fluidPage(
+        useShinyjs(),
         class = 'bg-light',
         style = 'min-height: 100vh;',
         title = 'GSM Deep Dive',
@@ -46,10 +47,10 @@ ui <- function() {
                             ),
                             div(
                                 class = 'col-12 col-sm-6 col-md-12 col-lg-12 col-xxl-12',
-                                selectInput('metric', strong('Metric'), choices = c('None')),
-                                selectInput('site', strong('Site'), choices = c('None')),
-                                selectizeInput('participant', strong('Participant'), choices = 'None'),
-                                actionButton('reset', 'Reset All')
+                                shinyjs::hidden(selectInput('metric', strong('Metric'), choices = c('None'), width = "100%")),
+                                shinyjs::hidden(selectInput('site', strong('Site'), choices = c('None'), width = "100%")),
+                                shinyjs::hidden(selectizeInput('participant', strong('Participant'), choices = 'None', width = "100%")),
+                                actionButton('reset', 'Reset All', class="btn btn-primary btn-sm")
                             )
                         )
                     )
