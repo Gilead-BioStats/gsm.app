@@ -4,11 +4,7 @@
 \alias{side_panel_meta_tag_list}
 \title{Meta Tag List for Side Panel}
 \usage{
-side_panel_meta_tag_list(snapshot)
-}
-\arguments{
-\item{snapshot}{A \code{list} object containing the data for a snapshot. This
-object funnels into virtually every function of the application.}
+side_panel_meta_tag_list(dfStudy)
 }
 \description{
 Meta Tag List for Side Panel

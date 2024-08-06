@@ -4,7 +4,16 @@
 \alias{server}
 \title{Define Server}
 \usage{
-server(input, output, session, snapshot)
+server(
+  input,
+  output,
+  session,
+  dfResults,
+  dfGroups,
+  dfMetrics,
+  dfBounds,
+  snapshot
+)
 }
 \arguments{
 \item{input}{Shiny inputs}

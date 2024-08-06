@@ -4,7 +4,7 @@
 \alias{study_overview_server}
 \title{Study Overview Server}
 \usage{
-study_overview_server(id, snapshot)
+study_overview_server(id, dfResults, dfMetrics, dfGroups, snapshot)
 }
 \arguments{
 \item{id}{The namespace id for this module.}

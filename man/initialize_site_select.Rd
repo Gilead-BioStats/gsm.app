@@ -4,7 +4,7 @@
 \alias{initialize_site_select}
 \title{Initialize Site Select}
 \usage{
-initialize_site_select(input, output, session, snapshot)
+initialize_site_select(input, output, session, dfGroups)
 }
 \arguments{
 \item{input}{Shiny inputs}
@@ -12,9 +12,6 @@ initialize_site_select(input, output, session, snapshot)
 \item{output}{Shiny outputs}
 
 \item{session}{Shiny session}
-
-\item{snapshot}{A \code{list} object containing the data for a snapshot. This
-object funnels into virtually every function of the application.}
 }
 \description{
 Initialize Site Select

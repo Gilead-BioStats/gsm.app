@@ -4,7 +4,13 @@
 \alias{run_app}
 \title{Run App}
 \usage{
-run_app(snapshot = NULL)
+run_app(
+  dfResults = NULL,
+  dfGroups = NULL,
+  dfMetrics = NULL,
+  dfBounds = NULL,
+  snapshot = NULL
+)
 }
 \arguments{
 \item{snapshot}{A \code{list} object containing the data for a snapshot. This
