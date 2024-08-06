@@ -24,7 +24,7 @@ run_app <- function(dfResults = NULL, dfGroups = NULL, dfMetrics = NULL, dfBound
 
     if (is.null(dfBounds)) {
         dfBounds <- gsm::reportingBounds %>%
-            filter(SnapshotDate == max(SnapshotDate))
+            filter(SnapshotDate == max(.data$SnapshotDate))
     }
 
     shinyApp(
