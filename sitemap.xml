@@ -1,111 +1,41 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url>
-    <loc>https://automatic-adventure-63wkll6.pages.github.io/404.html</loc>
-  </url>
-  <url>
-    <loc>https://automatic-adventure-63wkll6.pages.github.io/LICENSE.html</loc>
-  </url>
-  <url>
-    <loc>https://automatic-adventure-63wkll6.pages.github.io/authors.html</loc>
-  </url>
-  <url>
-    <loc>https://automatic-adventure-63wkll6.pages.github.io/index.html</loc>
-  </url>
-  <url>
-    <loc>https://automatic-adventure-63wkll6.pages.github.io/news/index.html</loc>
-  </url>
-  <url>
-    <loc>https://automatic-adventure-63wkll6.pages.github.io/reference/add_metric_observer.html</loc>
-  </url>
-  <url>
-    <loc>https://automatic-adventure-63wkll6.pages.github.io/reference/get_domain.html</loc>
-  </url>
-  <url>
-    <loc>https://automatic-adventure-63wkll6.pages.github.io/reference/gsmApp-package.html</loc>
-  </url>
-  <url>
-    <loc>https://automatic-adventure-63wkll6.pages.github.io/reference/index.html</loc>
-  </url>
-  <url>
-    <loc>https://automatic-adventure-63wkll6.pages.github.io/reference/make_summary_table.html</loc>
-  </url>
-  <url>
-    <loc>https://automatic-adventure-63wkll6.pages.github.io/reference/meta_data_frame.html</loc>
-  </url>
-  <url>
-    <loc>https://automatic-adventure-63wkll6.pages.github.io/reference/meta_list.html</loc>
-  </url>
-  <url>
-    <loc>https://automatic-adventure-63wkll6.pages.github.io/reference/metric_details_server.html</loc>
-  </url>
-  <url>
-    <loc>https://automatic-adventure-63wkll6.pages.github.io/reference/metric_details_ui.html</loc>
-  </url>
-  <url>
-    <loc>https://automatic-adventure-63wkll6.pages.github.io/reference/participant_details_server.html</loc>
-  </url>
-  <url>
-    <loc>https://automatic-adventure-63wkll6.pages.github.io/reference/participant_details_ui.html</loc>
-  </url>
-  <url>
-    <loc>https://automatic-adventure-63wkll6.pages.github.io/reference/participant_metric_summary_tag_list.html</loc>
-  </url>
-  <url>
-    <loc>https://automatic-adventure-63wkll6.pages.github.io/reference/participant_status_nest_list.html</loc>
-  </url>
-  <url>
-    <loc>https://automatic-adventure-63wkll6.pages.github.io/reference/participant_summary_tag_list.html</loc>
-  </url>
-  <url>
-    <loc>https://automatic-adventure-63wkll6.pages.github.io/reference/pipe.html</loc>
-  </url>
-  <url>
-    <loc>https://automatic-adventure-63wkll6.pages.github.io/reference/pkgloadHack.html</loc>
-  </url>
-  <url>
-    <loc>https://automatic-adventure-63wkll6.pages.github.io/reference/read_snapshot.html</loc>
-  </url>
-  <url>
-    <loc>https://automatic-adventure-63wkll6.pages.github.io/reference/run_app.html</loc>
-  </url>
-  <url>
-    <loc>https://automatic-adventure-63wkll6.pages.github.io/reference/server.html</loc>
-  </url>
-  <url>
-    <loc>https://automatic-adventure-63wkll6.pages.github.io/reference/side_panel_meta_tag_list.html</loc>
-  </url>
-  <url>
-    <loc>https://automatic-adventure-63wkll6.pages.github.io/reference/site_details_meta_data_list.html</loc>
-  </url>
-  <url>
-    <loc>https://automatic-adventure-63wkll6.pages.github.io/reference/site_details_metric_meta_data_list.html</loc>
-  </url>
-  <url>
-    <loc>https://automatic-adventure-63wkll6.pages.github.io/reference/site_details_server.html</loc>
-  </url>
-  <url>
-    <loc>https://automatic-adventure-63wkll6.pages.github.io/reference/site_details_ui.html</loc>
-  </url>
-  <url>
-    <loc>https://automatic-adventure-63wkll6.pages.github.io/reference/study_overview_server.html</loc>
-  </url>
-  <url>
-    <loc>https://automatic-adventure-63wkll6.pages.github.io/reference/study_overview_ui.html</loc>
-  </url>
-  <url>
-    <loc>https://automatic-adventure-63wkll6.pages.github.io/reference/ui.html</loc>
-  </url>
-  <url>
-    <loc>https://automatic-adventure-63wkll6.pages.github.io/reference/update_metric_select.html</loc>
-  </url>
-  <url>
-    <loc>https://automatic-adventure-63wkll6.pages.github.io/reference/update_participant_select.html</loc>
-  </url>
-  <url>
-    <loc>https://automatic-adventure-63wkll6.pages.github.io/reference/update_sample_data.html</loc>
-  </url>
-  <url>
-    <loc>https://automatic-adventure-63wkll6.pages.github.io/reference/update_site_select.html</loc>
-  </url>
+<urlset xmlns = 'http://www.sitemaps.org/schemas/sitemap/0.9'>
+<url><loc>https://gilead-biostats.github.io/gsmApp/404.html</loc></url>
+<url><loc>https://gilead-biostats.github.io/gsmApp/CODE_OF_CONDUCT.html</loc></url>
+<url><loc>https://gilead-biostats.github.io/gsmApp/CONTRIBUTING.html</loc></url>
+<url><loc>https://gilead-biostats.github.io/gsmApp/LICENSE.html</loc></url>
+<url><loc>https://gilead-biostats.github.io/gsmApp/authors.html</loc></url>
+<url><loc>https://gilead-biostats.github.io/gsmApp/index.html</loc></url>
+<url><loc>https://gilead-biostats.github.io/gsmApp/news/index.html</loc></url>
+<url><loc>https://gilead-biostats.github.io/gsmApp/reference/get_domain.html</loc></url>
+<url><loc>https://gilead-biostats.github.io/gsmApp/reference/gsmApp-package.html</loc></url>
+<url><loc>https://gilead-biostats.github.io/gsmApp/reference/index.html</loc></url>
+<url><loc>https://gilead-biostats.github.io/gsmApp/reference/initialize_metric_select.html</loc></url>
+<url><loc>https://gilead-biostats.github.io/gsmApp/reference/initialize_participant_select.html</loc></url>
+<url><loc>https://gilead-biostats.github.io/gsmApp/reference/initialize_site_select.html</loc></url>
+<url><loc>https://gilead-biostats.github.io/gsmApp/reference/make_summary_table.html</loc></url>
+<url><loc>https://gilead-biostats.github.io/gsmApp/reference/meta_data_frame.html</loc></url>
+<url><loc>https://gilead-biostats.github.io/gsmApp/reference/meta_list.html</loc></url>
+<url><loc>https://gilead-biostats.github.io/gsmApp/reference/metric_details_server.html</loc></url>
+<url><loc>https://gilead-biostats.github.io/gsmApp/reference/metric_details_ui.html</loc></url>
+<url><loc>https://gilead-biostats.github.io/gsmApp/reference/observe_metric_select.html</loc></url>
+<url><loc>https://gilead-biostats.github.io/gsmApp/reference/participant_details_server.html</loc></url>
+<url><loc>https://gilead-biostats.github.io/gsmApp/reference/participant_details_ui.html</loc></url>
+<url><loc>https://gilead-biostats.github.io/gsmApp/reference/participant_metric_summary_tag_list.html</loc></url>
+<url><loc>https://gilead-biostats.github.io/gsmApp/reference/participant_status_nest_list.html</loc></url>
+<url><loc>https://gilead-biostats.github.io/gsmApp/reference/participant_summary_tag_list.html</loc></url>
+<url><loc>https://gilead-biostats.github.io/gsmApp/reference/pipe.html</loc></url>
+<url><loc>https://gilead-biostats.github.io/gsmApp/reference/read_snapshot.html</loc></url>
+<url><loc>https://gilead-biostats.github.io/gsmApp/reference/run_app.html</loc></url>
+<url><loc>https://gilead-biostats.github.io/gsmApp/reference/server.html</loc></url>
+<url><loc>https://gilead-biostats.github.io/gsmApp/reference/shared-params.html</loc></url>
+<url><loc>https://gilead-biostats.github.io/gsmApp/reference/side_panel_meta_tag_list.html</loc></url>
+<url><loc>https://gilead-biostats.github.io/gsmApp/reference/site_details_meta_data_list.html</loc></url>
+<url><loc>https://gilead-biostats.github.io/gsmApp/reference/site_details_metric_meta_data_list.html</loc></url>
+<url><loc>https://gilead-biostats.github.io/gsmApp/reference/site_details_server.html</loc></url>
+<url><loc>https://gilead-biostats.github.io/gsmApp/reference/site_details_ui.html</loc></url>
+<url><loc>https://gilead-biostats.github.io/gsmApp/reference/study_overview_server.html</loc></url>
+<url><loc>https://gilead-biostats.github.io/gsmApp/reference/study_overview_ui.html</loc></url>
+<url><loc>https://gilead-biostats.github.io/gsmApp/reference/ui.html</loc></url>
+<url><loc>https://gilead-biostats.github.io/gsmApp/reference/update_sample_data.html</loc></url>
 </urlset>
+
