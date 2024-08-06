@@ -21,19 +21,32 @@ study_overview_server <- function(id, dfResults, dfMetrics, dfGroups, snapshot) 
         ## KRI Color KPIs
         kri_color_count <- reactive({
             dfResults %>%
-                dplyr::transmute(Color = ifelse(abs(.data$Flag) == 2, 'Red',
-                    ifelse(abs(.data$Flag) == 1, 'Amber', 'Other')
-                )) %>%
-                dplyr::group_by(.data$Color) %>%
-                dplyr::summarize(n = n())
+                dplyr::mutate(
+                  Color = ifelse(
+                    abs(.data$Flag) == 2, "Red",
+                    ifelse(abs(.data$Flag) == 1, "Amber", "Other")
+                  ),
+                  .keep = "none"
+            ) %>%
+                dplyr::summarize(n = dplyr::n(), .by = "Color")
         })
 
-        output$red_kri <- renderText({
-            paste0(kri_color_count() %>% dplyr::filter(.data$Color == 'Red') %>% dplyr::select(n), ' Red KRIs')
-        })
-
-        output$amber_kri <- renderText({
-            paste0(kri_color_count() %>% dplyr::filter(.data$Color == 'Amber') %>% dplyr::select(n), ' Amber KRIs')
-        })
+    output$red_kri <- renderText({
+      paste0(
+        kri_color_count() %>%
+          dplyr::filter(.data$Color == "Red") %>%
+          dplyr::select("n"),
+        " Red KRIs"
+      )
     })
+
+    output$amber_kri <- renderText({
+      paste0(
+        kri_color_count() %>%
+          dplyr::filter(.data$Color == "Amber") %>%
+          dplyr::select("n"),
+        " Amber KRIs"
+      )
+    })
+  })
 }

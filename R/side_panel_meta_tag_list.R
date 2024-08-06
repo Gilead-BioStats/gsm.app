@@ -44,5 +44,5 @@ side_panel_meta_tag_list <- function(dfStudy) {
         ) %>%
         htmltools::tagList()
 
-    return(meta_tags)
+  return(meta_tags)
 }

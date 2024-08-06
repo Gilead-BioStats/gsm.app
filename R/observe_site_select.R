@@ -7,13 +7,13 @@ observe_site_select <- function(site) {
                 'Selected site: {site()}'
             )
 
-            shiny::updateSelectInput(
-                inputId = 'site',
-                selected = site()
-            )
+      shiny::updateSelectInput(
+        inputId = "site",
+        selected = site()
+      )
 
-            # Navigate to site details when a site is selected.
-            nav_select("primary_nav_bar", "Metric Details")
+      # Navigate to site details when a site is selected.
+      bslib::nav_select("primary_nav_bar", "Metric Details")
 
             # Update list of participants when a site is selected.
             # updateSelectizeInput(

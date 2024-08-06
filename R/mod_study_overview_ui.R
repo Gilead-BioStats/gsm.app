@@ -3,7 +3,6 @@
 #' @inheritParams shared-params
 #'
 #' @export
-
 study_overview_ui <- function(id) {
     ns <- shiny::NS(id)
     tags_to_return <- tagList(
@@ -42,5 +41,5 @@ study_overview_ui <- function(id) {
         )
     )
 
-    return(tags_to_return)
+  return(tags_to_return)
 }
