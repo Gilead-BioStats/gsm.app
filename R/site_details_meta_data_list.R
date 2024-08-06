@@ -1,28 +1,28 @@
 #' Creates taglist to summarize participants at a particular site
-#' @param combinedData `data.frame` A combined data set with the required metrics.
-#' @import shiny
-#' @import stringr
+#' @inheritParams shared-params
 #' @export
 #' @keywords internal
-
 site_details_meta_data_list <- function(meta_data = NULL, enrolled_subjects = NULL, participant_list = NULL) {
   req(meta_data)
   req(participant_list)
   # req(enrolled_subjects)
 
   meta_data <- meta_data %>%
-    transmute(
-      "Site ID" = "site_num",
-      "Investigator" = str_trunc(paste0("pi_last_name", ", ", "pi_first_name"), 25),
-      "City" = "city",
-      "State" = "state",
-      "Country" = "country"
-    )
-
-  meta_data <- as.list(meta_data)
+    dplyr::mutate(
+      "Site ID" = .data$site_num,
+      "Investigator" = stringr::str_trunc(
+        paste0(.data$pi_last_name, ", ", .data$pi_first_name),
+        25
+      ),
+      "City" = .data$city,
+      "State" = .data$state,
+      "Country" = .data$country,
+      .keep = "none"
+    ) %>%
+    as.list()
 
   tag_return <- names(meta_data) %>%
-    map(function(x) {
+    purrr::map(function(x) {
       tags$div(
         class = "col-12",
         style = "font-weight: 500;",

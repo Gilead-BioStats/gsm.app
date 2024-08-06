@@ -1,0 +1,103 @@
+name: Deploy Repo to shinyapps.io
+on:
+  push:
+    branches: [dev, main]
+    paths-ignore:
+      - 'README.md'
+  pull_request:
+    branches: [dev, main]
+    paths-ignore:
+      - 'README.md'
+  workflow_dispatch:
+    inputs:
+      target-deployment:
+        description: 'Select the target shinyapps deployment type'
+        required: true
+        default: 'dev'
+        type: choice
+        options:
+          - dev
+          - prod
+          - pr
+
+jobs:
+  shinyapps-deploy:
+    runs-on: ubuntu-latest
+    concurrency:
+      group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+      cancel-in-progress: true
+    env:
+      GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
+    steps:
+      - name: Extract repository name
+        run: echo "REPO_NAME=${GITHUB_REPOSITORY##*/}" >> $GITHUB_ENV
+
+      - name: Set DEPLOYMENT_TYPE for workflow_dispatch
+        if: github.event_name == 'workflow_dispatch'
+        run: echo "DEPLOYMENT_TYPE=${{ github.event.inputs.target-deployment }}" >> $GITHUB_ENV
+
+      - name: Set DEPLOYMENT_TYPE for pull requests
+        if: github.event_name == 'pull_request'
+        run: |
+          echo "DEPLOYMENT_TYPE=pr" >> $GITHUB_ENV
+          echo "PR_NUMBER=${{ github.event.pull_request.number }}" >> $GITHUB_ENV
+
+      - name: Set DEPLOYMENT_TYPE for pushes to dev
+        if: github.event_name == 'push' && github.ref == 'refs/heads/dev'
+        run: echo "DEPLOYMENT_TYPE=dev" >> $GITHUB_ENV
+
+      - name: Set DEPLOYMENT_TYPE for pushes to main
+        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+        run: echo "DEPLOYMENT_TYPE=prod" >> $GITHUB_ENV
+
+      - uses: actions/checkout@v4
+
+      - uses: r-lib/actions/setup-r@v2
+        with:
+          use-public-rspm: true
+
+      - name: Install packages
+        run: |
+          install.packages("pak")
+
+          # These packages are sometimes corrupted as far as rsconnect is
+          # concerned. I suspect they're installed more directly than it can
+          # trace.
+          extras <- c(
+            "devtools",
+            "pkgdown",
+            "AsioHeaders",
+            "cpp11",
+            "progress"
+          )
+          remove.packages(intersect(extras, rownames(installed.packages())))
+          pak::pak(extras)
+          pak::pak()
+          pak::pak("rsconnect")
+        shell: Rscript {0}
+
+      - name: Push to shinyapps.io
+        env:
+          SHINYAPPSIO_TOKEN: ${{ secrets.SHINYAPPSIO_TOKEN }}
+          SHINYAPPSIO_SECRET: ${{ secrets.SHINYAPPSIO_SECRET }}
+        run: |
+          appname <- Sys.getenv("REPO_NAME")
+          deployment_type <- Sys.getenv("DEPLOYMENT_TYPE")
+          pr_number <- Sys.getenv("PR_NUMBER")
+
+          if (deployment_type != "prod") {
+            appname <- paste(appname, deployment_type, sep = "-")
+            if (nzchar(pr_number)) {
+              appname <- paste(appname, pr_number, sep = "-")
+            }
+          }
+          rsconnect::setAccountInfo(
+            name = "openrbqm",
+            token = Sys.getenv("SHINYAPPSIO_TOKEN"),
+            secret = Sys.getenv("SHINYAPPSIO_SECRET")
+          )
+          rsconnect::deployApp(
+            appName = appname,
+            forceUpdate = TRUE
+          )
+        shell: Rscript {0}

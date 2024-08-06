@@ -1,16 +1,15 @@
 #' Participant Details Server
 #'
-#' @param id The namespace id
-#' @param snapshot The snapshot `list` object passed from `run_app()`
+#' @inheritParams shared-params
 #' @param participant The reactive value provided by the participant input from `server`
 #'
 #' @export
-
 participant_details_server <- function(id, snapshot, participant) {
   shiny::moduleServer(id, function(input, output, session) {
     # ---- placeholders
 
-    observeEvent(participant(),
+    observeEvent(
+      participant(),
       {
         if (participant() == "None") {
           ## Show placeholders
@@ -53,20 +52,24 @@ participant_details_server <- function(id, snapshot, participant) {
     output$participant_summary <- renderUI({
       req(dfSUBJ())
 
-      mapping_column <- read.csv(system.file("rbmLibrary", "mapping_column.csv", package = "gsmApp")) %>%
-        filter(
-          .data$gsm_domain_key == "dfSUBJ"
-        )
+      mapping_column <- utils::read.csv(
+        system.file("rbmLibrary", "mapping_column.csv", package = "gsmApp")
+      ) %>%
+        dplyr::filter(.data$gsm_domain_key == "dfSUBJ")
 
       data <- dfSUBJ()$data %>%
-        select(any_of(as.character(dfSUBJ()$mapping))) %>%
-        mutate(across(everything(), as.character)) %>%
-        pivot_longer(everything()) %>%
-        left_join(mapping_column, by = c("name" = "default")) %>%
-        mutate(
+        dplyr::select(
+          dplyr::any_of(as.character(dfSUBJ()$mapping))
+        ) %>%
+        dplyr::mutate(
+          dplyr::across(dplyr::everything(), as.character)
+        ) %>%
+        tidyr::pivot_longer(dplyr::everything()) %>%
+        dplyr::left_join(mapping_column, by = c("name" = "default")) %>%
+        dplyr::mutate(
           Characteristic = ifelse(!is.na(.data$description), .data$description, .data$name)
         ) %>%
-        select(
+        dplyr::select(
           "Characteristic",
           "Value" = "value"
         )
@@ -95,12 +98,12 @@ participant_details_server <- function(id, snapshot, participant) {
       shinyjs::hide("card_placeholder_participant_domain_data_no_metric")
       shinyjs::show("card_participant_domain_data")
     })
-    observeEvent(input$`dfENROLL`, {
-      domain_filter("dfENROLL")
-      shinyjs::hide("card_placeholder_participant_domain_data")
-      shinyjs::hide("card_placeholder_participant_domain_data_no_metric")
-      shinyjs::show("card_participant_domain_data")
-    })
+    # observeEvent(input$`dfENROLL`, {
+    #  domain_filter('dfENROLL')
+    #  shinyjs::hide('card_placeholder_participant_domain_data')
+    #  shinyjs::hide('card_placeholder_participant_domain_data_no_metric')
+    #  shinyjs::show('card_participant_domain_data')
+    # })
     observeEvent(input$`dfSTUDCOMP`, {
       domain_filter("dfSTUDCOMP")
       shinyjs::hide("card_placeholder_participant_domain_data")
@@ -113,12 +116,12 @@ participant_details_server <- function(id, snapshot, participant) {
       shinyjs::hide("card_placeholder_participant_domain_data_no_metric")
       shinyjs::show("card_participant_domain_data")
     })
-    observeEvent(input$`dfQUERY`, {
-      domain_filter("dfQUERY")
-      shinyjs::hide("card_placeholder_participant_domain_data")
-      shinyjs::hide("card_placeholder_participant_domain_data_no_metric")
-      shinyjs::show("card_participant_domain_data")
-    })
+    # observeEvent(input$`dfQUERY`, {
+    #  domain_filter('dfQUERY')
+    #  shinyjs::hide('card_placeholder_participant_domain_data')
+    #  shinyjs::hide('card_placeholder_participant_domain_data_no_metric')
+    #  shinyjs::show('card_participant_domain_data')
+    # })
 
     # ---- domain data table
     output$domain_data_table <- DT::renderDT({
@@ -131,14 +134,13 @@ participant_details_server <- function(id, snapshot, participant) {
         participant()
       )
 
-
       if (input$show_hide_columns == "Hide") {
         mapping <- domain$mapping %>%
           as.data.frame() %>%
-          pivot_longer(everything())
+          tidyr::pivot_longer(dplyr::everything())
 
         domain <- domain$data %>%
-          select(any_of(mapping$value))
+          dplyr::select(dplyr::any_of(mapping$value))
       } else {
         domain <- domain$data
       }
@@ -153,6 +155,7 @@ participant_details_server <- function(id, snapshot, participant) {
             scrollX = TRUE
           ),
           rownames = FALSE,
+          selection = "none"
         )
     })
   })

@@ -1,9 +1,8 @@
 #' Create Summary table in KRIReport.Rmd for each KRI
-#' @param lAssessment `list` List of KRI assessments from `params` within `KRIReport.Rmd`.
-#' @param dfSite `data.frame` Optional site-level metadata.
+#'
+#' @inheritParams shared-params
 #' @export
 #' @keywords internal
-
 make_summary_table <- function(lAssessment, dfSite = NULL) {
   active <- lAssessment[!sapply(lAssessment, is.data.frame)]
 
@@ -18,22 +17,21 @@ make_summary_table <- function(lAssessment, dfSite = NULL) {
         )
     }
 
-    if (nrow(dfSummary) > 0 &
-      any(c(-2, -1, 1, 2) %in% unique(dfSummary$Flag))) {
+    if (nrow(dfSummary) && any(c(-2, -1, 1, 2) %in% unique(dfSummary$Flag))) {
       dfSummary %>%
-        filter(
+        dplyr::filter(
           .data$Flag != 0
         ) %>%
-        dplyr::arrange(desc(abs(.data$Score))) %>%
+        dplyr::arrange(dplyr::desc(abs(.data$Score))) %>%
         dplyr::mutate(
           Flag = purrr::map(.data$Flag, gsm::kri_directionality_logo),
-          across(
-            where(is.numeric),
+          dplyr::across(
+            dplyr::where(is.numeric),
             ~ round(.x, 3)
           )
         ) %>%
         dplyr::select(
-          any_of(c(
+          dplyr::any_of(c(
             "Site" = "GroupID",
             "Country" = "country",
             "Status" = "status",

@@ -1,8 +1,9 @@
 #' Creates taglist to summarize participants at a particular site
-#' @param participant_data A combined data set with the required metrics.
+#'
+#' @inheritParams shared-params
+#' @param participant A combined data set with the required metrics.
 #' @export
 #' @keywords internal
-
 participant_metric_summary_tag_list <- function(id, participant, snapshot) {
   req(id)
   req(participant)
@@ -10,10 +11,10 @@ participant_metric_summary_tag_list <- function(id, participant, snapshot) {
   domain_list <- list(
     "dfAE" = "Adverse Events",
     "dfPD" = "Protocol Deviations",
-    "dfENROLL" = "Enrollment",
+    #' dfENROLL' = 'Enrollment',
     "dfSTUDCOMP" = "Study Disposition",
-    "dfSDRGCOMP" = "Treatment Disposition",
-    "dfQUERY" = "Queries"
+    "dfSDRGCOMP" = "Treatment Disposition"
+    #' dfQUERY' = 'Queries'
   )
 
   domain_names <- names(domain_list)

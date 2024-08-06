@@ -4,7 +4,6 @@
 #' It specifies the layout of the web page and the interface elements it contains.
 #'
 #' @return A Shiny UI object
-
 ui <- function() {
   fluidPage(
     class = "bg-light",
@@ -21,7 +20,7 @@ ui <- function() {
     div(
       class = "row",
       div(
-        class = "col-12 col-sm-12 col-md-4 col-lg-3 col-xxl-2 border-end",
+        class = "col-12 col-sm-12 col-md-4 col-lg-3 col-xl-3 col-xxl-2 border-end input-div",
         div(
           class = "card mb-3",
           style = "border-top: solid #0dcaf0;",
@@ -56,18 +55,18 @@ ui <- function() {
         )
       ),
       div(
-        class = "col-12 col-sm-12 col-md-8 col-lg-9 col-xxl-10",
-        navset_bar(
-          nav_panel(
+        class = "col-12 col-sm-12 col-md-8 col-lg-9 col-xl-9 col-xxl-9",
+        bslib::navset_bar(
+          bslib::nav_panel(
             title = "Study Overview",
             study_overview_ui("study_overview")
           ),
-          nav_panel(
+          bslib::nav_panel(
             title = "Metric Details",
             metric_details_ui("metric_details"),
             site_details_ui("site_details")
           ),
-          nav_panel(
+          bslib::nav_panel(
             title = "Participant Details",
             participant_details_ui("participant_details")
           ),

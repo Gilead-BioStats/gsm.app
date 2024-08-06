@@ -1,17 +1,12 @@
 #' Site Details Server
 #'
-#' @param id The namespace id
-#' @param snapshot The snapshot `list` object passed from `run_app()`
-#' @param site The reactive value provided by the site input from `server`
-#' @param metric The selected metric.
+#' @inheritParams shared-params
 #'
 #' @export
-
 site_details_server <- function(id, snapshot, site, metric) {
   moduleServer(id, function(input, output, session) {
-    ##
-
-    observeEvent(site(),
+    observeEvent(
+      site(),
       {
         if (site() == "None") {
           ## Show placeholders
@@ -107,21 +102,21 @@ site_details_server <- function(id, snapshot, site, metric) {
 
     output$metric_metadata_list <- renderUI({
       config_param <- snapshot$lInputs$lMeta$config_param %>%
-        filter(
+        dplyr::filter(
           .data$workflowid == metric(),
           .data$param == "vThreshold"
         )
 
       meta_workflow <- snapshot$lInputs$lMeta$meta_workflow %>%
-        filter(.data$workflowid == metric()) %>%
-        select("metric", "numerator", "denominator")
+        dplyr::filter(.data$workflowid == metric()) %>%
+        dplyr::select("metric", "numerator", "denominator")
 
       site_details_metric_meta_data_list(config_param, meta_workflow)
     })
 
     # output$participant_status_list <- renderUI({
     #
-    #     participant_status_nest_list(participant_list())
+    #   participant_status_nest_list(participant_list())
     #
     # })
 
@@ -133,43 +128,102 @@ site_details_server <- function(id, snapshot, site, metric) {
 
 
     # ---- participant table
-    output$participants <- DT::renderDT({
-      participant_metrics <- snapshot$lStudyAssessResults[[metric()]]$lData$dfInput %>%
-        filter(.data$SiteID == site())
+    output$participants <- DT::renderDT(
+      {
+        shiny::req(dfSUBJ())
 
-      table <- DT::datatable(
-        snapshot$lStudyAssessResults[[metric()]]$lData$dfInput %>%
-          filter(.data$SiteID == site()),
-        class = "compact",
-        options = list(
-          lengthChange = FALSE,
-          paging = FALSE,
-          searching = FALSE,
-          selection = "none"
-        ),
-        rownames = FALSE,
-        callback = htmlwidgets::JS('
-                    table.on("click", "td:nth-child(1)", function(d) {
-                        const participant_id = d.currentTarget.innerText;
-                        console.log(
-                            `Selected participant ID: ${participant_id}`
-                        );
-                        const namespace = "gsmApp";
-                        Shiny.setInputValue(
-                            "participant",
-                            participant_id
-                        );
-                    })
-                ')
-      )
+        # TODO: standardize ID column across metrics
+        # ---- get the correct ID column depending on the metric
+        id_col <- switch(metric(),
+          kri0001 = dfSUBJ()$mapping$strIDCol,
+          kri0002 = dfSUBJ()$mapping$strIDCol,
+          kri0003 = dfSUBJ()$mapping$strIDCol,
+          kri0004 = dfSUBJ()$mapping$strIDCol,
+          kri0005 = dfSUBJ()$mapping$strIDCol,
+          kri0006 = dfSUBJ()$mapping$strIDCol,
+          kri0007 = dfSUBJ()$mapping$strIDCol,
+          kri0008 = dfSUBJ()$mapping$strEDCIDCol,
+          kri0009 = dfSUBJ()$mapping$strEDCIDCol,
+          kri0010 = dfSUBJ()$mapping$strEDCIDCol,
+          kri0011 = dfSUBJ()$mapping$strEDCIDCol,
+          kri0012 = dfSUBJ()$mapping$strIDCol
+        )
+        print(id_col)
 
-      if ("Rate" %in% colnames(participant_metrics)) {
-        table <- table %>%
-          DT::formatRound("Rate", digits = 5)
-      }
+        participant_metrics <- snapshot$lStudyAssessResults[[metric()]]$lData$dfInput %>%
+          dplyr::filter(
+            .data$SiteID == site()
+          )
 
-      return(table)
-    })
+        if (id_col != dfSUBJ()$mapping$strIDCol) {
+          participant_metrics <- participant_metrics %>%
+            dplyr::left_join(
+              dfSUBJ()$data %>%
+                dplyr::select(id_col, dfSUBJ()$mapping$strIDCol),
+              by = c("SubjectID" = id_col)
+            ) %>%
+            dplyr::mutate(
+              SubjectID = .data[[dfSUBJ()$mapping$strIDCol]]
+            ) %>%
+            dplyr::select(
+              -dplyr::any_of(dfSUBJ()$mapping$strIDCol)
+            )
+        }
+
+        if (metric() == "kri0012") {
+          participant_metrics <- participant_metrics %>%
+            dplyr::left_join(
+              dfENROLL()$data %>%
+                dplyr::select(
+                  dfENROLL()$mapping$strIDCol,
+                  dfSUBJ()$mapping$strIDCol
+                ),
+              by = c("SubjectID" = dfENROLL()$mapping$strIDCol)
+            ) %>%
+            dplyr::mutate(
+              SubjectID = .data[[dfSUBJ()$mapping$strIDCol]]
+            ) %>%
+            dplyr::select(
+              -dplyr::any_of(dfENROLL()$mapping$strIDCol)
+            ) %>%
+            dplyr::relocate(.data$SubjectID)
+        }
+
+        table <- DT::datatable(
+          participant_metrics,
+          class = "compact",
+          options = list(
+            lengthChange = FALSE,
+            paging = FALSE,
+            searching = FALSE,
+            selection = "none"
+          ),
+          rownames = FALSE,
+          selection = "none",
+          callback = htmlwidgets::JS('
+            table.on("click", "td:nth-child(1)", function(d) {
+              const participant_id = d.currentTarget.innerText;
+              console.log(
+                `Selected participant ID: ${participant_id}`
+              );
+              const namespace = "gsmApp";
+              Shiny.setInputValue(
+                "participant",
+                participant_id
+              );
+            })
+          ')
+        )
+
+        if ("Rate" %in% colnames(participant_metrics)) {
+          table <- table %>%
+            DT::formatRound("Rate", digits = 5)
+        }
+
+        return(table)
+      },
+      selection = "none"
+    )
 
     # ---- site data
     site_metadata <- reactive({
@@ -184,11 +238,10 @@ site_details_server <- function(id, snapshot, site, metric) {
       return(data)
     })
 
-
     output$site_metadata_list <- renderUI({
       enrolled_subjects <- dfSUBJ()$data %>%
-        filter(.data$enrollyn == "Y") %>%
-        select("subjid")
+        dplyr::filter(.data$enrollyn == "Y") %>%
+        dplyr::select("subjid")
       enrolled_subjects <- enrolled_subjects$subjid
 
       site_details_meta_data_list(site_metadata(), enrolled_subjects = enrolled_subjects, participant_list = participant_list())

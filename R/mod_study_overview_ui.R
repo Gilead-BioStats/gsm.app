@@ -1,9 +1,8 @@
 #' Study Overview UI
 #'
-#' @param id A namespace id
+#' @inheritParams shared-params
 #'
 #' @export
-
 study_overview_ui <- function(id) {
   ns <- shiny::NS(id)
   tags_to_return <- tagList(

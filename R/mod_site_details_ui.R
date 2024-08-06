@@ -1,9 +1,8 @@
 #' Site Details UI
 #'
-#' @param id A namespace id
+#' @inheritParams shared-params
 #'
 #' @export
-
 site_details_ui <- function(id) {
   ns <- shiny::NS(id)
 

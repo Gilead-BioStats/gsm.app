@@ -1,10 +1,8 @@
 #' Meta Tag List for Side Panel
 #'
-#' @param snapshot The snapshot `list` object passed from `run_app()`
+#' @inheritParams shared-params
 #'
 #' @export
-
-
 side_panel_meta_tag_list <- function(snapshot) {
   meta <- snapshot$lInputs$lMeta$meta_study
 

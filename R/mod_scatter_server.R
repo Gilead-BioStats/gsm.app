@@ -20,11 +20,11 @@ modScatterServer <- function(id, snapshot, site) {
                   tags$div(
                     class = "chart",
                     the_chart %>% htmlwidgets::onRender("
-                                      function(el, x) {
-                                        el.style.width = null;
-                                        el.style.height = null;
-                                      }
-                                    ")
+                    function(el, x) {
+                    el.style.width = null;
+                    el.style.height = null;
+                    }
+                  ")
                   )
                 )
               )

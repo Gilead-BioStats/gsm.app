@@ -3,7 +3,7 @@
 \docType{data}
 \name{meta_data_frame}
 \alias{meta_data_frame}
-\title{meta_data_frmae}
+\title{meta_data_frame}
 \format{
 A data frame with ...
 

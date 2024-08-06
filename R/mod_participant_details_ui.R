@@ -1,9 +1,8 @@
 #' Participant Details UI
 #'
-#' @param id The namespace id
+#' @inheritParams shared-params
 #'
 #' @export
-
 participant_details_ui <- function(id) {
   ns <- shiny::NS(id)
 
@@ -134,7 +133,8 @@ participant_details_ui <- function(id) {
             div(
               class = "card-body",
               h5(class = "card-title", "Participant Domain"),
-              radioButtons(ns("show_hide_columns"),
+              radioButtons(
+                ns("show_hide_columns"),
                 label = "Show all columns?",
                 choices = c("Hide", "Show"),
                 selected = "Hide",

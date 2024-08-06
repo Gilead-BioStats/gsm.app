@@ -1,13 +1,9 @@
-#' Update Metric Select
+#' Initialize Metric Select
 #'
-#' @param input Shiny inputs
-#' @param output Shiny outputs
-#' @param session Shiny session
-#' @param snapshot The snapshot `list` object passed from `run_app()`
+#' @inheritParams shared-params
 #'
 #' @export
-
-update_metric_select <- function(input, output, session, snapshot) {
+initialize_metric_select <- function(input, output, session, snapshot) {
   workflow_metadata <- snapshot$lInput$lMeta$meta_workflow %>%
     dplyr::filter(
       # Remove inactive workflows.
@@ -38,13 +34,7 @@ update_metric_select <- function(input, output, session, snapshot) {
 
   choices <- workflow_metadata$workflowid %>%
     stats::setNames(
-      glue::glue(
-        "{
-                    workflow_metadata$metric
-                } ({
-                    workflow_metadata$group
-                })"
-      )
+      glue::glue("{workflow_metadata$metric} ({workflow_metadata$group})")
     )
 
   shiny::updateSelectInput(

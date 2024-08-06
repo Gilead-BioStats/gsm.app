@@ -1,4 +1,4 @@
-#' meta_data_frmae
+#' meta_data_frame
 #'
 #' A dataset
 #'
@@ -7,7 +7,7 @@
 #' TODO
 "meta_data_frame"
 
-#' meta_data_frmae
+#' meta_list
 #'
 #' A dataset
 #'

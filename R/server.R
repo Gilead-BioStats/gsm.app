@@ -1,91 +1,62 @@
 #' Define Server
 #'
-#' @param input Shiny inputs
-#' @param output Shiny outputs
-#' @param session Shiny session
-#' @param snapshot The snapshot `list` object passed from `run_app()`
+#' @inheritParams shared-params
 #'
 #' @export
-
 server <- function(input, output, session, snapshot) {
+  # Reactive values
+  reactives <- list(
+    metric = reactive(input$metric),
+    site = reactive(input$site),
+    participant = reactive(input$participant),
+    reset = reactive(input$reset)
+  )
+
   # Side Panel
+  add_metadata_to_sidebar(input, output, session, snapshot)
 
-  output$text_output_name <- renderText({
-    snapshot$lInputs$lMeta$meta_study$nickname
-  })
-
-  output$text_output_study_id <- renderText({
-    snapshot$lInputs$lMeta$meta_study$protocol_number
-  })
-
-  output$text_output_snapshot_date <- renderText({
-    format(snapshot$lSnapshotDate, "%Y-%m-%d")
-  })
-
-  output$meta_tag_list <- renderUI({
-    side_panel_meta_tag_list(snapshot)
-  })
-
+  # ----
   # Study
-  add_metric_observer(snapshot, reactive(input$metric))
+  # add_metric_observer(snapshot, reactives$metric)
   study_overview_server("study_overview", snapshot)
+  modScatterServer("scatter", snapshot, reactives$site)
 
+  # ----
   # Metric
-  update_metric_select(input, output, session, snapshot)
+  initialize_metric_select(input, output, session, snapshot)
+  observe_metric_select(snapshot, reactives$metric)
   metric_details_server(
     "metric_details",
     snapshot,
-    reactive(input$metric),
-    reactive(input$site)
+    reactives$metric,
+    reactives$site
   )
 
+  # ----
   # Site
-  update_site_select(input, output, session, snapshot)
+  initialize_site_select(input, output, session, snapshot)
+  observe_site_select(reactives$site, snapshot)
   site_details_server(
     "site_details",
     snapshot,
-    reactive({
-      input$site
-    }),
-    reactive({
-      input$metric
-    })
+    reactives$site,
+    reactives$metric
   )
 
+  # ----
   # Participant
-
-  update_participant_select(input, output, session, snapshot, "None")
-
-  observeEvent(input$site,
-    {
-      updateSelectizeInput(session, "participant", selected = "None")
-      update_participant_select(input, output, session, snapshot, input$site)
-    },
-    ignoreInit = TRUE
-  )
-
+  initialize_participant_select(input, output, session, snapshot)
+  observe_participant_select(reactives$participant)
   participant_details_server(
     "participant_details",
     snapshot,
-    shiny::reactive(input$participant)
+    reactives$participant
   )
 
-  # scatter
-  modScatterServer("scatter", snapshot, reactive({
-    input$site
-  }))
-
-  observeEvent(input$participant,
-    {
-      if (input$participant != "None" & input$participant != "") {
-        nav_select("primary_nav_bar", "Participant Details")
-      }
-    },
-    ignoreInit = TRUE
-  )
-
+  # ----
+  # Reset
   observeEvent(input$reset, {
-    update_metric_select(input, output, session, snapshot)
+    initialize_metric_select(input, output, session, snapshot)
     updateSelectInput(session, "site", selected = "None")
     updateSelectizeInput(session, "participant", selected = "None")
   })

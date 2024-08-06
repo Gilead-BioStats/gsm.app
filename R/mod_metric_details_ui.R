@@ -1,9 +1,8 @@
 #' Metric Details UI
 #'
-#' @param id The namespace id
+#' @inheritParams shared-params
 #'
 #' @export
-
 metric_details_ui <- function(id) {
   ns <- shiny::NS(id)
 

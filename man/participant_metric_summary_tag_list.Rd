@@ -7,9 +7,19 @@
 participant_metric_summary_tag_list(id, participant, snapshot)
 }
 \arguments{
-\item{participant_data}{A combined data set with the required metrics.}
+\item{id}{The namespace id for this module.}
+
+\item{participant}{A combined data set with the required metrics.}
+
+\item{snapshot}{A \code{list} object containing the data for a snapshot. This
+object funnels into virtually every function of the application.}
 }
 \description{
 Creates taglist to summarize participants at a particular site
 }
+\keyword{'Enrollment',}
+\keyword{'Queries'}
+\keyword{=}
+\keyword{dfENROLL'}
+\keyword{dfQUERY'}
 \keyword{internal}

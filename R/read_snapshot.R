@@ -1,6 +1,6 @@
 #' Read and assemble snapshot from `inst`.
 #'
-#' @return `list` {gsm} snapshot object.
+#' @return `list` gsm snapshot object.
 #'
 #' @examples
 #' \dontrun{
