@@ -36,13 +36,16 @@ server <- function(input, output, session, dfResults, dfGroups, dfMetrics, dfBou
     })
 
     # Side Panel
-    add_metadata_to_sidebar(input, output, session, dfStudy())
+    add_metadata_to_sidebar(input, output, session, dfStudy(), unique(dfResults$SnapshotDate))
 
     # ---
     # Initialize inputs
     initialize_metric_select(input, output, session, dfMetrics)
     initialize_site_select(input, output, session, dfGroups)
     # initialize_participant_select(input, output, session, dfMetrics)
+
+    # observe_site_select(reactives$site)
+
 
 
     # ---
