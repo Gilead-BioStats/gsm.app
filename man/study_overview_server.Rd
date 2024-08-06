@@ -4,13 +4,17 @@
 \alias{study_overview_server}
 \title{Study Overview Server}
 \usage{
-study_overview_server(id, snapshot)
+study_overview_server(id, dfResults, dfMetrics, dfGroups)
 }
 \arguments{
 \item{id}{The namespace id for this module.}
 
-\item{snapshot}{A \code{list} object containing the data for a snapshot. This
-object funnels into virtually every function of the application.}
+\item{dfResults}{\code{data.frame} A stacked summary of analysis pipeline output.}
+
+\item{dfMetrics}{\code{data.frame} Metric-specific metadata for use in charts and
+reporting.}
+
+\item{dfGroups}{\code{data.frame} Group-level metadata dictionary.}
 }
 \description{
 Study Overview Server

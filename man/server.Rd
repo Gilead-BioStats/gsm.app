@@ -4,7 +4,16 @@
 \alias{server}
 \title{Define Server}
 \usage{
-server(input, output, session, snapshot)
+server(
+  input,
+  output,
+  session,
+  dfResults,
+  dfGroups,
+  dfMetrics,
+  dfBounds,
+  snapshot
+)
 }
 \arguments{
 \item{input}{Shiny inputs}
@@ -12,6 +21,17 @@ server(input, output, session, snapshot)
 \item{output}{Shiny outputs}
 
 \item{session}{Shiny session}
+
+\item{dfResults}{\code{data.frame} A stacked summary of analysis pipeline output.}
+
+\item{dfGroups}{\code{data.frame} Group-level metadata dictionary.}
+
+\item{dfMetrics}{\code{data.frame} Metric-specific metadata for use in charts and
+reporting.}
+
+\item{dfBounds}{\code{data.frame} Set of predicted percentages/rates and upper-
+and lower-bounds across the full range of sample sizes/total exposure
+values for reporting.}
 
 \item{snapshot}{A \code{list} object containing the data for a snapshot. This
 object funnels into virtually every function of the application.}

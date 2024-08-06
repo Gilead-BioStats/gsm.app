@@ -6,15 +6,30 @@
 \arguments{
 \item{id}{The namespace id for this module.}
 
-\item{combinedData}{\code{data.frame} A combined data set with the required metrics.}
+\item{combinedData}{\code{data.frame} A combined data set with the required
+metrics.}
+
+\item{dfBounds}{\code{data.frame} Set of predicted percentages/rates and upper-
+and lower-bounds across the full range of sample sizes/total exposure
+values for reporting.}
+
+\item{dfGroups}{\code{data.frame} Group-level metadata dictionary.}
+
+\item{dfMetrics}{\code{data.frame} Metric-specific metadata for use in charts and
+reporting.}
+
+\item{dfResults}{\code{data.frame} A stacked summary of analysis pipeline output.}
 
 \item{dfSite}{\code{data.frame} Optional site-level metadata.}
+
+\item{dfStudy}{\code{data.frame} Optional study-level metadata.}
 
 \item{domain}{The type of data and subsequent metrics you would like to see.}
 
 \item{input}{Shiny inputs}
 
-\item{lAssessment}{\code{list} List of KRI assessments from \code{params} within \code{KRIReport.Rmd}.}
+\item{lAssessment}{\code{list} List of KRI assessments from \code{params} within
+\code{KRIReport.Rmd}.}
 
 \item{metric}{The reactive value provided by the metric input from \code{server}}
 

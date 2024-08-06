@@ -5,6 +5,7 @@
 #' @import shiny
 #' @importFrom cli cli_alert
 #' @importFrom cli cli_alert_info
+#' @importFrom rlang %||%
 #' @importFrom rlang .data
 ## usethis namespace: end
 NULL

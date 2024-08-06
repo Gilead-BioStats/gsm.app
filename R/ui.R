@@ -49,7 +49,7 @@ ui <- function() {
                 shinyjs::hidden(selectInput("metric", strong("Metric"), choices = c("None"), width = "100%")),
                 shinyjs::hidden(selectInput("site", strong("Site"), choices = c("None"), width = "100%")),
                 shinyjs::hidden(selectizeInput("participant", strong("Participant"), choices = "None", width = "100%")),
-                actionButton("reset", "Reset All", class="btn btn-primary btn-sm")
+                actionButton("reset", "Reset All", class = "btn btn-primary btn-sm")
               )
             )
           )

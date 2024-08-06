@@ -7,7 +7,8 @@
 make_summary_table(lAssessment, dfSite = NULL)
 }
 \arguments{
-\item{lAssessment}{\code{list} List of KRI assessments from \code{params} within \code{KRIReport.Rmd}.}
+\item{lAssessment}{\code{list} List of KRI assessments from \code{params} within
+\code{KRIReport.Rmd}.}
 
 \item{dfSite}{\code{data.frame} Optional site-level metadata.}
 }
