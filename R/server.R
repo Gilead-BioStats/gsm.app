@@ -82,27 +82,6 @@ server <- function(
       shinyjs::show("participant")
     }
   })
-  # ---
-  # Reveal filters based on tab
-  observeEvent(input$primary_nav_bar, {
-    if (input$primary_nav_bar == "Study Overview") {
-      shinyjs::hide("metric")
-      shinyjs::hide("site")
-      shinyjs::hide("participant")
-      updateSelectInput(session, "site", selected = "None")
-    } else if (input$primary_nav_bar == "Metric Details") {
-      shinyjs::show("metric")
-      shinyjs::show("site")
-      shinyjs::hide("participant")
-      updateSelectizeInput(session, "participant", selected = "None")
-    } else if (input$primary_nav_bar == "Participant Details") {
-      shinyjs::show("metric")
-      shinyjs::show("site")
-      shinyjs::show("participant")
-    }
-  })
-
-
 
   # ----
   # Study
@@ -112,22 +91,7 @@ server <- function(
     dfGroups = dfGroups,
     dfMetrics = dfMetrics
   )
-  # ----
-  # Study
-  # add_metric_observer(snapshot, reactives$metric)
-  study_overview_server("study_overview",
-    dfResults = dfResults,
-    dfGroups = dfGroups,
-    dfMetrics = dfMetrics
-  )
 
-
-  modScatterServer("scatter",
-    dfResults = dfResults,
-    dfMetrics = dfMetrics,
-    dfGroups = dfGroups,
-    dfBounds = dfBounds
-  )
   modScatterServer("scatter",
     dfResults = dfResults,
     dfMetrics = dfMetrics,
@@ -166,45 +130,7 @@ server <- function(
   #     snapshot,
   #     reactives$participant
   # )
-  # # ----
-  # # Metric
-  # initialize_metric_select(input, output, session, snapshot)
-  # observe_metric_select(snapshot, reactives$metric)
-  # metric_details_server(
-  #     'metric_details',
-  #     snapshot,
-  #     reactives$metric,
-  #     reactives$site
-  # )
-  #
-  # # ----
-  # # Site
-  #
-  # observe_site_select(reactives$site, snapshot)
-  # site_details_server(
-  #     'site_details',
-  #     snapshot,
-  #     reactives$site,
-  #     reactives$metric
-  # )
-  #
-  # # ----
-  # # Participant
-  # initialize_participant_select(input, output, session, snapshot)
-  # observe_participant_select(reactives$participant)
-  # participant_details_server(
-  #     'participant_details',
-  #     snapshot,
-  #     reactives$participant
-  # )
 
-  # ----
-  # Reset
-  observeEvent(input$reset, {
-    initialize_metric_select(input, output, session, dfMetrics)
-    updateSelectInput(session, "site", selected = "None")
-    updateSelectizeInput(session, "participant", selected = "None")
-  })
   # ----
   # Reset
   observeEvent(input$reset, {
