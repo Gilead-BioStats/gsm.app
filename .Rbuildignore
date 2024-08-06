@@ -11,3 +11,4 @@ _\.new\.png$
 ^data-raw$
 ^CODE_OF_CONDUCT\.md$
 ^README\.Rmd$
+^R/_disable_autoload\.R$

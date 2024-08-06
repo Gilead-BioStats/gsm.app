@@ -33,7 +33,7 @@ The core branches that are used in this repository are:
 -   `fix-XXXX`: Used to develop new functionality in the package. See [Development Process](#development-process) below for more details.
 -   `release`: Used to conduct regression testing and finalize QC documentation for a release. See [Release Process](#release-process) below for more details.
 
-# Development Process {#development-process}
+### Development Process {#development-process}
 
 All code development takes place in `fix` branches. This section provides general guidance about this process flow. A detailed step-by-step workflow for code development in `fix` branches can be found in the first section of [Appendix 1](#fix-branch-workflow) below.
 
@@ -62,6 +62,18 @@ Code developers for `{gsmApp}` use the [tidyverse style guide](https://style.tid
     double_indent_style$line_break$remove_line_breaks_in_fun_dec <- NULL
     styler::style_dir('R', transformers = double_indent_style)
     styler::style_dir('tests', recursive = TRUE, transformers = double_indent_style)
+
+### Imports
+
+We recommend reading the [Dependencies: In Practice chapter of R Packages 2e](https://r-pkgs.org/dependencies-in-practice.html) before adding any dependencies to this package. Some specific guidelines:
+
+- Do not add a dependency for something that can be done relatively easily in base R. This is a fine line, so it's acceptable to err on the side of adding the dependency; we can help with the work needed to avoid the dependency.
+- If a package is only needed for specific functions that won't be called by many/most users, call `usethis::use_package(pkg, "Suggests")`, and follow the instructions for making your code inform users to install the required package.
+- If a package is used by most/all users, call `usethis::use_package(pkg)` to make sure the package is in the `Imports:` section of the `DESCRIPTION`. This will also "elevate" the package from `Suggests:` to `Imports:` if it is already used in that manner.
+- Do not use `@import` or `@importFrom` directly in a function's {roxygen2} block.
+- If the imported function is an infix (like `%||%`) or is used in a "tight loop" that could conceivably be called millions of times, use `usethis::use_import_from(pkg, function)` to import the function.
+- Other functions should be namespaced using `pkg::function()`. This makes it easier to find where the dependency is used, in case we want or need to reduce our dependency footprint.
+- In rare cases, we might want to `usethis::use_import_from()` other frequently used functions, or even `@import` an entire package. If you believe this should happen in your code, please explain why in your pull request.
 
 ## Appendix 1 - Detailed Workflows
 
