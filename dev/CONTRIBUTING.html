@@ -64,10 +64,8 @@
 <li>
 <code>release</code>: Used to conduct regression testing and finalize QC documentation for a release. See <a href="#release-process">Release Process</a> below for more details.</li>
 </ul></div>
-</div>
-</div>
-<div class="section level1">
-<h1 id="development-process">Development Process<a class="anchor" aria-label="anchor" href="#development-process"></a></h1>
+<div class="section level3">
+<h3 id="development-process">Development Process<a class="anchor" aria-label="anchor" href="#development-process"></a></h3>
 <p>All code development takes place in <code>fix</code> branches. This section provides general guidance about this process flow. A detailed step-by-step workflow for code development in <code>fix</code> branches can be found in the first section of <a href="#fix-branch-workflow">Appendix 1</a> below.</p>
 <p>Once an issue is filed and delegated to a core developer, a <code>fix</code> branch will be opened, which is where all package development related to that issue will be conducted. Each <code>fix</code> branch should be linked to one or more of the filed GitHub <a href="https://github.com/Gilead-BioStats/gsmApp/issues" class="external-link">issue(s)</a>. The issue(s) will be referenced in the naming of the <code>fix</code> branch. For example, a branch named <code>fix-111</code> addresses issue #111. Tasks related to documentation, testing, and/or qualification may also use <code>fix</code> branches and associated issues.</p>
 <p>In addition to the above, please also use the following general guidelines when creating a Pull Request:</p>
@@ -77,7 +75,9 @@
 <li>Please include any relevant details that will provide context for the proposed updates or new functionality. Additionally, link the Pull Request to the relevant issue(s) by using either <a href="https://docs.github.com/en/issues/tracking-your-work-with-issues/linking-a-pull-request-to-an-issue#linking-a-pull-request-to-an-issue-using-a-keyword" class="external-link">closing keywords</a>, or the <code>Development</code> section on the sidebar of the Pull Request page.</li>
 <li>In general, all Pull Requests should target the <code>dev</code> branch (with the exception of a release Pull Request).</li>
 <li>All checks and tests must be passing before merging a Pull Request to <code>dev</code>. These checks are automatically run via GitHub Actions, as described in <a href="#github-action-workflow">Appendix 3</a>, but you can also run them locally by calling <code>devtools::check()</code> on your <code>fix</code> branch before finalizing a Pull Request.</li>
-</ul><div class="section level2">
+</ul></div>
+</div>
+<div class="section level2">
 <h2 id="release-process">Release Process<a class="anchor" aria-label="anchor" href="#release-process"></a></h2>
 <p>Code release follows a process using <code>release</code> branches. A release is initiated when all feature development, QC, and qualification has been completed for a given functionality. The primary objective of the Release Workflow is to conduct regression testing and finalize all QC documentation for that release. A detailed step-by-step workflow for code release can be found in the second section of <a href="#release-branch-workflow">Appendix 1</a> below.</p>
 </div>
@@ -90,6 +90,17 @@
 <span id="cb1-4"><a href="#cb1-4" tabindex="-1"></a>double_indent_style<span class="sc">$</span>line_break<span class="sc">$</span>remove_line_breaks_in_fun_dec <span class="ot">&lt;-</span> <span class="cn">NULL</span></span>
 <span id="cb1-5"><a href="#cb1-5" tabindex="-1"></a>styler<span class="sc">::</span><span class="fu">style_dir</span>(<span class="st">'R'</span>, <span class="at">transformers =</span> double_indent_style)</span>
 <span id="cb1-6"><a href="#cb1-6" tabindex="-1"></a>styler<span class="sc">::</span><span class="fu">style_dir</span>(<span class="st">'tests'</span>, <span class="at">recursive =</span> <span class="cn">TRUE</span>, <span class="at">transformers =</span> double_indent_style)</span></code></pre></div>
+<div class="section level3">
+<h3 id="imports">Imports<a class="anchor" aria-label="anchor" href="#imports"></a></h3>
+<p>We recommend reading the <a href="https://r-pkgs.org/dependencies-in-practice.html" class="external-link">Dependencies: In Practice chapter of R Packages 2e</a> before adding any dependencies to this package. Some specific guidelines:</p>
+<ul><li>Do not add a dependency for something that can be done relatively easily in base R. This is a fine line, so it’s acceptable to err on the side of adding the dependency; we can help with the work needed to avoid the dependency.</li>
+<li>If a package is only needed for specific functions that won’t be called by many/most users, call <code>usethis::use_package(pkg, "Suggests")</code>, and follow the instructions for making your code inform users to install the required package.</li>
+<li>If a package is used by most/all users, call <code>usethis::use_package(pkg)</code> to make sure the package is in the <code>Imports:</code> section of the <code>DESCRIPTION</code>. This will also “elevate” the package from <code>Suggests:</code> to <code>Imports:</code> if it is already used in that manner.</li>
+<li>Do not use <code>@import</code> or <code>@importFrom</code> directly in a function’s {roxygen2} block.</li>
+<li>If the imported function is an infix (like <code>%||%</code>) or is used in a “tight loop” that could conceivably be called millions of times, use <code>usethis::use_import_from(pkg, function)</code> to import the function.</li>
+<li>Other functions should be namespaced using <code>pkg::function()</code>. This makes it easier to find where the dependency is used, in case we want or need to reduce our dependency footprint.</li>
+<li>In rare cases, we might want to <code><a href="https://usethis.r-lib.org/reference/use_import_from.html" class="external-link">usethis::use_import_from()</a></code> other frequently used functions, or even <code>@import</code> an entire package. If you believe this should happen in your code, please explain why in your pull request.</li>
+</ul></div>
 </div>
 <div class="section level2">
 <h2 id="appendix-1---detailed-workflows">Appendix 1 - Detailed Workflows<a class="anchor" aria-label="anchor" href="#appendix-1---detailed-workflows"></a></h2>
@@ -236,7 +247,7 @@
 <div class="section level3">
 <h3 id="merges-to-dev-branch">Merges to <code>dev</code> Branch<a class="anchor" aria-label="anchor" href="#merges-to-dev-branch"></a></h3>
 <ul><li>R CMD Check (<code>R-CMD-check-dev</code>):
-<ul><li>Basic R CMD check which can be run using <code><a href="http://r-lib.github.io/rcmdcheck/reference/rcmdcheck.html" class="external-link">rcmdcheck::rcmdcheck()</a></code>
+<ul><li>Basic R CMD check which can be run using <code>rcmdcheck::rcmdcheck()</code>
 </li>
 <li>This check will run on <code>ubuntu-latest</code> and on R version 4.1.3.</li>
 </ul></li>
@@ -248,7 +259,7 @@
 <div class="section level2">
 <h2 id="merges-to-main-branch">Merges to <code>main</code> Branch<a class="anchor" aria-label="anchor" href="#merges-to-main-branch"></a></h2>
 <ul><li>R CMD Check (<code>R-CMD-check-main</code>):
-<ul><li>Basic R CMD check which can be run using <code><a href="http://r-lib.github.io/rcmdcheck/reference/rcmdcheck.html" class="external-link">rcmdcheck::rcmdcheck()</a></code>
+<ul><li>Basic R CMD check which can be run using <code>rcmdcheck::rcmdcheck()</code>
 </li>
 <li>This check will run on <code>ubuntu-latest</code> and on R version 4.1.3. Additionally, it will be run on the latest R release version on <code>windows-latest</code>, <code>macOS-latest</code>, and <code>ubuntu-latest</code>.</li>
 </ul></li>
