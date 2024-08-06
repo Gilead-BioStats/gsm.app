@@ -21,7 +21,6 @@ Imports:
     DT,
     gsm,
     htmltools,
-    htmlwidgets,
     magrittr,
     purrr,
     rlang,
