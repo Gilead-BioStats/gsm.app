@@ -3,28 +3,19 @@
 #' @inheritParams shared-params
 #' @export
 
-run_app <- function(dfResults = NULL, dfGroups = NULL, dfMetrics = NULL, dfBounds = NULL, snapshot = NULL) {
-  if (is.null(snapshot)) {
-    snapshot <- gsmApp::read_snapshot()
-  }
-
-  if (is.null(dfResults)) {
-    dfResults <- gsm::reportingResults %>%
-      filter(SnapshotDate == max(SnapshotDate))
-  }
-
-  if (is.null(dfGroups)) {
-    dfGroups <- gsm::reportingGroups
-  }
-
-  if (is.null(dfMetrics)) {
-    dfMetrics <- gsm::reportingMetrics
-  }
-
-  if (is.null(dfBounds)) {
-    dfBounds <- gsm::reportingBounds %>%
-      filter(SnapshotDate == max(.data$SnapshotDate))
-  }
+run_app <- function(
+    dfResults = NULL,
+    dfGroups = NULL,
+    dfMetrics = NULL,
+    dfBounds = NULL,
+    snapshot = NULL) {
+  snapshot <- snapshot %||% read_snapshot()
+  dfResults <- dfResults %||% gsm::reportingResults %>%
+    dplyr::filter(.data$SnapshotDate == max(.data$SnapshotDate))
+  dfGroups <- dfGroups %||% gsm::reportingGroups
+  dfMetrics <- dfMetrics %||% gsm::reportingMetrics
+  dfBounds <- dfBounds %||% gsm::reportingBounds %>%
+    dplyr::filter(.data$SnapshotDate == max(.data$SnapshotDate))
 
   shinyApp(
     ui = ui(),

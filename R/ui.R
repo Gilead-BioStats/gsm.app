@@ -6,7 +6,7 @@
 #' @return A Shiny UI object
 ui <- function() {
   fluidPage(
-    useShinyjs(),
+    shinyjs::useShinyjs(),
     class = "bg-light",
     style = "min-height: 100vh;",
     title = "GSM Deep Dive",

@@ -1,10 +1,10 @@
-modScatterServer <- function(id,
-  dfResults,
-  dfMetrics,
-  dfGroups,
-  dfBounds,
-  snapshot,
-  site) {
+modScatterServer <- function(
+    id,
+    dfResults,
+    dfMetrics,
+    dfGroups,
+    dfBounds,
+    site) {
   shiny::moduleServer(
     id,
     function(input, output, session) {
@@ -15,8 +15,8 @@ modScatterServer <- function(id,
             lMetric <- dfMetrics %>%
               dplyr::filter(.data$MetricID == x) %>%
               as.list()
-            dfResultsSubSelect <- dfResults %>% dplyr::filter(.data$MetricID == x)
-            dfBoundsSubSelect <- dfBounds %>% dplyr::filter(MetricID == x)
+            dfResultsSubSelect <- dplyr::filter(dfResults, .data$MetricID == x)
+            dfBoundsSubSelect <- dplyr::filter(dfBounds, .data$MetricID == x)
 
             div(
               class = "col-12 col-sm-12 col-md-12 col-lg-6 col-xxl-4",
@@ -27,8 +27,8 @@ modScatterServer <- function(id,
                   class = "card-body",
                   tags$div(
                     class = "chart",
-                    renderWidget_ScatterPlot({
-                      Widget_ScatterPlot(
+                    gsm::renderWidget_ScatterPlot({
+                      gsm::Widget_ScatterPlot(
                         dfResultsSubSelect,
                         lMetric = lMetric,
                         dfGroups = dfGroups,

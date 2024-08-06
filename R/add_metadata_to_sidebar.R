@@ -1,14 +1,10 @@
 add_metadata_to_sidebar <- function(input, output, session, dfStudy, vSnapshotDate) {
   output$text_output_name <- renderText({
-    dfStudy %>%
-      filter(Param == "nickname") %>%
-      .$Value
+    dfStudy$Value[dfStudy$Param == "nickname"]
   })
 
   output$text_output_study_id <- renderText({
-    dfStudy %>%
-      filter(Param == "protocol_number") %>%
-      .$Value
+    dfStudy$Value[dfStudy$Param == "protocol_number"]
   })
 
   output$text_output_snapshot_date <- renderText({

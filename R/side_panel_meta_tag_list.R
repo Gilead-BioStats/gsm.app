@@ -5,7 +5,7 @@
 #' @export
 side_panel_meta_tag_list <- function(dfStudy) {
   dfStudyFiltered <- dfStudy %>%
-    dplyr::filter(Param %in% c(
+    dplyr::filter(.data$Param %in% c(
       "protocol_indication",
       "therapeutic_area",
       "phase",

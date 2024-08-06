@@ -4,33 +4,42 @@
 #'
 #' @export
 
-server <- function(input, output, session, dfResults, dfGroups, dfMetrics, dfBounds, snapshot) {
+server <- function(
+    input,
+    output,
+    session,
+    dfResults,
+    dfGroups,
+    dfMetrics,
+    dfBounds,
+    snapshot
+) {
   # Filtering data inputs
 
   dfStudy <- reactive({
     dfGroups %>%
-      dplyr::filter(GroupLevel == "Study")
+      dplyr::filter(.data$GroupLevel == "Study")
   })
 
   dfResultsFilter <- reactive({
     dfResults %>%
       dplyr::filter(
-        GroupLevel == "Site",
-        MetricID == reactives$metric()
+        .data$GroupLevel == "Site",
+        .data$MetricID == reactives$metric()
       )
   })
 
   dfBoundsFilter <- reactive({
     dfBounds %>%
       dplyr::filter(
-        MetricID == reactives$metric()
+        .data$MetricID == reactives$metric()
       )
   })
 
   dfMetricsFilter <- reactive({
     dfMetrics %>%
       dplyr::filter(
-        MetricID == reactives$metric()
+        .data$MetricID == reactives$metric()
       )
   })
 

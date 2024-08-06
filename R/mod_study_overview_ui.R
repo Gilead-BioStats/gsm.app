@@ -29,7 +29,7 @@ study_overview_ui <- function(id) {
                 textOutput(ns("amber_kri"), inline = TRUE)
               )
             ),
-            Widget_GroupOverviewOutput(ns("site_overview_table"))
+            gsm::Widget_GroupOverviewOutput(ns("site_overview_table"))
           )
         )
       ),

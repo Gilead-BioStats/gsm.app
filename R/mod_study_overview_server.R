@@ -4,10 +4,10 @@
 #'
 #' @export
 
-study_overview_server <- function(id, dfResults, dfMetrics, dfGroups, snapshot) {
+study_overview_server <- function(id, dfResults, dfMetrics, dfGroups) {
   shiny::moduleServer(id, function(input, output, session) {
-    output$site_overview_table <- renderWidget_GroupOverview({
-      Widget_GroupOverview(
+    output$site_overview_table <- gsm::renderWidget_GroupOverview({
+      gsm::Widget_GroupOverview(
         dfResults = dfResults,
         dfMetrics = dfMetrics,
         dfGroups = dfGroups,
