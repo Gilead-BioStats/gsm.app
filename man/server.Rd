@@ -4,16 +4,7 @@
 \alias{server}
 \title{Define Server}
 \usage{
-server(
-  input,
-  output,
-  session,
-  dfResults,
-  dfGroups,
-  dfMetrics,
-  dfBounds,
-  snapshot
-)
+server(input, output, session, dfResults, dfGroups, dfMetrics, dfBounds)
 }
 \arguments{
 \item{input}{Shiny inputs}
@@ -32,9 +23,6 @@ reporting.}
 \item{dfBounds}{\code{data.frame} Set of predicted percentages/rates and upper-
 and lower-bounds across the full range of sample sizes/total exposure
 values for reporting.}
-
-\item{snapshot}{A \code{list} object containing the data for a snapshot. This
-object funnels into virtually every function of the application.}
 }
 \description{
 Define Server

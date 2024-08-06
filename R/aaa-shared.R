@@ -22,8 +22,6 @@
 #' @param output Shiny outputs
 #' @param session Shiny session
 #' @param site The reactive value provided by the site input from `server`
-#' @param snapshot A `list` object containing the data for a snapshot. This
-#'   object funnels into virtually every function of the application.
 #' @param subset_col The id column that will be selected from the domain.
 #' @param subset_val The specific value that the subset_col will be filtered by.
 #'

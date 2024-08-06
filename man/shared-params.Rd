@@ -39,9 +39,6 @@ reporting.}
 
 \item{site}{The reactive value provided by the site input from \code{server}}
 
-\item{snapshot}{A \code{list} object containing the data for a snapshot. This
-object funnels into virtually every function of the application.}
-
 \item{subset_col}{The id column that will be selected from the domain.}
 
 \item{subset_val}{The specific value that the subset_col will be filtered by.}

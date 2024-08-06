@@ -7,9 +7,7 @@ run_app <- function(
     dfResults = NULL,
     dfGroups = NULL,
     dfMetrics = NULL,
-    dfBounds = NULL,
-    snapshot = NULL) {
-  snapshot <- snapshot %||% read_snapshot()
+    dfBounds = NULL) {
   dfResults <- dfResults %||% gsm::reportingResults %>%
     dplyr::filter(.data$SnapshotDate == max(.data$SnapshotDate))
   dfGroups <- dfGroups %||% gsm::reportingGroups
@@ -24,8 +22,7 @@ run_app <- function(
         dfResults = dfResults,
         dfGroups = dfGroups,
         dfMetrics = dfMetrics,
-        dfBounds = dfBounds,
-        snapshot
+        dfBounds = dfBounds
       )
     }
   )

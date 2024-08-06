@@ -3,8 +3,7 @@ modScatterServer <- function(
     dfResults,
     dfMetrics,
     dfGroups,
-    dfBounds,
-    site) {
+    dfBounds) {
   shiny::moduleServer(
     id,
     function(input, output, session) {

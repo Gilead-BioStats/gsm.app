@@ -11,8 +11,7 @@ server <- function(
     dfResults,
     dfGroups,
     dfMetrics,
-    dfBounds,
-    snapshot
+    dfBounds
 ) {
   # Filtering data inputs
 
@@ -127,15 +126,13 @@ server <- function(
     dfResults = dfResults,
     dfMetrics = dfMetrics,
     dfGroups = dfGroups,
-    dfBounds = dfBounds,
-    snapshot
+    dfBounds = dfBounds
   )
   modScatterServer("scatter",
     dfResults = dfResults,
     dfMetrics = dfMetrics,
     dfGroups = dfGroups,
-    dfBounds = dfBounds,
-    snapshot
+    dfBounds = dfBounds
   )
 
   # # ----
