@@ -3,33 +3,25 @@
 #' @inheritParams shared-params
 #'
 #' @export
-study_overview_server <- function(id, snapshot) {
+
+study_overview_server <- function(id, dfResults, dfMetrics, dfGroups) {
   shiny::moduleServer(id, function(input, output, session) {
-    output$site_overview_table <- DT::renderDataTable({
-      tb <- gsm::Overview_Table(
-        snapshot$lStudyAssessResults,
-        gsm::Site_Map_Raw(
-          dfs = list(
-            dfSITE = snapshot$lInputs$lMeta$meta_site,
-            dfSUBJ = snapshot$lInputs$lData$dfSUBJ
-          ),
-          lMapping = snapshot$lInputs$lMapping,
-          dfConfig = snapshot$lInputs$lMeta$config_param
-        )
+    output$site_overview_table <- gsm::renderWidget_GroupOverview({
+      gsm::Widget_GroupOverview(
+        dfResults = dfResults,
+        dfMetrics = dfMetrics,
+        dfGroups = dfGroups,
+        strGroupSubset = "all"
       )
-      tb$x$selection <- "none"
-      tb
     })
 
     ## KRI Color KPIs
     kri_color_count <- reactive({
-      snapshot$lSnapshot$rpt_site_kri_details %>%
-        dplyr::filter(grepl("^kri", .data$workflowid)) %>%
+      dfResults %>%
         dplyr::mutate(
           Color = ifelse(
-            abs(.data$flag_value) == 2,
-            "Red",
-            ifelse(abs(.data$flag_value) == 1, "Amber", "Other")
+            abs(.data$Flag) == 2, "Red",
+            ifelse(abs(.data$Flag) == 1, "Amber", "Other")
           ),
           .keep = "none"
         ) %>%

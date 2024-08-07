@@ -4,7 +4,7 @@
 \alias{initialize_metric_select}
 \title{Initialize Metric Select}
 \usage{
-initialize_metric_select(input, output, session, snapshot)
+initialize_metric_select(input, output, session, dfMetrics)
 }
 \arguments{
 \item{input}{Shiny inputs}
@@ -13,8 +13,8 @@ initialize_metric_select(input, output, session, snapshot)
 
 \item{session}{Shiny session}
 
-\item{snapshot}{A \code{list} object containing the data for a snapshot. This
-object funnels into virtually every function of the application.}
+\item{dfMetrics}{\code{data.frame} Metric-specific metadata for use in charts and
+reporting.}
 }
 \description{
 Initialize Metric Select

@@ -1,15 +1,22 @@
-modScatterServer <- function(id, snapshot, site) {
+modScatterServer <- function(
+    id,
+    dfResults,
+    dfMetrics,
+    dfGroups,
+    dfBounds) {
   shiny::moduleServer(
     id,
     function(input, output, session) {
       output$all_charts <- renderUI({
         div(
           class = "row",
-          purrr::map(snapshot$lCharts, function(x) {
-            the_chart <- x$scatterJS
-            the_chart$x$selectedGroupIDs <- site()
-            the_chart$x$bHideDropdown <- TRUE
-            the_chart$x$siteSelectLabelValue <- ""
+          purrr::map(unique(dfMetrics$MetricID), function(x) {
+            lMetric <- dfMetrics %>%
+              dplyr::filter(.data$MetricID == x) %>%
+              as.list()
+            dfResultsSubSelect <- dplyr::filter(dfResults, .data$MetricID == x)
+            dfBoundsSubSelect <- dplyr::filter(dfBounds, .data$MetricID == x)
+
             div(
               class = "col-12 col-sm-12 col-md-12 col-lg-6 col-xxl-4",
               div(
@@ -19,12 +26,16 @@ modScatterServer <- function(id, snapshot, site) {
                   class = "card-body",
                   tags$div(
                     class = "chart",
-                    the_chart %>% htmlwidgets::onRender("
-                    function(el, x) {
-                    el.style.width = null;
-                    el.style.height = null;
-                    }
-                  ")
+                    gsm::renderWidget_ScatterPlot({
+                      gsm::Widget_ScatterPlot(
+                        dfResultsSubSelect,
+                        lMetric = lMetric,
+                        dfGroups = dfGroups,
+                        dfBounds = dfBoundsSubSelect,
+                        bAddGroupSelect = FALSE,
+                        bDebug = FALSE
+                      )
+                    })
                   )
                 )
               )
