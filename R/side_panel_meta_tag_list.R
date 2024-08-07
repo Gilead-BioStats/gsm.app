@@ -15,14 +15,12 @@ side_panel_meta_tag_list <- function(dfStudy) {
     dplyr::select("Param", "Value") %>%
     tidyr::pivot_wider(names_from = "Param", values_from = "Value") %>%
     dplyr::select(
-      "protocol_indication",
-      "therapeutic_area",
-      "phase",
-      "num_plan_site",
-      "num_enrolled_subj_m"
+      Indication = "protocol_indication",
+      TA = "therapeutic_area",
+      Phase = "phase",
+      Sites = "num_plan_site",
+      Subjects = "num_enrolled_subj_m"
     )
-
-  colnames(dfStudyFiltered) <- c("Indication", "TA", "Phase", "Sites", "Subjects")
 
   meta_tags <- colnames(dfStudyFiltered) %>%
     purrr::map(function(x) {
