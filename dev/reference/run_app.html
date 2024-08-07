@@ -39,16 +39,30 @@
 
     <div class="section level2">
     <h2 id="ref-usage">Usage<a class="anchor" aria-label="anchor" href="#ref-usage"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">run_app</span><span class="op">(</span>snapshot <span class="op">=</span> <span class="cn">NULL</span><span class="op">)</span></span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">run_app</span><span class="op">(</span>dfResults <span class="op">=</span> <span class="cn">NULL</span>, dfGroups <span class="op">=</span> <span class="cn">NULL</span>, dfMetrics <span class="op">=</span> <span class="cn">NULL</span>, dfBounds <span class="op">=</span> <span class="cn">NULL</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div class="section level2">
     <h2 id="arguments">Arguments<a class="anchor" aria-label="anchor" href="#arguments"></a></h2>
 
 
-<dl><dt id="arg-snapshot">snapshot<a class="anchor" aria-label="anchor" href="#arg-snapshot"></a></dt>
-<dd><p>A <code>list</code> object containing the data for a snapshot. This
-object funnels into virtually every function of the application.</p></dd>
+<dl><dt id="arg-dfresults">dfResults<a class="anchor" aria-label="anchor" href="#arg-dfresults"></a></dt>
+<dd><p><code>data.frame</code> A stacked summary of analysis pipeline output.</p></dd>
+
+
+<dt id="arg-dfgroups">dfGroups<a class="anchor" aria-label="anchor" href="#arg-dfgroups"></a></dt>
+<dd><p><code>data.frame</code> Group-level metadata dictionary.</p></dd>
+
+
+<dt id="arg-dfmetrics">dfMetrics<a class="anchor" aria-label="anchor" href="#arg-dfmetrics"></a></dt>
+<dd><p><code>data.frame</code> Metric-specific metadata for use in charts and
+reporting.</p></dd>
+
+
+<dt id="arg-dfbounds">dfBounds<a class="anchor" aria-label="anchor" href="#arg-dfbounds"></a></dt>
+<dd><p><code>data.frame</code> Set of predicted percentages/rates and upper-
+and lower-bounds across the full range of sample sizes/total exposure
+values for reporting.</p></dd>
 
 </dl></div>
 
