@@ -5,7 +5,7 @@
 #' @export
 
 initialize_metric_select <- function(input, output, session, dfMetrics) {
-  choices <- with(dfMetrics, setNames(MetricID, Metric))
+  choices <- setNames(dfMetrics$MetricID, dfMetrics$Metric)
 
   shiny::updateSelectInput(
     session,
