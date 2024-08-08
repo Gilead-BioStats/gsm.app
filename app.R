@@ -3,4 +3,4 @@
 # Or use the blue button on top of this file
 pkgload::load_all(".")
 
-gsmApp::run_app()
+run_app()

@@ -4,7 +4,7 @@
 #'
 #' @export
 
-initialize_site_select <- function(input, output, session, dfGroups) {
+initialize_site_select <- function(dfGroups, session) {
   choices <- dfGroups %>% dplyr::filter(.data$GroupLevel == "Site")
   choices <- unique(choices$GroupID)
   choices <- as.numeric(choices)
