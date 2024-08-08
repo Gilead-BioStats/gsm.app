@@ -3,7 +3,7 @@
 #' @inheritParams shared-params
 #'
 #' @export
-participant_details_ui <- function(id) {
+mod_participant_details_ui <- function(id) {
   ns <- shiny::NS(id)
 
   ui <- tagList(

@@ -3,7 +3,7 @@
 # #' @inheritParams shared-params
 # #'
 # #' @export
-# site_details_server <- function(id, snapshot, site, metric) {
+# mod_site_details_server <- function(id, snapshot, site, metric) {
 #   moduleServer(id, function(input, output, session) {
 #     observeEvent(
 #       site(),

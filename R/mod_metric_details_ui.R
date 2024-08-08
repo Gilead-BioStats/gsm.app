@@ -3,13 +3,14 @@
 #' @inheritParams shared-params
 #'
 #' @export
-metric_details_ui <- function(id) {
+mod_metric_details_ui <- function(id) {
   ns <- shiny::NS(id)
 
   ui <- div(
     class = "row",
     div(
       class = "col-12 col-sm-12 col-md-12 col-lg-12 col-xxl-9",
+      style = "min-width: 850px;",
       shiny::tabsetPanel(
         shiny::tabPanel(
           "Scatter Plot",
@@ -62,7 +63,7 @@ metric_details_ui <- function(id) {
             style = "border-top: solid #0dcaf0; margin-top: 4px;",
             div(
               class = "card-body",
-              DT::DTOutput(ns("results"))
+              uiOutput(ns("results"))
             )
           )
         ),

@@ -13,6 +13,7 @@ server <- function(
     dfMetrics,
     dfBounds
 ) {
+
   # Filtering data inputs
 
   dfStudy <- reactive({
@@ -20,27 +21,34 @@ server <- function(
       dplyr::filter(.data$GroupLevel == "Study")
   })
 
-  dfResultsFilter <- reactive({
+  rctv_dfResultsFiltered <- reactive({
     dfResults %>%
       dplyr::filter(
         .data$GroupLevel == "Site",
-        .data$MetricID == reactives$metric()
+        .data$MetricID == input$metric
       )
   })
 
-  dfBoundsFilter <- reactive({
+  rctv_dfBoundsFiltered <- reactive({
     dfBounds %>%
       dplyr::filter(
-        .data$MetricID == reactives$metric()
+        .data$MetricID == input$metric
       )
   })
 
-  dfMetricsFilter <- reactive({
+  rctv_dfMetricsFiltered <- reactive({
     dfMetrics %>%
       dplyr::filter(
-        .data$MetricID == reactives$metric()
+        .data$MetricID == input$metric
       )
   })
+
+  rctv_lMetricsFiltered <- reactive({
+    lMetric <- dfMetrics %>%
+      dplyr::filter(.data$MetricID == input$metric) %>%
+      as.list()
+  })
+
 
   # Side Panel
   add_metadata_to_sidebar(input, output, session, dfStudy(), unique(dfResults$SnapshotDate))
@@ -52,16 +60,8 @@ server <- function(
   # initialize_participant_select(input, output, session, dfMetrics)
 
   # observe_site_select(reactives$site)
+  # observe_metric_select(snapshot, reactives$metric)
 
-
-  # ---
-  # Reactive values
-  reactives <- list(
-    metric = reactive(input$metric),
-    site = reactive(input$site),
-    participant = reactive(input$participant),
-    reset = reactive(input$reset)
-  )
 
   # ---
   # Reveal filters based on tab
@@ -86,30 +86,32 @@ server <- function(
   # ----
   # Study
   # add_metric_observer(snapshot, reactives$metric)
-  study_overview_server("study_overview",
+  mod_study_overview_server("study_overview",
     dfResults = dfResults,
     dfGroups = dfGroups,
     dfMetrics = dfMetrics
   )
 
-  modScatterServer("scatter",
+  mod_scatter_server("scatter",
     dfResults = dfResults,
     dfMetrics = dfMetrics,
     dfGroups = dfGroups,
     dfBounds = dfBounds
   )
 
-  # # ----
-  # # Metric
+  # ----
+  # Metric
   # initialize_metric_select(input, output, session, snapshot)
   # observe_metric_select(snapshot, reactives$metric)
-  # metric_details_server(
-  #     'metric_details',
-  #     snapshot,
-  #     reactives$metric,
-  #     reactives$site
-  # )
-  #
+
+  mod_metric_details_server(
+      'metric_details',
+      rctv_dfResultsFiltered = rctv_dfResultsFiltered,
+      rctv_lMetricsFiltered = rctv_lMetricsFiltered,
+      dfGroups = dfGroups,
+      rctv_dfBoundsFiltered = rctv_dfBoundsFiltered
+    )
+
   # # ----
   # # Site
   #
