@@ -5,7 +5,18 @@
 
 <!-- badges: start -->
 
+<div class="pkgdown-release">
+
 [![R-CMD-check](https://github.com/Gilead-BioStats/gsmApp/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/Gilead-BioStats/gsmApp/actions/workflows/R-CMD-check.yaml)
+
+</div>
+
+<div class="pkgdown-devel">
+
+[![R-CMD-check](https://github.com/Gilead-BioStats/gsmApp/actions/workflows/R-CMD-check-dev.yaml/badge.svg)](https://github.com/Gilead-BioStats/gsmApp/actions/workflows/R-CMD-check-dev.yaml)
+
+</div>
+
 <!-- badges: end -->
 
 `gsmApp` is a Shiny application that enables drill-down functionality
@@ -31,14 +42,14 @@ pak::pak("Gilead-BioStats/gsmApp")
 
 ## Sample App
 
-<div class=".pkgdown-release">
+<div class="pkgdown-release">
 
 You can use the app with sample data
 [here](https://openrbqm.shinyapps.io/gsmApp).
 
 </div>
 
-<div class=".pkgdown-devel">
+<div class="pkgdown-devel">
 
 You can use the app with sample data
 [here](https://openrbqm.shinyapps.io/gsmApp-dev).
