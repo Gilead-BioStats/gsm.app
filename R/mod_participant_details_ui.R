@@ -140,7 +140,9 @@ mod_participant_details_ui <- function(id) {
                 selected = "Hide",
                 inline = TRUE
               ),
-              DT::DTOutput(ns("domain_data_table"))
+              # Placeholder textOutput for the table, to be replaced with the
+              # "real" output format when server is implemented.
+              shiny::textOutput(ns("domain_data_table"))
             )
           )
         )

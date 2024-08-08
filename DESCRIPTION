@@ -22,11 +22,9 @@ Imports:
     htmltools,
     magrittr,
     purrr,
-    reactable,
     rlang,
     shiny,
     shinyjs,
-    stringr,
     tidyr
 Suggests: 
     here,
