@@ -16,6 +16,13 @@
 #' @param lAssessment `list` List of KRI assessments from `params` within
 #'   `KRIReport.Rmd`.
 #' @param output Shiny outputs
+#' @param rctv_lMetric `reactive list` A [shiny::reactive()] object that returns
+#'   a list of details about the selected metric.
+#' @param rctv_dfResults `reactive data.frame` A [shiny::reactive()] object that
+#'   returns a stacked summary of analysis pipeline output.
+#' @param rctv_dfBounds `reactive data.frame` A [shiny::reactive()] object that
+#'   returns a set of predicted percentages/rates and upper- and lower-bounds
+#'   across the full range of sample sizes/total exposure values for reporting.
 #' @param session Shiny session
 #'
 #' @name shared-params

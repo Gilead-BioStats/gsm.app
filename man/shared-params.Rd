@@ -28,6 +28,16 @@ reporting.}
 
 \item{output}{Shiny outputs}
 
+\item{rctv_lMetric}{\verb{reactive list} A \code{\link[shiny:reactive]{shiny::reactive()}} object that returns
+a list of details about the selected metric.}
+
+\item{rctv_dfResults}{\verb{reactive data.frame} A \code{\link[shiny:reactive]{shiny::reactive()}} object that
+returns a stacked summary of analysis pipeline output.}
+
+\item{rctv_dfBounds}{\verb{reactive data.frame} A \code{\link[shiny:reactive]{shiny::reactive()}} object that
+returns a set of predicted percentages/rates and upper- and lower-bounds
+across the full range of sample sizes/total exposure values for reporting.}
+
 \item{session}{Shiny session}
 }
 \description{

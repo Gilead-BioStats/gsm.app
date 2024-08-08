@@ -21,7 +21,7 @@ server <- function(
       dplyr::filter(.data$GroupLevel == "Study")
   })
 
-  rctv_dfResultsFiltered <- reactive({
+  rctv_dfResults_Site_byMetric <- reactive({
     dfResults %>%
       dplyr::filter(
         .data$GroupLevel == "Site",
@@ -29,7 +29,7 @@ server <- function(
       )
   })
 
-  rctv_dfBoundsFiltered <- reactive({
+  rctv_dfBounds_byMetric <- reactive({
     dfBounds %>%
       dplyr::filter(
         .data$MetricID == input$metric
@@ -43,8 +43,8 @@ server <- function(
       )
   })
 
-  rctv_lMetricsFiltered <- reactive({
-    lMetric <- dfMetrics %>%
+  rctv_lMetric_byMetric <- reactive({
+    dfMetrics %>%
       dplyr::filter(.data$MetricID == input$metric) %>%
       as.list()
   })
@@ -106,10 +106,10 @@ server <- function(
 
   mod_metric_details_server(
       'metric_details',
-      rctv_dfResultsFiltered = rctv_dfResultsFiltered,
-      rctv_lMetricsFiltered = rctv_lMetricsFiltered,
+      rctv_dfResults = rctv_dfResults_Site_byMetric,
+      rctv_lMetric = rctv_lMetric_byMetric,
       dfGroups = dfGroups,
-      rctv_dfBoundsFiltered = rctv_dfBoundsFiltered
+      rctv_dfBounds = rctv_dfBounds_byMetric
     )
 
   # # ----

@@ -4,20 +4,20 @@
 #'
 #' @export
 mod_metric_details_server <- function(id,
-                                      rctv_lMetricsFiltered,
-                                      rctv_dfResultsFiltered,
+                                      rctv_lMetric,
+                                      rctv_dfResults,
                                       dfGroups,
-                                      rctv_dfBoundsFiltered) {
+                                      rctv_dfBounds) {
   shiny::moduleServer(id, function(input, output, session) {
 
 
     output$scatter_plot <- gsm::renderWidget_ScatterPlot({
 
         gsm::Widget_ScatterPlot(
-          rctv_dfResultsFiltered(),
-          lMetric = rctv_lMetricsFiltered(),
+          rctv_dfResults(),
+          lMetric = rctv_lMetric(),
           dfGroups = dfGroups,
-          dfBounds = rctv_dfBoundsFiltered(),
+          dfBounds = rctv_dfBounds(),
           bAddGroupSelect = FALSE,
           strShinyGroupSelectID = "site",
           bDebug = FALSE
@@ -28,8 +28,8 @@ mod_metric_details_server <- function(id,
     output$bar_chart_score <- gsm::renderWidget_BarChart({
 
       gsm::Widget_BarChart(
-        rctv_dfResultsFiltered(),
-        lMetric = rctv_lMetricsFiltered(),
+        rctv_dfResults(),
+        lMetric = rctv_lMetric(),
         dfGroups = dfGroups,
         strOutcome = "Score",
         bAddGroupSelect = FALSE,
@@ -42,8 +42,8 @@ mod_metric_details_server <- function(id,
     output$bar_chart_metric <- gsm::renderWidget_BarChart({
 
       gsm::Widget_BarChart(
-        rctv_dfResultsFiltered(),
-        lMetric = rctv_lMetricsFiltered(),
+        rctv_dfResults(),
+        lMetric = rctv_lMetric(),
         dfGroups = dfGroups,
         strOutcome = "Metric",
         bAddGroupSelect = FALSE,
@@ -56,8 +56,8 @@ mod_metric_details_server <- function(id,
     output$time_series <- gsm::renderWidget_TimeSeries({
 
       gsm::Widget_TimeSeries(
-        rctv_dfResultsFiltered(),
-        lMetric = rctv_lMetricsFiltered(),
+        rctv_dfResults(),
+        lMetric = rctv_lMetric(),
         dfGroups = dfGroups,
         strOutcome = "Score",
         bAddGroupSelect = FALSE,
@@ -69,10 +69,14 @@ mod_metric_details_server <- function(id,
     output$results <- renderUI({
 
       gsm::Report_MetricTable(
-        rctv_dfResultsFiltered() %>% dplyr::select(-all_of(c("GroupLevel", "StudyID", "SnapshotDate"))),
+        rctv_dfResults() %>%
+          dplyr::select(
+            -dplyr::all_of(c("GroupLevel", "StudyID", "SnapshotDate"))
+          ),
         dfGroups,
         strGroupLevel = "Site"
-      ) %>% HTML(.)
+      ) %>%
+        HTML()
 
 
     })
