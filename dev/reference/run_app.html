@@ -39,7 +39,7 @@
 
     <div class="section level2">
     <h2 id="ref-usage">Usage<a class="anchor" aria-label="anchor" href="#ref-usage"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">run_app</span><span class="op">(</span>dfResults <span class="op">=</span> <span class="cn">NULL</span>, dfGroups <span class="op">=</span> <span class="cn">NULL</span>, dfMetrics <span class="op">=</span> <span class="cn">NULL</span>, dfBounds <span class="op">=</span> <span class="cn">NULL</span><span class="op">)</span></span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">run_app</span><span class="op">(</span><span class="va">dfResults</span>, <span class="va">dfGroups</span>, <span class="va">dfMetrics</span>, <span class="va">dfBounds</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div class="section level2">
@@ -47,7 +47,8 @@
 
 
 <dl><dt id="arg-dfresults">dfResults<a class="anchor" aria-label="anchor" href="#arg-dfresults"></a></dt>
-<dd><p><code>data.frame</code> A stacked summary of analysis pipeline output.</p></dd>
+<dd><p><code>data.frame</code> A stacked summary of analysis pipeline output.
+This will be filtered to cases where <code>GroupLevel == "Site"</code>.</p></dd>
 
 
 <dt id="arg-dfgroups">dfGroups<a class="anchor" aria-label="anchor" href="#arg-dfgroups"></a></dt>
