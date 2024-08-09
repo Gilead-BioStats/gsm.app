@@ -7,12 +7,17 @@ mod_metric_details_server <- function(id,
                                       rctv_dfResults,
                                       rctv_lMetric,
                                       dfGroups,
-                                      rctv_dfBounds) {
+                                      rctv_dfBounds,
+                                      rctv_strSite) {
   shiny::moduleServer(id, function(input, output, session) {
     output$scatter_plot <- gsm::renderWidget_ScatterPlot({
+      lMetric <- rctv_lMetric()
+      if (rctv_strSite() != "None") {
+        lMetric$selectedGroupIDs <- rctv_strSite()
+      }
       gsm::Widget_ScatterPlot(
         rctv_dfResults(),
-        lMetric = rctv_lMetric(),
+        lMetric = lMetric,
         dfGroups = dfGroups,
         dfBounds = rctv_dfBounds(),
         bAddGroupSelect = FALSE,

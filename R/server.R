@@ -46,7 +46,8 @@ server <- function(
   initialize_site_select(dfGroups, session)
   # initialize_participant_select(input, output, session, dfMetrics)
 
-  # observe_site_select(reactives$site)
+  ## Cross-communication ----
+  sync_site_input(reactive(input$site))
   # observe_metric_select(snapshot, reactives$metric)
 
   ## Hide/show ----
@@ -103,12 +104,12 @@ server <- function(
     rctv_dfResults = rctv_dfResults_Site_byMetric,
     rctv_lMetric = rctv_lMetric_byMetric,
     dfGroups = dfGroups,
-    rctv_dfBounds = rctv_dfBounds_byMetric
+    rctv_dfBounds = rctv_dfBounds_byMetric,
+    rctv_strSite = reactive(input$site)
   )
 
   # # Site ----
   #
-  # observe_site_select(reactives$site, snapshot)
   # site_details_server(
   #     'site_details',
   #     snapshot,

@@ -23,6 +23,8 @@
 #' @param rctv_dfBounds `reactive data.frame` A [shiny::reactive()] object that
 #'   returns a set of predicted percentages/rates and upper- and lower-bounds
 #'   across the full range of sample sizes/total exposure values for reporting.
+#' @param rctv_strSite `reactive string` A [shiny::reactive()] object that
+#'   returns the `GroupID` of a site.
 #' @param session Shiny session
 #'
 #' @name shared-params

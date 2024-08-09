@@ -6,26 +6,30 @@
 \usage{
 mod_metric_details_server(
   id,
-  rctv_lMetric,
   rctv_dfResults,
+  rctv_lMetric,
   dfGroups,
-  rctv_dfBounds
+  rctv_dfBounds,
+  rctv_strSite
 )
 }
 \arguments{
 \item{id}{The namespace id for this module.}
 
-\item{rctv_lMetric}{\verb{reactive list} A \code{\link[shiny:reactive]{shiny::reactive()}} object that returns
-a list of details about the selected metric.}
-
 \item{rctv_dfResults}{\verb{reactive data.frame} A \code{\link[shiny:reactive]{shiny::reactive()}} object that
 returns a stacked summary of analysis pipeline output.}
+
+\item{rctv_lMetric}{\verb{reactive list} A \code{\link[shiny:reactive]{shiny::reactive()}} object that returns
+a list of details about the selected metric.}
 
 \item{dfGroups}{\code{data.frame} Group-level metadata dictionary.}
 
 \item{rctv_dfBounds}{\verb{reactive data.frame} A \code{\link[shiny:reactive]{shiny::reactive()}} object that
 returns a set of predicted percentages/rates and upper- and lower-bounds
 across the full range of sample sizes/total exposure values for reporting.}
+
+\item{rctv_strSite}{\verb{reactive string} A \code{\link[shiny:reactive]{shiny::reactive()}} object that
+returns the \code{GroupID} of a site.}
 }
 \description{
 Metric Details Server
