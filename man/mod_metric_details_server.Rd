@@ -30,6 +30,9 @@ values for reporting.}
 
 \item{rctv_strSite}{\verb{reactive string} A \code{\link[shiny:reactive]{shiny::reactive()}} object that
 returns the \code{GroupID} of a site.}
+
+\item{rctv_strMetricID}{\verb{reactive string} A \code{\link[shiny:reactive]{shiny::reactive()}} object that
+returns the selected \code{MetricID}.}
 }
 \description{
 Metric Details Server

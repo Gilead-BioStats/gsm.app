@@ -86,7 +86,7 @@ server <- function(
     dfGroups = dfGroups,
     dfBounds = dfBounds,
     rctv_strSite = reactive(input$site),
-    rctv_strMetric = reactive(input$metric)
+    rctv_strMetricID = reactive(input$metric)
   )
 
   # # Site ----
