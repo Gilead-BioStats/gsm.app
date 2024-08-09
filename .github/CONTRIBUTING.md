@@ -202,7 +202,7 @@ GitHub Actions are used in `{gsmApp}` to automate processes and ensure all code 
 
 ## Merges to `main` Branch
 
--   R CMD Check (`R-CMD-check-main`):
+-   R CMD Check (`R-CMD-check`):
     -   Basic R CMD check which can be run using `rcmdcheck::rcmdcheck()`
     -   This check will run on `ubuntu-latest` and on R version 4.1.3. Additionally, it will be run on the latest R release version on `windows-latest`, `macOS-latest`, and `ubuntu-latest`.
 -   `pkgdown`:

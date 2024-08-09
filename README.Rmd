@@ -16,7 +16,12 @@ knitr::opts_chunk$set(
 # gsmApp: Shiny application for `gsm` assessments
 
 <!-- badges: start -->
+::: {.pkgdown-release}
 [![R-CMD-check](https://github.com/Gilead-BioStats/gsmApp/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/Gilead-BioStats/gsmApp/actions/workflows/R-CMD-check.yaml)
+:::
+::: {.pkgdown-devel}
+[![R-CMD-check](https://github.com/Gilead-BioStats/gsmApp/actions/workflows/R-CMD-check-dev.yaml/badge.svg)](https://github.com/Gilead-BioStats/gsmApp/actions/workflows/R-CMD-check-dev.yaml)
+:::
 <!-- badges: end -->
 
 `gsmApp` is a Shiny application that enables drill-down functionality for [`{gsm}`](https://github.com/Gilead-BioStats/gsm) Assessments.
@@ -36,11 +41,11 @@ pak::pak("Gilead-BioStats/gsmApp")
 
 ## Sample App
 
-::: .pkgdown-release
+::: {.pkgdown-release}
 You can use the app with sample data [here](https://openrbqm.shinyapps.io/gsmApp).
 :::
 
-::: .pkgdown-devel
+::: {.pkgdown-devel}
 You can use the app with sample data [here](https://openrbqm.shinyapps.io/gsmApp-dev).
 :::
 
