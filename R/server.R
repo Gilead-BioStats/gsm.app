@@ -13,26 +13,6 @@ server <- function(
     dfMetrics,
     dfBounds
 ) {
-  # Filter data ----
-  rctv_dfResults_Site_byMetric <- reactive({
-    dfResults %>%
-      dplyr::filter(
-        .data$GroupLevel == "Site",
-        .data$MetricID == input$metric
-      )
-  })
-  rctv_dfBounds_byMetric <- reactive({
-    dfBounds %>%
-      dplyr::filter(
-        .data$MetricID == input$metric
-      )
-  })
-  rctv_lMetric_byMetric <- reactive({
-    dfMetrics %>%
-      dplyr::filter(.data$MetricID == input$metric) %>%
-      as.list()
-  })
-
   # Side Panel ----
   add_metadata_to_sidebar(
     output = output,
@@ -58,13 +38,13 @@ server <- function(
         shinyjs::hide("metric")
         shinyjs::hide("site")
         shinyjs::hide("participant")
-        updateSelectInput(session, "site", selected = "None")
+        # updateSelectInput(session, "site", selected = "None")
       },
       "Metric Details" = {
         shinyjs::show("metric")
         shinyjs::show("site")
         shinyjs::hide("participant")
-        updateSelectizeInput(session, "participant", selected = "None")
+        # updateSelectizeInput(session, "participant", selected = "None")
       },
       "Participant Details" = {
         shinyjs::show("metric")
@@ -101,11 +81,12 @@ server <- function(
 
   mod_metric_details_server(
     "metric_details",
-    rctv_dfResults = rctv_dfResults_Site_byMetric,
-    rctv_lMetric = rctv_lMetric_byMetric,
+    dfResults = dfResults,
+    dfMetrics = dfMetrics,
     dfGroups = dfGroups,
-    rctv_dfBounds = rctv_dfBounds_byMetric,
-    rctv_strSite = reactive(input$site)
+    dfBounds = dfBounds,
+    rctv_strSite = reactive(input$site),
+    rctv_strMetric = reactive(input$metric)
   )
 
   # # Site ----

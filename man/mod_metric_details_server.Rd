@@ -6,27 +6,27 @@
 \usage{
 mod_metric_details_server(
   id,
-  rctv_dfResults,
-  rctv_lMetric,
+  dfResults,
+  dfMetrics,
   dfGroups,
-  rctv_dfBounds,
-  rctv_strSite
+  dfBounds,
+  rctv_strSite,
+  rctv_strMetricID
 )
 }
 \arguments{
 \item{id}{The namespace id for this module.}
 
-\item{rctv_dfResults}{\verb{reactive data.frame} A \code{\link[shiny:reactive]{shiny::reactive()}} object that
-returns a stacked summary of analysis pipeline output.}
+\item{dfResults}{\code{data.frame} A stacked summary of analysis pipeline output.}
 
-\item{rctv_lMetric}{\verb{reactive list} A \code{\link[shiny:reactive]{shiny::reactive()}} object that returns
-a list of details about the selected metric.}
+\item{dfMetrics}{\code{data.frame} Metric-specific metadata for use in charts and
+reporting.}
 
 \item{dfGroups}{\code{data.frame} Group-level metadata dictionary.}
 
-\item{rctv_dfBounds}{\verb{reactive data.frame} A \code{\link[shiny:reactive]{shiny::reactive()}} object that
-returns a set of predicted percentages/rates and upper- and lower-bounds
-across the full range of sample sizes/total exposure values for reporting.}
+\item{dfBounds}{\code{data.frame} Set of predicted percentages/rates and upper-
+and lower-bounds across the full range of sample sizes/total exposure
+values for reporting.}
 
 \item{rctv_strSite}{\verb{reactive string} A \code{\link[shiny:reactive]{shiny::reactive()}} object that
 returns the \code{GroupID} of a site.}

@@ -10,13 +10,7 @@ mod_scatter_server <- function(
       output$all_charts <- renderUI({
         div(
           class = "row",
-          purrr::map(unique(dfMetrics$MetricID), function(x) {
-            lMetric <- dfMetrics %>%
-              dplyr::filter(.data$MetricID == x) %>%
-              as.list()
-            dfResultsSubSelect <- dplyr::filter(dfResults, .data$MetricID == x)
-            dfBoundsSubSelect <- dplyr::filter(dfBounds, .data$MetricID == x)
-
+          purrr::map(unique(dfMetrics$MetricID), function(strMetricID) {
             div(
               class = "col-12 col-sm-12 col-md-12 col-lg-6 col-xxl-4",
               div(
@@ -28,10 +22,12 @@ mod_scatter_server <- function(
                     class = "chart",
                     gsm::renderWidget_ScatterPlot({
                       gsm::Widget_ScatterPlot(
-                        dfResultsSubSelect,
-                        lMetric = lMetric,
+                        filter_byMetricID(dfResults, strMetricID),
+                        lMetric = as.list(
+                          filter_byMetricID(dfMetrics, strMetricID)
+                        ),
                         dfGroups = dfGroups,
-                        dfBounds = dfBoundsSubSelect,
+                        dfBounds = filter_byMetricID(dfBounds, strMetricID),
                         bAddGroupSelect = FALSE,
                         bDebug = FALSE
                       )

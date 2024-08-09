@@ -12,6 +12,7 @@ mod_metric_details_ui <- function(id) {
       class = "col-12 col-sm-12 col-md-12 col-lg-12 col-xxl-9",
       style = "min-width: 850px;",
       shiny::tabsetPanel(
+        id = ns("selected_tab"),
         shiny::tabPanel(
           "Scatter Plot",
           div(

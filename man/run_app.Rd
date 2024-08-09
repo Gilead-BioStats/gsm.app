@@ -7,7 +7,8 @@
 run_app(dfResults = NULL, dfGroups = NULL, dfMetrics = NULL, dfBounds = NULL)
 }
 \arguments{
-\item{dfResults}{\code{data.frame} A stacked summary of analysis pipeline output.}
+\item{dfResults}{\code{data.frame} A stacked summary of analysis pipeline output.
+This will be filtered to cases where \code{GroupLevel == "Site"}.}
 
 \item{dfGroups}{\code{data.frame} Group-level metadata dictionary.}
 
