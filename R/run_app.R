@@ -6,10 +6,10 @@
 #' @export
 
 run_app <- function(
-    dfResults,
-    dfGroups,
-    dfMetrics,
-    dfBounds) {
+  dfResults,
+  dfGroups,
+  dfMetrics,
+  dfBounds) {
   # We only use site-level data in this app.
   dfResults <- dfResults[dfResults$GroupLevel == "Site", ]
 

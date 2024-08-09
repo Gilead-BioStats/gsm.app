@@ -1,9 +1,9 @@
 mod_scatter_server <- function(
-    id,
-    dfResults,
-    dfMetrics,
-    dfGroups,
-    dfBounds) {
+  id,
+  dfResults,
+  dfMetrics,
+  dfGroups,
+  dfBounds) {
   shiny::moduleServer(
     id,
     function(input, output, session) {

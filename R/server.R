@@ -5,13 +5,13 @@
 #' @export
 
 server <- function(
-    input,
-    output,
-    session,
-    dfResults,
-    dfGroups,
-    dfMetrics,
-    dfBounds
+  input,
+  output,
+  session,
+  dfResults,
+  dfGroups,
+  dfMetrics,
+  dfBounds
 ) {
   # Side Panel ----
   add_metadata_to_sidebar(
@@ -32,8 +32,7 @@ server <- function(
 
   ## Hide/show ----
   observe({
-    switch(
-      input$primary_nav_bar,
+    switch(input$primary_nav_bar,
       "Study Overview" = {
         shinyjs::hide("metric")
         shinyjs::hide("site")

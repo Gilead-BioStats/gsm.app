@@ -9,9 +9,10 @@ filter_byGroupID <- function(df, strGroupID) {
   filter_by(df, strGroupID)
 }
 
-filter_by <- function(df,
-                      Value,
-                      strField = extract_field_name(rlang::caller_arg(Value))) {
+filter_by <- function(
+  df,
+  Value,
+  strField = extract_field_name(rlang::caller_arg(Value))) {
   df[df[strField] == Value, ]
 }
 

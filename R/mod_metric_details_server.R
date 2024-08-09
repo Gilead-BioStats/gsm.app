@@ -3,13 +3,14 @@
 #' @inheritParams shared-params
 #'
 #' @export
-mod_metric_details_server <- function(id,
-                                      dfResults,
-                                      dfMetrics,
-                                      dfGroups,
-                                      dfBounds,
-                                      rctv_strSite,
-                                      rctv_strMetricID) {
+mod_metric_details_server <- function(
+  id,
+  dfResults,
+  dfMetrics,
+  dfGroups,
+  dfBounds,
+  rctv_strSite,
+  rctv_strMetricID) {
   shiny::moduleServer(id, function(input, output, session) {
     rctv_dfResults_byMetricID <- reactive({
       filter_byMetricID(dfResults, rctv_strMetricID())
