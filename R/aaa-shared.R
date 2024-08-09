@@ -16,6 +16,10 @@
 #' @param lAssessment `list` List of KRI assessments from `params` within
 #'   `KRIReport.Rmd`.
 #' @param output Shiny outputs
+#' @param rctv_strSite `reactive string` A [shiny::reactive()] object that
+#'   returns the `GroupID` of a site.
+#' @param rctv_strMetricID `reactive string` A [shiny::reactive()] object that
+#'   returns the selected `MetricID`.
 #' @param session Shiny session
 #'
 #' @name shared-params

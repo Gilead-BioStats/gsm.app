@@ -3,7 +3,7 @@
 #' @inheritParams shared-params
 #'
 #' @export
-study_overview_ui <- function(id) {
+mod_study_overview_ui <- function(id) {
   ns <- shiny::NS(id)
   tags_to_return <- tagList(
     tabsetPanel(
@@ -35,7 +35,7 @@ study_overview_ui <- function(id) {
       ),
       tabPanel(
         title = "Scatter Plots",
-        modScatterUI("scatter")
+        mod_scatter_ui("scatter")
       ),
       type = "pills"
     )

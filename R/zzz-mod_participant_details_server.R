@@ -4,7 +4,7 @@
 # #' @param participant The reactive value provided by the participant input from `server`
 # #'
 # #' @export
-# participant_details_server <- function(id, snapshot, participant) {
+# mod_participant_details_server <- function(id, snapshot, participant) {
 #   shiny::moduleServer(id, function(input, output, session) {
 #     # ---- placeholders
 #

@@ -4,12 +4,12 @@
 #'
 #' @export
 
-initialize_metric_select <- function(input, output, session, dfMetrics) {
-  choices <- setNames(dfMetrics$MetricID, dfMetrics$Metric)
+initialize_metric_select <- function(dfMetrics, session) {
+  choices <- rlang::set_names(dfMetrics$MetricID, dfMetrics$Metric)
 
   shiny::updateSelectInput(
     session,
     "metric",
-    choices = choices
+    choices = choices,
   )
 }

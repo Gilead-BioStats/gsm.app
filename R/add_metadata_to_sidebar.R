@@ -1,4 +1,4 @@
-add_metadata_to_sidebar <- function(input, output, session, dfStudy, vSnapshotDate) {
+add_metadata_to_sidebar <- function(output, dfStudy, vSnapshotDate) {
   output$text_output_name <- renderText({
     dfStudy$Value[dfStudy$Param == "nickname"]
   })

@@ -4,16 +4,12 @@
 \alias{initialize_site_select}
 \title{Initialize Site Select}
 \usage{
-initialize_site_select(input, output, session, dfGroups)
+initialize_site_select(dfGroups, session)
 }
 \arguments{
-\item{input}{Shiny inputs}
-
-\item{output}{Shiny outputs}
+\item{dfGroups}{\code{data.frame} Group-level metadata dictionary.}
 
 \item{session}{Shiny session}
-
-\item{dfGroups}{\code{data.frame} Group-level metadata dictionary.}
 }
 \description{
 Initialize Site Select

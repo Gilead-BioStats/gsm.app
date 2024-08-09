@@ -3,7 +3,7 @@
 #' @inheritParams shared-params
 #'
 #' @export
-site_details_ui <- function(id) {
+mod_site_details_ui <- function(id) {
   ns <- shiny::NS(id)
 
   ui <- tagList(
@@ -104,7 +104,9 @@ site_details_ui <- function(id) {
             div(
               class = "card-body",
               h5(class = "card-title", "Site Participants"),
-              DT::DTOutput(ns("participants"))
+              # Placeholder textOutput for the table, to be replaced with the
+              # "real" output format when server is implemented.
+              shiny::textOutput(ns("participants"))
             )
           )
         )

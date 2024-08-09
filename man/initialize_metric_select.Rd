@@ -4,17 +4,13 @@
 \alias{initialize_metric_select}
 \title{Initialize Metric Select}
 \usage{
-initialize_metric_select(input, output, session, dfMetrics)
+initialize_metric_select(dfMetrics, session)
 }
 \arguments{
-\item{input}{Shiny inputs}
-
-\item{output}{Shiny outputs}
-
-\item{session}{Shiny session}
-
 \item{dfMetrics}{\code{data.frame} Metric-specific metadata for use in charts and
 reporting.}
+
+\item{session}{Shiny session}
 }
 \description{
 Initialize Metric Select

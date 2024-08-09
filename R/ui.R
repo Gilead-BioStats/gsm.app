@@ -60,16 +60,16 @@ ui <- function() {
         bslib::navset_bar(
           bslib::nav_panel(
             title = "Study Overview",
-            study_overview_ui("study_overview")
+            mod_study_overview_ui("study_overview")
           ),
           bslib::nav_panel(
             title = "Metric Details",
-            metric_details_ui("metric_details"),
-            site_details_ui("site_details")
+            mod_metric_details_ui("metric_details"),
+            mod_site_details_ui("site_details")
           ),
           bslib::nav_panel(
             title = "Participant Details",
-            participant_details_ui("participant_details")
+            mod_participant_details_ui("participant_details")
           ),
           id = "primary_nav_bar",
           title = "GSM Deep Dive App",

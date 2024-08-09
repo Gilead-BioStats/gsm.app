@@ -5,115 +5,91 @@
 #' @export
 
 server <- function(
-    input,
-    output,
-    session,
-    dfResults,
-    dfGroups,
-    dfMetrics,
-    dfBounds
+  input,
+  output,
+  session,
+  dfResults,
+  dfGroups,
+  dfMetrics,
+  dfBounds
 ) {
-  # Filtering data inputs
-
-  dfStudy <- reactive({
-    dfGroups %>%
-      dplyr::filter(.data$GroupLevel == "Study")
-  })
-
-  dfResultsFilter <- reactive({
-    dfResults %>%
-      dplyr::filter(
-        .data$GroupLevel == "Site",
-        .data$MetricID == reactives$metric()
-      )
-  })
-
-  dfBoundsFilter <- reactive({
-    dfBounds %>%
-      dplyr::filter(
-        .data$MetricID == reactives$metric()
-      )
-  })
-
-  dfMetricsFilter <- reactive({
-    dfMetrics %>%
-      dplyr::filter(
-        .data$MetricID == reactives$metric()
-      )
-  })
-
-  # Side Panel
-  add_metadata_to_sidebar(input, output, session, dfStudy(), unique(dfResults$SnapshotDate))
-
-  # ---
-  # Initialize inputs
-  initialize_metric_select(input, output, session, dfMetrics)
-  initialize_site_select(input, output, session, dfGroups)
-  # initialize_participant_select(input, output, session, dfMetrics)
-
-  # observe_site_select(reactives$site)
-
-
-  # ---
-  # Reactive values
-  reactives <- list(
-    metric = reactive(input$metric),
-    site = reactive(input$site),
-    participant = reactive(input$participant),
-    reset = reactive(input$reset)
+  # Side Panel ----
+  add_metadata_to_sidebar(
+    output = output,
+    dfStudy = dplyr::filter(dfGroups, .data$GroupLevel == "Study"),
+    vSnapshotDate = unique(dfResults$SnapshotDate)
   )
 
-  # ---
-  # Reveal filters based on tab
-  observeEvent(input$primary_nav_bar, {
-    if (input$primary_nav_bar == "Study Overview") {
-      shinyjs::hide("metric")
-      shinyjs::hide("site")
-      shinyjs::hide("participant")
-      updateSelectInput(session, "site", selected = "None")
-    } else if (input$primary_nav_bar == "Metric Details") {
-      shinyjs::show("metric")
-      shinyjs::show("site")
-      shinyjs::hide("participant")
-      updateSelectizeInput(session, "participant", selected = "None")
-    } else if (input$primary_nav_bar == "Participant Details") {
-      shinyjs::show("metric")
-      shinyjs::show("site")
-      shinyjs::show("participant")
-    }
+  # Inputs ----
+  ## Initialize ----
+  initialize_metric_select(dfMetrics, session)
+  initialize_site_select(dfGroups, session)
+  # initialize_participant_select(input, output, session, dfMetrics)
+
+  ## Cross-communication ----
+  sync_site_input(reactive(input$site))
+  # observe_metric_select(snapshot, reactives$metric)
+
+  ## Hide/show ----
+  observe({
+    switch(input$primary_nav_bar,
+      "Study Overview" = {
+        shinyjs::hide("metric")
+        shinyjs::hide("site")
+        shinyjs::hide("participant")
+        # updateSelectInput(session, "site", selected = "None")
+      },
+      "Metric Details" = {
+        shinyjs::show("metric")
+        shinyjs::show("site")
+        shinyjs::hide("participant")
+        # updateSelectizeInput(session, "participant", selected = "None")
+      },
+      "Participant Details" = {
+        shinyjs::show("metric")
+        shinyjs::show("site")
+        shinyjs::show("participant")
+      }
+    )
+  })
+  ## Reset ----
+  observeEvent(input$reset, {
+    initialize_metric_select(dfMetrics, session)
+    updateSelectInput(session, "site", selected = "None")
+    updateSelectizeInput(session, "participant", selected = "None")
   })
 
-  # ----
-  # Study
+
+  # Study Overview ----
   # add_metric_observer(snapshot, reactives$metric)
-  study_overview_server("study_overview",
+  mod_study_overview_server("study_overview",
     dfResults = dfResults,
     dfGroups = dfGroups,
     dfMetrics = dfMetrics
   )
 
-  modScatterServer("scatter",
+  mod_scatter_server("scatter",
     dfResults = dfResults,
     dfMetrics = dfMetrics,
     dfGroups = dfGroups,
     dfBounds = dfBounds
   )
 
-  # # ----
-  # # Metric
-  # initialize_metric_select(input, output, session, snapshot)
+  # Metric Details ----
   # observe_metric_select(snapshot, reactives$metric)
-  # metric_details_server(
-  #     'metric_details',
-  #     snapshot,
-  #     reactives$metric,
-  #     reactives$site
-  # )
+
+  mod_metric_details_server(
+    "metric_details",
+    dfResults = dfResults,
+    dfMetrics = dfMetrics,
+    dfGroups = dfGroups,
+    dfBounds = dfBounds,
+    rctv_strSite = reactive(input$site),
+    rctv_strMetricID = reactive(input$metric)
+  )
+
+  # # Site ----
   #
-  # # ----
-  # # Site
-  #
-  # observe_site_select(reactives$site, snapshot)
   # site_details_server(
   #     'site_details',
   #     snapshot,
@@ -121,8 +97,7 @@ server <- function(
   #     reactives$metric
   # )
   #
-  # # ----
-  # # Participant
+  # # Participant Details ----
   # initialize_participant_select(input, output, session, snapshot)
   # observe_participant_select(reactives$participant)
   # participant_details_server(
@@ -130,12 +105,4 @@ server <- function(
   #     snapshot,
   #     reactives$participant
   # )
-
-  # ----
-  # Reset
-  observeEvent(input$reset, {
-    initialize_metric_select(input, output, session, dfMetrics)
-    updateSelectInput(session, "site", selected = "None")
-    updateSelectizeInput(session, "participant", selected = "None")
-  })
 }
