@@ -64,7 +64,7 @@ jobs:
           path: ${{ runner.workspace }}/R_library_cache
           key: ${{ runner.os }}-R-${{ hashFiles('DESCRIPTION') }}
           restore-keys: |
-            ${{ runner.os }}-R-
+            ${{ runner.os }}-R-${{ hashFiles('DESCRIPTION') }}
 
       - name: Install packages
         run: |
