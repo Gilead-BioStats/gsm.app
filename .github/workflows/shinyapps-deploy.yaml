@@ -57,14 +57,13 @@ jobs:
           use-public-rspm: true
 
       - name: Cache R package library
-        uses: actions/cache@v3
         id: cache-r-packages
+        uses: actions/cache@v3
         with:
-          path: ${{ runner.workspace }}/R_library_cache
-          key: ${{ runner.os }}-R-${{ hashFiles('DESCRIPTION') }}
-
-      - name: Set up R library path
-        run: echo "R_LIBS_USER=${{ runner.workspace }}/R_library_cache" >> $GITHUB_ENV
+          path: ${{ github.workspace }}/R_library_cache
+          key: ${{ runner.os }}-R-${{ hashFiles('.libPaths()[[1]]') }}
+          restore-keys: |
+            ${{ runner.os }}-R-
 
       - name: Install packages
         run: |
@@ -86,9 +85,8 @@ jobs:
         if: steps.cache-r-packages.outputs.cache-hit != 'true'
         uses: actions/cache@v3
         with:
-          path: ${{ runner.workspace }}/R_library_cache
-          key: ${{ runner.os }}-R-${{ hashFiles('DESCRIPTION') }}
-
+          path: ${{ runner.tool_cache }}/R
+          key: ${{ runner.os }}-R-${{ hashFiles('.libPaths()[[1]]') }}
 
       - name: Set APPNAME
         run: |
