@@ -83,6 +83,7 @@ server <- function(
   observeEvent(
     input$primary_nav_bar == "Metric Details",
     {
+
       mod_metric_details_server(
         "metric_details",
         dfResults = dfResults,
@@ -92,8 +93,19 @@ server <- function(
         rctv_strSite = reactive(input$site),
         rctv_strMetricID = reactive(input$metric)
       )
+
+      mod_site_details_server(
+        "site_details",
+        dfMetrics = dfMetrics,
+        dfGroups = dfGroups,
+        rctv_strSite = reactive(input$site),
+        rctv_strMetricID = reactive(input$metric)
+      )
+
     },
     ignoreInit = TRUE,
     once = TRUE
   )
+
+
 }

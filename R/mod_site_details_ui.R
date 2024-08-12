@@ -15,7 +15,7 @@ mod_site_details_ui <- function(id) {
         div(
           class = "row",
           div(
-            class = "col-12 col-sm-6 col-md-6 col-lg-6 col-xxl-12", # "col-12 col-sm-6 col-md-6 col-lg-3 col-xxl-3",
+            class = "col-12 col-sm-6 col-md-6 col-lg-6 col-xxl-12",
             div(
               id = ns("card_placeholder_metric_meta_data"),
               class = "card mb-3",
@@ -23,7 +23,7 @@ mod_site_details_ui <- function(id) {
               div(
                 class = "card-body",
                 h5(class = "card-title", "Metric Metadata"),
-                hr(),
+                hr(style = "margin-bottom: 0px; margin-top: 15px;"),
                 p(
                   class = "card-text",
                   uiOutput(ns("metric_metadata_list"))
