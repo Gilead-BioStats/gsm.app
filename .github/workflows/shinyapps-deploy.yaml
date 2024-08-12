@@ -56,13 +56,19 @@ jobs:
         with:
           use-public-rspm: true
 
+      # Use a cache to speed up installation, if possible. Packages will be
+      # restored if they're in the cache, then updated if necessary in the
+      # following step, then re-cached at the end of the run.
+      - name: Use R package cache
+        uses: actions/cache@v4
+        with:
+          path: ${{ runner.temp }}/Library
+          key: ${{ runner.os }}-R-${{ hashFiles('DESCRIPTION') }}
+          save-always: true
+
       - name: Install packages
         run: |
           install.packages("pak")
-
-          # These packages are sometimes corrupted as far as rsconnect is
-          # concerned. I suspect they're installed more directly than it can
-          # trace.
           extras <- c(
             "devtools",
             "pkgdown",
