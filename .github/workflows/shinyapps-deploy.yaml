@@ -61,8 +61,8 @@ jobs:
         id: cache-r-packages
         uses: actions/cache@v3
         with:
-          path: ${{ github.workspace }}/R_library_cache
-          key: ${{ runner.os }}-R-${{ hashFiles('.libPaths()[[1]]') }}
+          path: ${{ runner.workspace }}/R_library_cache
+          key: ${{ runner.os }}-R-${{ hashFiles('DESCRIPTION') }}
           restore-keys: |
             ${{ runner.os }}-R-
 
@@ -86,8 +86,8 @@ jobs:
         if: steps.cache-r-packages.outputs.cache-hit != 'true'
         uses: actions/cache@v3
         with:
-          path: ${{ runner.tool_cache }}/R
-          key: ${{ runner.os }}-R-${{ hashFiles('.libPaths()[[1]]') }}
+          path: ${{ runner.workspace }}/R_library_cache
+          key: ${{ runner.os }}-R-${{ hashFiles('DESCRIPTION') }}
 
       - name: Set APPNAME
         run: |
