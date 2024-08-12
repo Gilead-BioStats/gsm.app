@@ -56,9 +56,11 @@ jobs:
         with:
           use-public-rspm: true
 
-      # Use a cache to speed up installation, if possible.
-      - name: Restore R package library cache
-        uses: actions/cache/restore@v3
+      # Use a cache to speed up installation, if possible. Packages will be
+      # restored if they're in the cache, then updated if necessary in the
+      # following step, then re-cached at the end of the run.
+      - name: Use R package cache
+        uses: actions/cache@v4
         with:
           path: ${{ runner.temp }}/Library
           key: ${{ runner.os }}-R-${{ hashFiles('DESCRIPTION') }}
@@ -78,12 +80,6 @@ jobs:
           pak::pak()
           pak::pak("rsconnect")
         shell: Rscript {0}
-
-      - name: Save R package cache
-        uses: actions/cache/save@v3
-        with:
-          path: ${{ runner.temp }}/Library
-          key: ${{ runner.os }}-R-${{ hashFiles('DESCRIPTION') }}
 
       - name: Set APPNAME
         run: |
