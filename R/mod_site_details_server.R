@@ -12,50 +12,49 @@ mod_site_details_server <- function(
     rctv_strMetricID) {
   shiny::moduleServer(id, function(input, output, session) {
 
-    # observeEvent(
-    #   site(),
-    #   {
-    #     if (site() == "None") {
-    #       ## Show placeholders
-    #
-    #       shinyjs::hide("card_site_metadata_list")
-    #       shinyjs::hide("card_participant_status")
-    #       shinyjs::hide("card_participants")
-    #       shinyjs::show("card_placeholder_site_metadata_list")
-    #       shinyjs::show("card_placeholder_participant_status")
-    #       shinyjs::show("card_placeholder_participants")
-    #     } else {
-    #       ## Hide placeholders
-    #
-    #       shinyjs::hide("card_placeholder_site_metadata_list")
-    #       shinyjs::hide("card_placeholder_participant_status")
-    #       shinyjs::hide("card_placeholder_participants")
-    #       shinyjs::show("card_site_metadata_list")
-    #       shinyjs::show("card_participant_status")
-    #       shinyjs::show("card_participants")
-    #     }
-    #   },
-    #   ignoreInit = TRUE
-    # )
+    observeEvent(
+      rctv_strSite(),
+      {
+        if (rctv_strSite() == "None") {
+          ## Show placeholders
+
+          shinyjs::hide("card_site_metadata_list")
+          shinyjs::hide("card_participant_status")
+          shinyjs::hide("card_participants")
+          shinyjs::show("card_placeholder_site_metadata_list")
+          shinyjs::show("card_placeholder_participant_status")
+          shinyjs::show("card_placeholder_participants")
+        } else {
+          ## Hide placeholders
+
+          shinyjs::hide("card_placeholder_site_metadata_list")
+          shinyjs::hide("card_placeholder_participant_status")
+          shinyjs::hide("card_placeholder_participants")
+          shinyjs::show("card_site_metadata_list")
+          shinyjs::show("card_participant_status")
+          shinyjs::show("card_participants")
+        }
+      },
+      ignoreInit = TRUE
+    )
 
     ### Metric Metadata List
 
     output$metric_metadata_list <- renderUI({
 
       site_details_metric_meta_data_list(dfMetrics, rctv_strMetricID())
-
-      # config_param <- snapshot$lInputs$lMeta$config_param %>%
-      #   dplyr::filter(
-      #     .data$workflowid == metric(),
-      #     .data$param == "vThreshold"
-      #   )
-      #
-      # meta_workflow <- snapshot$lInputs$lMeta$meta_workflow %>%
-      #   dplyr::filter(.data$workflowid == metric()) %>%
-      #   dplyr::select("metric", "numerator", "denominator")
-      #
-      # site_details_metric_meta_data_list(config_param, meta_workflow)
     })
+
+
+    ### Site Participants Table Across Site Selected
+    #
+    # output$participants <- DT::renderDT({
+    #
+    #   gsm::analyticsInput %>%
+    #
+    #
+    #
+    # })
 
 
 
