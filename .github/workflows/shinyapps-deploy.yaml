@@ -64,6 +64,7 @@ jobs:
         with:
           path: ${{ runner.temp }}/Library
           key: ${{ runner.os }}-R-${{ hashFiles('DESCRIPTION') }}
+          save-always: true
 
       - name: Install packages
         run: |
