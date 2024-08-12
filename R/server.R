@@ -28,22 +28,21 @@ server <- function(
 
   ## Cross-communication ----
   sync_site_input(reactive(input$site))
+  # sync_site_input(reactive(input$scatter_site))
   # observe_metric_select(snapshot, reactives$metric)
 
   ## Hide/show ----
-  observe({
+  observeEvent(input$primary_nav_bar, {
     switch(input$primary_nav_bar,
       "Study Overview" = {
         shinyjs::hide("metric")
         shinyjs::hide("site")
         shinyjs::hide("participant")
-        # updateSelectInput(session, "site", selected = "None")
       },
       "Metric Details" = {
         shinyjs::show("metric")
         shinyjs::show("site")
         shinyjs::hide("participant")
-        # updateSelectizeInput(session, "participant", selected = "None")
       },
       "Participant Details" = {
         shinyjs::show("metric")
@@ -52,6 +51,7 @@ server <- function(
       }
     )
   })
+
   ## Reset ----
   observeEvent(input$reset, {
     initialize_metric_select(dfMetrics, session)
@@ -59,50 +59,41 @@ server <- function(
     updateSelectizeInput(session, "participant", selected = "None")
   })
 
+  # Tab Contents ----
 
-  # Study Overview ----
-  # add_metric_observer(snapshot, reactives$metric)
-  mod_study_overview_server("study_overview",
+  ## Study Overview ----
+  mod_study_overview_server(
+    "study_overview",
     dfResults = dfResults,
     dfGroups = dfGroups,
     dfMetrics = dfMetrics
   )
-
-  mod_scatter_server("scatter",
+  mod_scatter_server(
+    "scatter",
     dfResults = dfResults,
     dfMetrics = dfMetrics,
     dfGroups = dfGroups,
     dfBounds = dfBounds
   )
 
-  # Metric Details ----
-  # observe_metric_select(snapshot, reactives$metric)
-
-  mod_metric_details_server(
-    "metric_details",
-    dfResults = dfResults,
-    dfMetrics = dfMetrics,
-    dfGroups = dfGroups,
-    dfBounds = dfBounds,
-    rctv_strSite = reactive(input$site),
-    rctv_strMetricID = reactive(input$metric)
+  ## Metric Details ----
+  ##
+  ## Don't render until it loads. We should be able to fix this later once
+  ## nested-modules are implemented cleanly.
+  observeEvent(
+    input$primary_nav_bar == "Metric Details",
+    {
+      mod_metric_details_server(
+        "metric_details",
+        dfResults = dfResults,
+        dfMetrics = dfMetrics,
+        dfGroups = dfGroups,
+        dfBounds = dfBounds,
+        rctv_strSite = reactive(input$site),
+        rctv_strMetricID = reactive(input$metric)
+      )
+    },
+    ignoreInit = TRUE,
+    once = TRUE
   )
-
-  # # Site ----
-  #
-  # site_details_server(
-  #     'site_details',
-  #     snapshot,
-  #     reactives$site,
-  #     reactives$metric
-  # )
-  #
-  # # Participant Details ----
-  # initialize_participant_select(input, output, session, snapshot)
-  # observe_participant_select(reactives$participant)
-  # participant_details_server(
-  #     'participant_details',
-  #     snapshot,
-  #     reactives$participant
-  # )
 }
