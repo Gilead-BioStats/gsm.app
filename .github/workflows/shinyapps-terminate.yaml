@@ -55,3 +55,28 @@ jobs:
             error = app_error
           )
         shell: Rscript {0}
+
+      - name: Remove URL comment
+        uses: actions/github-script@v6
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          script: |
+            const { data: comments } = await github.rest.issues.listComments({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: context.issue.number,
+            });
+
+            const appUrl = `https://openrbqm.shinyapps.io/${process.env.REPO_NAME}-pr-${process.env.PR_NUMBER}`;
+            const comment = comments.find(comment =>
+              comment.body.includes(appUrl) && comment.user.login === 'github-actions[bot]'
+            );
+
+            if (comment) {
+              await github.rest.issues.deleteComment({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                comment_id: comment.id,
+              });
+            }
