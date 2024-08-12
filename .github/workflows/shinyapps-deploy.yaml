@@ -56,13 +56,19 @@ jobs:
         with:
           use-public-rspm: true
 
+      - name: Cache R package library
+        uses: actions/cache@v3
+        id: cache-r-packages
+        with:
+          path: ${{ runner.workspace }}/R_library_cache
+          key: ${{ runner.os }}-R-${{ hashFiles('DESCRIPTION') }}
+
+      - name: Set up R library path
+        run: echo "R_LIBS_USER=${{ runner.workspace }}/R_library_cache" >> $GITHUB_ENV
+
       - name: Install packages
         run: |
           install.packages("pak")
-
-          # These packages are sometimes corrupted as far as rsconnect is
-          # concerned. I suspect they're installed more directly than it can
-          # trace.
           extras <- c(
             "devtools",
             "pkgdown",
@@ -75,6 +81,14 @@ jobs:
           pak::pak()
           pak::pak("rsconnect")
         shell: Rscript {0}
+
+      - name: Update R package cache
+        if: steps.cache-r-packages.outputs.cache-hit != 'true'
+        uses: actions/cache@v3
+        with:
+          path: ${{ runner.workspace }}/R_library_cache
+          key: ${{ runner.os }}-R-${{ hashFiles('DESCRIPTION') }}
+
 
       - name: Set APPNAME
         run: |
