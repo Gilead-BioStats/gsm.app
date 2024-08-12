@@ -9,7 +9,8 @@ run_app <- function(
   dfResults,
   dfGroups,
   dfMetrics,
-  dfBounds) {
+  dfBounds,
+  dfAnalyticsInput) {
   # We only use site-level data in this app.
   dfResults <- dfResults[dfResults$GroupLevel == "Site", ]
 
@@ -20,7 +21,8 @@ run_app <- function(
         dfResults = dfResults,
         dfGroups = dfGroups,
         dfMetrics = dfMetrics,
-        dfBounds = dfBounds
+        dfBounds = dfBounds,
+        dfAnalyticsInput = dfAnalyticsInput
       )
     }
   )

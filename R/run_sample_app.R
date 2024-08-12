@@ -15,6 +15,7 @@ run_sample_app <- function() {
     dfGroups = gsm::reportingGroups,
     dfMetrics = gsm::reportingMetrics,
     dfBounds = gsm::reportingBounds %>%
-      dplyr::filter(.data$SnapshotDate == max(.data$SnapshotDate))
+      dplyr::filter(.data$SnapshotDate == max(.data$SnapshotDate)),
+    dfAnalyticsInput = gsm::analyticsInput
   )
 }

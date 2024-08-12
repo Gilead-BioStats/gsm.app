@@ -8,6 +8,7 @@ mod_site_details_server <- function(
     id,
     dfMetrics,
     dfGroups,
+    dfAnalyticsInput,
     rctv_strSite,
     rctv_strMetricID) {
   shiny::moduleServer(id, function(input, output, session) {
@@ -47,14 +48,62 @@ mod_site_details_server <- function(
 
 
     ### Site Participants Table Across Site Selected
-    #
-    # output$participants <- DT::renderDT({
-    #
-    #   gsm::analyticsInput %>%
-    #
-    #
-    #
-    # })
+
+    output$participant_table_title <- renderUI({
+
+      h5("Subjects in ", strong("Site", rctv_strSite()))
+
+
+    })
+
+    output$participants <- DT::renderDT({
+
+      dat <- dfAnalyticsInput %>%
+        dplyr::filter(
+          .data$GroupLevel == "siteid",
+          .data$GroupID == rctv_strSite()) %>%
+        dplyr::arrange(.data$SubjectID) %>%
+        dplyr::select("SubjectID", "Numerator", "Denominator", "Metric")
+
+
+      table <- DT::datatable(
+        dat,
+        class = "compact",
+        options = list(
+          lengthChange = FALSE,
+          paging = FALSE,
+          searching = FALSE,
+          selection = "none",
+          columnDefs = list(
+            list(targets =  c("SubjectID", "Numerator", "Denominator"), className = "dt-center"),
+            list(targets = "Metric", className = "dt-right")
+            )
+          ),
+        rownames = FALSE,
+        selection = "none",
+        callback = htmlwidgets::JS('
+            table.on("click", "td:nth-child(1)", function(d) {
+              const participant_id = d.currentTarget.innerText;
+              console.log(
+                `Selected participant ID: ${participant_id}`
+              );
+              const namespace = "gsmApp";
+              Shiny.setInputValue(
+                "participant",
+                participant_id
+              );
+            })
+          ')
+        )
+
+      if ("Metric" %in% colnames(dat)) {
+        table <- table %>%
+          DT::formatRound("Metric", digits = 5)
+      }
+
+      return(table)
+
+    })
 
 
 

@@ -11,7 +11,8 @@ server <- function(
   dfResults,
   dfGroups,
   dfMetrics,
-  dfBounds
+  dfBounds,
+  dfAnalyticsInput
 ) {
   # Side Panel ----
   add_metadata_to_sidebar(
@@ -98,6 +99,7 @@ server <- function(
         "site_details",
         dfMetrics = dfMetrics,
         dfGroups = dfGroups,
+        dfAnalyticsInput = dfAnalyticsInput,
         rctv_strSite = reactive(input$site),
         rctv_strMetricID = reactive(input$metric)
       )

@@ -11,7 +11,7 @@ mod_site_details_ui <- function(id) {
     div(
       class = "row",
       div(
-        class = "col-12 col-sm-12 col-md-12 col-lg-10 col-xxl-3",
+        class = "col-12 col-sm-12 col-md-12 col-lg-10 col-xxl-4",
         div(
           class = "row",
           div(
@@ -75,14 +75,14 @@ mod_site_details_ui <- function(id) {
       ),
       # div(class = "row",
       div(
-        class = "col-12 col-sm-12 col-md-12 col-lg-12 col-xxl-9",
+        class = "col-12 col-sm-12 col-md-12 col-lg-10 col-xxl-6",
         div(
           id = ns("card_placeholder_participants"),
           class = "card mb-3",
           style = "border-top: solid #0dcaf0",
           div(
             class = "card-body",
-            h5(class = "card-title", "Site Participants"),
+            h5(class = "card-title", "Site Subjects"),
             br(),
             div(
               class = "card placeholder",
@@ -103,10 +103,11 @@ mod_site_details_ui <- function(id) {
             style = "border-top: solid #0dcaf0",
             div(
               class = "card-body",
-              h5(class = "card-title", "Site Participants"),
+              h5(class = "card-title",
+                 uiOutput(ns("participant_table_title"))),
               # Placeholder textOutput for the table, to be replaced with the
               # "real" output format when server is implemented.
-              shiny::textOutput(ns("participants"))
+              DT::DTOutput(ns("participants"))
             )
           )
         )
