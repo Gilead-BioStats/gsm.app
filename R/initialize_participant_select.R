@@ -6,7 +6,7 @@
 initialize_participant_select <- function(dfAnalyticsInput, session) {
 
   participant_ids <- dfAnalyticsInput %>%
-    dplyr::filter(GroupLevel == "siteid") %>%
+    dplyr::filter(.data$GroupLevel == "siteid") %>%
     dplyr::select("SubjectID") %>%
     dplyr::arrange(.data$SubjectID) %>%
     dplyr::pull("SubjectID")

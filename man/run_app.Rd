@@ -4,7 +4,7 @@
 \alias{run_app}
 \title{Run App}
 \usage{
-run_app(dfResults, dfGroups, dfMetrics, dfBounds)
+run_app(dfResults, dfGroups, dfMetrics, dfBounds, dfAnalyticsInput)
 }
 \arguments{
 \item{dfResults}{\code{data.frame} A stacked summary of analysis pipeline output.
@@ -18,6 +18,8 @@ reporting.}
 \item{dfBounds}{\code{data.frame} Set of predicted percentages/rates and upper-
 and lower-bounds across the full range of sample sizes/total exposure
 values for reporting.}
+
+\item{dfAnalyticsInput}{\code{data.frame} Participant-level metric data.}
 }
 \description{
 Run App

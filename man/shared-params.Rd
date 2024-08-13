@@ -21,6 +21,8 @@ reporting.}
 
 \item{dfStudy}{\code{data.frame} Optional study-level metadata.}
 
+\item{dfAnalyticsInput}{\code{data.frame} Participant-level metric data.}
+
 \item{input}{Shiny inputs}
 
 \item{lAssessment}{\code{list} List of KRI assessments from \code{params} within

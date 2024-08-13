@@ -12,6 +12,7 @@
 #' @param dfResults `data.frame` A stacked summary of analysis pipeline output.
 #' @param dfSite `data.frame` Optional site-level metadata.
 #' @param dfStudy `data.frame` Optional study-level metadata.
+#' @param dfAnalyticsInput `data.frame` Participant-level metric data.
 #' @param input Shiny inputs
 #' @param lAssessment `list` List of KRI assessments from `params` within
 #'   `KRIReport.Rmd`.

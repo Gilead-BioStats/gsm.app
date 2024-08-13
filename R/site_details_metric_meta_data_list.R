@@ -7,7 +7,7 @@ site_details_metric_meta_data_list <- function(dfMetrics, rctv_strMetricID) {
   sub_dfMetrics <- dfMetrics %>%
     dplyr::filter(.data$MetricID == rctv_strMetricID) %>%
     dplyr::select("Metric", "Numerator", "Denominator", "Threshold") %>%
-    tidyr::pivot_longer(everything())
+    tidyr::pivot_longer(tidyr::everything())
 
   return_tags <- tagList(
 
