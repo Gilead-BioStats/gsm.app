@@ -29,7 +29,8 @@ mod_scatter_server <- function(
                         dfGroups = dfGroups,
                         dfBounds = filter_byMetricID(dfBounds, strMetricID),
                         bAddGroupSelect = FALSE,
-                        bDebug = FALSE
+                        bDebug = FALSE,
+                        strShinyGroupSelectID = "site"
                       )
                     })
                   )
