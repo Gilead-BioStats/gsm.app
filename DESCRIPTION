@@ -1,4 +1,4 @@
-Package: gsmApp
+Package: gsm.app
 Title: gsm Shiny Application
 Version: 1.0.0
 Authors@R: c(
@@ -9,9 +9,9 @@ Authors@R: c(
   )
 Description: Explore the results of gsm assessments.
 License: Apache License (>= 2)
-URL: https://gilead-biostats.github.io/gsmApp/,
-    https://github.com/Gilead-BioStats/gsmApp
-BugReports: https://github.com/Gilead-BioStats/gsmApp/issues
+URL: https://gilead-biostats.github.io/gsm.app/,
+    https://github.com/Gilead-BioStats/gsm.app
+BugReports: https://github.com/Gilead-BioStats/gsm.app/issues
 Depends: 
     R (>= 2.10)
 Imports:

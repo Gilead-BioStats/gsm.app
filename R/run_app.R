@@ -16,7 +16,7 @@ run_app <- function(
   shinyApp(
     ui = ui(),
     server = function(input, output, session) {
-      gsmApp::server(input, output, session,
+      gsm.app::server(input, output, session,
         dfResults = dfResults,
         dfGroups = dfGroups,
         dfMetrics = dfMetrics,
