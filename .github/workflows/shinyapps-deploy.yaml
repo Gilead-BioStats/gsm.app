@@ -84,7 +84,7 @@ jobs:
 
       - name: Set APPNAME
         run: |
-          appname <- Sys.getenv("REPO_NAME")
+          appname <- gsub("[^A-Za-z0-9]", "-", Sys.getenv("REPO_NAME"))
           deployment_type <- Sys.getenv("DEPLOYMENT_TYPE")
           pr_number <- Sys.getenv("PR_NUMBER")
 
