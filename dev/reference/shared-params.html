@@ -46,6 +46,10 @@
 <dd><p>The namespace id for this module.</p></dd>
 
 
+<dt id="arg-dfanalyticsinput">dfAnalyticsInput<a class="anchor" aria-label="anchor" href="#arg-dfanalyticsinput"></a></dt>
+<dd><p><code>data.frame</code> Participant-level metric data.</p></dd>
+
+
 <dt id="arg-dfbounds">dfBounds<a class="anchor" aria-label="anchor" href="#arg-dfbounds"></a></dt>
 <dd><p><code>data.frame</code> Set of predicted percentages/rates and upper-
 and lower-bounds across the full range of sample sizes/total exposure
@@ -86,18 +90,26 @@ reporting.</p></dd>
 <dd><p>Shiny outputs</p></dd>
 
 
-<dt id="arg-rctv-strsite">rctv_strSite<a class="anchor" aria-label="anchor" href="#arg-rctv-strsite"></a></dt>
-<dd><p><code>reactive string</code> A <code><a href="https://rdrr.io/pkg/shiny/man/reactive.html" class="external-link">shiny::reactive()</a></code> object that
-returns the <code>GroupID</code> of a site.</p></dd>
-
-
 <dt id="arg-rctv-strmetricid">rctv_strMetricID<a class="anchor" aria-label="anchor" href="#arg-rctv-strmetricid"></a></dt>
 <dd><p><code>reactive string</code> A <code><a href="https://rdrr.io/pkg/shiny/man/reactive.html" class="external-link">shiny::reactive()</a></code> object that
 returns the selected <code>MetricID</code>.</p></dd>
 
 
+<dt id="arg-rctv-strsite">rctv_strSite<a class="anchor" aria-label="anchor" href="#arg-rctv-strsite"></a></dt>
+<dd><p><code>reactive string</code> A <code><a href="https://rdrr.io/pkg/shiny/man/reactive.html" class="external-link">shiny::reactive()</a></code> object that
+returns the <code>GroupID</code> of a site.</p></dd>
+
+
 <dt id="arg-session">session<a class="anchor" aria-label="anchor" href="#arg-session"></a></dt>
 <dd><p>Shiny session</p></dd>
+
+
+<dt id="arg-strmetricid">strMetricID<a class="anchor" aria-label="anchor" href="#arg-strmetricid"></a></dt>
+<dd><p><code>string</code> A <code>MetricID</code> to focus on.</p></dd>
+
+
+<dt id="arg-strsite">strSite<a class="anchor" aria-label="anchor" href="#arg-strsite"></a></dt>
+<dd><p><code>string</code> The <code>GroupID</code> of a site to focus on.</p></dd>
 
 </dl></div>
 

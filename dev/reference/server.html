@@ -39,7 +39,16 @@
 
     <div class="section level2">
     <h2 id="ref-usage">Usage<a class="anchor" aria-label="anchor" href="#ref-usage"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">server</span><span class="op">(</span><span class="va">input</span>, <span class="va">output</span>, <span class="va">session</span>, <span class="va">dfResults</span>, <span class="va">dfGroups</span>, <span class="va">dfMetrics</span>, <span class="va">dfBounds</span><span class="op">)</span></span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">server</span><span class="op">(</span></span>
+<span>  <span class="va">input</span>,</span>
+<span>  <span class="va">output</span>,</span>
+<span>  <span class="va">session</span>,</span>
+<span>  <span class="va">dfResults</span>,</span>
+<span>  <span class="va">dfGroups</span>,</span>
+<span>  <span class="va">dfMetrics</span>,</span>
+<span>  <span class="va">dfBounds</span>,</span>
+<span>  <span class="va">dfAnalyticsInput</span></span>
+<span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div class="section level2">
@@ -75,6 +84,10 @@ reporting.</p></dd>
 <dd><p><code>data.frame</code> Set of predicted percentages/rates and upper-
 and lower-bounds across the full range of sample sizes/total exposure
 values for reporting.</p></dd>
+
+
+<dt id="arg-dfanalyticsinput">dfAnalyticsInput<a class="anchor" aria-label="anchor" href="#arg-dfanalyticsinput"></a></dt>
+<dd><p><code>data.frame</code> Participant-level metric data.</p></dd>
 
 </dl></div>
 
