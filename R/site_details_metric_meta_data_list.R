@@ -2,10 +2,10 @@
 #' @inheritParams shared-params
 #' @export
 #' @keywords internal
-site_details_metric_meta_data_list <- function(dfMetrics, rctv_strMetricID) {
+site_details_metric_meta_data_list <- function(dfMetrics, strMetricID) {
 
   sub_dfMetrics <- dfMetrics %>%
-    dplyr::filter(.data$MetricID == rctv_strMetricID) %>%
+    dplyr::filter(.data$MetricID == strMetricID) %>%
     dplyr::select("Metric", "Numerator", "Denominator", "Threshold") %>%
     tidyr::pivot_longer(tidyr::everything())
 

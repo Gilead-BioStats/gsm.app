@@ -5,7 +5,7 @@
 #'   This will be filtered to cases where `GroupLevel == "Site"`.
 #' @export
 
-run_app <- function(
+run_gsm_app <- function(
   dfResults,
   dfGroups,
   dfMetrics,
@@ -13,6 +13,7 @@ run_app <- function(
   dfAnalyticsInput) {
   # We only use site-level data in this app.
   dfResults <- dfResults[dfResults$GroupLevel == "Site", ]
+  dfAnalyticsInput <- dfAnalyticsInput[dfAnalyticsInput$GroupLevel == "siteid", ]
 
   shinyApp(
     ui = ui(),

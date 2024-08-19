@@ -4,13 +4,12 @@
 \alias{table_participants_by_site}
 \title{Table of Participants Based on Site Selection}
 \usage{
-table_participants_by_site(dfAnalyticsInput, rctv_strSite)
+table_participants_by_site(dfAnalyticsInput, strSite)
 }
 \arguments{
 \item{dfAnalyticsInput}{\code{data.frame} Participant-level metric data.}
 
-\item{rctv_strSite}{\verb{reactive string} A \code{\link[shiny:reactive]{shiny::reactive()}} object that
-returns the \code{GroupID} of a site.}
+\item{strSite}{\code{string} The \code{GroupID} of a site to focus on.}
 }
 \description{
 Table of Participants Based on Site Selection

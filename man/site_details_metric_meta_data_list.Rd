@@ -4,14 +4,13 @@
 \alias{site_details_metric_meta_data_list}
 \title{Creates taglist to summarize participants at a particular site}
 \usage{
-site_details_metric_meta_data_list(dfMetrics, rctv_strMetricID)
+site_details_metric_meta_data_list(dfMetrics, strMetricID)
 }
 \arguments{
 \item{dfMetrics}{\code{data.frame} Metric-specific metadata for use in charts and
 reporting.}
 
-\item{rctv_strMetricID}{\verb{reactive string} A \code{\link[shiny:reactive]{shiny::reactive()}} object that
-returns the selected \code{MetricID}.}
+\item{strMetricID}{\code{string} A \code{MetricID} to focus on.}
 }
 \description{
 Creates taglist to summarize participants at a particular site

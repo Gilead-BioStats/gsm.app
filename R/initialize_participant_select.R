@@ -4,13 +4,7 @@
 #'
 #' @export
 initialize_participant_select <- function(dfAnalyticsInput, session) {
-
-  participant_ids <- dfAnalyticsInput %>%
-    dplyr::filter(.data$GroupLevel == "siteid") %>%
-    dplyr::select("SubjectID") %>%
-    dplyr::arrange(.data$SubjectID) %>%
-    dplyr::pull("SubjectID")
-
+  participant_ids <- sort(dfAnalyticsInput$SubjectID)
   shiny::updateSelectizeInput(
     session,
     "participant",
