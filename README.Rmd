@@ -42,11 +42,11 @@ pak::pak("Gilead-BioStats/gsm.app")
 ## Sample App
 
 ::: {.pkgdown-release}
-You can use the app with sample data [here](https://openrbqm.shinyapps.io/gsm.app).
+You can use the app with sample data [here](https://openrbqm.shinyapps.io/gsm-app).
 :::
 
 ::: {.pkgdown-devel}
-You can use the app with sample data [here](https://openrbqm.shinyapps.io/gsm.app-dev).
+You can use the app with sample data [here](https://openrbqm.shinyapps.io/gsm-app-dev).
 :::
 
 
