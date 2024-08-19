@@ -2,7 +2,7 @@ pandoc: 3.1.11
 pkgdown: 2.1.0
 pkgdown_sha: ~
 articles: {}
-last_built: 2024-08-19T15:25Z
+last_built: 2024-08-19T15:50Z
 urls:
-  reference: https://gilead-biostats.github.io/gsmApp/reference
-  article: https://gilead-biostats.github.io/gsmApp/articles
+  reference: https://gilead-biostats.github.io/gsm.app/reference
+  article: https://gilead-biostats.github.io/gsm.app/articles
