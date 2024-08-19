@@ -11,7 +11,8 @@ server <- function(
   dfResults,
   dfGroups,
   dfMetrics,
-  dfBounds
+  dfBounds,
+  dfAnalyticsInput
 ) {
   # Side Panel ----
   add_metadata_to_sidebar(
@@ -24,12 +25,11 @@ server <- function(
   ## Initialize ----
   initialize_metric_select(dfMetrics, session)
   initialize_site_select(dfGroups, session)
-  # initialize_participant_select(input, output, session, dfMetrics)
+  initialize_participant_select(dfAnalyticsInput, session)
 
   ## Cross-communication ----
   sync_site_input(reactive(input$site))
-  # sync_site_input(reactive(input$scatter_site))
-  # observe_metric_select(snapshot, reactives$metric)
+  sync_participant_input(reactive(input$participant))
 
   ## Hide/show ----
   observeEvent(input$primary_nav_bar, {
@@ -83,6 +83,7 @@ server <- function(
   observeEvent(
     input$primary_nav_bar == "Metric Details",
     {
+
       mod_metric_details_server(
         "metric_details",
         dfResults = dfResults,
@@ -92,8 +93,20 @@ server <- function(
         rctv_strSite = reactive(input$site),
         rctv_strMetricID = reactive(input$metric)
       )
+
+      mod_site_details_server(
+        "site_details",
+        dfMetrics = dfMetrics,
+        dfGroups = dfGroups,
+        dfAnalyticsInput = dfAnalyticsInput,
+        rctv_strSite = reactive(input$site),
+        rctv_strMetricID = reactive(input$metric)
+      )
+
     },
     ignoreInit = TRUE,
     once = TRUE
   )
+
+
 }

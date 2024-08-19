@@ -4,7 +4,16 @@
 \alias{server}
 \title{Define Server}
 \usage{
-server(input, output, session, dfResults, dfGroups, dfMetrics, dfBounds)
+server(
+  input,
+  output,
+  session,
+  dfResults,
+  dfGroups,
+  dfMetrics,
+  dfBounds,
+  dfAnalyticsInput
+)
 }
 \arguments{
 \item{input}{Shiny inputs}
@@ -23,6 +32,8 @@ reporting.}
 \item{dfBounds}{\code{data.frame} Set of predicted percentages/rates and upper-
 and lower-bounds across the full range of sample sizes/total exposure
 values for reporting.}
+
+\item{dfAnalyticsInput}{\code{data.frame} Participant-level metric data.}
 }
 \description{
 Define Server

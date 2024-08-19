@@ -9,7 +9,7 @@ mod_metric_details_ui <- function(id) {
   ui <- div(
     class = "row",
     div(
-      class = "col-12 col-sm-12 col-md-12 col-lg-12 col-xxl-9",
+      class = "col-12 col-sm-12 col-md-12 col-lg-12 col-xxl-10",
       style = "min-width: 850px;",
       shiny::tabsetPanel(
         id = ns("selected_tab"),

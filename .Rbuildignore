@@ -12,3 +12,4 @@ _\.new\.png$
 ^CODE_OF_CONDUCT\.md$
 ^README\.Rmd$
 ^R/_disable_autoload\.R$
+^principles\.md$
