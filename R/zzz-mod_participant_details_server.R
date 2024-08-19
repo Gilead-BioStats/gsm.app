@@ -53,7 +53,7 @@
 #       req(dfSUBJ())
 #
 #       mapping_column <- utils::read.csv(
-#         system.file("rbmLibrary", "mapping_column.csv", package = "gsmApp")
+#         system.file("rbmLibrary", "mapping_column.csv", package = "gsm.app")
 #       ) %>%
 #         dplyr::filter(.data$gsm_domain_key == "dfSUBJ")
 #

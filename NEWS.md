@@ -1,3 +1,8 @@
+# dev
+
+- Renamed app to {gsm.app} for consistency with related apps.
+
+
 # gsmApp 1.0.0
 
 This is the first major release of `{gsmApp}`! 🥳

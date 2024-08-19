@@ -29,7 +29,7 @@ jobs:
           install.packages("pak")
           pak::pak("rsconnect")
           appname <- paste(
-            Sys.getenv("REPO_NAME"),
+            gsub("[^A-Za-z0-9]", "-", Sys.getenv("REPO_NAME")),
             "pr",
             Sys.getenv("PR_NUMBER"),
             sep = "-"

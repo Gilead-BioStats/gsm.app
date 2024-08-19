@@ -37,7 +37,7 @@ table_participants_by_site <- function(
               console.log(
                 `Selected participant ID: ${participant_id}`
               );
-              const namespace = "gsmApp";
+              const namespace = "gsm.app";
               Shiny.setInputValue(
                 "participant",
                 participant_id

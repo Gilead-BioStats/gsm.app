@@ -12,7 +12,7 @@ ui <- function() {
     title = "GSM Deep Dive",
     theme = bslib::bs_theme(version = 5),
     htmltools::includeCSS(
-      system.file("www", "styles.css", package = "gsmApp")
+      system.file("www", "styles.css", package = "gsm.app")
     ),
     div(
       class = "row", style = "padding-top: 3.5em;",
