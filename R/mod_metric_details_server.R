@@ -88,7 +88,6 @@ mod_metric_details_server <- function(
           output$results <- renderUI({
             gsm::Report_MetricTable(
               rctv_dfResults_byMetricID() %>%
-                filter_byGroupID(rctv_strSite()) %>%
                 dplyr::select(
                   -dplyr::all_of(c("GroupLevel", "StudyID", "SnapshotDate"))
                 ),

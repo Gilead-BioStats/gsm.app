@@ -6,6 +6,8 @@
 \arguments{
 \item{id}{The namespace id for this module.}
 
+\item{dfAnalyticsInput}{\code{data.frame} Participant-level metric data.}
+
 \item{dfBounds}{\code{data.frame} Set of predicted percentages/rates and upper-
 and lower-bounds across the full range of sample sizes/total exposure
 values for reporting.}
@@ -28,13 +30,17 @@ reporting.}
 
 \item{output}{Shiny outputs}
 
-\item{rctv_strSite}{\verb{reactive string} A \code{\link[shiny:reactive]{shiny::reactive()}} object that
-returns the \code{GroupID} of a site.}
-
 \item{rctv_strMetricID}{\verb{reactive string} A \code{\link[shiny:reactive]{shiny::reactive()}} object that
 returns the selected \code{MetricID}.}
 
+\item{rctv_strSite}{\verb{reactive string} A \code{\link[shiny:reactive]{shiny::reactive()}} object that
+returns the \code{GroupID} of a site.}
+
 \item{session}{Shiny session}
+
+\item{strMetricID}{\code{string} A \code{MetricID} to focus on.}
+
+\item{strSite}{\code{string} The \code{GroupID} of a site to focus on.}
 }
 \description{
 Reused parameter definitions are gathered here for easier usage.
