@@ -11,7 +11,6 @@ mod_study_overview_ui <- function(id) {
         title = "Overview Table",
         div(
           class = "card mb-3",
-          style = "border-top: solid #0dcaf0;",
           div(
             class = "card-body",
             style = "overflow-x: auto;",

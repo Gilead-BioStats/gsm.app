@@ -24,7 +24,6 @@ ui <- function() {
         class = "col-12 col-sm-12 col-md-4 col-lg-3 col-xl-3 col-xxl-2 border-end input-div",
         div(
           class = "card mb-3",
-          style = "border-top: solid #0dcaf0;",
           div(
             class = "card-body",
             div(

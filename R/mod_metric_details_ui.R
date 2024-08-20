@@ -17,7 +17,7 @@ mod_metric_details_ui <- function(id) {
           "Scatter Plot",
           div(
             class = "card mb-3",
-            style = "border-top: solid #0dcaf0; margin-top: 4px;",
+            style = "margin-top: 4px;",
             div(
               class = "card-body",
               gsm::Widget_ScatterPlotOutput(ns("scatter_plot"))
@@ -28,7 +28,7 @@ mod_metric_details_ui <- function(id) {
           "Bar Chart (KRI Value)",
           div(
             class = "card mb-3",
-            style = "border-top: solid #0dcaf0; margin-top: 4px;",
+            style = "margin-top: 4px;",
             div(
               class = "card-body",
               gsm::Widget_BarChartOutput(ns("bar_chart_metric"))
@@ -39,7 +39,7 @@ mod_metric_details_ui <- function(id) {
           "Bar Chart (KRI Score)",
           div(
             class = "card mb-3",
-            style = "border-top: solid #0dcaf0; margin-top: 4px;",
+            style = "margin-top: 4px;",
             div(
               class = "card-body",
               gsm::Widget_BarChartOutput(ns("bar_chart_score"))
@@ -50,7 +50,7 @@ mod_metric_details_ui <- function(id) {
           "Time Series",
           div(
             class = "card mb-3",
-            style = "border-top: solid #0dcaf0; margin-top: 4px;",
+            style = "margin-top: 4px;",
             div(
               class = "card-body",
               gsm::Widget_TimeSeriesOutput(ns("time_series"))
@@ -61,7 +61,7 @@ mod_metric_details_ui <- function(id) {
           "Analysis Output",
           div(
             class = "card mb-3",
-            style = "border-top: solid #0dcaf0; margin-top: 4px;",
+            style = "margin-top: 4px;",
             div(
               class = "card-body",
               uiOutput(ns("results"))

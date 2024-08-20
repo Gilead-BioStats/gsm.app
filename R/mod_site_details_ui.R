@@ -19,7 +19,6 @@ mod_site_details_ui <- function(id) {
             div(
               id = ns("card_placeholder_metric_meta_data"),
               class = "card mb-3",
-              style = "border-top: solid #0dcaf0",
               div(
                 class = "card-body",
                 h5(class = "card-title", "Metric Metadata"),
@@ -36,7 +35,6 @@ mod_site_details_ui <- function(id) {
             div(
               id = ns("card_placeholder_site_metadata_list"),
               class = "card mb-3",
-              style = "border-top: solid #0dcaf0",
               div(
                 class = "card-body",
                 h5(class = "card-title", "Site Details"),
@@ -57,8 +55,6 @@ mod_site_details_ui <- function(id) {
               div(
                 id = ns("card_site_metadata_list"),
                 class = "card mb-3",
-                # style = "max-width: 25rem; min-width: 17rem; border-top: solid #0dcaf0",
-                style = "border-top: solid #0dcaf0",
                 div(
                   class = "card-body",
                   h5(class = "card-title", "Site Metadata"),
@@ -79,7 +75,6 @@ mod_site_details_ui <- function(id) {
         div(
           id = ns("card_placeholder_participants"),
           class = "card mb-3",
-          style = "border-top: solid #0dcaf0",
           div(
             class = "card-body",
             h5(class = "card-title", "Site Subjects"),
@@ -100,7 +95,6 @@ mod_site_details_ui <- function(id) {
           div(
             id = ns("card_participants"),
             class = "card mb-3",
-            style = "border-top: solid #0dcaf0",
             div(
               class = "card-body",
               h5(class = "card-title",

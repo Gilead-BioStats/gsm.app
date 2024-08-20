@@ -49,5 +49,6 @@
   }
 }
 
-
-
+.card {
+  border-top: solid #0dcaf0;
+}
