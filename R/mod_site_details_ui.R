@@ -38,7 +38,7 @@ mod_site_details_ui <- function(id) {
               div(
                 class = "card-body",
                 h5(class = "card-title", "Site Details"),
-                hr(),
+                hr(style = "margin-bottom: 0px; margin-top: 15px;"),
                 div(
                   class = "card placeholder",
                   div(
@@ -58,7 +58,7 @@ mod_site_details_ui <- function(id) {
                 div(
                   class = "card-body",
                   h5(class = "card-title", "Site Metadata"),
-                  hr(),
+                  hr(style = "margin-bottom: 0px; margin-top: 15px;"),
                   p(
                     class = "card-text",
                     uiOutput(ns("site_metadata_list"))
@@ -78,7 +78,7 @@ mod_site_details_ui <- function(id) {
           div(
             class = "card-body",
             h5(class = "card-title", "Site Subjects"),
-            br(),
+            hr(style = "margin-bottom: 0px; margin-top: 15px;"),
             div(
               class = "card placeholder",
               div(

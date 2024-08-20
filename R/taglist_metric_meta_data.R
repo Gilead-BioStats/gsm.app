@@ -2,7 +2,7 @@
 #' @inheritParams shared-params
 #' @export
 #' @keywords internal
-site_details_metric_meta_data_list <- function(dfMetrics, strMetricID) {
+taglist_metric_meta_data <- function(dfMetrics, strMetricID) {
 
   sub_dfMetrics <- dfMetrics %>%
     dplyr::filter(.data$MetricID == strMetricID) %>%

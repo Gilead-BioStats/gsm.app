@@ -43,7 +43,16 @@ mod_site_details_server <- function(
 
     output$metric_metadata_list <- renderUI({
 
-      site_details_metric_meta_data_list(dfMetrics, rctv_strMetricID())
+      taglist_metric_meta_data(dfMetrics, rctv_strMetricID())
+    })
+
+
+    ### Site Metadata
+
+    output$site_metadata_list <- renderUI({
+
+      taglist_site_meta_data(dfGroups, rctv_strSite())
+
     })
 
 
