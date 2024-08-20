@@ -88,6 +88,7 @@ mod_metric_details_server <- function(
           output$results <- renderUI({
             gsm::Report_MetricTable(
               rctv_dfResults_byMetricID() %>%
+                dplyr::arrange("GroupID") %>%
                 dplyr::select(
                   -dplyr::all_of(c("GroupLevel", "StudyID", "SnapshotDate"))
                 ),
@@ -100,5 +101,68 @@ mod_metric_details_server <- function(
         }
       )
     })
+
+    observeEvent(rctv_strSite(), {
+
+      if (rctv_strSite() != "None") {
+
+        shinyjs::runjs(sprintf("
+
+            var tableAll = document.getElementById('metric_details-results').querySelectorAll('table');
+            tableAll.forEach(function(x) {
+              x.classList.remove('table-striped');
+            });
+
+            var highlightRow = document.querySelectorAll('table tbody tr');
+            highlightRow.forEach(function(row) {
+                var groupCell = row.querySelector('td:first-child')
+                var cellText = groupCell.textContent.trim().replace(/ \\(.*\\)$/, '')
+                if (cellText === '%s') {
+                  row.classList.add('table-primary');
+                  row.classList.remove('table-deemphasize');
+                } else {
+                  row.classList.add('table-deemphasize');
+                  row.classList.remove('table-primary');
+                }
+
+            });", rctv_strSite()))
+
+      } else {
+
+        shinyjs::runjs("
+
+          var tableAll = document.getElementById('metric_details-results').querySelectorAll('table');
+          tableAll.forEach(function(x) {
+            x.classList.add('table-striped');
+          });
+
+
+          var highlightRow = document.querySelectorAll('table tbody tr');
+          highlightRow.forEach(function(row) {
+                  row.classList.remove('table-deemphasize');
+                  row.classList.remove('table-primary');
+
+          })
+                       ")
+
+      }
+
+    })
+
+    shinyjs::runjs("
+  document.getElementById('metric_details-results').addEventListener('click', function(event) {
+    var target = event.target;
+    while (target && target.tagName !== 'TR') {
+      target = target.parentElement;
+    }
+
+    if (target && target.tagName === 'TR') {
+      var firstColumnValue = target.querySelector('td:first-child').textContent.trim().replace(/ \\(.*\\)$/, '');
+
+      Shiny.setInputValue('site', firstColumnValue, { priority: 'event' });
+    }
+  });
+  ")
+
   })
 }

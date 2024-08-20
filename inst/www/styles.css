@@ -1,11 +1,10 @@
 
-/* site details */
-
 #site_details-participants td:nth-child(1) {
     cursor: pointer;
     color: blue;
     text-decoration: underline;
 }
+
 
 .nav-pills .nav-link.active, pills > li > a.active {
     /* #0dcaf0 !important; */
@@ -51,4 +50,13 @@
 
 .card {
   border-top: solid #0dcaf0;
+}
+
+.table-deemphasize {
+  opacity: .55;
+}
+
+
+#metric_details-results tbody > tr {
+    cursor: pointer;
 }
