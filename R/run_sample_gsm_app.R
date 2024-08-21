@@ -11,11 +11,11 @@
 run_sample_gsm_app <- function() {
   run_gsm_app(
     dfResults = gsm::reportingResults %>%
-      FilterByLatestSnapshotDate(),
+      gsm::FilterByLatestSnapshotDate(),
     dfGroups = gsm::reportingGroups,
     dfMetrics = gsm::reportingMetrics,
     dfBounds = gsm::reportingBounds %>%
-      FilterByLatestSnapshotDate(),
+      gsm::FilterByLatestSnapshotDate(),
     dfAnalyticsInput = gsm::analyticsInput
   )
 }
