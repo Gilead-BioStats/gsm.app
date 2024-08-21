@@ -10,12 +10,10 @@
 #' run_sample_gsm_app()
 run_sample_gsm_app <- function() {
   run_gsm_app(
-    dfResults = gsm::reportingResults %>%
-      dplyr::filter(.data$SnapshotDate == max(.data$SnapshotDate)),
-    dfGroups = gsm::reportingGroups,
-    dfMetrics = gsm::reportingMetrics,
-    dfBounds = gsm::reportingBounds %>%
-      dplyr::filter(.data$SnapshotDate == max(.data$SnapshotDate)),
-    dfAnalyticsInput = gsm::analyticsInput
+    dfResults = gsm.app::sample_dfResults,
+    dfGroups = gsm.app::sample_dfGroups,
+    dfMetrics = gsm.app::sample_dfMetrics,
+    dfBounds = gsm.app::sample_dfBounds,
+    dfAnalyticsInput = gsm.app::sample_dfAnalyticsInput
   )
 }

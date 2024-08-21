@@ -41,6 +41,8 @@ returns the \code{GroupID} of a site.}
 \item{strMetricID}{\code{string} A \code{MetricID} to focus on.}
 
 \item{strSite}{\code{string} The \code{GroupID} of a site to focus on.}
+
+\item{strSubjectID}{\code{string} A \code{SubjectID} of an individual participant.}
 }
 \description{
 Reused parameter definitions are gathered here for easier usage.
