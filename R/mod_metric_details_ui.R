@@ -60,6 +60,7 @@ mod_metric_details_ui <- function(id) {
         shiny::tabPanel(
           "Analysis Output",
           div(
+            id = "analysis_output_table",
             class = "card mb-3",
             style = "margin-top: 4px;",
             div(

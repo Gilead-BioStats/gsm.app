@@ -14,6 +14,12 @@ ui <- function() {
     htmltools::includeCSS(
       system.file("www", "styles.css", package = "gsm.app")
     ),
+    htmltools::includeScript(
+      system.file("js", "highlightTableRow.js", package = "gsm.app")
+    ),
+    htmltools::includeScript(
+      system.file("js", "tableClick.js", package = "gsm.app")
+    ),
     div(
       class = "row", style = "padding-top: 3.5em;",
       hr(style = "padding-left: .25em; padding-right: .25em;")

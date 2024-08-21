@@ -98,71 +98,24 @@ mod_metric_details_server <- function(
               HTML()
           })
           outputOptions(output, "results", suspendWhenHidden = FALSE)
+
+
         }
       )
     })
 
+
+    ### Highlight analysis output table and update site selector
+
+
     observeEvent(rctv_strSite(), {
 
-      if (rctv_strSite() != "None") {
-
-        shinyjs::runjs(sprintf("
-
-            var tableAll = document.getElementById('metric_details-results').querySelectorAll('table');
-            tableAll.forEach(function(x) {
-              x.classList.remove('table-striped');
-            });
-
-            var highlightRow = document.querySelectorAll('table tbody tr');
-            highlightRow.forEach(function(row) {
-                var groupCell = row.querySelector('td:first-child')
-                var cellText = groupCell.textContent.trim().replace(/ \\(.*\\)$/, '')
-                if (cellText === '%s') {
-                  row.classList.add('table-primary');
-                  row.classList.remove('table-deemphasize');
-                } else {
-                  row.classList.add('table-deemphasize');
-                  row.classList.remove('table-primary');
-                }
-
-            });", rctv_strSite()))
-
-      } else {
-
-        shinyjs::runjs("
-
-          var tableAll = document.getElementById('metric_details-results').querySelectorAll('table');
-          tableAll.forEach(function(x) {
-            x.classList.add('table-striped');
-          });
-
-
-          var highlightRow = document.querySelectorAll('table tbody tr');
-          highlightRow.forEach(function(row) {
-                  row.classList.remove('table-deemphasize');
-                  row.classList.remove('table-primary');
-
-          })
-                       ")
-
-      }
+      shinyjs::runjs(sprintf("highlightTableRow('analysis_output_table', '%s');", rctv_strSite()))
 
     })
 
-    shinyjs::runjs("
-  document.getElementById('metric_details-results').addEventListener('click', function(event) {
-    var target = event.target;
-    while (target && target.tagName !== 'TR') {
-      target = target.parentElement;
-    }
+    shinyjs::runjs("tableClick('analysis_output_table');")
 
-    if (target && target.tagName === 'TR') {
-      var firstColumnValue = target.querySelector('td:first-child').textContent.trim().replace(/ \\(.*\\)$/, '');
-
-      Shiny.setInputValue('site', firstColumnValue, { priority: 'event' });
-    }
-  });
-  ")
 
   })
 }
