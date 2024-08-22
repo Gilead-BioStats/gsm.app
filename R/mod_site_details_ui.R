@@ -19,7 +19,6 @@ mod_site_details_ui <- function(id) {
             div(
               id = ns("card_placeholder_metric_meta_data"),
               class = "card mb-3",
-              style = "border-top: solid #0dcaf0",
               div(
                 class = "card-body",
                 h5(class = "card-title", "Metric Metadata"),
@@ -36,11 +35,10 @@ mod_site_details_ui <- function(id) {
             div(
               id = ns("card_placeholder_site_metadata_list"),
               class = "card mb-3",
-              style = "border-top: solid #0dcaf0",
               div(
                 class = "card-body",
                 h5(class = "card-title", "Site Details"),
-                hr(),
+                hr(style = "margin-bottom: 0px; margin-top: 15px;"),
                 div(
                   class = "card placeholder",
                   div(
@@ -57,12 +55,10 @@ mod_site_details_ui <- function(id) {
               div(
                 id = ns("card_site_metadata_list"),
                 class = "card mb-3",
-                # style = "max-width: 25rem; min-width: 17rem; border-top: solid #0dcaf0",
-                style = "border-top: solid #0dcaf0",
                 div(
                   class = "card-body",
                   h5(class = "card-title", "Site Metadata"),
-                  hr(),
+                  hr(style = "margin-bottom: 0px; margin-top: 15px;"),
                   p(
                     class = "card-text",
                     uiOutput(ns("site_metadata_list"))
@@ -79,11 +75,10 @@ mod_site_details_ui <- function(id) {
         div(
           id = ns("card_placeholder_participants"),
           class = "card mb-3",
-          style = "border-top: solid #0dcaf0",
           div(
             class = "card-body",
             h5(class = "card-title", "Site Subjects"),
-            br(),
+            hr(style = "margin-bottom: 0px; margin-top: 15px;"),
             div(
               class = "card placeholder",
               div(
@@ -100,7 +95,6 @@ mod_site_details_ui <- function(id) {
           div(
             id = ns("card_participants"),
             class = "card mb-3",
-            style = "border-top: solid #0dcaf0",
             div(
               class = "card-body",
               h5(class = "card-title",

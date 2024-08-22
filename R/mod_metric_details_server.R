@@ -88,6 +88,7 @@ mod_metric_details_server <- function(
           output$results <- renderUI({
             gsm::Report_MetricTable(
               rctv_dfResults_byMetricID() %>%
+                dplyr::arrange("GroupID") %>%
                 dplyr::select(
                   -dplyr::all_of(c("GroupLevel", "StudyID", "SnapshotDate"))
                 ),
@@ -97,8 +98,24 @@ mod_metric_details_server <- function(
               HTML()
           })
           outputOptions(output, "results", suspendWhenHidden = FALSE)
+
+
         }
       )
     })
+
+
+    ### Highlight analysis output table and update site selector
+
+
+    observeEvent(rctv_strSite(), {
+
+      shinyjs::runjs(sprintf("highlightTableRow('analysis_output_table', '%s');", rctv_strSite()))
+
+    })
+
+    shinyjs::runjs("tableClick('analysis_output_table');")
+
+
   })
 }
