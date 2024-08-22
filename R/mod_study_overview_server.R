@@ -16,7 +16,7 @@ mod_study_overview_server <- function(id, dfResults, dfMetrics, dfGroups) {
     })
 
     ## KRI Color KPIs
-    kri_color_count <- reactive({
+    rctv_dfKRIColorCount <- reactive({
       dfResults %>%
         dplyr::mutate(
           Color = ifelse(
@@ -29,21 +29,19 @@ mod_study_overview_server <- function(id, dfResults, dfMetrics, dfGroups) {
     })
 
     output$red_kri <- renderText({
-      color <- "Red"
-      n <- kri_color_count() %>%
-        dplyr::filter(.data$Color == color) %>%
-        dplyr::pull("n")
-      n <- n %|0|% 0
-      glue::glue("{n} {color} KRIs")
+      textOutput_KRIColor(rctv_dfKRIColorCount(), "Red")
     })
 
     output$amber_kri <- renderText({
-      color <- "Amber"
-      n <- kri_color_count() %>%
-        dplyr::filter(.data$Color == color) %>%
-        dplyr::pull("n")
-      n <- n %|0|% 0
-      glue::glue("{n} {color} KRIs")
+      textOutput_KRIColor(rctv_dfKRIColorCount(), "Amber")
     })
   })
+}
+
+textOutput_KRIColor <- function(dfKRIColorCount, strColor) {
+  n <- dfKRIColorCount %>%
+    dplyr::filter(.data$Color == strColor) %>%
+    dplyr::pull("n")
+  n <- n %|0|% 0
+  return(glue::glue("{n} {strColor} KRIs"))
 }
