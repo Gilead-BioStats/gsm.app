@@ -6,12 +6,21 @@
 
 table_participants_by_site <- function(
     dfAnalyticsInput,
-    strSite) {
+    strSite,
+    strMetricID) {
+
+  if ("MetricID" %in% colnames(dfAnalyticsInput)) {
+    dfAnalyticsInput <- dplyr::filter(
+      dfAnalyticsInput,
+      .data$MetricID == strMetricID
+    )
+  }
 
   dat <- dfAnalyticsInput %>%
     dplyr::filter(
-      .data$GroupLevel == "siteid",
-      .data$GroupID == strSite) %>%
+      .data$GroupLevel == "Site",
+      .data$GroupID == strSite
+    ) %>%
     dplyr::arrange(.data$SubjectID) %>%
     dplyr::select("SubjectID", "Numerator", "Denominator", "Metric")
 

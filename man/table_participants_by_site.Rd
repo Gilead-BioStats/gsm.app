@@ -4,12 +4,14 @@
 \alias{table_participants_by_site}
 \title{Table of Participants Based on Site Selection}
 \usage{
-table_participants_by_site(dfAnalyticsInput, strSite)
+table_participants_by_site(dfAnalyticsInput, strSite, strMetricID)
 }
 \arguments{
 \item{dfAnalyticsInput}{\code{data.frame} Participant-level metric data.}
 
 \item{strSite}{\code{string} The \code{GroupID} of a site to focus on.}
+
+\item{strMetricID}{\code{string} A \code{MetricID} to focus on.}
 }
 \description{
 Table of Participants Based on Site Selection
