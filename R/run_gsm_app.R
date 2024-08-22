@@ -13,7 +13,7 @@ run_gsm_app <- function(
   dfAnalyticsInput) {
   # We only use site-level data in this app.
   dfResults <- dfResults[dfResults$GroupLevel == "Site", ]
-  dfAnalyticsInput <- dfAnalyticsInput[dfAnalyticsInput$GroupLevel == "siteid", ]
+  dfAnalyticsInput <- dfAnalyticsInput[dfAnalyticsInput$GroupLevel == "Site", ]
 
   shinyApp(
     ui = ui(),

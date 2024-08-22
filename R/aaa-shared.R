@@ -24,6 +24,7 @@
 #' @param session Shiny session
 #' @param strMetricID `string` A `MetricID` to focus on.
 #' @param strSite `string` The `GroupID` of a site to focus on.
+#' @param strSubjectID `string` A `SubjectID` of an individual participant.
 #'
 #' @name shared-params
 #' @keywords internal

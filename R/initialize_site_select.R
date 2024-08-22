@@ -7,7 +7,6 @@
 initialize_site_select <- function(dfGroups, session) {
   choices <- dfGroups %>% dplyr::filter(.data$GroupLevel == "Site")
   choices <- unique(choices$GroupID)
-  choices <- as.numeric(choices)
   choices <- sort(choices)
 
   shiny::updateSelectInput(
