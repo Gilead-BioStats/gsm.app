@@ -21,6 +21,12 @@
 <url><loc>https://gilead-biostats.github.io/gsm.app/dev/reference/pipe.html</loc></url>
 <url><loc>https://gilead-biostats.github.io/gsm.app/dev/reference/run_gsm_app.html</loc></url>
 <url><loc>https://gilead-biostats.github.io/gsm.app/dev/reference/run_sample_gsm_app.html</loc></url>
+<url><loc>https://gilead-biostats.github.io/gsm.app/dev/reference/sample_FetchParticipantData.html</loc></url>
+<url><loc>https://gilead-biostats.github.io/gsm.app/dev/reference/sample_dfAnalyticsInput.html</loc></url>
+<url><loc>https://gilead-biostats.github.io/gsm.app/dev/reference/sample_dfBounds.html</loc></url>
+<url><loc>https://gilead-biostats.github.io/gsm.app/dev/reference/sample_dfGroups.html</loc></url>
+<url><loc>https://gilead-biostats.github.io/gsm.app/dev/reference/sample_dfMetrics.html</loc></url>
+<url><loc>https://gilead-biostats.github.io/gsm.app/dev/reference/sample_dfResults.html</loc></url>
 <url><loc>https://gilead-biostats.github.io/gsm.app/dev/reference/server.html</loc></url>
 <url><loc>https://gilead-biostats.github.io/gsm.app/dev/reference/shared-params.html</loc></url>
 <url><loc>https://gilead-biostats.github.io/gsm.app/dev/reference/side_panel_meta_tag_list.html</loc></url>
