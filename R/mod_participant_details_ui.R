@@ -14,7 +14,6 @@ mod_participant_details_ui <- function(id) {
         div(
           id = ns("card_placeholder_participant_meta_data"),
           class = "card mb-3",
-          style = "border-top: solid #0dcaf0",
           div(
             class = "card-body",
             h5(class = "card-title", "Participant Metadata"),
@@ -35,7 +34,6 @@ mod_participant_details_ui <- function(id) {
           div(
             id = ns("card_participant_meta_data"),
             class = "card mb-3",
-            style = "border-top: solid #0dcaf0;", # max-width: 30rem; min-width: 17rem;
             div(
               class = "card-body",
               h5(class = "card-title", "Participant Metadata"),
@@ -50,7 +48,6 @@ mod_participant_details_ui <- function(id) {
         div(
           id = ns("card_placeholder_participant_metric_summary_data"),
           class = "card mb-3",
-          style = "border-top: solid #0dcaf0",
           div(
             class = "card-body",
             h5(class = "card-title", "Metric Summary"),
@@ -71,7 +68,6 @@ mod_participant_details_ui <- function(id) {
           div(
             id = ns("card_participant_metric_summary_data"),
             class = "card mb-3",
-            style = "border-top: solid #0dcaf0;", # max-width: 30rem; min-width: 17rem;
             div(
               class = "card-body",
               h5(class = "card-title", "Metric Summary"),
@@ -86,7 +82,6 @@ mod_participant_details_ui <- function(id) {
         div(
           id = ns("card_placeholder_participant_domain_data"),
           class = "card mb-3",
-          style = "border-top: solid #0dcaf0",
           div(
             class = "card-body",
             h5(class = "card-title", "Participant Domain"),
@@ -107,7 +102,6 @@ mod_participant_details_ui <- function(id) {
           div(
             id = ns("card_placeholder_participant_domain_data_no_metric"),
             class = "card mb-3",
-            style = "border-top: solid #0dcaf0",
             div(
               class = "card-body",
               h5(class = "card-title", "Participant Domain"),
@@ -129,7 +123,6 @@ mod_participant_details_ui <- function(id) {
           div(
             id = ns("card_participant_domain_data"),
             class = "card mb-3",
-            style = "border-top: solid #0dcaf0;",
             div(
               class = "card-body",
               h5(class = "card-title", "Participant Domain"),

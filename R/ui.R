@@ -14,6 +14,20 @@ ui <- function() {
     htmltools::includeCSS(
       system.file("www", "styles.css", package = "gsm.app")
     ),
+    htmltools::htmlDependency(
+      name = "highlightTableRow",
+      version = "1.0.0",
+      src = "js",
+      package = "gsm.app",
+      script = "highlightTableRow.js"
+    ),
+    htmltools::htmlDependency(
+      name = "tableClick",
+      version = "1.0.0",
+      src = "js",
+      package = "gsm.app",
+      script = "tableClick.js"
+    ),
     div(
       class = "row", style = "padding-top: 3.5em;",
       hr(style = "padding-left: .25em; padding-right: .25em;")
@@ -24,7 +38,6 @@ ui <- function() {
         class = "col-12 col-sm-12 col-md-4 col-lg-3 col-xl-3 col-xxl-2 border-end input-div",
         div(
           class = "card mb-3",
-          style = "border-top: solid #0dcaf0;",
           div(
             class = "card-body",
             div(
