@@ -15,7 +15,6 @@
 
     if (target && target.tagName === 'TR') {
       var firstColumnValue = target.querySelector('td:first-child').textContent.trim().replace(/ \(.*\)$/, '');
-      console.log(firstColumnValue);
 
       Shiny.setInputValue('site', firstColumnValue, { priority: 'event' });
     }
