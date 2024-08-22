@@ -19,6 +19,7 @@ Imports:
     cli,
     dplyr,
     DT,
+    glue,
     gsm,
     htmltools,
     htmlwidgets,

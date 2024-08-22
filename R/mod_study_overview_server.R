@@ -29,21 +29,21 @@ mod_study_overview_server <- function(id, dfResults, dfMetrics, dfGroups) {
     })
 
     output$red_kri <- renderText({
-      paste0(
-        kri_color_count() %>%
-          dplyr::filter(.data$Color == "Red") %>%
-          dplyr::select("n"),
-        " Red KRIs"
-      )
+      color <- "Red"
+      n <- kri_color_count() %>%
+        dplyr::filter(.data$Color == color) %>%
+        dplyr::pull("n")
+      n <- n %|0|% 0
+      glue::glue("{n} {color} KRIs")
     })
 
     output$amber_kri <- renderText({
-      paste0(
-        kri_color_count() %>%
-          dplyr::filter(.data$Color == "Amber") %>%
-          dplyr::select("n"),
-        " Amber KRIs"
-      )
+      color <- "Amber"
+      n <- kri_color_count() %>%
+        dplyr::filter(.data$Color == color) %>%
+        dplyr::pull("n")
+      n <- n %|0|% 0
+      glue::glue("{n} {color} KRIs")
     })
   })
 }
