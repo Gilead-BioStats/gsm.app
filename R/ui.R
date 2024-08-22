@@ -14,11 +14,19 @@ ui <- function() {
     htmltools::includeCSS(
       system.file("www", "styles.css", package = "gsm.app")
     ),
-    htmltools::includeScript(
-      system.file("js", "highlightTableRow.js", package = "gsm.app")
+    htmltools::htmlDependency(
+      name = "highlightTableRow",
+      version = "1.0.0",
+      src = "js",
+      package = "gsm.app",
+      script = "highlightTableRow.js"
     ),
-    htmltools::includeScript(
-      system.file("js", "tableClick.js", package = "gsm.app")
+    htmltools::htmlDependency(
+      name = "tableClick",
+      version = "1.0.0",
+      src = "js",
+      package = "gsm.app",
+      script = "tableClick.js"
     ),
     div(
       class = "row", style = "padding-top: 3.5em;",
