@@ -7,7 +7,7 @@
 sync_site_input(rctv_strSiteID)
 }
 \arguments{
-\item{rctv_strSiteID}{\verb{reactive string} A \code{\link[shiny:reactive]{shiny::reactive()}} object that
+\item{rctv_strSiteID}{\verb{reactive character} A \code{\link[shiny:reactive]{shiny::reactive()}} object that
 returns the \code{GroupID} of a site.}
 }
 \value{

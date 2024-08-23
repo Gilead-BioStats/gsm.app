@@ -2,8 +2,7 @@
 #'
 #' @inheritParams shared-params
 #'
-#' @export
-
+#' @keywords internal
 mod_site_details_server <- function(
     id,
     dfMetrics,

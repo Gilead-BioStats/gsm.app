@@ -2,8 +2,7 @@
 #'
 #' @inheritParams shared-params
 #'
-#' @export
-
+#' @keywords internal
 initialize_site_select <- function(dfGroups, session) {
   choices <- dfGroups %>% dplyr::filter(.data$GroupLevel == "Site")
   choices <- unique(choices$GroupID)

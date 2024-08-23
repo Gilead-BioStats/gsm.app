@@ -10,7 +10,7 @@ taglist_metric_meta_data(dfMetrics, strMetricID)
 \item{dfMetrics}{\code{data.frame} Metric-specific metadata for use in charts and
 reporting.}
 
-\item{strMetricID}{\code{string} A \code{MetricID} to focus on.}
+\item{strMetricID}{\code{character} A \code{MetricID} to focus on.}
 }
 \description{
 Creates taglist to summarize participants at a particular site

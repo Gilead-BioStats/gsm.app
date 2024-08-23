@@ -1,6 +1,5 @@
 #' Creates taglist to summarize participants at a particular site
 #' @inheritParams shared-params
-#' @export
 #' @keywords internal
 taglist_metric_meta_data <- function(dfMetrics, strMetricID) {
 

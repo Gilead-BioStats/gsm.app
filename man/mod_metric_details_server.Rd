@@ -29,12 +29,13 @@ reporting.}
 and lower-bounds across the full range of sample sizes/total exposure
 values for reporting.}
 
-\item{rctv_strSiteID}{\verb{reactive string} A \code{\link[shiny:reactive]{shiny::reactive()}} object that
+\item{rctv_strSiteID}{\verb{reactive character} A \code{\link[shiny:reactive]{shiny::reactive()}} object that
 returns the \code{GroupID} of a site.}
 
-\item{rctv_strMetricID}{\verb{reactive string} A \code{\link[shiny:reactive]{shiny::reactive()}} object that
+\item{rctv_strMetricID}{\verb{reactive character} A \code{\link[shiny:reactive]{shiny::reactive()}} object that
 returns the selected \code{MetricID}.}
 }
 \description{
 Metric Details Server
 }
+\keyword{internal}

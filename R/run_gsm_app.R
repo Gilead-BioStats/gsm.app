@@ -2,7 +2,6 @@
 #'
 #' @inheritParams shared-params
 #' @export
-
 run_gsm_app <- function(
   dfResults,
   dfGroups,

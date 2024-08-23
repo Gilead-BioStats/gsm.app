@@ -2,7 +2,7 @@
 #'
 #' @inheritParams shared-params
 #'
-#' @export
+#' @keywords internal
 mod_metric_details_server <- function(
   id,
   dfResults,

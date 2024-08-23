@@ -1,3 +1,10 @@
+#' Participant Details server
+#'
+#' Update Participant Details when the selected participant changes.
+#'
+#' @inheritParams shared-params
+#'
+#' @keywords internal
 mod_ParticipantDetails_Server <- function(
     id,
     fnFetchParticipantData,
@@ -22,7 +29,5 @@ mod_ParticipantDetails_Server <- function(
     output$metadata <- shiny::renderUI({
       div_ParticipantMetadata(rctv_lParticipantMetadata())
     })
-
-    output$core <- shiny::renderUI({})
   })
 }

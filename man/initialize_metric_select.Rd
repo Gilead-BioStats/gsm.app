@@ -16,3 +16,4 @@ default should almost always be used).}
 \description{
 Initialize Metric Select
 }
+\keyword{internal}

@@ -23,15 +23,17 @@
 #'   metric.
 #' @param lAssessment `list` List of KRI assessments from `params` within
 #'   `KRIReport.Rmd`.
-#' @param rctv_strMetricID `reactive string` A [shiny::reactive()] object that
+#' @param rctv_strMetricID `reactive character` A [shiny::reactive()] object that
 #'   returns the selected `MetricID`.
-#' @param rctv_strSiteID `reactive string` A [shiny::reactive()] object that
+#' @param rctv_strSiteID `reactive character` A [shiny::reactive()] object that
 #'   returns the `GroupID` of a site.
+#' @param rctv_strSubjectID `reactive character` A [shiny::reactive()] object that
+#'   returns the `SubjectID` of the selected participant.
 #' @param session `environment` Session from which to make a child scope (the
 #'   default should almost always be used).
-#' @param strMetricID `string` A `MetricID` to focus on.
-#' @param strSite `string` The `GroupID` of a site to focus on.
-#' @param strSubjectID `string` A `SubjectID` of an individual participant.
+#' @param strMetricID `character` A `MetricID` to focus on.
+#' @param strSite `character` The `GroupID` of a site to focus on.
+#' @param strSubjectID `character` A `SubjectID` of an individual participant.
 #'
 #' @name shared-params
 #' @keywords internal

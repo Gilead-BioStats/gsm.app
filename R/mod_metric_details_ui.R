@@ -2,7 +2,7 @@
 #'
 #' @inheritParams shared-params
 #'
-#' @export
+#' @keywords internal
 mod_metric_details_ui <- function(id) {
   ns <- shiny::NS(id)
 

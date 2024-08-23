@@ -12,3 +12,4 @@ mod_ParticipantDetails_UI(id)
 \description{
 Participant Details UI
 }
+\keyword{internal}

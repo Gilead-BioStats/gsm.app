@@ -2,7 +2,7 @@
 #'
 #' @inheritParams shared-params
 #'
-#' @export
+#' @keywords internal
 
 gsmApp_Server <- function(
   dfResults,

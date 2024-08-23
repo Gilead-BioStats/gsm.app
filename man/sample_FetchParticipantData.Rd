@@ -7,7 +7,7 @@
 sample_FetchParticipantData(strSubjectID)
 }
 \arguments{
-\item{strSubjectID}{\code{string} A \code{SubjectID} of an individual participant.}
+\item{strSubjectID}{\code{character} A \code{SubjectID} of an individual participant.}
 }
 \value{
 A list with elements \code{metadata} (a list of participant metadata) and

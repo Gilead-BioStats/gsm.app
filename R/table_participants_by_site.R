@@ -2,8 +2,7 @@
 #'
 #' @inheritParams shared-params
 #'
-#' @export
-
+#' @keywords internal
 table_participants_by_site <- function(
     dfAnalyticsInput,
     strSite,

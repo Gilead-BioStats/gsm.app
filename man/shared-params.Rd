@@ -35,20 +35,23 @@ metric.}
 \item{lAssessment}{\code{list} List of KRI assessments from \code{params} within
 \code{KRIReport.Rmd}.}
 
-\item{rctv_strMetricID}{\verb{reactive string} A \code{\link[shiny:reactive]{shiny::reactive()}} object that
+\item{rctv_strMetricID}{\verb{reactive character} A \code{\link[shiny:reactive]{shiny::reactive()}} object that
 returns the selected \code{MetricID}.}
 
-\item{rctv_strSiteID}{\verb{reactive string} A \code{\link[shiny:reactive]{shiny::reactive()}} object that
+\item{rctv_strSiteID}{\verb{reactive character} A \code{\link[shiny:reactive]{shiny::reactive()}} object that
 returns the \code{GroupID} of a site.}
+
+\item{rctv_strSubjectID}{\verb{reactive character} A \code{\link[shiny:reactive]{shiny::reactive()}} object that
+returns the \code{SubjectID} of the selected participant.}
 
 \item{session}{\code{environment} Session from which to make a child scope (the
 default should almost always be used).}
 
-\item{strMetricID}{\code{string} A \code{MetricID} to focus on.}
+\item{strMetricID}{\code{character} A \code{MetricID} to focus on.}
 
-\item{strSite}{\code{string} The \code{GroupID} of a site to focus on.}
+\item{strSite}{\code{character} The \code{GroupID} of a site to focus on.}
 
-\item{strSubjectID}{\code{string} A \code{SubjectID} of an individual participant.}
+\item{strSubjectID}{\code{character} A \code{SubjectID} of an individual participant.}
 }
 \description{
 Reused parameter definitions are gathered here for easier usage.
