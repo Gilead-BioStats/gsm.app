@@ -23,17 +23,25 @@
 #'   metric.
 #' @param lAssessment `list` List of KRI assessments from `params` within
 #'   `KRIReport.Rmd`.
-#' @param rctv_strMetricID `reactive character` A [shiny::reactive()] object that
-#'   returns the selected `MetricID`.
+#' @param lParticipantMetadata `list` Named list of data describing a single
+#'   participant.
+#' @param rctv_lParticipantMetricData `reactive list` A [shiny::reactive()]
+#'   object that returns a list of dataframes for a given participant, one for
+#'   each metric that is available.
+#' @param rctv_strMetricID `reactive character` A [shiny::reactive()] object
+#'   that returns the selected `MetricID`.
 #' @param rctv_strSiteID `reactive character` A [shiny::reactive()] object that
 #'   returns the `GroupID` of a site.
-#' @param rctv_strSubjectID `reactive character` A [shiny::reactive()] object that
-#'   returns the `SubjectID` of the selected participant.
+#' @param rctv_strSubjectID `reactive character` A [shiny::reactive()] object
+#'   that returns the `SubjectID` of the selected participant.
 #' @param session `environment` Session from which to make a child scope (the
 #'   default should almost always be used).
+#' @param strCardTitle `character` A title for the card.
 #' @param strMetricID `character` A `MetricID` to focus on.
+#' @param strName `character` The name of a field.
 #' @param strSite `character` The `GroupID` of a site to focus on.
 #' @param strSubjectID `character` A `SubjectID` of an individual participant.
+#' @param strValue `character` The value of a field.
 #'
 #' @name shared-params
 #' @keywords internal

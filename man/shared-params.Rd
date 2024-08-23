@@ -35,23 +35,36 @@ metric.}
 \item{lAssessment}{\code{list} List of KRI assessments from \code{params} within
 \code{KRIReport.Rmd}.}
 
-\item{rctv_strMetricID}{\verb{reactive character} A \code{\link[shiny:reactive]{shiny::reactive()}} object that
-returns the selected \code{MetricID}.}
+\item{lParticipantMetadata}{\code{list} Named list of data describing a single
+participant.}
+
+\item{rctv_lParticipantMetricData}{\verb{reactive list} A \code{\link[shiny:reactive]{shiny::reactive()}}
+object that returns a list of dataframes for a given participant, one for
+each metric that is available.}
+
+\item{rctv_strMetricID}{\verb{reactive character} A \code{\link[shiny:reactive]{shiny::reactive()}} object
+that returns the selected \code{MetricID}.}
 
 \item{rctv_strSiteID}{\verb{reactive character} A \code{\link[shiny:reactive]{shiny::reactive()}} object that
 returns the \code{GroupID} of a site.}
 
-\item{rctv_strSubjectID}{\verb{reactive character} A \code{\link[shiny:reactive]{shiny::reactive()}} object that
-returns the \code{SubjectID} of the selected participant.}
+\item{rctv_strSubjectID}{\verb{reactive character} A \code{\link[shiny:reactive]{shiny::reactive()}} object
+that returns the \code{SubjectID} of the selected participant.}
 
 \item{session}{\code{environment} Session from which to make a child scope (the
 default should almost always be used).}
 
+\item{strCardTitle}{\code{character} A title for the card.}
+
 \item{strMetricID}{\code{character} A \code{MetricID} to focus on.}
+
+\item{strName}{\code{character} The name of a field.}
 
 \item{strSite}{\code{character} The \code{GroupID} of a site to focus on.}
 
 \item{strSubjectID}{\code{character} A \code{SubjectID} of an individual participant.}
+
+\item{strValue}{\code{character} The value of a field.}
 }
 \description{
 Reused parameter definitions are gathered here for easier usage.

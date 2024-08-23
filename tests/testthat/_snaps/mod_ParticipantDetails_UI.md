@@ -6,22 +6,11 @@
       <div class="row">
         <div id="participant_details-metadata" class="shiny-html-output"></div>
         <div class="col-12 col-sm-8 col-md-6 col-lg-5 col-xl-3 col-xxl-3">
-          <div id="participant_details-card_placeholder_participant_metric_summary_data" class="card mb-3">
+          <div class="card mb-3">
             <div class="card-body">
               <h5 class="card-title">Metric Summary</h5>
               <hr/>
-              <div class="card placeholder">
-                <div class="card-body">
-                  <div class="card-text">Please select a participant.</div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="card mb-3 shinyjs-hide" id="participant_details-card_participant_metric_summary_data">
-            <div class="card-body">
-              <h5 class="card-title">Metric Summary</h5>
-              <hr/>
-              <div id="participant_details-participant_metric_summary" class="shiny-html-output"></div>
+              <div id="participant_details-metric_summary-metric_list" class="shiny-html-output"></div>
             </div>
           </div>
         </div>
