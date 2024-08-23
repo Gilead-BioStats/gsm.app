@@ -10,8 +10,8 @@
 #' @keywords internal
 sync_site_input <- function(rctv_strSiteID) {
   # Update site input when client-side selection occurs.
-  shiny::observe({
-    shiny::updateSelectInput(
+  observe({
+    updateSelectInput(
       inputId = "site",
       selected = rctv_strSiteID()
     )

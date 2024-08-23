@@ -11,7 +11,7 @@ mod_metric_details_server <- function(
   dfBounds,
   rctv_strSiteID,
   rctv_strMetricID) {
-  shiny::moduleServer(id, function(input, output, session) {
+  moduleServer(id, function(input, output, session) {
     # Shared reactives ----
     rctv_dfResults_byMetricID <- reactive({
       filter_byMetricID(dfResults, rctv_strMetricID())

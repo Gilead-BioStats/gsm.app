@@ -4,7 +4,7 @@
 #'
 #' @keywords internal
 mod_site_details_ui <- function(id) {
-  ns <- shiny::NS(id)
+  ns <- NS(id)
 
   ui <- tagList(
     shinyjs::useShinyjs(),

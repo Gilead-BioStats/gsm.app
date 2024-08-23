@@ -123,7 +123,7 @@ gsmApp_Server <- function(
     ##
     ## Don't render until it loads. We should be able to fix this later once
     ## nested-modules are implemented cleanly.
-    shiny::bindEvent(
+    bindEvent(
       mod_ParticipantDetails_Server(
         "participant_details",
         fnFetchParticipantData = fnFetchParticipantData,

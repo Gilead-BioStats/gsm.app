@@ -10,9 +10,8 @@
 #' @keywords internal
 sync_participant_input <- function(rctv_strParticipant) {
   # Update participant input when client-side selection occurs.
-  shiny::observe({
-
-    shiny::updateSelectInput(
+  observe({
+    updateSelectInput(
       inputId = "participant",
       selected = rctv_strParticipant()
     )
@@ -21,7 +20,5 @@ sync_participant_input <- function(rctv_strParticipant) {
     if (rctv_strParticipant() != "None" && rctv_strParticipant() != "") {
       bslib::nav_select("primary_nav_bar", "Participant Details")
     }
-
   })
-
 }

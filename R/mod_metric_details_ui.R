@@ -4,16 +4,16 @@
 #'
 #' @keywords internal
 mod_metric_details_ui <- function(id) {
-  ns <- shiny::NS(id)
+  ns <- NS(id)
 
   ui <- div(
     class = "row",
     div(
       class = "col-12 col-sm-12 col-md-12 col-lg-12 col-xxl-10",
       style = "min-width: 850px;",
-      shiny::tabsetPanel(
+      tabsetPanel(
         id = ns("selected_tab"),
-        shiny::tabPanel(
+        tabPanel(
           "Scatter Plot",
           div(
             class = "card mb-3",
@@ -24,7 +24,7 @@ mod_metric_details_ui <- function(id) {
             )
           )
         ),
-        shiny::tabPanel(
+        tabPanel(
           "Bar Chart (KRI Value)",
           div(
             class = "card mb-3",
@@ -35,7 +35,7 @@ mod_metric_details_ui <- function(id) {
             )
           )
         ),
-        shiny::tabPanel(
+        tabPanel(
           "Bar Chart (KRI Score)",
           div(
             class = "card mb-3",
@@ -46,7 +46,7 @@ mod_metric_details_ui <- function(id) {
             )
           )
         ),
-        shiny::tabPanel(
+        tabPanel(
           "Time Series",
           div(
             class = "card mb-3",
@@ -57,7 +57,7 @@ mod_metric_details_ui <- function(id) {
             )
           )
         ),
-        shiny::tabPanel(
+        tabPanel(
           "Analysis Output",
           div(
             id = "analysis_output_table",

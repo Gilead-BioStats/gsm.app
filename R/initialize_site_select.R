@@ -8,7 +8,7 @@ initialize_site_select <- function(dfGroups, session) {
   choices <- unique(choices$GroupID)
   choices <- sort(choices)
 
-  shiny::updateSelectInput(
+  updateSelectInput(
     session,
     "site",
     choices = c("None", choices)

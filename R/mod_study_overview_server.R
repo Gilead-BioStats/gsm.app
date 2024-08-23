@@ -4,7 +4,7 @@
 #'
 #' @keywords internal
 mod_study_overview_server <- function(id, dfResults, dfMetrics, dfGroups) {
-  shiny::moduleServer(id, function(input, output, session) {
+  moduleServer(id, function(input, output, session) {
     output$site_overview_table <- gsm::renderWidget_GroupOverview({
       gsm::Widget_GroupOverview(
         dfResults = dfResults,

@@ -10,7 +10,7 @@ mod_site_details_server <- function(
     dfAnalyticsInput,
     rctv_strSiteID,
     rctv_strMetricID) {
-  shiny::moduleServer(id, function(input, output, session) {
+  moduleServer(id, function(input, output, session) {
     observeEvent(
       rctv_strSiteID(),
       {
