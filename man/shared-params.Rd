@@ -41,6 +41,9 @@ returns the selected \code{MetricID}.}
 \item{rctv_strSiteID}{\verb{reactive string} A \code{\link[shiny:reactive]{shiny::reactive()}} object that
 returns the \code{GroupID} of a site.}
 
+\item{session}{\code{environment} Session from which to make a child scope (the
+default should almost always be used).}
+
 \item{strMetricID}{\code{string} A \code{MetricID} to focus on.}
 
 \item{strSite}{\code{string} The \code{GroupID} of a site to focus on.}

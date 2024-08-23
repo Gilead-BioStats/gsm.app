@@ -9,6 +9,9 @@ initialize_metric_select(dfMetrics, session)
 \arguments{
 \item{dfMetrics}{\code{data.frame} Metric-specific metadata for use in charts and
 reporting.}
+
+\item{session}{\code{environment} Session from which to make a child scope (the
+default should almost always be used).}
 }
 \description{
 Initialize Metric Select

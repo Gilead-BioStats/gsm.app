@@ -27,6 +27,8 @@
 #'   returns the selected `MetricID`.
 #' @param rctv_strSiteID `reactive string` A [shiny::reactive()] object that
 #'   returns the `GroupID` of a site.
+#' @param session `environment` Session from which to make a child scope (the
+#'   default should almost always be used).
 #' @param strMetricID `string` A `MetricID` to focus on.
 #' @param strSite `string` The `GroupID` of a site to focus on.
 #' @param strSubjectID `string` A `SubjectID` of an individual participant.

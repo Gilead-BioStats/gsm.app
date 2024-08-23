@@ -8,6 +8,9 @@ initialize_participant_select(dfAnalyticsInput, session)
 }
 \arguments{
 \item{dfAnalyticsInput}{\code{data.frame} Participant-level metric data.}
+
+\item{session}{\code{environment} Session from which to make a child scope (the
+default should almost always be used).}
 }
 \description{
 Initialize Participant Select
