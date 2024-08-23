@@ -10,14 +10,15 @@ mod_metric_details_server(
   dfMetrics,
   dfGroups,
   dfBounds,
-  rctv_strSite,
+  rctv_strSiteID,
   rctv_strMetricID
 )
 }
 \arguments{
 \item{id}{The namespace id for this module.}
 
-\item{dfResults}{\code{data.frame} A stacked summary of analysis pipeline output.}
+\item{dfResults}{\code{data.frame} A stacked summary of analysis pipeline output.
+This will be filtered to cases where \code{GroupLevel == "Site"}.}
 
 \item{dfMetrics}{\code{data.frame} Metric-specific metadata for use in charts and
 reporting.}
@@ -28,7 +29,7 @@ reporting.}
 and lower-bounds across the full range of sample sizes/total exposure
 values for reporting.}
 
-\item{rctv_strSite}{\verb{reactive string} A \code{\link[shiny:reactive]{shiny::reactive()}} object that
+\item{rctv_strSiteID}{\verb{reactive string} A \code{\link[shiny:reactive]{shiny::reactive()}} object that
 returns the \code{GroupID} of a site.}
 
 \item{rctv_strMetricID}{\verb{reactive string} A \code{\link[shiny:reactive]{shiny::reactive()}} object that

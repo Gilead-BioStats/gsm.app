@@ -9,8 +9,6 @@ initialize_metric_select(dfMetrics, session)
 \arguments{
 \item{dfMetrics}{\code{data.frame} Metric-specific metadata for use in charts and
 reporting.}
-
-\item{session}{Shiny session}
 }
 \description{
 Initialize Metric Select

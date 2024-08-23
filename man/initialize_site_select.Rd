@@ -8,8 +8,6 @@ initialize_site_select(dfGroups, session)
 }
 \arguments{
 \item{dfGroups}{\code{data.frame} Group-level metadata dictionary.}
-
-\item{session}{Shiny session}
 }
 \description{
 Initialize Site Select

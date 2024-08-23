@@ -3,46 +3,12 @@
 #' @inheritParams shared-params
 #'
 #' @export
-mod_participant_details_ui <- function(id) {
+mod_ParticipantDetails_UI <- function(id) {
   ns <- shiny::NS(id)
-
   ui <- tagList(
     div(
       class = "row",
-      div(
-        class = "col-12 col-sm-8 col-md-6 col-lg-5 col-xl-3 col-xxl-3",
-        div(
-          id = ns("card_placeholder_participant_meta_data"),
-          class = "card mb-3",
-          div(
-            class = "card-body",
-            h5(class = "card-title", "Participant Metadata"),
-            hr(),
-            div(
-              class = "card placeholder",
-              div(
-                class = "card-body",
-                div(
-                  class = "card-text",
-                  "Please select a participant."
-                )
-              )
-            )
-          )
-        ),
-        shinyjs::hidden(
-          div(
-            id = ns("card_participant_meta_data"),
-            class = "card mb-3",
-            div(
-              class = "card-body",
-              h5(class = "card-title", "Participant Metadata"),
-              hr(),
-              uiOutput(ns("participant_summary"))
-            )
-          )
-        )
-      ),
+      shiny::uiOutput(ns("metadata")),
       div(
         class = "col-12 col-sm-8 col-md-6 col-lg-5 col-xl-3 col-xxl-3",
         div(

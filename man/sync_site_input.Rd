@@ -4,10 +4,10 @@
 \alias{sync_site_input}
 \title{Synchronize site drop-down with click input}
 \usage{
-sync_site_input(rctv_strSite)
+sync_site_input(rctv_strSiteID)
 }
 \arguments{
-\item{rctv_strSite}{\verb{reactive string} A \code{\link[shiny:reactive]{shiny::reactive()}} object that
+\item{rctv_strSiteID}{\verb{reactive string} A \code{\link[shiny:reactive]{shiny::reactive()}} object that
 returns the \code{GroupID} of a site.}
 }
 \value{

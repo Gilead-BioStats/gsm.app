@@ -8,8 +8,6 @@ initialize_participant_select(dfAnalyticsInput, session)
 }
 \arguments{
 \item{dfAnalyticsInput}{\code{data.frame} Participant-level metric data.}
-
-\item{session}{Shiny session}
 }
 \description{
 Initialize Participant Select

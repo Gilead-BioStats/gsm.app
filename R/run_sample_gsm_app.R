@@ -14,6 +14,7 @@ run_sample_gsm_app <- function() {
     dfGroups = gsm.app::sample_dfGroups,
     dfMetrics = gsm.app::sample_dfMetrics,
     dfBounds = gsm.app::sample_dfBounds,
-    dfAnalyticsInput = gsm.app::sample_dfAnalyticsInput
+    dfAnalyticsInput = gsm.app::sample_dfAnalyticsInput,
+    fnFetchParticipantData = gsm.app::sample_FetchParticipantData
   )
 }

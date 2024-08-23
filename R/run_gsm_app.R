@@ -1,8 +1,6 @@
 #' Run App
 #'
 #' @inheritParams shared-params
-#' @param dfResults `data.frame` A stacked summary of analysis pipeline output.
-#'   This will be filtered to cases where `GroupLevel == "Site"`.
 #' @export
 
 run_gsm_app <- function(
@@ -10,21 +8,21 @@ run_gsm_app <- function(
   dfGroups,
   dfMetrics,
   dfBounds,
-  dfAnalyticsInput) {
+  dfAnalyticsInput,
+  fnFetchParticipantData) {
   # We only use site-level data in this app.
   dfResults <- dfResults[dfResults$GroupLevel == "Site", ]
   dfAnalyticsInput <- dfAnalyticsInput[dfAnalyticsInput$GroupLevel == "Site", ]
 
   shinyApp(
-    ui = ui(),
-    server = function(input, output, session) {
-      gsm.app::server(input, output, session,
-        dfResults = dfResults,
-        dfGroups = dfGroups,
-        dfMetrics = dfMetrics,
-        dfBounds = dfBounds,
-        dfAnalyticsInput = dfAnalyticsInput
-      )
-    }
+    ui = gsmApp_UI(),
+    server = gsmApp_Server(
+      dfResults = dfResults,
+      dfGroups = dfGroups,
+      dfMetrics = dfMetrics,
+      dfBounds = dfBounds,
+      dfAnalyticsInput = dfAnalyticsInput,
+      fnFetchParticipantData = fnFetchParticipantData
+    )
   )
 }

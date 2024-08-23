@@ -9,7 +9,8 @@ mod_study_overview_server(id, dfResults, dfMetrics, dfGroups)
 \arguments{
 \item{id}{The namespace id for this module.}
 
-\item{dfResults}{\code{data.frame} A stacked summary of analysis pipeline output.}
+\item{dfResults}{\code{data.frame} A stacked summary of analysis pipeline output.
+This will be filtered to cases where \code{GroupLevel == "Site"}.}
 
 \item{dfMetrics}{\code{data.frame} Metric-specific metadata for use in charts and
 reporting.}

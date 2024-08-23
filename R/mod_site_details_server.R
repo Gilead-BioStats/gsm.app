@@ -9,14 +9,13 @@ mod_site_details_server <- function(
     dfMetrics,
     dfGroups,
     dfAnalyticsInput,
-    rctv_strSite,
+    rctv_strSiteID,
     rctv_strMetricID) {
   shiny::moduleServer(id, function(input, output, session) {
-
     observeEvent(
-      rctv_strSite(),
+      rctv_strSiteID(),
       {
-        if (rctv_strSite() == "None") {
+        if (rctv_strSiteID() == "None") {
           ## Show placeholders
 
           shinyjs::hide("card_site_metadata_list")
@@ -40,39 +39,36 @@ mod_site_details_server <- function(
     )
 
     ### Metric Metadata List
-
     output$metric_metadata_list <- renderUI({
-
       taglist_metric_meta_data(dfMetrics, rctv_strMetricID())
     })
 
 
     ### Site Metadata
-
     output$site_metadata_list <- renderUI({
-
-      taglist_site_meta_data(dfGroups, rctv_strSite())
-
+      taglist_site_meta_data(dfGroups, rctv_strSiteID())
     })
 
 
     ### Site Participants Table Across Site Selected
-
     output$participant_table_title <- renderUI({
-
-        h5("Site ", rctv_strSite(),
-           p(class = "lead", style = "font-size: .75em;",
-             "Select a subject below to drill-down")
+      h5(
+        "Site ",
+        rctv_strSiteID(),
+        p(
+          class = "lead",
+          style = "font-size: .75em;",
+          "Select a subject below to drill-down"
         )
-
+      )
     })
 
     output$participants <- DT::renderDT({
-
-      table_participants_by_site(dfAnalyticsInput, rctv_strSite(), rctv_strMetricID())
-
+      table_participants_by_site(
+        dfAnalyticsInput,
+        rctv_strSiteID(),
+        rctv_strMetricID()
+      )
     })
-
-
   })
 }

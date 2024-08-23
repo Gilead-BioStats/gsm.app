@@ -17,26 +17,29 @@ values for reporting.}
 \item{dfMetrics}{\code{data.frame} Metric-specific metadata for use in charts and
 reporting.}
 
-\item{dfResults}{\code{data.frame} A stacked summary of analysis pipeline output.}
+\item{dfResults}{\code{data.frame} A stacked summary of analysis pipeline output.
+This will be filtered to cases where \code{GroupLevel == "Site"}.}
 
 \item{dfSite}{\code{data.frame} Optional site-level metadata.}
 
 \item{dfStudy}{\code{data.frame} Optional study-level metadata.}
 
-\item{input}{Shiny inputs}
+\item{fnFetchParticipantData}{\code{function} A function that takes a single
+\code{strSubjectID} argument such as "0001", and returns a list with components
+\code{metadata} and \code{metric_data}. \code{metadata} should be a named charact vector
+(or something that can be coerced to a character vector) of information
+about the participant, and \code{metric_data} should be a named list of
+data.frames, each of which contains information related to the named
+metric.}
 
 \item{lAssessment}{\code{list} List of KRI assessments from \code{params} within
 \code{KRIReport.Rmd}.}
 
-\item{output}{Shiny outputs}
-
 \item{rctv_strMetricID}{\verb{reactive string} A \code{\link[shiny:reactive]{shiny::reactive()}} object that
 returns the selected \code{MetricID}.}
 
-\item{rctv_strSite}{\verb{reactive string} A \code{\link[shiny:reactive]{shiny::reactive()}} object that
+\item{rctv_strSiteID}{\verb{reactive string} A \code{\link[shiny:reactive]{shiny::reactive()}} object that
 returns the \code{GroupID} of a site.}
-
-\item{session}{Shiny session}
 
 \item{strMetricID}{\code{string} A \code{MetricID} to focus on.}
 

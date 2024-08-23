@@ -9,7 +9,7 @@ mod_site_details_server(
   dfMetrics,
   dfGroups,
   dfAnalyticsInput,
-  rctv_strSite,
+  rctv_strSiteID,
   rctv_strMetricID
 )
 }
@@ -23,7 +23,7 @@ reporting.}
 
 \item{dfAnalyticsInput}{\code{data.frame} Participant-level metric data.}
 
-\item{rctv_strSite}{\verb{reactive string} A \code{\link[shiny:reactive]{shiny::reactive()}} object that
+\item{rctv_strSiteID}{\verb{reactive string} A \code{\link[shiny:reactive]{shiny::reactive()}} object that
 returns the \code{GroupID} of a site.}
 
 \item{rctv_strMetricID}{\verb{reactive string} A \code{\link[shiny:reactive]{shiny::reactive()}} object that
