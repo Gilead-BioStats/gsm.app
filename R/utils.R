@@ -15,5 +15,3 @@
   }
   return(y)
 }
-
-integer() %|0|% 1
