@@ -21,7 +21,7 @@ table_participants_by_site <- function(
       .data$GroupLevel == "Site",
       .data$GroupID == strSite
     ) %>%
-    dplyr::arrange(desc(.data$Metric)) %>%
+    dplyr::arrange(dplyr::desc(.data$Metric)) %>%
     dplyr::select("SubjectID", "Numerator", "Denominator", "Metric") %>%
     as.data.frame(.data)
 
