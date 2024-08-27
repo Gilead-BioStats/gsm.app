@@ -65,6 +65,7 @@ mod_site_details_server <- function(
     output$participants <- DT::renderDT({
       table_participants_by_site(
         dfAnalyticsInput,
+        dfMetrics,
         rctv_strSiteID(),
         rctv_strMetricID()
       )
