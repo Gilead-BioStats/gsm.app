@@ -66,7 +66,8 @@ reporting.</p></dd>
 
 
 <dt id="arg-dfresults">dfResults<a class="anchor" aria-label="anchor" href="#arg-dfresults"></a></dt>
-<dd><p><code>data.frame</code> A stacked summary of analysis pipeline output.</p></dd>
+<dd><p><code>data.frame</code> A stacked summary of analysis pipeline output.
+This will be filtered to cases where <code>GroupLevel == "Site"</code>.</p></dd>
 
 
 <dt id="arg-dfsite">dfSite<a class="anchor" aria-label="anchor" href="#arg-dfsite"></a></dt>
@@ -77,8 +78,14 @@ reporting.</p></dd>
 <dd><p><code>data.frame</code> Optional study-level metadata.</p></dd>
 
 
-<dt id="arg-input">input<a class="anchor" aria-label="anchor" href="#arg-input"></a></dt>
-<dd><p>Shiny inputs</p></dd>
+<dt id="arg-fnfetchparticipantdata">fnFetchParticipantData<a class="anchor" aria-label="anchor" href="#arg-fnfetchparticipantdata"></a></dt>
+<dd><p><code>function</code> A function that takes a single
+<code>strSubjectID</code> argument such as "0001", and returns a list with components
+<code>metadata</code> and <code>metric_data</code>. <code>metadata</code> should be a named charact vector
+(or something that can be coerced to a character vector) of information
+about the participant, and <code>metric_data</code> should be a named list of
+data.frames, each of which contains information related to the named
+metric.</p></dd>
 
 
 <dt id="arg-lassessment">lAssessment<a class="anchor" aria-label="anchor" href="#arg-lassessment"></a></dt>
@@ -86,34 +93,59 @@ reporting.</p></dd>
 <code>KRIReport.Rmd</code>.</p></dd>
 
 
-<dt id="arg-output">output<a class="anchor" aria-label="anchor" href="#arg-output"></a></dt>
-<dd><p>Shiny outputs</p></dd>
+<dt id="arg-lparticipantmetadata">lParticipantMetadata<a class="anchor" aria-label="anchor" href="#arg-lparticipantmetadata"></a></dt>
+<dd><p><code>list</code> Named list of data describing a single
+participant.</p></dd>
+
+
+<dt id="arg-rctv-lparticipantmetricdata">rctv_lParticipantMetricData<a class="anchor" aria-label="anchor" href="#arg-rctv-lparticipantmetricdata"></a></dt>
+<dd><p><code>reactive list</code> A <code><a href="https://rdrr.io/pkg/shiny/man/reactive.html" class="external-link">shiny::reactive()</a></code>
+object that returns a list of dataframes for a given participant, one for
+each metric that is available.</p></dd>
 
 
 <dt id="arg-rctv-strmetricid">rctv_strMetricID<a class="anchor" aria-label="anchor" href="#arg-rctv-strmetricid"></a></dt>
-<dd><p><code>reactive string</code> A <code><a href="https://rdrr.io/pkg/shiny/man/reactive.html" class="external-link">shiny::reactive()</a></code> object that
-returns the selected <code>MetricID</code>.</p></dd>
+<dd><p><code>reactive character</code> A <code><a href="https://rdrr.io/pkg/shiny/man/reactive.html" class="external-link">shiny::reactive()</a></code> object
+that returns the selected <code>MetricID</code>.</p></dd>
 
 
-<dt id="arg-rctv-strsite">rctv_strSite<a class="anchor" aria-label="anchor" href="#arg-rctv-strsite"></a></dt>
-<dd><p><code>reactive string</code> A <code><a href="https://rdrr.io/pkg/shiny/man/reactive.html" class="external-link">shiny::reactive()</a></code> object that
+<dt id="arg-rctv-strsiteid">rctv_strSiteID<a class="anchor" aria-label="anchor" href="#arg-rctv-strsiteid"></a></dt>
+<dd><p><code>reactive character</code> A <code><a href="https://rdrr.io/pkg/shiny/man/reactive.html" class="external-link">shiny::reactive()</a></code> object that
 returns the <code>GroupID</code> of a site.</p></dd>
 
 
+<dt id="arg-rctv-strsubjectid">rctv_strSubjectID<a class="anchor" aria-label="anchor" href="#arg-rctv-strsubjectid"></a></dt>
+<dd><p><code>reactive character</code> A <code><a href="https://rdrr.io/pkg/shiny/man/reactive.html" class="external-link">shiny::reactive()</a></code> object
+that returns the <code>SubjectID</code> of the selected participant.</p></dd>
+
+
 <dt id="arg-session">session<a class="anchor" aria-label="anchor" href="#arg-session"></a></dt>
-<dd><p>Shiny session</p></dd>
+<dd><p><code>environment</code> Session from which to make a child scope (the
+default should almost always be used).</p></dd>
+
+
+<dt id="arg-strcardtitle">strCardTitle<a class="anchor" aria-label="anchor" href="#arg-strcardtitle"></a></dt>
+<dd><p><code>character</code> A title for the card.</p></dd>
 
 
 <dt id="arg-strmetricid">strMetricID<a class="anchor" aria-label="anchor" href="#arg-strmetricid"></a></dt>
-<dd><p><code>string</code> A <code>MetricID</code> to focus on.</p></dd>
+<dd><p><code>character</code> A <code>MetricID</code> to focus on.</p></dd>
+
+
+<dt id="arg-strname">strName<a class="anchor" aria-label="anchor" href="#arg-strname"></a></dt>
+<dd><p><code>character</code> The name of a field.</p></dd>
 
 
 <dt id="arg-strsite">strSite<a class="anchor" aria-label="anchor" href="#arg-strsite"></a></dt>
-<dd><p><code>string</code> The <code>GroupID</code> of a site to focus on.</p></dd>
+<dd><p><code>character</code> The <code>GroupID</code> of a site to focus on.</p></dd>
 
 
 <dt id="arg-strsubjectid">strSubjectID<a class="anchor" aria-label="anchor" href="#arg-strsubjectid"></a></dt>
-<dd><p><code>string</code> A <code>SubjectID</code> of an individual participant.</p></dd>
+<dd><p><code>character</code> A <code>SubjectID</code> of an individual participant.</p></dd>
+
+
+<dt id="arg-strvalue">strValue<a class="anchor" aria-label="anchor" href="#arg-strvalue"></a></dt>
+<dd><p><code>character</code> The value of a field.</p></dd>
 
 </dl></div>
 

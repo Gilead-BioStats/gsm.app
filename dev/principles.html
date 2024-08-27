@@ -57,6 +57,7 @@
 <div class="section level2">
 <h2 id="minimize-reactivity">Minimize reactivity<a class="anchor" aria-label="anchor" href="#minimize-reactivity"></a></h2>
 <p>If a function makes sense to be non-reactive, make it non-reactive. This applies even if the return is built out of HTML components, for example using <code><a href="https://rstudio.github.io/htmltools/reference/tagList.html" class="external-link">shiny::tagList()</a></code>. The module that calls the function can pass in an (evaluated) reactive expression to make the result reactive, but the function itself should be non-reactive whenever possible.</p>
+<p>(tentative) Only <code>mod_*_Server()</code> functions should have <code>rctv_*</code> arguments, and only <code>mod_*_Server()</code> functions should return reactive expressions.</p>
 </div>
 <div class="section level2">
 <h2 id="avoid-over-complicated-pipes">Avoid over-complicated pipes<a class="anchor" aria-label="anchor" href="#avoid-over-complicated-pipes"></a></h2>
