@@ -37,7 +37,7 @@
               </div>
               <div class="col-12" style="font-weight: 500;">
                 <div style="display: flex; justify-content: space-between;">
-                  <div class="card-text" style="text-align: left; white-space: nowrap;">otherField</div>
+                  <div class="card-text" style="text-align: left; white-space: nowrap;">Other Field</div>
                   <div class="text-secondary" style="border-bottom: 1px dotted; width: 95%; margin-bottom: .4em; margin-right: .4em; margin-left: .4em;"></div>
                   <div class="card-text" style="text-align: right; white-space: nowrap;">Field value</div>
                 </div>
