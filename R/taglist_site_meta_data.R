@@ -17,7 +17,7 @@ taglist_site_meta_data <- function(dfGroups, strSiteID) {
           style = "display: flex; justify-content: space-between;",
           tags$div(class = "card-text",
                    style = "text-align: left; white-space: nowrap;",
-                   sub_dfGroups[i, "Param"]),
+                   gsm::MakeParamLabelsList(sub_dfGroups[i, "Param"])),
           tags$div(class = "text-secondary",
                    style = "border-bottom: 1px dotted; width: 95%; margin-bottom: .4em; margin-right: .4em; margin-left: .4em;"),
           tags$div(class = "card-text", style = "text-align: right; white-space: nowrap;", sub_dfGroups[i, "Value"])
