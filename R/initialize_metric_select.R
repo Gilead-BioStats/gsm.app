@@ -2,12 +2,11 @@
 #'
 #' @inheritParams shared-params
 #'
-#' @export
-
+#' @keywords internal
 initialize_metric_select <- function(dfMetrics, session) {
   choices <- rlang::set_names(dfMetrics$MetricID, dfMetrics$Metric)
 
-  shiny::updateSelectInput(
+  updateSelectInput(
     session,
     "metric",
     choices = choices,

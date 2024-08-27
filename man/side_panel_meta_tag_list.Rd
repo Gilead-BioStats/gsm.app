@@ -12,3 +12,4 @@ side_panel_meta_tag_list(dfStudy)
 \description{
 Meta Tag List for Side Panel
 }
+\keyword{internal}

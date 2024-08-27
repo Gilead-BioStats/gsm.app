@@ -12,3 +12,4 @@ mod_site_details_ui(id)
 \description{
 Site Details UI
 }
+\keyword{internal}

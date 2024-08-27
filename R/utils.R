@@ -7,6 +7,7 @@
 #' @param y A default value.
 #'
 #' @return If `x` has a length, `x`; otherwise `y`.
+#' @name op-length-0-default
 #' @keywords internal
 `%|0|%` <- function(x, y) {
   if (length(x)) {
@@ -14,5 +15,3 @@
   }
   return(y)
 }
-
-integer() %|0|% 1

@@ -17,32 +17,54 @@ values for reporting.}
 \item{dfMetrics}{\code{data.frame} Metric-specific metadata for use in charts and
 reporting.}
 
-\item{dfResults}{\code{data.frame} A stacked summary of analysis pipeline output.}
+\item{dfResults}{\code{data.frame} A stacked summary of analysis pipeline output.
+This will be filtered to cases where \code{GroupLevel == "Site"}.}
 
 \item{dfSite}{\code{data.frame} Optional site-level metadata.}
 
 \item{dfStudy}{\code{data.frame} Optional study-level metadata.}
 
-\item{input}{Shiny inputs}
+\item{fnFetchParticipantData}{\code{function} A function that takes a single
+\code{strSubjectID} argument such as "0001", and returns a list with components
+\code{metadata} and \code{metric_data}. \code{metadata} should be a named charact vector
+(or something that can be coerced to a character vector) of information
+about the participant, and \code{metric_data} should be a named list of
+data.frames, each of which contains information related to the named
+metric.}
 
 \item{lAssessment}{\code{list} List of KRI assessments from \code{params} within
 \code{KRIReport.Rmd}.}
 
-\item{output}{Shiny outputs}
+\item{lParticipantMetadata}{\code{list} Named list of data describing a single
+participant.}
 
-\item{rctv_strMetricID}{\verb{reactive string} A \code{\link[shiny:reactive]{shiny::reactive()}} object that
-returns the selected \code{MetricID}.}
+\item{rctv_lParticipantMetricData}{\verb{reactive list} A \code{\link[shiny:reactive]{shiny::reactive()}}
+object that returns a list of dataframes for a given participant, one for
+each metric that is available.}
 
-\item{rctv_strSite}{\verb{reactive string} A \code{\link[shiny:reactive]{shiny::reactive()}} object that
+\item{rctv_strMetricID}{\verb{reactive character} A \code{\link[shiny:reactive]{shiny::reactive()}} object
+that returns the selected \code{MetricID}.}
+
+\item{rctv_strSiteID}{\verb{reactive character} A \code{\link[shiny:reactive]{shiny::reactive()}} object that
 returns the \code{GroupID} of a site.}
 
-\item{session}{Shiny session}
+\item{rctv_strSubjectID}{\verb{reactive character} A \code{\link[shiny:reactive]{shiny::reactive()}} object
+that returns the \code{SubjectID} of the selected participant.}
 
-\item{strMetricID}{\code{string} A \code{MetricID} to focus on.}
+\item{session}{\code{environment} Session from which to make a child scope (the
+default should almost always be used).}
 
-\item{strSite}{\code{string} The \code{GroupID} of a site to focus on.}
+\item{strCardTitle}{\code{character} A title for the card.}
 
-\item{strSubjectID}{\code{string} A \code{SubjectID} of an individual participant.}
+\item{strMetricID}{\code{character} A \code{MetricID} to focus on.}
+
+\item{strName}{\code{character} The name of a field.}
+
+\item{strSite}{\code{character} The \code{GroupID} of a site to focus on.}
+
+\item{strSubjectID}{\code{character} A \code{SubjectID} of an individual participant.}
+
+\item{strValue}{\code{character} The value of a field.}
 }
 \description{
 Reused parameter definitions are gathered here for easier usage.

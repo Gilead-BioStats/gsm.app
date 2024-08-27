@@ -4,7 +4,7 @@
 #' It specifies the layout of the web page and the interface elements it contains.
 #'
 #' @return A Shiny UI object
-ui <- function() {
+gsmApp_UI <- function() {
   fluidPage(
     shinyjs::useShinyjs(),
     class = "bg-light",
@@ -82,7 +82,7 @@ ui <- function() {
           ),
           bslib::nav_panel(
             title = "Participant Details",
-            mod_participant_details_ui("participant_details")
+            mod_ParticipantDetails_UI("participant_details")
           ),
           id = "primary_nav_bar",
           title = "GSM Deep Dive App",

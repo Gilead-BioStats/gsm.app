@@ -9,8 +9,10 @@ initialize_site_select(dfGroups, session)
 \arguments{
 \item{dfGroups}{\code{data.frame} Group-level metadata dictionary.}
 
-\item{session}{Shiny session}
+\item{session}{\code{environment} Session from which to make a child scope (the
+default should almost always be used).}
 }
 \description{
 Initialize Site Select
 }
+\keyword{internal}

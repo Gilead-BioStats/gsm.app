@@ -12,3 +12,4 @@ mod_metric_details_ui(id)
 \description{
 Metric Details UI
 }
+\keyword{internal}

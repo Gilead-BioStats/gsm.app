@@ -1,0 +1,14 @@
+#' Participant metric summary card
+#'
+#' @inheritParams shared-params
+#'
+#' @return An [htmltools::div()] with either a placeholder, or a clickable list
+#'   of available metric data for this participant.
+#' @keywords internal
+mod_ParticipantMetricSummary_UI <- function(id) {
+  ns <- NS(id)
+  div_ParticipantCard_Wrapper(
+    "Metric Summary",
+    uiOutput(ns("metric_list"))
+  )
+}

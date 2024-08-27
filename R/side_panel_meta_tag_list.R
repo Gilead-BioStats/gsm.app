@@ -2,7 +2,7 @@
 #'
 #' @inheritParams shared-params
 #'
-#' @export
+#' @keywords internal
 side_panel_meta_tag_list <- function(dfStudy) {
   dfStudyFiltered <- dfStudy %>%
     dplyr::filter(.data$Param %in% c(

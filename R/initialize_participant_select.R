@@ -2,10 +2,10 @@
 #'
 #' @inheritParams shared-params
 #'
-#' @export
+#' @keywords internal
 initialize_participant_select <- function(dfAnalyticsInput, session) {
   participant_ids <- sort(dfAnalyticsInput$SubjectID)
-  shiny::updateSelectizeInput(
+  updateSelectizeInput(
     session,
     "participant",
     choices = c("None", participant_ids),

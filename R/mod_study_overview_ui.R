@@ -2,9 +2,9 @@
 #'
 #' @inheritParams shared-params
 #'
-#' @export
+#' @keywords internal
 mod_study_overview_ui <- function(id) {
-  ns <- shiny::NS(id)
+  ns <- NS(id)
   tags_to_return <- tagList(
     tabsetPanel(
       tabPanel(

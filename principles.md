@@ -21,6 +21,8 @@
 
 If a function makes sense to be non-reactive, make it non-reactive. This applies even if the return is built out of HTML components, for example using `shiny::tagList()`. The module that calls the function can pass in an (evaluated) reactive expression to make the result reactive, but the function itself should be non-reactive whenever possible.
 
+(tentative) Only `mod_*_Server()` functions should have `rctv_*` arguments, and only `mod_*_Server()` functions should return reactive expressions.
+
 ## Avoid over-complicated pipes
 
 For simple variable selection and filtering, use base R. For example, instead of this:

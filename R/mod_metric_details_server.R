@@ -2,16 +2,16 @@
 #'
 #' @inheritParams shared-params
 #'
-#' @export
+#' @keywords internal
 mod_metric_details_server <- function(
   id,
   dfResults,
   dfMetrics,
   dfGroups,
   dfBounds,
-  rctv_strSite,
+  rctv_strSiteID,
   rctv_strMetricID) {
-  shiny::moduleServer(id, function(input, output, session) {
+  moduleServer(id, function(input, output, session) {
     # Shared reactives ----
     rctv_dfResults_byMetricID <- reactive({
       filter_byMetricID(dfResults, rctv_strMetricID())
@@ -20,8 +20,8 @@ mod_metric_details_server <- function(
       lMetric <- as.list(
         filter_byMetricID(dfMetrics, rctv_strMetricID())
       )
-      if (rctv_strSite() != "None") {
-        lMetric$selectedGroupIDs <- rctv_strSite()
+      if (rctv_strSiteID() != "None") {
+        lMetric$selectedGroupIDs <- rctv_strSiteID()
       }
       lMetric
     })
@@ -98,20 +98,18 @@ mod_metric_details_server <- function(
               HTML()
           })
           outputOptions(output, "results", suspendWhenHidden = FALSE)
-
-
         }
       )
     })
 
-
     ### Highlight analysis output table and update site selector
-
-
-    observeEvent(rctv_strSite(), {
-
-      shinyjs::runjs(sprintf("highlightTableRow('analysis_output_table', '%s');", rctv_strSite()))
-
+    observeEvent(rctv_strSiteID(), {
+      shinyjs::runjs(
+        sprintf(
+          "highlightTableRow('analysis_output_table', '%s');",
+          rctv_strSiteID()
+        )
+      )
     })
 
     shinyjs::runjs("tableClick('analysis_output_table');")

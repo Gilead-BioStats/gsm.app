@@ -1,6 +1,5 @@
 #' Creates taglist to showcase all metadata associate with a site.
 #' @inheritParams shared-params
-#' @export
 #' @keywords internal
 taglist_site_meta_data <- function(dfGroups, strSiteID) {
 

@@ -4,7 +4,7 @@ mod_scatter_server <- function(
   dfMetrics,
   dfGroups,
   dfBounds) {
-  shiny::moduleServer(
+  moduleServer(
     id,
     function(input, output, session) {
       output$all_charts <- renderUI({

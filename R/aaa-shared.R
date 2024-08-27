@@ -11,20 +11,37 @@
 #' @param dfMetrics `data.frame` Metric-specific metadata for use in charts and
 #'   reporting.
 #' @param dfResults `data.frame` A stacked summary of analysis pipeline output.
+#'   This will be filtered to cases where `GroupLevel == "Site"`.
 #' @param dfSite `data.frame` Optional site-level metadata.
 #' @param dfStudy `data.frame` Optional study-level metadata.
-#' @param input Shiny inputs
+#' @param fnFetchParticipantData `function` A function that takes a single
+#'   `strSubjectID` argument such as "0001", and returns a list with components
+#'   `metadata` and `metric_data`. `metadata` should be a named charact vector
+#'   (or something that can be coerced to a character vector) of information
+#'   about the participant, and `metric_data` should be a named list of
+#'   data.frames, each of which contains information related to the named
+#'   metric.
 #' @param lAssessment `list` List of KRI assessments from `params` within
 #'   `KRIReport.Rmd`.
-#' @param output Shiny outputs
-#' @param rctv_strMetricID `reactive string` A [shiny::reactive()] object that
-#'   returns the selected `MetricID`.
-#' @param rctv_strSite `reactive string` A [shiny::reactive()] object that
+#' @param lParticipantMetadata `list` Named list of data describing a single
+#'   participant.
+#' @param rctv_lParticipantMetricData `reactive list` A [shiny::reactive()]
+#'   object that returns a list of dataframes for a given participant, one for
+#'   each metric that is available.
+#' @param rctv_strMetricID `reactive character` A [shiny::reactive()] object
+#'   that returns the selected `MetricID`.
+#' @param rctv_strSiteID `reactive character` A [shiny::reactive()] object that
 #'   returns the `GroupID` of a site.
-#' @param session Shiny session
-#' @param strMetricID `string` A `MetricID` to focus on.
-#' @param strSite `string` The `GroupID` of a site to focus on.
-#' @param strSubjectID `string` A `SubjectID` of an individual participant.
+#' @param rctv_strSubjectID `reactive character` A [shiny::reactive()] object
+#'   that returns the `SubjectID` of the selected participant.
+#' @param session `environment` Session from which to make a child scope (the
+#'   default should almost always be used).
+#' @param strCardTitle `character` A title for the card.
+#' @param strMetricID `character` A `MetricID` to focus on.
+#' @param strName `character` The name of a field.
+#' @param strSite `character` The `GroupID` of a site to focus on.
+#' @param strSubjectID `character` A `SubjectID` of an individual participant.
+#' @param strValue `character` The value of a field.
 #'
 #' @name shared-params
 #' @keywords internal

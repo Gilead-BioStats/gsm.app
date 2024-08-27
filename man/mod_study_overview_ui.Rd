@@ -12,3 +12,4 @@ mod_study_overview_ui(id)
 \description{
 Study Overview UI
 }
+\keyword{internal}

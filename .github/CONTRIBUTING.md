@@ -146,7 +146,7 @@ This QC checklist is to be used as part of the Development and Release Workflows
 ### High-Level QC Checklist
 
 -   [ ] Documentation
-    -   [ ] New functionality contains an `@export` tag.
+    -   [ ] New functionality contains an `@export` tag if appropriate.
     -   [ ] New functionality contains an adequate level of documentation.
 -   [ ] Error Checking
     -   [ ] New functionality has associated unit test(s).

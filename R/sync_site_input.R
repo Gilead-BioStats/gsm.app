@@ -8,12 +8,12 @@
 #' @return An observer (see  [shiny::observe()]) that updates the site drop-down
 #'   menu whenever the input value changes.
 #' @keywords internal
-sync_site_input <- function(rctv_strSite) {
+sync_site_input <- function(rctv_strSiteID) {
   # Update site input when client-side selection occurs.
-  shiny::observe({
-    shiny::updateSelectInput(
+  observe({
+    updateSelectInput(
       inputId = "site",
-      selected = rctv_strSite()
+      selected = rctv_strSiteID()
     )
   })
 }
