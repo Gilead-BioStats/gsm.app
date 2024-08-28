@@ -22,33 +22,32 @@ table_participants_by_site <- function(
       .data$GroupID == strSite
     ) %>%
     dplyr::arrange(dplyr::desc(.data$Metric)) %>%
-    dplyr::select("SubjectID", "Numerator", "Denominator", "Metric") %>%
-    as.data.frame(.data)
+    dplyr::select("SubjectID", "Numerator", "Denominator", "Metric")
 
-  ## Selecting columns from dfMetrics
-
-  new_column_names <- dfMetrics %>%
+  ## Rename using dfMetrics
+  metric_names <- dfMetrics %>%
     dplyr::filter(.data$MetricID == strMetricID) %>%
     dplyr::select("Numerator", "Denominator", "Metric") %>%
-    as.data.frame(.data)
+    as.list()
 
-  column_names_to_update <- colnames(dat)
-
-  for (i in colnames(new_column_names)) {
-    column_names_to_update[column_names_to_update == i] <- new_column_names[,i]
-  }
+  new_colnames <- setNames(colnames(dat), colnames(dat))
+  new_colnames[names(metric_names)] <- metric_names
+  new_colnames <- unname(unlist(new_colnames))
 
   table <- DT::datatable(
     dat,
     class = "compact",
-    colnames = column_names_to_update,
+    colnames = new_colnames,
     options = list(
       lengthChange = FALSE,
       paging = FALSE,
       searching = FALSE,
       selection = "none",
       columnDefs = list(
-        list(targets =  c("SubjectID", "Numerator", "Denominator", "Metric"), className = "dt-center")
+        list(
+          targets =  c("SubjectID", "Numerator", "Denominator", "Metric"),
+          className = "dt-center"
+        )
       )
     ),
     rownames = FALSE,
@@ -74,9 +73,4 @@ table_participants_by_site <- function(
   }
 
   return(table)
-
 }
-
-
-
-
