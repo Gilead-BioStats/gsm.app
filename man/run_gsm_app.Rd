@@ -5,6 +5,7 @@
 \title{Run App}
 \usage{
 run_gsm_app(
+  strTitle = "GSM Deep Dive",
   dfResults,
   dfGroups,
   dfMetrics,
@@ -14,6 +15,8 @@ run_gsm_app(
 )
 }
 \arguments{
+\item{strTitle}{A title to display for the overall app.}
+
 \item{dfResults}{\code{data.frame} A stacked summary of analysis pipeline output.
 This will be filtered to cases where \code{GroupLevel == "Site"}.}
 

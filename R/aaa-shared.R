@@ -41,6 +41,7 @@
 #' @param strName `character` The name of a field.
 #' @param strSite `character` The `GroupID` of a site to focus on.
 #' @param strSubjectID `character` A `SubjectID` of an individual participant.
+#' @param strTitle A title to display for the overall app.
 #' @param strValue `character` The value of a field.
 #'
 #' @name shared-params

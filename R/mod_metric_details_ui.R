@@ -6,11 +6,9 @@
 mod_metric_details_ui <- function(id) {
   ns <- NS(id)
 
-  ui <- div(
-    class = "row",
-    div(
-      class = "col-12 col-sm-12 col-md-12 col-lg-12 col-xxl-10",
-      style = "min-width: 850px;",
+  ui <- htmltools::tagList(
+    shiny::column(
+      width = 12,
       tabsetPanel(
         id = ns("selected_tab"),
         tabPanel(
