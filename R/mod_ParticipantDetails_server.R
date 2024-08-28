@@ -34,10 +34,33 @@ mod_ParticipantDetails_Server <- function(
     output$metadata <- renderUI({
       div_ParticipantMetadata(rctv_lParticipantMetadata())
     })
-    rctv_strSelectedMetric <- mod_ParticipantMetricSummary_Server(
-      "metric_summary",
-      rctv_lParticipantMetricData
-    )
+
+    output$metric_summary <- renderUI({
+      div_ParticipantMetricSummary(
+        session$ns(""), ### This passes the namespace id to the div, which allows us to append the metric names with the namespace. The event listeners below can hear them within this module.
+        rctv_lParticipantMetricData())
+    })
+
+    rv_MetricSelect <- reactiveVal(NULL)
+
+    observeEvent(input$adverseEvents, {
+      rv_MetricSelect("adverseEvents")
+    })
+    observeEvent(input$protocolDeviations, {
+      rv_MetricSelect("protocolDeviations")
+    })
+    observeEvent(input$studyDisposition, {
+      rv_MetricSelect("studyDisposition")
+    })
+    observeEvent(input$treatmentDisposition, {
+      rv_MetricSelect("treatmentDisposition")
+    })
+
+    output$domain_data_table <- renderTable({
+      rctv_lParticipantMetricData()[[rv_MetricSelect()]]
+    })
+
+
   })
 }
 
@@ -45,14 +68,14 @@ mod_ParticipantDetails_Server <- function(
 #'
 #' @return An [htmltools::div()] asking the user to select a participant.
 #' @keywords internal
-div_ParticipantCard_Placeholder <- function() {
+div_ParticipantCard_Placeholder <- function(strMessage = "Please select a participant.") {
   div(
     class = "card placeholder",
     div(
       class = "card-body",
       div(
         class = "card-text",
-        "Please select a participant."
+        strMessage
       )
     )
   )
@@ -70,7 +93,7 @@ div_ParticipantCard_Wrapper <- function(strCardTitle, divParticipantCore) {
   div(
     class = "col-12 col-sm-8 col-md-6 col-lg-5 col-xl-3 col-xxl-3",
     div(
-      class = "card mb-3",
+      class = "card mb-3 mx-2",
       div(
         class = "card-body",
         h5(class = "card-title", strCardTitle),
