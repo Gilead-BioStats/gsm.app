@@ -28,8 +28,6 @@ div_ParticipantMetadata <- function(lParticipantMetadata) {
 div_ParticipantMetadata_Item <- function(strValue, strName) {
   # TODO: 100% of this style/class stuff should be rolled up into a class or
   # two.
-  #
-  # TODO: Apply capitalization/spacing to strName.
   div(
     class = "col-12",
     style = "font-weight: 500;",
@@ -38,7 +36,7 @@ div_ParticipantMetadata_Item <- function(strValue, strName) {
       div(
         class = "card-text",
         style = "text-align: left; white-space: nowrap;",
-        strName
+        gsm::MakeParamLabelsList(strName)
       ),
       div(
         class = "text-secondary",

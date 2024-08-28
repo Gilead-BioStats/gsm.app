@@ -19,8 +19,7 @@ mod_ParticipantMetricSummary_Server <- function(
       tag_return <- purrr::imap(
         lParticipantMetricData,
         function(df, strName) {
-          # TODO: Translate strName to pretty names with {gsm} function.
-          strLabel <- strName
+          strLabel <- gsm::MakeParamLabelsList(strName)
           rows <- NROW(df)
           div(
             class = "col-12",
