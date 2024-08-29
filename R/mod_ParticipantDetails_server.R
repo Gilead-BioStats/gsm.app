@@ -37,9 +37,10 @@ mod_ParticipantDetails_Server <- function(
 
     output$metric_summary <- renderUI({
       div_ParticipantMetricSummary(
-        session$ns(""), ### This passes the namespace id to the div, which allows us to append the metric names with the namespace. The event listeners below can hear them within this module.
+        session$ns(""),
         rctv_lParticipantMetricData())
     })
+
 
     rv_MetricSelect <- reactiveVal(NULL)
 

@@ -8,13 +8,13 @@ div_ParticipantMetricSummary <- function(id, lParticipantMetadata) {
   if (!length(lParticipantMetadata)) {
     return(
       div_ParticipantCard_Wrapper(
-        "Participant Metadata",
+        "Metric Summary",
         div_ParticipantCard_Placeholder()
       )
     )
   }
   tag_return <- div_ParticipantMetricSummary_Item(id, lParticipantMetadata)
-  return(div_ParticipantCard_Wrapper("Participant Metadata", tag_return))
+  return(div_ParticipantCard_Wrapper("Metric Summary", tag_return))
 }
 
 #' A single-row div or participant data
