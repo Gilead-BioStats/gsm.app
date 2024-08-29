@@ -8,7 +8,8 @@ mod_ParticipantDetails_UI <- function(id) {
   ui <- div(
     class = "row pt-1",
     uiOutput(ns("metadata")),
-    mod_ParticipantMetricSummary_UI(ns("metric_summary")),
+    uiOutput(ns("metric_summary")),
+    # mod_ParticipantMetricSummary_UI(ns("metric_summary")),
     div(
       div(
         id = ns("card_placeholder_participant_domain_data"),
@@ -54,22 +55,14 @@ mod_ParticipantDetails_UI <- function(id) {
         div(
           id = ns("card_participant_domain_data"),
           class = "card mb-3",
+          style = "max-width: auto;",
           div(
             class = "card-body",
             h5(class = "card-title", "Participant Domain"),
-            radioButtons(
-              ns("show_hide_columns"),
-              label = "Show all columns?",
-              choices = c("Hide", "Show"),
-              selected = "Hide",
-              inline = TRUE
-            ),
-            # Placeholder textOutput for the table, to be replaced with the
-            # "real" output format when server is implemented.
-            textOutput(ns("domain_data_table"))
+            tableOutput(ns("domain_data_table"))
           )
         )
-      )
+    # )
     )
   )
 

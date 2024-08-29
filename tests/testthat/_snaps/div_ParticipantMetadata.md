@@ -4,7 +4,7 @@
       div_ParticipantMetadata(lParticipantMetadata = list())
     Output
       <div class="col-12 col-sm-8 col-md-6 col-lg-5 col-xl-3 col-xxl-3">
-        <div class="card mb-3">
+        <div class="card mb-3 mx-2">
           <div class="card-body">
             <h5 class="card-title">Participant Metadata</h5>
             <hr/>
@@ -23,7 +23,7 @@
       div_ParticipantMetadata(list(Name = "Test Person", otherField = "Field value"))
     Output
       <div class="col-12 col-sm-8 col-md-6 col-lg-5 col-xl-3 col-xxl-3">
-        <div class="card mb-3">
+        <div class="card mb-3 mx-2">
           <div class="card-body">
             <h5 class="card-title">Participant Metadata</h5>
             <hr/>
