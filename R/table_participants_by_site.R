@@ -5,6 +5,7 @@
 #' @keywords internal
 table_participants_by_site <- function(
     dfAnalyticsInput,
+    dfMetrics,
     strSite,
     strMetricID) {
 
@@ -20,21 +21,33 @@ table_participants_by_site <- function(
       .data$GroupLevel == "Site",
       .data$GroupID == strSite
     ) %>%
-    dplyr::arrange(.data$SubjectID) %>%
+    dplyr::arrange(dplyr::desc(.data$Metric)) %>%
     dplyr::select("SubjectID", "Numerator", "Denominator", "Metric")
 
+  ## Rename using dfMetrics
+  metric_names <- dfMetrics %>%
+    dplyr::filter(.data$MetricID == strMetricID) %>%
+    dplyr::select("Numerator", "Denominator", "Metric") %>%
+    as.list()
+
+  new_colnames <- setNames(colnames(dat), colnames(dat))
+  new_colnames[names(metric_names)] <- metric_names
+  new_colnames <- unname(unlist(new_colnames))
 
   table <- DT::datatable(
     dat,
     class = "compact",
+    colnames = new_colnames,
     options = list(
       lengthChange = FALSE,
       paging = FALSE,
       searching = FALSE,
       selection = "none",
       columnDefs = list(
-        list(targets =  c("SubjectID", "Numerator", "Denominator"), className = "dt-center"),
-        list(targets = "Metric", className = "dt-right")
+        list(
+          targets =  c("SubjectID", "Numerator", "Denominator", "Metric"),
+          className = "dt-center"
+        )
       )
     ),
     rownames = FALSE,
@@ -60,9 +73,4 @@ table_participants_by_site <- function(
   }
 
   return(table)
-
 }
-
-
-
-
