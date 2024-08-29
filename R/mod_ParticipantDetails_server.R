@@ -69,14 +69,14 @@ mod_ParticipantDetails_Server <- function(
 #'
 #' @return An [htmltools::div()] asking the user to select a participant.
 #' @keywords internal
-div_ParticipantCard_Placeholder <- function(strMessage = "Please select a participant.") {
+div_ParticipantCard_Placeholder <- function() {
   div(
     class = "card placeholder",
     div(
       class = "card-body",
       div(
         class = "card-text",
-        strMessage
+        "Please select a participant."
       )
     )
   )
