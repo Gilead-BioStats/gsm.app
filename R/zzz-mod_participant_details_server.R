@@ -5,7 +5,7 @@
 # #'
 # #' @export
 # mod_participant_details_server <- function(id, snapshot, participant) {
-#   shiny::moduleServer(id, function(input, output, session) {
+#   moduleServer(id, function(input, output, session) {
 #     # ---- placeholders
 #
 #     observeEvent(

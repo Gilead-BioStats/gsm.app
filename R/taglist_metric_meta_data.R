@@ -7,17 +7,17 @@ taglist_metric_meta_data <- function(dfMetrics, strMetricID) {
     dplyr::select("Metric", "Numerator", "Denominator", "Threshold") %>%
     tidyr::pivot_longer(tidyr::everything())
 
-  return_tags <- shiny::column(
+  return_tags <- column(
     width = 12,
     lapply(1:length(sub_dfMetrics$name), function(i) {
-      htmltools::div(
+      div(
         class = "metadata-list-item",
-        htmltools::div(
+        div(
           class = "metadata-list-item-label",
           sub_dfMetrics[i, "name"]
         ),
-        htmltools::div(class = "metadata-list-item-spacer"),
-        htmltools::div(
+        div(class = "metadata-list-item-spacer"),
+        div(
           class = "metadata-list-item-value",
           sub_dfMetrics[i, "value"]
         )

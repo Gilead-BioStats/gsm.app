@@ -11,6 +11,7 @@ mod_ParticipantDetails_Server <- function(
     rctv_strSubjectID
 ) {
   moduleServer(id, function(input, output, session) {
+    # Reactives ----
     rctv_lParticipantData <- reactive({
       if (
         !length(rctv_strSubjectID()) ||
@@ -31,6 +32,12 @@ mod_ParticipantDetails_Server <- function(
         rctv_lParticipantData()$metric_data
       }
     })
+    rctv_strSelectedMetric <- mod_ParticipantMetricSummary_Server(
+      "metric_summary",
+      rctv_lParticipantMetricData
+    )
+
+    # Output ----
     output$metadata <- renderUI({
       div_ParticipantMetadata(rctv_lParticipantMetadata())
     })
@@ -41,6 +48,8 @@ mod_ParticipantDetails_Server <- function(
         rctv_lParticipantMetricData())
     })
 
+
+    # To Clean ----
 
     rv_MetricSelect <- reactiveVal(NULL)
 

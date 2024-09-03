@@ -8,9 +8,9 @@ mod_scatter_server <- function(
     id,
     function(input, output, session) {
       output$all_charts <- renderUI({
-        shiny::fluidRow(
+        fluidRow(
           purrr::map(unique(dfMetrics$MetricID), function(strMetricID) {
-            shiny::column(
+            column(
               width = 6,
               bslib::card(
                 class = "chart",

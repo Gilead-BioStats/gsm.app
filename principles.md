@@ -19,9 +19,15 @@
 
 ## Minimize reactivity
 
-If a function makes sense to be non-reactive, make it non-reactive. This applies even if the return is built out of HTML components, for example using `shiny::tagList()`. The module that calls the function can pass in an (evaluated) reactive expression to make the result reactive, but the function itself should be non-reactive whenever possible.
+If a function makes sense to be non-reactive, make it non-reactive. This applies even if the return is built out of HTML components, for example using `tagList()`. The module that calls the function can pass in an (evaluated) reactive expression to make the result reactive, but the function itself should be non-reactive whenever possible.
 
 (tentative) Only `mod_*_Server()` functions should have `rctv_*` arguments, and only `mod_*_Server()` functions should return reactive expressions.
+
+## Don't namespace shiny
+
+I've gone back and forth on this one, but the current rule is to skip namespace for {shiny} functions, particularly for basic HTML elements (reexported from {htmltools} by {shiny}). So `div()`, not `shiny::div()` nor `htmltools::div()` nor `htmltools::tag$div()`.
+
+However, *do* use the namespace for anything in {htmltools} that isn't reexported by {shiny}, such as `htmltools::htmlDependency()`. This exception is why I've gone back and forth on this rule.
 
 ## Avoid over-complicated pipes
 

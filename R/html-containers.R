@@ -1,15 +1,15 @@
-html_MainContent <- function(strTitle = "GSM Deep Dive") {
-  htmltools::div(
+out_MainContent <- function(strTitle = "GSM Deep Dive") {
+  div(
     id = "main-content",
-    shiny::fluidRow(
-      html_TopSpacer(),
+    fluidRow(
+      out_TopSpacer(),
       # For now, we're intentionally only using 10/12 of this space, ie one
       # "column" that's 10 columns wide.
       #
       # TODO: This should be handled via CSS.
-      shiny::column(
+      column(
         width = 10,
-        shiny::fluidRow(
+        fluidRow(
           html_Sidebar(),
           html_MainTabs(strTitle = strTitle)
         )
@@ -18,15 +18,15 @@ html_MainContent <- function(strTitle = "GSM Deep Dive") {
   )
 }
 
-html_TopSpacer <- function() {
-  htmltools::div(
+out_TopSpacer <- function() {
+  div(
     id = "top-spacer",
     class = "row border-bottom"
   )
 }
 
 html_MainTabs <- function(strTitle = "GSM Deep Dive") {
-  shiny::column(
+  column(
     width = 9,
     class = "pt-1",
     bslib::navset_bar(
@@ -52,15 +52,17 @@ html_MainTabs <- function(strTitle = "GSM Deep Dive") {
   )
 }
 
-html_CardPlaceholder <- function(strID, strTitle, strRequiredSelect) {
+out_Card <- function(tagTitle, ..., strID = NULL) {
   bslib::card(
     id = strID,
-    bslib::card_title(strTitle),
-    bslib::card_body(
-      bslib::card(
-        class = "placeholder",
-        glue::glue("Please select a {strRequiredSelect}.")
-      )
-    )
+    bslib::card_title(tagTitle),
+    ...
+  )
+}
+
+out_Placeholder <- function(strRequirement) {
+  bslib::card(
+    class = "placeholder",
+    glue::glue("Please select a {strRequirement}.")
   )
 }

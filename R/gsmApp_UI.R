@@ -14,6 +14,6 @@ gsmApp_UI <- function(strTitle = "GSM Deep Dive") {
     html_dependency_Stylesheet(),
     html_dependency_HighlightTableRow(),
     html_dependency_TableClick(),
-    html_MainContent(strTitle = strTitle)
+    out_MainContent(strTitle = strTitle)
   )
 }

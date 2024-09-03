@@ -1,5 +1,5 @@
 html_Sidebar <- function() {
-  shiny::column(
+  column(
     width = 3,
     id = "sidebar",
     html_StudyInformation(),
@@ -10,10 +10,10 @@ html_Sidebar <- function() {
 html_StudyInformation <- function() {
   bslib::card(
     bslib::card_header(
-      htmltools::h5(
+      h5(
         textOutput("text_output_study_id", inline = TRUE)
       ),
-      htmltools::h6(
+      h6(
         class = "card-subtitle mb-2 text-muted",
         textOutput("text_output_name", inline = TRUE)
       ),
@@ -22,7 +22,7 @@ html_StudyInformation <- function() {
         textOutput("text_output_snapshot_date", inline = TRUE)
       )
     ),
-    htmltools::div(
+    div(
       class = "border-top border-bottom",
       uiOutput("meta_tag_list")
     )

@@ -7,16 +7,25 @@
 div_ParticipantMetadata <- function(lParticipantMetadata) {
   if (!length(lParticipantMetadata)) {
     return(
-      div_ParticipantCard_Wrapper(
+      out_Card(
         "Participant Metadata",
-        div_ParticipantCard_Placeholder()
+        out_Placeholder("participant")
       )
     )
   }
-  tag_return <- lParticipantMetadata %>%
-    purrr::imap(div_ParticipantMetadata_Item) %>%
-    div(class = "row p-2")
-  return(div_ParticipantCard_Wrapper("Participant Metadata", tag_return))
+  out_Card(
+    "Participant Metadata",
+    out_MetadataList(
+      gsm::MakeParamLabelsList(names(lParticipantMetadata)),
+      unname(lParticipantMetadata)
+    )
+  )
+  #
+  #
+  # tag_return <- lParticipantMetadata %>%
+  #   purrr::imap(div_ParticipantMetadata_Item) %>%
+  #   div(class = "row p-2")
+  # return(div_ParticipantCard_Wrapper("Participant Metadata", tag_return))
 }
 
 #' A single-row div or participant data

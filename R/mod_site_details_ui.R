@@ -6,57 +6,49 @@
 mod_site_details_ui <- function(id) {
   ns <- NS(id)
 
-  ui <- shiny::fluidRow(
+  ui <- fluidRow(
     shinyjs::useShinyjs(),
-    shiny::column(
+    column(
       width = 5,
       # Metric Metadata (never hidden, no "unselected" state)
-      bslib::card(
-        bslib::card_title("Metric Metadata"),
-        bslib::card_body(
-          p(
-            class = "card-text",
-            uiOutput(ns("metric_metadata_list"))
-          )
-        )
+      out_Card(
+        "Metric Metadata",
+        p(uiOutput(ns("metric_metadata_list")))
       ),
       # Site Details
       #
       # TODO: Replace with a single module.
       shinyjs::hidden(
-        bslib::card(
-          id = ns("card_site_metadata_list"),
-          bslib::card_title("Site Metadata"),
-          bslib::card_body(
-            p(
-              class = "card-text",
-              uiOutput(ns("site_metadata_list"))
-            )
-          )
+        out_Card(
+          "Site Metadata",
+          p(
+            uiOutput(ns("site_metadata_list"))
+          ),
+          strID = ns("card_site_metadata_list")
         )
       ),
-      html_CardPlaceholder(
-        ns("card_placeholder_site_metadata_list"),
+      out_Card(
         "Site Details",
-        "site"
+        out_Placeholder("site"),
+        strID = ns("card_placeholder_site_metadata_list")
       )
     ),
-    shiny::column(
+    column(
       width = 7,
       # Site participants
       #
       # TODO: Replace with a single module.
       shinyjs::hidden(
-        bslib::card(
-          id = ns("card_participants"),
-          bslib::card_title(uiOutput(ns("participant_table_title"))),
-          bslib::card_body(DT::DTOutput(ns("participants")))
+        out_Card(
+          uiOutput(ns("participant_table_title")),
+          bslib::card_body(DT::DTOutput(ns("participants"))),
+          strID = ns("card_participants")
         )
       ),
-      html_CardPlaceholder(
-        ns("card_placeholder_participants"),
+      out_Card(
         "Site Subjects",
-        "site"
+        out_Placeholder("site"),
+        strID = ns("card_placeholder_participants")
       )
     )
   )
