@@ -1,4 +1,4 @@
-mod_scatter_server <- function(
+mod_Scatter_Server <- function(
   id,
   dfResults,
   dfMetrics,

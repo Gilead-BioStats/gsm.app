@@ -4,7 +4,7 @@
 #'
 #' @return An [htmltools::div()] with participant metadata.
 #' @keywords internal
-div_ParticipantMetadata <- function(lParticipantMetadata) {
+out_ParticipantMetadata <- function(lParticipantMetadata) {
   if (!length(lParticipantMetadata)) {
     return(
       out_Card(
@@ -23,9 +23,9 @@ div_ParticipantMetadata <- function(lParticipantMetadata) {
   #
   #
   # tag_return <- lParticipantMetadata %>%
-  #   purrr::imap(div_ParticipantMetadata_Item) %>%
+  #   purrr::imap(out_ParticipantMetadata_Item) %>%
   #   div(class = "row p-2")
-  # return(div_ParticipantCard_Wrapper("Participant Metadata", tag_return))
+  # return(out_ParticipantCard_Wrapper("Participant Metadata", tag_return))
 }
 
 #' A single-row div or participant data
@@ -34,7 +34,7 @@ div_ParticipantMetadata <- function(lParticipantMetadata) {
 #'
 #' @return An [htmltools::div()] laying out a single row of data.
 #' @keywords internal
-div_ParticipantMetadata_Item <- function(strValue, strName) {
+out_ParticipantMetadata_Item <- function(strValue, strName) {
   # TODO: 100% of this style/class stuff should be rolled up into a class or
   # two.
   div(

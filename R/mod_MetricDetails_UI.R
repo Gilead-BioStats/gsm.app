@@ -3,7 +3,7 @@
 #' @inheritParams shared-params
 #'
 #' @keywords internal
-mod_metric_details_ui <- function(id) {
+mod_MetricDetails_UI <- function(id) {
   ns <- NS(id)
 
   ui <- tagList(

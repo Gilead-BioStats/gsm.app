@@ -3,7 +3,7 @@
 #' @inheritParams shared-params
 #'
 #' @keywords internal
-mod_site_details_ui <- function(id) {
+mod_SiteDetails_UI <- function(id) {
   ns <- NS(id)
 
   ui <- fluidRow(

@@ -3,7 +3,7 @@
 #' @inheritParams shared-params
 #'
 #' @keywords internal
-mod_study_overview_ui <- function(id) {
+mod_StudyOverview_UI <- function(id) {
   ns <- NS(id)
   tags_to_return <- bslib::navset_pill(
     bslib::nav_panel(
@@ -29,7 +29,7 @@ mod_study_overview_ui <- function(id) {
     ),
     bslib::nav_panel(
       title = "Scatter Plots",
-      mod_scatter_ui("scatter")
+      mod_Scatter_UI("scatter")
     )
   )
 

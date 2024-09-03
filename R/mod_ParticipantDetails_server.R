@@ -39,13 +39,17 @@ mod_ParticipantDetails_Server <- function(
 
     # Output ----
     output$metadata <- renderUI({
-      div_ParticipantMetadata(rctv_lParticipantMetadata())
+      out_ParticipantMetadata(rctv_lParticipantMetadata())
     })
 
     output$metric_summary <- renderUI({
-      div_ParticipantMetricSummary(
+      out_ParticipantMetricSummary(
         session$ns(""),
         rctv_lParticipantMetricData())
+    })
+
+    output$metric_data <- shiny::renderPrint({
+      rctv_strSelectedMetric()
     })
 
 
@@ -78,7 +82,7 @@ mod_ParticipantDetails_Server <- function(
 #'
 #' @return An [htmltools::div()] asking the user to select a participant.
 #' @keywords internal
-div_ParticipantCard_Placeholder <- function() {
+out_ParticipantCard_Placeholder <- function() {
   div(
     class = "card placeholder",
     div(
@@ -99,7 +103,7 @@ div_ParticipantCard_Placeholder <- function() {
 #'
 #' @return An [htmltools::div()] of participant data.
 #' @keywords internal
-div_ParticipantCard_Wrapper <- function(strCardTitle, divParticipantCore) {
+out_ParticipantCard_Wrapper <- function(strCardTitle, divParticipantCore) {
   div(
     class = "col-12 col-sm-8 col-md-6 col-lg-5 col-xl-3 col-xxl-3",
     div(

@@ -3,7 +3,7 @@
 #' @inheritParams shared-params
 #'
 #' @keywords internal
-table_participants_by_site <- function(
+out_ParticipantsBySite <- function(
     dfAnalyticsInput,
     dfMetrics,
     strSite,

@@ -10,19 +10,28 @@ mod_ParticipantMetricSummary_Server <- function(
     rctv_lParticipantMetricData
 ) {
   moduleServer(id, function(input, output, session) {
+    rctv_chrParticipantMetricDataNames <- reactive({
+      names(rctv_lParticipantMetricData())
+    })
+
     output$metric_list <- renderUI({
       lParticipantMetricData <- rctv_lParticipantMetricData()
       if (!length(lParticipantMetricData)) {
         return(out_Placeholder("participant"))
       }
       mod_ActionList_UI(
-        "metric_list_choices",
-        names(lParticipantMetricData),
+        session$ns("metric_list_choices"),
+        rctv_chrParticipantMetricDataNames(),
         unname(unlist(gsm::MakeParamLabelsList(names(lParticipantMetricData)))),
         purrr::map_int(lParticipantMetricData, NROW)
       )
     })
-    rctv_testing <- mod_ActionList_Server("metric_list_choices")
+    rctv_testing <- mod_ActionList_Server(
+      "metric_list_choices",
+      rctv_chrParticipantMetricDataNames
+    )
+    # rctv_testing <- rctv_chrParticipantMetricDataNames
+    return(rctv_testing)
 
     #   # TODO: Modularize the rows.
     #   tag_return <- purrr::imap(
@@ -59,6 +68,6 @@ mod_ParticipantMetricSummary_Server <- function(
     # })
 
     # TODO: Return the selected metric, for use by Participant Domain
-    return(reactive("selectedID"))
+    # return(reactive("selectedID"))
   })
 }

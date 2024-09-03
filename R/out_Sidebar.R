@@ -1,13 +1,13 @@
-html_Sidebar <- function() {
+out_Sidebar <- function() {
   column(
     width = 3,
     id = "sidebar",
-    html_StudyInformation(),
-    html_Inputs()
+    out_StudyInformation(),
+    out_Inputs()
   )
 }
 
-html_StudyInformation <- function() {
+out_StudyInformation <- function() {
   bslib::card(
     bslib::card_header(
       h5(
@@ -29,7 +29,7 @@ html_StudyInformation <- function() {
   )
 }
 
-html_Inputs <- function() {
+out_Inputs <- function() {
   bslib::card(
     class = "overflow-on",
     bslib::card_body(

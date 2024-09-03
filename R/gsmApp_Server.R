@@ -73,13 +73,13 @@ gsmApp_Server <- function(
     # Tab Contents ----
 
     ## Study Overview ----
-    mod_study_overview_server(
+    mod_StudyOverview_Server(
       "study_overview",
       dfResults = dfResults,
       dfGroups = dfGroups,
       dfMetrics = dfMetrics
     )
-    mod_scatter_server(
+    mod_Scatter_Server(
       "scatter",
       dfResults = dfResults,
       dfMetrics = dfMetrics,
@@ -95,7 +95,7 @@ gsmApp_Server <- function(
       input$primary_nav_bar == "Metric Details",
       {
 
-        mod_metric_details_server(
+        mod_MetricDetails_Server(
           "metric_details",
           dfResults = dfResults,
           dfMetrics = dfMetrics,
@@ -105,7 +105,7 @@ gsmApp_Server <- function(
           rctv_strMetricID = reactive(input$metric)
         )
 
-        mod_site_details_server(
+        mod_SiteDetails_Server(
           "site_details",
           dfMetrics = dfMetrics,
           dfGroups = dfGroups,

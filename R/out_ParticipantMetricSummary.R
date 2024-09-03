@@ -4,17 +4,17 @@
 #'
 #' @return An [htmltools::div()] with participant metadata.
 #' @keywords internal
-div_ParticipantMetricSummary <- function(id, lParticipantMetadata) {
+out_ParticipantMetricSummary <- function(id, lParticipantMetadata) {
   if (!length(lParticipantMetadata)) {
     return(
-      div_ParticipantCard_Wrapper(
+      out_ParticipantCard_Wrapper(
         "Metric Summary",
-        div_ParticipantCard_Placeholder()
+        out_ParticipantCard_Placeholder()
       )
     )
   }
-  tag_return <- div_ParticipantMetricSummary_Item(id, lParticipantMetadata)
-  return(div_ParticipantCard_Wrapper("Metric Summary", tag_return))
+  tag_return <- out_ParticipantMetricSummary_Item(id, lParticipantMetadata)
+  return(out_ParticipantCard_Wrapper("Metric Summary", tag_return))
 }
 
 #' A single-row div or participant data
@@ -23,7 +23,7 @@ div_ParticipantMetricSummary <- function(id, lParticipantMetadata) {
 #'
 #' @return An [htmltools::div()] laying out a single row of data.
 #' @keywords internal
-div_ParticipantMetricSummary_Item <- function(id, lParticipantMetadata) {
+out_ParticipantMetricSummary_Item <- function(id, lParticipantMetadata) {
   tag_return <- purrr::imap(
     lParticipantMetadata,
     function(df, strName) {
