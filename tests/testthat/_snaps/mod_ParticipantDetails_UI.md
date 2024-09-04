@@ -24,7 +24,7 @@
               <h5>
                 <span id="participant_details-metric_data-title" class="shiny-text-output"></span>
               </h5>
-              <div class="datatables html-widget html-widget-output shiny-report-size html-fill-item" id="participant_details-metric_data-table" style="width:100%;height:auto;"></div>
+              <div id="participant_details-metric_data-table" style="width:100%;height:auto;" class="datatables html-widget html-widget-output shiny-report-size"></div>
             </div>
             <script data-bslib-card-init>bslib.Card.initializeAllCards();</script>
           </div>
