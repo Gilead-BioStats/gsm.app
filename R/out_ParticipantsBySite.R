@@ -29,7 +29,7 @@ out_ParticipantsBySite <- function(
     dplyr::select("Numerator", "Denominator", "Metric") %>%
     as.list()
 
-  new_colnames <- setNames(colnames(dat), colnames(dat))
+  new_colnames <- stats::setNames(colnames(dat), colnames(dat))
   new_colnames[names(metric_names)] <- metric_names
   new_colnames <- unname(unlist(new_colnames))
 

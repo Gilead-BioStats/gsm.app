@@ -29,6 +29,7 @@ Imports:
     rlang,
     shiny,
     shinyjs,
+    stats,
     tidyr
 Suggests: 
     here,
