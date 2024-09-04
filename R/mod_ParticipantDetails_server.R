@@ -42,39 +42,11 @@ mod_ParticipantDetails_Server <- function(
       out_ParticipantMetadata(rctv_lParticipantMetadata())
     })
 
-    output$metric_summary <- renderUI({
-      out_ParticipantMetricSummary(
-        session$ns(""),
-        rctv_lParticipantMetricData())
-    })
-
-    output$metric_data <- shiny::renderPrint({
-      rctv_strSelectedMetric()
-    })
-
-
-    # To Clean ----
-
-    rv_MetricSelect <- reactiveVal(NULL)
-
-    observeEvent(input$adverseEvents, {
-      rv_MetricSelect("adverseEvents")
-    })
-    observeEvent(input$protocolDeviations, {
-      rv_MetricSelect("protocolDeviations")
-    })
-    observeEvent(input$studyDisposition, {
-      rv_MetricSelect("studyDisposition")
-    })
-    observeEvent(input$treatmentDisposition, {
-      rv_MetricSelect("treatmentDisposition")
-    })
-
-    output$domain_data_table <- renderTable({
-      rctv_lParticipantMetricData()[[rv_MetricSelect()]]
-    })
-
-
+    mod_DataTableCard_Server(
+      "metric_data",
+      rctv_lParticipantMetricData,
+      rctv_strSelectedMetric
+    )
   })
 }
 

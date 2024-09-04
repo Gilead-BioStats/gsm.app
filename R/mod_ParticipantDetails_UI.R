@@ -19,8 +19,7 @@ mod_ParticipantDetails_UI <- function(id) {
     fluidRow(
       column(
         width = 12,
-        verbatimTextOutput(ns("metric_data"), TRUE)
-        # mod_DataTableCard_UI(ns("metric_data"))
+        mod_DataTableCard_UI(ns("metric_data"))
       )
     )
   )

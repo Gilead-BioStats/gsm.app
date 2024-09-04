@@ -1,6 +1,22 @@
-mod_DataTableCard_Server <- function(id, rctv_strTitle, rctv_dfData) {
+mod_DataTableCard_Server <- function(id, rctv_lData, rctv_strName) {
   moduleServer(id, function(input, output, session) {
-    output$title <- renderText({rctv_strTitle()})
-    output$table <- DT::renderDT({rctv_dfData()})
+    output$title <- renderText({
+      title <- gsm::MakeParamLabelsList(rctv_strName())
+      if (length(title)) {
+        return(title[[1]])
+      }
+    })
+    rctv_selectedTable <- reactive({
+      if (length(rctv_strName()) && length(rctv_lData())) {
+        rctv_lData()[[rctv_strName()]]
+      }
+    })
+    output$table <- DT::renderDT({
+      if (length(colnames(rctv_selectedTable()))) {
+        df <- rctv_selectedTable()
+        colnames(df) <- gsm::MakeParamLabelsList(colnames(df))
+        df
+      }
+    })
   })
 }
