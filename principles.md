@@ -107,3 +107,9 @@ gsm_ui <- function() {
   )
 }
 ```
+
+## Separate UI and Server files
+
+For modules, create two files: `mod_ModuleName_UI.R` and `mod_ModuleName_Server.R`. The UI function and its (small, not reused) helper functions go in the first one, and the server function and its (small, not reused) helper functions go in the other. It's theoretically easier to have them both open and tab between them (or open them side-by-side) than to scroll up and down in one file.
+
+This is noted here specifically *because* I'm going back and forth about how I feel about this.
