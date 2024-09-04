@@ -5,7 +5,6 @@
 #' @keywords internal
 mod_MetricDetails_UI <- function(id) {
   ns <- NS(id)
-
   ui <- tagList(
     column(
       width = 12,
@@ -71,6 +70,5 @@ mod_MetricDetails_UI <- function(id) {
       )
     )
   )
-
   return(ui)
 }

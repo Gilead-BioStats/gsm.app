@@ -111,9 +111,6 @@ mod_MetricDetails_Server <- function(
         )
       )
     })
-
     shinyjs::runjs("tableClick('analysis_output_table');")
-
-
   })
 }

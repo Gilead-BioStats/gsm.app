@@ -8,7 +8,6 @@ out_ParticipantsBySite <- function(
     dfMetrics,
     strSite,
     strMetricID) {
-
   if ("MetricID" %in% colnames(dfAnalyticsInput)) {
     dfAnalyticsInput <- dplyr::filter(
       dfAnalyticsInput,
