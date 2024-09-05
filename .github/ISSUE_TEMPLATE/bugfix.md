@@ -1,16 +1,13 @@
 ---
 name: "Bugfix Issue Template"
 about: "Fix a bug in the code"
-title: "Bugfix: (fill in)"
+title: "Bugfix: ProvideATitle"
 ---
 ## Expected Behavior
 <!--- What should happen -->
 
 ## Current Behavior
 <!--- What happens instead of the expected behavior -->
-
-## Possible Solution
-<!--- Not required, suggest a fix/reason for the bug, -->
 
 ## Steps to Reproduce
 <!--- Provide a link to an example, or an unambiguous set of steps to -->
@@ -23,8 +20,8 @@ title: "Bugfix: (fill in)"
 ## Context (Environment)
 <!--- Providing context helps us reproduce the issue and come up with a solution -->
 
-## Possible Implementation
-<!--- Not required, suggest an idea for implementing addition or change -->
+## Possible Solution
+<!--- Not required, suggest a fix/reason for the bug, -->
 
 ## Additional Comments
 <!--- Not required, anything else import pertaining to this bug -->

@@ -1,11 +1,11 @@
 ---
 name: "QC Issue Template"
-about: "Update QC Framework: Documentation, Qualification, Automation etc.  "
-title: "QC: (fill in)"
+about: "Update QC Framework: Documentation, Qualification, Automation etc."
+title: "QC: ProvideATitle"
 
 ---
 ## QC Details
-<!--- What Updates are being made. Link to PR/Issues as appropriate. -->
+<!--- What should we do to make the package easier to work on -->
 
 ## Additional Comments
 <!--- Not required, anything else import pertaining to this issue -->

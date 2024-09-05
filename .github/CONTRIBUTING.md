@@ -17,6 +17,7 @@ Before contributing code via a Pull Request, make sure to file an [issue](https:
 -   Bugfix Issue: Fix a bug in the code
 -   Feature Issue: Develop a new feature
 -   QC Issue: Update QC framework, including documentation, qualification, automation, etc.
+-   UI Issue: Change the appearance of the apps produced by this package
 
 Someone from the development team will decide if the issue is in scope. If so, the issue will be appropriately triaged and assigned to a core developer, or approval to submit a Pull Request associated with the submitted issue will be granted. If it is decided that the issue is out of scope or otherwise irrelevant, the issue will be closed.
 
