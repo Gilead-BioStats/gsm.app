@@ -1,10 +1,8 @@
-
 #site_details-participants td:nth-child(1) {
     cursor: pointer;
     color: blue;
     text-decoration: underline;
 }
-
 
 .nav-pills .nav-link.active, pills > li > a.active {
     /* #0dcaf0 !important; */
@@ -39,15 +37,6 @@
      margin-left: 7.5rem
 }
 
-/* Column for left hand side inputs */
-
-@media (min-width: 1250px) {
-  .input-div {
-    min-width: 300px;
-    max-width: 4300px;
-  }
-}
-
 .card {
   border-top: solid #0dcaf0;
 }
@@ -56,7 +45,54 @@
   opacity: .55;
 }
 
+.overflow-on {
+  overflow: visible !important;
+}
 
 #metric_details-results tbody > tr {
     cursor: pointer;
+}
+
+#top-spacer {
+  padding-top: 3.5rem;
+  background-color: #FFFFFF;
+}
+
+#sidebar {
+  padding-top: 0.5rem;
+}
+
+.badge {
+  font-size: 1em;
+  padding: 0.55em;
+}
+
+.badge-red {
+  background-color: #FFCCCC;
+}
+
+.badge-amber {
+  background-color: #FFCC99;
+}
+
+.metadata-list-item {
+  display: flex;
+  justify-content: space-between;
+}
+
+.metadata-list-item-label {
+  text-align: left;
+  white-space: nowrap;
+}
+
+.metadata-list-item-spacer {
+  border-bottom: 1px dotted;
+  width: 95%;
+  margin-bottom: .4em;
+  margin-right: .4em;
+  margin-left: .4em;
+}
+.metadata-list-item-value {
+  text-align: right;
+  white-space: nowrap;
 }

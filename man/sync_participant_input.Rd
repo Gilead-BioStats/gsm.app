@@ -11,7 +11,7 @@ An observer (see  \code{\link[shiny:observe]{shiny::observe()}}) that updates th
 menu whenever the input value changes.
 }
 \description{
-When a user clicks a participant on \code{table_participants_by_site}, also update the drop-down menu to
+When a user clicks a participant on \code{\link[=out_ParticipantsBySite]{out_ParticipantsBySite()}}, also update the drop-down menu to
 match.
 }
 \keyword{internal}

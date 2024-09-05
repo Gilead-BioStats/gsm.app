@@ -7,7 +7,7 @@
 #' @keywords internal
 mod_ParticipantMetricSummary_UI <- function(id) {
   ns <- NS(id)
-  div_ParticipantCard_Wrapper(
+  out_Card(
     "Metric Summary",
     uiOutput(ns("metric_list"))
   )

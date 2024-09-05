@@ -64,6 +64,8 @@ default should almost always be used).}
 
 \item{strSubjectID}{\code{character} A \code{SubjectID} of an individual participant.}
 
+\item{strTitle}{A title to display for the overall app.}
+
 \item{strValue}{\code{character} The value of a field.}
 }
 \description{

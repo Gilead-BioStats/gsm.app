@@ -3,7 +3,7 @@
 #' @inheritParams shared-params
 #'
 #' @keywords internal
-mod_site_details_server <- function(
+mod_SiteDetails_Server <- function(
     id,
     dfMetrics,
     dfGroups,
@@ -63,7 +63,7 @@ mod_site_details_server <- function(
     })
 
     output$participants <- DT::renderDT({
-      table_participants_by_site(
+      out_ParticipantsBySite(
         dfAnalyticsInput,
         dfMetrics,
         rctv_strSiteID(),

@@ -41,7 +41,7 @@ side_panel_meta_tag_list <- function(dfStudy) {
     tags$div(
       class = "row p-2"
     ) %>%
-    htmltools::tagList()
+    tagList()
 
   return(meta_tags)
 }

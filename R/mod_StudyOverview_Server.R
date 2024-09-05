@@ -3,7 +3,7 @@
 #' @inheritParams shared-params
 #'
 #' @keywords internal
-mod_study_overview_server <- function(id, dfResults, dfMetrics, dfGroups) {
+mod_StudyOverview_Server <- function(id, dfResults, dfMetrics, dfGroups) {
   moduleServer(id, function(input, output, session) {
     output$site_overview_table <- gsm::renderWidget_GroupOverview({
       gsm::Widget_GroupOverview(

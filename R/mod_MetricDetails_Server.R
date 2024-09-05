@@ -3,7 +3,7 @@
 #' @inheritParams shared-params
 #'
 #' @keywords internal
-mod_metric_details_server <- function(
+mod_MetricDetails_Server <- function(
   id,
   dfResults,
   dfMetrics,
@@ -111,9 +111,6 @@ mod_metric_details_server <- function(
         )
       )
     })
-
     shinyjs::runjs("tableClick('analysis_output_table');")
-
-
   })
 }

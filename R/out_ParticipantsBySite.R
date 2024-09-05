@@ -3,12 +3,11 @@
 #' @inheritParams shared-params
 #'
 #' @keywords internal
-table_participants_by_site <- function(
+out_ParticipantsBySite <- function(
     dfAnalyticsInput,
     dfMetrics,
     strSite,
     strMetricID) {
-
   if ("MetricID" %in% colnames(dfAnalyticsInput)) {
     dfAnalyticsInput <- dplyr::filter(
       dfAnalyticsInput,
@@ -30,7 +29,7 @@ table_participants_by_site <- function(
     dplyr::select("Numerator", "Denominator", "Metric") %>%
     as.list()
 
-  new_colnames <- setNames(colnames(dat), colnames(dat))
+  new_colnames <- stats::setNames(colnames(dat), colnames(dat))
   new_colnames[names(metric_names)] <- metric_names
   new_colnames <- unname(unlist(new_colnames))
 

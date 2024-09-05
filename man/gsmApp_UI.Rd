@@ -4,7 +4,10 @@
 \alias{gsmApp_UI}
 \title{Shiny UI function}
 \usage{
-gsmApp_UI()
+gsmApp_UI(strTitle = "GSM Deep Dive")
+}
+\arguments{
+\item{strTitle}{A title to display for the overall app.}
 }
 \value{
 A Shiny UI object
