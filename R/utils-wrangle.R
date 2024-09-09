@@ -17,5 +17,6 @@ filter_by <- function(
 }
 
 extract_field_name <- function(strArgName) {
+  # Delete the lowercase "arg type" info at the start of the value.
   sub("^[a-z]*", "", strArgName)
 }

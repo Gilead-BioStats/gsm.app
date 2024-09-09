@@ -6,24 +6,15 @@
 mod_MetricDetails_Server <- function(
   id,
   dfResults,
-  dfMetrics,
   dfGroups,
   dfBounds,
+  rctv_lMetric,
   rctv_strSiteID,
   rctv_strMetricID) {
   moduleServer(id, function(input, output, session) {
     # Shared reactives ----
     rctv_dfResults_byMetricID <- reactive({
       filter_byMetricID(dfResults, rctv_strMetricID())
-    })
-    rctv_lMetric <- reactive({
-      lMetric <- as.list(
-        filter_byMetricID(dfMetrics, rctv_strMetricID())
-      )
-      if (rctv_strSiteID() != "None") {
-        lMetric$selectedGroupIDs <- rctv_strSiteID()
-      }
-      lMetric
     })
     rctv_dfBounds_byMetricID <- reactive({
       filter_byMetricID(dfBounds, rctv_strMetricID())

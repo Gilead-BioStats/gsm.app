@@ -5,7 +5,15 @@
 #'
 #' @inheritParams shared-params
 #' @return A Shiny UI object
-gsmApp_UI <- function(strTitle = "GSM Deep Dive") {
+gsmApp_UI <- function(dfResults,
+                      dfMetrics,
+                      dfGroups,
+                      strTitle = "GSM Deep Dive") {
+  lStudy <- make_lStudy(dfGroups, dfResults)
+  chrMetrics <- rlang::set_names(dfMetrics$MetricID, dfMetrics$Metric)
+  chrSites <- sort(unique(
+    dfGroups[dfGroups$GroupLevel == "Site", ][["GroupID"]]
+  ))
   bslib::page_fluid(
     shinyjs::useShinyjs(),
     class = "bg-light",
@@ -14,6 +22,11 @@ gsmApp_UI <- function(strTitle = "GSM Deep Dive") {
     html_dependency_Stylesheet(),
     html_dependency_HighlightTableRow(),
     html_dependency_TableClick(),
-    out_MainContent(strTitle = strTitle)
+    out_MainContent(
+      lStudy = lStudy,
+      chrMetrics = chrMetrics,
+      chrSites = chrSites,
+      strTitle = strTitle
+    )
   )
 }

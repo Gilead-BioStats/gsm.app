@@ -4,7 +4,7 @@
 #'
 #' @keywords internal
 initialize_participant_select <- function(dfAnalyticsInput, session) {
-  participant_ids <- sort(dfAnalyticsInput$SubjectID)
+  participant_ids <- sort(unique(dfAnalyticsInput$SubjectID))
   updateSelectizeInput(
     session,
     "participant",

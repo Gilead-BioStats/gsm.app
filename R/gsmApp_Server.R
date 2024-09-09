@@ -15,9 +15,6 @@ gsmApp_Server <- function(
   # Force evaluation of everything before factory is constructed to avoid
   # strange effects from lazy evaluation. See
   # https://adv-r.hadley.nz/function-factories.html#forcing-evaluation
-  #
-  # Eventually this will be resolved by validating and otherwise manipulating
-  # everything before we pass it into the server function.
   force(dfResults)
   force(dfGroups)
   force(dfMetrics)
@@ -25,50 +22,44 @@ gsmApp_Server <- function(
   force(dfAnalyticsInput)
   force(fnFetchParticipantData)
   function(input, output, session) {
-    # Side Panel ----
-    add_metadata_to_sidebar(
-      output = output,
-      dfStudy = dplyr::filter(dfGroups, .data$GroupLevel == "Study"),
-      vSnapshotDate = unique(dfResults$SnapshotDate)
-    )
-
     # Inputs ----
     ## Initialize ----
-    initialize_metric_select(dfMetrics, session)
-    initialize_site_select(dfGroups, session)
+
+    # This one is selectize and thus should remain server-side.
     initialize_participant_select(dfAnalyticsInput, session)
 
     ## Cross-communication ----
+    # sync_metric_input(reactive(input$metric), reactive(input$primary_nav_bar))
     sync_site_input(reactive(input$site))
     sync_participant_input(reactive(input$participant))
 
-    ## Hide/show ----
-    observeEvent(input$primary_nav_bar, {
-      switch(input$primary_nav_bar,
-             "Study Overview" = {
-               shinyjs::hide("metric")
-               shinyjs::hide("site")
-               shinyjs::hide("participant")
-             },
-             "Metric Details" = {
-               shinyjs::show("metric")
-               shinyjs::show("site")
-               shinyjs::hide("participant")
-             },
-             "Participant Details" = {
-               shinyjs::show("metric")
-               shinyjs::show("site")
-               shinyjs::show("participant")
-             }
-      )
-    })
-
     ## Reset ----
     observeEvent(input$reset, {
-      initialize_metric_select(dfMetrics, session)
+      updateSelectInput(session, "metric", selected = dfMetrics$MetricID[[1]])
       updateSelectInput(session, "site", selected = "None")
       updateSelectizeInput(session, "participant", selected = "None")
+      bslib::nav_select("primary_nav_bar", "Study Overview")
     })
+
+    # Shared Reactives ----
+
+    ## The listified dfMetrics are used by both metric sub-mods, so calculate
+    ## them once. This can/should probably move inside a single metric-tab
+    ## module.
+    rctv_lMetric_base <- reactive({
+      lMetric <- as.list(
+        filter_byMetricID(dfMetrics, input$metric)
+      )
+    }) %>%
+      bindCache(input$metric)
+    rctv_lMetric <- reactive({
+      lMetric <- rctv_lMetric_base()
+      if (input$site != "None") {
+        lMetric$selectedGroupIDs <- input$site
+      }
+      lMetric
+    }) %>%
+      shiny::bindCache(input$metric, input$site)
 
     # Tab Contents ----
 
@@ -88,23 +79,21 @@ gsmApp_Server <- function(
     )
 
     ## Metric Details ----
-    ##
+
     ## Don't render until it loads. We should be able to fix this later once
     ## nested-modules are implemented cleanly.
     observeEvent(
       input$primary_nav_bar == "Metric Details",
       {
-
         mod_MetricDetails_Server(
           "metric_details",
           dfResults = dfResults,
-          dfMetrics = dfMetrics,
           dfGroups = dfGroups,
           dfBounds = dfBounds,
+          rctv_lMetric = rctv_lMetric,
           rctv_strSiteID = reactive(input$site),
           rctv_strMetricID = reactive(input$metric)
         )
-
         mod_SiteDetails_Server(
           "site_details",
           dfMetrics = dfMetrics,
@@ -113,7 +102,6 @@ gsmApp_Server <- function(
           rctv_strSiteID = reactive(input$site),
           rctv_strMetricID = reactive(input$metric)
         )
-
       },
       ignoreInit = TRUE,
       once = TRUE

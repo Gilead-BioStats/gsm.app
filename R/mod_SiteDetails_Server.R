@@ -16,7 +16,6 @@ mod_SiteDetails_Server <- function(
       {
         if (rctv_strSiteID() == "None") {
           ## Show placeholders
-
           shinyjs::hide("card_site_metadata_list")
           shinyjs::hide("card_participant_status")
           shinyjs::hide("card_participants")
@@ -34,7 +33,8 @@ mod_SiteDetails_Server <- function(
           shinyjs::show("card_participants")
         }
       },
-      ignoreInit = TRUE
+      ignoreInit = FALSE
+      # ignoreInit = TRUE
     )
 
     ### Metric Metadata List
