@@ -32,13 +32,15 @@ Imports:
     stats,
     tidyr
 Suggests: 
+    clindata,
     here,
     pkgload,
     shinytest2,
     testthat (>= 3.0.0),
     usethis
 Remotes:
-    gsm=Gilead-BioStats/gsm@dev
+    gsm=Gilead-BioStats/gsm@dev,
+    clindata=Gilead-BioStats/clindata
 Config/testthat/edition: 3
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
