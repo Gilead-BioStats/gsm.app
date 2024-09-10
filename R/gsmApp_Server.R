@@ -26,25 +26,25 @@ gsmApp_Server <- function(
     ## Initialize ----
 
     # This one is selectize and thus should remain server-side.
-    initialize_participant_select(dfAnalyticsInput, session)
+    srvr_PopulateParticipantSelect(dfAnalyticsInput, session)
 
     ## Cross-communication ----
-    sync_site_input(reactive(input$site))
-    sync_participant_input(reactive(input$participant))
+    srvr_SyncInput("site", reactive(input$site), session)
+    srvr_SyncInput("participant", reactive(input$participant), session)
 
     ## Reset ----
-    observeEvent(input$reset, {
+    observe({
       updateSelectInput(session, "metric", selected = dfMetrics$MetricID[[1]])
       updateSelectInput(session, "site", selected = "None")
       updateSelectizeInput(session, "participant", selected = "None")
       bslib::nav_select("primary_nav_bar", "Study Overview")
-    })
+    }) %>%
+      bindEvent(input$reset)
 
     # Shared Reactives ----
 
     ## The listified dfMetrics are used by both metric sub-mods, so calculate
-    ## them once. This can/should probably move inside a single metric-tab
-    ## module.
+    ## them once. This can/should move inside a single metric-tab module.
     rctv_lMetric_base <- reactive({
       lMetric <- as.list(
         filter_byMetricID(dfMetrics, input$metric)
@@ -79,10 +79,14 @@ gsmApp_Server <- function(
 
     ## Metric Details ----
 
+    srvr_TabOnChange(
+      "Metric Details",
+      reactive(input$metric),
+      session
+    )
     ## Don't render until it loads. We should be able to fix this later once
     ## nested-modules are implemented cleanly.
-    observeEvent(
-      input$primary_nav_bar == "Metric Details",
+    bindEvent(
       {
         mod_MetricDetails_Server(
           "metric_details",
@@ -102,23 +106,21 @@ gsmApp_Server <- function(
           rctv_lMetric = rctv_lMetric
         )
       },
+      input$primary_nav_bar == "Metric Details",
       ignoreInit = TRUE,
       once = TRUE
     )
 
     ## Participant Details ----
-    ##
-    ## Don't render until it loads. We should be able to fix this later once
-    ## nested-modules are implemented cleanly.
-    bindEvent(
-      mod_ParticipantDetails_Server(
-        "participant_details",
-        fnFetchParticipantData = fnFetchParticipantData,
-        rctv_strSubjectID = reactive(input$participant)
-      ),
-      input$primary_nav_bar == "Participant Details",
-      ignoreInit = TRUE,
-      once = TRUE
+    srvr_TabOnChange(
+      "Participant Details",
+      reactive(input$participant),
+      session
+    )
+    mod_ParticipantDetails_Server(
+      "participant_details",
+      fnFetchParticipantData = fnFetchParticipantData,
+      rctv_strSubjectID = reactive(input$participant)
     )
   }
 }

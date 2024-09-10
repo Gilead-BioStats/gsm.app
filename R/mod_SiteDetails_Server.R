@@ -53,30 +53,25 @@ mod_SiteDetails_Server <- function(
     }) %>%
       bindCache(rctv_strSiteID())
 
-    observeEvent(
-      rctv_strSiteID(),
-      {
-        if (rctv_strSiteID() == "None") {
-          ## Show placeholders
-          shinyjs::hide("card_site_metadata_list")
-          shinyjs::hide("card_participant_status")
-          shinyjs::hide("card_participants")
-          shinyjs::show("card_placeholder_site_metadata_list")
-          shinyjs::show("card_placeholder_participant_status")
-          shinyjs::show("card_placeholder_participants")
-        } else {
-          ## Hide placeholders
-          shinyjs::hide("card_placeholder_site_metadata_list")
-          shinyjs::hide("card_placeholder_participant_status")
-          shinyjs::hide("card_placeholder_participants")
-          shinyjs::show("card_site_metadata_list")
-          shinyjs::show("card_participant_status")
-          shinyjs::show("card_participants")
-        }
-      },
-      ignoreInit = FALSE
-      # ignoreInit = TRUE
-    )
+    observe({
+      if (rctv_strSiteID() == "None") {
+        ## Show placeholders
+        shinyjs::hide("card_site_metadata_list")
+        shinyjs::hide("card_participant_status")
+        shinyjs::hide("card_participants")
+        shinyjs::show("card_placeholder_site_metadata_list")
+        shinyjs::show("card_placeholder_participant_status")
+        shinyjs::show("card_placeholder_participants")
+      } else {
+        ## Hide placeholders
+        shinyjs::hide("card_placeholder_site_metadata_list")
+        shinyjs::hide("card_placeholder_participant_status")
+        shinyjs::hide("card_placeholder_participants")
+        shinyjs::show("card_site_metadata_list")
+        shinyjs::show("card_participant_status")
+        shinyjs::show("card_participants")
+      }
+    })
 
     ### Metric Metadata List
     output$metric_metadata_list <- renderUI({

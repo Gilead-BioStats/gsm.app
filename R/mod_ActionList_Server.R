@@ -4,14 +4,11 @@ mod_ActionList_Server = function(id, rctv_chrNames) {
     observe({
       chrNames <- rctv_chrNames()
       lapply(chrNames, function(name) {
-        observeEvent(input[[name]], {
-          lastClickedLink(name)
-        })
+        observe(lastClickedLink(name)) %>%
+          bindEvent(input[[name]])
       })
-      observeEvent(
-        length(chrNames) == 0,
-        lastClickedLink(NULL)
-      )
+      observe(lastClickedLink(NULL)) %>%
+        bindEvent(length(chrNames) == 0)
     })
     lastClickedLink
   })

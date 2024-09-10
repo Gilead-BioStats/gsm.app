@@ -32,83 +32,81 @@ mod_MetricDetails_Server <- function(
       bindCache(rctv_strMetricID())
 
     # Outputs ----
-    observeEvent(input$selected_tab, {
+    observe({
       switch(input$selected_tab,
-        "Scatter Plot" = {
-          output$scatter_plot <- gsm::renderWidget_ScatterPlot({
-            gsm::Widget_ScatterPlot(
-              rctv_dfResults_byMetricID(),
-              lMetric = rctv_lMetric(),
-              dfGroups = dfGroups,
-              dfBounds = rctv_dfBounds_byMetricID(),
-              bAddGroupSelect = FALSE,
-              strShinyGroupSelectID = "site"
-            )
-          })
-          outputOptions(output, "scatter_plot", suspendWhenHidden = FALSE)
-        },
-        "Bar Chart (KRI Value)" = {
-          output$bar_chart_metric <- gsm::renderWidget_BarChart({
-            gsm::Widget_BarChart(
-              rctv_dfResults_byMetricID(),
-              lMetric = rctv_lMetric(),
-              dfGroups = dfGroups,
-              strOutcome = "Metric",
-              bAddGroupSelect = FALSE,
-              strShinyGroupSelectID = "site"
-            )
-          })
-          outputOptions(output, "bar_chart_metric", suspendWhenHidden = FALSE)
-        },
-        "Bar Chart (KRI Score)" = {
-          output$bar_chart_score <- gsm::renderWidget_BarChart({
-            gsm::Widget_BarChart(
-              rctv_dfResults_byMetricID(),
-              lMetric = rctv_lMetric(),
-              dfGroups = dfGroups,
-              strOutcome = "Score",
-              bAddGroupSelect = FALSE,
-              strShinyGroupSelectID = "site"
-            )
-          })
-          outputOptions(output, "bar_chart_score", suspendWhenHidden = FALSE)
-        },
-        "Time Series" = {
-          output$time_series <- gsm::renderWidget_TimeSeries({
-            gsm::Widget_TimeSeries(
-              rctv_dfResults_byMetricID(),
-              lMetric = rctv_lMetric(),
-              dfGroups = dfGroups,
-              strOutcome = "Score",
-              bAddGroupSelect = FALSE,
-              strShinyGroupSelectID = "site"
-            )
-          })
-          outputOptions(output, "time_series", suspendWhenHidden = FALSE)
-        },
-        "Analysis Output" = {
-          output$results <- renderUI({
-            gsm::Report_MetricTable(
-              rctv_dfResults_AnalysisOutput(),
-              dfGroups,
-              strGroupLevel = "Site"
-            ) %>%
-              HTML()
-          })
-          outputOptions(output, "results", suspendWhenHidden = FALSE)
-        }
+             "Scatter Plot" = {
+               output$scatter_plot <- gsm::renderWidget_ScatterPlot({
+                 gsm::Widget_ScatterPlot(
+                   rctv_dfResults_byMetricID(),
+                   lMetric = rctv_lMetric(),
+                   dfGroups = dfGroups,
+                   dfBounds = rctv_dfBounds_byMetricID(),
+                   bAddGroupSelect = FALSE,
+                   strShinyGroupSelectID = "site"
+                 )
+               })
+               outputOptions(output, "scatter_plot", suspendWhenHidden = FALSE)
+             },
+             "Bar Chart (KRI Value)" = {
+               output$bar_chart_metric <- gsm::renderWidget_BarChart({
+                 gsm::Widget_BarChart(
+                   rctv_dfResults_byMetricID(),
+                   lMetric = rctv_lMetric(),
+                   dfGroups = dfGroups,
+                   strOutcome = "Metric",
+                   bAddGroupSelect = FALSE,
+                   strShinyGroupSelectID = "site"
+                 )
+               })
+               outputOptions(output, "bar_chart_metric", suspendWhenHidden = FALSE)
+             },
+             "Bar Chart (KRI Score)" = {
+               output$bar_chart_score <- gsm::renderWidget_BarChart({
+                 gsm::Widget_BarChart(
+                   rctv_dfResults_byMetricID(),
+                   lMetric = rctv_lMetric(),
+                   dfGroups = dfGroups,
+                   strOutcome = "Score",
+                   bAddGroupSelect = FALSE,
+                   strShinyGroupSelectID = "site"
+                 )
+               })
+               outputOptions(output, "bar_chart_score", suspendWhenHidden = FALSE)
+             },
+             "Time Series" = {
+               output$time_series <- gsm::renderWidget_TimeSeries({
+                 gsm::Widget_TimeSeries(
+                   rctv_dfResults_byMetricID(),
+                   lMetric = rctv_lMetric(),
+                   dfGroups = dfGroups,
+                   strOutcome = "Score",
+                   bAddGroupSelect = FALSE,
+                   strShinyGroupSelectID = "site"
+                 )
+               })
+               outputOptions(output, "time_series", suspendWhenHidden = FALSE)
+             },
+             "Analysis Output" = {
+               output$results <- renderUI({
+                 gsm::Report_MetricTable(
+                   rctv_dfResults_AnalysisOutput(),
+                   dfGroups,
+                   strGroupLevel = "Site"
+                 ) %>%
+                   HTML()
+               })
+               observe({
+                 shinyjs::runjs(
+                   sprintf(
+                     "highlightTableRow('analysis_output_table', '%s');",
+                     rctv_strSiteID()
+                   )
+                 )
+               })
+               shinyjs::runjs("tableClick('analysis_output_table');")
+             }
       )
-    })
-
-    ### Highlight analysis output table and update site selector
-    observeEvent(rctv_strSiteID(), {
-      shinyjs::runjs(
-        sprintf(
-          "highlightTableRow('analysis_output_table', '%s');",
-          rctv_strSiteID()
-        )
-      )
-    })
-    shinyjs::runjs("tableClick('analysis_output_table');")
+    }) %>%
+      bindEvent(input$selected_tab)
   })
 }
