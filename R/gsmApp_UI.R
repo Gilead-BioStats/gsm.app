@@ -26,6 +26,7 @@ gsmApp_UI <- function(dfResults,
       lStudy = lStudy,
       chrMetrics = chrMetrics,
       chrSites = chrSites,
+      dfResults = dfResults,
       strTitle = strTitle
     )
   )

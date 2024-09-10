@@ -1,6 +1,7 @@
 out_MainContent <- function(lStudy,
                             chrMetrics,
                             chrSites,
+                            dfResults,
                             strTitle = "GSM Deep Dive") {
   div(
     id = "main-content",
@@ -18,7 +19,7 @@ out_MainContent <- function(lStudy,
             chrMetrics = chrMetrics,
             chrSites = chrSites
           ),
-          out_MainTabs(strTitle = strTitle)
+          out_MainTabs(dfResults, strTitle = strTitle)
         )
       )
     )
