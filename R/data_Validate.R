@@ -1,3 +1,6 @@
+# We might want to do this entirely via workflows, but I feel like it's good to
+# check in the app itself since users don't HAVE to use workflows.
+
 validate_df <- function(df,
                         chrRequiredColumns = character(),
                         arg = rlang::caller_arg(df),
