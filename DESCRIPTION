@@ -28,9 +28,7 @@ Imports:
     purrr,
     rlang,
     shiny,
-    shinyjs,
-    stats,
-    tidyr
+    shinyjs
 Suggests: 
     here,
     pkgload,

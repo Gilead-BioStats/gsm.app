@@ -4,10 +4,18 @@
 \alias{gsmApp_UI}
 \title{Shiny UI function}
 \usage{
-gsmApp_UI(strTitle = "GSM Deep Dive")
+gsmApp_UI(dfResults, dfMetrics, dfGroups, strTitle = "GSM Deep Dive")
 }
 \arguments{
-\item{strTitle}{A title to display for the overall app.}
+\item{dfResults}{\code{data.frame} A stacked summary of analysis pipeline output.
+This will be filtered to cases where \code{GroupLevel == "Site"}.}
+
+\item{dfMetrics}{\code{data.frame} Metric-specific metadata for use in charts and
+reporting.}
+
+\item{dfGroups}{\code{data.frame} Group-level metadata dictionary.}
+
+\item{strTitle}{\code{character} A title to display for the overall app.}
 }
 \value{
 A Shiny UI object

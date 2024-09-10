@@ -13,16 +13,5 @@ mod_StudyOverview_Server <- function(id, dfResults, dfMetrics, dfGroups) {
         strGroupSubset = "all"
       )
     })
-
-    ## KRI Color KPIs
-
-
-    output$red_kri <- renderText({
-
-    })
-
-    output$amber_kri <- renderText({
-      out_KRIColor(dfKRIColorCount, "Amber")
-    })
   })
 }

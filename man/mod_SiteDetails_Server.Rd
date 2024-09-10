@@ -6,18 +6,15 @@
 \usage{
 mod_SiteDetails_Server(
   id,
-  dfMetrics,
   dfGroups,
   dfAnalyticsInput,
   rctv_strSiteID,
-  rctv_strMetricID
+  rctv_strMetricID,
+  rctv_lMetric
 )
 }
 \arguments{
 \item{id}{The namespace id for this module.}
-
-\item{dfMetrics}{\code{data.frame} Metric-specific metadata for use in charts and
-reporting.}
 
 \item{dfGroups}{\code{data.frame} Group-level metadata dictionary.}
 

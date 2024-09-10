@@ -12,8 +12,6 @@
 #'   reporting.
 #' @param dfResults `data.frame` A stacked summary of analysis pipeline output.
 #'   This will be filtered to cases where `GroupLevel == "Site"`.
-#' @param dfSite `data.frame` Optional site-level metadata.
-#' @param dfStudy `data.frame` Optional study-level metadata.
 #' @param fnFetchParticipantData `function` A function that takes a single
 #'   `strSubjectID` argument such as "0001", and returns a list with components
 #'   `metadata` and `metric_data`. `metadata` should be a named charact vector
@@ -21,8 +19,6 @@
 #'   about the participant, and `metric_data` should be a named list of
 #'   data.frames, each of which contains information related to the named
 #'   metric.
-#' @param lAssessment `list` List of KRI assessments from `params` within
-#'   `KRIReport.Rmd`.
 #' @param lParticipantMetadata `list` Named list of data describing a single
 #'   participant.
 #' @param rctv_lParticipantMetricData `reactive list` A [shiny::reactive()]
@@ -36,12 +32,9 @@
 #'   that returns the `SubjectID` of the selected participant.
 #' @param session `environment` Session from which to make a child scope (the
 #'   default should almost always be used).
-#' @param strCardTitle `character` A title for the card.
 #' @param strMetricID `character` A `MetricID` to focus on.
-#' @param strName `character` The name of a field.
-#' @param strSite `character` The `GroupID` of a site to focus on.
 #' @param strSubjectID `character` A `SubjectID` of an individual participant.
-#' @param strTitle A title to display for the overall app.
+#' @param strTitle `character` A title to display for the overall app.
 #' @param strValue `character` The value of a field.
 #'
 #' @name shared-params

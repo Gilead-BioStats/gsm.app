@@ -20,10 +20,6 @@ reporting.}
 \item{dfResults}{\code{data.frame} A stacked summary of analysis pipeline output.
 This will be filtered to cases where \code{GroupLevel == "Site"}.}
 
-\item{dfSite}{\code{data.frame} Optional site-level metadata.}
-
-\item{dfStudy}{\code{data.frame} Optional study-level metadata.}
-
 \item{fnFetchParticipantData}{\code{function} A function that takes a single
 \code{strSubjectID} argument such as "0001", and returns a list with components
 \code{metadata} and \code{metric_data}. \code{metadata} should be a named charact vector
@@ -31,9 +27,6 @@ This will be filtered to cases where \code{GroupLevel == "Site"}.}
 about the participant, and \code{metric_data} should be a named list of
 data.frames, each of which contains information related to the named
 metric.}
-
-\item{lAssessment}{\code{list} List of KRI assessments from \code{params} within
-\code{KRIReport.Rmd}.}
 
 \item{lParticipantMetadata}{\code{list} Named list of data describing a single
 participant.}
@@ -54,17 +47,11 @@ that returns the \code{SubjectID} of the selected participant.}
 \item{session}{\code{environment} Session from which to make a child scope (the
 default should almost always be used).}
 
-\item{strCardTitle}{\code{character} A title for the card.}
-
 \item{strMetricID}{\code{character} A \code{MetricID} to focus on.}
-
-\item{strName}{\code{character} The name of a field.}
-
-\item{strSite}{\code{character} The \code{GroupID} of a site to focus on.}
 
 \item{strSubjectID}{\code{character} A \code{SubjectID} of an individual participant.}
 
-\item{strTitle}{A title to display for the overall app.}
+\item{strTitle}{\code{character} A title to display for the overall app.}
 
 \item{strValue}{\code{character} The value of a field.}
 }
