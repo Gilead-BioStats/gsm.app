@@ -29,7 +29,6 @@ gsmApp_Server <- function(
     initialize_participant_select(dfAnalyticsInput, session)
 
     ## Cross-communication ----
-    # sync_metric_input(reactive(input$metric), reactive(input$primary_nav_bar))
     sync_site_input(reactive(input$site))
     sync_participant_input(reactive(input$participant))
 
