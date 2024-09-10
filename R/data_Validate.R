@@ -50,7 +50,13 @@ validate_has_columns <- function(df,
 ## df-specific Validation Functions ----
 
 validate_dfResults <- function(dfResults) {
-  validate_df(dfResults, chrRequiredColumns = "SnapshotDate")
+  validate_df(
+    dfResults,
+    chrRequiredColumns = c(
+      "GroupID", "Numerator", "Denominator", "Metric", "Score", "Flag",
+      "MetricID", "SnapshotDate"
+    )
+  )
 }
 
 validate_dfGroups <- function(dfGroups) {
@@ -72,5 +78,16 @@ validate_dfBounds <- function(dfBounds) {
 }
 
 validate_dfAnalyticsInput <- function(dfAnalyticsInput) {
-  validate_df(dfAnalyticsInput, chrRequiredColumns = "SubjectID")
+  validate_df(
+    dfAnalyticsInput,
+    chrRequiredColumns = c(
+      "GroupLevel",
+      "GroupID",
+      "Metric",
+      "MetricID",
+      "SubjectID",
+      "Numerator",
+      "Denominator"
+    )
+  )
 }

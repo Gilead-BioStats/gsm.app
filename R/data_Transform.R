@@ -1,6 +1,6 @@
 make_lStudy <- function(dfGroups, dfResults) {
   dfStudy <- dfGroups[dfGroups$GroupLevel == "Study", c("Param", "Value")]
-  lStudy <- as.list(stats::setNames(dfStudy$Value, dfStudy$Param))
+  lStudy <- as.list(rlang::set_names(dfStudy$Value, dfStudy$Param))
   # Temporarily only use some specific columns.
   lStudy <- temp_subsetLStudy(lStudy)
   lStudy$snapshot_date = format(max(as.Date(dfResults$SnapshotDate)), "%Y-%m-%d")

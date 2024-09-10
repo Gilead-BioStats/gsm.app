@@ -95,11 +95,11 @@ gsmApp_Server <- function(
         )
         mod_SiteDetails_Server(
           "site_details",
-          dfMetrics = dfMetrics,
           dfGroups = dfGroups,
           dfAnalyticsInput = dfAnalyticsInput,
           rctv_strSiteID = reactive(input$site),
-          rctv_strMetricID = reactive(input$metric)
+          rctv_strMetricID = reactive(input$metric),
+          rctv_lMetric = rctv_lMetric
         )
       },
       ignoreInit = TRUE,

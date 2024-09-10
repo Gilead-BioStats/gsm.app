@@ -15,10 +15,21 @@ mod_MetricDetails_Server <- function(
     # Shared reactives ----
     rctv_dfResults_byMetricID <- reactive({
       filter_byMetricID(dfResults, rctv_strMetricID())
-    })
+    }) %>%
+      bindCache(rctv_strMetricID())
+    rctv_dfResults_AnalysisOutput <- reactive({
+      rctv_dfResults_byMetricID() %>%
+        dplyr::arrange("GroupID") %>%
+        dplyr::select(
+          "GroupID", "Numerator", "Denominator", "Metric",
+          "Score", "Flag", "MetricID"
+        )
+    }) %>%
+      bindCache(rctv_strMetricID())
     rctv_dfBounds_byMetricID <- reactive({
       filter_byMetricID(dfBounds, rctv_strMetricID())
-    })
+    }) %>%
+      bindCache(rctv_strMetricID())
 
     # Outputs ----
     observeEvent(input$selected_tab, {
@@ -78,11 +89,7 @@ mod_MetricDetails_Server <- function(
         "Analysis Output" = {
           output$results <- renderUI({
             gsm::Report_MetricTable(
-              rctv_dfResults_byMetricID() %>%
-                dplyr::arrange("GroupID") %>%
-                dplyr::select(
-                  -dplyr::all_of(c("GroupLevel", "StudyID", "SnapshotDate"))
-                ),
+              rctv_dfResults_AnalysisOutput(),
               dfGroups,
               strGroupLevel = "Site"
             ) %>%

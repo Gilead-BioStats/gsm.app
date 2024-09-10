@@ -15,24 +15,22 @@ mod_StudyOverview_Server <- function(id, dfResults, dfMetrics, dfGroups) {
     })
 
     ## KRI Color KPIs
-    rctv_dfKRIColorCount <- reactive({
-      dfResults %>%
-        dplyr::mutate(
-          Color = ifelse(
-            abs(.data$Flag) == 2, "Red",
-            ifelse(abs(.data$Flag) == 1, "Amber", "Other")
-          ),
-          .keep = "none"
-        ) %>%
-        dplyr::summarize(n = dplyr::n(), .by = "Color")
-    })
+    dfKRIColorCount <- dfResults %>%
+      dplyr::mutate(
+        Color = ifelse(
+          abs(.data$Flag) == 2, "Red",
+          ifelse(abs(.data$Flag) == 1, "Amber", "Other")
+        ),
+        .keep = "none"
+      ) %>%
+      dplyr::summarize(n = dplyr::n(), .by = "Color")
 
     output$red_kri <- renderText({
-      textOutput_KRIColor(rctv_dfKRIColorCount(), "Red")
+      textOutput_KRIColor(dfKRIColorCount, "Red")
     })
 
     output$amber_kri <- renderText({
-      textOutput_KRIColor(rctv_dfKRIColorCount(), "Amber")
+      textOutput_KRIColor(dfKRIColorCount, "Amber")
     })
   })
 }
