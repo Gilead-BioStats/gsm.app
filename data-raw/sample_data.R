@@ -39,7 +39,8 @@ used_subjects <- clindata::rawplus_dm %>%
     "country",
     studyStartDate = "firstparticipantdate",
     studyEndDate = "lastparticipantdate",
-    "timeonstudy"
+    "timeonstudy",
+    "subject_nsv"
   )
 
 used_ae <- clindata::rawplus_ae %>%
@@ -136,34 +137,35 @@ lAnalysis <- RunWorkflows(lWorkflow, mapped)
 # Prep for standard dfs ----
 
 # Transform CTMS Site and Study Level data
-dfCTMSSite <- RunQuery(
-  df = clindata::ctms_site,
-  strQuery = "SELECT pi_number as GroupID, site_status as Status, pi_first_name as InvestigatorFirstName, pi_last_name as InvestigatorLastName, city as City, state as State, country as Country, * FROM df"
-) |>
+dfCTMSSite <- clindata::ctms_site |>
+  dplyr::rename(
+    GroupID = "pi_number",
+    Status = "site_status",
+    InvestigatorFirstName = "pi_first_name",
+    InvestigatorLastName = "pi_last_name"
+  ) |>
   MakeLongMeta(strGroupLevel = 'Site')
 
-dfCTMSStudy <- RunQuery(
-  df = clindata::ctms_study,
-  strQuery = "SELECT protocol_number as GroupID, status as Status, * FROM df"
-) |>
+dfCTMSStudy <- clindata::ctms_study |>
+  dplyr::rename(GroupID = "protocol_number") |>
   MakeLongMeta(strGroupLevel = 'Study')
 
 # Get Participant and Site counts for Country, Site and Study
 dfSiteCounts <- RunQuery(
-  df = mapped$Mapped_Enrolled,
-  strQuery = "SELECT invid as GroupID, COUNT(DISTINCT subjectid) as ParticipantCount, COUNT(DISTINCT invid) as SiteCount FROM df GROUP BY invid"
+  df = mapped$Mapped_ENROLL,
+  strQuery = "SELECT invid as GroupID, COUNT(DISTINCT subjid) as ParticipantCount, COUNT(DISTINCT invid) as SiteCount FROM df GROUP BY invid"
 ) |>
   MakeLongMeta(strGroupLevel = "Site")
 
 dfStudyCounts <- RunQuery(
-  df = mapped$Mapped_Enrolled,
-  strQuery = "SELECT studyid as GroupID, COUNT(DISTINCT subjectid) as ParticipantCount, COUNT(DISTINCT invid) as SiteCount FROM df GROUP BY studyid"
+  df = mapped$Mapped_ENROLL,
+  strQuery = "SELECT studyid as GroupID, COUNT(DISTINCT subjid) as ParticipantCount, COUNT(DISTINCT invid) as SiteCount FROM df GROUP BY studyid"
 ) |>
   MakeLongMeta(strGroupLevel = "Study")
 
 dfCountryCounts <- RunQuery(
-  df = mapped$Mapped_Enrolled,
-  strQuery = "SELECT country as GroupID, COUNT(DISTINCT subjectid) as ParticipantCount, COUNT(DISTINCT invid) as SiteCount FROM df GROUP BY country"
+  df = mapped$Mapped_ENROLL,
+  strQuery = "SELECT country as GroupID, COUNT(DISTINCT subjid) as ParticipantCount, COUNT(DISTINCT invid) as SiteCount FROM df GROUP BY country"
 ) |>
   MakeLongMeta(strGroupLevel = "Country")
 
@@ -195,13 +197,13 @@ sample_dfAnalyticsInput <- purrr::map(lAnalysis, "Analysis_Input") %>%
 
 # Rotate such that the data is by subjid. In a "real" usage, much of this data
 # would likely be fetched via an API or other function call.
-participant_ids <- sort(mapped$Mapped_Enrolled$subjid)
+participant_ids <- sort(mapped$Mapped_ENROLL$subjid)
 names(participant_ids) <- participant_ids
 participant_data <- purrr::map(
   participant_ids,
   function(this_subjid) {
     list(
-      metadata = mapped$Mapped_Enrolled %>%
+      metadata = used_subjects %>%
         dplyr::filter(subjid == this_subjid) %>%
         dplyr::select(
           subjectID = "subjid",
@@ -210,13 +212,13 @@ participant_data <- purrr::map(
           "studyEndDate",
           timeOnStudy = "timeonstudy",
           "country",
-          "age",
           "sex",
+          "age",
           "race"
         ) %>%
         as.list(),
       metric_data = list(
-        adverseEvents = mapped$Mapped_AE %>%
+        adverseEvents = used_ae %>%
           dplyr::filter(subjid == this_subjid) %>%
           dplyr::select(
             subjectID = "subjid",
@@ -228,24 +230,25 @@ participant_data <- purrr::map(
             "bodySystemOrOrganClass",
             "treatmentEmergent"
           ),
-        protocolDeviations = dplyr::bind_rows(
-          mapped$Mapped_NonimportantPD, mapped$Mapped_ImportantPD
-        ) %>%
-          dplyr::filter(subjid == this_subjid) %>%
+        protocolDeviations = used_pd %>%
+          dplyr::filter(subjectenrollmentnumber == this_subjid) %>%
           dplyr::select(
-            subjectID = "subjid",
+            subjectID = "subjectenrollmentnumber",
             deemedImportant = "deemedimportant",
             "deviationDate",
             "category"
           ),
-        studyDisposition = mapped$Mapped_StudyDropouts %>%
-          dplyr::filter(subjid == this_subjid) %>%
+        studyDisposition = used_study_comp %>%
+          dplyr::filter(subjid == this_subjid, compyn == "N") %>%
           dplyr::select(
             subjectID = "subjid",
             studyDiscontinuationReason = "compreas"
           ),
-        treatmentDisposition = mapped$Mapped_TreatmentDropouts %>%
-          dplyr::filter(subjid == this_subjid) %>%
+        treatmentDisposition = used_treatment_comp %>%
+          dplyr::filter(
+            subjid == this_subjid,
+            treatmentDiscontinuationReason != ""
+          ) %>%
           dplyr::select(
             subjectID = "subjid",
             "phase",
