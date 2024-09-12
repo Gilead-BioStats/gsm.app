@@ -1,11 +1,12 @@
-out_Sidebar <- function(lStudy, chrMetrics, chrSites) {
+out_Sidebar <- function(lStudy, chrMetrics, chrSites, intNParticipants) {
   column(
     width = 3,
     id = "sidebar",
     out_StudyInformation(lStudy = lStudy),
     out_Inputs(
       chrMetrics = chrMetrics,
-      chrSites = chrSites
+      chrSites = chrSites,
+      intNParticipants = intNParticipants
     )
   )
 }
@@ -32,7 +33,7 @@ out_StudyInformation <- function(lStudy) {
   )
 }
 
-out_Inputs <- function(chrMetrics, chrSites) {
+out_Inputs <- function(chrMetrics, chrSites, intNParticipants) {
   bslib::card(
     class = "overflow-on",
     bslib::card_body(
@@ -52,7 +53,8 @@ out_Inputs <- function(chrMetrics, chrSites) {
       selectizeInput(
         "participant",
         strong("Participant"),
-        choices = c("None"),
+        choices = NULL,
+        options = list(maxOptions = intNParticipants),
         width = "100%"
       ),
       actionButton("reset", "Reset All", class = "btn btn-primary btn-sm")

@@ -8,6 +8,7 @@
 gsmApp_UI <- function(dfResults,
                       dfMetrics,
                       dfGroups,
+                      intNParticipants,
                       strTitle = "GSM Deep Dive") {
   lStudy <- make_lStudy(dfGroups, dfResults)
   chrMetrics <- rlang::set_names(dfMetrics$MetricID, dfMetrics$Metric)
@@ -27,6 +28,7 @@ gsmApp_UI <- function(dfResults,
       chrMetrics = chrMetrics,
       chrSites = chrSites,
       dfResults = dfResults,
+      intNParticipants = intNParticipants,
       strTitle = strTitle
     )
   )

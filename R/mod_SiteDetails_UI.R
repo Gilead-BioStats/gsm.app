@@ -37,6 +37,7 @@ mod_SiteDetails_UI <- function(id) {
       # TODO: Replace with a single module.
       shinyjs::hidden(
         bslib::card(
+          full_screen = TRUE,
           bslib::card_header(
             bslib::card_title(
               textOutput(ns("participant_table_title"), inline = TRUE)

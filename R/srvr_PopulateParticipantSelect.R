@@ -4,13 +4,12 @@
 #'
 #' @keywords internal
 srvr_PopulateParticipantSelect <- function(
-    dfAnalyticsInput,
+    chrParticipantIDs,
     session = getDefaultReactiveDomain()
 ) {
-  participant_ids <- sort(unique(dfAnalyticsInput$SubjectID))
   updateSelectizeInput(
     "participant",
-    choices = c("None", participant_ids),
+    choices = c("None", chrParticipantIDs),
     selected = "None",
     server = TRUE,
     session = session

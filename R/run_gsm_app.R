@@ -26,6 +26,7 @@ run_gsm_app <- function(
       dfResults = dfResults,
       dfMetrics = dfMetrics,
       dfGroups = dfGroups,
+      intNParticipants = length(unique(dfAnalyticsInput$SubjectID)),
       strTitle = strTitle
     ),
     server = gsmApp_Server(

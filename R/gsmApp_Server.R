@@ -24,19 +24,18 @@ gsmApp_Server <- function(
   function(input, output, session) {
     # Inputs ----
     ## Initialize ----
-
+    chrParticipantIDs <- sort(unique(dfAnalyticsInput$SubjectID))
     # This one is selectize and thus should remain server-side.
-    srvr_PopulateParticipantSelect(dfAnalyticsInput, session)
+    srvr_PopulateParticipantSelect(chrParticipantIDs, session)
 
     ## Cross-communication ----
-    srvr_SyncInput("site", reactive(input$site), session)
-    srvr_SyncInput("participant", reactive(input$participant), session)
+    srvr_SyncInput("site", reactive(input$site), session = session)
 
     ## Reset ----
     observe({
       updateSelectInput(session, "metric", selected = dfMetrics$MetricID[[1]])
       updateSelectInput(session, "site", selected = "None")
-      updateSelectizeInput(session, "participant", selected = "None")
+      srvr_PopulateParticipantSelect(chrParticipantIDs, session)
       bslib::nav_select("primary_nav_bar", "Study Overview")
     }) %>%
       bindEvent(input$reset)
@@ -97,7 +96,7 @@ gsmApp_Server <- function(
           rctv_strSiteID = reactive(input$site),
           rctv_strMetricID = reactive(input$metric)
         )
-        mod_SiteDetails_Server(
+        rctv_strSiteDetailsParticipant <- mod_SiteDetails_Server(
           "site_details",
           dfGroups = dfGroups,
           dfAnalyticsInput = dfAnalyticsInput,
@@ -109,6 +108,13 @@ gsmApp_Server <- function(
       input$primary_nav_bar == "Metric Details",
       ignoreInit = TRUE,
       once = TRUE
+    )
+    srvr_SyncSelectizeInput(
+      strID = "participant",
+      rctv_strValue = rctv_strSiteDetailsParticipant,
+      chrChoices = chrParticipantIDs,
+      server = TRUE,
+      session = session
     )
 
     ## Participant Details ----

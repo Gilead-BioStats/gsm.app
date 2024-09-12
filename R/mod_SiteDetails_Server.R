@@ -104,5 +104,10 @@ mod_SiteDetails_Server <- function(
         rctv_chrColumnNames()
       )
     })
+
+    # A module one level deeper should return this.
+    return(reactive({
+      input[["participants-participant"]]
+    }))
   })
 }

@@ -9,6 +9,7 @@ mod_StudyOverview_UI <- function(id, dfResults) {
     bslib::nav_panel(
       title = "Overview Table",
       bslib::card(
+        full_screen = TRUE,
         bslib::card_body(
           out_KRIColor(dfResults),
           gsm::Widget_GroupOverviewOutput(

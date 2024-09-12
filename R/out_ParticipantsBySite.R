@@ -28,11 +28,12 @@ out_ParticipantsBySite <- function(dfAnalyticsInput, chrColumnNames) {
               console.log(
                 `Selected participant ID: ${participant_id}`
               );
-              const namespace = "gsm.app";
-              Shiny.setInputValue(
-                "participant",
-                participant_id
+              const namespace = table.table().container().parentNode.id;
+              const inputName = `${namespace}-participant`;
+              console.log(
+                `Input Name: ${inputName}`
               );
+              Shiny.setInputValue(inputName, participant_id);
             })
           ')
   ) %>%
