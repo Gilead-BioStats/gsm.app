@@ -4,7 +4,13 @@
 \alias{gsmApp_UI}
 \title{Shiny UI function}
 \usage{
-gsmApp_UI(dfResults, dfMetrics, dfGroups, strTitle = "GSM Deep Dive")
+gsmApp_UI(
+  dfResults,
+  dfMetrics,
+  dfGroups,
+  intNParticipants,
+  strTitle = "GSM Deep Dive"
+)
 }
 \arguments{
 \item{dfResults}{\code{data.frame} A stacked summary of analysis pipeline output.
@@ -14,6 +20,9 @@ This will be filtered to cases where \code{GroupLevel == "Site"}.}
 reporting.}
 
 \item{dfGroups}{\code{data.frame} Group-level metadata dictionary.}
+
+\item{intNParticipants}{\code{integer} The number of unique participants
+(subjects) in the study.}
 
 \item{strTitle}{\code{character} A title to display for the overall app.}
 }

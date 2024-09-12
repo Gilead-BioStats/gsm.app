@@ -5,13 +5,11 @@
 \title{Initialize Participant Select}
 \usage{
 srvr_PopulateParticipantSelect(
-  dfAnalyticsInput,
+  chrParticipantIDs,
   session = getDefaultReactiveDomain()
 )
 }
 \arguments{
-\item{dfAnalyticsInput}{\code{data.frame} Participant-level metric data.}
-
 \item{session}{\code{environment} Session from which to make a child scope (the
 default should almost always be used).}
 }
