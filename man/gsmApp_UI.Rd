@@ -33,3 +33,4 @@ A Shiny UI object
 This function defines the user interface for your Shiny web application.
 It specifies the layout of the web page and the interface elements it contains.
 }
+\keyword{internal}
