@@ -14,6 +14,4 @@ it is added.
 \description{
 Attach \code{HighlightTableRow.js} to an app or other HTML exactly once.
 }
-\examples{
-htmlDependency_HighlightTableRow()
-}
+\keyword{internal}

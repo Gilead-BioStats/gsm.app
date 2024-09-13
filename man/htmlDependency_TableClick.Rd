@@ -14,6 +14,4 @@ it is added.
 \description{
 Attach \code{TableClick.js} to an app or other HTML exactly once.
 }
-\examples{
-htmlDependency_TableClick()
-}
+\keyword{internal}

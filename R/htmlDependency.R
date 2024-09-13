@@ -5,9 +5,7 @@
 #' @return An `html_dependency` object (see [htmltools::htmlDependency()]),
 #'   which is attached to the Shiny app exactly once, regardless how many times
 #'   it is added.
-#' @export
-#' @examples
-#' htmlDependency_Stylesheet()
+#' @keywords internal
 htmlDependency_Stylesheet <- function() {
   htmltools::htmlDependency(
     name = "Stylesheet",
@@ -25,9 +23,7 @@ htmlDependency_Stylesheet <- function() {
 #' @return An `html_dependency` object (see [htmltools::htmlDependency()]),
 #'   which is attached to the Shiny app exactly once, regardless how many times
 #'   it is added.
-#' @export
-#' @examples
-#' htmlDependency_HighlightTableRow()
+#' @keywords internal
 htmlDependency_HighlightTableRow <- function() {
   htmltools::htmlDependency(
     name = "HighlightTableRow",
@@ -45,9 +41,7 @@ htmlDependency_HighlightTableRow <- function() {
 #' @return An `html_dependency` object (see [htmltools::htmlDependency()]),
 #'   which is attached to the Shiny app exactly once, regardless how many times
 #'   it is added.
-#' @export
-#' @examples
-#' htmlDependency_TableClick()
+#' @keywords internal
 htmlDependency_TableClick <- function() {
   htmltools::htmlDependency(
     name = "TableClick",

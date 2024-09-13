@@ -14,6 +14,4 @@ it is added.
 \description{
 Attach a default stylesheet to an app or other HTML exactly once.
 }
-\examples{
-htmlDependency_Stylesheet()
-}
+\keyword{internal}
