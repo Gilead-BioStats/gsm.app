@@ -13,6 +13,7 @@ mod_Scatter_Server <- function(
             column(
               width = 6,
               bslib::card(
+                full_screen = TRUE,
                 class = "chart",
                 bslib::card_body(
                   gsm::renderWidget_ScatterPlot({

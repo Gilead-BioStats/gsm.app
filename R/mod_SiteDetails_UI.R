@@ -11,10 +11,7 @@ mod_SiteDetails_UI <- function(id) {
     column(
       width = 5,
       # Metric Metadata (never hidden, no "unselected" state)
-      out_Card(
-        "Metric Metadata",
-        p(uiOutput(ns("metric_metadata_list")))
-      ),
+      uiOutput(ns("metric_metadata_list")),
       # Site Details
       #
       # TODO: Replace with a single module.
@@ -39,10 +36,16 @@ mod_SiteDetails_UI <- function(id) {
       #
       # TODO: Replace with a single module.
       shinyjs::hidden(
-        out_Card(
-          uiOutput(ns("participant_table_title")),
+        bslib::card(
+          full_screen = TRUE,
+          bslib::card_header(
+            bslib::card_title(
+              textOutput(ns("participant_table_title"), inline = TRUE)
+            ),
+            p(class = "card-subtitle", "Select a subject below to drill-down")
+          ),
           bslib::card_body(DT::DTOutput(ns("participants"))),
-          strID = ns("card_participants")
+          id = ns("card_participants")
         )
       ),
       out_Card(

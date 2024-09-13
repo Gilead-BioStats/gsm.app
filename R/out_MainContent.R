@@ -1,4 +1,9 @@
-out_MainContent <- function(strTitle = "GSM Deep Dive") {
+out_MainContent <- function(lStudy,
+                            chrMetrics,
+                            chrSites,
+                            dfResults,
+                            intNParticipants,
+                            strTitle = "GSM Deep Dive") {
   div(
     id = "main-content",
     fluidRow(
@@ -10,8 +15,13 @@ out_MainContent <- function(strTitle = "GSM Deep Dive") {
       column(
         width = 10,
         fluidRow(
-          out_Sidebar(),
-          out_MainTabs(strTitle = strTitle)
+          out_Sidebar(
+            lStudy = lStudy,
+            chrMetrics = chrMetrics,
+            chrSites = chrSites,
+            intNParticipants = intNParticipants
+          ),
+          out_MainTabs(dfResults, strTitle = strTitle)
         )
       )
     )
