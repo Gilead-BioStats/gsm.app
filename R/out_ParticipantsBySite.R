@@ -3,40 +3,11 @@
 #' @inheritParams shared-params
 #'
 #' @keywords internal
-out_ParticipantsBySite <- function(
-    dfAnalyticsInput,
-    dfMetrics,
-    strSite,
-    strMetricID) {
-  if ("MetricID" %in% colnames(dfAnalyticsInput)) {
-    dfAnalyticsInput <- dplyr::filter(
-      dfAnalyticsInput,
-      .data$MetricID == strMetricID
-    )
-  }
-
-  dat <- dfAnalyticsInput %>%
-    dplyr::filter(
-      .data$GroupLevel == "Site",
-      .data$GroupID == strSite
-    ) %>%
-    dplyr::arrange(dplyr::desc(.data$Metric)) %>%
-    dplyr::select("SubjectID", "Numerator", "Denominator", "Metric")
-
-  ## Rename using dfMetrics
-  metric_names <- dfMetrics %>%
-    dplyr::filter(.data$MetricID == strMetricID) %>%
-    dplyr::select("Numerator", "Denominator", "Metric") %>%
-    as.list()
-
-  new_colnames <- stats::setNames(colnames(dat), colnames(dat))
-  new_colnames[names(metric_names)] <- metric_names
-  new_colnames <- unname(unlist(new_colnames))
-
+out_ParticipantsBySite <- function(dfAnalyticsInput, chrColumnNames) {
   table <- DT::datatable(
-    dat,
+    dfAnalyticsInput,
     class = "compact",
-    colnames = new_colnames,
+    colnames = chrColumnNames,
     options = list(
       lengthChange = FALSE,
       paging = FALSE,
@@ -57,19 +28,16 @@ out_ParticipantsBySite <- function(
               console.log(
                 `Selected participant ID: ${participant_id}`
               );
-              const namespace = "gsm.app";
-              Shiny.setInputValue(
-                "participant",
-                participant_id
+              const namespace = table.table().container().parentNode.id;
+              const inputName = `${namespace}-participant`;
+              console.log(
+                `Input Name: ${inputName}`
               );
+              Shiny.setInputValue(inputName, participant_id);
             })
           ')
-  )
-
-  if ("Metric" %in% colnames(dat)) {
-    table <- table %>%
-      DT::formatRound("Metric", digits = 5)
-  }
+  ) %>%
+    DT::formatRound("Metric", digits = 5)
 
   return(table)
 }

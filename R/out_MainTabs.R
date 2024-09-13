@@ -1,11 +1,11 @@
-out_MainTabs <- function(strTitle = "GSM Deep Dive") {
+out_MainTabs <- function(dfResults, strTitle = "GSM Deep Dive") {
   column(
     width = 9,
     class = "pt-1",
     bslib::navset_bar(
       bslib::nav_panel(
         title = "Study Overview",
-        mod_StudyOverview_UI("study_overview")
+        mod_StudyOverview_UI("study_overview", dfResults)
       ),
       bslib::nav_panel(
         title = "Metric Details",

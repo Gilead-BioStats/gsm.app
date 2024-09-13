@@ -5,18 +5,16 @@
 \title{Run App}
 \usage{
 run_gsm_app(
-  strTitle = "GSM Deep Dive",
   dfResults,
   dfGroups,
   dfMetrics,
   dfBounds,
   dfAnalyticsInput,
-  fnFetchParticipantData
+  fnFetchParticipantData,
+  strTitle = "GSM Deep Dive"
 )
 }
 \arguments{
-\item{strTitle}{A title to display for the overall app.}
-
 \item{dfResults}{\code{data.frame} A stacked summary of analysis pipeline output.
 This will be filtered to cases where \code{GroupLevel == "Site"}.}
 
@@ -38,6 +36,8 @@ values for reporting.}
 about the participant, and \code{metric_data} should be a named list of
 data.frames, each of which contains information related to the named
 metric.}
+
+\item{strTitle}{\code{character} A title to display for the overall app.}
 }
 \description{
 Run App
