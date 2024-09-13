@@ -11,9 +11,9 @@ gsmApp_UI <- function(strTitle = "GSM Deep Dive") {
     class = "bg-light",
     title = strTitle,
     theme = bslib::bs_theme(version = 5),
-    html_dependency_Stylesheet(),
-    html_dependency_HighlightTableRow(),
-    html_dependency_TableClick(),
+    htmlDependency_Stylesheet(),
+    htmlDependency_HighlightTableRow(),
+    htmlDependency_TableClick(),
     out_MainContent(strTitle = strTitle)
   )
 }
