@@ -1,5 +1,6 @@
 out_Card <- function(tagTitle, ..., strID = NULL) {
   bslib::card(
+    full_screen = TRUE,
     id = strID,
     bslib::card_title(tagTitle),
     ...

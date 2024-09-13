@@ -7,9 +7,9 @@
 mod_MetricDetails_Server(
   id,
   dfResults,
-  dfMetrics,
   dfGroups,
   dfBounds,
+  rctv_lMetric,
   rctv_strSiteID,
   rctv_strMetricID
 )
@@ -19,9 +19,6 @@ mod_MetricDetails_Server(
 
 \item{dfResults}{\code{data.frame} A stacked summary of analysis pipeline output.
 This will be filtered to cases where \code{GroupLevel == "Site"}.}
-
-\item{dfMetrics}{\code{data.frame} Metric-specific metadata for use in charts and
-reporting.}
 
 \item{dfGroups}{\code{data.frame} Group-level metadata dictionary.}
 
