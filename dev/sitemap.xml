@@ -10,9 +10,6 @@
 <url><loc>https://gilead-biostats.github.io/gsm.app/dev/reference/gsmApp_Server.html</loc></url>
 <url><loc>https://gilead-biostats.github.io/gsm.app/dev/reference/gsmApp_UI.html</loc></url>
 <url><loc>https://gilead-biostats.github.io/gsm.app/dev/reference/index.html</loc></url>
-<url><loc>https://gilead-biostats.github.io/gsm.app/dev/reference/initialize_metric_select.html</loc></url>
-<url><loc>https://gilead-biostats.github.io/gsm.app/dev/reference/initialize_participant_select.html</loc></url>
-<url><loc>https://gilead-biostats.github.io/gsm.app/dev/reference/initialize_site_select.html</loc></url>
 <url><loc>https://gilead-biostats.github.io/gsm.app/dev/reference/mod_MetricDetails_Server.html</loc></url>
 <url><loc>https://gilead-biostats.github.io/gsm.app/dev/reference/mod_MetricDetails_UI.html</loc></url>
 <url><loc>https://gilead-biostats.github.io/gsm.app/dev/reference/mod_ParticipantDetails_Server.html</loc></url>
@@ -23,7 +20,6 @@
 <url><loc>https://gilead-biostats.github.io/gsm.app/dev/reference/mod_SiteDetails_UI.html</loc></url>
 <url><loc>https://gilead-biostats.github.io/gsm.app/dev/reference/mod_StudyOverview_Server.html</loc></url>
 <url><loc>https://gilead-biostats.github.io/gsm.app/dev/reference/mod_StudyOverview_UI.html</loc></url>
-<url><loc>https://gilead-biostats.github.io/gsm.app/dev/reference/op-length-0-default.html</loc></url>
 <url><loc>https://gilead-biostats.github.io/gsm.app/dev/reference/out_ParticipantMetadata.html</loc></url>
 <url><loc>https://gilead-biostats.github.io/gsm.app/dev/reference/out_ParticipantsBySite.html</loc></url>
 <url><loc>https://gilead-biostats.github.io/gsm.app/dev/reference/pipe.html</loc></url>
@@ -36,10 +32,6 @@
 <url><loc>https://gilead-biostats.github.io/gsm.app/dev/reference/sample_dfMetrics.html</loc></url>
 <url><loc>https://gilead-biostats.github.io/gsm.app/dev/reference/sample_dfResults.html</loc></url>
 <url><loc>https://gilead-biostats.github.io/gsm.app/dev/reference/shared-params.html</loc></url>
-<url><loc>https://gilead-biostats.github.io/gsm.app/dev/reference/side_panel_meta_tag_list.html</loc></url>
-<url><loc>https://gilead-biostats.github.io/gsm.app/dev/reference/sync_participant_input.html</loc></url>
-<url><loc>https://gilead-biostats.github.io/gsm.app/dev/reference/sync_site_input.html</loc></url>
-<url><loc>https://gilead-biostats.github.io/gsm.app/dev/reference/taglist_metric_meta_data.html</loc></url>
-<url><loc>https://gilead-biostats.github.io/gsm.app/dev/reference/taglist_site_meta_data.html</loc></url>
+<url><loc>https://gilead-biostats.github.io/gsm.app/dev/reference/srvr_PopulateParticipantSelect.html</loc></url>
 </urlset>
 

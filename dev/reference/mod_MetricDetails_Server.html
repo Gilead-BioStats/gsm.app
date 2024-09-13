@@ -42,9 +42,9 @@
     <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">mod_MetricDetails_Server</span><span class="op">(</span></span>
 <span>  <span class="va">id</span>,</span>
 <span>  <span class="va">dfResults</span>,</span>
-<span>  <span class="va">dfMetrics</span>,</span>
 <span>  <span class="va">dfGroups</span>,</span>
 <span>  <span class="va">dfBounds</span>,</span>
+<span>  <span class="va">rctv_lMetric</span>,</span>
 <span>  <span class="va">rctv_strSiteID</span>,</span>
 <span>  <span class="va">rctv_strMetricID</span></span>
 <span><span class="op">)</span></span></code></pre></div>
@@ -61,11 +61,6 @@
 <dt id="arg-dfresults">dfResults<a class="anchor" aria-label="anchor" href="#arg-dfresults"></a></dt>
 <dd><p><code>data.frame</code> A stacked summary of analysis pipeline output.
 This will be filtered to cases where <code>GroupLevel == "Site"</code>.</p></dd>
-
-
-<dt id="arg-dfmetrics">dfMetrics<a class="anchor" aria-label="anchor" href="#arg-dfmetrics"></a></dt>
-<dd><p><code>data.frame</code> Metric-specific metadata for use in charts and
-reporting.</p></dd>
 
 
 <dt id="arg-dfgroups">dfGroups<a class="anchor" aria-label="anchor" href="#arg-dfgroups"></a></dt>

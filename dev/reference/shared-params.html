@@ -70,14 +70,6 @@ reporting.</p></dd>
 This will be filtered to cases where <code>GroupLevel == "Site"</code>.</p></dd>
 
 
-<dt id="arg-dfsite">dfSite<a class="anchor" aria-label="anchor" href="#arg-dfsite"></a></dt>
-<dd><p><code>data.frame</code> Optional site-level metadata.</p></dd>
-
-
-<dt id="arg-dfstudy">dfStudy<a class="anchor" aria-label="anchor" href="#arg-dfstudy"></a></dt>
-<dd><p><code>data.frame</code> Optional study-level metadata.</p></dd>
-
-
 <dt id="arg-fnfetchparticipantdata">fnFetchParticipantData<a class="anchor" aria-label="anchor" href="#arg-fnfetchparticipantdata"></a></dt>
 <dd><p><code>function</code> A function that takes a single
 <code>strSubjectID</code> argument such as "0001", and returns a list with components
@@ -88,9 +80,9 @@ data.frames, each of which contains information related to the named
 metric.</p></dd>
 
 
-<dt id="arg-lassessment">lAssessment<a class="anchor" aria-label="anchor" href="#arg-lassessment"></a></dt>
-<dd><p><code>list</code> List of KRI assessments from <code>params</code> within
-<code>KRIReport.Rmd</code>.</p></dd>
+<dt id="arg-intnparticipants">intNParticipants<a class="anchor" aria-label="anchor" href="#arg-intnparticipants"></a></dt>
+<dd><p><code>integer</code> The number of unique participants
+(subjects) in the study.</p></dd>
 
 
 <dt id="arg-lparticipantmetadata">lParticipantMetadata<a class="anchor" aria-label="anchor" href="#arg-lparticipantmetadata"></a></dt>
@@ -124,20 +116,8 @@ that returns the <code>SubjectID</code> of the selected participant.</p></dd>
 default should almost always be used).</p></dd>
 
 
-<dt id="arg-strcardtitle">strCardTitle<a class="anchor" aria-label="anchor" href="#arg-strcardtitle"></a></dt>
-<dd><p><code>character</code> A title for the card.</p></dd>
-
-
 <dt id="arg-strmetricid">strMetricID<a class="anchor" aria-label="anchor" href="#arg-strmetricid"></a></dt>
 <dd><p><code>character</code> A <code>MetricID</code> to focus on.</p></dd>
-
-
-<dt id="arg-strname">strName<a class="anchor" aria-label="anchor" href="#arg-strname"></a></dt>
-<dd><p><code>character</code> The name of a field.</p></dd>
-
-
-<dt id="arg-strsite">strSite<a class="anchor" aria-label="anchor" href="#arg-strsite"></a></dt>
-<dd><p><code>character</code> The <code>GroupID</code> of a site to focus on.</p></dd>
 
 
 <dt id="arg-strsubjectid">strSubjectID<a class="anchor" aria-label="anchor" href="#arg-strsubjectid"></a></dt>
@@ -145,7 +125,7 @@ default should almost always be used).</p></dd>
 
 
 <dt id="arg-strtitle">strTitle<a class="anchor" aria-label="anchor" href="#arg-strtitle"></a></dt>
-<dd><p>A title to display for the overall app.</p></dd>
+<dd><p><code>character</code> A title to display for the overall app.</p></dd>
 
 
 <dt id="arg-strvalue">strValue<a class="anchor" aria-label="anchor" href="#arg-strvalue"></a></dt>
