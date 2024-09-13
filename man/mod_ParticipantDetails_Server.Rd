@@ -7,7 +7,7 @@
 mod_ParticipantDetails_Server(id, fnFetchParticipantData, rctv_strSubjectID)
 }
 \arguments{
-\item{id}{The namespace id for this module.}
+\item{id}{The id for this module in this namespace.}
 
 \item{fnFetchParticipantData}{\code{function} A function that takes a single
 \code{strSubjectID} argument such as "0001", and returns a list with components

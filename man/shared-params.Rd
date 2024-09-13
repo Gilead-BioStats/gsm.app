@@ -4,7 +4,14 @@
 \alias{shared-params}
 \title{Parameters used in multiple functions}
 \arguments{
-\item{id}{The namespace id for this module.}
+\item{id}{The id for this module in this namespace.}
+
+\item{chrLinkIDs}{\code{character} Module ids for multiple modules.}
+
+\item{chrLabels}{\code{character} A vector of labels for display to the user.}
+
+\item{chrValues}{\code{character} A vector of values to associate with a vector of
+labels.}
 
 \item{dfAnalyticsInput}{\code{data.frame} Participant-level metric data.}
 
