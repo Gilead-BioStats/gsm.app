@@ -1,12 +1,53 @@
-test_that("mod_DataTableCard_Server sets things up from arguments", {
-  # Define mock data for the reactive inputs
+test_that("mod_ParticipantDomain_Server sets things up from arguments", {
   mock_data <- list(
     tableOne = data.frame(col1 = 1:5, col2 = letters[1:5]),
     tableTwo = data.frame(col1 = 6:8, col2 = LETTERS[6:8])
   )
-
+  call <- rlang::current_env()
   testServer(
-    mod_DataTableCard_Server,
+    mod_ParticipantDomain_Server,
+    args = list(
+      rctv_lData = reactive({
+        NULL
+      }),
+      rctv_strName = reactive({
+        NULL
+      })
+    ),
+    {
+      output_title <- output$title
+      expect_equal(output_title, "Participant Domain")
+      expect_cleaned_html(
+        {
+          output$details$html
+        },
+        call = call
+      )
+    }
+  )
+  testServer(
+    mod_ParticipantDomain_Server,
+    args = list(
+      rctv_lData = reactive({
+        mock_data
+      }),
+      rctv_strName = reactive({
+        NULL
+      })
+    ),
+    {
+      output_title <- output$title
+      expect_equal(output_title, "Participant Domain")
+      expect_cleaned_html(
+        {
+          output$details$html
+        },
+        call = call
+      )
+    }
+  )
+  testServer(
+    mod_ParticipantDomain_Server,
     args = list(
       rctv_lData = reactive({
         mock_data
@@ -16,20 +57,16 @@ test_that("mod_DataTableCard_Server sets things up from arguments", {
       })
     ),
     {
-      # Check that the table output is rendered correctly
       table_data <- rctv_selectedTable()
       expect_equal(nrow(table_data), 5)
       expect_equal(table_data$col1, 1:5)
 
-      # Check that the title is rendered correctly
       output_title <- output$title
-      expect_type(output_title, "character")
       expect_equal(output_title, "Table One")
     }
   )
-
   testServer(
-    mod_DataTableCard_Server,
+    mod_ParticipantDomain_Server,
     args = list(
       rctv_lData = reactive({
         mock_data
@@ -39,28 +76,23 @@ test_that("mod_DataTableCard_Server sets things up from arguments", {
       })
     ),
     {
-      # Check that the table output is rendered correctly
       table_data <- rctv_selectedTable()
       expect_equal(nrow(table_data), 3)
       expect_equal(table_data$col1, 6:8)
 
-      # Check that the title is rendered correctly
       output_title <- output$title
-      expect_type(output_title, "character")
       expect_equal(output_title, "Table Two")
     }
   )
 })
 
-test_that("mod_DataTableCard_Server uses selection for return value", {
-  # Define mock data for the reactive inputs
+test_that("mod_ParticipantDomain_Server uses selection for return value", {
   mock_data <- list(
     table1 = data.frame(col1 = 1:5, col2 = letters[1:5]),
     table2 = data.frame(col1 = 6:8, col2 = LETTERS[6:8])
   )
-
   testServer(
-    mod_DataTableCard_Server,
+    mod_ParticipantDomain_Server,
     args = list(
       rctv_lData = reactive({
         mock_data

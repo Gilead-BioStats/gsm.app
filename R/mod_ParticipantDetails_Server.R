@@ -42,8 +42,8 @@ mod_ParticipantDetails_Server <- function(
       out_ParticipantMetadata(rctv_lParticipantMetadata())
     })
 
-    rctv_intSelectedRow <- mod_DataTableCard_Server(
-      "metric_data",
+    rctv_intSelectedRow <- mod_ParticipantDomain_Server(
+      "domain",
       rctv_lParticipantMetricData,
       rctv_strSelectedMetric
     )

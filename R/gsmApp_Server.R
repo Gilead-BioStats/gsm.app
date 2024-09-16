@@ -123,10 +123,11 @@ gsmApp_Server <- function(
       reactive(input$participant),
       session
     )
-    mod_ParticipantDetails_Server(
+    testing <- mod_ParticipantDetails_Server(
       "participant_details",
       fnFetchParticipantData = fnFetchParticipantData,
       rctv_strSubjectID = reactive(input$participant)
     )
+    shiny::observe({testing()})
   }
 }

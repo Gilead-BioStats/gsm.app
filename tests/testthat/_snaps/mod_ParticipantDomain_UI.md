@@ -1,7 +1,7 @@
-# mod_DataTableCard_UI creates the expected UI
+# mod_ParticipantDomain_UI creates the expected UI
 
     Code
-      test_result <- mod_DataTableCard_UI(id = "data_table_card_id")
+      test_result <- mod_ParticipantDomain_UI(id = "data_table_card_id")
       class(test_result) <- "shiny.tag"
       test_result
     Output
@@ -10,7 +10,7 @@
           <h5>
             <span id="data_table_card_id-title" class="shiny-text-output"></span>
           </h5>
-          <div id="data_table_card_id-table" style="width:100%;height:auto;" class="datatables html-widget html-widget-output shiny-report-size"></div>
+          <div id="data_table_card_id-details" class="shiny-html-output"></div>
         </div>
         <bslib-tooltip placement="auto" bsOptions="[]" data-require-bs-version="5" data-require-bs-caller="tooltip()">
           <template>Expand</template>
