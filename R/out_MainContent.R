@@ -1,9 +1,9 @@
 out_MainContent <- function(lStudy,
-                            chrMetrics,
-                            chrSites,
-                            dfResults,
-                            intNParticipants,
-                            strTitle = "GSM Deep Dive") {
+  chrMetrics,
+  chrSites,
+  dfResults,
+  intNParticipants,
+  strTitle = "GSM Deep Dive") {
   div(
     id = "main-content",
     fluidRow(

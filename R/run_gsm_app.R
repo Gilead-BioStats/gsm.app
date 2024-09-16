@@ -3,13 +3,13 @@
 #' @inheritParams shared-params
 #' @export
 run_gsm_app <- function(
-    dfResults,
-    dfGroups,
-    dfMetrics,
-    dfBounds,
-    dfAnalyticsInput,
-    fnFetchParticipantData,
-    strTitle = "GSM Deep Dive") {
+  dfResults,
+  dfGroups,
+  dfMetrics,
+  dfBounds,
+  dfAnalyticsInput,
+  fnFetchParticipantData,
+  strTitle = "GSM Deep Dive") {
   # There's no point launching the app if the data won't work.
   dfResults <- validate_dfResults(dfResults)
   dfGroups <- validate_dfGroups(dfGroups)

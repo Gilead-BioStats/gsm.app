@@ -1,7 +1,7 @@
 expect_cleaned_html <- function(x, call = rlang::caller_env()) {
   rlang::inject(
     expect_snapshot(
-      {{x}},
+      {{ x }},
       transform = scrub_html
     ),
     env = call

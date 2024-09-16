@@ -15,7 +15,7 @@ out_ParticipantsBySite <- function(dfAnalyticsInput, chrColumnNames) {
       selection = "none",
       columnDefs = list(
         list(
-          targets =  c("SubjectID", "Numerator", "Denominator", "Metric"),
+          targets = c("SubjectID", "Numerator", "Denominator", "Metric"),
           className = "dt-center"
         )
       )

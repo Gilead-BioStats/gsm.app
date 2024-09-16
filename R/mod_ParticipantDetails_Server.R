@@ -6,17 +6,17 @@
 #'
 #' @keywords internal
 mod_ParticipantDetails_Server <- function(
-    id,
-    fnFetchParticipantData,
-    rctv_strSubjectID
+  id,
+  fnFetchParticipantData,
+  rctv_strSubjectID
 ) {
   moduleServer(id, function(input, output, session) {
     # Reactives ----
     rctv_lParticipantData <- reactive({
       if (
         !length(rctv_strSubjectID()) ||
-        rctv_strSubjectID() == "None" ||
-        rctv_strSubjectID() == ""
+          rctv_strSubjectID() == "None" ||
+          rctv_strSubjectID() == ""
       ) {
         return(NULL)
       }

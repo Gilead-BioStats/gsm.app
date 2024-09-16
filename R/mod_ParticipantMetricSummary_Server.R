@@ -6,8 +6,8 @@
 #'   and instead returns the string "selectedID") as a [shiny::reactive()].
 #' @keywords internal
 mod_ParticipantMetricSummary_Server <- function(
-    id,
-    rctv_lParticipantMetricData
+  id,
+  rctv_lParticipantMetricData
 ) {
   moduleServer(id, function(input, output, session) {
     rctv_chrParticipantMetricDataNames <- reactive({

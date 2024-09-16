@@ -8,8 +8,12 @@ test_that("mod_DataTableCard_Server sets things up from arguments", {
   testServer(
     mod_DataTableCard_Server,
     args = list(
-      rctv_lData = reactive({ mock_data }),
-      rctv_strName = reactive({ "tableOne" })
+      rctv_lData = reactive({
+        mock_data
+      }),
+      rctv_strName = reactive({
+        "tableOne"
+      })
     ),
     {
       # Check that the table output is rendered correctly
@@ -27,8 +31,12 @@ test_that("mod_DataTableCard_Server sets things up from arguments", {
   testServer(
     mod_DataTableCard_Server,
     args = list(
-      rctv_lData = reactive({ mock_data }),
-      rctv_strName = reactive({ "tableTwo" })
+      rctv_lData = reactive({
+        mock_data
+      }),
+      rctv_strName = reactive({
+        "tableTwo"
+      })
     ),
     {
       # Check that the table output is rendered correctly
@@ -54,8 +62,12 @@ test_that("mod_DataTableCard_Server uses selection for return value", {
   testServer(
     mod_DataTableCard_Server,
     args = list(
-      rctv_lData = reactive({ mock_data }),
-      rctv_strName = reactive({ "table1" })
+      rctv_lData = reactive({
+        mock_data
+      }),
+      rctv_strName = reactive({
+        "table1"
+      })
     ),
     {
       expect_equal(rctv_intSelectedRows(), NULL)
