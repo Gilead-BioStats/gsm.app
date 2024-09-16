@@ -2,7 +2,11 @@
 #'
 #' Reused parameter definitions are gathered here for easier usage.
 #'
-#' @param id The namespace id for this module.
+#' @param id The id for this module in this namespace.
+#' @param chrLinkIDs `character` Module ids for multiple modules.
+#' @param chrLabels `character` A vector of labels for display to the user.
+#' @param chrValues `character` A vector of values to associate with a vector of
+#'   labels.
 #' @param dfAnalyticsInput `data.frame` Participant-level metric data.
 #' @param dfBounds `data.frame` Set of predicted percentages/rates and upper-
 #'   and lower-bounds across the full range of sample sizes/total exposure

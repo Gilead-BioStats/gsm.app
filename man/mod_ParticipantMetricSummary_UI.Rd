@@ -7,7 +7,7 @@
 mod_ParticipantMetricSummary_UI(id)
 }
 \arguments{
-\item{id}{The namespace id for this module.}
+\item{id}{The id for this module in this namespace.}
 }
 \value{
 An \code{\link[htmltools:builder]{htmltools::div()}} with either a placeholder, or a clickable list

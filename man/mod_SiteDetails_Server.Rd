@@ -14,7 +14,7 @@ mod_SiteDetails_Server(
 )
 }
 \arguments{
-\item{id}{The namespace id for this module.}
+\item{id}{The id for this module in this namespace.}
 
 \item{dfGroups}{\code{data.frame} Group-level metadata dictionary.}
 
