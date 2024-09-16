@@ -2,7 +2,7 @@
 #'
 #' @inheritParams shared-params
 #'
-#' @return An [htmltools::div()] with participant metadata.
+#' @return A [bslib::card()] with participant metadata.
 #' @keywords internal
 out_ParticipantMetadata <- function(lParticipantMetadata) {
   if (!length(lParticipantMetadata)) {

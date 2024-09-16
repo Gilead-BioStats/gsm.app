@@ -18,10 +18,11 @@ Useful links:
 
 }
 \author{
-\strong{Maintainer}: Spencer Childress \email{spencer.childress@gilead.com}
+\strong{Maintainer}: Jon Harmon \email{jonthegeek@gmail.com} (\href{https://orcid.org/0000-0003-4781-4346}{ORCID})
 
 Authors:
 \itemize{
+  \item Spencer Childress \email{spencer.childress@gilead.com}
   \item Taylor Rodgers \email{Taylor.Rodgers@freestateanalytics.com}
   \item Matt Roumaya \email{matthewroumaya@gmail.com} (\href{https://orcid.org/0000-0002-8009-2771}{ORCID})
 }

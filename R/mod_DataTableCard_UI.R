@@ -1,3 +1,10 @@
+#' Card with DTOutput
+#'
+#' @inheritParams shared-params
+#'
+#' @return A [bslib::card()] with either a placeholder, or a [DT::DTOutput()]
+#'   table.
+#' @keywords internal
 mod_DataTableCard_UI <- function(id) {
   ns <- NS(id)
   bslib::card(

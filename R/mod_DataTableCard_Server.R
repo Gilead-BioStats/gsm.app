@@ -1,3 +1,8 @@
+#' DataTable Card Server
+#'
+#' @inheritParams shared-params
+#'
+#' @keywords internal
 mod_DataTableCard_Server <- function(id, rctv_lData, rctv_strName) {
   moduleServer(id, function(input, output, session) {
     output$title <- renderText({
@@ -18,5 +23,9 @@ mod_DataTableCard_Server <- function(id, rctv_lData, rctv_strName) {
         df
       }
     })
+    rctv_intSelectedRows <- reactive(
+      input$table_rows_selected
+    )
+    return(rctv_intSelectedRows)
   })
 }

@@ -27,11 +27,16 @@
 #'   (subjects) in the study.
 #' @param lParticipantMetadata `list` Named list of data describing a single
 #'   participant.
+#' @param rctv_lData `reactive list` A [shiny::reactive()] object that returns a
+#'   named list of dataframes.
 #' @param rctv_lParticipantMetricData `reactive list` A [shiny::reactive()]
 #'   object that returns a list of dataframes for a given participant, one for
 #'   each metric that is available.
 #' @param rctv_strMetricID `reactive character` A [shiny::reactive()] object
 #'   that returns the selected `MetricID`.
+#' @param rctv_strName `reactive character` A [shiny::reactive()] object that
+#'   returns the name of an object, such as a particular dataframe in a named
+#'   list.
 #' @param rctv_strSiteID `reactive character` A [shiny::reactive()] object that
 #'   returns the `GroupID` of a site.
 #' @param rctv_strSubjectID `reactive character` A [shiny::reactive()] object
