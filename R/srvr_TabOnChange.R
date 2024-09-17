@@ -1,7 +1,7 @@
 srvr_TabOnChange <- function(
-    strTargetTab,
-    rctv_strValue,
-    session = getDefaultReactiveDomain()
+  strTargetTab,
+  rctv_strValue,
+  session = getDefaultReactiveDomain()
 ) {
   observe(
     bslib::nav_select("primary_nav_bar", strTargetTab, session = session)

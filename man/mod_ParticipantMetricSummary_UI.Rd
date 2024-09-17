@@ -10,8 +10,8 @@ mod_ParticipantMetricSummary_UI(id)
 \item{id}{The id for this module in this namespace.}
 }
 \value{
-An \code{\link[htmltools:builder]{htmltools::div()}} with either a placeholder, or a clickable list
-of available metric data for this participant.
+A \code{\link[bslib:card]{bslib::card()}} with either a placeholder, or a clickable list of
+available metric data for this participant.
 }
 \description{
 Participant metric summary card

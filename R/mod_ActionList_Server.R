@@ -1,4 +1,4 @@
-mod_ActionList_Server = function(id, rctv_chrNames) {
+mod_ActionList_Server <- function(id, rctv_chrNames) {
   moduleServer(id, function(input, output, session) {
     lastClickedLink <- reactiveVal(NULL)
     observe({

@@ -3,7 +3,7 @@ make_lStudy <- function(dfGroups, dfResults) {
   lStudy <- as.list(rlang::set_names(dfStudy$Value, dfStudy$Param))
   # Temporarily only use some specific columns.
   lStudy <- temp_subsetLStudy(lStudy)
-  lStudy$snapshot_date = format(max(as.Date(dfResults$SnapshotDate)), "%Y-%m-%d")
+  lStudy$snapshot_date <- format(max(as.Date(dfResults$SnapshotDate)), "%Y-%m-%d")
   return(lStudy)
 }
 

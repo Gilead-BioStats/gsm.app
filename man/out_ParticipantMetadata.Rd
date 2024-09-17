@@ -11,7 +11,7 @@ out_ParticipantMetadata(lParticipantMetadata)
 participant.}
 }
 \value{
-An \code{\link[htmltools:builder]{htmltools::div()}} with participant metadata.
+A \code{\link[bslib:card]{bslib::card()}} with participant metadata.
 }
 \description{
 Participant metadata card

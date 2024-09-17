@@ -19,7 +19,7 @@ mod_ParticipantDetails_UI <- function(id) {
     fluidRow(
       column(
         width = 12,
-        mod_DataTableCard_UI(ns("metric_data"))
+        mod_ParticipantDomain_UI(ns("domain"))
       )
     )
   )

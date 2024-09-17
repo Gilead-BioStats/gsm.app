@@ -4,8 +4,8 @@
 #'
 #' @keywords internal
 srvr_PopulateParticipantSelect <- function(
-    chrParticipantIDs,
-    session = getDefaultReactiveDomain()
+  chrParticipantIDs,
+  session = getDefaultReactiveDomain()
 ) {
   updateSelectizeInput(
     "participant",

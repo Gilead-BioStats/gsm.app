@@ -7,10 +7,10 @@
 #' @return A Shiny UI object
 #' @keywords internal
 gsmApp_UI <- function(dfResults,
-                      dfMetrics,
-                      dfGroups,
-                      intNParticipants,
-                      strTitle = "GSM Deep Dive") {
+  dfMetrics,
+  dfGroups,
+  intNParticipants,
+  strTitle = "GSM Deep Dive") {
   # Transform data for use in lower-level functions. ----
   lStudy <- make_lStudy(dfGroups, dfResults)
   chrMetrics <- rlang::set_names(dfMetrics$MetricID, dfMetrics$Metric)

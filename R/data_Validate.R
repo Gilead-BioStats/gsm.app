@@ -2,9 +2,9 @@
 # check in the app itself since users don't HAVE to use workflows.
 
 validate_df <- function(df,
-                        chrRequiredColumns = character(),
-                        arg = rlang::caller_arg(df),
-                        call = rlang::caller_env()) {
+  chrRequiredColumns = character(),
+  arg = rlang::caller_arg(df),
+  call = rlang::caller_env()) {
   df <- validate_is_df(df, arg = arg, call = call)
   validate_has_columns(
     df,
@@ -15,8 +15,8 @@ validate_df <- function(df,
 }
 
 validate_is_df <- function(df,
-                           arg = rlang::caller_arg(df),
-                           call = rlang::caller_env()) {
+  arg = rlang::caller_arg(df),
+  call = rlang::caller_env()) {
   if (is.data.frame(df)) {
     return(df)
   }
@@ -31,9 +31,9 @@ validate_is_df <- function(df,
 }
 
 validate_has_columns <- function(df,
-                                 chrRequiredColumns = character(),
-                                 arg = rlang::caller_arg(df),
-                                 call = rlang::caller_env()) {
+  chrRequiredColumns = character(),
+  arg = rlang::caller_arg(df),
+  call = rlang::caller_env()) {
   missing_cols <- setdiff(chrRequiredColumns, colnames(df))
   if (length(missing_cols)) {
     cli::cli_abort(

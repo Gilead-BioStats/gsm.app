@@ -41,12 +41,19 @@ metric.}
 \item{lParticipantMetadata}{\code{list} Named list of data describing a single
 participant.}
 
+\item{rctv_lData}{\verb{reactive list} A \code{\link[shiny:reactive]{shiny::reactive()}} object that returns a
+named list of dataframes.}
+
 \item{rctv_lParticipantMetricData}{\verb{reactive list} A \code{\link[shiny:reactive]{shiny::reactive()}}
 object that returns a list of dataframes for a given participant, one for
 each metric that is available.}
 
 \item{rctv_strMetricID}{\verb{reactive character} A \code{\link[shiny:reactive]{shiny::reactive()}} object
 that returns the selected \code{MetricID}.}
+
+\item{rctv_strName}{\verb{reactive character} A \code{\link[shiny:reactive]{shiny::reactive()}} object that
+returns the name of an object, such as a particular dataframe in a named
+list.}
 
 \item{rctv_strSiteID}{\verb{reactive character} A \code{\link[shiny:reactive]{shiny::reactive()}} object that
 returns the \code{GroupID} of a site.}

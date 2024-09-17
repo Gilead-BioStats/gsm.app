@@ -4,12 +4,12 @@
 #'
 #' @keywords internal
 mod_SiteDetails_Server <- function(
-    id,
-    dfGroups,
-    dfAnalyticsInput,
-    rctv_strSiteID,
-    rctv_strMetricID,
-    rctv_lMetric) {
+  id,
+  dfGroups,
+  dfAnalyticsInput,
+  rctv_strSiteID,
+  rctv_strMetricID,
+  rctv_lMetric) {
   moduleServer(id, function(input, output, session) {
     chrTargetColumns <- c("SubjectID", "Numerator", "Denominator", "Metric")
 
