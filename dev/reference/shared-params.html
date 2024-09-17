@@ -7,7 +7,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">gsm.app</a>
 
-    <small class="nav-text text-danger me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="In-development version">1.0.0</small>
+    <small class="nav-text text-danger me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="In-development version">1.0.0.9000</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -103,6 +103,11 @@ metric.</p></dd>
 participant.</p></dd>
 
 
+<dt id="arg-rctv-ldata">rctv_lData<a class="anchor" aria-label="anchor" href="#arg-rctv-ldata"></a></dt>
+<dd><p><code>reactive list</code> A <code><a href="https://rdrr.io/pkg/shiny/man/reactive.html" class="external-link">shiny::reactive()</a></code> object that returns a
+named list of dataframes.</p></dd>
+
+
 <dt id="arg-rctv-lparticipantmetricdata">rctv_lParticipantMetricData<a class="anchor" aria-label="anchor" href="#arg-rctv-lparticipantmetricdata"></a></dt>
 <dd><p><code>reactive list</code> A <code><a href="https://rdrr.io/pkg/shiny/man/reactive.html" class="external-link">shiny::reactive()</a></code>
 object that returns a list of dataframes for a given participant, one for
@@ -112,6 +117,12 @@ each metric that is available.</p></dd>
 <dt id="arg-rctv-strmetricid">rctv_strMetricID<a class="anchor" aria-label="anchor" href="#arg-rctv-strmetricid"></a></dt>
 <dd><p><code>reactive character</code> A <code><a href="https://rdrr.io/pkg/shiny/man/reactive.html" class="external-link">shiny::reactive()</a></code> object
 that returns the selected <code>MetricID</code>.</p></dd>
+
+
+<dt id="arg-rctv-strname">rctv_strName<a class="anchor" aria-label="anchor" href="#arg-rctv-strname"></a></dt>
+<dd><p><code>reactive character</code> A <code><a href="https://rdrr.io/pkg/shiny/man/reactive.html" class="external-link">shiny::reactive()</a></code> object that
+returns the name of an object, such as a particular dataframe in a named
+list.</p></dd>
 
 
 <dt id="arg-rctv-strsiteid">rctv_strSiteID<a class="anchor" aria-label="anchor" href="#arg-rctv-strsiteid"></a></dt>
@@ -150,7 +161,7 @@ default should almost always be used).</p></dd>
 
 
     <footer><div class="pkgdown-footer-left">
-  <p>Developed by Spencer Childress, Taylor Rodgers, Matt Roumaya.</p>
+  <p>Developed by Jon Harmon, Spencer Childress, Taylor Rodgers, Matt Roumaya.</p>
 </div>
 
 <div class="pkgdown-footer-right">
