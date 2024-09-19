@@ -7,7 +7,7 @@
 mod_MetricDetails_UI(id)
 }
 \arguments{
-\item{id}{The id for this module in this namespace.}
+\item{id}{The id for this module or widget in this namespace.}
 }
 \description{
 Metric Details UI

@@ -4,11 +4,14 @@
 \alias{shared-params}
 \title{Parameters used in multiple functions}
 \arguments{
-\item{id}{The id for this module in this namespace.}
+\item{id}{The id for this module or widget in this namespace.}
 
 \item{chrLinkIDs}{\code{character} Module ids for multiple modules.}
 
 \item{chrLabels}{\code{character} A vector of labels for display to the user.}
+
+\item{chrMetrics}{\code{character} A named vector of MetricIDs, where the names
+are the full Metric.}
 
 \item{chrValues}{\code{character} A vector of values to associate with a vector of
 labels.}
@@ -38,6 +41,9 @@ metric.}
 \item{intNParticipants}{\code{integer} The number of unique participants
 (subjects) in the study.}
 
+\item{lMetric}{\code{list} Named list of data describing a single metric, as well
+as things like which group is selected.}
+
 \item{lParticipantMetadata}{\code{list} Named list of data describing a single
 participant.}
 
@@ -63,6 +69,12 @@ that returns the \code{SubjectID} of the selected participant.}
 
 \item{session}{\code{environment} Session from which to make a child scope (the
 default should almost always be used).}
+
+\item{strContainerID}{\code{character} The (namespaced) ID of the target container
+(usually a div).}
+
+\item{strInputID}{\code{character} An ID to use for the Shiny input created by
+this module or used by this Javascript.}
 
 \item{strMetricID}{\code{character} A \code{MetricID} to focus on.}
 

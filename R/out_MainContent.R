@@ -21,7 +21,7 @@ out_MainContent <- function(lStudy,
             chrSites = chrSites,
             intNParticipants = intNParticipants
           ),
-          out_MainTabs(dfResults, strTitle = strTitle)
+          out_MainTabs(dfResults, chrMetrics, strTitle = strTitle)
         )
       )
     )

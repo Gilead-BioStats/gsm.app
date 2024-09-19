@@ -7,7 +7,7 @@
 mod_ParticipantDomain_UI(id)
 }
 \arguments{
-\item{id}{The id for this module in this namespace.}
+\item{id}{The id for this module or widget in this namespace.}
 }
 \value{
 A \code{\link[bslib:card]{bslib::card()}} with either a placeholder, or a

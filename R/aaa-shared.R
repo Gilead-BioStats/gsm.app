@@ -2,9 +2,11 @@
 #'
 #' Reused parameter definitions are gathered here for easier usage.
 #'
-#' @param id The id for this module in this namespace.
+#' @param id The id for this module or widget in this namespace.
 #' @param chrLinkIDs `character` Module ids for multiple modules.
 #' @param chrLabels `character` A vector of labels for display to the user.
+#' @param chrMetrics `character` A named vector of MetricIDs, where the names
+#'   are the full Metric.
 #' @param chrValues `character` A vector of values to associate with a vector of
 #'   labels.
 #' @param dfAnalyticsInput `data.frame` Participant-level metric data.
@@ -25,6 +27,8 @@
 #'   metric.
 #' @param intNParticipants `integer` The number of unique participants
 #'   (subjects) in the study.
+#' @param lMetric `list` Named list of data describing a single metric, as well
+#'   as things like which group is selected.
 #' @param lParticipantMetadata `list` Named list of data describing a single
 #'   participant.
 #' @param rctv_lData `reactive list` A [shiny::reactive()] object that returns a
@@ -43,6 +47,10 @@
 #'   that returns the `SubjectID` of the selected participant.
 #' @param session `environment` Session from which to make a child scope (the
 #'   default should almost always be used).
+#' @param strContainerID `character` The (namespaced) ID of the target container
+#'   (usually a div).
+#' @param strInputID `character` An ID to use for the Shiny input created by
+#'   this module or used by this Javascript.
 #' @param strMetricID `character` A `MetricID` to focus on.
 #' @param strSubjectID `character` A `SubjectID` of an individual participant.
 #' @param strTitle `character` A title to display for the overall app.

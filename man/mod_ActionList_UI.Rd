@@ -7,7 +7,7 @@
 mod_ActionList_UI(id, chrLinkIDs, chrLabels, chrValues)
 }
 \arguments{
-\item{id}{The id for this module in this namespace.}
+\item{id}{The id for this module or widget in this namespace.}
 
 \item{chrLinkIDs}{\code{character} Module ids for multiple modules.}
 
