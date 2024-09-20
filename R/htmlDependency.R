@@ -6,13 +6,29 @@
 #'   which is attached to the Shiny app exactly once, regardless how many times
 #'   it is added.
 #' @keywords internal
-htmlDependency_Stylesheet <- function() {
+htmlDependency_Default_Stylesheet <- function() {
+  htmlDependency_Stylesheet("defaultStyles.css")
+}
+
+#' gsm.app stylesheet
+#'
+#' Attach a stylesheet from this package to an app or other HTML exactly once.
+#'
+#' @return An `html_dependency` object (see [htmltools::htmlDependency()]),
+#'   which is attached to the Shiny app exactly once, regardless how many times
+#'   it is added.
+#' @keywords internal
+htmlDependency_Stylesheet <- function(
+    filename,
+    name = sub("\\.css$", "", filename),
+    version = "1.0.0"
+) {
   htmltools::htmlDependency(
-    name = "Stylesheet",
-    version = "1.0.0",
+    name = name,
+    version = version,
     src = "www",
     package = "gsm.app",
-    stylesheet = "styles.css"
+    stylesheet = filename
   )
 }
 

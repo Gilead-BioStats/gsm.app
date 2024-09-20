@@ -1,5 +1,6 @@
 out_MetadataList <- function(chrLabels, chrValues) {
   tagList(
+    htmlDependency_Stylesheet("metadata.css"),
     purrr::map2(
       chrLabels, chrValues,
       out_MetadataItem
