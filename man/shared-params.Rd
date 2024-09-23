@@ -49,8 +49,19 @@ participant.}
 
 \item{lStudy}{\code{list} Named list of data describing the overall study.}
 
+\item{rctv_dfBounds}{\verb{reactive dataframe} A \code{\link[shiny:reactive]{shiny::reactive()}} object that
+returns a set of predicted percentages/rates and upper- and lower-bounds
+across the full range of sample sizes/total exposure values for reporting.}
+
+\item{rctv_dfResults}{\verb{reactive dataframe} A \code{\link[shiny:reactive]{shiny::reactive()}} object that
+returns a stacked summary of analysis pipeline output.}
+
 \item{rctv_lData}{\verb{reactive list} A \code{\link[shiny:reactive]{shiny::reactive()}} object that returns a
 named list of dataframes.}
+
+\item{rctv_lMetric}{\verb{reactive list} A \code{\link[shiny:reactive]{shiny::reactive()}} object that returns
+a named list of data describing a single metric, as well as things like
+which group is selected.}
 
 \item{rctv_lParticipantMetricData}{\verb{reactive list} A \code{\link[shiny:reactive]{shiny::reactive()}}
 object that returns a list of dataframes for a given participant, one for
@@ -74,6 +85,8 @@ default should almost always be used).}
 
 \item{strContainerID}{\code{character} The (namespaced) ID of the target container
 (usually a div).}
+
+\item{strGroupID}{\code{character} A \code{GroupID} to focus on.}
 
 \item{strInputID}{\code{character} An ID to use for the Shiny input created by
 this module or used by this Javascript.}

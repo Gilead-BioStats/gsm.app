@@ -26,6 +26,10 @@ This will be filtered to cases where \code{GroupLevel == "Site"}.}
 and lower-bounds across the full range of sample sizes/total exposure
 values for reporting.}
 
+\item{rctv_lMetric}{\verb{reactive list} A \code{\link[shiny:reactive]{shiny::reactive()}} object that returns
+a named list of data describing a single metric, as well as things like
+which group is selected.}
+
 \item{rctv_strSiteID}{\verb{reactive character} A \code{\link[shiny:reactive]{shiny::reactive()}} object that
 returns the \code{GroupID} of a site.}
 

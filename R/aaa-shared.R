@@ -35,8 +35,16 @@
 #' @param lParticipantMetadata `list` Named list of data describing a single
 #'   participant.
 #' @param lStudy `list` Named list of data describing the overall study.
+#' @param rctv_dfBounds `reactive dataframe` A [shiny::reactive()] object that
+#'   returns a set of predicted percentages/rates and upper- and lower-bounds
+#'   across the full range of sample sizes/total exposure values for reporting.
+#' @param rctv_dfResults `reactive dataframe` A [shiny::reactive()] object that
+#'   returns a stacked summary of analysis pipeline output.
 #' @param rctv_lData `reactive list` A [shiny::reactive()] object that returns a
 #'   named list of dataframes.
+#' @param rctv_lMetric `reactive list` A [shiny::reactive()] object that returns
+#'   a named list of data describing a single metric, as well as things like
+#'   which group is selected.
 #' @param rctv_lParticipantMetricData `reactive list` A [shiny::reactive()]
 #'   object that returns a list of dataframes for a given participant, one for
 #'   each metric that is available.
@@ -53,6 +61,7 @@
 #'   default should almost always be used).
 #' @param strContainerID `character` The (namespaced) ID of the target container
 #'   (usually a div).
+#' @param strGroupID `character` A `GroupID` to focus on.
 #' @param strInputID `character` An ID to use for the Shiny input created by
 #'   this module or used by this Javascript.
 #' @param strMetricID `character` A `MetricID` to focus on.

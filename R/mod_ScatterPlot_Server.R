@@ -1,3 +1,8 @@
+#' ScatterPlot Module Server
+#'
+#' @inheritParams shared-params
+#' @return A [shiny::reactive()] with the id of the selected group.
+#' @keywords internal
 mod_ScatterPlot_Server <- function(
     id,
     rctv_dfResults,
