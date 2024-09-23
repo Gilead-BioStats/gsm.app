@@ -82,6 +82,9 @@ this module or used by this Javascript.}
 
 \item{strMetricID}{\code{character} A \code{MetricID} to focus on.}
 
+\item{strPlotTitle}{\code{character} A title for a plot, usually the name of a
+metric.}
+
 \item{strSubjectID}{\code{character} A \code{SubjectID} of an individual participant.}
 
 \item{strText}{\code{character} Text to display.}

@@ -54,6 +54,8 @@
 #' @param strInputID `character` An ID to use for the Shiny input created by
 #'   this module or used by this Javascript.
 #' @param strMetricID `character` A `MetricID` to focus on.
+#' @param strPlotTitle `character` A title for a plot, usually the name of a
+#'   metric.
 #' @param strSubjectID `character` A `SubjectID` of an individual participant.
 #' @param strText `character` Text to display.
 #' @param strTitle `character` A title to display for the overall app.
