@@ -2,8 +2,7 @@
 #'
 #' Inputs as links to metric summary reports, with counts of rows.
 #'
-#' @return A string identifying the selected summary (currently does not work
-#'   and instead returns the string "selectedID") as a [shiny::reactive()].
+#' @return A string identifying the selected summary as a [shiny::reactive()].
 #' @keywords internal
 mod_ParticipantMetricSummary_Server <- function(
   id,

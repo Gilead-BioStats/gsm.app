@@ -68,12 +68,12 @@ gsmApp_Server <- function(
       rctv_strSiteID = reactive(input$site)
     )
     srvr_SyncInput(
-      strID = "site",
+      id = "site",
       rctv_strValue = lStudyOverviewSelected$rctv_strSelectedGroup,
       session = session
     )
     srvr_SyncInput(
-      strID = "metric",
+      id = "metric",
       rctv_strValue = lStudyOverviewSelected$rctv_strSelectectMetricID,
       session = session
     )
@@ -111,12 +111,12 @@ gsmApp_Server <- function(
       once = TRUE
     )
     srvr_SyncInput(
-      strID = "site",
+      id = "site",
       rctv_strValue = rctv_strMetricDetailsGroup,
       session = session
     )
     srvr_SyncSelectizeInput(
-      strID = "participant",
+      id = "participant",
       rctv_strValue = rctv_strSiteDetailsParticipant,
       chrChoices = chrParticipantIDs,
       server = TRUE,

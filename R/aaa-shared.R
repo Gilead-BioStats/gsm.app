@@ -1,8 +1,10 @@
 #' Parameters used in multiple functions
 #'
-#' Reused parameter definitions are gathered here for easier usage.
+#' Reused parameter definitions are gathered here for easier usage. Note: We
+#' intentionally use `id` rather than the more standardized `strID` throughout
+#' this package, because [shiny::testServer()] specifically expects an `id`
+#' argument in module server functions.
 #'
-#' @param id The id for this module or widget in this namespace.
 #' @param chrLinkIDs `character` Module ids for multiple modules.
 #' @param chrLabels `character` A vector of labels for display to the user.
 #' @param chrMetrics `character` A named vector of MetricIDs, where the names
@@ -25,6 +27,7 @@
 #'   about the participant, and `metric_data` should be a named list of
 #'   data.frames, each of which contains information related to the named
 #'   metric.
+#' @param id `character` The id for this module, widget, or other element.
 #' @param intNParticipants `integer` The number of unique participants
 #'   (subjects) in the study.
 #' @param lMetric `list` Named list of data describing a single metric, as well
@@ -50,7 +53,6 @@
 #'   default should almost always be used).
 #' @param strContainerID `character` The (namespaced) ID of the target container
 #'   (usually a div).
-#' @param strID `character` An ID for this element.
 #' @param strInputID `character` An ID to use for the Shiny input created by
 #'   this module or used by this Javascript.
 #' @param strMetricID `character` A `MetricID` to focus on.

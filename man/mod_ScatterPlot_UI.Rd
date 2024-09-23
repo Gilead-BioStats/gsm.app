@@ -4,10 +4,10 @@
 \alias{mod_ScatterPlot_UI}
 \title{ScatterPlot Module UI}
 \usage{
-mod_ScatterPlot_UI(strID, strPlotTitle = NULL)
+mod_ScatterPlot_UI(id, strPlotTitle = NULL)
 }
 \arguments{
-\item{strID}{\code{character} An ID for this element.}
+\item{id}{\code{character} The id for this module, widget, or other element.}
 
 \item{strPlotTitle}{}
 }

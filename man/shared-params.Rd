@@ -4,8 +4,6 @@
 \alias{shared-params}
 \title{Parameters used in multiple functions}
 \arguments{
-\item{id}{The id for this module or widget in this namespace.}
-
 \item{chrLinkIDs}{\code{character} Module ids for multiple modules.}
 
 \item{chrLabels}{\code{character} A vector of labels for display to the user.}
@@ -37,6 +35,8 @@ This will be filtered to cases where \code{GroupLevel == "Site"}.}
 about the participant, and \code{metric_data} should be a named list of
 data.frames, each of which contains information related to the named
 metric.}
+
+\item{id}{\code{character} The id for this module, widget, or other element.}
 
 \item{intNParticipants}{\code{integer} The number of unique participants
 (subjects) in the study.}
@@ -75,8 +75,6 @@ default should almost always be used).}
 \item{strContainerID}{\code{character} The (namespaced) ID of the target container
 (usually a div).}
 
-\item{strID}{\code{character} An ID for this element.}
-
 \item{strInputID}{\code{character} An ID to use for the Shiny input created by
 this module or used by this Javascript.}
 
@@ -94,6 +92,9 @@ metric.}
 \item{strValue}{\code{character} The value of a field.}
 }
 \description{
-Reused parameter definitions are gathered here for easier usage.
+Reused parameter definitions are gathered here for easier usage. Note: We
+intentionally use \code{id} rather than the more standardized \code{strID} throughout
+this package, because \code{\link[shiny:testServer]{shiny::testServer()}} specifically expects an \code{id}
+argument in module server functions.
 }
 \keyword{internal}

@@ -1,7 +1,7 @@
 # mod_ScatterPlot_UI creates the expected UI
 
     Code
-      test_result <- mod_ScatterPlot_UI(strID = "myID")
+      test_result <- mod_ScatterPlot_UI("myID")
       class(test_result) <- "shiny.tag"
       test_result
     Output
@@ -19,7 +19,7 @@
 # mod_ScatterPlot_UI uses title when it's supplied
 
     Code
-      test_result <- mod_ScatterPlot_UI(strID = "myID", strPlotTitle = "myTitle")
+      test_result <- mod_ScatterPlot_UI("myID", strPlotTitle = "myTitle")
       class(test_result) <- "shiny.tag"
       test_result
     Output

@@ -7,7 +7,7 @@
 mod_ParticipantDomain_Server(id, rctv_lData, rctv_strName)
 }
 \arguments{
-\item{id}{The id for this module or widget in this namespace.}
+\item{id}{\code{character} The id for this module, widget, or other element.}
 
 \item{rctv_lData}{\verb{reactive list} A \code{\link[shiny:reactive]{shiny::reactive()}} object that returns a
 named list of dataframes.}

@@ -7,7 +7,7 @@
 mod_ParticipantMetricSummary_UI(id)
 }
 \arguments{
-\item{id}{The id for this module or widget in this namespace.}
+\item{id}{\code{character} The id for this module, widget, or other element.}
 }
 \value{
 A \code{\link[bslib:card]{bslib::card()}} with either a placeholder, or a clickable list of

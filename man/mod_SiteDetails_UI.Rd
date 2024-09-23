@@ -7,7 +7,7 @@
 mod_SiteDetails_UI(id)
 }
 \arguments{
-\item{id}{The id for this module or widget in this namespace.}
+\item{id}{\code{character} The id for this module, widget, or other element.}
 }
 \description{
 Site Details UI

@@ -7,10 +7,10 @@
 #'
 #' @return A [bslib::card()].
 #' @keywords internal
-out_Card <- function(tagTitle, ..., strID = NULL) {
+out_Card <- function(tagTitle, ..., id = NULL) {
   bslib::card(
     full_screen = TRUE,
-    id = strID,
+    id = id,
     bslib::card_title(tagTitle),
     ...
   )

@@ -14,7 +14,7 @@ mod_StudyOverview_Server(
 )
 }
 \arguments{
-\item{id}{The id for this module or widget in this namespace.}
+\item{id}{\code{character} The id for this module, widget, or other element.}
 
 \item{dfResults}{\code{data.frame} A stacked summary of analysis pipeline output.
 This will be filtered to cases where \code{GroupLevel == "Site"}.}
