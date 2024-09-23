@@ -10,6 +10,11 @@
 
 \item{chrLabels}{\code{character} A vector of labels for display to the user.}
 
+\item{chrMetrics}{\code{character} A named vector of MetricIDs, where the names
+are the full Metric.}
+
+\item{chrSites}{\code{character} A vector of sites available in the study.}
+
 \item{chrValues}{\code{character} A vector of values to associate with a vector of
 labels.}
 

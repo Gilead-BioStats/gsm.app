@@ -5,6 +5,9 @@
 #' @param id The id for this module in this namespace.
 #' @param chrLinkIDs `character` Module ids for multiple modules.
 #' @param chrLabels `character` A vector of labels for display to the user.
+#' @param chrMetrics `character` A named vector of MetricIDs, where the names
+#'   are the full Metric.
+#' @param chrSites `character` A vector of sites available in the study.
 #' @param chrValues `character` A vector of values to associate with a vector of
 #'   labels.
 #' @param dfAnalyticsInput `data.frame` Participant-level metric data.
