@@ -72,6 +72,8 @@ default should almost always be used).}
 
 \item{strID}{\code{character} An ID for this element.}
 
+\item{strLabel}{\code{character} The label of a field.}
+
 \item{strMetricID}{\code{character} A \code{MetricID} to focus on.}
 
 \item{strSubjectID}{\code{character} A \code{SubjectID} of an individual participant.}

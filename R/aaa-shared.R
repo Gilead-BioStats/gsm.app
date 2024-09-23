@@ -47,6 +47,7 @@
 #'   default should almost always be used).
 #' @param strColor `character` The target color to report about.
 #' @param strID `character` An ID for this element.
+#' @param strLabel `character` The label of a field.
 #' @param strMetricID `character` A `MetricID` to focus on.
 #' @param strSubjectID `character` A `SubjectID` of an individual participant.
 #' @param strText `character` Text to display.
