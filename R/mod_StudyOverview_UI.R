@@ -5,7 +5,7 @@
 #' @keywords internal
 mod_StudyOverview_UI <- function(id, dfResults) {
   ns <- NS(id)
-  tags_to_return <- bslib::navset_pill(
+  tags_to_return <- bslib::navset_underline(
     bslib::nav_panel(
       title = "Overview Table",
       bslib::card(

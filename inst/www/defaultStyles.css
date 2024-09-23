@@ -1,0 +1,42 @@
+#primary_nav_bar {
+  margin-left: 2rem
+}
+
+/* Main inputs -------------------------------------------------------------- */
+
+.overflow-on {
+  overflow: visible !important;
+}
+
+
+/* Flag count pills --------------------------------------------------------- */
+
+.badge {
+  font-size: 1em;
+  padding: 0.55em;
+}
+
+.badge-red {
+  background-color: #FFCCCC;
+}
+
+.badge-amber {
+  background-color: #FFCC99;
+}
+
+
+/* CSS to eliminate via future refactors ------------------------------------ */
+
+#metric_details-results tbody > tr {
+    cursor: pointer;
+}
+
+.table-deemphasize {
+  opacity: .55;
+}
+
+#site_details-participants td:nth-child(1) {
+  cursor: pointer;
+  color: blue;
+  text-decoration: underline;
+}

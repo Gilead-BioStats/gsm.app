@@ -41,6 +41,8 @@ metric.}
 \item{lParticipantMetadata}{\code{list} Named list of data describing a single
 participant.}
 
+\item{lStudy}{\code{list} Named list of data describing the overall study.}
+
 \item{rctv_lData}{\verb{reactive list} A \code{\link[shiny:reactive]{shiny::reactive()}} object that returns a
 named list of dataframes.}
 
@@ -64,9 +66,13 @@ that returns the \code{SubjectID} of the selected participant.}
 \item{session}{\code{environment} Session from which to make a child scope (the
 default should almost always be used).}
 
+\item{strID}{\code{character} An ID for this element.}
+
 \item{strMetricID}{\code{character} A \code{MetricID} to focus on.}
 
 \item{strSubjectID}{\code{character} A \code{SubjectID} of an individual participant.}
+
+\item{strText}{\code{character} Text to display.}
 
 \item{strTitle}{\code{character} A title to display for the overall app.}
 

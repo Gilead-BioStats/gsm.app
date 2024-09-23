@@ -16,22 +16,12 @@ gsmApp_UI <- function(dfResults,
   chrMetrics <- rlang::set_names(dfMetrics$MetricID, dfMetrics$Metric)
   chrSites <- sort(unique(dfGroups$GroupID[dfGroups$GroupLevel == "Site"]))
 
-  # Return ----
-  bslib::page_fluid(
-    shinyjs::useShinyjs(),
-    class = "bg-light",
+  bslib::page_navbar(
+    # class = "bg-light",
+    id = "primary_nav_bar",
     title = strTitle,
     theme = bslib::bs_theme(version = 5),
-    htmlDependency_Stylesheet(),
-    htmlDependency_HighlightTableRow(),
-    htmlDependency_TableClick(),
-    out_MainContent(
-      lStudy = lStudy,
-      chrMetrics = chrMetrics,
-      chrSites = chrSites,
-      dfResults = dfResults,
-      intNParticipants = intNParticipants,
-      strTitle = strTitle
-    )
+    !!!out_MainTabs(dfResults = dfResults),
+    sidebar = out_Sidebar(lStudy, chrMetrics, chrSites, intNParticipants)
   )
 }
