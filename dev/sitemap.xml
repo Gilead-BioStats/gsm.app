@@ -9,6 +9,7 @@
 <url><loc>https://gilead-biostats.github.io/gsm.app/dev/reference/gsm.app-package.html</loc></url>
 <url><loc>https://gilead-biostats.github.io/gsm.app/dev/reference/gsmApp_Server.html</loc></url>
 <url><loc>https://gilead-biostats.github.io/gsm.app/dev/reference/gsmApp_UI.html</loc></url>
+<url><loc>https://gilead-biostats.github.io/gsm.app/dev/reference/htmlDependency_Default_Stylesheet.html</loc></url>
 <url><loc>https://gilead-biostats.github.io/gsm.app/dev/reference/htmlDependency_HighlightTableRow.html</loc></url>
 <url><loc>https://gilead-biostats.github.io/gsm.app/dev/reference/htmlDependency_Stylesheet.html</loc></url>
 <url><loc>https://gilead-biostats.github.io/gsm.app/dev/reference/htmlDependency_TableClick.html</loc></url>
@@ -26,8 +27,12 @@
 <url><loc>https://gilead-biostats.github.io/gsm.app/dev/reference/mod_SiteDetails_UI.html</loc></url>
 <url><loc>https://gilead-biostats.github.io/gsm.app/dev/reference/mod_StudyOverview_Server.html</loc></url>
 <url><loc>https://gilead-biostats.github.io/gsm.app/dev/reference/mod_StudyOverview_UI.html</loc></url>
+<url><loc>https://gilead-biostats.github.io/gsm.app/dev/reference/out_Card.html</loc></url>
+<url><loc>https://gilead-biostats.github.io/gsm.app/dev/reference/out_CardSubtitle.html</loc></url>
 <url><loc>https://gilead-biostats.github.io/gsm.app/dev/reference/out_ParticipantMetadata.html</loc></url>
 <url><loc>https://gilead-biostats.github.io/gsm.app/dev/reference/out_ParticipantsBySite.html</loc></url>
+<url><loc>https://gilead-biostats.github.io/gsm.app/dev/reference/out_Placeholder.html</loc></url>
+<url><loc>https://gilead-biostats.github.io/gsm.app/dev/reference/out_StudyInformation.html</loc></url>
 <url><loc>https://gilead-biostats.github.io/gsm.app/dev/reference/pipe.html</loc></url>
 <url><loc>https://gilead-biostats.github.io/gsm.app/dev/reference/run_gsm_app.html</loc></url>
 <url><loc>https://gilead-biostats.github.io/gsm.app/dev/reference/run_sample_gsm_app.html</loc></url>
