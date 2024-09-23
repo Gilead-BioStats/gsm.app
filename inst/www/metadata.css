@@ -1,0 +1,21 @@
+.metadata-list-item {
+  display: flex;
+  justify-content: space-between;
+}
+
+.metadata-list-item-label {
+  text-align: left;
+  white-space: nowrap;
+}
+
+.metadata-list-item-spacer {
+  border-bottom: 1px dotted;
+  width: 95%;
+  margin-bottom: .4em;
+  margin-right: .4em;
+  margin-left: .4em;
+}
+.metadata-list-item-value {
+  text-align: right;
+  white-space: nowrap;
+}

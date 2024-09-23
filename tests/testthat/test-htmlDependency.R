@@ -1,13 +1,13 @@
-test_that("htmlDependency_Stylesheet attaches the stylesheet", {
-  test_result <- htmlDependency_Stylesheet()
+test_that("htmlDependency_Default_Stylesheet attaches the stylesheet", {
+  test_result <- htmlDependency_Default_Stylesheet()
   expect_s3_class(test_result, "html_dependency")
   expected_result <- list(
-    name = "Stylesheet",
+    name = "defaultStyles",
     version = "1.0.0",
     src = list(file = "www"),
     meta = NULL,
     script = NULL,
-    stylesheet = "styles.css",
+    stylesheet = "defaultStyles.css",
     head = NULL,
     attachment = NULL,
     package = "gsm.app",

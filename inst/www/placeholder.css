@@ -1,0 +1,6 @@
+.placeholder {
+  background-color: var(--bs-info);
+  font-weight: 500;
+  color: black !important;
+  width: 100%;
+}

@@ -18,9 +18,7 @@ mod_SiteDetails_UI <- function(id) {
       shinyjs::hidden(
         out_Card(
           "Site Metadata",
-          p(
-            uiOutput(ns("site_metadata_list"))
-          ),
+          uiOutput(ns("site_metadata_list")),
           strID = ns("card_site_metadata_list")
         )
       ),

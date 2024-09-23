@@ -31,6 +31,7 @@
 #'   as things like which group is selected.
 #' @param lParticipantMetadata `list` Named list of data describing a single
 #'   participant.
+#' @param lStudy `list` Named list of data describing the overall study.
 #' @param rctv_lData `reactive list` A [shiny::reactive()] object that returns a
 #'   named list of dataframes.
 #' @param rctv_lParticipantMetricData `reactive list` A [shiny::reactive()]
@@ -49,10 +50,12 @@
 #'   default should almost always be used).
 #' @param strContainerID `character` The (namespaced) ID of the target container
 #'   (usually a div).
+#' @param strID `character` An ID for this element.
 #' @param strInputID `character` An ID to use for the Shiny input created by
 #'   this module or used by this Javascript.
 #' @param strMetricID `character` A `MetricID` to focus on.
 #' @param strSubjectID `character` A `SubjectID` of an individual participant.
+#' @param strText `character` Text to display.
 #' @param strTitle `character` A title to display for the overall app.
 #' @param strValue `character` The value of a field.
 #'
