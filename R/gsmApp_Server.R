@@ -28,9 +28,6 @@ gsmApp_Server <- function(
     # This one is selectize and thus should remain server-side.
     srvr_PopulateParticipantSelect(chrParticipantIDs, session)
 
-    ## Cross-communication ----
-    srvr_SyncInput("site", reactive(input$site), session = session)
-
     ## Reset ----
     observe({
       updateSelectInput(session, "metric", selected = dfMetrics$MetricID[[1]])
