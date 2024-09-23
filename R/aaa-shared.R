@@ -23,6 +23,7 @@
 #'   about the participant, and `metric_data` should be a named list of
 #'   data.frames, each of which contains information related to the named
 #'   metric.
+#' @param intKRIColorCount `integer` A named vector of counts by color.
 #' @param intNParticipants `integer` The number of unique participants
 #'   (subjects) in the study.
 #' @param lParticipantMetadata `list` Named list of data describing a single
@@ -44,6 +45,7 @@
 #'   that returns the `SubjectID` of the selected participant.
 #' @param session `environment` Session from which to make a child scope (the
 #'   default should almost always be used).
+#' @param strColor `character` The target color to report about.
 #' @param strID `character` An ID for this element.
 #' @param strMetricID `character` A `MetricID` to focus on.
 #' @param strSubjectID `character` A `SubjectID` of an individual participant.

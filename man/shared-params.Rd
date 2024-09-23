@@ -35,6 +35,8 @@ about the participant, and \code{metric_data} should be a named list of
 data.frames, each of which contains information related to the named
 metric.}
 
+\item{intKRIColorCount}{\code{integer} A named vector of counts by color.}
+
 \item{intNParticipants}{\code{integer} The number of unique participants
 (subjects) in the study.}
 
@@ -65,6 +67,8 @@ that returns the \code{SubjectID} of the selected participant.}
 
 \item{session}{\code{environment} Session from which to make a child scope (the
 default should almost always be used).}
+
+\item{strColor}{\code{character} The target color to report about.}
 
 \item{strID}{\code{character} An ID for this element.}
 
