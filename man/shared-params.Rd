@@ -72,10 +72,10 @@ that returns the \code{SubjectID} of the selected participant.}
 \item{session}{\code{environment} Session from which to make a child scope (the
 default should almost always be used).}
 
-\item{strID}{\code{character} An ID for this element.}
-
 \item{strContainerID}{\code{character} The (namespaced) ID of the target container
 (usually a div).}
+
+\item{strID}{\code{character} An ID for this element.}
 
 \item{strInputID}{\code{character} An ID to use for the Shiny input created by
 this module or used by this Javascript.}
