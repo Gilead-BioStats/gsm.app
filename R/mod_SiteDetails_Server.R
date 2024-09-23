@@ -99,7 +99,7 @@ mod_SiteDetails_Server <- function(
       bindCache(rctv_strSiteID())
 
     output$participants <- DT::renderDT({
-      out_ParticipantsBySite(
+      out_SiteParticipants(
         rctv_dfAnalyticsInput_byMetric_bySite(),
         rctv_chrColumnNames()
       )
