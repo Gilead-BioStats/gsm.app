@@ -1,7 +1,6 @@
 #' List of ActionLinks UI
 #'
 #' @inheritParams shared-params
-#'
 #' @return A [htmltools::tagList()] of labels and values, where the labels are
 #'   [shiny::actionLink()] items.
 #' @keywords internal
