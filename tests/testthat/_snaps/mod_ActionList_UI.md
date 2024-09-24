@@ -1,8 +1,7 @@
 # mod_ActionList_UI creates the expected UI
 
     Code
-      mod_ActionList_UI("listID", chrLinkIDs = state.abb[1:3], chrLabels = state.name[
-        1:3], chrValues = 1:3)
+      test_result
     Output
       <div class="metadata-list-item">
         <div class="metadata-list-item-label">

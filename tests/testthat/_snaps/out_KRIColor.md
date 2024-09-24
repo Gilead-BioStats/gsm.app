@@ -1,7 +1,7 @@
 # out_KRIColor produces expected output
 
     Code
-      out_KRIColor(head(sample_dfResults))
+      test_result
     Output
       <div>
         <span class="badge badge-red rounded-pill text-dark">3 Red KRIs</span>
