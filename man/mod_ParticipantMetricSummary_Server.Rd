@@ -7,8 +7,7 @@
 mod_ParticipantMetricSummary_Server(id, rctv_lParticipantMetricData)
 }
 \value{
-A string identifying the selected summary (currently does not work
-and instead returns the string "selectedID") as a \code{\link[shiny:reactive]{shiny::reactive()}}.
+A string identifying the selected summary as a \code{\link[shiny:reactive]{shiny::reactive()}}.
 }
 \description{
 Inputs as links to metric summary reports, with counts of rows.

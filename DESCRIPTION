@@ -25,12 +25,14 @@ Imports:
     gsm,
     htmltools,
     htmlwidgets,
+    jsonlite,
     kableExtra,
     magrittr,
     purrr,
     rlang,
     shiny,
-    shinyjs
+    shinyjs,
+    yaml
 Suggests: 
     here,
     pkgload,

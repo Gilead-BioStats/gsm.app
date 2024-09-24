@@ -4,7 +4,7 @@
 \alias{out_Card}
 \title{Standardized card}
 \usage{
-out_Card(tagTitle, ..., strID = NULL)
+out_Card(tagTitle, ..., id = NULL)
 }
 \arguments{
 \item{tagTitle}{\verb{html tag} A string or other html to use as the title of
@@ -12,7 +12,7 @@ the card. Will be wrapped inside \code{\link[bslib:card_body]{bslib::card_title(
 
 \item{...}{\verb{html tags} Objects to place in the card.}
 
-\item{strID}{\code{character} An ID for this element.}
+\item{id}{\code{character} The id for this module, widget, or other element.}
 }
 \value{
 A \code{\link[bslib:card]{bslib::card()}}.

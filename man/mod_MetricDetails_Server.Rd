@@ -15,7 +15,7 @@ mod_MetricDetails_Server(
 )
 }
 \arguments{
-\item{id}{The id for this module in this namespace.}
+\item{id}{\code{character} The id for this module, widget, or other element.}
 
 \item{dfResults}{\code{data.frame} A stacked summary of analysis pipeline output.
 This will be filtered to cases where \code{GroupLevel == "Site"}.}
@@ -25,6 +25,10 @@ This will be filtered to cases where \code{GroupLevel == "Site"}.}
 \item{dfBounds}{\code{data.frame} Set of predicted percentages/rates and upper-
 and lower-bounds across the full range of sample sizes/total exposure
 values for reporting.}
+
+\item{rctv_lMetric}{\verb{reactive list} A \code{\link[shiny:reactive]{shiny::reactive()}} object that returns
+a named list of data describing a single metric, as well as things like
+which group is selected.}
 
 \item{rctv_strSiteID}{\verb{reactive character} A \code{\link[shiny:reactive]{shiny::reactive()}} object that
 returns the \code{GroupID} of a site.}

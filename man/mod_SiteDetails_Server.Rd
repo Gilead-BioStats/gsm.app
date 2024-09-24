@@ -14,7 +14,7 @@ mod_SiteDetails_Server(
 )
 }
 \arguments{
-\item{id}{The id for this module in this namespace.}
+\item{id}{\code{character} The id for this module, widget, or other element.}
 
 \item{dfGroups}{\code{data.frame} Group-level metadata dictionary.}
 
@@ -25,6 +25,10 @@ returns the \code{GroupID} of a site.}
 
 \item{rctv_strMetricID}{\verb{reactive character} A \code{\link[shiny:reactive]{shiny::reactive()}} object
 that returns the selected \code{MetricID}.}
+
+\item{rctv_lMetric}{\verb{reactive list} A \code{\link[shiny:reactive]{shiny::reactive()}} object that returns
+a named list of data describing a single metric, as well as things like
+which group is selected.}
 }
 \description{
 Site Details Server

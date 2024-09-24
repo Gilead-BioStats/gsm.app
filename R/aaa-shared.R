@@ -1,10 +1,14 @@
 #' Parameters used in multiple functions
 #'
-#' Reused parameter definitions are gathered here for easier usage.
+#' Reused parameter definitions are gathered here for easier usage. Note: We
+#' intentionally use `id` rather than the more standardized `strID` throughout
+#' this package, because [shiny::testServer()] specifically expects an `id`
+#' argument in module server functions.
 #'
-#' @param id The id for this module in this namespace.
 #' @param chrLinkIDs `character` Module ids for multiple modules.
 #' @param chrLabels `character` A vector of labels for display to the user.
+#' @param chrMetrics `character` A named vector of MetricIDs, where the names
+#'   are the full Metric.
 #' @param chrValues `character` A vector of values to associate with a vector of
 #'   labels.
 #' @param dfAnalyticsInput `data.frame` Participant-level metric data.
@@ -23,13 +27,24 @@
 #'   about the participant, and `metric_data` should be a named list of
 #'   data.frames, each of which contains information related to the named
 #'   metric.
+#' @param id `character` The id for this module, widget, or other element.
 #' @param intNParticipants `integer` The number of unique participants
 #'   (subjects) in the study.
+#' @param lMetric `list` Named list of data describing a single metric, as well
+#'   as things like which group is selected.
 #' @param lParticipantMetadata `list` Named list of data describing a single
 #'   participant.
 #' @param lStudy `list` Named list of data describing the overall study.
+#' @param rctv_dfBounds `reactive dataframe` A [shiny::reactive()] object that
+#'   returns a set of predicted percentages/rates and upper- and lower-bounds
+#'   across the full range of sample sizes/total exposure values for reporting.
+#' @param rctv_dfResults `reactive dataframe` A [shiny::reactive()] object that
+#'   returns a stacked summary of analysis pipeline output.
 #' @param rctv_lData `reactive list` A [shiny::reactive()] object that returns a
 #'   named list of dataframes.
+#' @param rctv_lMetric `reactive list` A [shiny::reactive()] object that returns
+#'   a named list of data describing a single metric, as well as things like
+#'   which group is selected.
 #' @param rctv_lParticipantMetricData `reactive list` A [shiny::reactive()]
 #'   object that returns a list of dataframes for a given participant, one for
 #'   each metric that is available.
@@ -44,8 +59,14 @@
 #'   that returns the `SubjectID` of the selected participant.
 #' @param session `environment` Session from which to make a child scope (the
 #'   default should almost always be used).
-#' @param strID `character` An ID for this element.
+#' @param strContainerID `character` The (namespaced) ID of the target container
+#'   (usually a div).
+#' @param strGroupID `character` A `GroupID` to focus on.
+#' @param strInputID `character` An ID to use for the Shiny input created by
+#'   this module or used by this Javascript.
 #' @param strMetricID `character` A `MetricID` to focus on.
+#' @param strPlotTitle `character` A title for a plot, usually the name of a
+#'   metric.
 #' @param strSubjectID `character` A `SubjectID` of an individual participant.
 #' @param strText `character` Text to display.
 #' @param strTitle `character` A title to display for the overall app.

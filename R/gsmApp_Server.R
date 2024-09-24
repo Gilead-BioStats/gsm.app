@@ -28,9 +28,6 @@ gsmApp_Server <- function(
     # This one is selectize and thus should remain server-side.
     srvr_PopulateParticipantSelect(chrParticipantIDs, session)
 
-    ## Cross-communication ----
-    srvr_SyncInput("site", reactive(input$site), session = session)
-
     ## Reset ----
     observe({
       updateSelectInput(session, "metric", selected = dfMetrics$MetricID[[1]])
@@ -45,7 +42,7 @@ gsmApp_Server <- function(
     ## The listified dfMetrics are used by both metric sub-mods, so calculate
     ## them once. This can/should move inside a single metric-tab module.
     rctv_lMetric_base <- reactive({
-      lMetric <- as.list(
+      as.list(
         filter_byMetricID(dfMetrics, input$metric)
       )
     }) %>%
@@ -62,22 +59,26 @@ gsmApp_Server <- function(
     # Tab Contents ----
 
     ## Study Overview ----
-    mod_StudyOverview_Server(
+    lStudyOverviewSelected <- mod_StudyOverview_Server(
       "study_overview",
       dfResults = dfResults,
       dfGroups = dfGroups,
-      dfMetrics = dfMetrics
-    )
-    mod_Scatter_Server(
-      "scatter",
-      dfResults = dfResults,
       dfMetrics = dfMetrics,
-      dfGroups = dfGroups,
-      dfBounds = dfBounds
+      dfBounds = dfBounds,
+      rctv_strSiteID = reactive(input$site)
+    )
+    srvr_SyncInput(
+      id = "site",
+      rctv_strValue = lStudyOverviewSelected$rctv_strSelectedGroup,
+      session = session
+    )
+    srvr_SyncInput(
+      id = "metric",
+      rctv_strValue = lStudyOverviewSelected$rctv_strSelectectMetricID,
+      session = session
     )
 
     ## Metric Details ----
-
     srvr_TabOnChange(
       "Metric Details",
       reactive(input$metric),
@@ -87,7 +88,7 @@ gsmApp_Server <- function(
     ## nested-modules are implemented cleanly.
     bindEvent(
       {
-        mod_MetricDetails_Server(
+        rctv_strMetricDetailsGroup <- mod_MetricDetails_Server(
           "metric_details",
           dfResults = dfResults,
           dfGroups = dfGroups,
@@ -109,8 +110,13 @@ gsmApp_Server <- function(
       ignoreInit = TRUE,
       once = TRUE
     )
+    srvr_SyncInput(
+      id = "site",
+      rctv_strValue = rctv_strMetricDetailsGroup,
+      session = session
+    )
     srvr_SyncSelectizeInput(
-      strID = "participant",
+      id = "participant",
       rctv_strValue = rctv_strSiteDetailsParticipant,
       chrChoices = chrParticipantIDs,
       server = TRUE,

@@ -1,11 +1,11 @@
 srvr_SyncInput <- function(
-  strID,
+  id,
   rctv_strValue,
   session = getDefaultReactiveDomain()
 ) {
   observe({
     updateSelectInput(
-      inputId = strID,
+      inputId = id,
       selected = rctv_strValue(),
       session = session
     )
@@ -13,7 +13,7 @@ srvr_SyncInput <- function(
 }
 
 srvr_SyncSelectizeInput <- function(
-  strID,
+  id,
   rctv_strValue,
   chrChoices,
   ...,
@@ -23,7 +23,7 @@ srvr_SyncSelectizeInput <- function(
     strValue <- rctv_strValue()
     if (length(strValue) && strValue != "" && strValue != "None") {
       updateSelectizeInput(
-        inputId = strID,
+        inputId = id,
         choices = chrChoices,
         selected = strValue,
         ...,

@@ -19,13 +19,13 @@ mod_SiteDetails_UI <- function(id) {
         out_Card(
           "Site Metadata",
           uiOutput(ns("site_metadata_list")),
-          strID = ns("card_site_metadata_list")
+          id = ns("card_site_metadata_list")
         )
       ),
       out_Card(
         "Site Details",
         out_Placeholder("site"),
-        strID = ns("card_placeholder_site_metadata_list")
+        id = ns("card_placeholder_site_metadata_list")
       )
     ),
     column(
@@ -49,7 +49,7 @@ mod_SiteDetails_UI <- function(id) {
       out_Card(
         "Site Subjects",
         out_Placeholder("site"),
-        strID = ns("card_placeholder_participants")
+        id = ns("card_placeholder_participants")
       )
     )
   )

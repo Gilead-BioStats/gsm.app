@@ -34,7 +34,7 @@ htmlDependency_Stylesheet <- function(
 
 #' HighlightTableRow javascript
 #'
-#' Attach `HighlightTableRow.js` to an app or other HTML exactly once.
+#' Attach `highlightTableRow.js` to an app or other HTML exactly once.
 #'
 #' @return An `html_dependency` object (see [htmltools::htmlDependency()]),
 #'   which is attached to the Shiny app exactly once, regardless how many times
@@ -52,7 +52,7 @@ htmlDependency_HighlightTableRow <- function() {
 
 #' TableClick javascript
 #'
-#' Attach `TableClick.js` to an app or other HTML exactly once.
+#' Attach `tableClick.js` to an app or other HTML exactly once.
 #'
 #' @return An `html_dependency` object (see [htmltools::htmlDependency()]),
 #'   which is attached to the Shiny app exactly once, regardless how many times
@@ -65,5 +65,22 @@ htmlDependency_TableClick <- function() {
     src = "js",
     package = "gsm.app",
     script = "tableClick.js"
+  )
+}
+
+#' DetectCardClicks javascript
+#'
+#' Attach `detectCardClicks.js` to an app or other HTML exactly once.
+#'
+#' @return An `html_dependency` object (see [htmltools::htmlDependency()]),
+#'   which is attached to the Shiny app exactly once, regardless how many times
+#'   it is added.
+htmlDependency_DetectCardClicks <- function() {
+  htmltools::htmlDependency(
+    name = "DetectCardClicks",
+    version = "0.0.1",
+    src = "js",
+    package = "gsm.app",
+    script = "detectCardClicks.js"
   )
 }

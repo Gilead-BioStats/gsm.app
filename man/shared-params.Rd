@@ -4,11 +4,12 @@
 \alias{shared-params}
 \title{Parameters used in multiple functions}
 \arguments{
-\item{id}{The id for this module in this namespace.}
-
 \item{chrLinkIDs}{\code{character} Module ids for multiple modules.}
 
 \item{chrLabels}{\code{character} A vector of labels for display to the user.}
+
+\item{chrMetrics}{\code{character} A named vector of MetricIDs, where the names
+are the full Metric.}
 
 \item{chrValues}{\code{character} A vector of values to associate with a vector of
 labels.}
@@ -35,16 +36,32 @@ about the participant, and \code{metric_data} should be a named list of
 data.frames, each of which contains information related to the named
 metric.}
 
+\item{id}{\code{character} The id for this module, widget, or other element.}
+
 \item{intNParticipants}{\code{integer} The number of unique participants
 (subjects) in the study.}
+
+\item{lMetric}{\code{list} Named list of data describing a single metric, as well
+as things like which group is selected.}
 
 \item{lParticipantMetadata}{\code{list} Named list of data describing a single
 participant.}
 
 \item{lStudy}{\code{list} Named list of data describing the overall study.}
 
+\item{rctv_dfBounds}{\verb{reactive dataframe} A \code{\link[shiny:reactive]{shiny::reactive()}} object that
+returns a set of predicted percentages/rates and upper- and lower-bounds
+across the full range of sample sizes/total exposure values for reporting.}
+
+\item{rctv_dfResults}{\verb{reactive dataframe} A \code{\link[shiny:reactive]{shiny::reactive()}} object that
+returns a stacked summary of analysis pipeline output.}
+
 \item{rctv_lData}{\verb{reactive list} A \code{\link[shiny:reactive]{shiny::reactive()}} object that returns a
 named list of dataframes.}
+
+\item{rctv_lMetric}{\verb{reactive list} A \code{\link[shiny:reactive]{shiny::reactive()}} object that returns
+a named list of data describing a single metric, as well as things like
+which group is selected.}
 
 \item{rctv_lParticipantMetricData}{\verb{reactive list} A \code{\link[shiny:reactive]{shiny::reactive()}}
 object that returns a list of dataframes for a given participant, one for
@@ -66,9 +83,18 @@ that returns the \code{SubjectID} of the selected participant.}
 \item{session}{\code{environment} Session from which to make a child scope (the
 default should almost always be used).}
 
-\item{strID}{\code{character} An ID for this element.}
+\item{strContainerID}{\code{character} The (namespaced) ID of the target container
+(usually a div).}
+
+\item{strGroupID}{\code{character} A \code{GroupID} to focus on.}
+
+\item{strInputID}{\code{character} An ID to use for the Shiny input created by
+this module or used by this Javascript.}
 
 \item{strMetricID}{\code{character} A \code{MetricID} to focus on.}
+
+\item{strPlotTitle}{\code{character} A title for a plot, usually the name of a
+metric.}
 
 \item{strSubjectID}{\code{character} A \code{SubjectID} of an individual participant.}
 
@@ -79,6 +105,9 @@ default should almost always be used).}
 \item{strValue}{\code{character} The value of a field.}
 }
 \description{
-Reused parameter definitions are gathered here for easier usage.
+Reused parameter definitions are gathered here for easier usage. Note: We
+intentionally use \code{id} rather than the more standardized \code{strID} throughout
+this package, because \code{\link[shiny:testServer]{shiny::testServer()}} specifically expects an \code{id}
+argument in module server functions.
 }
 \keyword{internal}
