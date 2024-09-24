@@ -12,6 +12,6 @@ which is attached to the Shiny app exactly once, regardless how many times
 it is added.
 }
 \description{
-Attach \code{HighlightTableRow.js} to an app or other HTML exactly once.
+Attach \code{highlightTableRow.js} to an app or other HTML exactly once.
 }
 \keyword{internal}

@@ -12,6 +12,6 @@ which is attached to the Shiny app exactly once, regardless how many times
 it is added.
 }
 \description{
-Attach \code{TableClick.js} to an app or other HTML exactly once.
+Attach \code{tableClick.js} to an app or other HTML exactly once.
 }
 \keyword{internal}

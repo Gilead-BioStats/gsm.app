@@ -4,10 +4,17 @@
 \alias{mod_StudyOverview_Server}
 \title{Study Overview Server}
 \usage{
-mod_StudyOverview_Server(id, dfResults, dfMetrics, dfGroups)
+mod_StudyOverview_Server(
+  id,
+  dfResults,
+  dfMetrics,
+  dfGroups,
+  dfBounds,
+  rctv_strSiteID
+)
 }
 \arguments{
-\item{id}{The id for this module in this namespace.}
+\item{id}{\code{character} The id for this module, widget, or other element.}
 
 \item{dfResults}{\code{data.frame} A stacked summary of analysis pipeline output.
 This will be filtered to cases where \code{GroupLevel == "Site"}.}
@@ -16,6 +23,13 @@ This will be filtered to cases where \code{GroupLevel == "Site"}.}
 reporting.}
 
 \item{dfGroups}{\code{data.frame} Group-level metadata dictionary.}
+
+\item{dfBounds}{\code{data.frame} Set of predicted percentages/rates and upper-
+and lower-bounds across the full range of sample sizes/total exposure
+values for reporting.}
+
+\item{rctv_strSiteID}{\verb{reactive character} A \code{\link[shiny:reactive]{shiny::reactive()}} object that
+returns the \code{GroupID} of a site.}
 }
 \description{
 Study Overview Server

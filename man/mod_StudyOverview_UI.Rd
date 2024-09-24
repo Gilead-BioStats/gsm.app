@@ -4,13 +4,16 @@
 \alias{mod_StudyOverview_UI}
 \title{Study Overview UI}
 \usage{
-mod_StudyOverview_UI(id, dfResults)
+mod_StudyOverview_UI(id, dfResults, chrMetrics)
 }
 \arguments{
-\item{id}{The id for this module in this namespace.}
+\item{id}{\code{character} The id for this module, widget, or other element.}
 
 \item{dfResults}{\code{data.frame} A stacked summary of analysis pipeline output.
 This will be filtered to cases where \code{GroupLevel == "Site"}.}
+
+\item{chrMetrics}{\code{character} A named vector of MetricIDs, where the names
+are the full Metric.}
 }
 \description{
 Study Overview UI

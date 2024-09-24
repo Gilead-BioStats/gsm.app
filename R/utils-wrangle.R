@@ -1,22 +1,53 @@
+#' Filter by a detected field
+#'
+#' @param df A data.frame to filter.
+#' @param Value The value to filter on.
+#' @param strField The name of the field. Auto-detected by default from the
+#'   variable used to provide `Value`.
+#'
+#' @return The filtered data.frame.
+#' @keywords internal
+filter_by <- function(
+    df,
+    Value,
+    strField = extract_field_name(rlang::caller_arg(Value))) {
+  df[df[[strField]] == Value, ]
+}
+
+#' Get a field name from a variable name
+#'
+#' Assume standard argument name format, like `strGroupID` or `dSnapshotDat`.
+#'
+#' @param strArgName The name of the argument.
+#'
+#' @return `strArgName` with the beginning part removed.
+#' @keywords internal
+extract_field_name <- function(strArgName) {
+  # Delete the lowercase "arg type" info at the start of the value.
+  sub("^[a-z]*", "", strArgName)
+}
+
+#' Filter by MetricID
+#'
+#' @inheritParams filter_by
+#' @inheritParams shared-params
+#'
+#' @inherit filter_by return
+#' @keywords internal
 filter_byMetricID <- function(df, strMetricID) {
   filter_by(df, strMetricID)
 }
 
+#' Filter by GroupID
+#'
+#' @inheritParams filter_by
+#' @inheritParams shared-params
+#'
+#' @inherit filter_by return
+#' @keywords internal
 filter_byGroupID <- function(df, strGroupID) {
   if (strGroupID == "None") {
     return(df)
   }
   filter_by(df, strGroupID)
-}
-
-filter_by <- function(
-  df,
-  Value,
-  strField = extract_field_name(rlang::caller_arg(Value))) {
-  df[df[strField] == Value, ]
-}
-
-extract_field_name <- function(strArgName) {
-  # Delete the lowercase "arg type" info at the start of the value.
-  sub("^[a-z]*", "", strArgName)
 }

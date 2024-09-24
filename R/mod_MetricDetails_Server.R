@@ -31,22 +31,24 @@ mod_MetricDetails_Server <- function(
     }) %>%
       bindCache(rctv_strMetricID())
 
+    rctv_strScatterGroup <- mod_ScatterPlot_Server(
+      "scatter_plot",
+      rctv_dfResults = rctv_dfResults_byMetricID,
+      rctv_lMetric = rctv_lMetric,
+      dfGroups = dfGroups,
+      rctv_dfBounds = rctv_dfBounds_byMetricID,
+      strInputID = "group"
+    )
+    # Placeholders until these are reigned in with modules.
+    rctv_strBarValueGroup <- reactive(NULL)
+    rctv_strBarScoreGroup <- reactive(NULL)
+    rctv_strTimeSeriesGroup <- reactive(NULL)
+    rctv_strAnalysisOutputGroup <- reactive(NULL)
+
     # Outputs ----
-    observe({
+    rctv_strSelectedGroup <- reactive({
       switch(input$selected_tab,
-        "Scatter Plot" = {
-          output$scatter_plot <- gsm::renderWidget_ScatterPlot({
-            gsm::Widget_ScatterPlot(
-              rctv_dfResults_byMetricID(),
-              lMetric = rctv_lMetric(),
-              dfGroups = dfGroups,
-              dfBounds = rctv_dfBounds_byMetricID(),
-              bAddGroupSelect = FALSE,
-              strShinyGroupSelectID = "site"
-            )
-          })
-          outputOptions(output, "scatter_plot", suspendWhenHidden = FALSE)
-        },
+        "Scatter Plot" = rctv_strScatterGroup(),
         "Bar Chart (KRI Value)" = {
           output$bar_chart_metric <- gsm::renderWidget_BarChart({
             gsm::Widget_BarChart(
@@ -59,6 +61,7 @@ mod_MetricDetails_Server <- function(
             )
           })
           outputOptions(output, "bar_chart_metric", suspendWhenHidden = FALSE)
+          rctv_strBarValueGroup()
         },
         "Bar Chart (KRI Score)" = {
           output$bar_chart_score <- gsm::renderWidget_BarChart({
@@ -72,6 +75,7 @@ mod_MetricDetails_Server <- function(
             )
           })
           outputOptions(output, "bar_chart_score", suspendWhenHidden = FALSE)
+          rctv_strBarScoreGroup()
         },
         "Time Series" = {
           output$time_series <- gsm::renderWidget_TimeSeries({
@@ -85,6 +89,7 @@ mod_MetricDetails_Server <- function(
             )
           })
           outputOptions(output, "time_series", suspendWhenHidden = FALSE)
+          rctv_strTimeSeriesGroup()
         },
         "Analysis Output" = {
           output$results <- renderUI({
@@ -104,9 +109,11 @@ mod_MetricDetails_Server <- function(
             )
           })
           shinyjs::runjs("tableClick('analysis_output_table');")
+          rctv_strAnalysisOutputGroup()
         }
       )
-    }) %>%
-      bindEvent(input$selected_tab)
+    })
+
+    return(rctv_strSelectedGroup)
   })
 }

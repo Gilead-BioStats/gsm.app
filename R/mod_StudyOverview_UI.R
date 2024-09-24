@@ -3,9 +3,9 @@
 #' @inheritParams shared-params
 #'
 #' @keywords internal
-mod_StudyOverview_UI <- function(id, dfResults) {
+mod_StudyOverview_UI <- function(id, dfResults, chrMetrics) {
   ns <- NS(id)
-  tags_to_return <- bslib::navset_underline(
+  bslib::navset_underline(
     bslib::nav_panel(
       title = "Overview Table",
       bslib::card(
@@ -21,9 +21,7 @@ mod_StudyOverview_UI <- function(id, dfResults) {
     ),
     bslib::nav_panel(
       title = "Scatter Plots",
-      mod_Scatter_UI("scatter")
+      mod_ScatterPlotSet_UI(ns("scatter"), chrMetrics)
     )
   )
-
-  return(tags_to_return)
 }

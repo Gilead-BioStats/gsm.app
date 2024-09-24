@@ -21,7 +21,7 @@ gsmApp_UI <- function(dfResults,
     id = "primary_nav_bar",
     title = strTitle,
     theme = bslib::bs_theme(version = 5),
-    !!!out_MainTabs(dfResults = dfResults),
+    !!!out_MainTabs(dfResults = dfResults, chrMetrics = chrMetrics),
     sidebar = out_Sidebar(lStudy, chrMetrics, chrSites, intNParticipants)
   )
 }

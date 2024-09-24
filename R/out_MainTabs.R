@@ -1,8 +1,8 @@
-out_MainTabs <- function(dfResults) {
+out_MainTabs <- function(dfResults, chrMetrics) {
   list(
     bslib::nav_panel(
       title = "Study Overview",
-      mod_StudyOverview_UI("study_overview", dfResults)
+      mod_StudyOverview_UI("study_overview", dfResults, chrMetrics)
     ),
     bslib::nav_panel(
       title = "Metric Details",
