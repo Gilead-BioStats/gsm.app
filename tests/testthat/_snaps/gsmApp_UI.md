@@ -222,11 +222,11 @@
                     </div>
                   </div>
                   <div class="tab-pane html-fill-item html-fill-container bslib-gap-spacing" data-value="Participant Details" id="tab-XXXX-3" style="--bslib-navbar-margin:0;">
-                    <div class="row">
-                      <div class="col-sm-6">
+                    <bslib-layout-columns class="bslib-grid grid bslib-mb-spacing html-fill-item" col-widths-sm="6,6,12" data-require-bs-caller="layout_columns()" data-require-bs-version="5">
+                      <div class="bslib-grid-item bslib-gap-spacing html-fill-container">
                         <div id="participant_details-metadata" class="shiny-html-output"></div>
                       </div>
-                      <div class="col-sm-6">
+                      <div class="bslib-grid-item bslib-gap-spacing html-fill-container">
                         <div class="card bslib-card bslib-mb-spacing html-fill-item html-fill-container" data-bslib-card-init data-full-screen="false" data-require-bs-caller="card()" data-require-bs-version="5" id="bslib-card-XXXX">
                           <div class="card-body bslib-gap-spacing html-fill-item html-fill-container" style="margin-top:auto;margin-bottom:auto;flex:1 1 auto;">
                             <h5>Metric Summary</h5>
@@ -239,9 +239,7 @@
                           <script data-bslib-card-init>bslib.Card.initializeAllCards();</script>
                         </div>
                       </div>
-                    </div>
-                    <div class="row">
-                      <div class="col-sm-12">
+                      <div class="bslib-grid-item bslib-gap-spacing html-fill-container">
                         <div class="card bslib-card bslib-mb-spacing html-fill-item html-fill-container" data-bslib-card-init data-full-screen="false" data-require-bs-caller="card()" data-require-bs-version="5" id="bslib-card-XXXX">
                           <div class="card-body bslib-gap-spacing html-fill-item html-fill-container" style="margin-top:auto;margin-bottom:auto;flex:1 1 auto;">
                             <h5>
@@ -256,7 +254,7 @@
                           <script data-bslib-card-init>bslib.Card.initializeAllCards();</script>
                         </div>
                       </div>
-                    </div>
+                    </bslib-layout-columns>
                   </div>
                 </div>
               </main>
