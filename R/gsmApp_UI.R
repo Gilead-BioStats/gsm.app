@@ -1,12 +1,12 @@
 #' Shiny UI function
 #'
-#' This function defines the user interface for your Shiny web application.
-#' It specifies the layout of the web page and the interface elements it contains.
+#' The user interface for a gsm deep dive app.
 #'
 #' @inheritParams shared-params
 #' @return A Shiny UI object
 #' @keywords internal
-gsmApp_UI <- function(dfResults,
+gsmApp_UI <- function(
+  dfResults,
   dfMetrics,
   dfGroups,
   intNParticipants,
