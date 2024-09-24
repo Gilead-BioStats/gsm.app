@@ -39,7 +39,7 @@
 
     <div class="section level2">
     <h2 id="ref-usage">Usage<a class="anchor" aria-label="anchor" href="#ref-usage"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">mod_StudyOverview_UI</span><span class="op">(</span><span class="va">id</span>, <span class="va">dfResults</span><span class="op">)</span></span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">mod_StudyOverview_UI</span><span class="op">(</span><span class="va">id</span>, <span class="va">dfResults</span>, <span class="va">chrMetrics</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div class="section level2">
@@ -47,12 +47,17 @@
 
 
 <dl><dt id="arg-id">id<a class="anchor" aria-label="anchor" href="#arg-id"></a></dt>
-<dd><p>The id for this module in this namespace.</p></dd>
+<dd><p><code>character</code> The id for this module, widget, or other element.</p></dd>
 
 
 <dt id="arg-dfresults">dfResults<a class="anchor" aria-label="anchor" href="#arg-dfresults"></a></dt>
 <dd><p><code>data.frame</code> A stacked summary of analysis pipeline output.
 This will be filtered to cases where <code>GroupLevel == "Site"</code>.</p></dd>
+
+
+<dt id="arg-chrmetrics">chrMetrics<a class="anchor" aria-label="anchor" href="#arg-chrmetrics"></a></dt>
+<dd><p><code>character</code> A named vector of MetricIDs, where the names
+are the full Metric.</p></dd>
 
 </dl></div>
 

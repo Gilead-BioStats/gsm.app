@@ -6,10 +6,18 @@
 <url><loc>https://gilead-biostats.github.io/gsm.app/dev/index.html</loc></url>
 <url><loc>https://gilead-biostats.github.io/gsm.app/dev/news/index.html</loc></url>
 <url><loc>https://gilead-biostats.github.io/gsm.app/dev/principles.html</loc></url>
+<url><loc>https://gilead-biostats.github.io/gsm.app/dev/reference/Widget_ScatterPlot-shiny.html</loc></url>
+<url><loc>https://gilead-biostats.github.io/gsm.app/dev/reference/Widget_ScatterPlot.html</loc></url>
+<url><loc>https://gilead-biostats.github.io/gsm.app/dev/reference/extract_field_name.html</loc></url>
+<url><loc>https://gilead-biostats.github.io/gsm.app/dev/reference/filter_by.html</loc></url>
+<url><loc>https://gilead-biostats.github.io/gsm.app/dev/reference/filter_byGroupID.html</loc></url>
+<url><loc>https://gilead-biostats.github.io/gsm.app/dev/reference/filter_byMetricID.html</loc></url>
 <url><loc>https://gilead-biostats.github.io/gsm.app/dev/reference/gsm.app-package.html</loc></url>
 <url><loc>https://gilead-biostats.github.io/gsm.app/dev/reference/gsmApp_Server.html</loc></url>
 <url><loc>https://gilead-biostats.github.io/gsm.app/dev/reference/gsmApp_UI.html</loc></url>
+<url><loc>https://gilead-biostats.github.io/gsm.app/dev/reference/gsmDependencies.html</loc></url>
 <url><loc>https://gilead-biostats.github.io/gsm.app/dev/reference/htmlDependency_Default_Stylesheet.html</loc></url>
+<url><loc>https://gilead-biostats.github.io/gsm.app/dev/reference/htmlDependency_DetectCardClicks.html</loc></url>
 <url><loc>https://gilead-biostats.github.io/gsm.app/dev/reference/htmlDependency_HighlightTableRow.html</loc></url>
 <url><loc>https://gilead-biostats.github.io/gsm.app/dev/reference/htmlDependency_Stylesheet.html</loc></url>
 <url><loc>https://gilead-biostats.github.io/gsm.app/dev/reference/htmlDependency_TableClick.html</loc></url>
@@ -23,12 +31,16 @@
 <url><loc>https://gilead-biostats.github.io/gsm.app/dev/reference/mod_ParticipantDomain_UI.html</loc></url>
 <url><loc>https://gilead-biostats.github.io/gsm.app/dev/reference/mod_ParticipantMetricSummary_Server.html</loc></url>
 <url><loc>https://gilead-biostats.github.io/gsm.app/dev/reference/mod_ParticipantMetricSummary_UI.html</loc></url>
+<url><loc>https://gilead-biostats.github.io/gsm.app/dev/reference/mod_ScatterPlotSet_UI.html</loc></url>
+<url><loc>https://gilead-biostats.github.io/gsm.app/dev/reference/mod_ScatterPlot_Server.html</loc></url>
+<url><loc>https://gilead-biostats.github.io/gsm.app/dev/reference/mod_ScatterPlot_UI.html</loc></url>
 <url><loc>https://gilead-biostats.github.io/gsm.app/dev/reference/mod_SiteDetails_Server.html</loc></url>
 <url><loc>https://gilead-biostats.github.io/gsm.app/dev/reference/mod_SiteDetails_UI.html</loc></url>
 <url><loc>https://gilead-biostats.github.io/gsm.app/dev/reference/mod_StudyOverview_Server.html</loc></url>
 <url><loc>https://gilead-biostats.github.io/gsm.app/dev/reference/mod_StudyOverview_UI.html</loc></url>
 <url><loc>https://gilead-biostats.github.io/gsm.app/dev/reference/out_Card.html</loc></url>
 <url><loc>https://gilead-biostats.github.io/gsm.app/dev/reference/out_CardSubtitle.html</loc></url>
+<url><loc>https://gilead-biostats.github.io/gsm.app/dev/reference/out_DetectCardClicks.html</loc></url>
 <url><loc>https://gilead-biostats.github.io/gsm.app/dev/reference/out_ParticipantMetadata.html</loc></url>
 <url><loc>https://gilead-biostats.github.io/gsm.app/dev/reference/out_ParticipantsBySite.html</loc></url>
 <url><loc>https://gilead-biostats.github.io/gsm.app/dev/reference/out_Placeholder.html</loc></url>
@@ -44,5 +56,6 @@
 <url><loc>https://gilead-biostats.github.io/gsm.app/dev/reference/sample_dfResults.html</loc></url>
 <url><loc>https://gilead-biostats.github.io/gsm.app/dev/reference/shared-params.html</loc></url>
 <url><loc>https://gilead-biostats.github.io/gsm.app/dev/reference/srvr_PopulateParticipantSelect.html</loc></url>
+<url><loc>https://gilead-biostats.github.io/gsm.app/dev/reference/un_ns.html</loc></url>
 </urlset>
 

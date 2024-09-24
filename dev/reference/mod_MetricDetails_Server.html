@@ -55,7 +55,7 @@
 
 
 <dl><dt id="arg-id">id<a class="anchor" aria-label="anchor" href="#arg-id"></a></dt>
-<dd><p>The id for this module in this namespace.</p></dd>
+<dd><p><code>character</code> The id for this module, widget, or other element.</p></dd>
 
 
 <dt id="arg-dfresults">dfResults<a class="anchor" aria-label="anchor" href="#arg-dfresults"></a></dt>
@@ -71,6 +71,12 @@ This will be filtered to cases where <code>GroupLevel == "Site"</code>.</p></dd>
 <dd><p><code>data.frame</code> Set of predicted percentages/rates and upper-
 and lower-bounds across the full range of sample sizes/total exposure
 values for reporting.</p></dd>
+
+
+<dt id="arg-rctv-lmetric">rctv_lMetric<a class="anchor" aria-label="anchor" href="#arg-rctv-lmetric"></a></dt>
+<dd><p><code>reactive list</code> A <code><a href="https://rdrr.io/pkg/shiny/man/reactive.html" class="external-link">shiny::reactive()</a></code> object that returns
+a named list of data describing a single metric, as well as things like
+which group is selected.</p></dd>
 
 
 <dt id="arg-rctv-strsiteid">rctv_strSiteID<a class="anchor" aria-label="anchor" href="#arg-rctv-strsiteid"></a></dt>
