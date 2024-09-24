@@ -1,7 +1,6 @@
 #' Participant Domain Details Card UI
 #'
 #' @inheritParams shared-params
-#'
 #' @return A [bslib::card()] with either a placeholder, or a
 #'   [DT::DTOutput()] table.
 #' @keywords internal
