@@ -1,8 +1,6 @@
 # mod_ScatterPlot_UI creates the expected UI
 
     Code
-      test_result <- mod_ScatterPlot_UI("myID")
-      class(test_result) <- "shiny.tag"
       test_result
     Output
       <div class="card bslib-card bslib-mb-spacing bslib-card-input html-fill-item html-fill-container chart" data-bslib-card-init data-full-screen="false" data-require-bs-caller="card()" data-require-bs-version="5" id="myID">
@@ -19,8 +17,6 @@
 # mod_ScatterPlot_UI uses title when it's supplied
 
     Code
-      test_result <- mod_ScatterPlot_UI("myID", strPlotTitle = "myTitle")
-      class(test_result) <- "shiny.tag"
       test_result
     Output
       <div class="card bslib-card bslib-mb-spacing bslib-card-input html-fill-item html-fill-container chart" data-bslib-card-init data-full-screen="false" data-require-bs-caller="card()" data-require-bs-version="5" id="myID">

@@ -1,7 +1,8 @@
 test_that("mod_ScatterPlot_UI creates the expected UI", {
+  test_result <- mod_ScatterPlot_UI("myID")
+  expect_s3_class(test_result, c("bslib_fragment", "shiny.tag"))
+  class(test_result) <- "shiny.tag"
   expect_cleaned_html({
-    test_result <- mod_ScatterPlot_UI("myID")
-    class(test_result) <- "shiny.tag"
     test_result
   })
 })
@@ -16,9 +17,9 @@ test_that("mod_ScatterPlot_UI uses title when it's supplied", {
     test_result$children[[1]]$children[[1]],
     "myTitle"
   )
+  expect_s3_class(test_result, c("bslib_fragment", "shiny.tag"))
+  class(test_result) <- "shiny.tag"
   expect_cleaned_html({
-    test_result <- mod_ScatterPlot_UI("myID", strPlotTitle = "myTitle")
-    class(test_result) <- "shiny.tag"
     test_result
   })
 })

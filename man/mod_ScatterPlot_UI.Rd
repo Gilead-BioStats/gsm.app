@@ -9,7 +9,8 @@ mod_ScatterPlot_UI(id, strPlotTitle = NULL)
 \arguments{
 \item{id}{\code{character} The id for this module, widget, or other element.}
 
-\item{strPlotTitle}{}
+\item{strPlotTitle}{\code{character} A title for a plot, usually the name of a
+metric.}
 }
 \value{
 A \code{\link[bslib:card]{bslib::card()}} with an optional title and a
