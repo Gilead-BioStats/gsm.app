@@ -14,7 +14,7 @@ mod_StudyOverview_UI <- function(id, dfResults, chrMetrics) {
           out_KRIColor(dfResults),
           gsm::Widget_GroupOverviewOutput(
             ns("site_overview_table"),
-            height = "500px"
+            height = "100%"
           )
         )
       )

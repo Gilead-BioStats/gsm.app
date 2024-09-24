@@ -9,6 +9,9 @@ mod_SiteDetails_UI(id)
 \arguments{
 \item{id}{\code{character} The id for this module, widget, or other element.}
 }
+\value{
+A \code{\link[bslib:layout_columns]{bslib::layout_columns()}} with site metadata and site participants.
+}
 \description{
 Site Details UI
 }

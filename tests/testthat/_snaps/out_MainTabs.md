@@ -22,7 +22,7 @@
                     <span class="badge badge-red rounded-pill text-dark">3 Red KRIs</span>
                     <span class="badge badge-amber rounded-pill text-dark">3 Amber KRIs</span>
                   </div>
-                  <div class="Widget_GroupOverview html-widget html-widget-output shiny-report-size html-fill-item" id="study_overview-site_overview_table" style="width:100%;height:500px;"></div>
+                  <div class="Widget_GroupOverview html-widget html-widget-output shiny-report-size html-fill-item" id="study_overview-site_overview_table" style="width:100%;height:100%;"></div>
                 </div>
                 <bslib-tooltip placement="auto" bsOptions="[]" data-require-bs-version="5" data-require-bs-caller="tooltip()">
                   <template>Expand</template>
@@ -129,9 +129,8 @@
             </div>
           </div>
         </div>
-        <div class="row">
-          <div class="col-sm-5">
-            <div id="site_details-metric_metadata_list" class="shiny-html-output"></div>
+        <bslib-layout-columns class="bslib-grid grid bslib-mb-spacing html-fill-item" col-widths-sm="5,7" data-require-bs-caller="layout_columns()" data-require-bs-version="5">
+          <div class="bslib-grid-item bslib-gap-spacing html-fill-container">
             <div class="card bslib-card bslib-mb-spacing bslib-card-input html-fill-item html-fill-container shinyjs-hide" data-bslib-card-init data-full-screen="false" data-require-bs-caller="card()" data-require-bs-version="5" id="site_details-card_site_metadata_list">
               <div class="card-body bslib-gap-spacing html-fill-item html-fill-container" style="margin-top:auto;margin-bottom:auto;flex:1 1 auto;">
                 <h5>Site Metadata</h5>
@@ -145,7 +144,7 @@
             </div>
             <div class="card bslib-card bslib-mb-spacing bslib-card-input html-fill-item html-fill-container" data-bslib-card-init data-full-screen="false" data-require-bs-caller="card()" data-require-bs-version="5" id="site_details-card_placeholder_site_metadata_list">
               <div class="card-body bslib-gap-spacing html-fill-item html-fill-container" style="margin-top:auto;margin-bottom:auto;flex:1 1 auto;">
-                <h5>Site Details</h5>
+                <h5>Site Metadata</h5>
                 <div class="card bslib-card bslib-mb-spacing html-fill-item html-fill-container placeholder" data-bslib-card-init data-require-bs-caller="card()" data-require-bs-version="5">
                   <div class="card-body bslib-gap-spacing html-fill-item html-fill-container" style="margin-top:auto;margin-bottom:auto;flex:1 1 auto;">Please select a site.</div>
                   <script data-bslib-card-init>bslib.Card.initializeAllCards();</script>
@@ -158,7 +157,7 @@
               <script data-bslib-card-init>bslib.Card.initializeAllCards();</script>
             </div>
           </div>
-          <div class="col-sm-7">
+          <div class="bslib-grid-item bslib-gap-spacing html-fill-container">
             <div class="card bslib-card bslib-mb-spacing bslib-card-input html-fill-item html-fill-container shinyjs-hide" data-bslib-card-init data-full-screen="false" data-require-bs-caller="card()" data-require-bs-version="5" id="site_details-card_participants">
               <div class="card-header">
                 <h5>
@@ -190,7 +189,7 @@
               <script data-bslib-card-init>bslib.Card.initializeAllCards();</script>
             </div>
           </div>
-        </div>
+        </bslib-layout-columns>
       </div>
       
       [[3]]

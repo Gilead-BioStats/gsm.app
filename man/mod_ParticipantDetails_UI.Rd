@@ -9,6 +9,10 @@ mod_ParticipantDetails_UI(id)
 \arguments{
 \item{id}{\code{character} The id for this module, widget, or other element.}
 }
+\value{
+A \code{\link[bslib:layout_columns]{bslib::layout_columns()}} with participant metadata, available
+metrics for this participant, and participant domain details.
+}
 \description{
 Participant Details UI
 }

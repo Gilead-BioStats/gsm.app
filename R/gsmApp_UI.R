@@ -17,10 +17,10 @@ gsmApp_UI <- function(
   chrSites <- sort(unique(dfGroups$GroupID[dfGroups$GroupLevel == "Site"]))
 
   bslib::page_navbar(
-    # class = "bg-light",
     id = "primary_nav_bar",
     title = strTitle,
     theme = bslib::bs_theme(version = 5),
+    fillable = FALSE,
     !!!out_MainTabs(dfResults = dfResults, chrMetrics = chrMetrics),
     sidebar = out_Sidebar(lStudy, chrMetrics, chrSites, intNParticipants)
   )
