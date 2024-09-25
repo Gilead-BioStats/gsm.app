@@ -41,9 +41,16 @@
 <url><loc>https://gilead-biostats.github.io/gsm.app/dev/reference/out_Card.html</loc></url>
 <url><loc>https://gilead-biostats.github.io/gsm.app/dev/reference/out_CardSubtitle.html</loc></url>
 <url><loc>https://gilead-biostats.github.io/gsm.app/dev/reference/out_DetectCardClicks.html</loc></url>
+<url><loc>https://gilead-biostats.github.io/gsm.app/dev/reference/out_Inputs.html</loc></url>
+<url><loc>https://gilead-biostats.github.io/gsm.app/dev/reference/out_KRIColor.html</loc></url>
+<url><loc>https://gilead-biostats.github.io/gsm.app/dev/reference/out_KRIColor_pill.html</loc></url>
+<url><loc>https://gilead-biostats.github.io/gsm.app/dev/reference/out_MainTabs.html</loc></url>
+<url><loc>https://gilead-biostats.github.io/gsm.app/dev/reference/out_MetadataItem.html</loc></url>
+<url><loc>https://gilead-biostats.github.io/gsm.app/dev/reference/out_MetadataList.html</loc></url>
 <url><loc>https://gilead-biostats.github.io/gsm.app/dev/reference/out_ParticipantMetadata.html</loc></url>
-<url><loc>https://gilead-biostats.github.io/gsm.app/dev/reference/out_ParticipantsBySite.html</loc></url>
 <url><loc>https://gilead-biostats.github.io/gsm.app/dev/reference/out_Placeholder.html</loc></url>
+<url><loc>https://gilead-biostats.github.io/gsm.app/dev/reference/out_Sidebar.html</loc></url>
+<url><loc>https://gilead-biostats.github.io/gsm.app/dev/reference/out_SiteParticipants.html</loc></url>
 <url><loc>https://gilead-biostats.github.io/gsm.app/dev/reference/out_StudyInformation.html</loc></url>
 <url><loc>https://gilead-biostats.github.io/gsm.app/dev/reference/pipe.html</loc></url>
 <url><loc>https://gilead-biostats.github.io/gsm.app/dev/reference/run_gsm_app.html</loc></url>
