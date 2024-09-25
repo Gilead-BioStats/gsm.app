@@ -30,7 +30,7 @@ Imports:
     magrittr,
     purrr,
     rlang,
-    shiny,
+    shiny (>= 1.6.0),
     shinyjs,
     yaml
 Suggests: 
