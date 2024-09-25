@@ -11,6 +11,8 @@
 \item{chrMetrics}{\code{character} A named vector of MetricIDs, where the names
 are the full Metric.}
 
+\item{chrSites}{\code{character} A vector of sites available in the study.}
+
 \item{chrValues}{\code{character} A vector of values to associate with a vector of
 labels.}
 
@@ -37,6 +39,8 @@ data.frames, each of which contains information related to the named
 metric.}
 
 \item{id}{\code{character} The id for this module, widget, or other element.}
+
+\item{intKRIColorCount}{\code{integer} A named vector of counts by color.}
 
 \item{intNParticipants}{\code{integer} The number of unique participants
 (subjects) in the study.}
@@ -83,6 +87,8 @@ that returns the \code{SubjectID} of the selected participant.}
 \item{session}{\code{environment} Session from which to make a child scope (the
 default should almost always be used).}
 
+\item{strColor}{\code{character} The target color to report about.}
+
 \item{strContainerID}{\code{character} The (namespaced) ID of the target container
 (usually a div).}
 
@@ -90,6 +96,8 @@ default should almost always be used).}
 
 \item{strInputID}{\code{character} An ID to use for the Shiny input created by
 this module or used by this Javascript.}
+
+\item{strLabel}{\code{character} The label of a field.}
 
 \item{strMetricID}{\code{character} A \code{MetricID} to focus on.}
 

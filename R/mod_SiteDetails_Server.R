@@ -73,17 +73,6 @@ mod_SiteDetails_Server <- function(
       }
     })
 
-    ### Metric Metadata List
-    output$metric_metadata_list <- renderUI({
-      out_Card(
-        "Metric Metadata",
-        out_MetadataList(
-          c("Metric", "Numerator", "Denominator", "Threshold"),
-          rctv_lMetric()[c("Metric", "Numerator", "Denominator", "Threshold")]
-        )
-      )
-    })
-
     ### Site Metadata
     output$site_metadata_list <- renderUI({
       out_MetadataList(
@@ -99,7 +88,7 @@ mod_SiteDetails_Server <- function(
       bindCache(rctv_strSiteID())
 
     output$participants <- DT::renderDT({
-      out_ParticipantsBySite(
+      out_SiteParticipants(
         rctv_dfAnalyticsInput_byMetric_bySite(),
         rctv_chrColumnNames()
       )

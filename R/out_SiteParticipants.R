@@ -3,8 +3,8 @@
 #' @inheritParams shared-params
 #'
 #' @keywords internal
-out_ParticipantsBySite <- function(dfAnalyticsInput, chrColumnNames) {
-  table <- DT::datatable(
+out_SiteParticipants <- function(dfAnalyticsInput, chrColumnNames) {
+  DT::datatable(
     dfAnalyticsInput,
     class = "compact",
     colnames = chrColumnNames,
@@ -38,6 +38,4 @@ out_ParticipantsBySite <- function(dfAnalyticsInput, chrColumnNames) {
           ')
   ) %>%
     DT::formatRound("Metric", digits = 5)
-
-  return(table)
 }

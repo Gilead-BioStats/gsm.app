@@ -1,3 +1,9 @@
+#' Main Tabbed Content
+#'
+#' @inheritParams shared-params
+#' @return A list of [bslib::nav_panel()] elements, containing the main tabbed
+#'   content.
+#' @keywords internal
 out_MainTabs <- function(dfResults, chrMetrics) {
   list(
     bslib::nav_panel(

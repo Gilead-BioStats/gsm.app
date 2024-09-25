@@ -9,6 +9,7 @@
 #' @param chrLabels `character` A vector of labels for display to the user.
 #' @param chrMetrics `character` A named vector of MetricIDs, where the names
 #'   are the full Metric.
+#' @param chrSites `character` A vector of sites available in the study.
 #' @param chrValues `character` A vector of values to associate with a vector of
 #'   labels.
 #' @param dfAnalyticsInput `data.frame` Participant-level metric data.
@@ -28,6 +29,7 @@
 #'   data.frames, each of which contains information related to the named
 #'   metric.
 #' @param id `character` The id for this module, widget, or other element.
+#' @param intKRIColorCount `integer` A named vector of counts by color.
 #' @param intNParticipants `integer` The number of unique participants
 #'   (subjects) in the study.
 #' @param lMetric `list` Named list of data describing a single metric, as well
@@ -59,11 +61,13 @@
 #'   that returns the `SubjectID` of the selected participant.
 #' @param session `environment` Session from which to make a child scope (the
 #'   default should almost always be used).
+#' @param strColor `character` The target color to report about.
 #' @param strContainerID `character` The (namespaced) ID of the target container
 #'   (usually a div).
 #' @param strGroupID `character` A `GroupID` to focus on.
 #' @param strInputID `character` An ID to use for the Shiny input created by
 #'   this module or used by this Javascript.
+#' @param strLabel `character` The label of a field.
 #' @param strMetricID `character` A `MetricID` to focus on.
 #' @param strPlotTitle `character` A title for a plot, usually the name of a
 #'   metric.

@@ -1,7 +1,6 @@
 #' Participant metric summary card
 #'
 #' @inheritParams shared-params
-#'
 #' @return A [bslib::card()] with either a placeholder, or a clickable list of
 #'   available metric data for this participant.
 #' @keywords internal

@@ -1,7 +1,7 @@
 # mod_ScatterPlotSet_UI creates the expected UI
 
     Code
-      mod_ScatterPlotSet_UI("myID", c(mod1 = "a", mod2 = "b", mod3 = "c"))
+      test_result
     Output
       <div class="bslib-grid bslib-mb-spacing html-fill-item" data-require-bs-caller="layout_column_wrap()" data-require-bs-version="5" id="myID" style="grid-template-columns:repeat(2, minmax(0, 1fr));grid-auto-rows:1fr;--bslib-grid-height:auto;--bslib-grid-height-mobile:auto;">
         <div class="bslib-grid-item bslib-gap-spacing html-fill-container">

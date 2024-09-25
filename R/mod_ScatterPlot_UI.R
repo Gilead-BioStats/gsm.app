@@ -1,8 +1,6 @@
 #' ScatterPlot Module UI
 #'
 #' @inheritParams shared-params
-#' @param strPlotTitle
-#'
 #' @return A [bslib::card()] with an optional title and a
 #'   [Widget_ScatterPlotOutput()].
 #' @keywords internal

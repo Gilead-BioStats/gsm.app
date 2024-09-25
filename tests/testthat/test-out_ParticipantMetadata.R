@@ -1,24 +1,22 @@
 test_that("out_ParticipantMetadata returns a default UI with empty data", {
-  # We will likely intentionally make this test fail in a lot of updates. Change
-  # this comment once the returned UI is relatively solid.
+  test_result <- out_ParticipantMetadata(lParticipantMetadata = list())
+  expect_s3_class(test_result, c("bslib_fragment", "shiny.tag"))
+  class(test_result) <- "shiny.tag"
   expect_cleaned_html({
-    test_result <- out_ParticipantMetadata(lParticipantMetadata = list())
-    class(test_result) <- "shiny.tag"
     test_result
   })
 })
 
 test_that("out_ParticipantMetadata returns the expected UI with data", {
-  # We will likely intentionally make this test fail in a lot of updates. Change
-  # this comment once the returned UI is relatively solid.
-  expect_cleaned_html({
-    test_result <- out_ParticipantMetadata(
-      list(
-        Name = "Test Person",
-        otherField = "Field value"
-      )
+  test_result <- out_ParticipantMetadata(
+    list(
+      Name = "Test Person",
+      otherField = "Field value"
     )
-    class(test_result) <- "shiny.tag"
+  )
+  expect_s3_class(test_result, c("bslib_fragment", "shiny.tag"))
+  class(test_result) <- "shiny.tag"
+  expect_cleaned_html({
     test_result
   })
 })

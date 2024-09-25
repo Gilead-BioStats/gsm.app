@@ -30,7 +30,6 @@ reporting.}
 A Shiny UI object
 }
 \description{
-This function defines the user interface for your Shiny web application.
-It specifies the layout of the web page and the interface elements it contains.
+The user interface for a gsm deep dive app.
 }
 \keyword{internal}

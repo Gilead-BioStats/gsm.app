@@ -1,7 +1,6 @@
 #' Metric Details UI
 #'
 #' @inheritParams shared-params
-#'
 #' @keywords internal
 mod_MetricDetails_UI <- function(id) {
   ns <- NS(id)

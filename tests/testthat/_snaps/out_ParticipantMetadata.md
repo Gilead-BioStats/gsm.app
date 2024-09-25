@@ -1,8 +1,6 @@
 # out_ParticipantMetadata returns a default UI with empty data
 
     Code
-      test_result <- out_ParticipantMetadata(lParticipantMetadata = list())
-      class(test_result) <- "shiny.tag"
       test_result
     Output
       <div class="card bslib-card bslib-mb-spacing html-fill-item html-fill-container" data-bslib-card-init data-full-screen="false" data-require-bs-caller="card()" data-require-bs-version="5" id="bslib-card-XXXX">
@@ -23,8 +21,6 @@
 # out_ParticipantMetadata returns the expected UI with data
 
     Code
-      test_result <- out_ParticipantMetadata(list(Name = "Test Person", otherField = "Field value"))
-      class(test_result) <- "shiny.tag"
       test_result
     Output
       <div class="card bslib-card bslib-mb-spacing html-fill-item html-fill-container" data-bslib-card-init data-full-screen="false" data-require-bs-caller="card()" data-require-bs-version="5" id="bslib-card-XXXX">

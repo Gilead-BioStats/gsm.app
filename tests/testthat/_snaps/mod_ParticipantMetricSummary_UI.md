@@ -1,8 +1,6 @@
 # mod_ParticipantMetricSummary_UI() returns the expected UI
 
     Code
-      test_result <- mod_ParticipantMetricSummary_UI("metric_summary")
-      class(test_result) <- "shiny.tag"
       test_result
     Output
       <div class="card bslib-card bslib-mb-spacing html-fill-item html-fill-container" data-bslib-card-init data-full-screen="false" data-require-bs-caller="card()" data-require-bs-version="5" id="bslib-card-XXXX">

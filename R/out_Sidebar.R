@@ -1,6 +1,11 @@
+#' Study Information Sidebar
+#'
+#' @inheritParams shared-params
+#' @return A [bslib::sidebar()] with study information, inputs, and the
+#'   stylesheets and dependencies required to display the app.
+#' @keywords internal
 out_Sidebar <- function(lStudy, chrMetrics, chrSites, intNParticipants) {
   bslib::sidebar(
-    # width = 3,
     width = 400,
     id = "sidebar",
     shinyjs::useShinyjs(),
@@ -16,6 +21,11 @@ out_Sidebar <- function(lStudy, chrMetrics, chrSites, intNParticipants) {
   )
 }
 
+#' Card with inputs
+#'
+#' @inheritParams shared-params
+#' @return A [bslib::card()] with app inputs.
+#' @keywords internal
 out_Inputs <- function(chrMetrics, chrSites, intNParticipants) {
   bslib::card(
     class = "overflow-on",
