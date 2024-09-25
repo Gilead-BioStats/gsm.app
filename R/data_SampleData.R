@@ -113,11 +113,11 @@ sample_FetchParticipantData <- function(strSubjectID) {
   if (strSubjectID %in% names(participant_data)) {
     return(participant_data[[strSubjectID]])
   }
-  cli::cli_abort(
+  gsmapp_abort(
     c(
       "{.arg strSubjectID} must be one of the participants in the sample data.",
       i = "Unknown participant {strSubjectID}."
     ),
-    class = c("gsm.app-error", "gsm.app-error-unknown_strSubjectID")
+    class = "unknown_strSubjectID"
   )
 }

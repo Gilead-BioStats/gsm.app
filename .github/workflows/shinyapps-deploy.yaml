@@ -74,7 +74,7 @@ jobs:
         run: |
           install.packages("pak")
           extras <- c(
-            "devtools",
+            "pkgload",
             "pkgdown",
             "AsioHeaders",
             "cpp11",

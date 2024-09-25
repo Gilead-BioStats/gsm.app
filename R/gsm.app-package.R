@@ -5,8 +5,10 @@
 #' @import shiny
 #' @importFrom cli cli_alert
 #' @importFrom cli cli_alert_info
-## Import something to make sure this installs for gsm extras.
 #' @importFrom kableExtra kbl
 #' @importFrom rlang .data
 ## usethis namespace: end
 NULL
+
+# kableExtra::kbl is imported for Suggests use in {gsm}, no longer needed once
+# that use case is removed.

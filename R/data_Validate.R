@@ -20,12 +20,12 @@ validate_is_df <- function(df,
   if (is.data.frame(df)) {
     return(df)
   }
-  cli::cli_abort(
+  gsmapp_abort(
     c(
       "{.arg {arg}} must be a data.frame.",
       x = "{.arg {arg}} is {.obj_type_friendly {df}}."
     ),
-    class = "gsm.app-error-invalid_input",
+    class = "invalid_input",
     call = call
   )
 }
@@ -36,12 +36,13 @@ validate_has_columns <- function(df,
   call = rlang::caller_env()) {
   missing_cols <- setdiff(chrRequiredColumns, colnames(df))
   if (length(missing_cols)) {
-    cli::cli_abort(
+    gsmapp_abort(
       c(
         "{.arg {arg}} must have all required columns.",
         x = "Missing columns: {.field {missing_cols}}."
       ),
-      class = "gsm.app-error-invalid_input"
+      class = "invalid_input",
+      call = call
     )
   }
   return(df)

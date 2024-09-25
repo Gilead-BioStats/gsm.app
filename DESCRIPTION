@@ -34,8 +34,6 @@ Imports:
     shinyjs,
     yaml
 Suggests: 
-    here,
-    pkgload,
     testthat (>= 3.0.0),
     usethis
 Remotes:
