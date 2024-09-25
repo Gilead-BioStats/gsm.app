@@ -21,7 +21,7 @@ srvr_SyncSelectizeInput <- function(
 ) {
   observe({
     strValue <- rctv_strValue()
-    if (length(strValue) && strValue != "" && strValue != "None") {
+    if (length(strValue) && strValue != "") {
       updateSelectizeInput(
         inputId = id,
         choices = chrChoices,
