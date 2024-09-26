@@ -13,6 +13,6 @@ extract_field_name(strArgName)
 \code{strArgName} with the beginning part removed.
 }
 \description{
-Assume standard argument name format, like \code{strGroupID} or \code{dSnapshotDat}.
+Assume standard argument name format, like \code{strGroupID} or \code{dSnapshotDate}.
 }
 \keyword{internal}

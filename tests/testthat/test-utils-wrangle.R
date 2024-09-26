@@ -30,3 +30,9 @@ test_that("filter_byMetricID filters by MetricID", {
     dplyr::tibble(MetricID = 3L, value = "c")
   )
 })
+
+test_that("make_lStudy reshapes dfGroups + dfResults", {
+  expect_snapshot({
+    make_lStudy(sample_dfGroups, sample_dfResults)
+  })
+})
