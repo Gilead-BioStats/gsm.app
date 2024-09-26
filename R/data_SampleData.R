@@ -3,7 +3,8 @@
 #' Summary metric data for the "Site Subjects" module on the "Metric Details"
 #' tab.
 #'
-#' @format A tibble with 2602 rows and 7 columns:
+#' @format A tibble with `r nrow(gsm.app::sample_dfAnalyticsInput)` rows and
+#'   `r ncol(gsm.app::sample_dfAnalyticsInput)` columns:
 #' \describe{
 #'   \item{MetricID}{metric identifier}
 #'   \item{SubjectID}{unique subject identifier}
@@ -21,7 +22,8 @@
 #'
 #' Information about the bounds used to flag metrics.
 #'
-#' @format A tibble with 2091 rows and 8 columns:
+#' @format A tibble with `r nrow(gsm.app::sample_dfBounds)` rows and
+#'   `r ncol(gsm.app::sample_dfBounds)` columns:
 #' \describe{
 #'   \item{Threshold}{number of standard deviations that the upper and lower bounds are based on}
 #'   \item{Denominator}{calculated denominator value}
@@ -40,7 +42,8 @@
 #'
 #' Information about sites, countries, and the overall study in the sample data.
 #'
-#' @format A tibble with 3903 rows and 4 columns:
+#' @format A tibble with `r nrow(gsm.app::sample_dfGroups)` rows and
+#'   `r ncol(gsm.app::sample_dfGroups)` columns:
 #' \describe{
 #'   \item{GroupID}{grouping variable}
 #'   \item{GroupLevel}{level of grouping variable}
@@ -55,7 +58,8 @@
 #'
 #' Information about the metrics included in the sample data.
 #'
-#' @format A tibble with 2 rows and 12 columns:
+#' @format A tibble with `r nrow(gsm.app::sample_dfMetrics)` rows and
+#'   `r ncol(gsm.app::sample_dfMetrics)` columns:
 #' \describe{
 #'   \item{MetricID}{unique metric identifier}
 #'   \item{File}{yaml file for workflow}
@@ -78,7 +82,8 @@
 #'
 #' Information about the status of each site in the sample data.
 #'
-#' @format A tibble with 352 rows and 10 columns:
+#' @format A tibble with `r nrow(gsm.app::sample_dfResults)` rows and
+#'   `r ncol(gsm.app::sample_dfResults)` columns:
 #' \describe{
 #'   \item{GroupID}{grouping variable}
 #'   \item{GroupLevel}{level of grouping variable}
