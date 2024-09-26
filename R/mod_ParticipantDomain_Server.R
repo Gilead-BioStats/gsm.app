@@ -13,7 +13,7 @@ mod_ParticipantDomain_Server = function(id, rctv_lData, rctv_strName) {
         return(out_Placeholder("participant and a domain"))
       }
       if (!length(rctv_strName())) {
-        return(out_Placeholder("domain")) # Covered but pkg-level says it isn't
+        return(out_Placeholder("domain"))
       }
       return(DT::DTOutput(session$ns("table"), fill = FALSE))
     })

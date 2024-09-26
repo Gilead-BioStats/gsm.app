@@ -50,6 +50,8 @@
 #' @param lParticipantMetadata `list` Named list of data describing a single
 #'   participant.
 #' @param lStudy `list` Named list of data describing the overall study.
+#' @param rctv_chrIDs `reactive character` A [shiny::reactive()] object that
+#'   returns a vector of ids for modules, inputs, or other elements.
 #' @param rctv_dfBounds `reactive dataframe` A [shiny::reactive()] object that
 #'   returns a set of predicted percentages/rates and upper- and lower-bounds
 #'   across the full range of sample sizes/total exposure values for reporting.
