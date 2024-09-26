@@ -1,7 +1,6 @@
 #' Participant Metric Summary server
 #'
-#' Inputs as links to metric summary reports, with counts of rows.
-#'
+#' @inheritParams shared-params
 #' @returns A string identifying the selected summary as a [shiny::reactive()].
 #' @keywords internal
 mod_ParticipantMetricSummary_Server <- function(

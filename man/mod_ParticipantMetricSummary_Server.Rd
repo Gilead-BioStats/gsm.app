@@ -6,10 +6,17 @@
 \usage{
 mod_ParticipantMetricSummary_Server(id, rctv_lParticipantMetricData)
 }
+\arguments{
+\item{id}{\code{character} The id for this module, widget, or other element.}
+
+\item{rctv_lParticipantMetricData}{\verb{reactive list} A \code{\link[shiny:reactive]{shiny::reactive()}}
+object that returns a list of dataframes for a given participant, one for
+each metric that is available.}
+}
 \value{
 A string identifying the selected summary as a \code{\link[shiny:reactive]{shiny::reactive()}}.
 }
 \description{
-Inputs as links to metric summary reports, with counts of rows.
+Participant Metric Summary server
 }
 \keyword{internal}

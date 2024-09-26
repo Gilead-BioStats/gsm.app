@@ -10,9 +10,7 @@ test_that("mod_ParticipantDomain_Server sets title and placeholder when no data 
       output_title <- output$title
       expect_equal(output_title, "Participant Domain")
       expect_cleaned_html(
-        {
-          output$details$html
-        },
+        output$details$html,
         call = call
       )
     }
@@ -35,9 +33,7 @@ test_that("mod_ParticipantDomain_Server sets title and placeholder when data is 
       output_title <- output$title
       expect_equal(output_title, "Participant Domain")
       expect_cleaned_html(
-        {
-          output$details$html
-        },
+        output$details$html,
         call = call
       )
     }
