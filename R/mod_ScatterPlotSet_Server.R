@@ -1,3 +1,8 @@
+#' ScatterPlotSet Module Server (Main)
+#'
+#' @inheritParams shared-params
+#' @returns A [shiny::reactiveVal()] with the id of the selected group.
+#' @keywords internal
 mod_ScatterPlotSet_Server <- function(
   id,
   dfResults,
@@ -52,6 +57,11 @@ mod_ScatterPlotSet_Server <- function(
   })
 }
 
+#' ScatterPlotSet Module Server (MetricID)
+#'
+#' @inheritParams shared-params
+#' @returns A [shiny::reactive()] with the id of the selected metric.
+#' @keywords internal
 mod_ScatterPlotSet_Server_MetricID <- function(id) {
   moduleServer(id, function(input, output, session) {
     rctv_strSelectectMetricID <- reactive({
