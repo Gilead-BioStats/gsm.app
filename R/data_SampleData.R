@@ -107,7 +107,7 @@
 #'
 #' @inheritParams shared-params
 #'
-#' @return A list with elements `metadata` (a list of participant metadata) and
+#' @returns A list with elements `metadata` (a list of participant metadata) and
 #'   `metric_data` (a named list, where the names are the available metric
 #'   summaries, and the values are data frames containing the details).
 #' @export
@@ -123,6 +123,6 @@ sample_FetchParticipantData <- function(strSubjectID) {
       "{.arg strSubjectID} must be one of the participants in the sample data.",
       i = "Unknown participant {strSubjectID}."
     ),
-    class = "unknown_strSubjectID"
+    strClass = "unknown_strSubjectID"
   )
 }

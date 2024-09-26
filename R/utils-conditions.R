@@ -1,22 +1,26 @@
 #' Error messaging for this package.
 #'
+#' @inheritParams shared-params
 #' @inheritParams cli::cli_abort
-#' @param class A descriptive label for this type of error, in lower_snake_case.
-#' @param .envir Environment in which any variables used in the message are
-#'   defined. You almost definitely want to leave this as the default value.
-#'
 #' @return An error condition with classes `"gsm.app-condition"`,
-#'   `"gsm.app-error"`, and `"gsm.app-error-{class}"`.
+#'   `"gsm.app-error"`, and `"gsm.app-error-{strClass}"`.
 #' @keywords internal
-gsmapp_abort <- function(message, class, ..., .envir = rlang::caller_env()) {
+gsmapp_abort <- function(
+    chrMessage,
+    strClass,
+    ...,
+    envCall = rlang::caller_env(),
+    envEvaluate = rlang::caller_env()
+) {
   cli::cli_abort(
-    message,
+    chrMessage,
     class = c(
       "gsm.app-condition",
       "gsm.app-error",
-      paste0("gsm.app-error-", class)
+      paste0("gsm.app-error-", strClass)
     ),
-    .envir = .envir,
+    call = envCall,
+    .envir = envEvaluate,
     ...
   )
 }
