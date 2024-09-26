@@ -4,6 +4,9 @@
 \alias{shared-params}
 \title{Parameters used in multiple functions}
 \arguments{
+\item{chrChoices}{\code{character} Choices for a \code{\link[shiny:selectInput]{shiny::selectizeInput()}} or
+other menu.}
+
 \item{chrLinkIDs}{\code{character} Module ids for multiple modules.}
 
 \item{chrLabels}{\code{character} A vector of labels for display to the user.}
@@ -84,6 +87,9 @@ returns the \code{GroupID} of a site.}
 \item{rctv_strSubjectID}{\verb{reactive character} A \code{\link[shiny:reactive]{shiny::reactive()}} object
 that returns the \code{SubjectID} of the selected participant.}
 
+\item{rctv_strValue}{\verb{reactive character} A \code{\link[shiny:reactive]{shiny::reactive()}} object that
+returns the value of a field.}
+
 \item{session}{\code{environment} Session from which to make a child scope (the
 default should almost always be used).}
 
@@ -105,6 +111,8 @@ this module or used by this Javascript.}
 metric.}
 
 \item{strSubjectID}{\code{character} A \code{SubjectID} of an individual participant.}
+
+\item{strTargetTab}{\code{character} The tab to switch to.}
 
 \item{strText}{\code{character} Text to display.}
 

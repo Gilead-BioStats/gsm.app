@@ -10,3 +10,15 @@
 un_ns <- function(id, ns) {
   sub(paste0("^", ns("")), "", id)
 }
+
+#' Replace empty values with NULL
+#'
+#' @inheritParams shared-params
+#' @return The value, or `NULL` if the value is "None" or an empty string.
+#' @keywords internal
+null_for_none <- function(strValue) {
+  if (length(strValue) > 0 && strValue != "None" && strValue != "") {
+    return(strValue)
+  }
+  NULL
+}

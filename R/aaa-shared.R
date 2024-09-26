@@ -5,6 +5,8 @@
 #' this package, because [shiny::testServer()] specifically expects an `id`
 #' argument in module server functions.
 #'
+#' @param chrChoices `character` Choices for a [shiny::selectizeInput()] or
+#'   other menu.
 #' @param chrLinkIDs `character` Module ids for multiple modules.
 #' @param chrLabels `character` A vector of labels for display to the user.
 #' @param chrMetrics `character` A named vector of MetricIDs, where the names
@@ -59,6 +61,8 @@
 #'   returns the `GroupID` of a site.
 #' @param rctv_strSubjectID `reactive character` A [shiny::reactive()] object
 #'   that returns the `SubjectID` of the selected participant.
+#' @param rctv_strValue `reactive character` A [shiny::reactive()] object that
+#'   returns the value of a field.
 #' @param session `environment` Session from which to make a child scope (the
 #'   default should almost always be used).
 #' @param strColor `character` The target color to report about.
@@ -72,6 +76,7 @@
 #' @param strPlotTitle `character` A title for a plot, usually the name of a
 #'   metric.
 #' @param strSubjectID `character` A `SubjectID` of an individual participant.
+#' @param strTargetTab `character` The tab to switch to.
 #' @param strText `character` Text to display.
 #' @param strTitle `character` A title to display for the overall app.
 #' @param strValue `character` The value of a field.

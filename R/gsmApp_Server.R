@@ -67,19 +67,20 @@ gsmApp_Server <- function(
       dfBounds = dfBounds,
       rctv_strSiteID = reactive(input$site)
     )
-    srvr_SyncInput(
-      id = "site",
-      rctv_strValue = lStudyOverviewSelected$rctv_strSelectedGroup,
-      session = session
+    srvr_SyncSelectInput(
+      "site",
+      lStudyOverviewSelected$rctv_strSelectedGroup,
+      session
     )
-    srvr_SyncInput(
-      id = "metric",
-      rctv_strValue = lStudyOverviewSelected$rctv_strSelectectMetricID,
-      session = session
+    srvr_SyncSelectInput(
+      "metric",
+      lStudyOverviewSelected$rctv_strSelectectMetricID,
+      session
     )
 
     ## Metric Details ----
-    srvr_TabOnChange(
+    srvr_SyncTab(
+      "primary_nav_bar",
       "Metric Details",
       reactive(input$metric),
       session
@@ -110,11 +111,7 @@ gsmApp_Server <- function(
       ignoreInit = TRUE,
       once = TRUE
     )
-    srvr_SyncInput(
-      id = "site",
-      rctv_strValue = rctv_strMetricDetailsGroup,
-      session = session
-    )
+    srvr_SyncSelectInput("site", rctv_strMetricDetailsGroup, session)
     srvr_SyncSelectizeInput(
       id = "participant",
       rctv_strValue = rctv_strSiteDetailsParticipant,
@@ -124,7 +121,8 @@ gsmApp_Server <- function(
     )
 
     ## Participant Details ----
-    srvr_TabOnChange(
+    srvr_SyncTab(
+      "primary_nav_bar",
       "Participant Details",
       reactive(input$participant),
       session
