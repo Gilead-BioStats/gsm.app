@@ -26,13 +26,13 @@ gsmApp_Server <- function(
     ## Initialize ----
     chrParticipantIDs <- sort(unique(dfAnalyticsInput$SubjectID))
     # This one is selectize and thus should remain server-side.
-    srvr_PopulateParticipantSelect(chrParticipantIDs, session)
+    srvr_InitializeParticipantSelect(chrParticipantIDs, session)
 
     ## Reset ----
     observe({
       updateSelectInput(session, "metric", selected = dfMetrics$MetricID[[1]])
       updateSelectInput(session, "site", selected = "None")
-      srvr_PopulateParticipantSelect(chrParticipantIDs, session)
+      srvr_InitializeParticipantSelect(chrParticipantIDs, session)
       bslib::nav_select("primary_nav_bar", "Study Overview")
     }) %>%
       bindEvent(input$reset)
