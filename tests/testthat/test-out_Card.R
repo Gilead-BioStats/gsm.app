@@ -13,7 +13,7 @@ test_that("out_Placeholder generates a placeholder card", {
 })
 
 test_that("out_Placeholder accepts a vector of requirements", {
-  test_result <- out_Placeholder(c("thing", "another thing"))
+  test_result <- out_Placeholder(c("thing", "other thing"))
   expect_s3_class(test_result, c("bslib_fragment", "shiny.tag"))
   class(test_result) <- "shiny.tag"
   expect_cleaned_html(test_result)

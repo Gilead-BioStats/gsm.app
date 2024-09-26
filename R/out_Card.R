@@ -18,18 +18,31 @@ out_Card <- function(tagTitle, ..., id = NULL) {
 
 #' Placeholder card
 #'
-#' @param chrRequirement `character` Text to describe what is required, as a
-#'   string or character vector.
+#' @param ... `character` Text to describe what is required, as a string,
+#'   character vector, or multiple strings or character vectors.
 #'
 #' @returns A [bslib::card()] with a placeholder.
 #' @keywords internal
-out_Placeholder <- function(chrRequirement) {
+out_Placeholder <- function(...) {
+  chrRequirements <- c(...)
+  chrRequirements <- paste(choose_article(chrRequirements), chrRequirements)
   bslib::card(
     class = "placeholder",
     htmlDependency_Stylesheet("placeholder.css"),
-    cli::format_inline("Please select a {chrRequirement}.")
+    cli::format_inline("Please select {chrRequirements}.")
   )
 }
+
+#' Choose a or an
+#'
+#' @param chrWords Words to choose "a" or "an" for.
+#'
+#' @return A vector of "a" and "an", the same length as chrWords.
+#' @keywords internal
+choose_article <- function(word) {
+  ifelse(grepl("^[aeiouAEIOU]", word), "an", "a")
+}
+
 
 #' Card subtitle
 #'

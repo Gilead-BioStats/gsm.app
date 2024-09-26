@@ -42,11 +42,11 @@ mod_ParticipantDetails_Server <- function(
       out_ParticipantMetadata(rctv_lParticipantMetadata())
     })
 
-    rctv_intSelectedRow <- mod_ParticipantDomain_Server(
+    rctv_intSelectedRows <- mod_ParticipantDomain_Server(
       "domain",
       rctv_lParticipantMetricData,
       rctv_strSelectedMetric
     )
-    return(rctv_intSelectedRow)
+    return(rctv_intSelectedRows)
   })
 }

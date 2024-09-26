@@ -31,7 +31,7 @@
       test_result
     Output
       <div class="card bslib-card bslib-mb-spacing html-fill-item html-fill-container placeholder" data-bslib-card-init data-require-bs-caller="card()" data-require-bs-version="5">
-        <div class="card-body bslib-gap-spacing html-fill-item html-fill-container" style="margin-top:auto;margin-bottom:auto;flex:1 1 auto;">Please select a thing and another thing.</div>
+        <div class="card-body bslib-gap-spacing html-fill-item html-fill-container" style="margin-top:auto;margin-bottom:auto;flex:1 1 auto;">Please select a thing and an other thing.</div>
         <script data-bslib-card-init>bslib.Card.initializeAllCards();</script>
       </div>
 

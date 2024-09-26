@@ -1,4 +1,4 @@
-# mod_ParticipantDomain_Server sets things up from arguments
+# mod_ParticipantDomain_Server sets title and placeholder when no data is available
 
     Code
       output$details$html
@@ -8,7 +8,7 @@
         <script data-bslib-card-init>bslib.Card.initializeAllCards();</script>
       </div>
 
----
+# mod_ParticipantDomain_Server sets title and placeholder when data is available but no table name is selected
 
     Code
       output$details$html
