@@ -17,8 +17,11 @@ un_ns <- function(id, ns) {
 #' @return The value, or `NULL` if the value is "None" or an empty string.
 #' @keywords internal
 null_for_none <- function(strValue) {
-  if (length(strValue) > 0 && strValue != "None" && strValue != "") {
-    return(strValue)
+  if (
+    length(strValue) == 0 ||
+    (length(strValue) == 1 && (strValue == "None" || strValue == ""))
+  ) {
+    return(NULL)
   }
-  NULL
+  return(strValue)
 }
