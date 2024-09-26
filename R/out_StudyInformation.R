@@ -2,7 +2,7 @@
 #'
 #' @inheritParams shared-params
 #'
-#' @return A [bslib::card()] with overall study metadata.
+#' @returns A [bslib::card()] with overall study metadata.
 #' @keywords internal
 out_StudyInformation <- function(lStudy) {
   strProtocolNumber <- lStudy$protocol_number

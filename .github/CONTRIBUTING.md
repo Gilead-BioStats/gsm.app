@@ -170,7 +170,7 @@ This QC checklist is to be used as part of the Development and Release Workflows
     -   [ ] Function purpose captured in [roxygen2 description](https://cran.r-project.org/web/packages/roxygen2/vignettes/rd.html#the-description-block) (e.g., "Evaluates adverse event (AE) rates to identify sites that may be over- or under-reporting AEs")
     -   [ ] All function parameters are described with a [`@param` tag](https://cran.r-project.org/web/packages/roxygen2/vignettes/rd.html#functions). Each parameter description should include its name, type, purpose, usage details, default value (if applicable), requirement, and valid options (if applicable).
     -   [ ] All external dependencies are captured. Fully qualify funtions from other packages (such as `dplyr::filter()`), and `usethis::usepackage()` to add the package as a dependency (eg, `usethis::use_package("dplyr")`).
-    -   [ ] Function output is captured with a [`@return` tag](https://cran.r-project.org/web/packages/roxygen2/vignettes/rd.html#functions). Each output description should include output type, structure, and data specification (if applicable).
+    -   [ ] Function output is captured with a [`@returns` tag](https://cran.r-project.org/web/packages/roxygen2/vignettes/rd.html#functions). Each output description should include output type, structure, and data specification (if applicable).
     -   [ ] At least one (1) example is provided under an [`@examples` tag](https://cran.r-project.org/web/packages/roxygen2/vignettes/rd.html#functions).
 -   [ ] Error Checking
     -   [ ] Basic checks for all parameters should be included using `stopifnot()` or similar logic (e.g., `stopifnot("dfInput is not a data frame" = is.data.frame(dfInput))`)

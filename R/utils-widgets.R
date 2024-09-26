@@ -3,7 +3,7 @@
 #' @param strWidgetName The name of a widget in the gsm package.
 #' @param excludes An optional vector of named dependencies to *not* include.
 #'
-#' @return A list of `htmltools::htmlDependency` objects for use in
+#' @returns A list of `htmltools::htmlDependency` objects for use in
 #'   [htmlwidgets::createWidget()].
 #' @keywords internal
 gsmDependencies <- function(strWidgetName, excludes = character()) {

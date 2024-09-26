@@ -2,7 +2,7 @@
 #'
 #' Attach a default stylesheet to an app or other HTML exactly once.
 #'
-#' @return An `html_dependency` object (see [htmltools::htmlDependency()]),
+#' @returns An `html_dependency` object (see [htmltools::htmlDependency()]),
 #'   which is attached to the Shiny app exactly once, regardless how many times
 #'   it is added.
 #' @keywords internal
@@ -14,7 +14,7 @@ htmlDependency_Default_Stylesheet <- function() {
 #'
 #' Attach a stylesheet from this package to an app or other HTML exactly once.
 #'
-#' @return An `html_dependency` object (see [htmltools::htmlDependency()]),
+#' @returns An `html_dependency` object (see [htmltools::htmlDependency()]),
 #'   which is attached to the Shiny app exactly once, regardless how many times
 #'   it is added.
 #' @keywords internal
@@ -36,7 +36,7 @@ htmlDependency_Stylesheet <- function(
 #'
 #' Attach `highlightTableRow.js` to an app or other HTML exactly once.
 #'
-#' @return An `html_dependency` object (see [htmltools::htmlDependency()]),
+#' @returns An `html_dependency` object (see [htmltools::htmlDependency()]),
 #'   which is attached to the Shiny app exactly once, regardless how many times
 #'   it is added.
 #' @keywords internal
@@ -54,7 +54,7 @@ htmlDependency_HighlightTableRow <- function() {
 #'
 #' Attach `tableClick.js` to an app or other HTML exactly once.
 #'
-#' @return An `html_dependency` object (see [htmltools::htmlDependency()]),
+#' @returns An `html_dependency` object (see [htmltools::htmlDependency()]),
 #'   which is attached to the Shiny app exactly once, regardless how many times
 #'   it is added.
 #' @keywords internal
@@ -72,7 +72,7 @@ htmlDependency_TableClick <- function() {
 #'
 #' Attach `detectCardClicks.js` to an app or other HTML exactly once.
 #'
-#' @return An `html_dependency` object (see [htmltools::htmlDependency()]),
+#' @returns An `html_dependency` object (see [htmltools::htmlDependency()]),
 #'   which is attached to the Shiny app exactly once, regardless how many times
 #'   it is added.
 htmlDependency_DetectCardClicks <- function() {

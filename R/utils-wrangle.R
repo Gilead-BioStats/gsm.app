@@ -4,7 +4,7 @@
 #' @param Value The value to filter on.
 #' @param strField The name of the field. Auto-detected by default from the
 #'   variable used to provide `Value`.
-#' @return The filtered data.frame.
+#' @returns The filtered data.frame.
 #' @keywords internal
 filter_by <- function(
     df,
@@ -18,7 +18,7 @@ filter_by <- function(
 #' Assume standard argument name format, like `strGroupID` or `dSnapshotDate`.
 #'
 #' @param strArgName The name of the argument.
-#' @return `strArgName` with the beginning part removed.
+#' @returns `strArgName` with the beginning part removed.
 #' @keywords internal
 extract_field_name <- function(strArgName) {
   # Delete the lowercase "arg type" info at the start of the value.
@@ -51,7 +51,7 @@ filter_byGroupID <- function(df, strGroupID) {
 #' Reshape group and result info into study information
 #'
 #' @inheritParams shared-params
-#' @return A list with study information.
+#' @returns A list with study information.
 #' @keywords internal
 make_lStudy <- function(dfGroups, dfResults) {
   dfStudy <- dfGroups[dfGroups$GroupLevel == "Study", c("Param", "Value")]
@@ -67,7 +67,7 @@ make_lStudy <- function(dfGroups, dfResults) {
 #' THIS FUNCTION SHOULD BE REMOVED AS THE APP MATURES
 #'
 #' @inheritParams shared-params
-#' @return A list with a subset of study information.
+#' @returns A list with a subset of study information.
 #' @keywords internal
 temp_subsetLStudy <- function(lStudy) {
   lStudy <- lStudy[c(

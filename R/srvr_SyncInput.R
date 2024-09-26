@@ -1,7 +1,7 @@
 #' Synchronize selectInput with reactive
 #'
 #' @inheritParams shared-params
-#' @return A [shiny::observe()] that triggers [shiny::updateSelectInput()] when
+#' @returns A [shiny::observe()] that triggers [shiny::updateSelectInput()] when
 #'   the connected reactive changes.
 #' @keywords internal
 srvr_SyncSelectInput <- function(
@@ -21,7 +21,7 @@ srvr_SyncSelectInput <- function(
 #' Synchronize selectizeInput with reactive
 #'
 #' @inheritParams shared-params
-#' @return A [shiny::observe()] that triggers [shiny::updateSelectizeInput()]
+#' @returns A [shiny::observe()] that triggers [shiny::updateSelectizeInput()]
 #'   when the connected reactive changes.
 #' @keywords internal
 srvr_SyncSelectizeInput <- function(
@@ -48,7 +48,7 @@ srvr_SyncSelectizeInput <- function(
 #' Synchronize selectizeInput with reactive
 #'
 #' @inheritParams shared-params
-#' @return A [shiny::observe()] that triggers [bslib::nav_select()]
+#' @returns A [shiny::observe()] that triggers [bslib::nav_select()]
 #'   when the connected reactive changes.
 #' @keywords internal
 srvr_SyncTab <- function(

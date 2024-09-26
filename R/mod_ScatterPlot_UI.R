@@ -1,7 +1,7 @@
 #' ScatterPlot Module UI
 #'
 #' @inheritParams shared-params
-#' @return A [bslib::card()] with an optional title and a
+#' @returns A [bslib::card()] with an optional title and a
 #'   [Widget_ScatterPlotOutput()].
 #' @keywords internal
 mod_ScatterPlot_UI <- function(id, strPlotTitle = NULL) {

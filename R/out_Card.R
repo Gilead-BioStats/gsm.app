@@ -5,7 +5,7 @@
 #'   the card. Will be wrapped inside [bslib::card_title()].
 #' @param ... `html tags` Objects to place in the card.
 #'
-#' @return A [bslib::card()].
+#' @returns A [bslib::card()].
 #' @keywords internal
 out_Card <- function(tagTitle, ..., id = NULL) {
   bslib::card(
@@ -21,7 +21,7 @@ out_Card <- function(tagTitle, ..., id = NULL) {
 #' @param chrRequirement `character` Text to describe what is required, as a
 #'   string or character vector.
 #'
-#' @return A [bslib::card()] with a placeholder.
+#' @returns A [bslib::card()] with a placeholder.
 #' @keywords internal
 out_Placeholder <- function(chrRequirement) {
   bslib::card(
@@ -37,7 +37,7 @@ out_Placeholder <- function(chrRequirement) {
 #' @param chrAdditionalClass `character` One or more additional classes to apply
 #'   to the subtitle.
 #'
-#' @return A [bslib::card_title()] with appropriate classes.
+#' @returns A [bslib::card_title()] with appropriate classes.
 #' @keywords internal
 out_CardSubtitle <- function(tagTitle, chrAdditionalClass = character()) {
   bslib::card_title(

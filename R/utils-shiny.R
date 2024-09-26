@@ -5,7 +5,7 @@
 #'   produced using [shiny::NS()] or the one available as `session$ns()` in a
 #'   Shiny server function.
 #'
-#' @return `id` minus the namespace.
+#' @returns `id` minus the namespace.
 #' @keywords internal
 un_ns <- function(id, ns) {
   sub(paste0("^", ns("")), "", id)
@@ -14,7 +14,7 @@ un_ns <- function(id, ns) {
 #' Replace empty values with NULL
 #'
 #' @inheritParams shared-params
-#' @return The value, or `NULL` if the value is "None" or an empty string.
+#' @returns The value, or `NULL` if the value is "None" or an empty string.
 #' @keywords internal
 null_for_none <- function(strValue) {
   if (

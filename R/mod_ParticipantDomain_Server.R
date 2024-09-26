@@ -3,7 +3,7 @@
 #' Display a specific (named) table, or a placeholder.
 #'
 #' @inheritParams shared-params
-#' @return A [shiny::reactive()] with the index(es) of any rows selected by the
+#' @returns A [shiny::reactive()] with the index(es) of any rows selected by the
 #'   user.
 #' @keywords internal
 mod_ParticipantDomain_Server = function(id, rctv_lData, rctv_strName) {

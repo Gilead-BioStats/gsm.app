@@ -2,7 +2,7 @@
 #'
 #' @inheritParams shared-params
 #' @inheritParams cli::cli_abort
-#' @return An error condition with classes `"gsm.app-condition"`,
+#' @returns An error condition with classes `"gsm.app-condition"`,
 #'   `"gsm.app-error"`, and `"gsm.app-error-{strClass}"`.
 #' @keywords internal
 gsmapp_abort <- function(
