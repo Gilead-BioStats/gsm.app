@@ -50,6 +50,7 @@ mod_MetricDetails_Server <- function(
 
     # Outputs ----
     rctv_strSelectedGroup <- reactive({
+      req(input$selected_tab)
       switch(input$selected_tab,
         "Scatter Plot" = rctv_strScatterGroup(),
         "Bar Chart (KRI Value)" = {

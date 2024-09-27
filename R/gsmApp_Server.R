@@ -1,9 +1,8 @@
 #' Define Server
 #'
 #' @inheritParams shared-params
-#'
+#' @returns The main server function for use in a shiny app.
 #' @keywords internal
-
 gsmApp_Server <- function(
   dfResults,
   dfGroups,
@@ -29,6 +28,9 @@ gsmApp_Server <- function(
     srvr_InitializeParticipantSelect(chrParticipantIDs, session)
 
     ## Reset ----
+
+    # Truly testing this will require shinytest2, evidently. We trigger it, and
+    # nothing breaks, but the related inputs don't change in the testServer.
     observe({
       updateSelectInput(session, "metric", selected = dfMetrics$MetricID[[1]])
       updateSelectInput(session, "site", selected = "None")
@@ -111,6 +113,8 @@ gsmApp_Server <- function(
       ignoreInit = TRUE,
       once = TRUE
     )
+    # These are sort of tested, but won't be truly tested without UI
+    # interactions, ie shinytest2.
     srvr_SyncSelectInput("site", rctv_strMetricDetailsGroup, session)
     srvr_SyncSelectizeInput(
       id = "participant",
