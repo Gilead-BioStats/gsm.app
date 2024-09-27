@@ -3,7 +3,9 @@
 #' Update Participant Details when the selected participant changes.
 #'
 #' @inheritParams shared-params
-#'
+#' @returns A [shiny::reactive()] with the ids of rows selected in the table
+#'   (currently unused but implemented as a proof-of-concept for future
+#'   extensions).
 #' @keywords internal
 mod_ParticipantDetails_Server <- function(
   id,
