@@ -42,18 +42,18 @@ mod_ScatterPlotSet_Server <- function(
       }
     )
 
-    rval_strSelectedGroup <- reactiveVal()
+    rval_strSelectedGroupID <- reactiveVal()
     purrr::walk(
       lMetricGroups,
       function(rctv_strMetricGroup) {
         bindEvent(
-          observe(rval_strSelectedGroup(rctv_strMetricGroup())),
+          observe(rval_strSelectedGroupID(rctv_strMetricGroup())),
           rctv_strMetricGroup()
         )
       }
     )
 
-    return(rval_strSelectedGroup)
+    return(rval_strSelectedGroupID)
   })
 }
 
@@ -64,10 +64,10 @@ mod_ScatterPlotSet_Server <- function(
 #' @keywords internal
 mod_ScatterPlotSet_Server_MetricID <- function(id) {
   moduleServer(id, function(input, output, session) {
-    rctv_strSelectectMetricID <- reactive({
+    rctv_strSelectedMetricID <- reactive({
       req(input$selectedScatterPlot)
       un_ns(input$selectedScatterPlot, session$ns)
     })
-    return(rctv_strSelectectMetricID)
+    return(rctv_strSelectedMetricID)
   })
 }

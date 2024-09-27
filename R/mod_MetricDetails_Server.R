@@ -49,7 +49,7 @@ mod_MetricDetails_Server <- function(
     rctv_strAnalysisOutputGroup <- reactive(NULL)
 
     # Outputs ----
-    rctv_strSelectedGroup <- reactive({
+    rctv_strSelectedGroupID <- reactive({
       req(input$selected_tab)
       switch(input$selected_tab,
         "Scatter Plot" = rctv_strScatterGroup(),
@@ -118,6 +118,6 @@ mod_MetricDetails_Server <- function(
       )
     })
 
-    return(rctv_strSelectedGroup)
+    return(rctv_strSelectedGroupID)
   })
 }

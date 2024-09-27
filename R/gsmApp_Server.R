@@ -71,12 +71,12 @@ gsmApp_Server <- function(
     )
     srvr_SyncSelectInput(
       "site",
-      lStudyOverviewSelected$rctv_strSelectedGroup,
+      lStudyOverviewSelected$rctv_strSelectedGroupID,
       session
     )
     srvr_SyncSelectInput(
       "metric",
-      lStudyOverviewSelected$rctv_strSelectectMetricID,
+      lStudyOverviewSelected$rctv_strSelectedMetricID,
       session
     )
 
