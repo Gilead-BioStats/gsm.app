@@ -2,7 +2,8 @@
 % Please edit documentation in R/run_gsm_app.R
 \name{run_gsm_app}
 \alias{run_gsm_app}
-\title{Run App}
+\alias{run_sample_gsm_app}
+\title{Run the app}
 \usage{
 run_gsm_app(
   dfResults,
@@ -13,6 +14,8 @@ run_gsm_app(
   fnFetchParticipantData,
   strTitle = "GSM Deep Dive"
 )
+
+run_sample_gsm_app()
 }
 \arguments{
 \item{dfResults}{\code{data.frame} A stacked summary of analysis pipeline output.
@@ -39,6 +42,25 @@ metric.}
 
 \item{strTitle}{\code{character} A title to display for the overall app.}
 }
+\value{
+An object that represents the app. Printing the object or passing it
+to \code{\link[shiny:runApp]{shiny::runApp()}} runs the app.
+}
 \description{
-Run App
+\code{run_gsm_app()} creates a Shiny app to explore a set of clinical
+trial data. The app facilitates exploration of the data by allowing the user
+to click to diver deeper into aspects of the data.
+
+\code{run_sample_gsm_app()} is a thin wrapper around \code{run_gsm_app()}, using the
+sample data provided in this package.
+}
+\examples{
+\dontshow{if (interactive()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
+# Sample app will launch in a new browser window.
+run_sample_gsm_app()
+\dontshow{\}) # examplesIf}
+}
+\seealso{
+\link{sample_dfAnalyticsInput}, \link{sample_dfBounds}, \link{sample_dfGroups},
+\link{sample_dfMetrics}, \code{\link[=sample_FetchParticipantData]{sample_FetchParticipantData()}}, \link{sample_dfResults}
 }

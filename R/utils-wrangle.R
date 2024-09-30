@@ -7,9 +7,9 @@
 #' @returns The filtered data.frame.
 #' @keywords internal
 filter_by <- function(
-    df,
-    Value,
-    strField = extract_field_name(rlang::caller_arg(Value))) {
+  df,
+  Value,
+  strField = extract_field_name(rlang::caller_arg(Value))) {
   df[df[[strField]] == Value, ]
 }
 

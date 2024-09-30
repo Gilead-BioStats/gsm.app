@@ -39,8 +39,8 @@ out_Placeholder <- function(...) {
 #'
 #' @return A vector of "a" and "an", the same length as chrWords.
 #' @keywords internal
-choose_article <- function(word) {
-  ifelse(grepl("^[aeiouAEIOU]", word), "an", "a")
+choose_article <- function(chrWords) {
+  ifelse(grepl("^[aeiouAEIOU]", chrWords), "an", "a")
 }
 
 

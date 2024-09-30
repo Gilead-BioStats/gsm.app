@@ -12,7 +12,7 @@ test_that("gsmApp_Server initializes correctly and updates rctv_lMetric", {
     {
       # Simulation initialization.
       session$setInputs(
-        primary_nav_bar  = "Study Overview",
+        primary_nav_bar = "Study Overview",
         metric = "kri0001",
         site = "None",
         participant = "None"
@@ -44,7 +44,7 @@ test_that("gsmApp_Server triggers srvr_SyncSelectizeInput", {
     {
       # Simulation initialization.
       session$setInputs(
-        primary_nav_bar  = "Study Overview",
+        primary_nav_bar = "Study Overview",
         metric = "kri0001",
         site = "None",
         participant = "None"
@@ -75,7 +75,7 @@ test_that("gsmApp_Server triggers reset", {
     {
       # Simulation initialization.
       session$setInputs(
-        primary_nav_bar  = "Study Overview",
+        primary_nav_bar = "Study Overview",
         metric = "kri0001",
         site = "None",
         participant = "None"

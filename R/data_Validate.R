@@ -9,10 +9,10 @@
 #' @returns `x`, if it passes the checks.
 #' @keywords internal
 validate_df <- function(
-    x,
-    chrRequiredColumns = character(),
-    strArg = rlang::caller_arg(df),
-    envCall = rlang::caller_env()
+  x,
+  chrRequiredColumns = character(),
+  strArg = rlang::caller_arg(df),
+  envCall = rlang::caller_env()
 ) {
   df <- validate_is_df(x, strArg = strArg, envCall = envCall)
   validate_has_columns(
@@ -31,9 +31,9 @@ validate_df <- function(
 #' @returns `x`, if it is a data.frame.
 #' @keywords internal
 validate_is_df <- function(
-    x,
-    strArg = rlang::caller_arg(x),
-    envCall = rlang::caller_env()
+  x,
+  strArg = rlang::caller_arg(x),
+  envCall = rlang::caller_env()
 ) {
   if (is.data.frame(x)) {
     return(x)
@@ -56,10 +56,10 @@ validate_is_df <- function(
 #' @returns `df`, if it is has columns with the required names.
 #' @keywords internal
 validate_has_columns <- function(
-    df,
-    chrRequiredColumns = character(),
-    strArg = rlang::caller_arg(df),
-    envCall = rlang::caller_env()
+  df,
+  chrRequiredColumns = character(),
+  strArg = rlang::caller_arg(df),
+  envCall = rlang::caller_env()
 ) {
   missing_cols <- setdiff(chrRequiredColumns, colnames(df))
   if (length(missing_cols)) {

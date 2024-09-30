@@ -9,12 +9,12 @@
 #'
 #' @keywords internal
 Widget_ScatterPlot <- function(
-    id,
-    dfResults,
-    lMetric = list(),
-    dfGroups = NULL,
-    dfBounds = NULL,
-    strInputID = "site"
+  id,
+  dfResults,
+  lMetric = list(),
+  dfGroups = NULL,
+  dfBounds = NULL,
+  strInputID = "site"
 ) {
   stopifnot(
     "dfResults is not a data.frame" = is.data.frame(dfResults),

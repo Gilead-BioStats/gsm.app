@@ -4,7 +4,7 @@
 \alias{choose_article}
 \title{Choose a or an}
 \usage{
-choose_article(word)
+choose_article(chrWords)
 }
 \arguments{
 \item{chrWords}{Words to choose "a" or "an" for.}

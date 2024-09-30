@@ -19,9 +19,9 @@ htmlDependency_Default_Stylesheet <- function() {
 #'   it is added.
 #' @keywords internal
 htmlDependency_Stylesheet <- function(
-    filename,
-    name = sub("\\.css$", "", filename),
-    version = "1.0.0"
+  filename,
+  name = sub("\\.css$", "", filename),
+  version = "1.0.0"
 ) {
   htmltools::htmlDependency(
     name = name,

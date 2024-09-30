@@ -52,10 +52,10 @@ srvr_SyncSelectizeInput <- function(
 #'   when the connected reactive changes.
 #' @keywords internal
 srvr_SyncTab <- function(
-    id,
-    strTargetTab,
-    rctv_strValue,
-    session = getDefaultReactiveDomain()
+  id,
+  strTargetTab,
+  rctv_strValue,
+  session = getDefaultReactiveDomain()
 ) {
   observe(
     bslib::nav_select(id, strTargetTab, session = session)
