@@ -8,6 +8,7 @@ mod_ParticipantMetricSummary_UI <- function(id) {
   ns <- NS(id)
   out_Card(
     "Metric Summary",
-    uiOutput(ns("metric_list"))
+    uiOutput(ns("metric_list")),
+    id = ns("card")
   )
 }

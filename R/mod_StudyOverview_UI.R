@@ -16,7 +16,8 @@ mod_StudyOverview_UI <- function(id, dfResults, chrMetrics) {
             ns("site_overview_table"),
             height = "100%"
           )
-        )
+        ),
+        id = "study-overview-table-card"
       )
     ),
     bslib::nav_panel(

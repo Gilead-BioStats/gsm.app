@@ -8,7 +8,7 @@
           <div id="participant_details-metadata" class="shiny-html-output"></div>
         </div>
         <div class="bslib-grid-item bslib-gap-spacing html-fill-container">
-          <div class="card bslib-card bslib-mb-spacing html-fill-item html-fill-container" data-bslib-card-init data-full-screen="false" data-require-bs-caller="card()" data-require-bs-version="5" id="bslib-card-XXXX">
+          <div class="card bslib-card bslib-mb-spacing bslib-card-input html-fill-item html-fill-container" data-bslib-card-init data-full-screen="false" data-require-bs-caller="card()" data-require-bs-version="5" id="participant_details-metric_summary-card">
             <div class="card-body bslib-gap-spacing html-fill-item html-fill-container" style="margin-top:auto;margin-bottom:auto;flex:1 1 auto;">
               <h5>Metric Summary</h5>
               <div id="participant_details-metric_summary-metric_list" class="shiny-html-output"></div>
@@ -21,7 +21,7 @@
           </div>
         </div>
         <div class="bslib-grid-item bslib-gap-spacing html-fill-container">
-          <div class="card bslib-card bslib-mb-spacing html-fill-item html-fill-container" data-bslib-card-init data-full-screen="false" data-require-bs-caller="card()" data-require-bs-version="5" id="bslib-card-XXXX">
+          <div class="card bslib-card bslib-mb-spacing bslib-card-input html-fill-item html-fill-container" data-bslib-card-init data-full-screen="false" data-require-bs-caller="card()" data-require-bs-version="5" id="participant_details-domain-details-card">
             <div class="card-body bslib-gap-spacing html-fill-item html-fill-container" style="margin-top:auto;margin-bottom:auto;flex:1 1 auto;">
               <h5>
                 <span id="participant_details-domain-title" class="shiny-text-output"></span>
