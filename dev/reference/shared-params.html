@@ -51,7 +51,12 @@ argument in module server functions.</p>
     <h2 id="arguments">Arguments<a class="anchor" aria-label="anchor" href="#arguments"></a></h2>
 
 
-<dl><dt id="arg-chrlinkids">chrLinkIDs<a class="anchor" aria-label="anchor" href="#arg-chrlinkids"></a></dt>
+<dl><dt id="arg-chrchoices">chrChoices<a class="anchor" aria-label="anchor" href="#arg-chrchoices"></a></dt>
+<dd><p><code>character</code> Choices for a <code><a href="https://rdrr.io/pkg/shiny/man/selectInput.html" class="external-link">shiny::selectizeInput()</a></code> or
+other menu.</p></dd>
+
+
+<dt id="arg-chrlinkids">chrLinkIDs<a class="anchor" aria-label="anchor" href="#arg-chrlinkids"></a></dt>
 <dd><p><code>character</code> Module ids for multiple modules.</p></dd>
 
 
@@ -59,9 +64,19 @@ argument in module server functions.</p>
 <dd><p><code>character</code> A vector of labels for display to the user.</p></dd>
 
 
+<dt id="arg-chrmessage">chrMessage<a class="anchor" aria-label="anchor" href="#arg-chrmessage"></a></dt>
+<dd><p><code>character</code> A vector of message elements to be formatted
+via <code><a href="https://cli.r-lib.org/reference/cli_bullets.html" class="external-link">cli::cli_bullets()</a></code>.</p></dd>
+
+
 <dt id="arg-chrmetrics">chrMetrics<a class="anchor" aria-label="anchor" href="#arg-chrmetrics"></a></dt>
 <dd><p><code>character</code> A named vector of MetricIDs, where the names
 are the full Metric.</p></dd>
+
+
+<dt id="arg-chrrequiredcolumns">chrRequiredColumns<a class="anchor" aria-label="anchor" href="#arg-chrrequiredcolumns"></a></dt>
+<dd><p><code>character</code> A vector of expected columns in a
+data.frame.</p></dd>
 
 
 <dt id="arg-chrsites">chrSites<a class="anchor" aria-label="anchor" href="#arg-chrsites"></a></dt>
@@ -95,6 +110,19 @@ reporting.</p></dd>
 <dt id="arg-dfresults">dfResults<a class="anchor" aria-label="anchor" href="#arg-dfresults"></a></dt>
 <dd><p><code>data.frame</code> A stacked summary of analysis pipeline output.
 This will be filtered to cases where <code>GroupLevel == "Site"</code>.</p></dd>
+
+
+<dt id="arg-envcall">envCall<a class="anchor" aria-label="anchor" href="#arg-envcall"></a></dt>
+<dd><p><code>environment</code> The environment from which this function was
+called, for use in better error messages. This value should usually be left
+as the default, or passed from the calling function if the calling function
+also has an <code>envCall</code> argument.</p></dd>
+
+
+<dt id="arg-envevaluate">envEvaluate<a class="anchor" aria-label="anchor" href="#arg-envevaluate"></a></dt>
+<dd><p><code>environment</code> The environment in which any variables used
+in the message are defined. You almost definitely want to leave this as the
+default value.</p></dd>
 
 
 <dt id="arg-fnfetchparticipantdata">fnFetchParticipantData<a class="anchor" aria-label="anchor" href="#arg-fnfetchparticipantdata"></a></dt>
@@ -132,6 +160,11 @@ participant.</p></dd>
 
 <dt id="arg-lstudy">lStudy<a class="anchor" aria-label="anchor" href="#arg-lstudy"></a></dt>
 <dd><p><code>list</code> Named list of data describing the overall study.</p></dd>
+
+
+<dt id="arg-rctv-chrids">rctv_chrIDs<a class="anchor" aria-label="anchor" href="#arg-rctv-chrids"></a></dt>
+<dd><p><code>reactive character</code> A <code><a href="https://rdrr.io/pkg/shiny/man/reactive.html" class="external-link">shiny::reactive()</a></code> object that
+returns a vector of ids for modules, inputs, or other elements.</p></dd>
 
 
 <dt id="arg-rctv-dfbounds">rctv_dfBounds<a class="anchor" aria-label="anchor" href="#arg-rctv-dfbounds"></a></dt>
@@ -183,9 +216,25 @@ returns the <code>GroupID</code> of a site.</p></dd>
 that returns the <code>SubjectID</code> of the selected participant.</p></dd>
 
 
+<dt id="arg-rctv-strvalue">rctv_strValue<a class="anchor" aria-label="anchor" href="#arg-rctv-strvalue"></a></dt>
+<dd><p><code>reactive character</code> A <code><a href="https://rdrr.io/pkg/shiny/man/reactive.html" class="external-link">shiny::reactive()</a></code> object that
+returns the value of a field.</p></dd>
+
+
 <dt id="arg-session">session<a class="anchor" aria-label="anchor" href="#arg-session"></a></dt>
 <dd><p><code>environment</code> Session from which to make a child scope (the
 default should almost always be used).</p></dd>
+
+
+<dt id="arg-strarg">strArg<a class="anchor" aria-label="anchor" href="#arg-strarg"></a></dt>
+<dd><p><code>character</code> The name of the argument in the calling function.
+In general, this value should either be left as the default, or passed from
+the calling function if the calling function also has a <code>strArg</code> argument.</p></dd>
+
+
+<dt id="arg-strclass">strClass<a class="anchor" aria-label="anchor" href="#arg-strclass"></a></dt>
+<dd><p><code>character</code> A descriptive label for this type of error, in
+lower_snake_case.</p></dd>
 
 
 <dt id="arg-strcolor">strColor<a class="anchor" aria-label="anchor" href="#arg-strcolor"></a></dt>
@@ -221,6 +270,10 @@ metric.</p></dd>
 
 <dt id="arg-strsubjectid">strSubjectID<a class="anchor" aria-label="anchor" href="#arg-strsubjectid"></a></dt>
 <dd><p><code>character</code> A <code>SubjectID</code> of an individual participant.</p></dd>
+
+
+<dt id="arg-strtargettab">strTargetTab<a class="anchor" aria-label="anchor" href="#arg-strtargettab"></a></dt>
+<dd><p><code>character</code> The tab to switch to.</p></dd>
 
 
 <dt id="arg-strtext">strText<a class="anchor" aria-label="anchor" href="#arg-strtext"></a></dt>
