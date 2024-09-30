@@ -5,6 +5,8 @@
     "metric_details-scatter_plot_full_screen": false,
     "metric_details-selected_tab": "Analysis Output",
     "participant": "None",
+    "participant_details-domain-details-card_full_screen": false,
+    "participant_details-metric_summary-card_full_screen": false,
     "primary_nav_bar": "Metric Details",
     "reset": 0,
     "sidebar": true,
@@ -83,6 +85,7 @@
         }
       ]
     },
+    "study-overview-table-card_full_screen": false,
     "study_overview-scatter-kri0001-group": "0X001",
     "study_overview-scatter-kri0001_full_screen": false,
     "study_overview-scatter-kri0002-group": "0X001",

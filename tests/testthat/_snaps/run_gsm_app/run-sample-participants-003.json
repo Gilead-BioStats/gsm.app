@@ -6,6 +6,8 @@
     "metric_details-selected_tab": "Scatter Plot",
     "participant": "0270",
     "participant-metadata_full_screen": false,
+    "participant_details-domain-details-card_full_screen": false,
+    "participant_details-metric_summary-card_full_screen": false,
     "participant_details-metric_summary-metric_list_choices-adverseEvents": 0,
     "participant_details-metric_summary-metric_list_choices-protocolDeviations": 0,
     "participant_details-metric_summary-metric_list_choices-studyDisposition": 0,
@@ -149,6 +151,7 @@
         }
       ]
     },
+    "study-overview-table-card_full_screen": false,
     "study_overview-scatter-kri0001-group": "0X159",
     "study_overview-scatter-kri0001_full_screen": false,
     "study_overview-scatter-kri0002-group": "0X159",
