@@ -34,6 +34,8 @@ Imports:
     shinyjs,
     yaml
 Suggests: 
+    devtools,
+    shinytest2,
     testthat (>= 3.0.0),
     usethis
 Remotes:
