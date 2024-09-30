@@ -1,9 +1,8 @@
 #' Initialize Participant Select
 #'
 #' @inheritParams shared-params
-#'
 #' @keywords internal
-srvr_PopulateParticipantSelect <- function(
+srvr_InitializeParticipantSelect <- function(
   chrParticipantIDs,
   session = getDefaultReactiveDomain()
 ) {

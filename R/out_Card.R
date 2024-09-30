@@ -5,7 +5,7 @@
 #'   the card. Will be wrapped inside [bslib::card_title()].
 #' @param ... `html tags` Objects to place in the card.
 #'
-#' @return A [bslib::card()].
+#' @returns A [bslib::card()].
 #' @keywords internal
 out_Card <- function(tagTitle, ..., id = NULL) {
   bslib::card(
@@ -18,18 +18,31 @@ out_Card <- function(tagTitle, ..., id = NULL) {
 
 #' Placeholder card
 #'
-#' @param chrRequirement `character` Text to describe what is required, as a
-#'   string or character vector.
+#' @param ... `character` Text to describe what is required, as a string,
+#'   character vector, or multiple strings or character vectors.
 #'
-#' @return A [bslib::card()] with a placeholder.
+#' @returns A [bslib::card()] with a placeholder.
 #' @keywords internal
-out_Placeholder <- function(chrRequirement) {
+out_Placeholder <- function(...) {
+  chrRequirements <- c(...)
+  chrRequirements <- paste(choose_article(chrRequirements), chrRequirements)
   bslib::card(
     class = "placeholder",
     htmlDependency_Stylesheet("placeholder.css"),
-    cli::format_inline("Please select a {chrRequirement}.")
+    cli::format_inline("Please select {chrRequirements}.")
   )
 }
+
+#' Choose a or an
+#'
+#' @param chrWords Words to choose "a" or "an" for.
+#'
+#' @return A vector of "a" and "an", the same length as chrWords.
+#' @keywords internal
+choose_article <- function(word) {
+  ifelse(grepl("^[aeiouAEIOU]", word), "an", "a")
+}
+
 
 #' Card subtitle
 #'
@@ -37,7 +50,7 @@ out_Placeholder <- function(chrRequirement) {
 #' @param chrAdditionalClass `character` One or more additional classes to apply
 #'   to the subtitle.
 #'
-#' @return A [bslib::card_title()] with appropriate classes.
+#' @returns A [bslib::card_title()] with appropriate classes.
 #' @keywords internal
 out_CardSubtitle <- function(tagTitle, chrAdditionalClass = character()) {
   bslib::card_title(

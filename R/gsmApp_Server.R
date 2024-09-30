@@ -1,9 +1,8 @@
 #' Define Server
 #'
 #' @inheritParams shared-params
-#'
+#' @returns The main server function for use in a shiny app.
 #' @keywords internal
-
 gsmApp_Server <- function(
   dfResults,
   dfGroups,
@@ -26,13 +25,16 @@ gsmApp_Server <- function(
     ## Initialize ----
     chrParticipantIDs <- sort(unique(dfAnalyticsInput$SubjectID))
     # This one is selectize and thus should remain server-side.
-    srvr_PopulateParticipantSelect(chrParticipantIDs, session)
+    srvr_InitializeParticipantSelect(chrParticipantIDs, session)
 
     ## Reset ----
+
+    # Truly testing this will require shinytest2, evidently. We trigger it, and
+    # nothing breaks, but the related inputs don't change in the testServer.
     observe({
       updateSelectInput(session, "metric", selected = dfMetrics$MetricID[[1]])
       updateSelectInput(session, "site", selected = "None")
-      srvr_PopulateParticipantSelect(chrParticipantIDs, session)
+      srvr_InitializeParticipantSelect(chrParticipantIDs, session)
       bslib::nav_select("primary_nav_bar", "Study Overview")
     }) %>%
       bindEvent(input$reset)
@@ -67,19 +69,20 @@ gsmApp_Server <- function(
       dfBounds = dfBounds,
       rctv_strSiteID = reactive(input$site)
     )
-    srvr_SyncInput(
-      id = "site",
-      rctv_strValue = lStudyOverviewSelected$rctv_strSelectedGroup,
-      session = session
+    srvr_SyncSelectInput(
+      "site",
+      lStudyOverviewSelected$rctv_strSelectedGroupID,
+      session
     )
-    srvr_SyncInput(
-      id = "metric",
-      rctv_strValue = lStudyOverviewSelected$rctv_strSelectectMetricID,
-      session = session
+    srvr_SyncSelectInput(
+      "metric",
+      lStudyOverviewSelected$rctv_strSelectedMetricID,
+      session
     )
 
     ## Metric Details ----
-    srvr_TabOnChange(
+    srvr_SyncTab(
+      "primary_nav_bar",
       "Metric Details",
       reactive(input$metric),
       session
@@ -110,11 +113,9 @@ gsmApp_Server <- function(
       ignoreInit = TRUE,
       once = TRUE
     )
-    srvr_SyncInput(
-      id = "site",
-      rctv_strValue = rctv_strMetricDetailsGroup,
-      session = session
-    )
+    # These are sort of tested, but won't be truly tested without UI
+    # interactions, ie shinytest2.
+    srvr_SyncSelectInput("site", rctv_strMetricDetailsGroup, session)
     srvr_SyncSelectizeInput(
       id = "participant",
       rctv_strValue = rctv_strSiteDetailsParticipant,
@@ -124,7 +125,8 @@ gsmApp_Server <- function(
     )
 
     ## Participant Details ----
-    srvr_TabOnChange(
+    srvr_SyncTab(
+      "primary_nav_bar",
       "Participant Details",
       reactive(input$participant),
       session

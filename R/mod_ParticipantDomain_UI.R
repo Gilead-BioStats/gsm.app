@@ -1,7 +1,7 @@
 #' Participant Domain Details Card UI
 #'
 #' @inheritParams shared-params
-#' @return A [bslib::card()] with either a placeholder, or a
+#' @returns A [bslib::card()] with either a placeholder, or a
 #'   [DT::DTOutput()] table.
 #' @keywords internal
 mod_ParticipantDomain_UI <- function(id) {

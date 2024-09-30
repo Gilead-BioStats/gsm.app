@@ -36,6 +36,9 @@ about the participant, and \code{metric_data} should be a named list of
 data.frames, each of which contains information related to the named
 metric.}
 }
+\value{
+The main server function for use in a shiny app.
+}
 \description{
 Define Server
 }

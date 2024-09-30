@@ -5,7 +5,8 @@
 \alias{sample_dfGroups}
 \title{Group Metadata Dataset}
 \format{
-A tibble with 3903 rows and 4 columns:
+A tibble with 2669 rows and
+4 columns:
 \describe{
 \item{GroupID}{grouping variable}
 \item{GroupLevel}{level of grouping variable}

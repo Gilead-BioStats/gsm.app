@@ -1,7 +1,7 @@
 #' KRI Color Div
 #'
 #' @inheritParams shared-params
-#' @return A [htmltools::div()] with Red and Amber flag counts.
+#' @returns A [htmltools::div()] with Red and Amber flag counts.
 #' @keywords internal
 out_KRIColor <- function(dfResults) {
   intKRIColorCount <- c(
@@ -17,7 +17,7 @@ out_KRIColor <- function(dfResults) {
 #' KRI color pill
 #'
 #' @inheritParams shared-params
-#' @return A [htmltools::span()] with the count of the given color, with a class
+#' @returns A [htmltools::span()] with the count of the given color, with a class
 #'   to match the color.
 #' @keywords internal
 out_KRIColor_pill <- function(intKRIColorCount, strColor) {

@@ -26,7 +26,13 @@ const chartClickCallback = function(el, inputID) {
       instance.helpers.updateConfig(instance, instance.data.config);
     }
 
+    // Check if selectedGroupIDs is empty or 'None', and send 'None' if true
+    const selectedIDs = (Array.isArray(instance.data.config.selectedGroupIDs) &&
+    instance.data.config.selectedGroupIDs.length === 0)
+      ? 'None'
+      : instance.data.config.selectedGroupIDs;
+
     // Call the Shiny updater
-    updateShinyInput(inputID, instance.data.config.selectedGroupIDs);
+    updateShinyInput(inputID, selectedIDs);
   };
 };

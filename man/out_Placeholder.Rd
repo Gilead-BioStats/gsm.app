@@ -4,11 +4,11 @@
 \alias{out_Placeholder}
 \title{Placeholder card}
 \usage{
-out_Placeholder(chrRequirement)
+out_Placeholder(...)
 }
 \arguments{
-\item{chrRequirement}{\code{character} Text to describe what is required, as a
-string or character vector.}
+\item{...}{\code{character} Text to describe what is required, as a string,
+character vector, or multiple strings or character vectors.}
 }
 \value{
 A \code{\link[bslib:card]{bslib::card()}} with a placeholder.

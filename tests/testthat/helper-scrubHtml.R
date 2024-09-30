@@ -13,7 +13,8 @@ scrub_html <- function(chrLines) {
     scrub_htmlwidget_ids() %>%
     scrub_tab_ids() %>%
     scrub_tabset_ids() %>%
-    scrub_collapse_ids()
+    scrub_collapse_ids() %>%
+    scrub_extra_black_style()
 }
 
 scrub_card_ids <- function(chrLines) {
@@ -34,4 +35,8 @@ scrub_tabset_ids <- function(chrLines) {
 
 scrub_collapse_ids <- function(chrLines) {
   gsub("navbar-collapse-\\d+", "navbar-collapse-XXXX", chrLines)
+}
+
+scrub_extra_black_style <- function(chrLines) {
+  gsub('style="color: black; width: auto', 'style="width: auto', chrLines)
 }

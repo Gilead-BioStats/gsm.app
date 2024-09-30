@@ -1,7 +1,7 @@
 #' Metadata list card
 #'
 #' @inheritParams shared-params
-#' @return A [htmltools::tagList()] of label-value pairs, including the CSS
+#' @returns A [htmltools::tagList()] of label-value pairs, including the CSS
 #'   needed to lay them out properly.
 #' @keywords internal
 out_MetadataList <- function(chrLabels, chrValues) {
@@ -17,7 +17,7 @@ out_MetadataList <- function(chrLabels, chrValues) {
 #' Metadata list item
 #'
 #' @inheritParams shared-params
-#' @return A [htmltools::div()] with the label, a spacer, and the value.
+#' @returns A [htmltools::div()] with the label, a spacer, and the value.
 #' @keywords internal
 out_MetadataItem <- function(strLabel, strValue) {
   div(

@@ -1,7 +1,7 @@
 #' Site Details UI
 #'
 #' @inheritParams shared-params
-#' @return A [bslib::layout_columns()] with site metadata and site participants.
+#' @returns A [bslib::layout_columns()] with site metadata and site participants.
 #' @keywords internal
 mod_SiteDetails_UI <- function(id) {
   ns <- NS(id)

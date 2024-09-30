@@ -3,7 +3,7 @@
 #' The user interface for a gsm deep dive app.
 #'
 #' @inheritParams shared-params
-#' @return A Shiny UI object
+#' @returns A Shiny UI object
 #' @keywords internal
 gsmApp_UI <- function(
   dfResults,

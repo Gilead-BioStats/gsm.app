@@ -1,47 +1,75 @@
 # We might want to do this entirely via workflows, but I feel like it's good to
 # check in the app itself since users don't HAVE to use workflows.
 
-validate_df <- function(df,
-  chrRequiredColumns = character(),
-  arg = rlang::caller_arg(df),
-  call = rlang::caller_env()) {
-  df <- validate_is_df(df, arg = arg, call = call)
+#' Confirm that an object is the expected df
+#'
+#' @inheritParams shared-params
+#' @inheritParams validate_is_df
+#'
+#' @returns `x`, if it passes the checks.
+#' @keywords internal
+validate_df <- function(
+    x,
+    chrRequiredColumns = character(),
+    strArg = rlang::caller_arg(df),
+    envCall = rlang::caller_env()
+) {
+  df <- validate_is_df(x, strArg = strArg, envCall = envCall)
   validate_has_columns(
     df,
     chrRequiredColumns = chrRequiredColumns,
-    arg = arg,
-    call = call
+    strArg = strArg,
+    envCall = envCall
   )
 }
 
-validate_is_df <- function(df,
-  arg = rlang::caller_arg(df),
-  call = rlang::caller_env()) {
-  if (is.data.frame(df)) {
-    return(df)
+#' Confirm that an object is a data.frame
+#'
+#' @inheritParams shared-params
+#' @param x The object to validate.
+#'
+#' @returns `x`, if it is a data.frame.
+#' @keywords internal
+validate_is_df <- function(
+    x,
+    strArg = rlang::caller_arg(x),
+    envCall = rlang::caller_env()
+) {
+  if (is.data.frame(x)) {
+    return(x)
   }
-  cli::cli_abort(
+  gsmapp_abort(
     c(
-      "{.arg {arg}} must be a data.frame.",
-      x = "{.arg {arg}} is {.obj_type_friendly {df}}."
+      "{.arg {strArg}} must be a data.frame.",
+      x = "{.arg {strArg}} is {.obj_type_friendly {x}}."
     ),
-    class = "gsm.app-error-invalid_input",
-    call = call
+    strClass = "invalid_input",
+    envCall = envCall
   )
 }
 
-validate_has_columns <- function(df,
-  chrRequiredColumns = character(),
-  arg = rlang::caller_arg(df),
-  call = rlang::caller_env()) {
+#' Confirm that a data.frame has required columns
+#'
+#' @inheritParams shared-params
+#' @param df The data.frame to validate.
+#'
+#' @returns `df`, if it is has columns with the required names.
+#' @keywords internal
+validate_has_columns <- function(
+    df,
+    chrRequiredColumns = character(),
+    strArg = rlang::caller_arg(df),
+    envCall = rlang::caller_env()
+) {
   missing_cols <- setdiff(chrRequiredColumns, colnames(df))
   if (length(missing_cols)) {
-    cli::cli_abort(
+    gsmapp_abort(
       c(
-        "{.arg {arg}} must have all required columns.",
+        "{.arg {strArg}} must have all required columns.",
         x = "Missing columns: {.field {missing_cols}}."
       ),
-      class = "gsm.app-error-invalid_input"
+      strClass = "invalid_input",
+      envCall = envCall
     )
   }
   return(df)
@@ -49,9 +77,14 @@ validate_has_columns <- function(df,
 
 ## df-specific Validation Functions ----
 
-validate_dfResults <- function(dfResults) {
+#' Confirm that an object is a dfResults
+#'
+#' @inheritParams validate_df
+#' @inherit validate_df return
+#' @keywords internal
+validate_dfResults <- function(x) {
   validate_df(
-    dfResults,
+    x,
     chrRequiredColumns = c(
       "GroupID", "Numerator", "Denominator", "Metric", "Score", "Flag",
       "MetricID", "SnapshotDate"
@@ -59,27 +92,47 @@ validate_dfResults <- function(dfResults) {
   )
 }
 
-validate_dfGroups <- function(dfGroups) {
+#' Confirm that an object is a dfGroups
+#'
+#' @inheritParams validate_df
+#' @inherit validate_df return
+#' @keywords internal
+validate_dfGroups <- function(x) {
   validate_df(
-    dfGroups,
+    x,
     chrRequiredColumns = c("GroupLevel", "Param", "Value", "GroupID")
   )
 }
 
-validate_dfMetrics <- function(dfMetrics) {
-  validate_df(dfMetrics, chrRequiredColumns = c("MetricID", "Metric"))
+#' Confirm that an object is a dfMetrics
+#'
+#' @inheritParams validate_df
+#' @inherit validate_df return
+#' @keywords internal
+validate_dfMetrics <- function(x) {
+  validate_df(x, chrRequiredColumns = c("MetricID", "Metric"))
 }
 
-validate_dfBounds <- function(dfBounds) {
+#' Confirm that an object is a dfBounds
+#'
+#' @inheritParams validate_df
+#' @inherit validate_df return
+#' @keywords internal
+validate_dfBounds <- function(x) {
   validate_df(
-    dfBounds,
+    x,
     chrRequiredColumns = c("Threshold", "Denominator", "Numerator", "MetricID")
   )
 }
 
-validate_dfAnalyticsInput <- function(dfAnalyticsInput) {
+#' Confirm that an object is a dfAnalyticsInput
+#'
+#' @inheritParams validate_df
+#' @inherit validate_df return
+#' @keywords internal
+validate_dfAnalyticsInput <- function(x) {
   validate_df(
-    dfAnalyticsInput,
+    x,
     chrRequiredColumns = c(
       "GroupLevel",
       "GroupID",

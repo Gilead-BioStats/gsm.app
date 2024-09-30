@@ -33,8 +33,6 @@ test_that("mod_ScatterPlot_Server starts as expected", {
 })
 
 test_that("mod_ScatterPlot_Server returns selected site", {
-  call <- rlang::current_env()
-
   dfResults <- filter_byMetricID(
     sample_dfResults[sample_dfResults$GroupLevel == "Site", ],
     "kri0001"

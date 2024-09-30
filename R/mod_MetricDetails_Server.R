@@ -1,7 +1,10 @@
 #' Metric Details Server
 #'
 #' @inheritParams shared-params
-#'
+#' @returns A [shiny::reactive()] with the id of the group selected that was
+#'   most recently selected on one of the tabs. Currently only implemented for
+#'   the "Scatter Plot" tab (returns a reactive value that evaluates to `NULL`
+#'   for the other cases).
 #' @keywords internal
 mod_MetricDetails_Server <- function(
   id,
@@ -46,7 +49,8 @@ mod_MetricDetails_Server <- function(
     rctv_strAnalysisOutputGroup <- reactive(NULL)
 
     # Outputs ----
-    rctv_strSelectedGroup <- reactive({
+    rctv_strSelectedGroupID <- reactive({
+      req(input$selected_tab)
       switch(input$selected_tab,
         "Scatter Plot" = rctv_strScatterGroup(),
         "Bar Chart (KRI Value)" = {
@@ -114,6 +118,6 @@ mod_MetricDetails_Server <- function(
       )
     })
 
-    return(rctv_strSelectedGroup)
+    return(rctv_strSelectedGroupID)
   })
 }

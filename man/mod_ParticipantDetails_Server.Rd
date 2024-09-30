@@ -20,6 +20,11 @@ metric.}
 \item{rctv_strSubjectID}{\verb{reactive character} A \code{\link[shiny:reactive]{shiny::reactive()}} object
 that returns the \code{SubjectID} of the selected participant.}
 }
+\value{
+A \code{\link[shiny:reactive]{shiny::reactive()}} with the ids of rows selected in the table
+(currently unused but implemented as a proof-of-concept for future
+extensions).
+}
 \description{
 Update Participant Details when the selected participant changes.
 }

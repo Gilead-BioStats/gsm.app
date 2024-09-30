@@ -1,3 +1,8 @@
+#' ScatterPlotSet Module Server (Main)
+#'
+#' @inheritParams shared-params
+#' @returns A [shiny::reactiveVal()] with the id of the selected group.
+#' @keywords internal
 mod_ScatterPlotSet_Server <- function(
   id,
   dfResults,
@@ -37,27 +42,32 @@ mod_ScatterPlotSet_Server <- function(
       }
     )
 
-    rval_strSelectedGroup <- reactiveVal()
+    rval_strSelectedGroupID <- reactiveVal()
     purrr::walk(
       lMetricGroups,
       function(rctv_strMetricGroup) {
         bindEvent(
-          observe(rval_strSelectedGroup(rctv_strMetricGroup())),
+          observe(rval_strSelectedGroupID(rctv_strMetricGroup())),
           rctv_strMetricGroup()
         )
       }
     )
 
-    return(rval_strSelectedGroup)
+    return(rval_strSelectedGroupID)
   })
 }
 
+#' ScatterPlotSet Module Server (MetricID)
+#'
+#' @inheritParams shared-params
+#' @returns A [shiny::reactive()] with the id of the selected metric.
+#' @keywords internal
 mod_ScatterPlotSet_Server_MetricID <- function(id) {
   moduleServer(id, function(input, output, session) {
-    rctv_strSelectectMetricID <- reactive({
+    rctv_strSelectedMetricID <- reactive({
       req(input$selectedScatterPlot)
       un_ns(input$selectedScatterPlot, session$ns)
     })
-    return(rctv_strSelectectMetricID)
+    return(rctv_strSelectedMetricID)
   })
 }

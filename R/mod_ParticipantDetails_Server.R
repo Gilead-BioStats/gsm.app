@@ -3,7 +3,9 @@
 #' Update Participant Details when the selected participant changes.
 #'
 #' @inheritParams shared-params
-#'
+#' @returns A [shiny::reactive()] with the ids of rows selected in the table
+#'   (currently unused but implemented as a proof-of-concept for future
+#'   extensions).
 #' @keywords internal
 mod_ParticipantDetails_Server <- function(
   id,
@@ -42,11 +44,11 @@ mod_ParticipantDetails_Server <- function(
       out_ParticipantMetadata(rctv_lParticipantMetadata())
     })
 
-    rctv_intSelectedRow <- mod_ParticipantDomain_Server(
+    rctv_intSelectedRows <- mod_ParticipantDomain_Server(
       "domain",
       rctv_lParticipantMetricData,
       rctv_strSelectedMetric
     )
-    return(rctv_intSelectedRow)
+    return(rctv_intSelectedRows)
   })
 }

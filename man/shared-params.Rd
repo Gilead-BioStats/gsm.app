@@ -4,12 +4,21 @@
 \alias{shared-params}
 \title{Parameters used in multiple functions}
 \arguments{
+\item{chrChoices}{\code{character} Choices for a \code{\link[shiny:selectInput]{shiny::selectizeInput()}} or
+other menu.}
+
 \item{chrLinkIDs}{\code{character} Module ids for multiple modules.}
 
 \item{chrLabels}{\code{character} A vector of labels for display to the user.}
 
+\item{chrMessage}{\code{character} A vector of message elements to be formatted
+via \code{\link[cli:cli_bullets]{cli::cli_bullets()}}.}
+
 \item{chrMetrics}{\code{character} A named vector of MetricIDs, where the names
 are the full Metric.}
+
+\item{chrRequiredColumns}{\code{character} A vector of expected columns in a
+data.frame.}
 
 \item{chrSites}{\code{character} A vector of sites available in the study.}
 
@@ -29,6 +38,15 @@ reporting.}
 
 \item{dfResults}{\code{data.frame} A stacked summary of analysis pipeline output.
 This will be filtered to cases where \code{GroupLevel == "Site"}.}
+
+\item{envCall}{\code{environment} The environment from which this function was
+called, for use in better error messages. This value should usually be left
+as the default, or passed from the calling function if the calling function
+also has an \code{envCall} argument.}
+
+\item{envEvaluate}{\code{environment} The environment in which any variables used
+in the message are defined. You almost definitely want to leave this as the
+default value.}
 
 \item{fnFetchParticipantData}{\code{function} A function that takes a single
 \code{strSubjectID} argument such as "0001", and returns a list with components
@@ -52,6 +70,9 @@ as things like which group is selected.}
 participant.}
 
 \item{lStudy}{\code{list} Named list of data describing the overall study.}
+
+\item{rctv_chrIDs}{\verb{reactive character} A \code{\link[shiny:reactive]{shiny::reactive()}} object that
+returns a vector of ids for modules, inputs, or other elements.}
 
 \item{rctv_dfBounds}{\verb{reactive dataframe} A \code{\link[shiny:reactive]{shiny::reactive()}} object that
 returns a set of predicted percentages/rates and upper- and lower-bounds
@@ -84,8 +105,18 @@ returns the \code{GroupID} of a site.}
 \item{rctv_strSubjectID}{\verb{reactive character} A \code{\link[shiny:reactive]{shiny::reactive()}} object
 that returns the \code{SubjectID} of the selected participant.}
 
+\item{rctv_strValue}{\verb{reactive character} A \code{\link[shiny:reactive]{shiny::reactive()}} object that
+returns the value of a field.}
+
 \item{session}{\code{environment} Session from which to make a child scope (the
 default should almost always be used).}
+
+\item{strArg}{\code{character} The name of the argument in the calling function.
+In general, this value should either be left as the default, or passed from
+the calling function if the calling function also has a \code{strArg} argument.}
+
+\item{strClass}{\code{character} A descriptive label for this type of error, in
+lower_snake_case.}
 
 \item{strColor}{\code{character} The target color to report about.}
 
@@ -105,6 +136,8 @@ this module or used by this Javascript.}
 metric.}
 
 \item{strSubjectID}{\code{character} A \code{SubjectID} of an individual participant.}
+
+\item{strTargetTab}{\code{character} The tab to switch to.}
 
 \item{strText}{\code{character} Text to display.}
 

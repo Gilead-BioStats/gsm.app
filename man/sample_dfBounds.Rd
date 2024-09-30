@@ -5,7 +5,8 @@
 \alias{sample_dfBounds}
 \title{Metric Bounds Dataset}
 \format{
-A tibble with 2091 rows and 8 columns:
+A tibble with 2091 rows and
+8 columns:
 \describe{
 \item{Threshold}{number of standard deviations that the upper and lower bounds are based on}
 \item{Denominator}{calculated denominator value}

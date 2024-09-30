@@ -4,8 +4,7 @@
 #' @param Value The value to filter on.
 #' @param strField The name of the field. Auto-detected by default from the
 #'   variable used to provide `Value`.
-#'
-#' @return The filtered data.frame.
+#' @returns The filtered data.frame.
 #' @keywords internal
 filter_by <- function(
     df,
@@ -16,11 +15,10 @@ filter_by <- function(
 
 #' Get a field name from a variable name
 #'
-#' Assume standard argument name format, like `strGroupID` or `dSnapshotDat`.
+#' Assume standard argument name format, like `strGroupID` or `dSnapshotDate`.
 #'
 #' @param strArgName The name of the argument.
-#'
-#' @return `strArgName` with the beginning part removed.
+#' @returns `strArgName` with the beginning part removed.
 #' @keywords internal
 extract_field_name <- function(strArgName) {
   # Delete the lowercase "arg type" info at the start of the value.
@@ -31,7 +29,6 @@ extract_field_name <- function(strArgName) {
 #'
 #' @inheritParams filter_by
 #' @inheritParams shared-params
-#'
 #' @inherit filter_by return
 #' @keywords internal
 filter_byMetricID <- function(df, strMetricID) {
@@ -42,7 +39,6 @@ filter_byMetricID <- function(df, strMetricID) {
 #'
 #' @inheritParams filter_by
 #' @inheritParams shared-params
-#'
 #' @inherit filter_by return
 #' @keywords internal
 filter_byGroupID <- function(df, strGroupID) {
@@ -50,4 +46,47 @@ filter_byGroupID <- function(df, strGroupID) {
     return(df)
   }
   filter_by(df, strGroupID)
+}
+
+#' Reshape group and result info into study information
+#'
+#' @inheritParams shared-params
+#' @returns A list with study information.
+#' @keywords internal
+make_lStudy <- function(dfGroups, dfResults) {
+  dfStudy <- dfGroups[dfGroups$GroupLevel == "Study", c("Param", "Value")]
+  lStudy <- as.list(rlang::set_names(dfStudy$Value, dfStudy$Param))
+  # Temporarily only use some specific columns.
+  lStudy <- temp_subsetLStudy(lStudy)
+  lStudy$snapshot_date <- format(max(as.Date(dfResults$SnapshotDate)), "%Y-%m-%d")
+  return(lStudy)
+}
+
+#' Subset study information
+#'
+#' THIS FUNCTION SHOULD BE REMOVED AS THE APP MATURES
+#'
+#' @inheritParams shared-params
+#' @returns A list with a subset of study information.
+#' @keywords internal
+temp_subsetLStudy <- function(lStudy) {
+  lStudy <- lStudy[c(
+    "protocol_number",
+    "nickname",
+    "protocol_indication",
+    "therapeutic_area",
+    "phase",
+    "num_plan_site",
+    "num_enrolled_subj_m"
+  )]
+  names(lStudy) <- c(
+    "protocol_number",
+    "nickname",
+    "Indication",
+    "Therapeutic Area",
+    "Phase",
+    "Sites",
+    "Subjects"
+  )
+  return(lStudy)
 }

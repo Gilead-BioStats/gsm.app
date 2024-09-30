@@ -30,12 +30,10 @@ Imports:
     magrittr,
     purrr,
     rlang,
-    shiny,
+    shiny (>= 1.6.0),
     shinyjs,
     yaml
 Suggests: 
-    here,
-    pkgload,
     testthat (>= 3.0.0),
     usethis
 Remotes:

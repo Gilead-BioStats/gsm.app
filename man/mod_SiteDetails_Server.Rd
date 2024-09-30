@@ -30,6 +30,10 @@ that returns the selected \code{MetricID}.}
 a named list of data describing a single metric, as well as things like
 which group is selected.}
 }
+\value{
+A \code{\link[shiny:reactive]{shiny::reactive()}} with the id of the most recently selected
+participant.
+}
 \description{
 Site Details Server
 }

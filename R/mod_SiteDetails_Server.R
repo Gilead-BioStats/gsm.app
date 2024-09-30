@@ -1,7 +1,8 @@
 #' Site Details Server
 #'
 #' @inheritParams shared-params
-#'
+#' @returns A [shiny::reactive()] with the id of the most recently selected
+#'   participant.
 #' @keywords internal
 mod_SiteDetails_Server <- function(
   id,
@@ -53,6 +54,10 @@ mod_SiteDetails_Server <- function(
     }) %>%
       bindCache(rctv_strSiteID())
 
+    # This code will be removed in an upcoming update (when these are treated as
+    # proper modules).
+    #
+    # nocov start
     observe({
       if (rctv_strSiteID() == "None") {
         ## Show placeholders
@@ -72,6 +77,7 @@ mod_SiteDetails_Server <- function(
         shinyjs::show("card_participants")
       }
     })
+    # nocov end
 
     ### Site Metadata
     output$site_metadata_list <- renderUI({

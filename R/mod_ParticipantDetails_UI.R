@@ -1,7 +1,7 @@
 #' Participant Details UI
 #'
 #' @inheritParams shared-params
-#' @return A [bslib::layout_columns()] with participant metadata, available
+#' @returns A [bslib::layout_columns()] with participant metadata, available
 #'   metrics for this participant, and participant domain details.
 #' @keywords internal
 mod_ParticipantDetails_UI <- function(id) {
