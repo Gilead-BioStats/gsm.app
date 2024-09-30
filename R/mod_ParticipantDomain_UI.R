@@ -10,6 +10,6 @@ mod_ParticipantDomain_UI <- function(id) {
     tagTitle = textOutput(ns("title"), inline = TRUE),
     # Server chooses between placeholder card & DT table.
     uiOutput(ns("details")),
-    id = ns("details-card")
+    id = ns("card")
   )
 }
