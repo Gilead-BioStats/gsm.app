@@ -57,7 +57,7 @@ run_gsm_app <- function(
 
 #' @rdname run_gsm_app
 #' @export
-run_sample_gsm_app <- function() {
+run_sample_gsm_app <- function() { # nocov start
   run_gsm_app(
     dfResults = gsm.app::sample_dfResults,
     dfGroups = gsm.app::sample_dfGroups,
@@ -67,4 +67,4 @@ run_sample_gsm_app <- function() {
     fnFetchParticipantData = gsm.app::sample_FetchParticipantData,
     strTitle = "Sample Deep Dive App"
   )
-}
+} # nocov end
