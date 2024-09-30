@@ -14,7 +14,7 @@ mod_ScatterPlotSet_UI <- function(id, chrMetrics) {
     }
   )
   tagList(
-    bslib::layout_column_wrap(id = id, width = 1/2, !!!unname(plots)),
+    bslib::layout_column_wrap(id = id, width = 1 / 2, !!!unname(plots)),
     out_DetectCardClicks(id, ns("selectedScatterPlot"))
   )
 }

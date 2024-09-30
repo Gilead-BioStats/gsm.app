@@ -19,7 +19,7 @@ un_ns <- function(id, ns) {
 null_for_none <- function(strValue) {
   if (
     length(strValue) == 0 ||
-    (length(strValue) == 1 && (strValue == "None" || strValue == ""))
+      (length(strValue) == 1 && (strValue == "None" || strValue == ""))
   ) {
     return(NULL)
   }

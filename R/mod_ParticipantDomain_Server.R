@@ -6,7 +6,7 @@
 #' @returns A [shiny::reactive()] with the index(es) of any rows selected by the
 #'   user.
 #' @keywords internal
-mod_ParticipantDomain_Server = function(id, rctv_lData, rctv_strName) {
+mod_ParticipantDomain_Server <- function(id, rctv_lData, rctv_strName) {
   moduleServer(id, function(input, output, session) {
     valid_lData <- reactive({
       length(rctv_lData()) > 0
