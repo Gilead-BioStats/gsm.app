@@ -5,7 +5,7 @@
     "metric_details-scatter_plot_full_screen": false,
     "metric_details-selected_tab": "Bar Chart (KRI Score)",
     "participant": "None",
-    "participant_details-domain-details-card_full_screen": false,
+    "participant_details-domain-card_full_screen": false,
     "participant_details-metric_summary-card_full_screen": false,
     "primary_nav_bar": "Metric Details",
     "reset": 0,
@@ -86,6 +86,7 @@
       ]
     },
     "study-overview-table-card_full_screen": false,
+    "study_overview-nav_bar": "Overview Table",
     "study_overview-scatter-kri0001-group": "0X001",
     "study_overview-scatter-kri0001_full_screen": false,
     "study_overview-scatter-kri0002-group": "0X001",

@@ -3,9 +3,9 @@
     "metric": "kri0001",
     "metric_details-scatter_plot-group": null,
     "metric_details-scatter_plot_full_screen": false,
-    "metric_details-selected_tab": "Scatter Plot",
+    "metric_details-selected_tab": "Time Series",
     "participant": "None",
-    "participant_details-domain-details-card_full_screen": false,
+    "participant_details-domain-card_full_screen": false,
     "participant_details-metric_summary-card_full_screen": false,
     "primary_nav_bar": "Metric Details",
     "reset": 0,
@@ -16,12 +16,1453 @@
     "site_details-card_placeholder_site_metadata_list_full_screen": false,
     "site_details-card_site_metadata_list_full_screen": false,
     "study-overview-table-card_full_screen": false,
+    "study_overview-nav_bar": "Overview Table",
     "study_overview-scatter-kri0001-group": null,
     "study_overview-scatter-kri0001_full_screen": false,
     "study_overview-scatter-kri0002-group": null,
     "study_overview-scatter-kri0002_full_screen": false
   },
   "output": {
+    "metric_details-bar_chart_metric": {
+      "x": {
+        "dfResults": [
+          {
+            "GroupID": "0X159",
+            "GroupLevel": "Site",
+            "Numerator": 400,
+            "Denominator": 24166,
+            "Metric": 0.0166,
+            "Score": 6.5483,
+            "Flag": 2,
+            "MetricID": "kri0001",
+            "SnapshotDate": "2019-11-01",
+            "StudyID": "ABC-123"
+          },
+          {
+            "GroupID": "0X161",
+            "GroupLevel": "Site",
+            "Numerator": 148,
+            "Denominator": 50949,
+            "Metric": 0.0029,
+            "Score": -1.6578,
+            "Flag": -1,
+            "MetricID": "kri0001",
+            "SnapshotDate": "2019-11-01",
+            "StudyID": "ABC-123"
+          },
+          {
+            "GroupID": "0X021",
+            "GroupLevel": "Site",
+            "Numerator": 26,
+            "Denominator": 3387,
+            "Metric": 0.0077,
+            "Score": 0.5791,
+            "Flag": 0,
+            "MetricID": "kri0001",
+            "SnapshotDate": "2019-11-01",
+            "StudyID": "ABC-123"
+          },
+          {
+            "GroupID": "0X001",
+            "GroupLevel": "Site",
+            "Numerator": 14,
+            "Denominator": 2183,
+            "Metric": 0.0064,
+            "Score": 0.251,
+            "Flag": 0,
+            "MetricID": "kri0001",
+            "SnapshotDate": "2019-11-01",
+            "StudyID": "ABC-123"
+          },
+          {
+            "GroupID": "0X103",
+            "GroupLevel": "Site",
+            "Numerator": 13,
+            "Denominator": 2286,
+            "Metric": 0.0057,
+            "Score": 0.131,
+            "Flag": 0,
+            "MetricID": "kri0001",
+            "SnapshotDate": "2019-11-01",
+            "StudyID": "ABC-123"
+          }
+        ],
+        "lMetric": {
+          "MetricID": "kri0001",
+          "File": "kri0001.yaml",
+          "GroupLevel": "Site",
+          "Abbreviation": "AE",
+          "Metric": "Adverse Event Rate",
+          "Numerator": "Adverse Events",
+          "Denominator": "Days on Study",
+          "Model": "Normal Approximation",
+          "Score": "Adjusted Z-Score",
+          "Type": "rate",
+          "Threshold": "-2,-1,2,3",
+          "nMinDenominator": 30
+        },
+        "dfGroups": [
+          {
+            "GroupID": "0X001",
+            "Param": "ParticipantCount",
+            "Value": "3",
+            "GroupLevel": "Site"
+          },
+          {
+            "GroupID": "0X001",
+            "Param": "SiteCount",
+            "Value": "1",
+            "GroupLevel": "Site"
+          },
+          {
+            "GroupID": "0X021",
+            "Param": "ParticipantCount",
+            "Value": "4",
+            "GroupLevel": "Site"
+          },
+          {
+            "GroupID": "0X021",
+            "Param": "SiteCount",
+            "Value": "1",
+            "GroupLevel": "Site"
+          },
+          {
+            "GroupID": "0X103",
+            "Param": "ParticipantCount",
+            "Value": "5",
+            "GroupLevel": "Site"
+          },
+          {
+            "GroupID": "0X103",
+            "Param": "SiteCount",
+            "Value": "1",
+            "GroupLevel": "Site"
+          },
+          {
+            "GroupID": "0X159",
+            "Param": "ParticipantCount",
+            "Value": "33",
+            "GroupLevel": "Site"
+          },
+          {
+            "GroupID": "0X159",
+            "Param": "SiteCount",
+            "Value": "1",
+            "GroupLevel": "Site"
+          },
+          {
+            "GroupID": "0X161",
+            "Param": "ParticipantCount",
+            "Value": "69",
+            "GroupLevel": "Site"
+          },
+          {
+            "GroupID": "0X161",
+            "Param": "SiteCount",
+            "Value": "1",
+            "GroupLevel": "Site"
+          },
+          {
+            "GroupID": "AA-AA-000-0000",
+            "Param": "ParticipantCount",
+            "Value": "1301",
+            "GroupLevel": "Study"
+          },
+          {
+            "GroupID": "AA-AA-000-0000",
+            "Param": "SiteCount",
+            "Value": "176",
+            "GroupLevel": "Study"
+          },
+          {
+            "GroupID": "China",
+            "Param": "ParticipantCount",
+            "Value": "257",
+            "GroupLevel": "Country"
+          },
+          {
+            "GroupID": "China",
+            "Param": "SiteCount",
+            "Value": "46",
+            "GroupLevel": "Country"
+          },
+          {
+            "GroupID": "Japan",
+            "Param": "ParticipantCount",
+            "Value": "165",
+            "GroupLevel": "Country"
+          },
+          {
+            "GroupID": "Japan",
+            "Param": "SiteCount",
+            "Value": "38",
+            "GroupLevel": "Country"
+          },
+          {
+            "GroupID": "US",
+            "Param": "ParticipantCount",
+            "Value": "879",
+            "GroupLevel": "Country"
+          },
+          {
+            "GroupID": "US",
+            "Param": "SiteCount",
+            "Value": "92",
+            "GroupLevel": "Country"
+          },
+          {
+            "GroupID": "0X161",
+            "Param": "protocol_row_id",
+            "Value": "1-1G9113",
+            "GroupLevel": "Site"
+          },
+          {
+            "GroupID": "0X161",
+            "Param": "site_num",
+            "Value": "140",
+            "GroupLevel": "Site"
+          },
+          {
+            "GroupID": "0X161",
+            "Param": "site_row_id",
+            "Value": "123-1234-0X161",
+            "GroupLevel": "Site"
+          },
+          {
+            "GroupID": "0X161",
+            "Param": "protocol",
+            "Value": "AA-AA-000-0000",
+            "GroupLevel": "Site"
+          },
+          {
+            "GroupID": "0X161",
+            "Param": "InvestigatorLastName",
+            "Value": "Vangoey",
+            "GroupLevel": "Site"
+          },
+          {
+            "GroupID": "0X161",
+            "Param": "InvestigatorFirstName",
+            "Value": "Cydnie",
+            "GroupLevel": "Site"
+          },
+          {
+            "GroupID": "0X161",
+            "Param": "Status",
+            "Value": "Active",
+            "GroupLevel": "Site"
+          },
+          {
+            "GroupID": "0X161",
+            "Param": "is_satellite",
+            "Value": "FALSE",
+            "GroupLevel": "Site"
+          },
+          {
+            "GroupID": "0X161",
+            "Param": "account",
+            "Value": "city 1 Medical Center",
+            "GroupLevel": "Site"
+          },
+          {
+            "GroupID": "0X161",
+            "Param": "site_active_dt",
+            "Value": "2004-08-14",
+            "GroupLevel": "Site"
+          },
+          {
+            "GroupID": "0X161",
+            "Param": "city",
+            "Value": "city 1",
+            "GroupLevel": "Site"
+          },
+          {
+            "GroupID": "0X161",
+            "Param": "state",
+            "Value": "state 1",
+            "GroupLevel": "Site"
+          },
+          {
+            "GroupID": "0X161",
+            "Param": "country",
+            "Value": "US",
+            "GroupLevel": "Site"
+          },
+          {
+            "GroupID": "0X021",
+            "Param": "protocol_row_id",
+            "Value": "1-1G9113",
+            "GroupLevel": "Site"
+          },
+          {
+            "GroupID": "0X021",
+            "Param": "site_num",
+            "Value": "179",
+            "GroupLevel": "Site"
+          },
+          {
+            "GroupID": "0X021",
+            "Param": "site_row_id",
+            "Value": "123-1234-0X021",
+            "GroupLevel": "Site"
+          },
+          {
+            "GroupID": "0X021",
+            "Param": "protocol",
+            "Value": "AA-AA-000-0000",
+            "GroupLevel": "Site"
+          },
+          {
+            "GroupID": "0X021",
+            "Param": "InvestigatorLastName",
+            "Value": "Lee",
+            "GroupLevel": "Site"
+          },
+          {
+            "GroupID": "0X021",
+            "Param": "InvestigatorFirstName",
+            "Value": "Omar",
+            "GroupLevel": "Site"
+          },
+          {
+            "GroupID": "0X021",
+            "Param": "Status",
+            "Value": "Active",
+            "GroupLevel": "Site"
+          },
+          {
+            "GroupID": "0X021",
+            "Param": "is_satellite",
+            "Value": "FALSE",
+            "GroupLevel": "Site"
+          },
+          {
+            "GroupID": "0X021",
+            "Param": "account",
+            "Value": "city 1 Medical Center",
+            "GroupLevel": "Site"
+          },
+          {
+            "GroupID": "0X021",
+            "Param": "site_active_dt",
+            "Value": "2006-03-30",
+            "GroupLevel": "Site"
+          },
+          {
+            "GroupID": "0X021",
+            "Param": "city",
+            "Value": "city 1",
+            "GroupLevel": "Site"
+          },
+          {
+            "GroupID": "0X021",
+            "Param": "state",
+            "Value": "state 1",
+            "GroupLevel": "Site"
+          },
+          {
+            "GroupID": "0X021",
+            "Param": "country",
+            "Value": "US",
+            "GroupLevel": "Site"
+          },
+          {
+            "GroupID": "0X001",
+            "Param": "protocol_row_id",
+            "Value": "1-1G9113",
+            "GroupLevel": "Site"
+          },
+          {
+            "GroupID": "0X001",
+            "Param": "site_num",
+            "Value": "181",
+            "GroupLevel": "Site"
+          },
+          {
+            "GroupID": "0X001",
+            "Param": "site_row_id",
+            "Value": "123-1234-0X001",
+            "GroupLevel": "Site"
+          },
+          {
+            "GroupID": "0X001",
+            "Param": "protocol",
+            "Value": "AA-AA-000-0000",
+            "GroupLevel": "Site"
+          },
+          {
+            "GroupID": "0X001",
+            "Param": "InvestigatorLastName",
+            "Value": "Robb",
+            "GroupLevel": "Site"
+          },
+          {
+            "GroupID": "0X001",
+            "Param": "InvestigatorFirstName",
+            "Value": "Muslih",
+            "GroupLevel": "Site"
+          },
+          {
+            "GroupID": "0X001",
+            "Param": "Status",
+            "Value": "Active",
+            "GroupLevel": "Site"
+          },
+          {
+            "GroupID": "0X001",
+            "Param": "is_satellite",
+            "Value": "FALSE",
+            "GroupLevel": "Site"
+          },
+          {
+            "GroupID": "0X001",
+            "Param": "account",
+            "Value": "city 1 Medical Center",
+            "GroupLevel": "Site"
+          },
+          {
+            "GroupID": "0X001",
+            "Param": "site_active_dt",
+            "Value": "2009-06-06",
+            "GroupLevel": "Site"
+          },
+          {
+            "GroupID": "0X001",
+            "Param": "city",
+            "Value": "city 1",
+            "GroupLevel": "Site"
+          },
+          {
+            "GroupID": "0X001",
+            "Param": "state",
+            "Value": "state 1",
+            "GroupLevel": "Site"
+          },
+          {
+            "GroupID": "0X001",
+            "Param": "country",
+            "Value": "US",
+            "GroupLevel": "Site"
+          },
+          {
+            "GroupID": "0X103",
+            "Param": "protocol_row_id",
+            "Value": "1-1G9113",
+            "GroupLevel": "Site"
+          },
+          {
+            "GroupID": "0X103",
+            "Param": "site_num",
+            "Value": "28",
+            "GroupLevel": "Site"
+          },
+          {
+            "GroupID": "0X103",
+            "Param": "site_row_id",
+            "Value": "123-1234-0X103",
+            "GroupLevel": "Site"
+          },
+          {
+            "GroupID": "0X103",
+            "Param": "protocol",
+            "Value": "AA-AA-000-0000",
+            "GroupLevel": "Site"
+          },
+          {
+            "GroupID": "0X103",
+            "Param": "InvestigatorLastName",
+            "Value": "al-Mona",
+            "GroupLevel": "Site"
+          },
+          {
+            "GroupID": "0X103",
+            "Param": "InvestigatorFirstName",
+            "Value": "Andrew",
+            "GroupLevel": "Site"
+          },
+          {
+            "GroupID": "0X103",
+            "Param": "Status",
+            "Value": "Active",
+            "GroupLevel": "Site"
+          },
+          {
+            "GroupID": "0X103",
+            "Param": "is_satellite",
+            "Value": "FALSE",
+            "GroupLevel": "Site"
+          },
+          {
+            "GroupID": "0X103",
+            "Param": "account",
+            "Value": "city 1 Medical Center",
+            "GroupLevel": "Site"
+          },
+          {
+            "GroupID": "0X103",
+            "Param": "site_active_dt",
+            "Value": "2004-10-17",
+            "GroupLevel": "Site"
+          },
+          {
+            "GroupID": "0X103",
+            "Param": "city",
+            "Value": "city 1",
+            "GroupLevel": "Site"
+          },
+          {
+            "GroupID": "0X103",
+            "Param": "state",
+            "Value": "state 1",
+            "GroupLevel": "Site"
+          },
+          {
+            "GroupID": "0X103",
+            "Param": "country",
+            "Value": "US",
+            "GroupLevel": "Site"
+          },
+          {
+            "GroupID": "0X159",
+            "Param": "protocol_row_id",
+            "Value": "1-1G9113",
+            "GroupLevel": "Site"
+          },
+          {
+            "GroupID": "0X159",
+            "Param": "site_num",
+            "Value": "43",
+            "GroupLevel": "Site"
+          },
+          {
+            "GroupID": "0X159",
+            "Param": "site_row_id",
+            "Value": "123-1234-0X159",
+            "GroupLevel": "Site"
+          },
+          {
+            "GroupID": "0X159",
+            "Param": "protocol",
+            "Value": "AA-AA-000-0000",
+            "GroupLevel": "Site"
+          },
+          {
+            "GroupID": "0X159",
+            "Param": "InvestigatorLastName",
+            "Value": "Flores",
+            "GroupLevel": "Site"
+          },
+          {
+            "GroupID": "0X159",
+            "Param": "InvestigatorFirstName",
+            "Value": "Sufyaan",
+            "GroupLevel": "Site"
+          },
+          {
+            "GroupID": "0X159",
+            "Param": "Status",
+            "Value": "Active",
+            "GroupLevel": "Site"
+          },
+          {
+            "GroupID": "0X159",
+            "Param": "is_satellite",
+            "Value": "TRUE",
+            "GroupLevel": "Site"
+          },
+          {
+            "GroupID": "0X159",
+            "Param": "account",
+            "Value": "city 1 Medical Center",
+            "GroupLevel": "Site"
+          },
+          {
+            "GroupID": "0X159",
+            "Param": "site_active_dt",
+            "Value": "2004-02-13",
+            "GroupLevel": "Site"
+          },
+          {
+            "GroupID": "0X159",
+            "Param": "city",
+            "Value": "city 1",
+            "GroupLevel": "Site"
+          },
+          {
+            "GroupID": "0X159",
+            "Param": "state",
+            "Value": "state 1",
+            "GroupLevel": "Site"
+          },
+          {
+            "GroupID": "0X159",
+            "Param": "country",
+            "Value": "US",
+            "GroupLevel": "Site"
+          },
+          {
+            "GroupID": "AA-AA-000-0000",
+            "Param": "protocol_row_id",
+            "Value": "1-1G9113",
+            "GroupLevel": "Study"
+          },
+          {
+            "GroupID": "AA-AA-000-0000",
+            "Param": "protocol_title",
+            "Value": "Protocol Title",
+            "GroupLevel": "Study"
+          },
+          {
+            "GroupID": "AA-AA-000-0000",
+            "Param": "nickname",
+            "Value": "Protocol Nickname",
+            "GroupLevel": "Study"
+          },
+          {
+            "GroupID": "AA-AA-000-0000",
+            "Param": "protocol_type",
+            "Value": "Investigator Sponsored",
+            "GroupLevel": "Study"
+          },
+          {
+            "GroupID": "AA-AA-000-0000",
+            "Param": "phase",
+            "Value": "P3",
+            "GroupLevel": "Study"
+          },
+          {
+            "GroupID": "AA-AA-000-0000",
+            "Param": "num_plan_site",
+            "Value": "190",
+            "GroupLevel": "Study"
+          },
+          {
+            "GroupID": "AA-AA-000-0000",
+            "Param": "num_site_actl",
+            "Value": "176",
+            "GroupLevel": "Study"
+          },
+          {
+            "GroupID": "AA-AA-000-0000",
+            "Param": "est_fpfv",
+            "Value": "2003-01-01",
+            "GroupLevel": "Study"
+          },
+          {
+            "GroupID": "AA-AA-000-0000",
+            "Param": "act_fpfv",
+            "Value": "2003-01-01",
+            "GroupLevel": "Study"
+          },
+          {
+            "GroupID": "AA-AA-000-0000",
+            "Param": "est_lplv",
+            "Value": "2021-06-01",
+            "GroupLevel": "Study"
+          },
+          {
+            "GroupID": "AA-AA-000-0000",
+            "Param": "act_lplv",
+            "Value": "2021-06-01",
+            "GroupLevel": "Study"
+          },
+          {
+            "GroupID": "AA-AA-000-0000",
+            "Param": "est_lpfv",
+            "Value": "2020-06-01",
+            "GroupLevel": "Study"
+          },
+          {
+            "GroupID": "AA-AA-000-0000",
+            "Param": "act_lpfv",
+            "Value": "2020-06-01",
+            "GroupLevel": "Study"
+          },
+          {
+            "GroupID": "AA-AA-000-0000",
+            "Param": "status",
+            "Value": "Active",
+            "GroupLevel": "Study"
+          },
+          {
+            "GroupID": "AA-AA-000-0000",
+            "Param": "num_plan_subj",
+            "Value": "1300",
+            "GroupLevel": "Study"
+          },
+          {
+            "GroupID": "AA-AA-000-0000",
+            "Param": "num_enrolled_subj_m",
+            "Value": "1301",
+            "GroupLevel": "Study"
+          },
+          {
+            "GroupID": "AA-AA-000-0000",
+            "Param": "protocol_indication",
+            "Value": "Protocol Indication",
+            "GroupLevel": "Study"
+          },
+          {
+            "GroupID": "AA-AA-000-0000",
+            "Param": "product",
+            "Value": "Product",
+            "GroupLevel": "Study"
+          },
+          {
+            "GroupID": "AA-AA-000-0000",
+            "Param": "therapeutic_area",
+            "Value": "Therapeutic Area",
+            "GroupLevel": "Study"
+          },
+          {
+            "GroupID": "AA-AA-000-0000",
+            "Param": "protocol_product_number",
+            "Value": "123",
+            "GroupLevel": "Study"
+          },
+          {
+            "GroupID": "AA-AA-000-0000",
+            "Param": "x_rbm_flg",
+            "Value": "Y",
+            "GroupLevel": "Study"
+          }
+        ],
+        "vThreshold": null,
+        "strOutcome": "Metric",
+        "bAddGroupSelect": false,
+        "strShinyGroupSelectID": "site",
+        "bDebug": false
+      },
+      "evals": [
+
+      ],
+      "jsHooks": [
+
+      ],
+      "deps": [
+
+      ]
+    },
+    "metric_details-bar_chart_score": {
+      "x": {
+        "dfResults": [
+          {
+            "GroupID": "0X159",
+            "GroupLevel": "Site",
+            "Numerator": 400,
+            "Denominator": 24166,
+            "Metric": 0.0166,
+            "Score": 6.5483,
+            "Flag": 2,
+            "MetricID": "kri0001",
+            "SnapshotDate": "2019-11-01",
+            "StudyID": "ABC-123"
+          },
+          {
+            "GroupID": "0X161",
+            "GroupLevel": "Site",
+            "Numerator": 148,
+            "Denominator": 50949,
+            "Metric": 0.0029,
+            "Score": -1.6578,
+            "Flag": -1,
+            "MetricID": "kri0001",
+            "SnapshotDate": "2019-11-01",
+            "StudyID": "ABC-123"
+          },
+          {
+            "GroupID": "0X021",
+            "GroupLevel": "Site",
+            "Numerator": 26,
+            "Denominator": 3387,
+            "Metric": 0.0077,
+            "Score": 0.5791,
+            "Flag": 0,
+            "MetricID": "kri0001",
+            "SnapshotDate": "2019-11-01",
+            "StudyID": "ABC-123"
+          },
+          {
+            "GroupID": "0X001",
+            "GroupLevel": "Site",
+            "Numerator": 14,
+            "Denominator": 2183,
+            "Metric": 0.0064,
+            "Score": 0.251,
+            "Flag": 0,
+            "MetricID": "kri0001",
+            "SnapshotDate": "2019-11-01",
+            "StudyID": "ABC-123"
+          },
+          {
+            "GroupID": "0X103",
+            "GroupLevel": "Site",
+            "Numerator": 13,
+            "Denominator": 2286,
+            "Metric": 0.0057,
+            "Score": 0.131,
+            "Flag": 0,
+            "MetricID": "kri0001",
+            "SnapshotDate": "2019-11-01",
+            "StudyID": "ABC-123"
+          }
+        ],
+        "lMetric": {
+          "MetricID": "kri0001",
+          "File": "kri0001.yaml",
+          "GroupLevel": "Site",
+          "Abbreviation": "AE",
+          "Metric": "Adverse Event Rate",
+          "Numerator": "Adverse Events",
+          "Denominator": "Days on Study",
+          "Model": "Normal Approximation",
+          "Score": "Adjusted Z-Score",
+          "Type": "rate",
+          "Threshold": "-2,-1,2,3",
+          "nMinDenominator": 30
+        },
+        "dfGroups": [
+          {
+            "GroupID": "0X001",
+            "Param": "ParticipantCount",
+            "Value": "3",
+            "GroupLevel": "Site"
+          },
+          {
+            "GroupID": "0X001",
+            "Param": "SiteCount",
+            "Value": "1",
+            "GroupLevel": "Site"
+          },
+          {
+            "GroupID": "0X021",
+            "Param": "ParticipantCount",
+            "Value": "4",
+            "GroupLevel": "Site"
+          },
+          {
+            "GroupID": "0X021",
+            "Param": "SiteCount",
+            "Value": "1",
+            "GroupLevel": "Site"
+          },
+          {
+            "GroupID": "0X103",
+            "Param": "ParticipantCount",
+            "Value": "5",
+            "GroupLevel": "Site"
+          },
+          {
+            "GroupID": "0X103",
+            "Param": "SiteCount",
+            "Value": "1",
+            "GroupLevel": "Site"
+          },
+          {
+            "GroupID": "0X159",
+            "Param": "ParticipantCount",
+            "Value": "33",
+            "GroupLevel": "Site"
+          },
+          {
+            "GroupID": "0X159",
+            "Param": "SiteCount",
+            "Value": "1",
+            "GroupLevel": "Site"
+          },
+          {
+            "GroupID": "0X161",
+            "Param": "ParticipantCount",
+            "Value": "69",
+            "GroupLevel": "Site"
+          },
+          {
+            "GroupID": "0X161",
+            "Param": "SiteCount",
+            "Value": "1",
+            "GroupLevel": "Site"
+          },
+          {
+            "GroupID": "AA-AA-000-0000",
+            "Param": "ParticipantCount",
+            "Value": "1301",
+            "GroupLevel": "Study"
+          },
+          {
+            "GroupID": "AA-AA-000-0000",
+            "Param": "SiteCount",
+            "Value": "176",
+            "GroupLevel": "Study"
+          },
+          {
+            "GroupID": "China",
+            "Param": "ParticipantCount",
+            "Value": "257",
+            "GroupLevel": "Country"
+          },
+          {
+            "GroupID": "China",
+            "Param": "SiteCount",
+            "Value": "46",
+            "GroupLevel": "Country"
+          },
+          {
+            "GroupID": "Japan",
+            "Param": "ParticipantCount",
+            "Value": "165",
+            "GroupLevel": "Country"
+          },
+          {
+            "GroupID": "Japan",
+            "Param": "SiteCount",
+            "Value": "38",
+            "GroupLevel": "Country"
+          },
+          {
+            "GroupID": "US",
+            "Param": "ParticipantCount",
+            "Value": "879",
+            "GroupLevel": "Country"
+          },
+          {
+            "GroupID": "US",
+            "Param": "SiteCount",
+            "Value": "92",
+            "GroupLevel": "Country"
+          },
+          {
+            "GroupID": "0X161",
+            "Param": "protocol_row_id",
+            "Value": "1-1G9113",
+            "GroupLevel": "Site"
+          },
+          {
+            "GroupID": "0X161",
+            "Param": "site_num",
+            "Value": "140",
+            "GroupLevel": "Site"
+          },
+          {
+            "GroupID": "0X161",
+            "Param": "site_row_id",
+            "Value": "123-1234-0X161",
+            "GroupLevel": "Site"
+          },
+          {
+            "GroupID": "0X161",
+            "Param": "protocol",
+            "Value": "AA-AA-000-0000",
+            "GroupLevel": "Site"
+          },
+          {
+            "GroupID": "0X161",
+            "Param": "InvestigatorLastName",
+            "Value": "Vangoey",
+            "GroupLevel": "Site"
+          },
+          {
+            "GroupID": "0X161",
+            "Param": "InvestigatorFirstName",
+            "Value": "Cydnie",
+            "GroupLevel": "Site"
+          },
+          {
+            "GroupID": "0X161",
+            "Param": "Status",
+            "Value": "Active",
+            "GroupLevel": "Site"
+          },
+          {
+            "GroupID": "0X161",
+            "Param": "is_satellite",
+            "Value": "FALSE",
+            "GroupLevel": "Site"
+          },
+          {
+            "GroupID": "0X161",
+            "Param": "account",
+            "Value": "city 1 Medical Center",
+            "GroupLevel": "Site"
+          },
+          {
+            "GroupID": "0X161",
+            "Param": "site_active_dt",
+            "Value": "2004-08-14",
+            "GroupLevel": "Site"
+          },
+          {
+            "GroupID": "0X161",
+            "Param": "city",
+            "Value": "city 1",
+            "GroupLevel": "Site"
+          },
+          {
+            "GroupID": "0X161",
+            "Param": "state",
+            "Value": "state 1",
+            "GroupLevel": "Site"
+          },
+          {
+            "GroupID": "0X161",
+            "Param": "country",
+            "Value": "US",
+            "GroupLevel": "Site"
+          },
+          {
+            "GroupID": "0X021",
+            "Param": "protocol_row_id",
+            "Value": "1-1G9113",
+            "GroupLevel": "Site"
+          },
+          {
+            "GroupID": "0X021",
+            "Param": "site_num",
+            "Value": "179",
+            "GroupLevel": "Site"
+          },
+          {
+            "GroupID": "0X021",
+            "Param": "site_row_id",
+            "Value": "123-1234-0X021",
+            "GroupLevel": "Site"
+          },
+          {
+            "GroupID": "0X021",
+            "Param": "protocol",
+            "Value": "AA-AA-000-0000",
+            "GroupLevel": "Site"
+          },
+          {
+            "GroupID": "0X021",
+            "Param": "InvestigatorLastName",
+            "Value": "Lee",
+            "GroupLevel": "Site"
+          },
+          {
+            "GroupID": "0X021",
+            "Param": "InvestigatorFirstName",
+            "Value": "Omar",
+            "GroupLevel": "Site"
+          },
+          {
+            "GroupID": "0X021",
+            "Param": "Status",
+            "Value": "Active",
+            "GroupLevel": "Site"
+          },
+          {
+            "GroupID": "0X021",
+            "Param": "is_satellite",
+            "Value": "FALSE",
+            "GroupLevel": "Site"
+          },
+          {
+            "GroupID": "0X021",
+            "Param": "account",
+            "Value": "city 1 Medical Center",
+            "GroupLevel": "Site"
+          },
+          {
+            "GroupID": "0X021",
+            "Param": "site_active_dt",
+            "Value": "2006-03-30",
+            "GroupLevel": "Site"
+          },
+          {
+            "GroupID": "0X021",
+            "Param": "city",
+            "Value": "city 1",
+            "GroupLevel": "Site"
+          },
+          {
+            "GroupID": "0X021",
+            "Param": "state",
+            "Value": "state 1",
+            "GroupLevel": "Site"
+          },
+          {
+            "GroupID": "0X021",
+            "Param": "country",
+            "Value": "US",
+            "GroupLevel": "Site"
+          },
+          {
+            "GroupID": "0X001",
+            "Param": "protocol_row_id",
+            "Value": "1-1G9113",
+            "GroupLevel": "Site"
+          },
+          {
+            "GroupID": "0X001",
+            "Param": "site_num",
+            "Value": "181",
+            "GroupLevel": "Site"
+          },
+          {
+            "GroupID": "0X001",
+            "Param": "site_row_id",
+            "Value": "123-1234-0X001",
+            "GroupLevel": "Site"
+          },
+          {
+            "GroupID": "0X001",
+            "Param": "protocol",
+            "Value": "AA-AA-000-0000",
+            "GroupLevel": "Site"
+          },
+          {
+            "GroupID": "0X001",
+            "Param": "InvestigatorLastName",
+            "Value": "Robb",
+            "GroupLevel": "Site"
+          },
+          {
+            "GroupID": "0X001",
+            "Param": "InvestigatorFirstName",
+            "Value": "Muslih",
+            "GroupLevel": "Site"
+          },
+          {
+            "GroupID": "0X001",
+            "Param": "Status",
+            "Value": "Active",
+            "GroupLevel": "Site"
+          },
+          {
+            "GroupID": "0X001",
+            "Param": "is_satellite",
+            "Value": "FALSE",
+            "GroupLevel": "Site"
+          },
+          {
+            "GroupID": "0X001",
+            "Param": "account",
+            "Value": "city 1 Medical Center",
+            "GroupLevel": "Site"
+          },
+          {
+            "GroupID": "0X001",
+            "Param": "site_active_dt",
+            "Value": "2009-06-06",
+            "GroupLevel": "Site"
+          },
+          {
+            "GroupID": "0X001",
+            "Param": "city",
+            "Value": "city 1",
+            "GroupLevel": "Site"
+          },
+          {
+            "GroupID": "0X001",
+            "Param": "state",
+            "Value": "state 1",
+            "GroupLevel": "Site"
+          },
+          {
+            "GroupID": "0X001",
+            "Param": "country",
+            "Value": "US",
+            "GroupLevel": "Site"
+          },
+          {
+            "GroupID": "0X103",
+            "Param": "protocol_row_id",
+            "Value": "1-1G9113",
+            "GroupLevel": "Site"
+          },
+          {
+            "GroupID": "0X103",
+            "Param": "site_num",
+            "Value": "28",
+            "GroupLevel": "Site"
+          },
+          {
+            "GroupID": "0X103",
+            "Param": "site_row_id",
+            "Value": "123-1234-0X103",
+            "GroupLevel": "Site"
+          },
+          {
+            "GroupID": "0X103",
+            "Param": "protocol",
+            "Value": "AA-AA-000-0000",
+            "GroupLevel": "Site"
+          },
+          {
+            "GroupID": "0X103",
+            "Param": "InvestigatorLastName",
+            "Value": "al-Mona",
+            "GroupLevel": "Site"
+          },
+          {
+            "GroupID": "0X103",
+            "Param": "InvestigatorFirstName",
+            "Value": "Andrew",
+            "GroupLevel": "Site"
+          },
+          {
+            "GroupID": "0X103",
+            "Param": "Status",
+            "Value": "Active",
+            "GroupLevel": "Site"
+          },
+          {
+            "GroupID": "0X103",
+            "Param": "is_satellite",
+            "Value": "FALSE",
+            "GroupLevel": "Site"
+          },
+          {
+            "GroupID": "0X103",
+            "Param": "account",
+            "Value": "city 1 Medical Center",
+            "GroupLevel": "Site"
+          },
+          {
+            "GroupID": "0X103",
+            "Param": "site_active_dt",
+            "Value": "2004-10-17",
+            "GroupLevel": "Site"
+          },
+          {
+            "GroupID": "0X103",
+            "Param": "city",
+            "Value": "city 1",
+            "GroupLevel": "Site"
+          },
+          {
+            "GroupID": "0X103",
+            "Param": "state",
+            "Value": "state 1",
+            "GroupLevel": "Site"
+          },
+          {
+            "GroupID": "0X103",
+            "Param": "country",
+            "Value": "US",
+            "GroupLevel": "Site"
+          },
+          {
+            "GroupID": "0X159",
+            "Param": "protocol_row_id",
+            "Value": "1-1G9113",
+            "GroupLevel": "Site"
+          },
+          {
+            "GroupID": "0X159",
+            "Param": "site_num",
+            "Value": "43",
+            "GroupLevel": "Site"
+          },
+          {
+            "GroupID": "0X159",
+            "Param": "site_row_id",
+            "Value": "123-1234-0X159",
+            "GroupLevel": "Site"
+          },
+          {
+            "GroupID": "0X159",
+            "Param": "protocol",
+            "Value": "AA-AA-000-0000",
+            "GroupLevel": "Site"
+          },
+          {
+            "GroupID": "0X159",
+            "Param": "InvestigatorLastName",
+            "Value": "Flores",
+            "GroupLevel": "Site"
+          },
+          {
+            "GroupID": "0X159",
+            "Param": "InvestigatorFirstName",
+            "Value": "Sufyaan",
+            "GroupLevel": "Site"
+          },
+          {
+            "GroupID": "0X159",
+            "Param": "Status",
+            "Value": "Active",
+            "GroupLevel": "Site"
+          },
+          {
+            "GroupID": "0X159",
+            "Param": "is_satellite",
+            "Value": "TRUE",
+            "GroupLevel": "Site"
+          },
+          {
+            "GroupID": "0X159",
+            "Param": "account",
+            "Value": "city 1 Medical Center",
+            "GroupLevel": "Site"
+          },
+          {
+            "GroupID": "0X159",
+            "Param": "site_active_dt",
+            "Value": "2004-02-13",
+            "GroupLevel": "Site"
+          },
+          {
+            "GroupID": "0X159",
+            "Param": "city",
+            "Value": "city 1",
+            "GroupLevel": "Site"
+          },
+          {
+            "GroupID": "0X159",
+            "Param": "state",
+            "Value": "state 1",
+            "GroupLevel": "Site"
+          },
+          {
+            "GroupID": "0X159",
+            "Param": "country",
+            "Value": "US",
+            "GroupLevel": "Site"
+          },
+          {
+            "GroupID": "AA-AA-000-0000",
+            "Param": "protocol_row_id",
+            "Value": "1-1G9113",
+            "GroupLevel": "Study"
+          },
+          {
+            "GroupID": "AA-AA-000-0000",
+            "Param": "protocol_title",
+            "Value": "Protocol Title",
+            "GroupLevel": "Study"
+          },
+          {
+            "GroupID": "AA-AA-000-0000",
+            "Param": "nickname",
+            "Value": "Protocol Nickname",
+            "GroupLevel": "Study"
+          },
+          {
+            "GroupID": "AA-AA-000-0000",
+            "Param": "protocol_type",
+            "Value": "Investigator Sponsored",
+            "GroupLevel": "Study"
+          },
+          {
+            "GroupID": "AA-AA-000-0000",
+            "Param": "phase",
+            "Value": "P3",
+            "GroupLevel": "Study"
+          },
+          {
+            "GroupID": "AA-AA-000-0000",
+            "Param": "num_plan_site",
+            "Value": "190",
+            "GroupLevel": "Study"
+          },
+          {
+            "GroupID": "AA-AA-000-0000",
+            "Param": "num_site_actl",
+            "Value": "176",
+            "GroupLevel": "Study"
+          },
+          {
+            "GroupID": "AA-AA-000-0000",
+            "Param": "est_fpfv",
+            "Value": "2003-01-01",
+            "GroupLevel": "Study"
+          },
+          {
+            "GroupID": "AA-AA-000-0000",
+            "Param": "act_fpfv",
+            "Value": "2003-01-01",
+            "GroupLevel": "Study"
+          },
+          {
+            "GroupID": "AA-AA-000-0000",
+            "Param": "est_lplv",
+            "Value": "2021-06-01",
+            "GroupLevel": "Study"
+          },
+          {
+            "GroupID": "AA-AA-000-0000",
+            "Param": "act_lplv",
+            "Value": "2021-06-01",
+            "GroupLevel": "Study"
+          },
+          {
+            "GroupID": "AA-AA-000-0000",
+            "Param": "est_lpfv",
+            "Value": "2020-06-01",
+            "GroupLevel": "Study"
+          },
+          {
+            "GroupID": "AA-AA-000-0000",
+            "Param": "act_lpfv",
+            "Value": "2020-06-01",
+            "GroupLevel": "Study"
+          },
+          {
+            "GroupID": "AA-AA-000-0000",
+            "Param": "status",
+            "Value": "Active",
+            "GroupLevel": "Study"
+          },
+          {
+            "GroupID": "AA-AA-000-0000",
+            "Param": "num_plan_subj",
+            "Value": "1300",
+            "GroupLevel": "Study"
+          },
+          {
+            "GroupID": "AA-AA-000-0000",
+            "Param": "num_enrolled_subj_m",
+            "Value": "1301",
+            "GroupLevel": "Study"
+          },
+          {
+            "GroupID": "AA-AA-000-0000",
+            "Param": "protocol_indication",
+            "Value": "Protocol Indication",
+            "GroupLevel": "Study"
+          },
+          {
+            "GroupID": "AA-AA-000-0000",
+            "Param": "product",
+            "Value": "Product",
+            "GroupLevel": "Study"
+          },
+          {
+            "GroupID": "AA-AA-000-0000",
+            "Param": "therapeutic_area",
+            "Value": "Therapeutic Area",
+            "GroupLevel": "Study"
+          },
+          {
+            "GroupID": "AA-AA-000-0000",
+            "Param": "protocol_product_number",
+            "Value": "123",
+            "GroupLevel": "Study"
+          },
+          {
+            "GroupID": "AA-AA-000-0000",
+            "Param": "x_rbm_flg",
+            "Value": "Y",
+            "GroupLevel": "Study"
+          }
+        ],
+        "vThreshold": null,
+        "strOutcome": "Score",
+        "bAddGroupSelect": false,
+        "strShinyGroupSelectID": "site",
+        "bDebug": false
+      },
+      "evals": [
+
+      ],
+      "jsHooks": [
+
+      ],
+      "deps": [
+
+      ]
+    },
     "metric_details-scatter_plot-scatter_plot": {
       "x": {
         "id": "metric_details-scatter_plot-scatter_plot",
@@ -12573,6 +14014,726 @@
           "attachment": null,
           "all_files": true
         }
+      ]
+    },
+    "metric_details-time_series": {
+      "x": {
+        "dfResults": [
+          {
+            "GroupID": "0X159",
+            "GroupLevel": "Site",
+            "Numerator": 400,
+            "Denominator": 24166,
+            "Metric": 0.0166,
+            "Score": 6.5483,
+            "Flag": 2,
+            "MetricID": "kri0001",
+            "SnapshotDate": "2019-11-01",
+            "StudyID": "ABC-123"
+          },
+          {
+            "GroupID": "0X161",
+            "GroupLevel": "Site",
+            "Numerator": 148,
+            "Denominator": 50949,
+            "Metric": 0.0029,
+            "Score": -1.6578,
+            "Flag": -1,
+            "MetricID": "kri0001",
+            "SnapshotDate": "2019-11-01",
+            "StudyID": "ABC-123"
+          },
+          {
+            "GroupID": "0X021",
+            "GroupLevel": "Site",
+            "Numerator": 26,
+            "Denominator": 3387,
+            "Metric": 0.0077,
+            "Score": 0.5791,
+            "Flag": 0,
+            "MetricID": "kri0001",
+            "SnapshotDate": "2019-11-01",
+            "StudyID": "ABC-123"
+          },
+          {
+            "GroupID": "0X001",
+            "GroupLevel": "Site",
+            "Numerator": 14,
+            "Denominator": 2183,
+            "Metric": 0.0064,
+            "Score": 0.251,
+            "Flag": 0,
+            "MetricID": "kri0001",
+            "SnapshotDate": "2019-11-01",
+            "StudyID": "ABC-123"
+          },
+          {
+            "GroupID": "0X103",
+            "GroupLevel": "Site",
+            "Numerator": 13,
+            "Denominator": 2286,
+            "Metric": 0.0057,
+            "Score": 0.131,
+            "Flag": 0,
+            "MetricID": "kri0001",
+            "SnapshotDate": "2019-11-01",
+            "StudyID": "ABC-123"
+          }
+        ],
+        "lMetric": {
+          "MetricID": "kri0001",
+          "File": "kri0001.yaml",
+          "GroupLevel": "Site",
+          "Abbreviation": "AE",
+          "Metric": "Adverse Event Rate",
+          "Numerator": "Adverse Events",
+          "Denominator": "Days on Study",
+          "Model": "Normal Approximation",
+          "Score": "Adjusted Z-Score",
+          "Type": "rate",
+          "Threshold": "-2,-1,2,3",
+          "nMinDenominator": 30
+        },
+        "dfGroups": [
+          {
+            "GroupID": "0X001",
+            "Param": "ParticipantCount",
+            "Value": "3",
+            "GroupLevel": "Site"
+          },
+          {
+            "GroupID": "0X001",
+            "Param": "SiteCount",
+            "Value": "1",
+            "GroupLevel": "Site"
+          },
+          {
+            "GroupID": "0X021",
+            "Param": "ParticipantCount",
+            "Value": "4",
+            "GroupLevel": "Site"
+          },
+          {
+            "GroupID": "0X021",
+            "Param": "SiteCount",
+            "Value": "1",
+            "GroupLevel": "Site"
+          },
+          {
+            "GroupID": "0X103",
+            "Param": "ParticipantCount",
+            "Value": "5",
+            "GroupLevel": "Site"
+          },
+          {
+            "GroupID": "0X103",
+            "Param": "SiteCount",
+            "Value": "1",
+            "GroupLevel": "Site"
+          },
+          {
+            "GroupID": "0X159",
+            "Param": "ParticipantCount",
+            "Value": "33",
+            "GroupLevel": "Site"
+          },
+          {
+            "GroupID": "0X159",
+            "Param": "SiteCount",
+            "Value": "1",
+            "GroupLevel": "Site"
+          },
+          {
+            "GroupID": "0X161",
+            "Param": "ParticipantCount",
+            "Value": "69",
+            "GroupLevel": "Site"
+          },
+          {
+            "GroupID": "0X161",
+            "Param": "SiteCount",
+            "Value": "1",
+            "GroupLevel": "Site"
+          },
+          {
+            "GroupID": "AA-AA-000-0000",
+            "Param": "ParticipantCount",
+            "Value": "1301",
+            "GroupLevel": "Study"
+          },
+          {
+            "GroupID": "AA-AA-000-0000",
+            "Param": "SiteCount",
+            "Value": "176",
+            "GroupLevel": "Study"
+          },
+          {
+            "GroupID": "China",
+            "Param": "ParticipantCount",
+            "Value": "257",
+            "GroupLevel": "Country"
+          },
+          {
+            "GroupID": "China",
+            "Param": "SiteCount",
+            "Value": "46",
+            "GroupLevel": "Country"
+          },
+          {
+            "GroupID": "Japan",
+            "Param": "ParticipantCount",
+            "Value": "165",
+            "GroupLevel": "Country"
+          },
+          {
+            "GroupID": "Japan",
+            "Param": "SiteCount",
+            "Value": "38",
+            "GroupLevel": "Country"
+          },
+          {
+            "GroupID": "US",
+            "Param": "ParticipantCount",
+            "Value": "879",
+            "GroupLevel": "Country"
+          },
+          {
+            "GroupID": "US",
+            "Param": "SiteCount",
+            "Value": "92",
+            "GroupLevel": "Country"
+          },
+          {
+            "GroupID": "0X161",
+            "Param": "protocol_row_id",
+            "Value": "1-1G9113",
+            "GroupLevel": "Site"
+          },
+          {
+            "GroupID": "0X161",
+            "Param": "site_num",
+            "Value": "140",
+            "GroupLevel": "Site"
+          },
+          {
+            "GroupID": "0X161",
+            "Param": "site_row_id",
+            "Value": "123-1234-0X161",
+            "GroupLevel": "Site"
+          },
+          {
+            "GroupID": "0X161",
+            "Param": "protocol",
+            "Value": "AA-AA-000-0000",
+            "GroupLevel": "Site"
+          },
+          {
+            "GroupID": "0X161",
+            "Param": "InvestigatorLastName",
+            "Value": "Vangoey",
+            "GroupLevel": "Site"
+          },
+          {
+            "GroupID": "0X161",
+            "Param": "InvestigatorFirstName",
+            "Value": "Cydnie",
+            "GroupLevel": "Site"
+          },
+          {
+            "GroupID": "0X161",
+            "Param": "Status",
+            "Value": "Active",
+            "GroupLevel": "Site"
+          },
+          {
+            "GroupID": "0X161",
+            "Param": "is_satellite",
+            "Value": "FALSE",
+            "GroupLevel": "Site"
+          },
+          {
+            "GroupID": "0X161",
+            "Param": "account",
+            "Value": "city 1 Medical Center",
+            "GroupLevel": "Site"
+          },
+          {
+            "GroupID": "0X161",
+            "Param": "site_active_dt",
+            "Value": "2004-08-14",
+            "GroupLevel": "Site"
+          },
+          {
+            "GroupID": "0X161",
+            "Param": "city",
+            "Value": "city 1",
+            "GroupLevel": "Site"
+          },
+          {
+            "GroupID": "0X161",
+            "Param": "state",
+            "Value": "state 1",
+            "GroupLevel": "Site"
+          },
+          {
+            "GroupID": "0X161",
+            "Param": "country",
+            "Value": "US",
+            "GroupLevel": "Site"
+          },
+          {
+            "GroupID": "0X021",
+            "Param": "protocol_row_id",
+            "Value": "1-1G9113",
+            "GroupLevel": "Site"
+          },
+          {
+            "GroupID": "0X021",
+            "Param": "site_num",
+            "Value": "179",
+            "GroupLevel": "Site"
+          },
+          {
+            "GroupID": "0X021",
+            "Param": "site_row_id",
+            "Value": "123-1234-0X021",
+            "GroupLevel": "Site"
+          },
+          {
+            "GroupID": "0X021",
+            "Param": "protocol",
+            "Value": "AA-AA-000-0000",
+            "GroupLevel": "Site"
+          },
+          {
+            "GroupID": "0X021",
+            "Param": "InvestigatorLastName",
+            "Value": "Lee",
+            "GroupLevel": "Site"
+          },
+          {
+            "GroupID": "0X021",
+            "Param": "InvestigatorFirstName",
+            "Value": "Omar",
+            "GroupLevel": "Site"
+          },
+          {
+            "GroupID": "0X021",
+            "Param": "Status",
+            "Value": "Active",
+            "GroupLevel": "Site"
+          },
+          {
+            "GroupID": "0X021",
+            "Param": "is_satellite",
+            "Value": "FALSE",
+            "GroupLevel": "Site"
+          },
+          {
+            "GroupID": "0X021",
+            "Param": "account",
+            "Value": "city 1 Medical Center",
+            "GroupLevel": "Site"
+          },
+          {
+            "GroupID": "0X021",
+            "Param": "site_active_dt",
+            "Value": "2006-03-30",
+            "GroupLevel": "Site"
+          },
+          {
+            "GroupID": "0X021",
+            "Param": "city",
+            "Value": "city 1",
+            "GroupLevel": "Site"
+          },
+          {
+            "GroupID": "0X021",
+            "Param": "state",
+            "Value": "state 1",
+            "GroupLevel": "Site"
+          },
+          {
+            "GroupID": "0X021",
+            "Param": "country",
+            "Value": "US",
+            "GroupLevel": "Site"
+          },
+          {
+            "GroupID": "0X001",
+            "Param": "protocol_row_id",
+            "Value": "1-1G9113",
+            "GroupLevel": "Site"
+          },
+          {
+            "GroupID": "0X001",
+            "Param": "site_num",
+            "Value": "181",
+            "GroupLevel": "Site"
+          },
+          {
+            "GroupID": "0X001",
+            "Param": "site_row_id",
+            "Value": "123-1234-0X001",
+            "GroupLevel": "Site"
+          },
+          {
+            "GroupID": "0X001",
+            "Param": "protocol",
+            "Value": "AA-AA-000-0000",
+            "GroupLevel": "Site"
+          },
+          {
+            "GroupID": "0X001",
+            "Param": "InvestigatorLastName",
+            "Value": "Robb",
+            "GroupLevel": "Site"
+          },
+          {
+            "GroupID": "0X001",
+            "Param": "InvestigatorFirstName",
+            "Value": "Muslih",
+            "GroupLevel": "Site"
+          },
+          {
+            "GroupID": "0X001",
+            "Param": "Status",
+            "Value": "Active",
+            "GroupLevel": "Site"
+          },
+          {
+            "GroupID": "0X001",
+            "Param": "is_satellite",
+            "Value": "FALSE",
+            "GroupLevel": "Site"
+          },
+          {
+            "GroupID": "0X001",
+            "Param": "account",
+            "Value": "city 1 Medical Center",
+            "GroupLevel": "Site"
+          },
+          {
+            "GroupID": "0X001",
+            "Param": "site_active_dt",
+            "Value": "2009-06-06",
+            "GroupLevel": "Site"
+          },
+          {
+            "GroupID": "0X001",
+            "Param": "city",
+            "Value": "city 1",
+            "GroupLevel": "Site"
+          },
+          {
+            "GroupID": "0X001",
+            "Param": "state",
+            "Value": "state 1",
+            "GroupLevel": "Site"
+          },
+          {
+            "GroupID": "0X001",
+            "Param": "country",
+            "Value": "US",
+            "GroupLevel": "Site"
+          },
+          {
+            "GroupID": "0X103",
+            "Param": "protocol_row_id",
+            "Value": "1-1G9113",
+            "GroupLevel": "Site"
+          },
+          {
+            "GroupID": "0X103",
+            "Param": "site_num",
+            "Value": "28",
+            "GroupLevel": "Site"
+          },
+          {
+            "GroupID": "0X103",
+            "Param": "site_row_id",
+            "Value": "123-1234-0X103",
+            "GroupLevel": "Site"
+          },
+          {
+            "GroupID": "0X103",
+            "Param": "protocol",
+            "Value": "AA-AA-000-0000",
+            "GroupLevel": "Site"
+          },
+          {
+            "GroupID": "0X103",
+            "Param": "InvestigatorLastName",
+            "Value": "al-Mona",
+            "GroupLevel": "Site"
+          },
+          {
+            "GroupID": "0X103",
+            "Param": "InvestigatorFirstName",
+            "Value": "Andrew",
+            "GroupLevel": "Site"
+          },
+          {
+            "GroupID": "0X103",
+            "Param": "Status",
+            "Value": "Active",
+            "GroupLevel": "Site"
+          },
+          {
+            "GroupID": "0X103",
+            "Param": "is_satellite",
+            "Value": "FALSE",
+            "GroupLevel": "Site"
+          },
+          {
+            "GroupID": "0X103",
+            "Param": "account",
+            "Value": "city 1 Medical Center",
+            "GroupLevel": "Site"
+          },
+          {
+            "GroupID": "0X103",
+            "Param": "site_active_dt",
+            "Value": "2004-10-17",
+            "GroupLevel": "Site"
+          },
+          {
+            "GroupID": "0X103",
+            "Param": "city",
+            "Value": "city 1",
+            "GroupLevel": "Site"
+          },
+          {
+            "GroupID": "0X103",
+            "Param": "state",
+            "Value": "state 1",
+            "GroupLevel": "Site"
+          },
+          {
+            "GroupID": "0X103",
+            "Param": "country",
+            "Value": "US",
+            "GroupLevel": "Site"
+          },
+          {
+            "GroupID": "0X159",
+            "Param": "protocol_row_id",
+            "Value": "1-1G9113",
+            "GroupLevel": "Site"
+          },
+          {
+            "GroupID": "0X159",
+            "Param": "site_num",
+            "Value": "43",
+            "GroupLevel": "Site"
+          },
+          {
+            "GroupID": "0X159",
+            "Param": "site_row_id",
+            "Value": "123-1234-0X159",
+            "GroupLevel": "Site"
+          },
+          {
+            "GroupID": "0X159",
+            "Param": "protocol",
+            "Value": "AA-AA-000-0000",
+            "GroupLevel": "Site"
+          },
+          {
+            "GroupID": "0X159",
+            "Param": "InvestigatorLastName",
+            "Value": "Flores",
+            "GroupLevel": "Site"
+          },
+          {
+            "GroupID": "0X159",
+            "Param": "InvestigatorFirstName",
+            "Value": "Sufyaan",
+            "GroupLevel": "Site"
+          },
+          {
+            "GroupID": "0X159",
+            "Param": "Status",
+            "Value": "Active",
+            "GroupLevel": "Site"
+          },
+          {
+            "GroupID": "0X159",
+            "Param": "is_satellite",
+            "Value": "TRUE",
+            "GroupLevel": "Site"
+          },
+          {
+            "GroupID": "0X159",
+            "Param": "account",
+            "Value": "city 1 Medical Center",
+            "GroupLevel": "Site"
+          },
+          {
+            "GroupID": "0X159",
+            "Param": "site_active_dt",
+            "Value": "2004-02-13",
+            "GroupLevel": "Site"
+          },
+          {
+            "GroupID": "0X159",
+            "Param": "city",
+            "Value": "city 1",
+            "GroupLevel": "Site"
+          },
+          {
+            "GroupID": "0X159",
+            "Param": "state",
+            "Value": "state 1",
+            "GroupLevel": "Site"
+          },
+          {
+            "GroupID": "0X159",
+            "Param": "country",
+            "Value": "US",
+            "GroupLevel": "Site"
+          },
+          {
+            "GroupID": "AA-AA-000-0000",
+            "Param": "protocol_row_id",
+            "Value": "1-1G9113",
+            "GroupLevel": "Study"
+          },
+          {
+            "GroupID": "AA-AA-000-0000",
+            "Param": "protocol_title",
+            "Value": "Protocol Title",
+            "GroupLevel": "Study"
+          },
+          {
+            "GroupID": "AA-AA-000-0000",
+            "Param": "nickname",
+            "Value": "Protocol Nickname",
+            "GroupLevel": "Study"
+          },
+          {
+            "GroupID": "AA-AA-000-0000",
+            "Param": "protocol_type",
+            "Value": "Investigator Sponsored",
+            "GroupLevel": "Study"
+          },
+          {
+            "GroupID": "AA-AA-000-0000",
+            "Param": "phase",
+            "Value": "P3",
+            "GroupLevel": "Study"
+          },
+          {
+            "GroupID": "AA-AA-000-0000",
+            "Param": "num_plan_site",
+            "Value": "190",
+            "GroupLevel": "Study"
+          },
+          {
+            "GroupID": "AA-AA-000-0000",
+            "Param": "num_site_actl",
+            "Value": "176",
+            "GroupLevel": "Study"
+          },
+          {
+            "GroupID": "AA-AA-000-0000",
+            "Param": "est_fpfv",
+            "Value": "2003-01-01",
+            "GroupLevel": "Study"
+          },
+          {
+            "GroupID": "AA-AA-000-0000",
+            "Param": "act_fpfv",
+            "Value": "2003-01-01",
+            "GroupLevel": "Study"
+          },
+          {
+            "GroupID": "AA-AA-000-0000",
+            "Param": "est_lplv",
+            "Value": "2021-06-01",
+            "GroupLevel": "Study"
+          },
+          {
+            "GroupID": "AA-AA-000-0000",
+            "Param": "act_lplv",
+            "Value": "2021-06-01",
+            "GroupLevel": "Study"
+          },
+          {
+            "GroupID": "AA-AA-000-0000",
+            "Param": "est_lpfv",
+            "Value": "2020-06-01",
+            "GroupLevel": "Study"
+          },
+          {
+            "GroupID": "AA-AA-000-0000",
+            "Param": "act_lpfv",
+            "Value": "2020-06-01",
+            "GroupLevel": "Study"
+          },
+          {
+            "GroupID": "AA-AA-000-0000",
+            "Param": "status",
+            "Value": "Active",
+            "GroupLevel": "Study"
+          },
+          {
+            "GroupID": "AA-AA-000-0000",
+            "Param": "num_plan_subj",
+            "Value": "1300",
+            "GroupLevel": "Study"
+          },
+          {
+            "GroupID": "AA-AA-000-0000",
+            "Param": "num_enrolled_subj_m",
+            "Value": "1301",
+            "GroupLevel": "Study"
+          },
+          {
+            "GroupID": "AA-AA-000-0000",
+            "Param": "protocol_indication",
+            "Value": "Protocol Indication",
+            "GroupLevel": "Study"
+          },
+          {
+            "GroupID": "AA-AA-000-0000",
+            "Param": "product",
+            "Value": "Product",
+            "GroupLevel": "Study"
+          },
+          {
+            "GroupID": "AA-AA-000-0000",
+            "Param": "therapeutic_area",
+            "Value": "Therapeutic Area",
+            "GroupLevel": "Study"
+          },
+          {
+            "GroupID": "AA-AA-000-0000",
+            "Param": "protocol_product_number",
+            "Value": "123",
+            "GroupLevel": "Study"
+          },
+          {
+            "GroupID": "AA-AA-000-0000",
+            "Param": "x_rbm_flg",
+            "Value": "Y",
+            "GroupLevel": "Study"
+          }
+        ],
+        "vThreshold": null,
+        "strOutcome": "Score",
+        "bAddGroupSelect": false,
+        "strShinyGroupSelectID": "site",
+        "bDebug": false
+      },
+      "evals": [
+
+      ],
+      "jsHooks": [
+
+      ],
+      "deps": [
+
       ]
     },
     "study_overview-scatter-kri0001-scatter_plot": {

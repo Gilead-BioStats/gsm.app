@@ -6,6 +6,7 @@
 mod_StudyOverview_UI <- function(id, dfResults, chrMetrics) {
   ns <- NS(id)
   bslib::navset_underline(
+    id = ns("nav_bar"),
     bslib::nav_panel(
       title = "Overview Table",
       bslib::card(

@@ -37,7 +37,7 @@
                 <div class="tab-content" data-tabsetid="XXXX">
                   <div class="tab-pane active" data-value="Study Overview" id="tab-XXXX-1">
                     <div class="tabbable">
-                      <ul class="nav nav-underline" data-tabsetid="XXXX">
+                      <ul class="nav nav-underline shiny-tab-input" id="study_overview-nav_bar" data-tabsetid="XXXX">
                         <li class="active">
                           <a href="#tab-XXXX-1" data-toggle="tab" data-bs-toggle="tab" data-value="Overview Table">Overview Table</a>
                         </li>
