@@ -10,7 +10,7 @@ if (getOption("shinytest2.test", FALSE)) {
 skip_if_not_shinytesting <- function() {
   if (!getOption("shinytest2.test", FALSE)) {
     skip(
-      "End-to-end tests. Run options(shinytest2.test = TRUE) to activate. PLEASE UN-DELETE SNAPSHOT FILES!"
+      "End-to-end tests. Run options(shinytest2.test = TRUE) to activate."
     )
   }
 }
