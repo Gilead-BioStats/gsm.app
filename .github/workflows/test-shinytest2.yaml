@@ -31,5 +31,6 @@ jobs:
           testthat::test_file(
             "tests/testthat/test-run_gsm_app.R",
             package = "gsm.app",
-            load_package = "source"
+            load_package = "source",
+            reporter = "check"
           )

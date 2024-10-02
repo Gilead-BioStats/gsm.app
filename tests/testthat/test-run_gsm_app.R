@@ -8,6 +8,7 @@
 
 test_that("run_gsm_app initializes the expected app", {
   skip_if_not_shinytesting()
+  fail("Making sure a failure shows as a failure.")
   app <- AppDriver$new(
     test_path("apps"),
     screenshot_args = list(delay = 1),
