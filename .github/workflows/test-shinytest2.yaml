@@ -32,5 +32,5 @@ jobs:
             "tests/testthat/test-run_gsm_app.R",
             package = "gsm.app",
             load_package = "source",
-            reporter = "fail"
+            reporter = c("fail", "stop")
           )
