@@ -6,6 +6,7 @@
 mod_StudyOverview_UI <- function(id, dfResults, chrMetrics) {
   ns <- NS(id)
   bslib::navset_underline(
+    id = ns("nav_bar"),
     bslib::nav_panel(
       title = "Overview Table",
       bslib::card(
@@ -16,7 +17,8 @@ mod_StudyOverview_UI <- function(id, dfResults, chrMetrics) {
             ns("site_overview_table"),
             height = "100%"
           )
-        )
+        ),
+        id = "study-overview-table-card"
       )
     ),
     bslib::nav_panel(

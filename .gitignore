@@ -34,13 +34,11 @@ vignettes/*.pdf
 # Temporary files created by R markdown
 *.utf8.md
 *.knit.md
+docs
 
 # R Environment Variables
 .Renviron
 .Rproj.user
-# {shinytest2}: Ignore new debug snapshots for `$expect_values()`
-*_.new.png
-docs
 
 rsconnect
 scratch.R

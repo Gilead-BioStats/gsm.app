@@ -1,5 +1,5 @@
 test_that("out_Card generates the expected card", {
-  test_result <- out_Card("Test card", div("Stuff"))
+  test_result <- out_Card("Test card", div("Stuff"), id = "test-card")
   expect_s3_class(test_result, c("bslib_fragment", "shiny.tag"))
   class(test_result) <- "shiny.tag"
   expect_cleaned_html(test_result)

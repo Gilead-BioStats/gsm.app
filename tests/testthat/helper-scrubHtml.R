@@ -9,8 +9,7 @@ expect_cleaned_html <- function(x, call = rlang::caller_env()) {
 }
 
 scrub_html <- function(chrLines) {
-  scrub_card_ids(chrLines) %>%
-    scrub_htmlwidget_ids() %>%
+  scrub_htmlwidget_ids(chrLines) %>%
     scrub_tab_ids() %>%
     scrub_tabset_ids() %>%
     scrub_collapse_ids() %>%

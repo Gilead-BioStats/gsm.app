@@ -34,8 +34,12 @@ Imports:
     shinyjs,
     yaml
 Suggests: 
+    chromote (>= 0.3.1),
+    devtools,
+    shinytest2,
     testthat (>= 3.0.0),
-    usethis
+    usethis,
+    withr
 Remotes:
     gsm=Gilead-BioStats/gsm@dev
 Config/testthat/edition: 3
