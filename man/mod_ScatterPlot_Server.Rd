@@ -9,8 +9,7 @@ mod_ScatterPlot_Server(
   rctv_dfResults,
   rctv_lMetric,
   dfGroups,
-  rctv_dfBounds,
-  strInputID
+  rctv_dfBounds
 )
 }
 \arguments{
@@ -28,9 +27,6 @@ which group is selected.}
 \item{rctv_dfBounds}{\verb{reactive dataframe} A \code{\link[shiny:reactive]{shiny::reactive()}} object that
 returns a set of predicted percentages/rates and upper- and lower-bounds
 across the full range of sample sizes/total exposure values for reporting.}
-
-\item{strInputID}{\code{character} An ID to use for the Shiny input created by
-this module or used by this Javascript.}
 }
 \value{
 A \code{\link[shiny:reactive]{shiny::reactive()}} with the id of the selected group.

@@ -41,7 +41,8 @@ test_that("mod_StudyOverview_Server returns selected group and metric", {
       expect_s3_class(rctv_strSelectedGroupID, "reactive")
       expect_null(rctv_strSelectedGroupID())
 
-      session$setInputs(`scatter-kri0001-group` = "0X005")
+      session$setInputs(`scatter-kri0001-plot` = "None")
+      session$setInputs(`scatter-kri0001-plot` = "0X005")
       expect_equal(rctv_strSelectedGroupID(), "0X005")
 
       # Test the selected metric reactive

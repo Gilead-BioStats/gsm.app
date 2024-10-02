@@ -27,10 +27,10 @@ jobs:
       - name: End-to-end tests
         shell: Rscript {0}
         run: |
-          devtools::install(".", quick = TRUE, upgrade = "never", quiet = TRUE)
           options(shinytest2.test = TRUE)
           testthat::test_file(
             "tests/testthat/test-run_gsm_app.R",
             package = "gsm.app",
-            load_package = "source"
+            load_package = "source",
+            reporter = c("fail", "stop")
           )

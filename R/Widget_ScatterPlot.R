@@ -13,15 +13,13 @@ Widget_ScatterPlot <- function(
   dfResults,
   lMetric = list(),
   dfGroups = NULL,
-  dfBounds = NULL,
-  strInputID = "site"
+  dfBounds = NULL
 ) {
   stopifnot(
     "dfResults is not a data.frame" = is.data.frame(dfResults),
     "lMetric must be a list, but not a data.frame" = is.list(lMetric) && !is.data.frame(lMetric),
     "dfGroups is not a data.frame" = is.null(dfGroups) || is.data.frame(dfGroups),
-    "dfBounds is not a data.frame" = is.null(dfBounds) || is.data.frame(dfBounds),
-    "strInputID is not a character" = is.character(strInputID)
+    "dfBounds is not a data.frame" = is.null(dfBounds) || is.data.frame(dfBounds)
   )
   input <- list(
     id = id,
@@ -30,7 +28,6 @@ Widget_ScatterPlot <- function(
     dfGroups = dfGroups,
     dfBounds = dfBounds,
     bAddGroupSelect = FALSE,
-    strInputID = strInputID,
     strFootnote = "Point size is relative to the number of enrolled participants."
   )
   # Get rid of bits we don't use from the main widget.
