@@ -8,8 +8,7 @@ HTMLWidgets.widget({
         el.id = `${input.id}`;
 
         // Add click event callback to chart.
-        const inputID = input.strInputID;
-        input.lMetric.clickCallback = chartClickCallback(el, inputID);
+        input.lMetric.clickCallback = widgetPlotClickCallback(el);
 
         // Generate scatter plot.
         const instance = rbmViz.default.scatterPlot(
@@ -31,9 +30,6 @@ HTMLWidgets.widget({
           footnote.innerHTML = input.strFootnote;
           el.appendChild(footnote);
         }
-
-        // Update the Shiny input with the plot's current state
-        updateShinyInput(inputID, instance.data.config.selectedGroupIDs);
       },
       resize: function(width, height) {}
     };

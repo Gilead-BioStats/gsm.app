@@ -16,11 +16,10 @@ test_that("mod_ScatterPlot_Server starts as expected", {
       rctv_dfResults = reactive(dfResults),
       rctv_lMetric = reactive(lMetric),
       dfGroups = dfGroups,
-      rctv_dfBounds = reactive(dfBounds),
-      strInputID = "group"
+      rctv_dfBounds = reactive(dfBounds)
     ),
     {
-      test_result <- output$scatter_plot
+      test_result <- output$plot
       expect_s3_class(test_result, "json")
       expect_cleaned_html(
         {
@@ -47,13 +46,12 @@ test_that("mod_ScatterPlot_Server returns selected site", {
       rctv_dfResults = reactive(dfResults),
       rctv_lMetric = reactive(lMetric),
       dfGroups = dfGroups,
-      rctv_dfBounds = reactive(dfBounds),
-      strInputID = "group"
+      rctv_dfBounds = reactive(dfBounds)
     ),
     {
-      expect_null(input$group)
-      expect_null(session$returned())
-      session$setInputs(group = "0X003")
+      expect_null(input$plot)
+      expect_equal(session$returned(), "None")
+      session$setInputs(plot = "0X003")
       expect_equal(session$returned(), "0X003")
     }
   )

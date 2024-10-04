@@ -9,8 +9,7 @@ Widget_ScatterPlot(
   dfResults,
   lMetric = list(),
   dfGroups = NULL,
-  dfBounds = NULL,
-  strInputID = "site"
+  dfBounds = NULL
 )
 }
 \arguments{
@@ -27,9 +26,6 @@ as things like which group is selected.}
 \item{dfBounds}{\code{data.frame} Set of predicted percentages/rates and upper-
 and lower-bounds across the full range of sample sizes/total exposure
 values for reporting.}
-
-\item{strInputID}{\code{character} An ID to use for the Shiny input created by
-this module or used by this Javascript.}
 }
 \description{
 \ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#stable}{\figure{lifecycle-stable.svg}{options: alt='[Stable]'}}}{\strong{[Stable]}}
