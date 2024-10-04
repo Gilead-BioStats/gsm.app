@@ -9,8 +9,7 @@ Widget_ScatterPlot(
   dfResults,
   lMetric = list(),
   dfGroups = NULL,
-  dfBounds = NULL,
-  strInputID = "site"
+  dfBounds = NULL
 )
 }
 \arguments{

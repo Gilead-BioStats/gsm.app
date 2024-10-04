@@ -5,7 +5,7 @@
     Output
       <div class="card bslib-card bslib-mb-spacing bslib-card-input html-fill-item html-fill-container chart" data-bslib-card-init data-full-screen="false" data-require-bs-caller="card()" data-require-bs-version="5" id="myID">
         <div class="card-body bslib-gap-spacing html-fill-item html-fill-container" style="margin-top:auto;margin-bottom:auto;flex:1 1 auto;">
-          <div class="Widget_ScatterPlot html-widget html-widget-output shiny-report-size html-fill-item" id="myID-scatter_plot" style="width:100%;height:400px;"></div>
+          <div class="Widget_ScatterPlot html-widget html-widget-output shiny-report-size html-fill-item" id="myID-plot" style="width:100%;height:400px;"></div>
         </div>
         <bslib-tooltip placement="auto" bsOptions="[]" data-require-bs-version="5" data-require-bs-caller="tooltip()">
           <template>Expand</template>
@@ -22,7 +22,7 @@
       <div class="card bslib-card bslib-mb-spacing bslib-card-input html-fill-item html-fill-container chart" data-bslib-card-init data-full-screen="false" data-require-bs-caller="card()" data-require-bs-version="5" id="myID">
         <div class="card-header">myTitle</div>
         <div class="card-body bslib-gap-spacing html-fill-item html-fill-container" style="margin-top:auto;margin-bottom:auto;flex:1 1 auto;">
-          <div class="Widget_ScatterPlot html-widget html-widget-output shiny-report-size html-fill-item" id="myID-scatter_plot" style="width:100%;height:400px;"></div>
+          <div class="Widget_ScatterPlot html-widget html-widget-output shiny-report-size html-fill-item" id="myID-plot" style="width:100%;height:400px;"></div>
         </div>
         <bslib-tooltip placement="auto" bsOptions="[]" data-require-bs-version="5" data-require-bs-caller="tooltip()">
           <template>Expand</template>

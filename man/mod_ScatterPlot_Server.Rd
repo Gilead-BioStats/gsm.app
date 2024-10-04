@@ -9,8 +9,7 @@ mod_ScatterPlot_Server(
   rctv_dfResults,
   rctv_lMetric,
   dfGroups,
-  rctv_dfBounds,
-  strInputID
+  rctv_dfBounds
 )
 }
 \arguments{

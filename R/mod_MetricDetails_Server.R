@@ -39,8 +39,7 @@ mod_MetricDetails_Server <- function(
       rctv_dfResults = rctv_dfResults_byMetricID,
       rctv_lMetric = rctv_lMetric,
       dfGroups = dfGroups,
-      rctv_dfBounds = rctv_dfBounds_byMetricID,
-      strInputID = "group"
+      rctv_dfBounds = rctv_dfBounds_byMetricID
     )
     # Placeholders until these are reigned in with modules.
     rctv_strBarValueGroup <- reactive(NULL)
