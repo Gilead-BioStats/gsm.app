@@ -24,4 +24,13 @@ sample_dfGroups
 \description{
 Information about sites, countries, and the overall study in the sample data.
 }
+\seealso{
+Other sample data: 
+\code{\link{sample_FetchParticipantData}()},
+\code{\link{sample_dfAnalyticsInput}},
+\code{\link{sample_dfBounds}},
+\code{\link{sample_dfMetrics}},
+\code{\link{sample_dfResults}}
+}
+\concept{sample data}
 \keyword{datasets}

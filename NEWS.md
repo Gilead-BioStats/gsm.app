@@ -12,7 +12,7 @@ This is a complete rewrite of the package for use with `{gsm}` 2.0+.
 - Numerous improvements have been made under-the-hood to improve stability and maintainability.
 - 100% of code is covered by tests.
 
-# gsmApp 1.0.0
+# gsm.app 1.0.0
 
 This is the first major release of `{gsmApp}`! 🥳
 
@@ -25,7 +25,7 @@ This is the first major release of `{gsmApp}`! 🥳
 ## Other Improvements
 - Fixed bug in sample data that erroneously used `{gsm} v1.9.2` instead of the current `dev` branch, which includes fixes to `htmlwidgets` allowing for interaction with a Shiny app. 
 
-# gsmApp 0.6.0
+# gsm.app 0.6.0
 
 This release is planned to be the pre-`v1.0.0` release and includes some significant changes to the UI, as well as changes that allow the app to be used experimentally on live study data.
 

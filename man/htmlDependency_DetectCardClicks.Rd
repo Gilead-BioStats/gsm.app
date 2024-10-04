@@ -14,3 +14,4 @@ it is added.
 \description{
 Attach \code{detectCardClicks.js} to an app or other HTML exactly once.
 }
+\keyword{internal}

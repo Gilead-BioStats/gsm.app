@@ -75,6 +75,7 @@ htmlDependency_TableClick <- function() {
 #' @returns An `html_dependency` object (see [htmltools::htmlDependency()]),
 #'   which is attached to the Shiny app exactly once, regardless how many times
 #'   it is added.
+#' @keywords internal
 htmlDependency_DetectCardClicks <- function() {
   htmltools::htmlDependency(
     name = "DetectCardClicks",
