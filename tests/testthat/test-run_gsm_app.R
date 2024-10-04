@@ -1,13 +1,5 @@
-# This set of tests is slow, so it's hidden behind an option.
-#
-# Run this line before running the test. Test just this one file, most likely.
-
-# options(shinytest2.test = TRUE)
-
-# sample_df*_subset datasets are defined in helper-subsets.R
-
 test_that("run_gsm_app initializes the expected app", {
-  skip_if_not_shinytesting()
+  skip_on_cran()
   app <- AppDriver$new(
     test_path("apps"),
     name = "init"
@@ -18,7 +10,7 @@ test_that("run_gsm_app initializes the expected app", {
 })
 
 test_that("run_gsm_app populates Study Overview", {
-  skip_if_not_shinytesting()
+  skip_on_cran()
   app <- AppDriver$new(
     test_path("apps"),
     name = "study"
@@ -79,7 +71,7 @@ test_that("run_gsm_app populates Study Overview", {
 })
 
 test_that("run_gsm_app populates Metric Details", {
-  skip_if_not_shinytesting()
+  skip_on_cran()
   app <- AppDriver$new(
     test_path("apps"),
     # screenshot_args = list(delay = 1),
@@ -175,7 +167,7 @@ test_that("run_gsm_app populates Metric Details", {
 })
 
 test_that("run_gsm_app populates Participant Details", {
-  skip_if_not_shinytesting()
+  skip_on_cran()
   app <- AppDriver$new(
     test_path("apps"),
     screenshot_args = list(delay = 1),
