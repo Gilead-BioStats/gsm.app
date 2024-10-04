@@ -11,7 +11,7 @@ mod_ParticipantDetails_Server(id, fnFetchParticipantData, rctv_strSubjectID)
 
 \item{fnFetchParticipantData}{\code{function} A function that takes a single
 \code{strSubjectID} argument such as "0001", and returns a list with components
-\code{metadata} and \code{metric_data}. \code{metadata} should be a named charact vector
+\code{metadata} and \code{metric_data}. \code{metadata} should be a named character vector
 (or something that can be coerced to a character vector) of information
 about the participant, and \code{metric_data} should be a named list of
 data.frames, each of which contains information related to the named

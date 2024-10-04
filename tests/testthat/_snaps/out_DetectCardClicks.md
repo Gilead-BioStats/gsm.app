@@ -1,4 +1,4 @@
-# out_DetectCardClicks sets up javascript
+# out_DetectCardClicks sets up JavaScript
 
     Code
       test_result

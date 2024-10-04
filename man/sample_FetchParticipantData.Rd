@@ -21,3 +21,12 @@ supply to find additional data about a given participant.
 \examples{
 sample_FetchParticipantData("0001")
 }
+\seealso{
+Other sample data: 
+\code{\link{sample_dfAnalyticsInput}},
+\code{\link{sample_dfBounds}},
+\code{\link{sample_dfGroups}},
+\code{\link{sample_dfMetrics}},
+\code{\link{sample_dfResults}}
+}
+\concept{sample data}

@@ -3,7 +3,7 @@
 # Or use the blue button on top of this file
 
 if (
-    isTRUE(as.logical(Sys.getenv("TESTTHAT_IS_CHECKING", "false"))) ||
+  isTRUE(as.logical(Sys.getenv("TESTTHAT_IS_CHECKING", "false"))) ||
     isTRUE(as.logical(Sys.getenv("R_COVR", "false")))
 ) {
   library("gsm.app")

@@ -28,4 +28,13 @@ sample_dfBounds
 \description{
 Information about the bounds used to flag metrics.
 }
+\seealso{
+Other sample data: 
+\code{\link{sample_FetchParticipantData}()},
+\code{\link{sample_dfAnalyticsInput}},
+\code{\link{sample_dfGroups}},
+\code{\link{sample_dfMetrics}},
+\code{\link{sample_dfResults}}
+}
+\concept{sample data}
 \keyword{datasets}

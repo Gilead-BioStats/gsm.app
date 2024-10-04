@@ -28,4 +28,13 @@ sample_dfAnalyticsInput
 Summary metric data for the "Site Subjects" module on the "Metric Details"
 tab.
 }
+\seealso{
+Other sample data: 
+\code{\link{sample_FetchParticipantData}()},
+\code{\link{sample_dfBounds}},
+\code{\link{sample_dfGroups}},
+\code{\link{sample_dfMetrics}},
+\code{\link{sample_dfResults}}
+}
+\concept{sample data}
 \keyword{datasets}

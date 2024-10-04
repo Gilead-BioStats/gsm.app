@@ -16,6 +16,7 @@
 #' }
 #' @source Generated from data in the `clindata` package, using the `gsm`
 #'   package.
+#' @family sample data
 "sample_dfAnalyticsInput"
 
 #' Metric Bounds Dataset
@@ -36,6 +37,7 @@
 #' }
 #' @source Generated from data in the `clindata` package, using the `gsm`
 #'   package.
+#' @family sample data
 "sample_dfBounds"
 
 #' Group Metadata Dataset
@@ -52,6 +54,7 @@
 #' }
 #' @source Generated from data in the `clindata` package, using the `gsm`
 #'   package.
+#' @family sample data
 "sample_dfGroups"
 
 #' Metric Metadata Dataset
@@ -76,6 +79,7 @@
 #' }
 #' @source Generated from data in the `clindata` package, using the `gsm`
 #'   package.
+#' @family sample data
 "sample_dfMetrics"
 
 #' KRI Results Dataset
@@ -98,6 +102,7 @@
 #' }
 #' @source Generated from data in the `clindata` package, using the `gsm`
 #'   package.
+#' @family sample data
 "sample_dfResults"
 
 #' Fetch Data for a Participant
@@ -110,6 +115,7 @@
 #' @returns A list with elements `metadata` (a list of participant metadata) and
 #'   `metric_data` (a named list, where the names are the available metric
 #'   summaries, and the values are data frames containing the details).
+#' @family sample data
 #' @export
 #'
 #' @examples

@@ -30,4 +30,13 @@ sample_dfResults
 \description{
 Information about the status of each site in the sample data.
 }
+\seealso{
+Other sample data: 
+\code{\link{sample_FetchParticipantData}()},
+\code{\link{sample_dfAnalyticsInput}},
+\code{\link{sample_dfBounds}},
+\code{\link{sample_dfGroups}},
+\code{\link{sample_dfMetrics}}
+}
+\concept{sample data}
 \keyword{datasets}

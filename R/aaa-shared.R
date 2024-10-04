@@ -36,7 +36,7 @@
 #'   default value.
 #' @param fnFetchParticipantData `function` A function that takes a single
 #'   `strSubjectID` argument such as "0001", and returns a list with components
-#'   `metadata` and `metric_data`. `metadata` should be a named charact vector
+#'   `metadata` and `metric_data`. `metadata` should be a named character vector
 #'   (or something that can be coerced to a character vector) of information
 #'   about the participant, and `metric_data` should be a named list of
 #'   data.frames, each of which contains information related to the named
@@ -88,7 +88,7 @@
 #'   (usually a div).
 #' @param strGroupID `character` A `GroupID` to focus on.
 #' @param strInputID `character` An ID to use for the Shiny input created by
-#'   this module or used by this Javascript.
+#'   this module or used by this JavaScript.
 #' @param strLabel `character` The label of a field.
 #' @param strMetricID `character` A `MetricID` to focus on.
 #' @param strPlotTitle `character` A title for a plot, usually the name of a

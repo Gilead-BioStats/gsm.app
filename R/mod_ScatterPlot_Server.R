@@ -23,7 +23,7 @@ mod_ScatterPlot_Server <- function(
     observe({
       lMetric <- rctv_lMetric()
       session$sendCustomMessage(
-        type = 'updateWidgetPlotGroup',
+        type = "updateWidgetPlotGroup",
         message = list(
           id = session$ns("plot"),
           selectedGroupID = lMetric$selectedGroupIDs
