@@ -19,20 +19,20 @@
 
 <!-- badges: end -->
 
-`gsm.app` produces Shiny applications with drill-down functionality for
-[`{gsm}`](https://github.com/Gilead-BioStats/gsm) Assessments.
+gsm.app produces Shiny applications with drill-down functionality for
+[{gsm}](https://github.com/Gilead-BioStats/gsm) Assessments.
 
 <div class="pkgdown-release">
 
-You can use the app with sample data
+You can explore a sample app produced by the released version of gsm.app
 [here](https://openrbqm.shinyapps.io/gsm-app).
 
 </div>
 
 <div class="pkgdown-devel">
 
-You can use the app with sample data
-[here](https://openrbqm.shinyapps.io/gsm-app-dev).
+You can explore a sample app produced by the development version of
+gsm.app [here](https://openrbqm.shinyapps.io/gsm-app-dev).
 
 </div>
 
