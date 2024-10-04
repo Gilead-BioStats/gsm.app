@@ -42,7 +42,7 @@ test_that("run_gsm_app populates Study Overview", {
   app$expect_values(export = TRUE, name = "plots")
 
   # Click on AE plot.
-  app$run_js("clickWidgetPlotPoint('study_overview-scatter-kri0001', '0X159');")
+  app$run_js("clickWidgetPlotGroup('study_overview-scatter-kri0001', '0X159');")
   app$wait_for_idle()
   app$wait_for_js(
     "isWidgetPlotLoaded('study_overview-scatter-kri0001');",
@@ -68,7 +68,7 @@ test_that("run_gsm_app populates Study Overview", {
   app$expect_values(export = TRUE, name = "plots-ae-site-dropdown")
 
   # Click on SAE plot.
-  app$run_js("clickWidgetPlotPoint('study_overview-scatter-kri0002', '0X161');")
+  app$run_js("clickWidgetPlotGroup('study_overview-scatter-kri0002', '0X161');")
   app$set_inputs(`study_overview-scatter-selectedScatterPlot` = "study_overview-scatter-kri0002", allow_no_input_binding_ = TRUE)
   app$wait_for_idle()
   app$wait_for_js(
@@ -165,7 +165,7 @@ test_that("run_gsm_app populates Metric Details", {
   )
   app$expect_values(export = TRUE, name = "scatter-site")
 
-  app$run_js("clickWidgetPlotPoint('metric_details-scatter_plot', '0X159');")
+  app$run_js("clickWidgetPlotGroup('metric_details-scatter_plot', '0X159');")
   app$wait_for_idle()
   app$wait_for_js(
     "isWidgetPlotLoaded('metric_details-scatter_plot');",
@@ -195,7 +195,7 @@ test_that("run_gsm_app populates Participant Details", {
   app$expect_values(export = TRUE, name = "metric")
 
   # Select a site in the module.
-  app$run_js("clickWidgetPlotPoint('metric_details-scatter_plot', '0X159');")
+  app$run_js("clickWidgetPlotGroup('metric_details-scatter_plot', '0X159');")
   app$wait_for_idle()
   app$wait_for_js(
     "isWidgetPlotLoaded('metric_details-scatter_plot');",
