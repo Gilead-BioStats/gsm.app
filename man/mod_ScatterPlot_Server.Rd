@@ -30,7 +30,7 @@ returns a set of predicted percentages/rates and upper- and lower-bounds
 across the full range of sample sizes/total exposure values for reporting.}
 
 \item{strInputID}{\code{character} An ID to use for the Shiny input created by
-this module or used by this Javascript.}
+this module or used by this JavaScript.}
 }
 \value{
 A \code{\link[shiny:reactive]{shiny::reactive()}} with the id of the selected group.

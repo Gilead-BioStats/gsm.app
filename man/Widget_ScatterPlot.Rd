@@ -29,7 +29,7 @@ and lower-bounds across the full range of sample sizes/total exposure
 values for reporting.}
 
 \item{strInputID}{\code{character} An ID to use for the Shiny input created by
-this module or used by this Javascript.}
+this module or used by this JavaScript.}
 }
 \description{
 \ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#stable}{\figure{lifecycle-stable.svg}{options: alt='[Stable]'}}}{\strong{[Stable]}}

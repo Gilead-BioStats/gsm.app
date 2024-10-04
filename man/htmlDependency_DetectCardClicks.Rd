@@ -2,7 +2,7 @@
 % Please edit documentation in R/htmlDependency.R
 \name{htmlDependency_DetectCardClicks}
 \alias{htmlDependency_DetectCardClicks}
-\title{DetectCardClicks javascript}
+\title{DetectCardClicks JavaScript}
 \usage{
 htmlDependency_DetectCardClicks()
 }

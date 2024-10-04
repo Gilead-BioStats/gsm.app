@@ -2,7 +2,7 @@
 % Please edit documentation in R/out_DetectCardClicks.R
 \name{out_DetectCardClicks}
 \alias{out_DetectCardClicks}
-\title{Card click detection javascript}
+\title{Card click detection JavaScript}
 \usage{
 out_DetectCardClicks(strContainerID, strInputID)
 }
@@ -11,14 +11,14 @@ out_DetectCardClicks(strContainerID, strInputID)
 (usually a div).}
 
 \item{strInputID}{\code{character} An ID to use for the Shiny input created by
-this module or used by this Javascript.}
+this module or used by this JavaScript.}
 }
 \value{
-A \code{\link[shiny:reexports]{shiny::tagList()}} with the javascript required to enable card
+A \code{\link[shiny:reexports]{shiny::tagList()}} with the JavaScript required to enable card
 click detection within the specified container. Clicks will be reported to
 the Shiny input named \code{strInputID}.
 }
 \description{
-Card click detection javascript
+Card click detection JavaScript
 }
 \keyword{internal}

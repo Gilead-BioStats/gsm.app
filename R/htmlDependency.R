@@ -32,7 +32,7 @@ htmlDependency_Stylesheet <- function(
   )
 }
 
-#' HighlightTableRow javascript
+#' HighlightTableRow JavaScript
 #'
 #' Attach `highlightTableRow.js` to an app or other HTML exactly once.
 #'
@@ -50,7 +50,7 @@ htmlDependency_HighlightTableRow <- function() {
   )
 }
 
-#' TableClick javascript
+#' TableClick JavaScript
 #'
 #' Attach `tableClick.js` to an app or other HTML exactly once.
 #'
@@ -68,7 +68,7 @@ htmlDependency_TableClick <- function() {
   )
 }
 
-#' DetectCardClicks javascript
+#' DetectCardClicks JavaScript
 #'
 #' Attach `detectCardClicks.js` to an app or other HTML exactly once.
 #'
