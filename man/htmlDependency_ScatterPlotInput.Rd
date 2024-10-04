@@ -2,16 +2,16 @@
 % Please edit documentation in R/mod_ScatterPlot_UI.R
 \name{htmlDependency_ScatterPlotInput}
 \alias{htmlDependency_ScatterPlotInput}
-\title{ScatterPlot Input javascript}
+\title{Scatter Plot Input javascript}
 \usage{
 htmlDependency_ScatterPlotInput()
 }
 \value{
-An \code{html_dependency} object (see \code{\link[htmltools:htmlDependency]{htmltools::htmlDependency()}}),
-which is attached to the Shiny app exactly once, regardless how many times
-it is added.
+An \code{\link[htmltools:tagList]{htmltools::tagList()}} of \code{html_dependency} objects (see
+\code{\link[htmltools:htmlDependency]{htmltools::htmlDependency()}}), so that each will be attached to the Shiny
+app exactly once, regardless how many times they are added.
 }
 \description{
-Attach \code{scatterPlot.js} to an app or other HTML exactly once.
+Attach \code{scatterPlotInput.js} to an app or other HTML exactly once.
 }
 \keyword{internal}
