@@ -5,8 +5,8 @@
 #' @keywords internal
 out_KRIColor <- function(dfResults) {
   intKRIColorCount <- c(
-    Red = sum(abs(dfResults$Flag) == 2),
-    Amber = sum(abs(dfResults$Flag) == 1)
+    Red = sum(abs(dfResults$Flag) == 2, na.rm = TRUE),
+    Amber = sum(abs(dfResults$Flag) == 1, na.rm = TRUE)
   )
   div(
     out_KRIColor_pill(intKRIColorCount, "Red"),

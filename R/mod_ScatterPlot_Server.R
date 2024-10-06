@@ -15,7 +15,10 @@ mod_ScatterPlot_Server <- function(
     output$scatter_plot <- renderWidget_ScatterPlot({
       Widget_ScatterPlot(
         session$ns("scatter_plot"),
-        rctv_dfResults(),
+        rctv_dfResults() %>%
+          dplyr::filter(
+            .data$SnapshotDate == max(.data$SnapshotDate)
+          ),
         lMetric = rctv_lMetric(),
         dfGroups = dfGroups,
         dfBounds = rctv_dfBounds(),
