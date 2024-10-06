@@ -82,6 +82,7 @@ temp_subsetLStudy <- function(lStudy) {
     "ParticipantCount",
     "num_plan_subj"
   )]
+  
   names(lStudy) <- c(
     "studyid",
     "nickname",
