@@ -14,7 +14,7 @@ mod_ScatterPlot_Server <- function(
     output$plot <- renderWidget_ScatterPlot({
       Widget_ScatterPlot(
         session$ns("plot"),
-        rctv_dfResults(),
+        gsm::FilterByLatestSnapshotDate(rctv_dfResults()),
         lMetric = rctv_lMetric(),
         dfGroups = dfGroups,
         dfBounds = rctv_dfBounds()

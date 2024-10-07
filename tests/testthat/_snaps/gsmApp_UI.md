@@ -268,29 +268,29 @@
                   </div>
                   <div class="card-body bslib-gap-spacing html-fill-item html-fill-container" style="margin-top:auto;margin-bottom:auto;flex:1 1 auto;">
                     <div class="metadata-list-item">
-                      <div class="metadata-list-item-label">Indication</div>
+                      <div class="metadata-list-item-label">Status</div>
                       <div class="metadata-list-item-spacer"></div>
-                      <div class="metadata-list-item-value">Protocol Indication</div>
-                    </div>
-                    <div class="metadata-list-item">
-                      <div class="metadata-list-item-label">Therapeutic Area</div>
-                      <div class="metadata-list-item-spacer"></div>
-                      <div class="metadata-list-item-value">Therapeutic Area</div>
-                    </div>
-                    <div class="metadata-list-item">
-                      <div class="metadata-list-item-label">Phase</div>
-                      <div class="metadata-list-item-spacer"></div>
-                      <div class="metadata-list-item-value">P3</div>
+                      <div class="metadata-list-item-value">Active</div>
                     </div>
                     <div class="metadata-list-item">
                       <div class="metadata-list-item-label">Sites</div>
                       <div class="metadata-list-item-spacer"></div>
+                      <div class="metadata-list-item-value">176</div>
+                    </div>
+                    <div class="metadata-list-item">
+                      <div class="metadata-list-item-label">Sites  Planned </div>
+                      <div class="metadata-list-item-spacer"></div>
                       <div class="metadata-list-item-value">190</div>
                     </div>
                     <div class="metadata-list-item">
-                      <div class="metadata-list-item-label">Subjects</div>
+                      <div class="metadata-list-item-label">Participants</div>
                       <div class="metadata-list-item-spacer"></div>
                       <div class="metadata-list-item-value">1301</div>
+                    </div>
+                    <div class="metadata-list-item">
+                      <div class="metadata-list-item-label">Participants  Planned </div>
+                      <div class="metadata-list-item-spacer"></div>
+                      <div class="metadata-list-item-value">1300</div>
                     </div>
                   </div>
                   <script data-bslib-card-init>bslib.Card.initializeAllCards();</script>

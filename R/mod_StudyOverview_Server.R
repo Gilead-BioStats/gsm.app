@@ -15,12 +15,10 @@ mod_StudyOverview_Server <- function(
   rctv_strSiteID
 ) {
   moduleServer(id, function(input, output, session) {
+    dfResults <- gsm::FilterByLatestSnapshotDate(dfResults)
     output$site_overview_table <- gsm::renderWidget_GroupOverview({
       gsm::Widget_GroupOverview(
-        dfResults = dfResults %>%
-            dplyr::filter(
-                .data$SnapshotDate == max(.data$SnapshotDate)
-            ),
+        dfResults = dfResults,
         dfMetrics = dfMetrics,
         dfGroups = dfGroups,
         strGroupSubset = "all"
@@ -29,10 +27,7 @@ mod_StudyOverview_Server <- function(
 
     rctv_strSelectedGroupID <- mod_ScatterPlotSet_Server(
       "scatter",
-      dfResults = dfResults %>%
-          dplyr::filter(
-              .data$SnapshotDate == max(.data$SnapshotDate)
-          ),
+      dfResults = dfResults,
       dfMetrics = dfMetrics,
       dfGroups = dfGroups,
       dfBounds = dfBounds,

@@ -74,22 +74,16 @@ temp_subsetLStudy <- function(lStudy) {
     "studyid",
     "nickname",
     "status",
-    #"protocol_indication",
-    #"therapeutic_area",
-    #"phase",
     "SiteCount",
     "num_plan_site",
     "ParticipantCount",
     "num_plan_subj"
   )]
-  
+
   names(lStudy) <- c(
     "studyid",
     "nickname",
     "status",
-    #"Indication",
-    #"Therapeutic Area",
-    #"Phase",
     "Sites",
     "Sites (planned)",
     "Participants",
