@@ -8,28 +8,36 @@ mod_ScatterPlot_Server <- function(
   rctv_dfResults,
   rctv_lMetric,
   dfGroups,
-  rctv_dfBounds,
-  strInputID
+  rctv_dfBounds
 ) {
   moduleServer(id, function(input, output, session) {
-    output$scatter_plot <- renderWidget_ScatterPlot({
+    output$plot <- renderWidget_ScatterPlot({
       Widget_ScatterPlot(
-        session$ns("scatter_plot"),
-        rctv_dfResults() %>%
-          dplyr::filter(
-            .data$SnapshotDate == max(.data$SnapshotDate)
-          ),
+        session$ns("plot"),
+        rctv_dfResults(),
         lMetric = rctv_lMetric(),
         dfGroups = dfGroups,
-        dfBounds = rctv_dfBounds(),
-        strInputID = session$ns(strInputID)
+        dfBounds = rctv_dfBounds()
       )
     })
-    outputOptions(output, "scatter_plot", suspendWhenHidden = FALSE)
+    observe({
+      lMetric <- rctv_lMetric()
+      session$sendCustomMessage(
+        type = "updateWidgetPlotGroup",
+        message = list(
+          id = session$ns("plot"),
+          selectedGroupID = lMetric$selectedGroupIDs
+        )
+      )
+    })
 
     return(
       reactive({
-        input[[strInputID]]
+        input_val <- input$plot
+        if (is.null(input_val) || input_val == "") {
+          return("None")
+        }
+        return(input_val)
       })
     )
   })

@@ -12,7 +12,7 @@ test_that("mod_ScatterPlotSet_Server initializes and creates scatter plots", {
     {
       lMetricIDs <- unique(dfMetrics$MetricID)
       purrr::walk(lMetricIDs, function(strMetricID) {
-        expect_s3_class(output[[paste0(strMetricID, "-scatter_plot")]], "json")
+        expect_s3_class(output[[paste0(strMetricID, "-plot")]], "json")
       })
     }
   )
@@ -30,7 +30,9 @@ test_that("mod_ScatterPlotSet_Server returns selected group correctly", {
       rctv_strSiteID = reactive("None")
     ),
     {
-      session$setInputs(`kri0001-group` = "0X003")
+      # Initialize the value first.
+      session$setInputs(`kri0001-plot` = "None")
+      session$setInputs(`kri0001-plot` = "0X003")
       expect_equal(session$returned(), "0X003")
     }
   )
@@ -50,7 +52,7 @@ test_that("mod_ScatterPlotSet_Server selects plots based on outside selection", 
     {
       getSelectedGroupIDs <- function(strMetricID) {
         this_output <- jsonlite::fromJSON(
-          output[[paste0(strMetricID, "-scatter_plot")]]
+          output[[paste0(strMetricID, "-plot")]]
         )
         this_output$x$lMetric$selectedGroupIDs
       }

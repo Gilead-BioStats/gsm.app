@@ -2,7 +2,7 @@
 % Please edit documentation in R/htmlDependency.R
 \name{htmlDependency_HighlightTableRow}
 \alias{htmlDependency_HighlightTableRow}
-\title{HighlightTableRow javascript}
+\title{HighlightTableRow JavaScript}
 \usage{
 htmlDependency_HighlightTableRow()
 }

@@ -2,7 +2,7 @@
 % Please edit documentation in R/htmlDependency.R
 \name{htmlDependency_TableClick}
 \alias{htmlDependency_TableClick}
-\title{TableClick javascript}
+\title{TableClick JavaScript}
 \usage{
 htmlDependency_TableClick()
 }

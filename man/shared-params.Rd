@@ -50,7 +50,7 @@ default value.}
 
 \item{fnFetchParticipantData}{\code{function} A function that takes a single
 \code{strSubjectID} argument such as "0001", and returns a list with components
-\code{metadata} and \code{metric_data}. \code{metadata} should be a named charact vector
+\code{metadata} and \code{metric_data}. \code{metadata} should be a named character vector
 (or something that can be coerced to a character vector) of information
 about the participant, and \code{metric_data} should be a named list of
 data.frames, each of which contains information related to the named
@@ -126,7 +126,7 @@ lower_snake_case.}
 \item{strGroupID}{\code{character} A \code{GroupID} to focus on.}
 
 \item{strInputID}{\code{character} An ID to use for the Shiny input created by
-this module or used by this Javascript.}
+this module or used by this JavaScript.}
 
 \item{strLabel}{\code{character} The label of a field.}
 

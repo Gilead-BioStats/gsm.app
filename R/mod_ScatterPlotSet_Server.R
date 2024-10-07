@@ -36,8 +36,7 @@ mod_ScatterPlotSet_Server <- function(
           rctv_dfResults = rctv_dfResults_byMetricID,
           rctv_lMetric = rctv_lMetric,
           dfGroups = dfGroups,
-          rctv_dfBounds = rctv_dfBounds_byMetricID,
-          strInputID = "group"
+          rctv_dfBounds = rctv_dfBounds_byMetricID
         )
       }
     )
@@ -47,7 +46,9 @@ mod_ScatterPlotSet_Server <- function(
       lMetricGroups,
       function(rctv_strMetricGroup) {
         bindEvent(
-          observe(rval_strSelectedGroupID(rctv_strMetricGroup())),
+          observe({
+            rval_strSelectedGroupID(rctv_strMetricGroup())
+          }),
           rctv_strMetricGroup()
         )
       }
