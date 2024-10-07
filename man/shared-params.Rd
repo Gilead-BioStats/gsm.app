@@ -4,9 +4,6 @@
 \alias{shared-params}
 \title{Parameters used in multiple functions}
 \arguments{
-\item{chrChoices}{\code{character} Choices for a \code{\link[shiny:selectInput]{shiny::selectizeInput()}} or
-other menu.}
-
 \item{chrLinkIDs}{\code{character} Module ids for multiple modules.}
 
 \item{chrLabels}{\code{character} A vector of labels for display to the user.}

@@ -206,7 +206,7 @@ test_that("run_gsm_app populates Participant Details", {
   app$expect_values(export = TRUE, name = "ae")
 
   # Select a different participant via the drop-down.
-  app$set_inputs(`participant` = "0244", allow_no_input_binding_ = TRUE)
+  app$set_inputs(`participant` = "0285", allow_no_input_binding_ = TRUE)
   app$wait_for_idle()
   app$expect_values(export = TRUE, name = "participant2")
 
@@ -214,4 +214,9 @@ test_that("run_gsm_app populates Participant Details", {
   app$click("participant_details-metric_summary-metric_list_choices-studyDisposition")
   app$wait_for_idle()
   app$expect_values(export = TRUE, name = "sd")
+
+  # Reset.
+  app$click("reset")
+  app$wait_for_idle()
+  app$expect_values(export = TRUE, name = "reset")
 })

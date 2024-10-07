@@ -25,14 +25,8 @@ out_SiteParticipants <- function(dfAnalyticsInput, chrColumnNames) {
     callback = htmlwidgets::JS('
             table.on("click", "td:nth-child(1)", function(d) {
               const participant_id = d.currentTarget.innerText;
-              console.log(
-                `Selected participant ID: ${participant_id}`
-              );
               const namespace = table.table().container().parentNode.id;
               const inputName = `${namespace}-participant`;
-              console.log(
-                `Input Name: ${inputName}`
-              );
               Shiny.setInputValue(inputName, participant_id);
             })
           ')
