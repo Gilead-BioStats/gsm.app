@@ -147,7 +147,7 @@ dfCTMSSite <- clindata::ctms_site |>
   MakeLongMeta(strGroupLevel = 'Site')
 
 dfCTMSStudy <- clindata::ctms_study |>
-  dplyr::rename(GroupID = "protocol_number") |>
+  dplyr::rename(GroupID = "studyid") |>
   MakeLongMeta(strGroupLevel = 'Study')
 
 # Get Participant and Site counts for Country, Site and Study

@@ -71,22 +71,23 @@ make_lStudy <- function(dfGroups, dfResults) {
 #' @keywords internal
 temp_subsetLStudy <- function(lStudy) {
   lStudy <- lStudy[c(
-    "protocol_number",
+    "studyid",
     "nickname",
-    "protocol_indication",
-    "therapeutic_area",
-    "phase",
+    "status",
+    "SiteCount",
     "num_plan_site",
-    "num_enrolled_subj_m"
+    "ParticipantCount",
+    "num_plan_subj"
   )]
+
   names(lStudy) <- c(
-    "protocol_number",
+    "studyid",
     "nickname",
-    "Indication",
-    "Therapeutic Area",
-    "Phase",
+    "status",
     "Sites",
-    "Subjects"
+    "Sites (planned)",
+    "Participants",
+    "Participants (planned)"
   )
   return(lStudy)
 }

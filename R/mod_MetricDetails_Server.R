@@ -13,15 +13,22 @@ mod_MetricDetails_Server <- function(
   dfBounds,
   rctv_lMetric,
   rctv_strSiteID,
-  rctv_strMetricID) {
+  rctv_strMetricID
+ ) {
   moduleServer(id, function(input, output, session) {
     # Shared reactives ----
     rctv_dfResults_byMetricID <- reactive({
       filter_byMetricID(dfResults, rctv_strMetricID())
     }) %>%
       bindCache(rctv_strMetricID())
+
+    rctv_dfResults_Latest <- reactive({
+      gsm::FilterByLatestSnapshotDate(rctv_dfResults_byMetricID())
+    }) %>%
+      bindCache(rctv_strMetricID())
+
     rctv_dfResults_AnalysisOutput <- reactive({
-      rctv_dfResults_byMetricID() %>%
+      rctv_dfResults_Latest() %>%
         dplyr::arrange("GroupID") %>%
         dplyr::select(
           "GroupID", "Numerator", "Denominator", "Metric",
@@ -29,6 +36,7 @@ mod_MetricDetails_Server <- function(
         )
     }) %>%
       bindCache(rctv_strMetricID())
+
     rctv_dfBounds_byMetricID <- reactive({
       filter_byMetricID(dfBounds, rctv_strMetricID())
     }) %>%
@@ -55,7 +63,7 @@ mod_MetricDetails_Server <- function(
         "Bar Chart (KRI Value)" = {
           output$bar_chart_metric <- gsm::renderWidget_BarChart({
             gsm::Widget_BarChart(
-              rctv_dfResults_byMetricID(),
+              rctv_dfResults_Latest(),
               lMetric = rctv_lMetric(),
               dfGroups = dfGroups,
               strOutcome = "Metric",
@@ -69,7 +77,7 @@ mod_MetricDetails_Server <- function(
         "Bar Chart (KRI Score)" = {
           output$bar_chart_score <- gsm::renderWidget_BarChart({
             gsm::Widget_BarChart(
-              rctv_dfResults_byMetricID(),
+              rctv_dfResults_Latest(),
               lMetric = rctv_lMetric(),
               dfGroups = dfGroups,
               strOutcome = "Score",

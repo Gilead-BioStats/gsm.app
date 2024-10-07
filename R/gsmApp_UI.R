@@ -10,7 +10,8 @@ gsmApp_UI <- function(
   dfMetrics,
   dfGroups,
   intNParticipants,
-  strTitle = "GSM Deep Dive") {
+  strTitle = "GSM Deep Dive"
+ ) {
   # Transform data for use in lower-level functions. ----
   lStudy <- make_lStudy(dfGroups, dfResults)
   chrMetrics <- rlang::set_names(dfMetrics$MetricID, dfMetrics$Metric)

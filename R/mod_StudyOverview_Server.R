@@ -15,6 +15,7 @@ mod_StudyOverview_Server <- function(
   rctv_strSiteID
 ) {
   moduleServer(id, function(input, output, session) {
+    dfResults <- gsm::FilterByLatestSnapshotDate(dfResults)
     output$site_overview_table <- gsm::renderWidget_GroupOverview({
       gsm::Widget_GroupOverview(
         dfResults = dfResults,
@@ -32,6 +33,7 @@ mod_StudyOverview_Server <- function(
       dfBounds = dfBounds,
       rctv_strSiteID = rctv_strSiteID
     )
+
     rctv_strSelectedMetricID <- mod_ScatterPlotSet_Server_MetricID("scatter")
 
     return(

@@ -12,7 +12,7 @@ mod_StudyOverview_UI <- function(id, dfResults, chrMetrics) {
       bslib::card(
         full_screen = TRUE,
         bslib::card_body(
-          out_KRIColor(dfResults),
+          out_KRIColor(gsm::FilterByLatestSnapshotDate(dfResults)),
           gsm::Widget_GroupOverviewOutput(
             ns("site_overview_table"),
             height = "100%"

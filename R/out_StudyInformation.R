@@ -5,10 +5,10 @@
 #' @returns A [bslib::card()] with overall study metadata.
 #' @keywords internal
 out_StudyInformation <- function(lStudy) {
-  strProtocolNumber <- lStudy$protocol_number
+  strProtocolNumber <- lStudy$studyid
   strNickname <- lStudy$nickname
   strSnapshotDate <- lStudy$snapshot_date
-  lStudy$protocol_number <- NULL
+  lStudy$studyid <- NULL
   lStudy$nickname <- NULL
   lStudy$snapshot_date <- NULL
 
