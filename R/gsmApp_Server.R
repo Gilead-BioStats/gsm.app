@@ -172,6 +172,16 @@ gsmApp_Server <- function(
           rctv_LastSiteFilter() != input$site
       ) {
         rctv_LastSiteFilter(input$site)
+        if (selected == "None") {
+          # This double-update prevents the old option from showing in the list
+          # erroneously.
+          updateSelectizeInput(
+            inputId = "participant",
+            selected = "None",
+            server = TRUE,
+            session = session
+          )
+        }
         updateSelectizeInput(
           inputId = "participant",
           choices = rctv_chrParticipantIDs(),
