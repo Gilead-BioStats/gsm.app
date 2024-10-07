@@ -28,37 +28,6 @@ test_that("gsmApp_Server initializes correctly and updates rctv_lMetric", {
   )
 })
 
-test_that("gsmApp_Server triggers srvr_SyncSelectizeInput", {
-  # This doesn't really TEST the functionality, only that it triggers. Needs UI
-  # integration (shinytest2 integration tests) to fully test.
-  server <- gsmApp_Server(
-    dfResults = sample_dfResults,
-    dfGroups = sample_dfGroups,
-    dfMetrics = sample_dfMetrics,
-    dfBounds = sample_dfBounds,
-    dfAnalyticsInput = sample_dfAnalyticsInput,
-    fnFetchParticipantData = sample_FetchParticipantData
-  )
-  testServer(
-    server,
-    {
-      # Simulation initialization.
-      session$setInputs(
-        primary_nav_bar = "Study Overview",
-        metric = "kri0001",
-        site = "None",
-        participant = "None"
-      )
-      expect_equal(input$participant, "None")
-
-      session$setInputs(
-        site = "0X001",
-        `site_details-participants-participant` = "0664"
-      )
-    }
-  )
-})
-
 test_that("gsmApp_Server triggers reset", {
   # This doesn't really TEST the functionality, only that it triggers. Needs UI
   # integration (shinytest2 integration tests) to fully test.

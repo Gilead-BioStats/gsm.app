@@ -21,33 +21,6 @@ srvr_SyncSelectInput <- function(
 #' Synchronize selectizeInput with reactive
 #'
 #' @inheritParams shared-params
-#' @returns A [shiny::observe()] that triggers [shiny::updateSelectizeInput()]
-#'   when the connected reactive changes.
-#' @keywords internal
-srvr_SyncSelectizeInput <- function(
-  id,
-  rctv_strValue,
-  chrChoices,
-  ...,
-  session = getDefaultReactiveDomain()
-) {
-  observe({
-    strValue <- rctv_strValue()
-    if (length(strValue) && strValue != "") {
-      updateSelectizeInput(
-        inputId = id,
-        choices = chrChoices,
-        selected = strValue,
-        ...,
-        session = session
-      )
-    }
-  })
-}
-
-#' Synchronize selectizeInput with reactive
-#'
-#' @inheritParams shared-params
 #' @returns A [shiny::observe()] that triggers [bslib::nav_select()]
 #'   when the connected reactive changes.
 #' @keywords internal
