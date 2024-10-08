@@ -22,7 +22,10 @@ mod_ParticipantDetails_Server <- function(
       ) {
         return(NULL)
       }
-      fnFetchParticipantData(rctv_strSubjectID())
+      withProgress(
+        message = "Loading participant data",
+        fnFetchParticipantData(rctv_strSubjectID())
+      )
     })
     rctv_lParticipantMetadata <- reactive({
       if (length(rctv_lParticipantData())) {

@@ -8,7 +8,11 @@ mod_ParticipantMetricSummary_UI <- function(id) {
   ns <- NS(id)
   out_Card(
     "Metric Summary",
-    uiOutput(ns("metric_list")),
+    shinycssloaders::withSpinner(
+      uiOutput(ns("metric_list")),
+      type = 7,
+      id = ns("spinner")
+    ),
     id = ns("card")
   )
 }

@@ -6,7 +6,13 @@
       <div class="card bslib-card bslib-mb-spacing bslib-card-input html-fill-item html-fill-container" data-bslib-card-init data-full-screen="false" data-require-bs-caller="card()" data-require-bs-version="5" id="metric_summary-card">
         <div class="card-body bslib-gap-spacing html-fill-item html-fill-container" style="margin-top:auto;margin-bottom:auto;flex:1 1 auto;">
           <h5>Metric Summary</h5>
-          <div id="metric_summary-metric_list" class="shiny-html-output"></div>
+          <div data-spinner-id="metric_summary-spinner" class="shiny-spinner-output-container shiny-spinner-hideui">
+            <div class="load-container shiny-spinner-hidden load7">
+              <div id="metric_summary-spinner" class="loader">Loading...</div>
+            </div>
+            <div style="height:400px" class="shiny-spinner-placeholder"></div>
+            <div id="metric_summary-metric_list" class="shiny-html-output"></div>
+          </div>
         </div>
         <bslib-tooltip placement="auto" bsOptions="[]" data-require-bs-version="5" data-require-bs-caller="tooltip()">
           <template>Expand</template>
