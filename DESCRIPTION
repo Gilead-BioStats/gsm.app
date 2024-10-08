@@ -22,7 +22,7 @@ Imports:
     dplyr,
     DT,
     glue,
-    gsm,
+    gsm (>= 2.1.0),
     htmltools,
     htmlwidgets,
     jsonlite,
