@@ -7,6 +7,6 @@
 # * https://testthat.r-lib.org/reference/test_package.html#special-files
 
 library(testthat)
-library(gsmApp)
+library(gsm.app)
 
-test_check("gsmApp")
+test_check("gsm.app")

@@ -52,19 +52,29 @@ jobs:
 
       - uses: actions/checkout@v4
 
+      - name: Remove files for shinyapps to not see
+        run: |
+          rm -rf .github data-raw tests
+          rm -f _pkgdown.yml .gitignore principles.md
       - uses: r-lib/actions/setup-r@v2
         with:
           use-public-rspm: true
 
+      # Use a cache to speed up installation, if possible. Packages will be
+      # restored if they're in the cache, then updated if necessary in the
+      # following step, then re-cached at the end of the run.
+      - name: Use R package cache
+        uses: actions/cache@v4
+        with:
+          path: ${{ runner.temp }}/Library
+          key: ${{ runner.os }}-R-${{ hashFiles('DESCRIPTION') }}
+          save-always: true
+
       - name: Install packages
         run: |
           install.packages("pak")
-
-          # These packages are sometimes corrupted as far as rsconnect is
-          # concerned. I suspect they're installed more directly than it can
-          # trace.
           extras <- c(
-            "devtools",
+            "pkgload",
             "pkgdown",
             "AsioHeaders",
             "cpp11",
@@ -76,12 +86,9 @@ jobs:
           pak::pak("rsconnect")
         shell: Rscript {0}
 
-      - name: Push to shinyapps.io
-        env:
-          SHINYAPPSIO_TOKEN: ${{ secrets.SHINYAPPSIO_TOKEN }}
-          SHINYAPPSIO_SECRET: ${{ secrets.SHINYAPPSIO_SECRET }}
+      - name: Set APPNAME
         run: |
-          appname <- Sys.getenv("REPO_NAME")
+          appname <- gsub("[^A-Za-z0-9]", "-", Sys.getenv("REPO_NAME"))
           deployment_type <- Sys.getenv("DEPLOYMENT_TYPE")
           pr_number <- Sys.getenv("PR_NUMBER")
 
@@ -91,6 +98,15 @@ jobs:
               appname <- paste(appname, pr_number, sep = "-")
             }
           }
+          cat("APPNAME=", appname, "\n", sep = "", file = Sys.getenv("GITHUB_ENV"), append = TRUE)
+        shell: Rscript {0}
+
+      - name: Push to shinyapps.io
+        env:
+          SHINYAPPSIO_TOKEN: ${{ secrets.SHINYAPPSIO_TOKEN }}
+          SHINYAPPSIO_SECRET: ${{ secrets.SHINYAPPSIO_SECRET }}
+        run: |
+          appname <- Sys.getenv("APPNAME")
           rsconnect::setAccountInfo(
             name = "openrbqm",
             token = Sys.getenv("SHINYAPPSIO_TOKEN"),
@@ -101,3 +117,18 @@ jobs:
             forceUpdate = TRUE
           )
         shell: Rscript {0}
+
+      - name: Comment on PR with deployment link
+        if: github.event_name == 'pull_request' && github.event.action == 'opened'
+        uses: actions/github-script@v6
+        with:
+          script: |
+            const appUrl = `https://openrbqm.shinyapps.io/${process.env.APPNAME}`;
+            const comment = `🚀 Deployed App: [${appUrl}](${appUrl})`;
+
+            await github.rest.issues.createComment({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: comment,
+            });

@@ -4,34 +4,148 @@
 \alias{shared-params}
 \title{Parameters used in multiple functions}
 \arguments{
-\item{id}{The namespace id for this module.}
+\item{chrLinkIDs}{\code{character} Module ids for multiple modules.}
 
-\item{combinedData}{\code{data.frame} A combined data set with the required metrics.}
+\item{chrLabels}{\code{character} A vector of labels for display to the user.}
 
-\item{dfSite}{\code{data.frame} Optional site-level metadata.}
+\item{chrMessage}{\code{character} A vector of message elements to be formatted
+via \code{\link[cli:cli_bullets]{cli::cli_bullets()}}.}
 
-\item{domain}{The type of data and subsequent metrics you would like to see.}
+\item{chrMetrics}{\code{character} A named vector of MetricIDs, where the names
+are the full Metric.}
 
-\item{input}{Shiny inputs}
+\item{chrRequiredColumns}{\code{character} A vector of expected columns in a
+data.frame.}
 
-\item{lAssessment}{\code{list} List of KRI assessments from \code{params} within \code{KRIReport.Rmd}.}
+\item{chrSites}{\code{character} A vector of sites available in the study.}
 
-\item{metric}{The reactive value provided by the metric input from \code{server}}
+\item{chrValues}{\code{character} A vector of values to associate with a vector of
+labels.}
 
-\item{output}{Shiny outputs}
+\item{dfAnalyticsInput}{\code{data.frame} Participant-level metric data.}
 
-\item{session}{Shiny session}
+\item{dfBounds}{\code{data.frame} Set of predicted percentages/rates and upper-
+and lower-bounds across the full range of sample sizes/total exposure
+values for reporting.}
 
-\item{site}{The reactive value provided by the site input from \code{server}}
+\item{dfGroups}{\code{data.frame} Group-level metadata dictionary.}
 
-\item{snapshot}{A \code{list} object containing the data for a snapshot. This
-object funnels into virtually every function of the application.}
+\item{dfMetrics}{\code{data.frame} Metric-specific metadata for use in charts and
+reporting.}
 
-\item{subset_col}{The id column that will be selected from the domain.}
+\item{dfResults}{\code{data.frame} A stacked summary of analysis pipeline output.
+This will be filtered to cases where \code{GroupLevel == "Site"}.}
 
-\item{subset_val}{The specific value that the subset_col will be filtered by.}
+\item{envCall}{\code{environment} The environment from which this function was
+called, for use in better error messages. This value should usually be left
+as the default, or passed from the calling function if the calling function
+also has an \code{envCall} argument.}
+
+\item{envEvaluate}{\code{environment} The environment in which any variables used
+in the message are defined. You almost definitely want to leave this as the
+default value.}
+
+\item{fnFetchParticipantData}{\code{function} A function that takes a single
+\code{strSubjectID} argument such as "0001", and returns a list with components
+\code{metadata} and \code{metric_data}. \code{metadata} should be a named character vector
+(or something that can be coerced to a character vector) of information
+about the participant, and \code{metric_data} should be a named list of
+data.frames, each of which contains information related to the named
+metric.}
+
+\item{id}{\code{character} The id for this module, widget, or other element.}
+
+\item{intKRIColorCount}{\code{integer} A named vector of counts by color.}
+
+\item{intNParticipants}{\code{integer} The number of unique participants
+(subjects) in the study.}
+
+\item{lMetric}{\code{list} Named list of data describing a single metric, as well
+as things like which group is selected.}
+
+\item{lParticipantMetadata}{\code{list} Named list of data describing a single
+participant.}
+
+\item{lStudy}{\code{list} Named list of data describing the overall study.}
+
+\item{rctv_chrIDs}{\verb{reactive character} A \code{\link[shiny:reactive]{shiny::reactive()}} object that
+returns a vector of ids for modules, inputs, or other elements.}
+
+\item{rctv_dfBounds}{\verb{reactive dataframe} A \code{\link[shiny:reactive]{shiny::reactive()}} object that
+returns a set of predicted percentages/rates and upper- and lower-bounds
+across the full range of sample sizes/total exposure values for reporting.}
+
+\item{rctv_dfResults}{\verb{reactive dataframe} A \code{\link[shiny:reactive]{shiny::reactive()}} object that
+returns a stacked summary of analysis pipeline output.}
+
+\item{rctv_lData}{\verb{reactive list} A \code{\link[shiny:reactive]{shiny::reactive()}} object that returns a
+named list of dataframes.}
+
+\item{rctv_lMetric}{\verb{reactive list} A \code{\link[shiny:reactive]{shiny::reactive()}} object that returns
+a named list of data describing a single metric, as well as things like
+which group is selected.}
+
+\item{rctv_lParticipantMetricData}{\verb{reactive list} A \code{\link[shiny:reactive]{shiny::reactive()}}
+object that returns a list of dataframes for a given participant, one for
+each metric that is available.}
+
+\item{rctv_strMetricID}{\verb{reactive character} A \code{\link[shiny:reactive]{shiny::reactive()}} object
+that returns the selected \code{MetricID}.}
+
+\item{rctv_strName}{\verb{reactive character} A \code{\link[shiny:reactive]{shiny::reactive()}} object that
+returns the name of an object, such as a particular dataframe in a named
+list.}
+
+\item{rctv_strSiteID}{\verb{reactive character} A \code{\link[shiny:reactive]{shiny::reactive()}} object that
+returns the \code{GroupID} of a site.}
+
+\item{rctv_strSubjectID}{\verb{reactive character} A \code{\link[shiny:reactive]{shiny::reactive()}} object
+that returns the \code{SubjectID} of the selected participant.}
+
+\item{rctv_strValue}{\verb{reactive character} A \code{\link[shiny:reactive]{shiny::reactive()}} object that
+returns the value of a field.}
+
+\item{session}{\code{environment} Session from which to make a child scope (the
+default should almost always be used).}
+
+\item{strArg}{\code{character} The name of the argument in the calling function.
+In general, this value should either be left as the default, or passed from
+the calling function if the calling function also has a \code{strArg} argument.}
+
+\item{strClass}{\code{character} A descriptive label for this type of error, in
+lower_snake_case.}
+
+\item{strColor}{\code{character} The target color to report about.}
+
+\item{strContainerID}{\code{character} The (namespaced) ID of the target container
+(usually a div).}
+
+\item{strGroupID}{\code{character} A \code{GroupID} to focus on.}
+
+\item{strInputID}{\code{character} An ID to use for the Shiny input created by
+this module or used by this JavaScript.}
+
+\item{strLabel}{\code{character} The label of a field.}
+
+\item{strMetricID}{\code{character} A \code{MetricID} to focus on.}
+
+\item{strPlotTitle}{\code{character} A title for a plot, usually the name of a
+metric.}
+
+\item{strSubjectID}{\code{character} A \code{SubjectID} of an individual participant.}
+
+\item{strTargetTab}{\code{character} The tab to switch to.}
+
+\item{strText}{\code{character} Text to display.}
+
+\item{strTitle}{\code{character} A title to display for the overall app.}
+
+\item{strValue}{\code{character} The value of a field.}
 }
 \description{
-Reused parameter definitions are gathered here for easier usage.
+Reused parameter definitions are gathered here for easier usage. Note: We
+intentionally use \code{id} rather than the more standardized \code{strID} throughout
+this package, because \code{\link[shiny:testServer]{shiny::testServer()}} specifically expects an \code{id}
+argument in module server functions.
 }
 \keyword{internal}

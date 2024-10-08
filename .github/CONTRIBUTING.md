@@ -1,6 +1,6 @@
-# Contributing to gsmApp
+# Contributing to gsm.app
 
-This outlines how to propose a change to gsmApp.
+This outlines how to propose a change to gsm.app.
 
 ## Fixing typos
 
@@ -12,17 +12,18 @@ You can find the `.R` file that generates the `.Rd` by reading the comment in th
 
 ### Prerequisites
 
-Before contributing code via a Pull Request, make sure to file an [issue](https://github.com/Gilead-BioStats/gsmApp/issues/new/choose) using one of the pre-specified issue templates. Choose the template that best categorizes what you aim to contribute, which generally can be one of the following:
+Before contributing code via a Pull Request, make sure to file an [issue](https://github.com/Gilead-BioStats/gsm.app/issues/new/choose) using one of the pre-specified issue templates. Choose the template that best categorizes what you aim to contribute, which generally can be one of the following:
 
 -   Bugfix Issue: Fix a bug in the code
 -   Feature Issue: Develop a new feature
 -   QC Issue: Update QC framework, including documentation, qualification, automation, etc.
+-   UI Issue: Change the appearance of the apps produced by this package
 
 Someone from the development team will decide if the issue is in scope. If so, the issue will be appropriately triaged and assigned to a core developer, or approval to submit a Pull Request associated with the submitted issue will be granted. If it is decided that the issue is out of scope or otherwise irrelevant, the issue will be closed.
 
 The issue templates provide comments/prompts to help ensure that all relevant information is included. When submitting issues for bug fixes or specific feature requests, it is often helpful to provide a minimal [reprex](https://www.tidyverse.org/help/#reprex), or reproducible example, to help the core developers visualize the issue.
 
-Suggestions or other input that might not warrant formal submission of an issue can be filed under [discussions](https://github.com/Gilead-BioStats/gsmApp/discussions), which can help facilitate discourse of specific use-cases or requests.
+Suggestions or other input that might not warrant formal submission of an issue can be filed under [discussions](https://github.com/Gilead-BioStats/gsm.app/discussions), which can help facilitate discourse of specific use-cases or requests.
 
 ### Branches
 
@@ -37,7 +38,7 @@ The core branches that are used in this repository are:
 
 All code development takes place in `fix` branches. This section provides general guidance about this process flow. A detailed step-by-step workflow for code development in `fix` branches can be found in the first section of [Appendix 1](#fix-branch-workflow) below.
 
-Once an issue is filed and delegated to a core developer, a `fix` branch will be opened, which is where all package development related to that issue will be conducted. Each `fix` branch should be linked to one or more of the filed GitHub [issue(s)](https://github.com/Gilead-BioStats/gsmApp/issues). The issue(s) will be referenced in the naming of the `fix` branch. For example, a branch named `fix-111` addresses issue #111. Tasks related to documentation, testing, and/or qualification may also use `fix` branches and associated issues.
+Once an issue is filed and delegated to a core developer, a `fix` branch will be opened, which is where all package development related to that issue will be conducted. Each `fix` branch should be linked to one or more of the filed GitHub [issue(s)](https://github.com/Gilead-BioStats/gsm.app/issues). The issue(s) will be referenced in the naming of the `fix` branch. For example, a branch named `fix-111` addresses issue #111. Tasks related to documentation, testing, and/or qualification may also use `fix` branches and associated issues.
 
 In addition to the above, please also use the following general guidelines when creating a Pull Request:
 
@@ -54,7 +55,7 @@ Code release follows a process using `release` branches. A release is initiated 
 
 ## Style Guide {#style-guide}
 
-Code developers for `{gsmApp}` use the [tidyverse style guide](https://style.tidyverse.org/) with minimal modifications. The code below is run to standardize styling before each release:
+Code developers for `{gsm.app}` use the [tidyverse style guide](https://style.tidyverse.org/) with minimal modifications. The code below is run to standardize styling before each release:
 
     double_indent_style <- styler::tidyverse_style()
     double_indent_style$indention$unindent_fun_dec <- NULL
@@ -80,7 +81,7 @@ We recommend reading the [Dependencies: In Practice chapter of R Packages 2e](ht
 ### `fix` Branch Workflow {#fix-branch-workflow}
 
 1.  Create issue(s) defining addition(s) and/or revision(s):
-    -   Select the appropriate [template](https://github.com/Gilead-BioStats/gsmApp/issues/new/choose) to use (should be one of the following):
+    -   Select the appropriate [template](https://github.com/Gilead-BioStats/gsm.app/issues/new/choose) to use (should be one of the following):
         -   `Bugfix Issue`
         -   `Feature Issue`
         -   `QC Issue`
@@ -100,7 +101,7 @@ We recommend reading the [Dependencies: In Practice chapter of R Packages 2e](ht
 ## `release` Branch Workflow {#release-branch-workflow}
 
 1.  Release Owner creates `release` branch from `dev` branch.
-    -   The `release` branch should be named according to the version of `{gsmApp}` being released (e.g., `release-v1.2.0`) using [semantic versioning](https://semver.org/).
+    -   The `release` branch should be named according to the version of `{gsm.app}` being released (e.g., `release-v1.2.0`) using [semantic versioning](https://semver.org/).
     -   If a release branch is already created, make sure that it is synced with the current `dev` branch.
 2.  Release Owner prepares the release for QC by performing the following steps and pushing updates to the `release` branch:
     -   Confirm that the version in the `DESCRIPTION` file is up to date.
@@ -115,7 +116,7 @@ We recommend reading the [Dependencies: In Practice chapter of R Packages 2e](ht
     -   Build site using `pkgdown::build_site()`. Check that all examples are displayed correctly and that all new functions occur on the Reference page.
     -   Open a clean R session. Run `devtools::install()` and then `devtools::check()` locally and confirm that there are no issues/conflicts.
 3.  Release Owner creates Pull Request from the `release` branch to the `main` branch:
-    -   Use the [release Pull Request template](https://github.com/Gilead-BioStats/gsmApp/blob/dev/.github/PULL_REQUEST_TEMPLATE/release.md) by adding `?template=release.md` to the URL when creating the Pull Request. The user can also click the link, then click `Raw`, and copy/paste the displayed Markdown into the Pull Request.
+    -   Use the [release Pull Request template](https://github.com/Gilead-BioStats/gsm.app/blob/dev/.github/PULL_REQUEST_TEMPLATE/release.md) by adding `?template=release.md` to the URL when creating the Pull Request. The user can also click the link, then click `Raw`, and copy/paste the displayed Markdown into the Pull Request.
     -   Assign Pull Request to self.
     -   Request QC review(s).
     -   Assign milestone.
@@ -146,7 +147,7 @@ This QC checklist is to be used as part of the Development and Release Workflows
 ### High-Level QC Checklist
 
 -   [ ] Documentation
-    -   [ ] New functionality contains an `@export` tag.
+    -   [ ] New functionality contains an `@export` tag if appropriate.
     -   [ ] New functionality contains an adequate level of documentation.
 -   [ ] Error Checking
     -   [ ] New functionality has associated unit test(s).
@@ -169,7 +170,7 @@ This QC checklist is to be used as part of the Development and Release Workflows
     -   [ ] Function purpose captured in [roxygen2 description](https://cran.r-project.org/web/packages/roxygen2/vignettes/rd.html#the-description-block) (e.g., "Evaluates adverse event (AE) rates to identify sites that may be over- or under-reporting AEs")
     -   [ ] All function parameters are described with a [`@param` tag](https://cran.r-project.org/web/packages/roxygen2/vignettes/rd.html#functions). Each parameter description should include its name, type, purpose, usage details, default value (if applicable), requirement, and valid options (if applicable).
     -   [ ] All external dependencies are captured. Fully qualify funtions from other packages (such as `dplyr::filter()`), and `usethis::usepackage()` to add the package as a dependency (eg, `usethis::use_package("dplyr")`).
-    -   [ ] Function output is captured with a [`@return` tag](https://cran.r-project.org/web/packages/roxygen2/vignettes/rd.html#functions). Each output description should include output type, structure, and data specification (if applicable).
+    -   [ ] Function output is captured with a [`@returns` tag](https://cran.r-project.org/web/packages/roxygen2/vignettes/rd.html#functions). Each output description should include output type, structure, and data specification (if applicable).
     -   [ ] At least one (1) example is provided under an [`@examples` tag](https://cran.r-project.org/web/packages/roxygen2/vignettes/rd.html#functions).
 -   [ ] Error Checking
     -   [ ] Basic checks for all parameters should be included using `stopifnot()` or similar logic (e.g., `stopifnot("dfInput is not a data frame" = is.data.frame(dfInput))`)
@@ -190,7 +191,7 @@ This QC checklist is to be used as part of the Development and Release Workflows
 
 ## Appendix 3 - Continuous Integration with GitHub Actions {#github-action-workflow}
 
-GitHub Actions are used in `{gsmApp}` to automate processes and ensure all code and documentation is created consistently and documented thoroughly.
+GitHub Actions are used in `{gsm.app}` to automate processes and ensure all code and documentation is created consistently and documented thoroughly.
 
 ### Merges to `dev` Branch
 
@@ -198,18 +199,18 @@ GitHub Actions are used in `{gsmApp}` to automate processes and ensure all code 
     -   Basic R CMD check which can be run using `rcmdcheck::rcmdcheck()`
     -   This check will run on `ubuntu-latest` and on R version 4.1.3.
 -   Test Coverage (`test-coverage`):
-    -   Uses `{covr}` to check the package coverage of `{gsmApp}`.
+    -   Uses `{covr}` to check the package coverage of `{gsm.app}`.
 
 ## Merges to `main` Branch
 
--   R CMD Check (`R-CMD-check-main`):
+-   R CMD Check (`R-CMD-check`):
     -   Basic R CMD check which can be run using `rcmdcheck::rcmdcheck()`
     -   This check will run on `ubuntu-latest` and on R version 4.1.3. Additionally, it will be run on the latest R release version on `windows-latest`, `macOS-latest`, and `ubuntu-latest`.
 -   `pkgdown`:
-    -   Builds the [pkgdown site](https://gilead-biostats.github.io/gsmApp/) for `{gsmApp}`.
+    -   Builds the [pkgdown site](https://gilead-biostats.github.io/gsm.app/) for `{gsm.app}`.
 
 ## Code of Conduct
 
-Please note that the gsmApp project is released with a
+Please note that the gsm.app project is released with a
 [Contributor Code of Conduct](CODE_OF_CONDUCT.md). By contributing to this
 project you agree to abide by its terms.

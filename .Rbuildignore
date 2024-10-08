@@ -1,4 +1,4 @@
-^gsmApp\.Rproj$
+^gsm.app\.Rproj$
 ^\.Rproj\.user$
 ^LICENSE\.md$
 _\.new\.png$
@@ -12,3 +12,5 @@ _\.new\.png$
 ^CODE_OF_CONDUCT\.md$
 ^README\.Rmd$
 ^R/_disable_autoload\.R$
+^principles\.md$
+^scratch\.R$
