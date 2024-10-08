@@ -14,7 +14,7 @@ mod_MetricDetails_Server <- function(
   rctv_lMetric,
   rctv_strSiteID,
   rctv_strMetricID
- ) {
+) {
   moduleServer(id, function(input, output, session) {
     # Shared reactives ----
     rctv_dfResults_byMetricID <- reactive({

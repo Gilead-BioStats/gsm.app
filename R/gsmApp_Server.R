@@ -142,8 +142,8 @@ gsmApp_Server <- function(
       strParticipantID <- input$participant
       if (
         length(strParticipantID) &&
-        strParticipantID != "" &&
-        strParticipantID != rctv_LatestParticipant()
+          strParticipantID != "" &&
+          strParticipantID != rctv_LatestParticipant()
       ) {
         rctv_LatestParticipant(strParticipantID)
       }
@@ -153,7 +153,7 @@ gsmApp_Server <- function(
       req(rctv_strSiteDetailsParticipant())
       strParticipantID <- rctv_strSiteDetailsParticipant()
       if (
-          length(strParticipantID) &&
+        length(strParticipantID) &&
           strParticipantID != "" &&
           strParticipantID != rctv_LatestParticipant()
       ) {
@@ -172,7 +172,7 @@ gsmApp_Server <- function(
         selected <- rctv_LatestParticipant()
       }
       if (
-          selected != input$participant ||
+        selected != input$participant ||
           rctv_LastSiteFilter() != input$site
       ) {
         rctv_LastSiteFilter(input$site)

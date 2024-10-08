@@ -5,6 +5,7 @@ This is a complete rewrite of the package for use with `{gsm}` 2.0+.
 ## New Features
 - The sidebar (with overall study information and drop-down menus) can be collapsed to focus on the drill-down modules.
 - Charts and tables can be expanded to fill more of the browser window.
+- Participant details now have loading animations to make it clearer when data is processing.
 
 ## Other Improvements
 - Renamed package to {gsm.app} for consistency with related apps.

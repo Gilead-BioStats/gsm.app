@@ -44,7 +44,12 @@ test_that("run_gsm_app populates Study Overview", {
     "isWidgetPlotLoaded('study_overview-scatter-kri0002');",
     timeout = 8000
   )
-  app$expect_values(export = TRUE, name = "plots-ae-site")
+  app$expect_values(
+    export = TRUE,
+    name = "plots-ae-site",
+    # This one is somewhat unstable, so give it a little extra time to load.
+    screenshot_args = list(delay = 1)
+  )
 
   # Set site via drop-down.
   app$set_inputs(site = "0X001")

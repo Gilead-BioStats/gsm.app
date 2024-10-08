@@ -19,7 +19,7 @@ mod_ScatterPlot_UI <- function(id, strPlotTitle = NULL) {
   )
 }
 
-#' Scatter Plot Input javascript
+#' Scatter Plot Input JavaScript
 #'
 #' Attach `scatterPlotInput.js` to an app or other HTML exactly once.
 #'
@@ -40,7 +40,7 @@ htmlDependency_ScatterPlotInput <- function() {
   )
 }
 
-#' Widget Plot Input javascript
+#' Widget Plot Input JavaScript
 #'
 #' Attach `widgetPlotInputHelpers.js` to an app or other HTML exactly once.
 #'
