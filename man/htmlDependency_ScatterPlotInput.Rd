@@ -2,7 +2,7 @@
 % Please edit documentation in R/mod_ScatterPlot_UI.R
 \name{htmlDependency_ScatterPlotInput}
 \alias{htmlDependency_ScatterPlotInput}
-\title{Scatter Plot Input javascript}
+\title{Scatter Plot Input JavaScript}
 \usage{
 htmlDependency_ScatterPlotInput()
 }

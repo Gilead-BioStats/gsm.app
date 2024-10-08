@@ -2,7 +2,7 @@
 % Please edit documentation in R/mod_ScatterPlot_UI.R
 \name{htmlDependency_WidgetPlotInputHelpers}
 \alias{htmlDependency_WidgetPlotInputHelpers}
-\title{Widget Plot Input javascript}
+\title{Widget Plot Input JavaScript}
 \usage{
 htmlDependency_WidgetPlotInputHelpers()
 }
