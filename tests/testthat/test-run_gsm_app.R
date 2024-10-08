@@ -1,7 +1,7 @@
 test_that("run_gsm_app initializes the expected app", {
   skip_on_cran()
   app <- AppDriver$new(
-    test_path("apps"),
+    test_path("apps", "standard"),
     name = "init"
   )
   app$wait_for_idle()
@@ -12,7 +12,7 @@ test_that("run_gsm_app initializes the expected app", {
 test_that("run_gsm_app populates Study Overview", {
   skip_on_cran()
   app <- AppDriver$new(
-    test_path("apps"),
+    test_path("apps", "standard"),
     name = "study"
   )
   app$wait_for_idle()
@@ -73,7 +73,7 @@ test_that("run_gsm_app populates Study Overview", {
 test_that("run_gsm_app populates Metric Details", {
   skip_on_cran()
   app <- AppDriver$new(
-    test_path("apps"),
+    test_path("apps", "standard"),
     # screenshot_args = list(delay = 1),
     name = "metrics"
   )
@@ -169,7 +169,7 @@ test_that("run_gsm_app populates Metric Details", {
 test_that("run_gsm_app populates Participant Details", {
   skip_on_cran()
   app <- AppDriver$new(
-    test_path("apps"),
+    test_path("apps", "standard"),
     screenshot_args = list(delay = 1),
     name = "participants"
   )
