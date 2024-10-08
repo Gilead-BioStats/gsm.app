@@ -74,7 +74,6 @@ test_that("run_gsm_app populates Metric Details", {
   skip_on_cran()
   app <- AppDriver$new(
     test_path("apps"),
-    # screenshot_args = list(delay = 1),
     name = "metrics"
   )
   app$wait_for_idle()
@@ -124,7 +123,8 @@ test_that("run_gsm_app populates Metric Details", {
   app$wait_for_idle()
   app$expect_values(export = TRUE, name = "analysis-site")
 
-  # Click back through to make sure all have the site selected.
+  # Click back through to make sure all have the site selected. Alternate
+  # between 0X001 and 0X159 as we go.
   app$set_inputs(`metric_details-selected_tab` = "Time Series")
   app$wait_for_idle()
   app$wait_for_js(
@@ -132,6 +132,13 @@ test_that("run_gsm_app populates Metric Details", {
     timeout = 8000
   )
   app$expect_values(export = TRUE, name = "time-site")
+  app$run_js("clickWidgetPlotGroup('timeSeries--kri0001_Score', '0X001');")
+  app$wait_for_idle()
+  app$wait_for_js(
+    "isWidgetPlotLoaded('timeSeries--kri0001_Score');",
+    timeout = 8000
+  )
+  app$expect_values(export = TRUE, name = "time-site_click")
 
   app$set_inputs(`metric_details-selected_tab` = "Bar Chart (KRI Score)")
   app$wait_for_idle()
@@ -140,6 +147,13 @@ test_that("run_gsm_app populates Metric Details", {
     timeout = 8000
   )
   app$expect_values(export = TRUE, name = "bar_score-site")
+  app$run_js("clickWidgetPlotGroup('barChart--kri0001_Score', '0X159');")
+  app$wait_for_idle()
+  app$wait_for_js(
+    "isWidgetPlotLoaded('barChart--kri0001_Score');",
+    timeout = 8000
+  )
+  app$expect_values(export = TRUE, name = "bar_score-site_click")
 
   app$set_inputs(`metric_details-selected_tab` = "Bar Chart (KRI Value)")
   app$wait_for_idle()
@@ -148,6 +162,13 @@ test_that("run_gsm_app populates Metric Details", {
     timeout = 8000
   )
   app$expect_values(export = TRUE, name = "bar_value-site")
+  app$run_js("clickWidgetPlotGroup('barChart--kri0001_Metric', '0X001');")
+  app$wait_for_idle()
+  app$wait_for_js(
+    "isWidgetPlotLoaded('barChart--kri0001_Metric');",
+    timeout = 8000
+  )
+  app$expect_values(export = TRUE, name = "bar_value-site_click")
 
   app$set_inputs(`metric_details-selected_tab` = "Scatter Plot")
   app$wait_for_idle()
@@ -156,7 +177,6 @@ test_that("run_gsm_app populates Metric Details", {
     timeout = 8000
   )
   app$expect_values(export = TRUE, name = "scatter-site")
-
   app$run_js("clickWidgetPlotGroup('metric_details-scatter_plot', '0X159');")
   app$wait_for_idle()
   app$wait_for_js(
