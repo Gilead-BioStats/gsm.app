@@ -132,6 +132,10 @@ gsmApp_Server <- function(
     )
     srvr_SyncSelectInput("site", rctv_strMetricDetailsGroup, session)
 
+    # Temporary: Update Site drop-down when one of the non-module widgets
+    # changes its value without sending a full Shiny event.
+    srvr_SyncSelectInput("site", reactive(input$site), session)
+
     rctv_LatestParticipant <- reactiveVal("None")
     observe({
       req(input$participant)
