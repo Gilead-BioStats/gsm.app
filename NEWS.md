@@ -1,3 +1,5 @@
+# gsm.app (development version)
+
 # gsm.app 2.0.0
 
 This is a complete rewrite of the package for use with `{gsm}` 2.0+.
