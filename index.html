@@ -5,7 +5,7 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<title>gsm Shiny Application • gsmApp</title>
+<title>gsm Shiny Application • gsm.app</title>
 <script src="deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="deps/bootstrap-5.3.1/bootstrap.min.css" rel="stylesheet">
 <script src="deps/bootstrap-5.3.1/bootstrap.bundle.min.js"></script><link href="deps/font-awesome-6.4.2/css/all.min.css" rel="stylesheet">
@@ -20,9 +20,9 @@
 
     <nav class="navbar navbar-expand-lg fixed-top bg-light" data-bs-theme="light" aria-label="Site navigation"><div class="container">
 
-    <a class="navbar-brand me-2" href="index.html">gsmApp</a>
+    <a class="navbar-brand me-2" href="index.html">gsm.app</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.0.0</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">2.0.0</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -38,7 +38,7 @@
 <li class="nav-item"><form class="form-inline" role="search">
  <input class="form-control" type="search" name="search-input" id="search-input" autocomplete="off" aria-label="Search site" placeholder="Search for" data-search-index="search.json">
 </form></li>
-<li class="nav-item"><a class="external-link nav-link" href="https://github.com/Gilead-BioStats/gsmApp/" aria-label="GitHub"><span class="fa fab fa-github fa-lg"></span></a></li>
+<li class="nav-item"><a class="external-link nav-link" href="https://github.com/Gilead-BioStats/gsm.app/" aria-label="GitHub"><span class="fa fab fa-github fa-lg"></span></a></li>
       </ul>
 </div>
 
@@ -47,37 +47,39 @@
 </nav><div class="container template-home">
 <div class="row">
   <main id="main" class="col-md-9"><div class="section level1">
-<div class="page-header"><h1 id="gsmapp-shiny-application-for-gsm-assessments">gsmApp: Shiny application for <code>gsm</code> assessments<a class="anchor" aria-label="anchor" href="#gsmapp-shiny-application-for-gsm-assessments"></a>
+<div class="page-header"><h1 id="gsmapp-shiny-applications-for-gsm-assessments">gsm.app: Shiny applications for <code>gsm</code> assessments<a class="anchor" aria-label="anchor" href="#gsmapp-shiny-applications-for-gsm-assessments"></a>
 </h1></div>
 <!-- badges: start -->
 
-<p><code>gsmApp</code> is a Shiny application that enables drill-down functionality for <a href="https://github.com/Gilead-BioStats/gsm" class="external-link"><code>{gsm}</code></a> Assessments.</p>
-<p>A PHUSE working group, <a href="https://advance.phuse.global/display/WEL/OpenRBQM%3A+Pre-Competitive+Collaboration+on+Open-Source+Software+for+RBQM" class="external-link"><em>OpenRBQM: Pre-Competitive Collaboration on Open-Source Software for RBQM</em></a>, has been formed to improve and develop new features for <code>gsm</code>, <code>gsmApp</code>, and future open-source RBQM tools and modules.</p>
-<p><img src="https://github.com/Gilead-BioStats/gsmApp/assets/40671730/f02c12d0-f009-4b1b-9d0a-35f643f66f5b"></p>
+
+<!-- badges: end -->
+<p>gsm.app produces Shiny applications with drill-down functionality for <a href="https://github.com/Gilead-BioStats/gsm" class="external-link">{gsm}</a> Assessments.</p>
+<div class="pkgdown-release">
+<p>You can explore a sample app produced by the released version of gsm.app <a href="https://openrbqm.shinyapps.io/gsm-app" class="external-link">here</a>.</p>
+</div>
+
 <div class="section level2">
 <h2 id="installation">Installation<a class="anchor" aria-label="anchor" href="#installation"></a>
 </h2>
-<p>You can install the development version of gsmApp from <a href="https://github.com/" class="external-link">GitHub</a> with:</p>
+<div class="pkgdown-release">
+<p>You can install the released version of gsm.app from <a href="https://github.com/" class="external-link">GitHub</a> with:</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># install.packages("pak")</span></span>
-<span><span class="fu">pak</span><span class="fu">::</span><span class="fu"><a href="https://pak.r-lib.org/reference/pak.html" class="external-link">pak</a></span><span class="op">(</span><span class="st">"Gilead-BioStats/gsmApp"</span><span class="op">)</span></span></code></pre></div>
+<span><span class="fu">pak</span><span class="fu">::</span><span class="fu"><a href="https://pak.r-lib.org/reference/pak.html" class="external-link">pak</a></span><span class="op">(</span><span class="st">"Gilead-BioStats/gsm.app@main"</span><span class="op">)</span></span></code></pre></div>
 </div>
-<div class="section level2">
-<h2 id="sample-app">Sample App<a class="anchor" aria-label="anchor" href="#sample-app"></a>
-</h2>
-<p>You can use the app with sample data <a href="https://openrbqm.shinyapps.io/gsmApp" class="external-link">here</a>.</p>
+
 </div>
 <div class="section level2">
 <h2 id="code-of-conduct">Code of Conduct<a class="anchor" aria-label="anchor" href="#code-of-conduct"></a>
 </h2>
-<p>Please note that the gsmApp project is released with a <a href="https://gilead-biostats.github.io/gsmApp/CODE_OF_CONDUCT.html">Contributor Code of Conduct</a>. By contributing to this project, you agree to abide by its terms.</p>
+<p>Please note that the gsm.app project is released with a <a href="https://gilead-biostats.github.io/gsm.app/CODE_OF_CONDUCT.html">Contributor Code of Conduct</a>. By contributing to this project, you agree to abide by its terms.</p>
 </div>
 </div>
   </main><aside class="col-md-3"><div class="links">
 <h2 data-toc-skip>Links</h2>
 <ul class="list-unstyled">
-<li><a href="https://github.com/Gilead-BioStats/gsmApp/" class="external-link">Browse source code</a></li>
-<li><a href="https://github.com/Gilead-BioStats/gsmApp/issues" class="external-link">Report a bug</a></li>
+<li><a href="https://github.com/Gilead-BioStats/gsm.app/" class="external-link">Browse source code</a></li>
+<li><a href="https://github.com/Gilead-BioStats/gsm.app/issues" class="external-link">Report a bug</a></li>
 </ul>
 </div>
 
@@ -100,36 +102,32 @@
 <div class="citation">
 <h2 data-toc-skip>Citation</h2>
 <ul class="list-unstyled">
-<li><a href="authors.html#citation">Citing gsmApp</a></li>
+<li><a href="authors.html#citation">Citing gsm.app</a></li>
 </ul>
 </div>
 
 <div class="developers">
 <h2 data-toc-skip>Developers</h2>
 <ul class="list-unstyled">
-<li>Spencer Childress <br><small class="roles"> Author, maintainer </small>  </li>
+<li>Jon Harmon <br><small class="roles"> Author, maintainer </small> <a href="https://orcid.org/0000-0003-4781-4346" target="orcid.widget" aria-label="ORCID" class="external-link"><span class="fab fa-orcid orcid" aria-hidden="true"></span></a> </li>
+<li>Spencer Childress <br><small class="roles"> Author </small>  </li>
 <li>Taylor Rodgers <br><small class="roles"> Author </small>  </li>
 <li>Matt Roumaya <br><small class="roles"> Author </small> <a href="https://orcid.org/0000-0002-8009-2771" target="orcid.widget" aria-label="ORCID" class="external-link"><span class="fab fa-orcid orcid" aria-hidden="true"></span></a> </li>
 </ul>
 </div>
 
-<div class="dev-status">
-<h2 data-toc-skip>Dev status</h2>
-<ul class="list-unstyled">
-<li><a href="https://github.com/Gilead-BioStats/gsmApp/actions/workflows/R-CMD-check.yaml" class="external-link"><img src="https://github.com/Gilead-BioStats/gsmApp/actions/workflows/R-CMD-check.yaml/badge.svg" alt="R-CMD-check"></a></li>
-</ul>
-</div>
+
 
   </aside>
 </div>
 
 
     <footer><div class="pkgdown-footer-left">
-  <p>Developed by Spencer Childress, Taylor Rodgers, Matt Roumaya.</p>
+  <p>Developed by Jon Harmon, Spencer Childress, Taylor Rodgers, Matt Roumaya.</p>
 </div>
 
 <div class="pkgdown-footer-right">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.0.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.1.</p>
 </div>
 
     </footer>
