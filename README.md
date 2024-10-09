@@ -24,7 +24,7 @@ gsm.app produces Shiny applications with drill-down functionality for
 
 <div class="pkgdown-release">
 
-You can explore a sample app produced by the released version of gsm.app
+You can explore a sample app produced by the latest release of gsm.app
 [here](https://openrbqm.shinyapps.io/gsm-app).
 
 </div>
@@ -40,12 +40,12 @@ gsm.app [here](https://openrbqm.shinyapps.io/gsm-app-dev).
 
 <div class="pkgdown-release">
 
-You can install the released version of gsm.app from
+You can install the latest release of gsm.app from
 [GitHub](https://github.com/) with:
 
 ``` r
 # install.packages("pak")
-pak::pak("Gilead-BioStats/gsm.app@main")
+pak::pak("Gilead-BioStats/gsm.app@*release⁠")
 ```
 
 </div>
@@ -57,7 +57,7 @@ You can install the development version of gsm.app from
 
 ``` r
 # install.packages("pak")
-pak::pak("Gilead-BioStats/gsm.app@dev")
+pak::pak("Gilead-BioStats/gsm.app")
 ```
 
 </div>
