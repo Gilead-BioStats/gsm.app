@@ -9,7 +9,8 @@ gsmApp_Server <- function(
   dfMetrics,
   dfBounds,
   dfAnalyticsInput,
-  fnFetchParticipantData
+  fnFetchParticipantData,
+  fnServer = NULL
 ) {
   # Force evaluation of everything before factory is constructed to avoid
   # strange effects from lazy evaluation. See
@@ -20,7 +21,12 @@ gsmApp_Server <- function(
   force(dfBounds)
   force(dfAnalyticsInput)
   force(fnFetchParticipantData)
+  force(fnServer)
   function(input, output, session) {
+    if (!is.null(fnServer)) {
+      fnServer(input, output, session)
+    }
+
     # Inputs ----
     ## Initialize ----
     dfAnalyticsInput_Unique <- dfAnalyticsInput %>%

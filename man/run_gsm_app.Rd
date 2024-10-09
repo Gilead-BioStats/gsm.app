@@ -12,7 +12,9 @@ run_gsm_app(
   dfBounds,
   dfAnalyticsInput,
   fnFetchParticipantData,
-  strTitle = "GSM Deep Dive"
+  strTitle = "GSM Deep Dive",
+  tagListSidebar = NULL,
+  fnServer = NULL
 )
 
 run_sample_gsm_app()
@@ -41,6 +43,13 @@ data.frames, each of which contains information related to the named
 metric.}
 
 \item{strTitle}{\code{character} A title to display for the overall app.}
+
+\item{tagListSidebar}{\code{taglist} An optional \code{\link[htmltools:tagList]{htmltools::tagList()}} of
+additional elements to add to the top of the app sidebar.}
+
+\item{fnServer}{\code{function} A Shiny server function that takes arguments
+\code{input}, \code{output}, and \code{session}. This function will be called at the start
+of the main app server function.}
 }
 \value{
 An object that represents the app. Printing the object or passing it
