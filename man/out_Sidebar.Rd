@@ -4,7 +4,13 @@
 \alias{out_Sidebar}
 \title{Study Information Sidebar}
 \usage{
-out_Sidebar(lStudy, chrMetrics, chrSites, intNParticipants)
+out_Sidebar(
+  lStudy,
+  chrMetrics,
+  chrSites,
+  intNParticipants,
+  tagListSidebar = NULL
+)
 }
 \arguments{
 \item{lStudy}{\code{list} Named list of data describing the overall study.}
@@ -16,6 +22,9 @@ are the full Metric.}
 
 \item{intNParticipants}{\code{integer} The number of unique participants
 (subjects) in the study.}
+
+\item{tagListSidebar}{\code{taglist} An optional \code{\link[htmltools:tagList]{htmltools::tagList()}} of
+additional elements to add to the top of the app sidebar.}
 }
 \value{
 A \code{\link[bslib:sidebar]{bslib::sidebar()}} with study information, inputs, and the

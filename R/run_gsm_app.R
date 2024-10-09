@@ -24,7 +24,10 @@ run_gsm_app <- function(
   dfBounds,
   dfAnalyticsInput,
   fnFetchParticipantData,
-  strTitle = "GSM Deep Dive") {
+  strTitle = "GSM Deep Dive",
+  tagListSidebar = NULL,
+  fnServer = NULL
+) {
   # There's no point launching the app if the data won't work.
   dfResults <- validate_dfResults(dfResults)
   dfGroups <- validate_dfGroups(dfGroups)
@@ -42,7 +45,8 @@ run_gsm_app <- function(
       dfMetrics = dfMetrics,
       dfGroups = dfGroups,
       intNParticipants = length(unique(dfAnalyticsInput$SubjectID)),
-      strTitle = strTitle
+      strTitle = strTitle,
+      tagListSidebar = tagListSidebar
     ),
     server = gsmApp_Server(
       dfResults = dfResults,
@@ -50,7 +54,8 @@ run_gsm_app <- function(
       dfMetrics = dfMetrics,
       dfBounds = dfBounds,
       dfAnalyticsInput = dfAnalyticsInput,
-      fnFetchParticipantData = fnFetchParticipantData
+      fnFetchParticipantData = fnFetchParticipantData,
+      fnServer = fnServer
     )
   )
 }
