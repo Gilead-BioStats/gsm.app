@@ -6,13 +6,14 @@
 #' @returns A Shiny UI object
 #' @keywords internal
 gsmApp_UI <- function(
-  dfResults,
-  dfMetrics,
+  dfAnalyticsInput,
   dfGroups,
-  intNParticipants,
+  dfMetrics,
+  dfResults,
   strTitle = "GSM Deep Dive"
 ) {
   # Transform data for use in lower-level functions. ----
+  intNParticipants <- length(unique(dfAnalyticsInput$SubjectID))
   lStudy <- make_lStudy(dfGroups, dfResults)
   chrMetrics <- rlang::set_names(dfMetrics$MetricID, dfMetrics$Metric)
   chrSites <- sort(unique(dfGroups$GroupID[dfGroups$GroupLevel == "Site"]))

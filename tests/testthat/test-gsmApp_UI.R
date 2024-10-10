@@ -1,10 +1,10 @@
 test_that("out_MainTabs generates the expected UI", {
   dfResults <- head(sample_dfResults[sample_dfResults$GroupLevel == "Site", ])
   test_result <- gsmApp_UI(
-    dfResults,
-    sample_dfMetrics,
-    sample_dfGroups,
-    10L
+    dfAnalyticsInput = head(sample_dfAnalyticsInput, 10),
+    dfGroups = sample_dfGroups,
+    dfMetrics = sample_dfMetrics,
+    dfResults = dfResults
   )
   expect_s3_class(test_result, c("bslib_page", "shiny.tag.list", "list"))
   class(test_result) <- c("shiny.tag.list", "list")

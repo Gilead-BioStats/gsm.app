@@ -31,7 +31,12 @@ test_that("run_gsm_app populates Study Overview", {
     "isWidgetPlotLoaded('study_overview-scatter-kri0002');",
     timeout = 8000
   )
-  app$expect_values(export = TRUE, name = "plots")
+  app$expect_values(
+    export = TRUE,
+    name = "plots",
+    # This one is somewhat unstable, so give it a little extra time to load.
+    screenshot_args = list(delay = 1)
+  )
 
   # Click on AE plot.
   app$run_js("clickWidgetPlotGroup('study_overview-scatter-kri0001', '0X159');")
@@ -92,7 +97,12 @@ test_that("run_gsm_app populates Metric Details", {
     "isWidgetPlotLoaded('metric_details-scatter_plot');",
     timeout = 8000
   )
-  app$expect_values(export = TRUE, name = "scatter")
+  app$expect_values(
+    export = TRUE,
+    name = "scatter",
+    # This one is somewhat unstable, so give it a little extra time to load.
+    screenshot_args = list(delay = 1)
+  )
 
   # Click through to each tab.
   app$set_inputs(`metric_details-selected_tab` = "Bar Chart (KRI Value)")

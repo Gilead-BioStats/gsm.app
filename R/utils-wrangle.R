@@ -62,6 +62,18 @@ make_lStudy <- function(dfGroups, dfResults) {
   return(lStudy)
 }
 
+#' Filter and sort participants by group
+#'
+#' @inheritParams shared-params
+#' @returns A data.frame with `SubjectID` and `GroupID`.
+#' @keywords internal
+make_dfParticipantGroups <- function(dfAnalyticsInput) {
+  dplyr::arrange(
+    dplyr::distinct(dfAnalyticsInput, .data$SubjectID, .data$GroupID),
+    .data$SubjectID
+  )
+}
+
 #' Subset study information
 #'
 #' THIS FUNCTION SHOULD BE REMOVED AS THE APP MATURES
