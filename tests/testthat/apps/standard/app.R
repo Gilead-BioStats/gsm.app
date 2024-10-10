@@ -29,10 +29,10 @@ sample_dfGroups_subset <- gsm.app::sample_dfGroups %>%
   )
 
 gsm.app::run_gsm_app(
-  dfResults = sample_dfResults_subset,
+  dfAnalyticsInput = sample_dfAnalyticsInput_subset,
+  dfBounds = gsm.app::sample_dfBounds,
   dfGroups = sample_dfGroups_subset,
   dfMetrics = gsm.app::sample_dfMetrics,
-  dfBounds = gsm.app::sample_dfBounds,
-  dfAnalyticsInput = sample_dfAnalyticsInput_subset,
-  fnFetchParticipantData = gsm.app::sample_FetchParticipantData
+  dfResults = sample_dfResults_subset,
+  fnFetchParticipantData = sample_FetchParticipantData
 )

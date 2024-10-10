@@ -33,6 +33,9 @@ values for reporting.}
 \item{dfMetrics}{\code{data.frame} Metric-specific metadata for use in charts and
 reporting.}
 
+\item{dfParticipantGroups}{\code{data.frame} Unique \code{SubjectID} and \code{GroupID}
+combos from \code{dfAnalyticsInput}.}
+
 \item{dfResults}{\code{data.frame} A stacked summary of analysis pipeline output.
 This will be filtered to cases where \code{GroupLevel == "Site"}.}
 

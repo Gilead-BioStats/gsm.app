@@ -5,28 +5,28 @@
 \title{Define Server}
 \usage{
 gsmApp_Server(
-  dfResults,
+  dfAnalyticsInput,
+  dfBounds,
   dfGroups,
   dfMetrics,
-  dfBounds,
-  dfAnalyticsInput,
+  dfResults,
   fnFetchParticipantData
 )
 }
 \arguments{
-\item{dfResults}{\code{data.frame} A stacked summary of analysis pipeline output.
-This will be filtered to cases where \code{GroupLevel == "Site"}.}
+\item{dfAnalyticsInput}{\code{data.frame} Participant-level metric data.}
+
+\item{dfBounds}{\code{data.frame} Set of predicted percentages/rates and upper-
+and lower-bounds across the full range of sample sizes/total exposure
+values for reporting.}
 
 \item{dfGroups}{\code{data.frame} Group-level metadata dictionary.}
 
 \item{dfMetrics}{\code{data.frame} Metric-specific metadata for use in charts and
 reporting.}
 
-\item{dfBounds}{\code{data.frame} Set of predicted percentages/rates and upper-
-and lower-bounds across the full range of sample sizes/total exposure
-values for reporting.}
-
-\item{dfAnalyticsInput}{\code{data.frame} Participant-level metric data.}
+\item{dfResults}{\code{data.frame} A stacked summary of analysis pipeline output.
+This will be filtered to cases where \code{GroupLevel == "Site"}.}
 
 \item{fnFetchParticipantData}{\code{function} A function that takes a single
 \code{strSubjectID} argument such as "0001", and returns a list with components

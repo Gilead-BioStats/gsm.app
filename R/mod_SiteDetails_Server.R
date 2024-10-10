@@ -56,8 +56,6 @@ mod_SiteDetails_Server <- function(
 
     # This code will be removed in an upcoming update (when these are treated as
     # proper modules).
-    #
-    # nocov start
     observe({
       if (rctv_strSiteID() == "None") {
         ## Show placeholders
@@ -77,7 +75,6 @@ mod_SiteDetails_Server <- function(
         shinyjs::show("card_participants")
       }
     })
-    # nocov end
 
     ### Site Metadata
     output$site_metadata_list <- renderUI({

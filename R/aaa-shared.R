@@ -23,6 +23,8 @@
 #' @param dfGroups `data.frame` Group-level metadata dictionary.
 #' @param dfMetrics `data.frame` Metric-specific metadata for use in charts and
 #'   reporting.
+#' @param dfParticipantGroups `data.frame` Unique `SubjectID` and `GroupID`
+#'   combos from `dfAnalyticsInput`.
 #' @param dfResults `data.frame` A stacked summary of analysis pipeline output.
 #'   This will be filtered to cases where `GroupLevel == "Site"`.
 #' @param envCall `environment` The environment from which this function was
