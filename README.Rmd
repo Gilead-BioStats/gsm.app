@@ -27,7 +27,7 @@ knitr::opts_chunk$set(
 gsm.app produces Shiny applications with drill-down functionality for [{gsm}](https://github.com/Gilead-BioStats/gsm) Assessments.
 
 ::: {.pkgdown-release}
-You can explore a sample app produced by the released version of gsm.app [here](https://openrbqm.shinyapps.io/gsm-app).
+You can explore a sample app produced by the latest release of gsm.app [here](https://openrbqm.shinyapps.io/gsm-app).
 :::
 ::: {.pkgdown-devel}
 You can explore a sample app produced by the development version of gsm.app [here](https://openrbqm.shinyapps.io/gsm-app-dev).
@@ -36,11 +36,11 @@ You can explore a sample app produced by the development version of gsm.app [her
 ## Installation
 
 ::: {.pkgdown-release}
-You can install the released version of gsm.app from [GitHub](https://github.com/) with:
+You can install the latest release of gsm.app from [GitHub](https://github.com/) with:
 
 ``` r
 # install.packages("pak")
-pak::pak("Gilead-BioStats/gsm.app@main")
+pak::pak("Gilead-BioStats/gsm.app@*release⁠")
 ```
 :::
 ::: {.pkgdown-devel}
@@ -48,7 +48,7 @@ You can install the development version of gsm.app from [GitHub](https://github.
 
 ``` r
 # install.packages("pak")
-pak::pak("Gilead-BioStats/gsm.app@dev")
+pak::pak("Gilead-BioStats/gsm.app")
 ```
 :::
 
