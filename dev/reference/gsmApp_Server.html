@@ -45,7 +45,8 @@
 <span>  <span class="va">dfMetrics</span>,</span>
 <span>  <span class="va">dfBounds</span>,</span>
 <span>  <span class="va">dfAnalyticsInput</span>,</span>
-<span>  <span class="va">fnFetchParticipantData</span></span>
+<span>  <span class="va">fnFetchParticipantData</span>,</span>
+<span>  fnServer <span class="op">=</span> <span class="cn">NULL</span></span>
 <span><span class="op">)</span></span></code></pre></div>
     </div>
 
@@ -85,6 +86,12 @@ values for reporting.</p></dd>
 about the participant, and <code>metric_data</code> should be a named list of
 data.frames, each of which contains information related to the named
 metric.</p></dd>
+
+
+<dt id="arg-fnserver">fnServer<a class="anchor" aria-label="anchor" href="#arg-fnserver"></a></dt>
+<dd><p><code>function</code> A Shiny server function that takes arguments
+<code>input</code>, <code>output</code>, and <code>session</code>. This function will be called at the start
+of the main app server function.</p></dd>
 
 </dl></div>
     <div class="section level2">

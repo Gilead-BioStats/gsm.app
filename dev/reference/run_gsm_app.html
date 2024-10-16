@@ -58,7 +58,9 @@ sample data provided in this package.</p>
 <span>  <span class="va">dfBounds</span>,</span>
 <span>  <span class="va">dfAnalyticsInput</span>,</span>
 <span>  <span class="va">fnFetchParticipantData</span>,</span>
-<span>  strTitle <span class="op">=</span> <span class="st">"GSM Deep Dive"</span></span>
+<span>  strTitle <span class="op">=</span> <span class="st">"GSM Deep Dive"</span>,</span>
+<span>  tagListSidebar <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  fnServer <span class="op">=</span> <span class="cn">NULL</span></span>
 <span><span class="op">)</span></span>
 <span></span>
 <span><span class="fu">run_sample_gsm_app</span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
@@ -104,6 +106,17 @@ metric.</p></dd>
 
 <dt id="arg-strtitle">strTitle<a class="anchor" aria-label="anchor" href="#arg-strtitle"></a></dt>
 <dd><p><code>character</code> A title to display for the overall app.</p></dd>
+
+
+<dt id="arg-taglistsidebar">tagListSidebar<a class="anchor" aria-label="anchor" href="#arg-taglistsidebar"></a></dt>
+<dd><p><code>taglist</code> An optional <code><a href="https://rstudio.github.io/htmltools/reference/tagList.html" class="external-link">htmltools::tagList()</a></code> of
+additional elements to add to the top of the app sidebar.</p></dd>
+
+
+<dt id="arg-fnserver">fnServer<a class="anchor" aria-label="anchor" href="#arg-fnserver"></a></dt>
+<dd><p><code>function</code> A Shiny server function that takes arguments
+<code>input</code>, <code>output</code>, and <code>session</code>. This function will be called at the start
+of the main app server function.</p></dd>
 
 </dl></div>
     <div class="section level2">
