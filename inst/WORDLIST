@@ -22,7 +22,9 @@ dfMetrics
 dfResults
 gsm
 gsmApp
+gtIO
 io
+lMetric
 magrittr
 namespaced
 pkgdown
