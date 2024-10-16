@@ -1,10 +1,10 @@
 test_that("gsmApp_Server initializes correctly and updates rctv_lMetric", {
   server <- gsmApp_Server(
-    dfResults = sample_dfResults,
+    dfAnalyticsInput = sample_dfAnalyticsInput,
+    dfBounds = sample_dfBounds,
     dfGroups = sample_dfGroups,
     dfMetrics = sample_dfMetrics,
-    dfBounds = sample_dfBounds,
-    dfAnalyticsInput = sample_dfAnalyticsInput,
+    dfResults = sample_dfResults,
     fnFetchParticipantData = sample_FetchParticipantData
   )
   testServer(
@@ -32,11 +32,11 @@ test_that("gsmApp_Server triggers reset", {
   # This doesn't really TEST the functionality, only that it triggers. Needs UI
   # integration (shinytest2 integration tests) to fully test.
   server <- gsmApp_Server(
-    dfResults = sample_dfResults,
+    dfAnalyticsInput = sample_dfAnalyticsInput,
+    dfBounds = sample_dfBounds,
     dfGroups = sample_dfGroups,
     dfMetrics = sample_dfMetrics,
-    dfBounds = sample_dfBounds,
-    dfAnalyticsInput = sample_dfAnalyticsInput,
+    dfResults = sample_dfResults,
     fnFetchParticipantData = sample_FetchParticipantData
   )
   testServer(
@@ -57,6 +57,27 @@ test_that("gsmApp_Server triggers reset", {
 
       session$setInputs(reset = 1L)
       # Ideally we'd check inputs here, but testServer doesn't see the change.
+    }
+  )
+})
+
+test_that("gsmApp_Server executes optional server functions", {
+  server <- gsmApp_Server(
+    dfResults = sample_dfResults,
+    dfGroups = sample_dfGroups,
+    dfMetrics = sample_dfMetrics,
+    dfBounds = sample_dfBounds,
+    dfAnalyticsInput = sample_dfAnalyticsInput,
+    fnFetchParticipantData = sample_FetchParticipantData,
+    fnServer = function(input, output, session) {
+      rctv_testVal <<- reactiveVal("testing")
+    }
+  )
+  testServer(
+    server,
+    {
+      expect_s3_class(rctv_testVal, "reactiveVal")
+      expect_equal(rctv_testVal(), "testing")
     }
   )
 })

@@ -4,10 +4,17 @@
 #' @returns A [bslib::sidebar()] with study information, inputs, and the
 #'   stylesheets and dependencies required to display the app.
 #' @keywords internal
-out_Sidebar <- function(lStudy, chrMetrics, chrSites, intNParticipants) {
+out_Sidebar <- function(
+  lStudy,
+  chrMetrics,
+  chrSites,
+  intNParticipants,
+  tagListSidebar = NULL
+) {
   bslib::sidebar(
     width = 400,
     id = "sidebar",
+    tagListSidebar,
     shinyjs::useShinyjs(),
     htmlDependency_Default_Stylesheet(),
     out_StudyInformation(lStudy = lStudy),

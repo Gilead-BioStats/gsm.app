@@ -38,3 +38,30 @@ srvr_SyncTab <- function(
       ignoreInit = TRUE
     )
 }
+
+#' Reset app
+#'
+#' @inheritParams shared-params
+#' @returns A [shiny::observe()] that resets the app when the reset input
+#'   changes.
+#' @keywords internal
+srvr_Reset <- function(
+  dfMetrics,
+  dfParticipantGroups,
+  rctv_intReset,
+  session = getDefaultReactiveDomain()
+) {
+  observe({
+    updateSelectInput(session, "metric", selected = dfMetrics$MetricID[[1]])
+    updateSelectInput(session, "site", selected = "None")
+    updateSelectizeInput(
+      "participant",
+      choices = c("None", dfParticipantGroups$SubjectID),
+      selected = "None",
+      server = TRUE,
+      session = session
+    )
+    bslib::nav_select("primary_nav_bar", "Study Overview")
+  }) %>%
+    bindEvent(rctv_intReset())
+}

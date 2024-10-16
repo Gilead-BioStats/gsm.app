@@ -28,25 +28,23 @@ sample_dfGroups_subset <- gsm.app::sample_dfGroups %>%
     GroupLevel != "Site" | (GroupLevel == "Site" & GroupID %in% group_subset)
   )
 
-slow_FetchParticipantData <- function(strSubjectID) {
-  if (strSubjectID %in% names(participant_data)) {
-    Sys.sleep(5)
-    return(participant_data[[strSubjectID]])
-  }
-  gsmapp_abort(
-    c(
-      "{.arg strSubjectID} must be one of the participants in the sample data.",
-      i = "Unknown participant {strSubjectID}."
-    ),
-    strClass = "unknown_strSubjectID"
-  )
-}
+library(shiny.telemetry)
+
+log_path <- here::here("tests", "testthat", "apps", "logging", "logfile.txt")
+
+telemetry <- shiny.telemetry::Telemetry$new(
+  data_storage = shiny.telemetry::DataStorageLogFile$new(log_path)
+)
 
 gsm.app::run_gsm_app(
-  dfAnalyticsInput = sample_dfAnalyticsInput_subset,
-  dfBounds = gsm.app::sample_dfBounds,
+  dfResults = sample_dfResults_subset,
   dfGroups = sample_dfGroups_subset,
   dfMetrics = gsm.app::sample_dfMetrics,
-  dfResults = sample_dfResults_subset,
-  fnFetchParticipantData = slow_FetchParticipantData
+  dfBounds = gsm.app::sample_dfBounds,
+  dfAnalyticsInput = sample_dfAnalyticsInput_subset,
+  fnFetchParticipantData = gsm.app::sample_FetchParticipantData,
+  tagListSidebar = shiny.telemetry::use_telemetry(),
+  fnServer = function(input, output, session) {
+    telemetry$start_session()
+  }
 )

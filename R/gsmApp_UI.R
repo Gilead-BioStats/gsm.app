@@ -6,13 +6,15 @@
 #' @returns A Shiny UI object
 #' @keywords internal
 gsmApp_UI <- function(
-  dfResults,
-  dfMetrics,
+  dfAnalyticsInput,
   dfGroups,
-  intNParticipants,
-  strTitle = "GSM Deep Dive"
+  dfMetrics,
+  dfResults,
+  strTitle = "GSM Deep Dive",
+  tagListSidebar = NULL
 ) {
   # Transform data for use in lower-level functions. ----
+  intNParticipants <- length(unique(dfAnalyticsInput$SubjectID))
   lStudy <- make_lStudy(dfGroups, dfResults)
   chrMetrics <- rlang::set_names(dfMetrics$MetricID, dfMetrics$Metric)
   chrSites <- sort(unique(dfGroups$GroupID[dfGroups$GroupLevel == "Site"]))
@@ -23,6 +25,12 @@ gsmApp_UI <- function(
     theme = bslib::bs_theme(version = 5),
     fillable = FALSE,
     !!!out_MainTabs(dfResults = dfResults, chrMetrics = chrMetrics),
-    sidebar = out_Sidebar(lStudy, chrMetrics, chrSites, intNParticipants)
+    sidebar = out_Sidebar(
+      lStudy,
+      chrMetrics,
+      chrSites,
+      intNParticipants,
+      tagListSidebar
+    )
   )
 }

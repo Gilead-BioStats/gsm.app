@@ -23,6 +23,7 @@ Imports:
     DT,
     glue,
     gsm (>= 2.1.0),
+    gt,
     htmltools,
     htmlwidgets,
     jsonlite,

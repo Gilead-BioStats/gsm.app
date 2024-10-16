@@ -23,6 +23,8 @@
 #' @param dfGroups `data.frame` Group-level metadata dictionary.
 #' @param dfMetrics `data.frame` Metric-specific metadata for use in charts and
 #'   reporting.
+#' @param dfParticipantGroups `data.frame` Unique `SubjectID` and `GroupID`
+#'   combos from `dfAnalyticsInput`.
 #' @param dfResults `data.frame` A stacked summary of analysis pipeline output.
 #'   This will be filtered to cases where `GroupLevel == "Site"`.
 #' @param envCall `environment` The environment from which this function was
@@ -39,6 +41,9 @@
 #'   about the participant, and `metric_data` should be a named list of
 #'   data.frames, each of which contains information related to the named
 #'   metric.
+#' @param fnServer `function` A Shiny server function that takes arguments
+#'   `input`, `output`, and `session`. This function will be called at the start
+#'   of the main app server function.
 #' @param id `character` The id for this module, widget, or other element.
 #' @param intKRIColorCount `integer` A named vector of counts by color.
 #' @param intNParticipants `integer` The number of unique participants
@@ -96,6 +101,8 @@
 #' @param strText `character` Text to display.
 #' @param strTitle `character` A title to display for the overall app.
 #' @param strValue `character` The value of a field.
+#' @param tagListSidebar `taglist` An optional [htmltools::tagList()] of
+#'   additional elements to add to the top of the app sidebar.
 #'
 #' @name shared-params
 #' @keywords internal
