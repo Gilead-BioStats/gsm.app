@@ -10,8 +10,6 @@ out_Sidebar <- function(lStudy, chrMetrics, chrSites, intNParticipants) {
     id = "sidebar",
     shinyjs::useShinyjs(),
     htmlDependency_Default_Stylesheet(),
-    htmlDependency_HighlightTableRow(),
-    htmlDependency_TableClick(),
     out_StudyInformation(lStudy = lStudy),
     out_Inputs(
       chrMetrics = chrMetrics,
