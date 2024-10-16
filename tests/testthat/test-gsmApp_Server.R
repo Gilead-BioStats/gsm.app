@@ -1,10 +1,10 @@
 test_that("gsmApp_Server initializes correctly and updates rctv_lMetric", {
   server <- gsmApp_Server(
-    dfResults = sample_dfResults,
+    dfAnalyticsInput = sample_dfAnalyticsInput,
+    dfBounds = sample_dfBounds,
     dfGroups = sample_dfGroups,
     dfMetrics = sample_dfMetrics,
-    dfBounds = sample_dfBounds,
-    dfAnalyticsInput = sample_dfAnalyticsInput,
+    dfResults = sample_dfResults,
     fnFetchParticipantData = sample_FetchParticipantData
   )
   testServer(
@@ -32,11 +32,11 @@ test_that("gsmApp_Server triggers reset", {
   # This doesn't really TEST the functionality, only that it triggers. Needs UI
   # integration (shinytest2 integration tests) to fully test.
   server <- gsmApp_Server(
-    dfResults = sample_dfResults,
+    dfAnalyticsInput = sample_dfAnalyticsInput,
+    dfBounds = sample_dfBounds,
     dfGroups = sample_dfGroups,
     dfMetrics = sample_dfMetrics,
-    dfBounds = sample_dfBounds,
-    dfAnalyticsInput = sample_dfAnalyticsInput,
+    dfResults = sample_dfResults,
     fnFetchParticipantData = sample_FetchParticipantData
   )
   testServer(

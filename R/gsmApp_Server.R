@@ -4,22 +4,22 @@
 #' @returns The main server function for use in a shiny app.
 #' @keywords internal
 gsmApp_Server <- function(
-  dfResults,
+  dfAnalyticsInput,
+  dfBounds,
   dfGroups,
   dfMetrics,
-  dfBounds,
-  dfAnalyticsInput,
+  dfResults,
   fnFetchParticipantData,
   fnServer = NULL
 ) {
   # Force evaluation of everything before factory is constructed to avoid
   # strange effects from lazy evaluation. See
   # https://adv-r.hadley.nz/function-factories.html#forcing-evaluation
-  force(dfResults)
+  force(dfAnalyticsInput)
+  force(dfBounds)
   force(dfGroups)
   force(dfMetrics)
-  force(dfBounds)
-  force(dfAnalyticsInput)
+  force(dfResults)
   force(fnFetchParticipantData)
   force(fnServer)
   function(input, output, session) {
@@ -27,59 +27,34 @@ gsmApp_Server <- function(
       fnServer(input, output, session)
     }
 
-    # Inputs ----
-    ## Initialize ----
-    dfAnalyticsInput_Unique <- dfAnalyticsInput %>%
-      dplyr::distinct(.data$SubjectID, .data$GroupID) %>%
-      dplyr::arrange(.data$SubjectID)
-    chrParticipantIDs <- dfAnalyticsInput_Unique$SubjectID
-
-    ## Reset ----
-    observe({
-      updateSelectInput(session, "metric", selected = dfMetrics$MetricID[[1]])
-      updateSelectInput(session, "site", selected = "None")
-      updateSelectizeInput(
-        "participant",
-        choices = c("None", chrParticipantIDs),
-        selected = "None",
-        server = TRUE,
-        session = session
-      )
-      bslib::nav_select("primary_nav_bar", "Study Overview")
-    }) %>%
-      bindEvent(input$reset)
+    # Reset ----
+    dfParticipantGroups <- make_dfParticipantGroups(dfAnalyticsInput)
+    srvr_Reset(dfMetrics, dfParticipantGroups, reactive(input$reset), session)
 
     # Shared Reactives ----
 
+    ## Inputs pass to modules (etc) as reactives.
+    rctv_InputMetric <- reactive(input$metric)
+    rctv_InputSite <- reactive(input$site)
+
     ## The listified dfMetrics are used by both metric sub-mods, so calculate
     ## them once. This can/should move inside a single metric-tab module.
-    rctv_lMetric_base <- reactive({
-      as.list(
-        filter_byMetricID(dfMetrics, input$metric)
-      )
-    }) %>%
-      bindCache(input$metric)
-    rctv_lMetric <- reactive({
-      lMetric <- rctv_lMetric_base()
-      if (input$site != "None") {
-        lMetric$selectedGroupIDs <- input$site
-      }
-      lMetric
-    }) %>%
-      shiny::bindCache(input$metric, input$site)
-
-    rctv_chrParticipantIDs <- reactive({
-      if (input$site == "None") {
-        return(c("None", dfAnalyticsInput_Unique$SubjectID))
-      }
-      c(
-        "None",
-        dfAnalyticsInput_Unique$SubjectID[
-          dfAnalyticsInput_Unique$GroupID == input$site
-        ]
-      )
-    }) %>%
-      bindCache(input$site)
+    rctv_lMetric_base <- srvr_rctv_lMetric_base(
+      dfMetrics,
+      rctv_InputMetric,
+      session
+    )
+    rctv_lMetric <- srvr_rctv_lMetric(
+      dfMetrics,
+      rctv_lMetric_base,
+      rctv_InputMetric,
+      rctv_InputSite,
+      session
+    )
+    rctv_chrParticipantIDs <- srvr_rctv_chrParticipantIDs(
+      dfParticipantGroups,
+      rctv_InputSite
+    )
 
     # Tab Contents ----
 
@@ -90,7 +65,7 @@ gsmApp_Server <- function(
       dfGroups = dfGroups,
       dfMetrics = dfMetrics,
       dfBounds = dfBounds,
-      rctv_strSiteID = reactive(input$site)
+      rctv_strSiteID = rctv_InputSite
     )
     srvr_SyncSelectInput(
       "site",
@@ -104,44 +79,33 @@ gsmApp_Server <- function(
     )
 
     ## Metric Details ----
-    srvr_SyncTab(
-      "primary_nav_bar",
-      "Metric Details",
-      reactive(input$metric),
-      session
+    srvr_SyncTab("primary_nav_bar", "Metric Details", rctv_InputMetric, session)
+    rctv_strMetricDetailsGroup <- mod_MetricDetails_Server(
+      "metric_details",
+      dfResults = dfResults,
+      dfGroups = dfGroups,
+      dfBounds = dfBounds,
+      rctv_lMetric = rctv_lMetric,
+      rctv_strSiteID = rctv_InputSite,
+      rctv_strMetricID = rctv_InputMetric
     )
-    ## Don't render until it loads. We should be able to fix this later once
-    ## nested-modules are implemented cleanly.
-    bindEvent(
-      {
-        rctv_strMetricDetailsGroup <- mod_MetricDetails_Server(
-          "metric_details",
-          dfResults = dfResults,
-          dfGroups = dfGroups,
-          dfBounds = dfBounds,
-          rctv_lMetric = rctv_lMetric,
-          rctv_strSiteID = reactive(input$site),
-          rctv_strMetricID = reactive(input$metric)
-        )
-        rctv_strSiteDetailsParticipant <- mod_SiteDetails_Server(
-          "site_details",
-          dfGroups = dfGroups,
-          dfAnalyticsInput = dfAnalyticsInput,
-          rctv_strSiteID = reactive(input$site),
-          rctv_strMetricID = reactive(input$metric),
-          rctv_lMetric = rctv_lMetric
-        )
-      },
-      input$primary_nav_bar == "Metric Details",
-      ignoreInit = TRUE,
-      once = TRUE
+    rctv_strSiteDetailsParticipant <- mod_SiteDetails_Server(
+      "site_details",
+      dfGroups = dfGroups,
+      dfAnalyticsInput = dfAnalyticsInput,
+      rctv_strSiteID = rctv_InputSite,
+      rctv_strMetricID = rctv_InputMetric,
+      rctv_lMetric = rctv_lMetric
     )
     srvr_SyncSelectInput("site", rctv_strMetricDetailsGroup, session)
 
     # Temporary: Update Site drop-down when one of the non-module widgets
     # changes its value without sending a full Shiny event.
-    srvr_SyncSelectInput("site", reactive(input$site), session)
+    srvr_SyncSelectInput("site", rctv_InputSite, session)
 
+    ### Sync participant dropdown filter ----
+    ###
+    ### Revisit as app becomes fully modularized.
     rctv_LatestParticipant <- reactiveVal("None")
     observe({
       req(input$participant)
@@ -207,7 +171,6 @@ gsmApp_Server <- function(
     srvr_SyncTab(
       "primary_nav_bar",
       "Participant Details",
-      # reactive(input$participant),
       rctv_LatestParticipant,
       session
     )

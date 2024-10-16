@@ -18,42 +18,42 @@
 #' run_sample_gsm_app()
 #' @export
 run_gsm_app <- function(
-  dfResults,
+  dfAnalyticsInput,
+  dfBounds,
   dfGroups,
   dfMetrics,
-  dfBounds,
-  dfAnalyticsInput,
+  dfResults,
   fnFetchParticipantData,
   strTitle = "GSM Deep Dive",
   tagListSidebar = NULL,
   fnServer = NULL
 ) {
   # There's no point launching the app if the data won't work.
-  dfResults <- validate_dfResults(dfResults)
+  dfAnalyticsInput <- validate_dfAnalyticsInput(dfAnalyticsInput)
+  dfBounds <- validate_dfBounds(dfBounds)
   dfGroups <- validate_dfGroups(dfGroups)
   dfMetrics <- validate_dfMetrics(dfMetrics)
-  dfBounds <- validate_dfBounds(dfBounds)
-  dfAnalyticsInput <- validate_dfAnalyticsInput(dfAnalyticsInput)
+  dfResults <- validate_dfResults(dfResults)
 
   # We currently only use site-level data in this app.
-  dfResults <- dfResults[dfResults$GroupLevel == "Site", ]
   dfAnalyticsInput <- dfAnalyticsInput[dfAnalyticsInput$GroupLevel == "Site", ]
+  dfResults <- dfResults[dfResults$GroupLevel == "Site", ]
 
   shinyApp(
     ui = gsmApp_UI(
-      dfResults = dfResults,
-      dfMetrics = dfMetrics,
+      dfAnalyticsInput = dfAnalyticsInput,
       dfGroups = dfGroups,
-      intNParticipants = length(unique(dfAnalyticsInput$SubjectID)),
+      dfMetrics = dfMetrics,
+      dfResults = dfResults,
       strTitle = strTitle,
       tagListSidebar = tagListSidebar
     ),
     server = gsmApp_Server(
-      dfResults = dfResults,
+      dfAnalyticsInput = dfAnalyticsInput,
+      dfBounds = dfBounds,
       dfGroups = dfGroups,
       dfMetrics = dfMetrics,
-      dfBounds = dfBounds,
-      dfAnalyticsInput = dfAnalyticsInput,
+      dfResults = dfResults,
       fnFetchParticipantData = fnFetchParticipantData,
       fnServer = fnServer
     )
@@ -64,12 +64,12 @@ run_gsm_app <- function(
 #' @export
 run_sample_gsm_app <- function() { # nocov start
   run_gsm_app(
-    dfResults = gsm.app::sample_dfResults,
+    dfAnalyticsInput = gsm.app::sample_dfAnalyticsInput,
+    dfBounds = gsm.app::sample_dfBounds,
     dfGroups = gsm.app::sample_dfGroups,
     dfMetrics = gsm.app::sample_dfMetrics,
-    dfBounds = gsm.app::sample_dfBounds,
-    dfAnalyticsInput = gsm.app::sample_dfAnalyticsInput,
-    fnFetchParticipantData = gsm.app::sample_FetchParticipantData,
+    dfResults = gsm.app::sample_dfResults,
+    fnFetchParticipantData = sample_FetchParticipantData,
     strTitle = "Sample Deep Dive App"
   )
 } # nocov end
