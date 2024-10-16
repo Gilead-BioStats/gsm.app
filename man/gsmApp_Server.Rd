@@ -10,7 +10,8 @@ gsmApp_Server(
   dfMetrics,
   dfBounds,
   dfAnalyticsInput,
-  fnFetchParticipantData
+  fnFetchParticipantData,
+  fnServer = NULL
 )
 }
 \arguments{
@@ -35,6 +36,10 @@ values for reporting.}
 about the participant, and \code{metric_data} should be a named list of
 data.frames, each of which contains information related to the named
 metric.}
+
+\item{fnServer}{\code{function} A Shiny server function that takes arguments
+\code{input}, \code{output}, and \code{session}. This function will be called at the start
+of the main app server function.}
 }
 \value{
 The main server function for use in a shiny app.

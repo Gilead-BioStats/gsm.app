@@ -60,3 +60,24 @@ test_that("gsmApp_Server triggers reset", {
     }
   )
 })
+
+test_that("gsmApp_Server executes optional server functions", {
+  server <- gsmApp_Server(
+    dfResults = sample_dfResults,
+    dfGroups = sample_dfGroups,
+    dfMetrics = sample_dfMetrics,
+    dfBounds = sample_dfBounds,
+    dfAnalyticsInput = sample_dfAnalyticsInput,
+    fnFetchParticipantData = sample_FetchParticipantData,
+    fnServer = function(input, output, session) {
+      rctv_testVal <<- reactiveVal("testing")
+    }
+  )
+  testServer(
+    server,
+    {
+      expect_s3_class(rctv_testVal, "reactiveVal")
+      expect_equal(rctv_testVal(), "testing")
+    }
+  )
+})
