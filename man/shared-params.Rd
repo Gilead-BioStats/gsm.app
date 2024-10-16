@@ -56,6 +56,10 @@ about the participant, and \code{metric_data} should be a named list of
 data.frames, each of which contains information related to the named
 metric.}
 
+\item{fnServer}{\code{function} A Shiny server function that takes arguments
+\code{input}, \code{output}, and \code{session}. This function will be called at the start
+of the main app server function.}
+
 \item{id}{\code{character} The id for this module, widget, or other element.}
 
 \item{intKRIColorCount}{\code{integer} A named vector of counts by color.}
@@ -144,6 +148,9 @@ metric.}
 \item{strTitle}{\code{character} A title to display for the overall app.}
 
 \item{strValue}{\code{character} The value of a field.}
+
+\item{tagListSidebar}{\code{taglist} An optional \code{\link[htmltools:tagList]{htmltools::tagList()}} of
+additional elements to add to the top of the app sidebar.}
 }
 \description{
 Reused parameter definitions are gathered here for easier usage. Note: We

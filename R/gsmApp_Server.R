@@ -9,7 +9,8 @@ gsmApp_Server <- function(
   dfGroups,
   dfMetrics,
   dfResults,
-  fnFetchParticipantData
+  fnFetchParticipantData,
+  fnServer = NULL
 ) {
   # Force evaluation of everything before factory is constructed to avoid
   # strange effects from lazy evaluation. See
@@ -20,7 +21,12 @@ gsmApp_Server <- function(
   force(dfMetrics)
   force(dfResults)
   force(fnFetchParticipantData)
+  force(fnServer)
   function(input, output, session) {
+    if (!is.null(fnServer)) {
+      fnServer(input, output, session)
+    }
+
     # Reset ----
     dfParticipantGroups <- make_dfParticipantGroups(dfAnalyticsInput)
     srvr_Reset(dfMetrics, dfParticipantGroups, reactive(input$reset), session)

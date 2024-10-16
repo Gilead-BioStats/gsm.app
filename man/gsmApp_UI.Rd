@@ -9,7 +9,8 @@ gsmApp_UI(
   dfGroups,
   dfMetrics,
   dfResults,
-  strTitle = "GSM Deep Dive"
+  strTitle = "GSM Deep Dive",
+  tagListSidebar = NULL
 )
 }
 \arguments{
@@ -24,6 +25,9 @@ reporting.}
 This will be filtered to cases where \code{GroupLevel == "Site"}.}
 
 \item{strTitle}{\code{character} A title to display for the overall app.}
+
+\item{tagListSidebar}{\code{taglist} An optional \code{\link[htmltools:tagList]{htmltools::tagList()}} of
+additional elements to add to the top of the app sidebar.}
 }
 \value{
 A Shiny UI object

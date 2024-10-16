@@ -10,7 +10,8 @@ gsmApp_UI <- function(
   dfGroups,
   dfMetrics,
   dfResults,
-  strTitle = "GSM Deep Dive"
+  strTitle = "GSM Deep Dive",
+  tagListSidebar = NULL
 ) {
   # Transform data for use in lower-level functions. ----
   intNParticipants <- length(unique(dfAnalyticsInput$SubjectID))
@@ -24,6 +25,12 @@ gsmApp_UI <- function(
     theme = bslib::bs_theme(version = 5),
     fillable = FALSE,
     !!!out_MainTabs(dfResults = dfResults, chrMetrics = chrMetrics),
-    sidebar = out_Sidebar(lStudy, chrMetrics, chrSites, intNParticipants)
+    sidebar = out_Sidebar(
+      lStudy,
+      chrMetrics,
+      chrSites,
+      intNParticipants,
+      tagListSidebar
+    )
   )
 }
