@@ -81,8 +81,8 @@ test_that("mod_MetricDetails_Server renders tab outputs", {
       expect_s3_class(output$time_series, "json")
 
       session$setInputs(selected_tab = "Analysis Output")
-      expect_null(rctv_strScatterGroup())
-      expect_cleaned_html(output$results$html, call = call)
+      expect_type(output$`analysis_output-table`, "list")
+      expect_named(output$`analysis_output-table`, c("html", "deps"))
     }
   )
 })

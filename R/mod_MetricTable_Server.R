@@ -1,8 +1,13 @@
+#' Metric Table Module Server
+#'
+#' @inheritParams shared-params
+#' @returns A [shiny::reactive()] with the id of the selected group.
+#' @keywords internal
 mod_MetricTable_Server <- function(
-    id,
-    rctv_dfResults,
-    dfGroups,
-    rctv_strSiteID
+  id,
+  rctv_dfResults,
+  dfGroups,
+  rctv_strSiteID
 ) {
   moduleServer(id, function(input, output, session) {
     output$table <- gt::render_gt({
@@ -12,6 +17,10 @@ mod_MetricTable_Server <- function(
         dfGroups = dfGroups,
         strGroupLevel = "Site"
       )
+      # Hack to fix `Enrolled` sorting. See
+      # https://github.com/Gilead-BioStats/gsm/issues/1895
+      tbl$`_data`$Enrolled <- as.integer(tbl$`_data`$Enrolled)
+
       tbl %>%
         gt::opt_interactive(
           use_resizers = TRUE,
@@ -27,30 +36,37 @@ mod_MetricTable_Server <- function(
         gt::opt_row_striping()
     })
 
-    # Reactive value to store the selected row
-    selected_row <- reactiveVal(NULL)
+    observe({
+      session$sendCustomMessage(
+        "gtSetSelectID",
+        list(
+          id = session$ns("table"),
+          selectID = rctv_strSiteID()
+        )
+      )
+    })
 
-    ns <- session$ns
-    observeEvent(
-      rctv_dfResults(), {
-        session$sendCustomMessage("bindGTClick", list(ns = ns("table")))
-      }
-    )
+    # Reactive value to store the selected row
+    selected_row <- reactiveVal("None")
+
+    # Whenever the table changes, re-bind click events.
+    observeEvent(rctv_dfResults(), {
+      session$sendCustomMessage("gtBindClick", list(id = session$ns("table")))
+    })
 
     # Observe table selections
-    observeEvent(input$table, {
+    observe({
       req(rctv_dfResults())
       if (length(input$table) > 0) {
-        cli::cli_inform("Clicked: {input$table}")
-        row_data <- rctv_dfResults()$GroupID[[input$table]]
-        cli::cli_inform(row_data)
-        selected_row(row_data)
+        selected_row(input$table)
       } else {
-        selected_row(NULL)
+        selected_row("None")
       }
     })
 
     # Return the selected row data
-    return(reactive({ selected_row() }))
+    return(reactive({
+      selected_row()
+    }))
   })
 }
