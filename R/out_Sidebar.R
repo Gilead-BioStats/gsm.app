@@ -17,8 +17,6 @@ out_Sidebar <- function(
     tagListSidebar,
     shinyjs::useShinyjs(),
     htmlDependency_Default_Stylesheet(),
-    htmlDependency_HighlightTableRow(),
-    htmlDependency_TableClick(),
     out_StudyInformation(lStudy = lStudy),
     out_Inputs(
       chrMetrics = chrMetrics,

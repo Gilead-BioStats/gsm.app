@@ -45,15 +45,7 @@ mod_MetricDetails_UI <- function(id) {
     ),
     bslib::nav_panel(
       "Analysis Output",
-      div(
-        id = "analysis_output_table",
-        class = "card mb-3",
-        style = "margin-top: 4px;",
-        div(
-          class = "card-body",
-          uiOutput(ns("results"))
-        )
-      )
+      mod_MetricTable_UI(ns("analysis_output"))
     )
   )
 }
