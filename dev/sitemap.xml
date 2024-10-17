@@ -18,13 +18,15 @@
 <url><loc>https://gilead-biostats.github.io/gsm.app/dev/reference/gsmApp_UI.html</loc></url>
 <url><loc>https://gilead-biostats.github.io/gsm.app/dev/reference/gsmDependencies.html</loc></url>
 <url><loc>https://gilead-biostats.github.io/gsm.app/dev/reference/gsmapp_abort.html</loc></url>
+<url><loc>https://gilead-biostats.github.io/gsm.app/dev/reference/gtIO.html</loc></url>
 <url><loc>https://gilead-biostats.github.io/gsm.app/dev/reference/htmlDependency_Default_Stylesheet.html</loc></url>
 <url><loc>https://gilead-biostats.github.io/gsm.app/dev/reference/htmlDependency_DetectCardClicks.html</loc></url>
-<url><loc>https://gilead-biostats.github.io/gsm.app/dev/reference/htmlDependency_HighlightTableRow.html</loc></url>
 <url><loc>https://gilead-biostats.github.io/gsm.app/dev/reference/htmlDependency_ScatterPlotInput.html</loc></url>
 <url><loc>https://gilead-biostats.github.io/gsm.app/dev/reference/htmlDependency_Stylesheet.html</loc></url>
-<url><loc>https://gilead-biostats.github.io/gsm.app/dev/reference/htmlDependency_TableClick.html</loc></url>
 <url><loc>https://gilead-biostats.github.io/gsm.app/dev/reference/htmlDependency_WidgetPlotInputHelpers.html</loc></url>
+<url><loc>https://gilead-biostats.github.io/gsm.app/dev/reference/htmlDependency_gtIO.html</loc></url>
+<url><loc>https://gilead-biostats.github.io/gsm.app/dev/reference/htmlDependency_gtIOInput.html</loc></url>
+<url><loc>https://gilead-biostats.github.io/gsm.app/dev/reference/htmlDependency_gtIOjs.html</loc></url>
 <url><loc>https://gilead-biostats.github.io/gsm.app/dev/reference/index.html</loc></url>
 <url><loc>https://gilead-biostats.github.io/gsm.app/dev/reference/make_dfParticipantGroups.html</loc></url>
 <url><loc>https://gilead-biostats.github.io/gsm.app/dev/reference/make_lStudy.html</loc></url>
@@ -32,6 +34,8 @@
 <url><loc>https://gilead-biostats.github.io/gsm.app/dev/reference/mod_ActionList_UI.html</loc></url>
 <url><loc>https://gilead-biostats.github.io/gsm.app/dev/reference/mod_MetricDetails_Server.html</loc></url>
 <url><loc>https://gilead-biostats.github.io/gsm.app/dev/reference/mod_MetricDetails_UI.html</loc></url>
+<url><loc>https://gilead-biostats.github.io/gsm.app/dev/reference/mod_MetricTable_Server.html</loc></url>
+<url><loc>https://gilead-biostats.github.io/gsm.app/dev/reference/mod_MetricTable_UI.html</loc></url>
 <url><loc>https://gilead-biostats.github.io/gsm.app/dev/reference/mod_ParticipantDetails_Server.html</loc></url>
 <url><loc>https://gilead-biostats.github.io/gsm.app/dev/reference/mod_ParticipantDetails_UI.html</loc></url>
 <url><loc>https://gilead-biostats.github.io/gsm.app/dev/reference/mod_ParticipantDomain_Server.html</loc></url>
