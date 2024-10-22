@@ -4,23 +4,33 @@
 #'
 #' @returns A [bslib::card()] with overall study metadata.
 #' @keywords internal
-out_StudyInformation <- function(lStudy) {
-  strProtocolNumber <- lStudy$studyid
-  strNickname <- lStudy$nickname
-  strSnapshotDate <- lStudy$snapshot_date
-  lStudy$studyid <- NULL
-  lStudy$nickname <- NULL
-  lStudy$snapshot_date <- NULL
+out_StudyInformation <- function(dfGroups, dfResults) {
+  SnapshotDate <- max(as.Date(dfResults$SnapshotDate))
+  studyInfo <- gsm::Report_StudyInfo(dfGroups)
+  toggle_js_path <- system.file(
+    "report/lib",
+    "showMetaTableDetails.js",
+    package = "gsm"
+  )
+  toggle_js <- paste0(
+    "<script>",
+    paste(readLines(toggle_js_path), collapse = "\n"),
+    "</script>"
+  )
 
   bslib::card(
-    bslib::card_header(
-      bslib::card_title(strProtocolNumber),
-      out_CardSubtitle(strNickname, "mb-2"),
-      out_CardSubtitle(strSnapshotDate)
+    studyInfo,
+    htmltools::htmlDependency(
+      name = "gsm_report_css",
+      version = "1.0.0",
+      src = "report",
+      package = "gsm",
+      stylesheet = "styles.css"
     ),
-    out_MetadataList(
-      gsm::MakeParamLabelsList(names(lStudy)),
-      unname(lStudy)
+    htmltools::HTML(toggle_js),
+    htmltools::div(
+      glue::glue("Snapshot Date: {SnapshotDate}"),
+      class = "date"
     )
   )
 }
