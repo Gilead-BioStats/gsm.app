@@ -4,10 +4,13 @@
 \alias{out_StudyInformation}
 \title{Study Information Card}
 \usage{
-out_StudyInformation(lStudy)
+out_StudyInformation(dfGroups, dfResults)
 }
 \arguments{
-\item{lStudy}{\code{list} Named list of data describing the overall study.}
+\item{dfGroups}{\code{data.frame} Group-level metadata dictionary.}
+
+\item{dfResults}{\code{data.frame} A stacked summary of analysis pipeline output.
+This will be filtered to cases where \code{GroupLevel == "Site"}.}
 }
 \value{
 A \code{\link[bslib:card]{bslib::card()}} with overall study metadata.

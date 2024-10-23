@@ -5,20 +5,21 @@
 \title{Study Information Sidebar}
 \usage{
 out_Sidebar(
-  lStudy,
+  dfGroups,
+  dfResults,
   chrMetrics,
-  chrSites,
   intNParticipants,
   tagListSidebar = NULL
 )
 }
 \arguments{
-\item{lStudy}{\code{list} Named list of data describing the overall study.}
+\item{dfGroups}{\code{data.frame} Group-level metadata dictionary.}
+
+\item{dfResults}{\code{data.frame} A stacked summary of analysis pipeline output.
+This will be filtered to cases where \code{GroupLevel == "Site"}.}
 
 \item{chrMetrics}{\code{character} A named vector of MetricIDs, where the names
 are the full Metric.}
-
-\item{chrSites}{\code{character} A vector of sites available in the study.}
 
 \item{intNParticipants}{\code{integer} The number of unique participants
 (subjects) in the study.}

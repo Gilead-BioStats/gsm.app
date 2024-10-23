@@ -5,9 +5,9 @@
 #'   stylesheets and dependencies required to display the app.
 #' @keywords internal
 out_Sidebar <- function(
-  lStudy,
+  dfGroups,
+  dfResults,
   chrMetrics,
-  chrSites,
   intNParticipants,
   tagListSidebar = NULL
 ) {
@@ -17,10 +17,10 @@ out_Sidebar <- function(
     tagListSidebar,
     shinyjs::useShinyjs(),
     htmlDependency_Default_Stylesheet(),
-    out_StudyInformation(lStudy = lStudy),
+    out_StudyInformation(dfGroups, dfResults),
     out_Inputs(
       chrMetrics = chrMetrics,
-      chrSites = chrSites,
+      chrSites = sort(unique(dfGroups$GroupID[dfGroups$GroupLevel == "Site"])),
       intNParticipants = intNParticipants
     )
   )

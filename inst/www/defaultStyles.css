@@ -17,11 +17,19 @@
 }
 
 .badge-red {
-  background-color: #FFCCCC;
+  background-color: #ff5859;
 }
 
 .badge-amber {
-  background-color: #FFCC99;
+  background-color: #feaa02;
+}
+
+.badge-red-light {
+  background-color: #ffcccc;
+}
+
+.badge-amber-light {
+  background-color: #ffcc99;
 }
 
 

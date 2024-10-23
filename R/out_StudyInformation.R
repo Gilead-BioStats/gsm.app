@@ -4,23 +4,13 @@
 #'
 #' @returns A [bslib::card()] with overall study metadata.
 #' @keywords internal
-out_StudyInformation <- function(lStudy) {
-  strProtocolNumber <- lStudy$studyid
-  strNickname <- lStudy$nickname
-  strSnapshotDate <- lStudy$snapshot_date
-  lStudy$studyid <- NULL
-  lStudy$nickname <- NULL
-  lStudy$snapshot_date <- NULL
-
+out_StudyInformation <- function(dfGroups, dfResults) {
+  SnapshotDate <- max(as.Date(dfResults$SnapshotDate))
   bslib::card(
     bslib::card_header(
-      bslib::card_title(strProtocolNumber),
-      out_CardSubtitle(strNickname, "mb-2"),
-      out_CardSubtitle(strSnapshotDate)
+      bslib::card_title("Study Information"),
+      out_CardSubtitle(glue::glue("Snapshot Date: {SnapshotDate}"))
     ),
-    out_MetadataList(
-      gsm::MakeParamLabelsList(names(lStudy)),
-      unname(lStudy)
-    )
+    gsm::Report_StudyInfo(dfGroups, tagHeader = NULL),
   )
 }
