@@ -6,31 +6,11 @@
 #' @keywords internal
 out_StudyInformation <- function(dfGroups, dfResults) {
   SnapshotDate <- max(as.Date(dfResults$SnapshotDate))
-  studyInfo <- gsm::Report_StudyInfo(dfGroups)
-  toggle_js_path <- system.file(
-    "report/lib",
-    "showMetaTableDetails.js",
-    package = "gsm"
-  )
-  toggle_js <- paste0(
-    "<script>",
-    paste(readLines(toggle_js_path), collapse = "\n"),
-    "</script>"
-  )
-
   bslib::card(
-    studyInfo,
-    htmltools::htmlDependency(
-      name = "gsm_report_css",
-      version = "1.0.0",
-      src = "report",
-      package = "gsm",
-      stylesheet = "styles.css"
+    bslib::card_header(
+      bslib::card_title("Study Information"),
+      out_CardSubtitle(glue::glue("Snapshot Date: {SnapshotDate}"))
     ),
-    htmltools::HTML(toggle_js),
-    htmltools::div(
-      glue::glue("Snapshot Date: {SnapshotDate}"),
-      class = "date"
-    )
+    gsm::Report_StudyInfo(dfGroups, tagHeader = NULL),
   )
 }
