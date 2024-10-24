@@ -8,23 +8,6 @@
   overflow: visible !important;
 }
 
-
-/* Flag count pills --------------------------------------------------------- */
-
-.badge {
-  font-size: 1em;
-  padding: 0.55em;
-}
-
-.badge-red {
-  background-color: #FFCCCC;
-}
-
-.badge-amber {
-  background-color: #FFCC99;
-}
-
-
 /* CSS to eliminate via future refactors ------------------------------------ */
 
 #metric_details-results tbody > tr {

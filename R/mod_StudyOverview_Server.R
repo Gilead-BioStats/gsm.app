@@ -16,12 +16,15 @@ mod_StudyOverview_Server <- function(
 ) {
   moduleServer(id, function(input, output, session) {
     dfResults <- gsm::FilterByLatestSnapshotDate(dfResults)
-    output$site_overview_table <- gsm::renderWidget_GroupOverview({
-      gsm::Widget_GroupOverview(
+    rctv_strGroupSubset_Pills <- mod_RAGPillSet_Server("kri_counts")
+
+    output$site_overview_table <- renderWidget_GroupOverview({
+      Widget_GroupOverview(
+        id = session$ns("group_overview"),
         dfResults = dfResults,
         dfMetrics = dfMetrics,
         dfGroups = dfGroups,
-        strGroupSubset = "all"
+        strGroupSubset = rctv_strGroupSubset_Pills()
       )
     })
 

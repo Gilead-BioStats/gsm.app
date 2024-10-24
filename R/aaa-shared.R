@@ -68,6 +68,9 @@
 #' @param rctv_lParticipantMetricData `reactive list` A [shiny::reactive()]
 #'   object that returns a list of dataframes for a given participant, one for
 #'   each metric that is available.
+#' @param rctv_lglState `reactive logical` A [shiny::reactive()]] object that
+#'   returns a Boolean value indicating whether something is "off" (`FALSE`) or
+#'   "on" (`TRUE`).
 #' @param rctv_strMetricID `reactive character` A [shiny::reactive()] object
 #'   that returns the selected `MetricID`.
 #' @param rctv_strName `reactive character` A [shiny::reactive()] object that
@@ -87,6 +90,8 @@
 #' @param strClass `character` A descriptive label for this type of error, in
 #'   lower_snake_case.
 #' @param strColor `character` The target color to report about.
+#' @param strColorCode `character` The hex code (such as `"#FFFFFF"`) for a
+#'   color.
 #' @param strContainerID `character` The (namespaced) ID of the target container
 #'   (usually a div).
 #' @param strGroupID `character` A `GroupID` to focus on.

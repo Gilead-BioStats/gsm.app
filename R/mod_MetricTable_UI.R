@@ -64,7 +64,6 @@ htmlDependency_gtIOjs <- function() {
   )
 }
 
-
 #' gt Input JavaScript
 #'
 #' Attach `gtIOInput.js` to an app or other HTML exactly once.
