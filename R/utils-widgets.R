@@ -22,4 +22,5 @@ gsmDependencies <- function(strWidgetName, excludes = character()) {
       })
     }
   )
+  dependencies
 }

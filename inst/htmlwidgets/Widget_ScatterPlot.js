@@ -4,10 +4,7 @@ HTMLWidgets.widget({
   factory: function(el, width, height) {
     return {
       renderValue: function(input) {
-        // Assign a unique ID to the element.
         el.id = `${input.id}`;
-
-        // Add click event callback to chart.
         input.lMetric.clickCallback = widgetPlotClickCallback(el);
 
         // Generate scatter plot.

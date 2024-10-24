@@ -96,6 +96,10 @@ which group is selected.}
 object that returns a list of dataframes for a given participant, one for
 each metric that is available.}
 
+\item{rctv_lglState}{\verb{reactive logical} A \code{\link[shiny:reactive]{shiny::reactive()}}] object that
+returns a Boolean value indicating whether something is "off" (\code{FALSE}) or
+"on" (\code{TRUE}).}
+
 \item{rctv_strMetricID}{\verb{reactive character} A \code{\link[shiny:reactive]{shiny::reactive()}} object
 that returns the selected \code{MetricID}.}
 
@@ -123,6 +127,9 @@ the calling function if the calling function also has a \code{strArg} argument.}
 lower_snake_case.}
 
 \item{strColor}{\code{character} The target color to report about.}
+
+\item{strColorCode}{\code{character} The hex code (such as \code{"#FFFFFF"}) for a
+color.}
 
 \item{strContainerID}{\code{character} The (namespaced) ID of the target container
 (usually a div).}
