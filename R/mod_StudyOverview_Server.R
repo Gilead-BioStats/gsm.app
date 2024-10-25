@@ -15,21 +15,29 @@ mod_StudyOverview_Server <- function(
   rctv_strSiteID
 ) {
   moduleServer(id, function(input, output, session) {
-    dfResults <- gsm::FilterByLatestSnapshotDate(dfResults)
-    rctv_strGroupSubset_Pills <- mod_RAGPillSet_Server("kri_counts")
-
-    output$site_overview_table <- renderWidget_GroupOverview({
-      Widget_GroupOverview(
-        id = session$ns("group_overview"),
-        dfResults = dfResults,
-        dfMetrics = dfMetrics,
-        dfGroups = dfGroups,
-        strGroupSubset = rctv_strGroupSubset_Pills()
+    rctv_strSelectedGroupID <- shiny::reactiveVal()
+    rctv_strSelectedMetricID <- shiny::reactiveVal()
+    shiny::observe({
+      rctv_strSelectedGroupID(rctv_strSiteID())
+    })
+    l_rctvs_table <- mod_GroupOverview_Server(
+      "table",
+      dfResults,
+      dfMetrics,
+      dfGroups
+    )
+    shiny::observe({
+      rctv_strSelectedGroupID(
+        l_rctvs_table$strGroupID()
       )
     })
-    outputOptions(output, "site_overview_table", suspendWhenHidden = FALSE)
+    shiny::observe({
+      rctv_strSelectedMetricID(
+        l_rctvs_table$strMetricID()
+      )
+    })
 
-    rctv_strSelectedGroupID <- mod_ScatterPlotSet_Server(
+    rctv_strSelectedGroupID_plot <- mod_ScatterPlotSet_Server(
       "scatter",
       dfResults = dfResults,
       dfMetrics = dfMetrics,
@@ -37,8 +45,19 @@ mod_StudyOverview_Server <- function(
       dfBounds = dfBounds,
       rctv_strSiteID = rctv_strSiteID
     )
+    shiny::observe({
+      rctv_strSelectedGroupID(
+        rctv_strSelectedGroupID_plot()
+      )
+    })
 
-    rctv_strSelectedMetricID <- mod_ScatterPlotSet_Server_MetricID("scatter")
+    rctv_strSelectedMetricID_plot <- mod_ScatterPlotSet_Server_MetricID("scatter")
+    shiny::observe({
+      rctv_strSelectedMetricID(
+        rctv_strSelectedMetricID_plot()
+      )
+    })
+
 
     return(
       list(

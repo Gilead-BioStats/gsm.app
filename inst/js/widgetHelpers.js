@@ -34,5 +34,13 @@ const updateWidgetPlot = function(el, instance) {
   }
 
   // Trigger a custom event to notify listeners
-  $(el).trigger('widgetPlot-value-changed');
+  $(el).trigger('widget-value-changed');
 };
+
+const findElementAncestor = function(el, ancestorClass) {
+  let targetEl = el;
+  while (targetEl && !targetEl.classList.contains(ancestorClass)) {
+    targetEl = targetEl.parentElement;
+  }
+  return targetEl;
+}

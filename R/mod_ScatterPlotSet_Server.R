@@ -9,7 +9,8 @@ mod_ScatterPlotSet_Server <- function(
   dfMetrics,
   dfGroups,
   dfBounds,
-  rctv_strSiteID) {
+  rctv_strSiteID
+) {
   moduleServer(id, function(input, output, session) {
     lMetricGroups <- purrr::map(
       unique(dfMetrics$MetricID),

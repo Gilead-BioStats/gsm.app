@@ -80,6 +80,7 @@ gsmApp_Server <- function(
 
     ## Metric Details ----
     srvr_SyncTab("primary_nav_bar", "Metric Details", rctv_InputMetric, session)
+    srvr_SyncTab("primary_nav_bar", "Metric Details", rctv_InputSite, session)
     rctv_strMetricDetailsGroup <- mod_MetricDetails_Server(
       "metric_details",
       dfResults = dfResults,

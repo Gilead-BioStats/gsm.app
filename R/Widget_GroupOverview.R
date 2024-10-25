@@ -62,7 +62,7 @@ Widget_GroupOverview <- function(
 #' @name Widget_GroupOverview-shiny
 #'
 #' @keywords internal
-Widget_GroupOverviewOutput <- function(outputId, width = "100%", height = "400px") {
+Widget_GroupOverviewOutput <- function(outputId, width = "100%", height = "100%") {
   gsmWidgetOutput(
     "Widget_GroupOverview",
     outputId,

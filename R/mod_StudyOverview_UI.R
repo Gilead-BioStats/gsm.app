@@ -11,21 +11,7 @@ mod_StudyOverview_UI <- function(id, dfResults, chrMetrics) {
     id = ns("nav_bar"),
     bslib::nav_panel(
       title = "Overview Table",
-      bslib::card(
-        full_screen = TRUE,
-        bslib::card_body(
-          mod_RAGPillSet_UI(
-            ns("kri_counts"),
-            intRed = sum(abs(dfResults$Flag) == 2, na.rm = TRUE),
-            intAmber = sum(abs(dfResults$Flag) == 1, na.rm = TRUE)
-          ),
-          Widget_GroupOverviewOutput(
-            ns("site_overview_table"),
-            height = "100%"
-          )
-        ),
-        id = "study-overview-table-card"
-      )
+      mod_GroupOverview_UI(ns("table"), dfResults)
     ),
     bslib::nav_panel(
       title = "Scatter Plots",
