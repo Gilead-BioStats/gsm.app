@@ -80,7 +80,7 @@ renderWidget_GroupOverview <- function(expr, env = parent.frame(), quoted = FALS
   } # force quoted
   htmlwidgets::shinyRenderWidget(
     expr,
-    Widget_GroupOverview,
+    Widget_GroupOverviewOutput,
     env,
     quoted = TRUE,
     cacheHint = NULL
