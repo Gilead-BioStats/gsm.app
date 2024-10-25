@@ -27,6 +27,7 @@ mod_StudyOverview_Server <- function(
         strGroupSubset = rctv_strGroupSubset_Pills()
       )
     })
+    outputOptions(output, "site_overview_table", suspendWhenHidden = FALSE)
 
     rctv_strSelectedGroupID <- mod_ScatterPlotSet_Server(
       "scatter",

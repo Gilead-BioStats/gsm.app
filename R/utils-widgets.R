@@ -24,3 +24,25 @@ gsmDependencies <- function(strWidgetName, excludes = character()) {
   )
   dependencies
 }
+
+gsmWidgetOutput <- function(
+  strWidgetName,
+  outputId,
+  width = "100%",
+  height = "400px",
+  excludes = character(),
+  ...
+) {
+  htmltools::tagList(
+    htmlwidgets::shinyWidgetOutput(
+      outputId,
+      strWidgetName,
+      width,
+      height,
+      package = "gsm.app",
+      ...
+    ),
+    # Can't automatically pick up css dependencies without this.
+    gsmDependencies(strWidgetName, excludes)
+  )
+}

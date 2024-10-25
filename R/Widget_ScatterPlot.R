@@ -74,19 +74,33 @@ Widget_ScatterPlot <- function(
 #' @name Widget_ScatterPlot-shiny
 #'
 #' @keywords internal
-Widget_ScatterPlotOutput <- function(outputId, width = "100%", height = "400px") {
-  htmlwidgets::shinyWidgetOutput(
-    outputId,
+Widget_ScatterPlotOutput <- function(
+  outputId,
+  width = "100%",
+  height = "400px"
+) {
+  gsmWidgetOutput(
     "Widget_ScatterPlot",
+    outputId,
     width,
     height,
-    package = "gsm.app"
+    excludes = c(
+      "addSelectControl",
+      "addWidgetControls",
+      "clickCallback",
+      "getGroups",
+      "getCountries"
+    )
   )
 }
 
 #' @rdname Widget_ScatterPlot-shiny
 #' @keywords internal
-renderWidget_ScatterPlot <- function(expr, env = parent.frame(), quoted = FALSE) {
+renderWidget_ScatterPlot <- function(
+  expr,
+  env = parent.frame(),
+  quoted = FALSE
+) {
   if (!quoted) {
     expr <- substitute(expr)
   } # force quoted

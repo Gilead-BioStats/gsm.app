@@ -22,13 +22,6 @@ mod_StudyOverview_UI <- function(id, dfResults, chrMetrics) {
           Widget_GroupOverviewOutput(
             ns("site_overview_table"),
             height = "100%"
-          ),
-          htmltools::htmlDependency(
-            "rbm-viz-css",
-            "2.1.0",
-            src = "htmlwidgets/lib/rbm-viz-2.1.0",
-            stylesheet = "rbm-viz.css",
-            package = "gsm"
           )
         ),
         id = "study-overview-table-card"

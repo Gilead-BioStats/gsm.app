@@ -63,12 +63,11 @@ Widget_GroupOverview <- function(
 #'
 #' @keywords internal
 Widget_GroupOverviewOutput <- function(outputId, width = "100%", height = "400px") {
-  htmlwidgets::shinyWidgetOutput(
-    outputId,
+  gsmWidgetOutput(
     "Widget_GroupOverview",
+    outputId,
     width,
-    height,
-    package = "gsm.app"
+    height
   )
 }
 
