@@ -31,6 +31,17 @@ gsmApp_UI <- function(
       chrSites,
       intNParticipants,
       tagListSidebar
+    ),
+    header = htmltools::tags$head(gsmApp_favicon())
+  )
+}
+
+gsmApp_favicon <- function() {
+  return(
+    htmltools::tags$link(
+      rel = "icon",
+      type = "image/png",
+      href = gsm.app::favicon_url
     )
   )
 }
