@@ -63,11 +63,21 @@ Widget_GroupOverview <- function(
 #'
 #' @keywords internal
 Widget_GroupOverviewOutput <- function(outputId, width = "100%", height = "100%") {
-  gsmWidgetOutput(
-    "Widget_GroupOverview",
-    outputId,
-    width,
-    height
+  htmltools::tagList(
+    htmlDependency_GroupOverview(),
+    shiny::fluidRow(
+      class = "gy-2",
+      gsmWidgetOutput(
+        "Widget_GroupOverview",
+        outputId,
+        width,
+        height
+      ),
+      htmltools::div(
+        "Click cells for associated risk signal details.",
+        class = "footnote"
+      )
+    )
   )
 }
 
@@ -83,5 +93,34 @@ renderWidget_GroupOverview <- function(expr, env = parent.frame(), quoted = FALS
     env,
     quoted = TRUE,
     cacheHint = NULL
+  )
+}
+
+htmlDependency_GroupOverview <- function() {
+  htmltools::tagList(
+    htmlDependency_Stylesheet("groupOverview.css"),
+    htmlDependency_WidgetInputHelpers(),
+    htmlDependency_GroupOverviewInput()
+  )
+}
+
+#' Group Overview Input JavaScript
+#'
+#' Attach `groupOverviewInput.js` to an app or other HTML exactly once.
+#'
+#' @returns An [htmltools::tagList()] of `html_dependency` objects (see
+#'   [htmltools::htmlDependency()]), so that each will be attached to the Shiny
+#'   app exactly once, regardless how many times they are added.
+#' @keywords internal
+htmlDependency_GroupOverviewInput <- function() {
+  htmltools::tagList(
+    htmlDependency_WidgetInputHelpers(),
+    htmltools::htmlDependency(
+      name = "groupOverviewInput",
+      version = "1.0.0",
+      src = "inputs",
+      package = "gsm.app",
+      script = "groupOverviewInput.js"
+    )
   )
 }
