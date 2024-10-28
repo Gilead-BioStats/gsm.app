@@ -29,7 +29,6 @@
 <url><loc>https://gilead-biostats.github.io/gsm.app/dev/reference/htmlDependency_gtIOjs.html</loc></url>
 <url><loc>https://gilead-biostats.github.io/gsm.app/dev/reference/index.html</loc></url>
 <url><loc>https://gilead-biostats.github.io/gsm.app/dev/reference/make_dfParticipantGroups.html</loc></url>
-<url><loc>https://gilead-biostats.github.io/gsm.app/dev/reference/make_lStudy.html</loc></url>
 <url><loc>https://gilead-biostats.github.io/gsm.app/dev/reference/mod_ActionList_Server.html</loc></url>
 <url><loc>https://gilead-biostats.github.io/gsm.app/dev/reference/mod_ActionList_UI.html</loc></url>
 <url><loc>https://gilead-biostats.github.io/gsm.app/dev/reference/mod_MetricDetails_Server.html</loc></url>
@@ -81,7 +80,6 @@
 <url><loc>https://gilead-biostats.github.io/gsm.app/dev/reference/srvr_rctv_chrParticipantIDs.html</loc></url>
 <url><loc>https://gilead-biostats.github.io/gsm.app/dev/reference/srvr_rctv_lMetric.html</loc></url>
 <url><loc>https://gilead-biostats.github.io/gsm.app/dev/reference/srvr_rctv_lMetric_base.html</loc></url>
-<url><loc>https://gilead-biostats.github.io/gsm.app/dev/reference/temp_subsetLStudy.html</loc></url>
 <url><loc>https://gilead-biostats.github.io/gsm.app/dev/reference/un_ns.html</loc></url>
 <url><loc>https://gilead-biostats.github.io/gsm.app/dev/reference/validate_df.html</loc></url>
 <url><loc>https://gilead-biostats.github.io/gsm.app/dev/reference/validate_dfAnalyticsInput.html</loc></url>

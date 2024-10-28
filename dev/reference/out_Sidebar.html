@@ -40,9 +40,9 @@
     <div class="section level2">
     <h2 id="ref-usage">Usage<a class="anchor" aria-label="anchor" href="#ref-usage"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">out_Sidebar</span><span class="op">(</span></span>
-<span>  <span class="va">lStudy</span>,</span>
+<span>  <span class="va">dfGroups</span>,</span>
+<span>  <span class="va">dfResults</span>,</span>
 <span>  <span class="va">chrMetrics</span>,</span>
-<span>  <span class="va">chrSites</span>,</span>
 <span>  <span class="va">intNParticipants</span>,</span>
 <span>  tagListSidebar <span class="op">=</span> <span class="cn">NULL</span></span>
 <span><span class="op">)</span></span></code></pre></div>
@@ -52,17 +52,18 @@
     <h2 id="arguments">Arguments<a class="anchor" aria-label="anchor" href="#arguments"></a></h2>
 
 
-<dl><dt id="arg-lstudy">lStudy<a class="anchor" aria-label="anchor" href="#arg-lstudy"></a></dt>
-<dd><p><code>list</code> Named list of data describing the overall study.</p></dd>
+<dl><dt id="arg-dfgroups">dfGroups<a class="anchor" aria-label="anchor" href="#arg-dfgroups"></a></dt>
+<dd><p><code>data.frame</code> Group-level metadata dictionary.</p></dd>
+
+
+<dt id="arg-dfresults">dfResults<a class="anchor" aria-label="anchor" href="#arg-dfresults"></a></dt>
+<dd><p><code>data.frame</code> A stacked summary of analysis pipeline output.
+This will be filtered to cases where <code>GroupLevel == "Site"</code>.</p></dd>
 
 
 <dt id="arg-chrmetrics">chrMetrics<a class="anchor" aria-label="anchor" href="#arg-chrmetrics"></a></dt>
 <dd><p><code>character</code> A named vector of MetricIDs, where the names
 are the full Metric.</p></dd>
-
-
-<dt id="arg-chrsites">chrSites<a class="anchor" aria-label="anchor" href="#arg-chrsites"></a></dt>
-<dd><p><code>character</code> A vector of sites available in the study.</p></dd>
 
 
 <dt id="arg-intnparticipants">intNParticipants<a class="anchor" aria-label="anchor" href="#arg-intnparticipants"></a></dt>
