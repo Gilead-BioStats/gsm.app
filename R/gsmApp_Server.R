@@ -28,8 +28,10 @@ gsmApp_Server <- function(
     }
 
     # Reset ----
-    dfParticipantGroups <- make_dfParticipantGroups(dfAnalyticsInput)
-    srvr_Reset(dfMetrics, dfParticipantGroups, reactive(input$reset), session)
+    observe({
+      session$reload()
+    }) %>%
+      bindEvent(input$reset)
 
     # Shared Reactives ----
 
@@ -51,6 +53,7 @@ gsmApp_Server <- function(
       rctv_InputSite,
       session
     )
+    dfParticipantGroups <- make_dfParticipantGroups(dfAnalyticsInput)
     rctv_chrParticipantIDs <- srvr_rctv_chrParticipantIDs(
       dfParticipantGroups,
       rctv_InputSite

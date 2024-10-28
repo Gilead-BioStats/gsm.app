@@ -333,10 +333,4 @@ test_that("run_gsm_app populates Participant Details", {
     name = "sd",
     screenshot_args = list(selector = "#participant_details-domain-card")
   )
-
-  # Reset. Here we screenshot the whole app because we want to see *everything*
-  # reset.
-  app$click("reset")
-  app$wait_for_idle()
-  app$expect_values(export = TRUE, name = "reset")
 })
