@@ -23,7 +23,7 @@ Imports:
     DT,
     fontawesome,
     glue,
-    gsm (>= 2.1.0),
+    gsm (>= 2.1.1),
     gt,
     htmltools,
     htmlwidgets,

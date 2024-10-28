@@ -15,7 +15,6 @@ gsmApp_UI <- function(
 ) {
   # Transform data for use in lower-level functions. ----
   intNParticipants <- length(unique(dfAnalyticsInput$SubjectID))
-  lStudy <- make_lStudy(dfGroups, dfResults)
   chrMetrics <- rlang::set_names(dfMetrics$MetricID, dfMetrics$Metric)
   chrSites <- sort(unique(dfGroups$GroupID[dfGroups$GroupLevel == "Site"]))
 
@@ -26,9 +25,9 @@ gsmApp_UI <- function(
     fillable = FALSE,
     !!!out_MainTabs(dfResults = dfResults, chrMetrics = chrMetrics),
     sidebar = out_Sidebar(
-      lStudy,
+      dfGroups,
+      dfResults,
       chrMetrics,
-      chrSites,
       intNParticipants,
       tagListSidebar
     ),
