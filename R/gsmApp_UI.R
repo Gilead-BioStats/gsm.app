@@ -32,16 +32,6 @@ gsmApp_UI <- function(
       intNParticipants,
       tagListSidebar
     ),
-    header = htmltools::tags$head(gsmApp_favicon())
-  )
-}
-
-gsmApp_favicon <- function() {
-  return(
-    htmltools::tags$link(
-      rel = "icon",
-      type = "image/png",
-      href = gsm.app::favicon_url
-    )
+    header = favawesome_icon("angles-up", fill = colorScheme("red"))
   )
 }
