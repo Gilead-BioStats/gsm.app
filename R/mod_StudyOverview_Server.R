@@ -28,12 +28,12 @@ mod_StudyOverview_Server <- function(
     )
     shiny::observe({
       rctv_strSelectedGroupID(
-        l_rctvs_table$strGroupID()
+        l_rctvs_table$rctv_strGroupID()
       )
     })
     shiny::observe({
       rctv_strSelectedMetricID(
-        l_rctvs_table$strMetricID()
+        l_rctvs_table$rctv_strMetricID()
       )
     })
 
@@ -57,7 +57,6 @@ mod_StudyOverview_Server <- function(
         rctv_strSelectedMetricID_plot()
       )
     })
-
 
     return(
       list(

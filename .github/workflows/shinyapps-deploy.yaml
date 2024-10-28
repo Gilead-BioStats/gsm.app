@@ -101,11 +101,6 @@ jobs:
           cat("APPNAME=", appname, "\n", sep = "", file = Sys.getenv("GITHUB_ENV"), append = TRUE)
         shell: Rscript {0}
 
-      - name: Replace favawesome_icon
-        if: env.DEPLOYMENT_TYPE == 'pr'
-        run: |
-          sed -i 's/favawesome_icon("angles-up")/favawesome_icon("clipboard-question")/' R/gsmApp_UI.R
-
       - name: Push to shinyapps.io
         env:
           SHINYAPPSIO_TOKEN: ${{ secrets.SHINYAPPSIO_TOKEN }}

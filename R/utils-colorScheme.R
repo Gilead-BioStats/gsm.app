@@ -1,3 +1,11 @@
+#' gsm Color Scheme
+#'
+#' Eventually this should have a single home, but it doesn't make sense yet for
+#' anything to export it, so it exists in both gsm and gsm.app.
+#'
+#' @inheritParams shared-params
+#' @returns The hex code of a color.
+#' @keywords internal
 colorScheme <- function(
   strColorName = c("gray", "green", "amber", "red"),
   strColorFamily = c("dark", "light")

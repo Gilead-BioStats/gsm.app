@@ -48,6 +48,8 @@
 #' @param intKRIColorCount `integer` A named vector of counts by color.
 #' @param intNParticipants `integer` The number of unique participants
 #'   (subjects) in the study.
+#' @param intRed `integer` The number of sites with at least one red flag.
+#' @param intAmber `integer` The number of sites with at least one amber flag.
 #' @param lMetric `list` Named list of data describing a single metric, as well
 #'   as things like which group is selected.
 #' @param lParticipantMetadata `list` Named list of data describing a single
@@ -71,6 +73,8 @@
 #' @param rctv_lglState `reactive logical` A [shiny::reactive()]] object that
 #'   returns a Boolean value indicating whether something is "off" (`FALSE`) or
 #'   "on" (`TRUE`).
+#' @param rctv_strGroupSubset `reactive character` A [shiny::reactive()] object
+#'   that returns the selected subset of groups to include in the table.
 #' @param rctv_strMetricID `reactive character` A [shiny::reactive()] object
 #'   that returns the selected `MetricID`.
 #' @param rctv_strName `reactive character` A [shiny::reactive()] object that
@@ -89,12 +93,24 @@
 #'   the calling function if the calling function also has a `strArg` argument.
 #' @param strClass `character` A descriptive label for this type of error, in
 #'   lower_snake_case.
-#' @param strColor `character` The target color to report about.
+#' @param strColorFamily `character` Whether to load the `"dark"` version of
+#'   this color, or the `"light"` version. Default: `"dark"`.
+#' @param strColorName `character` The target color to report about.
 #' @param strColorCode `character` The hex code (such as `"#FFFFFF"`) for a
 #'   color.
 #' @param strContainerID `character` The (namespaced) ID of the target container
 #'   (usually a div).
 #' @param strGroupID `character` A `GroupID` to focus on.
+#' @param strGroupLabelKey `character` Value for the group label key. Default:
+#'   `"InvestigatorLastName"`.
+#' @param strGroupLevel `character` Value for the group level. Default: `NULL`
+#'   and taken from `dfMetrics$GroupLevel` if available.
+#' @param strGroupSubset `character` Subset of groups to include in the table.
+#'   Default: `"red"`. Options:
+#' - `"all"`: All groups.
+#' - `"red"`: Groups with 1+ red flags.
+#' - `"red/amber"`: Groups with 1+ red/amber flag.
+#' - `"amber"`: Groups with 1+ amber flag.
 #' @param strInputID `character` An ID to use for the Shiny input created by
 #'   this module or used by this JavaScript.
 #' @param strLabel `character` The label of a field.

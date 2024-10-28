@@ -1,3 +1,9 @@
+#' Group Overview Module UI
+#'
+#' @inheritParams shared-params
+#' @returns A [bslib::card()] with a [mod_RAGPillSet_UI()] and a corresponding
+#'   [Widget_GroupOverviewOutput()].
+#' @keywords internal
 mod_GroupOverview_UI = function(id, dfResults) {
   ns <- NS(id)
   bslib::card(

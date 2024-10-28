@@ -1,3 +1,12 @@
+#' Group Overview Widget
+#'
+#' @description `r lifecycle::badge("stable")`
+#'
+#' A widget that generates a group overview table of group-level metric results
+#' across one or more metrics.
+#'
+#' @inheritParams shared-params
+#' @keywords internal
 Widget_GroupOverview <- function(
   id,
   dfResults,
@@ -13,7 +22,10 @@ Widget_GroupOverview <- function(
   }
 
   if (is.null(strGroupLevel) || length(strGroupLevel) != 1) {
-    stop("A single group level must be provided to create group-level output.")
+    gsmapp_abort(
+      "A single group level must be provided to create group-level output.",
+      strClass = "missing_strGroupLevel"
+    )
   }
 
   input <- list(
@@ -96,6 +108,15 @@ renderWidget_GroupOverview <- function(expr, env = parent.frame(), quoted = FALS
   )
 }
 
+#' GroupOverview Dependencies
+#'
+#' Attach CSS and JavaScript necessary for GroupOverview to an app or other HTML
+#' exactly once.
+#'
+#' @returns An [htmltools::tagList()] of `html_dependency` objects (see
+#'   [htmltools::htmlDependency()]), so that each will be attached to the Shiny
+#'   app exactly once, regardless how many times they are added.
+#' @keywords internal
 htmlDependency_GroupOverview <- function() {
   htmltools::tagList(
     htmlDependency_Stylesheet("groupOverview.css"),

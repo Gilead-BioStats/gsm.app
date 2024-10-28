@@ -1,7 +1,15 @@
-mod_RAGPillSet_UI <- function(id,
-                              intRed = NULL,
-                              intAmber = NULL,
-                              strLabel = "KRIs") {
+#' Clickable KRI Count Pills
+#'
+#' @inheritParams shared-params
+#' @returns A [htmltools::tagList()] of [mod_TogglePill_UI()] items, one for red
+#'   flags, and one for amber flags.
+#' @keywords internal
+mod_RAGPillSet_UI <- function(
+  id,
+  intRed = NULL,
+  intAmber = NULL,
+  strLabel = "KRIs"
+) {
   ns <- shiny::NS(id)
   intRed <- intRed %||% 0L
   intAmber <- intAmber %||% 0L
@@ -19,32 +27,4 @@ mod_RAGPillSet_UI <- function(id,
     ),
     id = id
   )
-}
-
-mod_RAGPillSet_Server <- function(id, rctv_strGroupSubset = reactive("red")) {
-  moduleServer(id, function(input, output, session) {
-    rctv_lglRed <- shiny::reactive({
-      stringr::str_detect(rctv_strGroupSubset(), "red")
-    })
-    rctv_lglAmber <- shiny::reactive({
-      stringr::str_detect(rctv_strGroupSubset(), "amber")
-    })
-    rctv_lglRedState <- mod_TogglePill_Server(
-      "red",
-      rctv_lglState = rctv_lglRed
-    )
-    rctv_lglAmberState <- mod_TogglePill_Server(
-      "amber",
-      rctv_lglAmber
-    )
-    rctv_strGroupSubset_internal <- shiny::reactive({
-      states <- c("red", "amber")
-      selected_states <- states[c(rctv_lglRedState(), rctv_lglAmberState())]
-      if (length(selected_states)) {
-        return(glue::glue_collapse(selected_states, sep = "/"))
-      }
-      return("all")
-    })
-    return(rctv_strGroupSubset_internal)
-  })
 }

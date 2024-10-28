@@ -67,6 +67,10 @@ of the main app server function.}
 \item{intNParticipants}{\code{integer} The number of unique participants
 (subjects) in the study.}
 
+\item{intRed}{\code{integer} The number of sites with at least one red flag.}
+
+\item{intAmber}{\code{integer} The number of sites with at least one amber flag.}
+
 \item{lMetric}{\code{list} Named list of data describing a single metric, as well
 as things like which group is selected.}
 
@@ -100,6 +104,9 @@ each metric that is available.}
 returns a Boolean value indicating whether something is "off" (\code{FALSE}) or
 "on" (\code{TRUE}).}
 
+\item{rctv_strGroupSubset}{\verb{reactive character} A \code{\link[shiny:reactive]{shiny::reactive()}} object
+that returns the selected subset of groups to include in the table.}
+
 \item{rctv_strMetricID}{\verb{reactive character} A \code{\link[shiny:reactive]{shiny::reactive()}} object
 that returns the selected \code{MetricID}.}
 
@@ -126,7 +133,10 @@ the calling function if the calling function also has a \code{strArg} argument.}
 \item{strClass}{\code{character} A descriptive label for this type of error, in
 lower_snake_case.}
 
-\item{strColor}{\code{character} The target color to report about.}
+\item{strColorFamily}{\code{character} Whether to load the \code{"dark"} version of
+this color, or the \code{"light"} version. Default: \code{"dark"}.}
+
+\item{strColorName}{\code{character} The target color to report about.}
 
 \item{strColorCode}{\code{character} The hex code (such as \code{"#FFFFFF"}) for a
 color.}
@@ -135,6 +145,21 @@ color.}
 (usually a div).}
 
 \item{strGroupID}{\code{character} A \code{GroupID} to focus on.}
+
+\item{strGroupLabelKey}{\code{character} Value for the group label key. Default:
+\code{"InvestigatorLastName"}.}
+
+\item{strGroupLevel}{\code{character} Value for the group level. Default: \code{NULL}
+and taken from \code{dfMetrics$GroupLevel} if available.}
+
+\item{strGroupSubset}{\code{character} Subset of groups to include in the table.
+Default: \code{"red"}. Options:
+\itemize{
+\item \code{"all"}: All groups.
+\item \code{"red"}: Groups with 1+ red flags.
+\item \code{"red/amber"}: Groups with 1+ red/amber flag.
+\item \code{"amber"}: Groups with 1+ amber flag.
+}}
 
 \item{strInputID}{\code{character} An ID to use for the Shiny input created by
 this module or used by this JavaScript.}

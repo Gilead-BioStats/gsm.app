@@ -1,3 +1,10 @@
+#' Group Overview Module Server
+#'
+#' @inheritParams shared-params
+#' @returns A list of two [shiny::reactiveVal()] values: `rctv_strGroupID` (the
+#'   selected group, if any) and `rctv_strMetricID` (the selected metric, if
+#'   any).
+#' @keywords internal
 mod_GroupOverview_Server <- function(
   id,
   dfResults,
@@ -45,8 +52,8 @@ mod_GroupOverview_Server <- function(
     })
 
     return(list(
-      strGroupID = rctv_strGroupID,
-      strMetricID = rctv_strMetricID
+      rctv_strGroupID = rctv_strGroupID,
+      rctv_strMetricID = rctv_strMetricID
     ))
   })
 }

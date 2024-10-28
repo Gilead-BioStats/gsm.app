@@ -1,7 +1,6 @@
 #' Study Overview UI
 #'
 #' @inheritParams shared-params
-#'
 #' @keywords internal
 mod_StudyOverview_UI <- function(id, dfResults, chrMetrics) {
   ns <- NS(id)
