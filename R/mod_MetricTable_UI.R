@@ -18,7 +18,7 @@ mod_MetricTable_UI <- function(id) {
 #'
 #' @param id
 #'
-#' @return An [htmltools::tagList()] containing the dependencies needed to use
+#' @returns An [htmltools::tagList()] containing the dependencies needed to use
 #'   gt as both an input and an output, and a [shiny::htmlOutput()] with class
 #'   "gtIO".
 #' @keywords internal
@@ -63,7 +63,6 @@ htmlDependency_gtIOjs <- function() {
     script = "gtIO.js"
   )
 }
-
 
 #' gt Input JavaScript
 #'

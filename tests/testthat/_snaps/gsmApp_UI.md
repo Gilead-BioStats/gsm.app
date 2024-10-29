@@ -47,13 +47,16 @@
                       </ul>
                       <div class="tab-content" data-tabsetid="XXXX">
                         <div class="tab-pane active" data-value="Overview Table" id="tab-XXXX-1">
-                          <div class="card bslib-card bslib-mb-spacing bslib-card-input html-fill-item html-fill-container" data-bslib-card-init data-full-screen="false" data-require-bs-caller="card()" data-require-bs-version="5" id="study-overview-table-card">
+                          <div class="card bslib-card bslib-mb-spacing bslib-card-input html-fill-item html-fill-container" data-bslib-card-init data-full-screen="false" data-require-bs-caller="card()" data-require-bs-version="5" id="study_overview-table">
                             <div class="card-body bslib-gap-spacing html-fill-item html-fill-container" style="margin-top:auto;margin-bottom:auto;flex:1 1 auto;">
-                              <div>
-                                <span class="badge badge-red rounded-pill text-dark">3 Red KRIs</span>
-                                <span class="badge badge-amber rounded-pill text-dark">3 Amber KRIs</span>
+                              <div id="study_overview-table-kri_counts">
+                                <a class="action-button badge rounded-pill toggle-pill text-dark fs-6 p-2" href="#" id="study_overview-table-kri_counts-red-toggle_pill" style="background-color: #FF5859; opacity: 0.5;">3 Red KRIs</a>
+                                <a class="action-button badge rounded-pill toggle-pill text-dark fs-6 p-2" href="#" id="study_overview-table-kri_counts-amber-toggle_pill" style="background-color: #FEAA02; opacity: 0.5;">3 Amber KRIs</a>
                               </div>
-                              <div class="Widget_GroupOverview html-widget html-widget-output shiny-report-size html-fill-item" id="study_overview-site_overview_table" style="width:100%;height:100%;"></div>
+                              <div class="row gy-2">
+                                <div class="Widget_GroupOverview html-widget html-widget-output shiny-report-size html-fill-item" id="study_overview-table-group_overview" style="width:100%;height:100%;"></div>
+                                <div class="footnote">Click cells for associated risk signal details.</div>
+                              </div>
                             </div>
                             <bslib-tooltip placement="auto" bsOptions="[]" data-require-bs-version="5" data-require-bs-caller="tooltip()">
                               <template>Expand</template>

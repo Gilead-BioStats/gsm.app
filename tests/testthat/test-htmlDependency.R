@@ -4,7 +4,7 @@ test_that("htmlDependency_Default_Stylesheet attaches the stylesheet", {
   expected_result <- list(
     name = "defaultStyles",
     version = "1.0.0",
-    src = list(file = "www"),
+    src = list(file = "css"),
     meta = NULL,
     script = NULL,
     stylesheet = "defaultStyles.css",

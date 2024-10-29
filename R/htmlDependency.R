@@ -26,7 +26,7 @@ htmlDependency_Stylesheet <- function(
   htmltools::htmlDependency(
     name = name,
     version = version,
-    src = "www",
+    src = "css",
     package = "gsm.app",
     stylesheet = filename
   )

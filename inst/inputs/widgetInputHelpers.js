@@ -1,12 +1,13 @@
 /**
- * Finds a plot widget within the given scope using the provided class name.
+ * Finds a widget within the given scope using the provided class name.
  *
- * @param {HTMLElement} scope - The scope in which to search for the plot widget.
- * @param {string} className  - The class name for the specific plot widget.
+ * @param {HTMLElement} scope  - The scope in which to search for the widget.
+ * @param {string} widgetName  - The name of the widget. such as
+ *                               "Widget_ScatterPlot".
  * @returns {jQuery} The jQuery object containing the plot widget.
  */
-function findWidgetPlot(scope, className) {
-  return $(scope).find(className);
+function findWidget(scope, widgetName) {
+  return $(scope).find('.' + widgetName);
 }
 
 /**
@@ -41,13 +42,14 @@ function setWidgetPlotValue(el, value) {
 }
 
 /**
- * Subscribes to plot widget changes.
+ * Subscribes to widget changes.
  *
- * @param {HTMLElement} el       - The element containing the plot.
- * @param {function}    callback - The callback to trigger when the plot changes.
+ * @param {HTMLElement} el       - The element containing the widget.
+ * @param {function}    callback - The callback to trigger when the widget
+ *                                 changes.
  */
-function subscribeWidgetPlot(el, callback) {
-  $(el).on('widgetPlot-value-changed', function() {
+function subscribeWidget(el, callback) {
+  $(el).on('widget-value-changed', function() {
     callback();
   });
 }
@@ -55,7 +57,7 @@ function subscribeWidgetPlot(el, callback) {
 /**
  * Unsubscribes from plot widget changes.
  *
- * @param {HTMLElement} el - The element containing the plot.
+ * @param {HTMLElement} el   - The element containing the plot.
  * @param {string} namespace - The event namespace for the specific plot type.
  */
 function unsubscribeWidgetPlot(el, namespace) {
