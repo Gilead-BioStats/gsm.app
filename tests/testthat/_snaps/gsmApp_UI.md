@@ -68,10 +68,10 @@
                         <div class="tab-pane" data-value="Scatter Plots" id="tab-XXXX-2">
                           <div class="bslib-grid bslib-mb-spacing html-fill-item" data-require-bs-caller="layout_column_wrap()" data-require-bs-version="5" id="study_overview-scatter" style="grid-template-columns:repeat(2, minmax(0, 1fr));grid-auto-rows:1fr;--bslib-grid-height:auto;--bslib-grid-height-mobile:auto;">
                             <div class="bslib-grid-item bslib-gap-spacing html-fill-container">
-                              <div class="card bslib-card bslib-mb-spacing bslib-card-input html-fill-item html-fill-container chart" data-bslib-card-init data-full-screen="false" data-require-bs-caller="card()" data-require-bs-version="5" id="study_overview-scatter-kri0001">
+                              <div class="card bslib-card bslib-mb-spacing bslib-card-input html-fill-item html-fill-container chart" data-bslib-card-init data-full-screen="false" data-require-bs-caller="card()" data-require-bs-version="5" id="study_overview-scatter-Analysis_kri0001">
                                 <div class="card-header">Adverse Event Rate</div>
                                 <div class="card-body bslib-gap-spacing html-fill-item html-fill-container" style="margin-top:auto;margin-bottom:auto;flex:1 1 auto;">
-                                  <div class="Widget_ScatterPlot html-widget html-widget-output shiny-report-size html-fill-item" id="study_overview-scatter-kri0001-plot" style="width:100%;height:400px;"></div>
+                                  <div class="Widget_ScatterPlot html-widget html-widget-output shiny-report-size html-fill-item" id="study_overview-scatter-Analysis_kri0001-plot" style="width:100%;height:400px;"></div>
                                 </div>
                                 <bslib-tooltip placement="auto" bsOptions="[]" data-require-bs-version="5" data-require-bs-caller="tooltip()">
                                   <template>Expand</template>
@@ -81,10 +81,127 @@
                               </div>
                             </div>
                             <div class="bslib-grid-item bslib-gap-spacing html-fill-container">
-                              <div class="card bslib-card bslib-mb-spacing bslib-card-input html-fill-item html-fill-container chart" data-bslib-card-init data-full-screen="false" data-require-bs-caller="card()" data-require-bs-version="5" id="study_overview-scatter-kri0002">
+                              <div class="card bslib-card bslib-mb-spacing bslib-card-input html-fill-item html-fill-container chart" data-bslib-card-init data-full-screen="false" data-require-bs-caller="card()" data-require-bs-version="5" id="study_overview-scatter-Analysis_kri0002">
                                 <div class="card-header">Serious Adverse Event Rate</div>
                                 <div class="card-body bslib-gap-spacing html-fill-item html-fill-container" style="margin-top:auto;margin-bottom:auto;flex:1 1 auto;">
-                                  <div class="Widget_ScatterPlot html-widget html-widget-output shiny-report-size html-fill-item" id="study_overview-scatter-kri0002-plot" style="width:100%;height:400px;"></div>
+                                  <div class="Widget_ScatterPlot html-widget html-widget-output shiny-report-size html-fill-item" id="study_overview-scatter-Analysis_kri0002-plot" style="width:100%;height:400px;"></div>
+                                </div>
+                                <bslib-tooltip placement="auto" bsOptions="[]" data-require-bs-version="5" data-require-bs-caller="tooltip()">
+                                  <template>Expand</template>
+                                  <button aria-expanded="false" aria-label="Expand card" class="bslib-full-screen-enter badge rounded-pill"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" style="height:1em;width:1em;fill:currentColor;" aria-hidden="true" role="img"><path d="M20 5C20 4.4 19.6 4 19 4H13C12.4 4 12 3.6 12 3C12 2.4 12.4 2 13 2H21C21.6 2 22 2.4 22 3V11C22 11.6 21.6 12 21 12C20.4 12 20 11.6 20 11V5ZM4 19C4 19.6 4.4 20 5 20H11C11.6 20 12 20.4 12 21C12 21.6 11.6 22 11 22H3C2.4 22 2 21.6 2 21V13C2 12.4 2.4 12 3 12C3.6 12 4 12.4 4 13V19Z"/></svg></button>
+                                </bslib-tooltip>
+                                <script data-bslib-card-init>bslib.Card.initializeAllCards();</script>
+                              </div>
+                            </div>
+                            <div class="bslib-grid-item bslib-gap-spacing html-fill-container">
+                              <div class="card bslib-card bslib-mb-spacing bslib-card-input html-fill-item html-fill-container chart" data-bslib-card-init data-full-screen="false" data-require-bs-caller="card()" data-require-bs-version="5" id="study_overview-scatter-Analysis_kri0003">
+                                <div class="card-header">Non-Important Protocol Deviation Rate</div>
+                                <div class="card-body bslib-gap-spacing html-fill-item html-fill-container" style="margin-top:auto;margin-bottom:auto;flex:1 1 auto;">
+                                  <div class="Widget_ScatterPlot html-widget html-widget-output shiny-report-size html-fill-item" id="study_overview-scatter-Analysis_kri0003-plot" style="width:100%;height:400px;"></div>
+                                </div>
+                                <bslib-tooltip placement="auto" bsOptions="[]" data-require-bs-version="5" data-require-bs-caller="tooltip()">
+                                  <template>Expand</template>
+                                  <button aria-expanded="false" aria-label="Expand card" class="bslib-full-screen-enter badge rounded-pill"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" style="height:1em;width:1em;fill:currentColor;" aria-hidden="true" role="img"><path d="M20 5C20 4.4 19.6 4 19 4H13C12.4 4 12 3.6 12 3C12 2.4 12.4 2 13 2H21C21.6 2 22 2.4 22 3V11C22 11.6 21.6 12 21 12C20.4 12 20 11.6 20 11V5ZM4 19C4 19.6 4.4 20 5 20H11C11.6 20 12 20.4 12 21C12 21.6 11.6 22 11 22H3C2.4 22 2 21.6 2 21V13C2 12.4 2.4 12 3 12C3.6 12 4 12.4 4 13V19Z"/></svg></button>
+                                </bslib-tooltip>
+                                <script data-bslib-card-init>bslib.Card.initializeAllCards();</script>
+                              </div>
+                            </div>
+                            <div class="bslib-grid-item bslib-gap-spacing html-fill-container">
+                              <div class="card bslib-card bslib-mb-spacing bslib-card-input html-fill-item html-fill-container chart" data-bslib-card-init data-full-screen="false" data-require-bs-caller="card()" data-require-bs-version="5" id="study_overview-scatter-Analysis_kri0004">
+                                <div class="card-header">Important Protocol Deviation Rate</div>
+                                <div class="card-body bslib-gap-spacing html-fill-item html-fill-container" style="margin-top:auto;margin-bottom:auto;flex:1 1 auto;">
+                                  <div class="Widget_ScatterPlot html-widget html-widget-output shiny-report-size html-fill-item" id="study_overview-scatter-Analysis_kri0004-plot" style="width:100%;height:400px;"></div>
+                                </div>
+                                <bslib-tooltip placement="auto" bsOptions="[]" data-require-bs-version="5" data-require-bs-caller="tooltip()">
+                                  <template>Expand</template>
+                                  <button aria-expanded="false" aria-label="Expand card" class="bslib-full-screen-enter badge rounded-pill"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" style="height:1em;width:1em;fill:currentColor;" aria-hidden="true" role="img"><path d="M20 5C20 4.4 19.6 4 19 4H13C12.4 4 12 3.6 12 3C12 2.4 12.4 2 13 2H21C21.6 2 22 2.4 22 3V11C22 11.6 21.6 12 21 12C20.4 12 20 11.6 20 11V5ZM4 19C4 19.6 4.4 20 5 20H11C11.6 20 12 20.4 12 21C12 21.6 11.6 22 11 22H3C2.4 22 2 21.6 2 21V13C2 12.4 2.4 12 3 12C3.6 12 4 12.4 4 13V19Z"/></svg></button>
+                                </bslib-tooltip>
+                                <script data-bslib-card-init>bslib.Card.initializeAllCards();</script>
+                              </div>
+                            </div>
+                            <div class="bslib-grid-item bslib-gap-spacing html-fill-container">
+                              <div class="card bslib-card bslib-mb-spacing bslib-card-input html-fill-item html-fill-container chart" data-bslib-card-init data-full-screen="false" data-require-bs-caller="card()" data-require-bs-version="5" id="study_overview-scatter-Analysis_kri0005">
+                                <div class="card-header">Grade 3+ Lab Abnormality Rate</div>
+                                <div class="card-body bslib-gap-spacing html-fill-item html-fill-container" style="margin-top:auto;margin-bottom:auto;flex:1 1 auto;">
+                                  <div class="Widget_ScatterPlot html-widget html-widget-output shiny-report-size html-fill-item" id="study_overview-scatter-Analysis_kri0005-plot" style="width:100%;height:400px;"></div>
+                                </div>
+                                <bslib-tooltip placement="auto" bsOptions="[]" data-require-bs-version="5" data-require-bs-caller="tooltip()">
+                                  <template>Expand</template>
+                                  <button aria-expanded="false" aria-label="Expand card" class="bslib-full-screen-enter badge rounded-pill"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" style="height:1em;width:1em;fill:currentColor;" aria-hidden="true" role="img"><path d="M20 5C20 4.4 19.6 4 19 4H13C12.4 4 12 3.6 12 3C12 2.4 12.4 2 13 2H21C21.6 2 22 2.4 22 3V11C22 11.6 21.6 12 21 12C20.4 12 20 11.6 20 11V5ZM4 19C4 19.6 4.4 20 5 20H11C11.6 20 12 20.4 12 21C12 21.6 11.6 22 11 22H3C2.4 22 2 21.6 2 21V13C2 12.4 2.4 12 3 12C3.6 12 4 12.4 4 13V19Z"/></svg></button>
+                                </bslib-tooltip>
+                                <script data-bslib-card-init>bslib.Card.initializeAllCards();</script>
+                              </div>
+                            </div>
+                            <div class="bslib-grid-item bslib-gap-spacing html-fill-container">
+                              <div class="card bslib-card bslib-mb-spacing bslib-card-input html-fill-item html-fill-container chart" data-bslib-card-init data-full-screen="false" data-require-bs-caller="card()" data-require-bs-version="5" id="study_overview-scatter-Analysis_kri0006">
+                                <div class="card-header">Study Discontinuation Rate</div>
+                                <div class="card-body bslib-gap-spacing html-fill-item html-fill-container" style="margin-top:auto;margin-bottom:auto;flex:1 1 auto;">
+                                  <div class="Widget_ScatterPlot html-widget html-widget-output shiny-report-size html-fill-item" id="study_overview-scatter-Analysis_kri0006-plot" style="width:100%;height:400px;"></div>
+                                </div>
+                                <bslib-tooltip placement="auto" bsOptions="[]" data-require-bs-version="5" data-require-bs-caller="tooltip()">
+                                  <template>Expand</template>
+                                  <button aria-expanded="false" aria-label="Expand card" class="bslib-full-screen-enter badge rounded-pill"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" style="height:1em;width:1em;fill:currentColor;" aria-hidden="true" role="img"><path d="M20 5C20 4.4 19.6 4 19 4H13C12.4 4 12 3.6 12 3C12 2.4 12.4 2 13 2H21C21.6 2 22 2.4 22 3V11C22 11.6 21.6 12 21 12C20.4 12 20 11.6 20 11V5ZM4 19C4 19.6 4.4 20 5 20H11C11.6 20 12 20.4 12 21C12 21.6 11.6 22 11 22H3C2.4 22 2 21.6 2 21V13C2 12.4 2.4 12 3 12C3.6 12 4 12.4 4 13V19Z"/></svg></button>
+                                </bslib-tooltip>
+                                <script data-bslib-card-init>bslib.Card.initializeAllCards();</script>
+                              </div>
+                            </div>
+                            <div class="bslib-grid-item bslib-gap-spacing html-fill-container">
+                              <div class="card bslib-card bslib-mb-spacing bslib-card-input html-fill-item html-fill-container chart" data-bslib-card-init data-full-screen="false" data-require-bs-caller="card()" data-require-bs-version="5" id="study_overview-scatter-Analysis_kri0007">
+                                <div class="card-header">Treatment Discontinuation Rate</div>
+                                <div class="card-body bslib-gap-spacing html-fill-item html-fill-container" style="margin-top:auto;margin-bottom:auto;flex:1 1 auto;">
+                                  <div class="Widget_ScatterPlot html-widget html-widget-output shiny-report-size html-fill-item" id="study_overview-scatter-Analysis_kri0007-plot" style="width:100%;height:400px;"></div>
+                                </div>
+                                <bslib-tooltip placement="auto" bsOptions="[]" data-require-bs-version="5" data-require-bs-caller="tooltip()">
+                                  <template>Expand</template>
+                                  <button aria-expanded="false" aria-label="Expand card" class="bslib-full-screen-enter badge rounded-pill"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" style="height:1em;width:1em;fill:currentColor;" aria-hidden="true" role="img"><path d="M20 5C20 4.4 19.6 4 19 4H13C12.4 4 12 3.6 12 3C12 2.4 12.4 2 13 2H21C21.6 2 22 2.4 22 3V11C22 11.6 21.6 12 21 12C20.4 12 20 11.6 20 11V5ZM4 19C4 19.6 4.4 20 5 20H11C11.6 20 12 20.4 12 21C12 21.6 11.6 22 11 22H3C2.4 22 2 21.6 2 21V13C2 12.4 2.4 12 3 12C3.6 12 4 12.4 4 13V19Z"/></svg></button>
+                                </bslib-tooltip>
+                                <script data-bslib-card-init>bslib.Card.initializeAllCards();</script>
+                              </div>
+                            </div>
+                            <div class="bslib-grid-item bslib-gap-spacing html-fill-container">
+                              <div class="card bslib-card bslib-mb-spacing bslib-card-input html-fill-item html-fill-container chart" data-bslib-card-init data-full-screen="false" data-require-bs-caller="card()" data-require-bs-version="5" id="study_overview-scatter-Analysis_kri0008">
+                                <div class="card-header">Query Rate</div>
+                                <div class="card-body bslib-gap-spacing html-fill-item html-fill-container" style="margin-top:auto;margin-bottom:auto;flex:1 1 auto;">
+                                  <div class="Widget_ScatterPlot html-widget html-widget-output shiny-report-size html-fill-item" id="study_overview-scatter-Analysis_kri0008-plot" style="width:100%;height:400px;"></div>
+                                </div>
+                                <bslib-tooltip placement="auto" bsOptions="[]" data-require-bs-version="5" data-require-bs-caller="tooltip()">
+                                  <template>Expand</template>
+                                  <button aria-expanded="false" aria-label="Expand card" class="bslib-full-screen-enter badge rounded-pill"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" style="height:1em;width:1em;fill:currentColor;" aria-hidden="true" role="img"><path d="M20 5C20 4.4 19.6 4 19 4H13C12.4 4 12 3.6 12 3C12 2.4 12.4 2 13 2H21C21.6 2 22 2.4 22 3V11C22 11.6 21.6 12 21 12C20.4 12 20 11.6 20 11V5ZM4 19C4 19.6 4.4 20 5 20H11C11.6 20 12 20.4 12 21C12 21.6 11.6 22 11 22H3C2.4 22 2 21.6 2 21V13C2 12.4 2.4 12 3 12C3.6 12 4 12.4 4 13V19Z"/></svg></button>
+                                </bslib-tooltip>
+                                <script data-bslib-card-init>bslib.Card.initializeAllCards();</script>
+                              </div>
+                            </div>
+                            <div class="bslib-grid-item bslib-gap-spacing html-fill-container">
+                              <div class="card bslib-card bslib-mb-spacing bslib-card-input html-fill-item html-fill-container chart" data-bslib-card-init data-full-screen="false" data-require-bs-caller="card()" data-require-bs-version="5" id="study_overview-scatter-Analysis_kri0009">
+                                <div class="card-header">Outstanding Query Rate</div>
+                                <div class="card-body bslib-gap-spacing html-fill-item html-fill-container" style="margin-top:auto;margin-bottom:auto;flex:1 1 auto;">
+                                  <div class="Widget_ScatterPlot html-widget html-widget-output shiny-report-size html-fill-item" id="study_overview-scatter-Analysis_kri0009-plot" style="width:100%;height:400px;"></div>
+                                </div>
+                                <bslib-tooltip placement="auto" bsOptions="[]" data-require-bs-version="5" data-require-bs-caller="tooltip()">
+                                  <template>Expand</template>
+                                  <button aria-expanded="false" aria-label="Expand card" class="bslib-full-screen-enter badge rounded-pill"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" style="height:1em;width:1em;fill:currentColor;" aria-hidden="true" role="img"><path d="M20 5C20 4.4 19.6 4 19 4H13C12.4 4 12 3.6 12 3C12 2.4 12.4 2 13 2H21C21.6 2 22 2.4 22 3V11C22 11.6 21.6 12 21 12C20.4 12 20 11.6 20 11V5ZM4 19C4 19.6 4.4 20 5 20H11C11.6 20 12 20.4 12 21C12 21.6 11.6 22 11 22H3C2.4 22 2 21.6 2 21V13C2 12.4 2.4 12 3 12C3.6 12 4 12.4 4 13V19Z"/></svg></button>
+                                </bslib-tooltip>
+                                <script data-bslib-card-init>bslib.Card.initializeAllCards();</script>
+                              </div>
+                            </div>
+                            <div class="bslib-grid-item bslib-gap-spacing html-fill-container">
+                              <div class="card bslib-card bslib-mb-spacing bslib-card-input html-fill-item html-fill-container chart" data-bslib-card-init data-full-screen="false" data-require-bs-caller="card()" data-require-bs-version="5" id="study_overview-scatter-Analysis_kri0010">
+                                <div class="card-header">Outstanding Data Entry Rate</div>
+                                <div class="card-body bslib-gap-spacing html-fill-item html-fill-container" style="margin-top:auto;margin-bottom:auto;flex:1 1 auto;">
+                                  <div class="Widget_ScatterPlot html-widget html-widget-output shiny-report-size html-fill-item" id="study_overview-scatter-Analysis_kri0010-plot" style="width:100%;height:400px;"></div>
+                                </div>
+                                <bslib-tooltip placement="auto" bsOptions="[]" data-require-bs-version="5" data-require-bs-caller="tooltip()">
+                                  <template>Expand</template>
+                                  <button aria-expanded="false" aria-label="Expand card" class="bslib-full-screen-enter badge rounded-pill"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" style="height:1em;width:1em;fill:currentColor;" aria-hidden="true" role="img"><path d="M20 5C20 4.4 19.6 4 19 4H13C12.4 4 12 3.6 12 3C12 2.4 12.4 2 13 2H21C21.6 2 22 2.4 22 3V11C22 11.6 21.6 12 21 12C20.4 12 20 11.6 20 11V5ZM4 19C4 19.6 4.4 20 5 20H11C11.6 20 12 20.4 12 21C12 21.6 11.6 22 11 22H3C2.4 22 2 21.6 2 21V13C2 12.4 2.4 12 3 12C3.6 12 4 12.4 4 13V19Z"/></svg></button>
+                                </bslib-tooltip>
+                                <script data-bslib-card-init>bslib.Card.initializeAllCards();</script>
+                              </div>
+                            </div>
+                            <div class="bslib-grid-item bslib-gap-spacing html-fill-container">
+                              <div class="card bslib-card bslib-mb-spacing bslib-card-input html-fill-item html-fill-container chart" data-bslib-card-init data-full-screen="false" data-require-bs-caller="card()" data-require-bs-version="5" id="study_overview-scatter-Analysis_kri0011">
+                                <div class="card-header">Data Change Rate</div>
+                                <div class="card-body bslib-gap-spacing html-fill-item html-fill-container" style="margin-top:auto;margin-bottom:auto;flex:1 1 auto;">
+                                  <div class="Widget_ScatterPlot html-widget html-widget-output shiny-report-size html-fill-item" id="study_overview-scatter-Analysis_kri0011-plot" style="width:100%;height:400px;"></div>
                                 </div>
                                 <bslib-tooltip placement="auto" bsOptions="[]" data-require-bs-version="5" data-require-bs-caller="tooltip()">
                                   <template>Expand</template>
@@ -747,12 +864,12 @@
                       <table class="gt_table" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
         
         <tbody class="gt_table_body">
+          <tr><td headers="Description" class="gt_row gt_left">Nickname</td>
+      <td headers="Value" class="gt_row gt_right">Protocol Nickname</td></tr>
           <tr><td headers="Description" class="gt_row gt_left">Participants Enrolled</td>
       <td headers="Value" class="gt_row gt_right">1301</td></tr>
           <tr><td headers="Description" class="gt_row gt_left">Sites Enrolled</td>
       <td headers="Value" class="gt_row gt_right">176</td></tr>
-          <tr><td headers="Description" class="gt_row gt_left">Nickname</td>
-      <td headers="Value" class="gt_row gt_right">Protocol Nickname</td></tr>
         </tbody>
         
         
@@ -1211,52 +1328,22 @@
                         <table class="gt_table" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
         
         <tbody class="gt_table_body">
+          <tr><td headers="Description" class="gt_row gt_left">Studyid</td>
+      <td headers="Value" class="gt_row gt_right">AA-AA-000-0000</td></tr>
+          <tr><td headers="Description" class="gt_row gt_left">Nickname</td>
+      <td headers="Value" class="gt_row gt_right">Protocol Nickname</td></tr>
+          <tr><td headers="Description" class="gt_row gt_left">Protocol Title</td>
+      <td headers="Value" class="gt_row gt_right">Protocol Title</td></tr>
+          <tr><td headers="Description" class="gt_row gt_left">Status</td>
+      <td headers="Value" class="gt_row gt_right">Active</td></tr>
+          <tr><td headers="Description" class="gt_row gt_left">Num Plan Site</td>
+      <td headers="Value" class="gt_row gt_right">190</td></tr>
+          <tr><td headers="Description" class="gt_row gt_left">Num Plan Subj</td>
+      <td headers="Value" class="gt_row gt_right">1300</td></tr>
           <tr><td headers="Description" class="gt_row gt_left">Participants Enrolled</td>
       <td headers="Value" class="gt_row gt_right">1301</td></tr>
           <tr><td headers="Description" class="gt_row gt_left">Sites Enrolled</td>
       <td headers="Value" class="gt_row gt_right">176</td></tr>
-          <tr><td headers="Description" class="gt_row gt_left">Protocol Row Id</td>
-      <td headers="Value" class="gt_row gt_right">1-1G9113</td></tr>
-          <tr><td headers="Description" class="gt_row gt_left">Protocol Title</td>
-      <td headers="Value" class="gt_row gt_right">Protocol Title</td></tr>
-          <tr><td headers="Description" class="gt_row gt_left">Nickname</td>
-      <td headers="Value" class="gt_row gt_right">Protocol Nickname</td></tr>
-          <tr><td headers="Description" class="gt_row gt_left">Protocol Type</td>
-      <td headers="Value" class="gt_row gt_right">Investigator Sponsored</td></tr>
-          <tr><td headers="Description" class="gt_row gt_left">Phase</td>
-      <td headers="Value" class="gt_row gt_right">P3</td></tr>
-          <tr><td headers="Description" class="gt_row gt_left">Num Plan Site</td>
-      <td headers="Value" class="gt_row gt_right">190</td></tr>
-          <tr><td headers="Description" class="gt_row gt_left">Num Site Actl</td>
-      <td headers="Value" class="gt_row gt_right">176</td></tr>
-          <tr><td headers="Description" class="gt_row gt_left">Est Fpfv</td>
-      <td headers="Value" class="gt_row gt_right">2003-01-01</td></tr>
-          <tr><td headers="Description" class="gt_row gt_left">Act Fpfv</td>
-      <td headers="Value" class="gt_row gt_right">2003-01-01</td></tr>
-          <tr><td headers="Description" class="gt_row gt_left">Est Lplv</td>
-      <td headers="Value" class="gt_row gt_right">2021-06-01</td></tr>
-          <tr><td headers="Description" class="gt_row gt_left">Act Lplv</td>
-      <td headers="Value" class="gt_row gt_right">2021-06-01</td></tr>
-          <tr><td headers="Description" class="gt_row gt_left">Est Lpfv</td>
-      <td headers="Value" class="gt_row gt_right">2020-06-01</td></tr>
-          <tr><td headers="Description" class="gt_row gt_left">Act Lpfv</td>
-      <td headers="Value" class="gt_row gt_right">2020-06-01</td></tr>
-          <tr><td headers="Description" class="gt_row gt_left">Status</td>
-      <td headers="Value" class="gt_row gt_right">Active</td></tr>
-          <tr><td headers="Description" class="gt_row gt_left">Num Plan Subj</td>
-      <td headers="Value" class="gt_row gt_right">1300</td></tr>
-          <tr><td headers="Description" class="gt_row gt_left">Num Enrolled Subj M</td>
-      <td headers="Value" class="gt_row gt_right">1301</td></tr>
-          <tr><td headers="Description" class="gt_row gt_left">Protocol Indication</td>
-      <td headers="Value" class="gt_row gt_right">Protocol Indication</td></tr>
-          <tr><td headers="Description" class="gt_row gt_left">Product</td>
-      <td headers="Value" class="gt_row gt_right">Product</td></tr>
-          <tr><td headers="Description" class="gt_row gt_left">Therapeutic Area</td>
-      <td headers="Value" class="gt_row gt_right">Therapeutic Area</td></tr>
-          <tr><td headers="Description" class="gt_row gt_left">Protocol Product Number</td>
-      <td headers="Value" class="gt_row gt_right">123</td></tr>
-          <tr><td headers="Description" class="gt_row gt_left">X Rbm Flg</td>
-      <td headers="Value" class="gt_row gt_right">Y</td></tr>
         </tbody>
         
         
@@ -1273,8 +1360,17 @@
                         <strong>Metric</strong>
                       </label>
                       <div>
-                        <select id="metric" class="shiny-input-select"><option value="kri0001" selected>Adverse Event Rate</option>
-      <option value="kri0002">Serious Adverse Event Rate</option></select>
+                        <select id="metric" class="shiny-input-select"><option value="Analysis_kri0001" selected>Adverse Event Rate</option>
+      <option value="Analysis_kri0002">Serious Adverse Event Rate</option>
+      <option value="Analysis_kri0003">Non-Important Protocol Deviation Rate</option>
+      <option value="Analysis_kri0004">Important Protocol Deviation Rate</option>
+      <option value="Analysis_kri0005">Grade 3+ Lab Abnormality Rate</option>
+      <option value="Analysis_kri0006">Study Discontinuation Rate</option>
+      <option value="Analysis_kri0007">Treatment Discontinuation Rate</option>
+      <option value="Analysis_kri0008">Query Rate</option>
+      <option value="Analysis_kri0009">Outstanding Query Rate</option>
+      <option value="Analysis_kri0010">Outstanding Data Entry Rate</option>
+      <option value="Analysis_kri0011">Data Change Rate</option></select>
                         <script type="application/json" data-for="metric" data-nonempty="">{"plugins":["selectize-plugin-a11y"]}</script>
                       </div>
                     </div>
@@ -1300,166 +1396,26 @@
       <option value="0X015">0X015</option>
       <option value="0X016">0X016</option>
       <option value="0X018">0X018</option>
-      <option value="0X020">0X020</option>
       <option value="0X021">0X021</option>
       <option value="0X022">0X022</option>
-      <option value="0X023">0X023</option>
       <option value="0X024">0X024</option>
-      <option value="0X025">0X025</option>
       <option value="0X026">0X026</option>
       <option value="0X027">0X027</option>
       <option value="0X028">0X028</option>
       <option value="0X029">0X029</option>
-      <option value="0X030">0X030</option>
-      <option value="0X031">0X031</option>
-      <option value="0X033">0X033</option>
-      <option value="0X034">0X034</option>
-      <option value="0X035">0X035</option>
-      <option value="0X036">0X036</option>
       <option value="0X037">0X037</option>
-      <option value="0X038">0X038</option>
-      <option value="0X039">0X039</option>
-      <option value="0X040">0X040</option>
       <option value="0X041">0X041</option>
-      <option value="0X042">0X042</option>
-      <option value="0X043">0X043</option>
-      <option value="0X045">0X045</option>
-      <option value="0X046">0X046</option>
-      <option value="0X047">0X047</option>
-      <option value="0X048">0X048</option>
-      <option value="0X049">0X049</option>
-      <option value="0X050">0X050</option>
-      <option value="0X051">0X051</option>
-      <option value="0X052">0X052</option>
-      <option value="0X054">0X054</option>
-      <option value="0X055">0X055</option>
-      <option value="0X056">0X056</option>
-      <option value="0X057">0X057</option>
-      <option value="0X058">0X058</option>
-      <option value="0X059">0X059</option>
-      <option value="0X061">0X061</option>
-      <option value="0X062">0X062</option>
-      <option value="0X063">0X063</option>
       <option value="0X064">0X064</option>
-      <option value="0X065">0X065</option>
-      <option value="0X066">0X066</option>
-      <option value="0X068">0X068</option>
-      <option value="0X069">0X069</option>
-      <option value="0X072">0X072</option>
-      <option value="0X073">0X073</option>
-      <option value="0X074">0X074</option>
-      <option value="0X075">0X075</option>
-      <option value="0X076">0X076</option>
-      <option value="0X077">0X077</option>
-      <option value="0X078">0X078</option>
       <option value="0X079">0X079</option>
-      <option value="0X080">0X080</option>
-      <option value="0X081">0X081</option>
-      <option value="0X082">0X082</option>
-      <option value="0X083">0X083</option>
-      <option value="0X084">0X084</option>
-      <option value="0X085">0X085</option>
-      <option value="0X086">0X086</option>
-      <option value="0X087">0X087</option>
-      <option value="0X088">0X088</option>
-      <option value="0X089">0X089</option>
-      <option value="0X090">0X090</option>
-      <option value="0X091">0X091</option>
-      <option value="0X092">0X092</option>
-      <option value="0X093">0X093</option>
-      <option value="0X094">0X094</option>
-      <option value="0X095">0X095</option>
-      <option value="0X096">0X096</option>
-      <option value="0X097">0X097</option>
-      <option value="0X098">0X098</option>
-      <option value="0X099">0X099</option>
-      <option value="0X100">0X100</option>
-      <option value="0X101">0X101</option>
-      <option value="0X102">0X102</option>
       <option value="0X103">0X103</option>
-      <option value="0X104">0X104</option>
-      <option value="0X105">0X105</option>
-      <option value="0X106">0X106</option>
-      <option value="0X107">0X107</option>
-      <option value="0X108">0X108</option>
       <option value="0X109">0X109</option>
-      <option value="0X110">0X110</option>
-      <option value="0X113">0X113</option>
-      <option value="0X114">0X114</option>
-      <option value="0X115">0X115</option>
-      <option value="0X116">0X116</option>
-      <option value="0X117">0X117</option>
-      <option value="0X118">0X118</option>
-      <option value="0X119">0X119</option>
-      <option value="0X120">0X120</option>
-      <option value="0X121">0X121</option>
-      <option value="0X122">0X122</option>
-      <option value="0X123">0X123</option>
       <option value="0X124">0X124</option>
-      <option value="0X125">0X125</option>
-      <option value="0X126">0X126</option>
-      <option value="0X127">0X127</option>
-      <option value="0X129">0X129</option>
-      <option value="0X130">0X130</option>
-      <option value="0X131">0X131</option>
-      <option value="0X132">0X132</option>
-      <option value="0X133">0X133</option>
-      <option value="0X134">0X134</option>
-      <option value="0X135">0X135</option>
-      <option value="0X136">0X136</option>
-      <option value="0X137">0X137</option>
-      <option value="0X138">0X138</option>
-      <option value="0X139">0X139</option>
-      <option value="0X140">0X140</option>
-      <option value="0X141">0X141</option>
-      <option value="0X142">0X142</option>
-      <option value="0X143">0X143</option>
-      <option value="0X144">0X144</option>
-      <option value="0X147">0X147</option>
-      <option value="0X148">0X148</option>
-      <option value="0X149">0X149</option>
-      <option value="0X151">0X151</option>
-      <option value="0X152">0X152</option>
-      <option value="0X153">0X153</option>
-      <option value="0X154">0X154</option>
       <option value="0X155">0X155</option>
-      <option value="0X156">0X156</option>
-      <option value="0X157">0X157</option>
       <option value="0X159">0X159</option>
-      <option value="0X160">0X160</option>
-      <option value="0X161">0X161</option>
-      <option value="0X162">0X162</option>
-      <option value="0X163">0X163</option>
-      <option value="0X164">0X164</option>
-      <option value="0X165">0X165</option>
-      <option value="0X166">0X166</option>
-      <option value="0X167">0X167</option>
-      <option value="0X168">0X168</option>
-      <option value="0X169">0X169</option>
       <option value="0X170">0X170</option>
-      <option value="0X171">0X171</option>
-      <option value="0X172">0X172</option>
       <option value="0X173">0X173</option>
-      <option value="0X174">0X174</option>
-      <option value="0X175">0X175</option>
-      <option value="0X176">0X176</option>
-      <option value="0X177">0X177</option>
-      <option value="0X178">0X178</option>
-      <option value="0X179">0X179</option>
       <option value="0X180">0X180</option>
-      <option value="0X181">0X181</option>
-      <option value="0X182">0X182</option>
-      <option value="0X183">0X183</option>
-      <option value="0X184">0X184</option>
-      <option value="0X186">0X186</option>
-      <option value="0X188">0X188</option>
-      <option value="0X189">0X189</option>
-      <option value="0X190">0X190</option>
-      <option value="X044X">X044X</option>
-      <option value="X060X">X060X</option>
-      <option value="X067X">X067X</option>
-      <option value="X185X">X185X</option>
-      <option value="X187X">X187X</option></select>
+      <option value="X185X">X185X</option></select>
                         <script type="application/json" data-for="site" data-nonempty="">{"plugins":["selectize-plugin-a11y"]}</script>
                       </div>
                     </div>

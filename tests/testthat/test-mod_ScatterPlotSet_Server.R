@@ -31,8 +31,8 @@ test_that("mod_ScatterPlotSet_Server returns selected group correctly", {
     ),
     {
       # Initialize the value first.
-      session$setInputs(`kri0001-plot` = "None")
-      session$setInputs(`kri0001-plot` = "0X003")
+      session$setInputs(`Analysis_kri0001-plot` = "None")
+      session$setInputs(`Analysis_kri0001-plot` = "0X003")
       expect_equal(session$returned(), "0X003")
     }
   )
@@ -61,7 +61,10 @@ test_that("mod_ScatterPlotSet_Server selects plots based on outside selection", 
       # Check initialization.
       outputSelections <- purrr::map_chr(lMetricIDs, getSelectedGroupIDs)
       expect_type(outputSelections, "character")
-      expect_equal(outputSelections, c("0X003", "0X003"))
+      expect_equal(
+        outputSelections,
+        rep("0X003", length(unique(sample_dfMetrics$MetricID)))
+      )
 
       # Update the simulated outside input.
       rctv_strSiteID("0X005")
@@ -70,7 +73,10 @@ test_that("mod_ScatterPlotSet_Server selects plots based on outside selection", 
       # Confirm that the outputs update.
       outputSelections <- purrr::map_chr(lMetricIDs, getSelectedGroupIDs)
       expect_type(outputSelections, "character")
-      expect_equal(outputSelections, c("0X005", "0X005"))
+      expect_equal(
+        outputSelections,
+        rep("0X005", length(unique(sample_dfMetrics$MetricID)))
+      )
 
       # Update the simulated outside input to "None" (deselect).
       rctv_strSiteID("None")
@@ -79,7 +85,13 @@ test_that("mod_ScatterPlotSet_Server selects plots based on outside selection", 
       # Confirm that the outputs update.
       outputSelections <- purrr::map(lMetricIDs, getSelectedGroupIDs)
       expect_type(outputSelections, "list")
-      expect_equal(outputSelections, list(NULL, NULL))
+      expected_result <- purrr::map(
+        unique(sample_dfMetrics$MetricID),
+        function(x) {
+          NULL
+        }
+      )
+      expect_equal(outputSelections, expected_result)
     }
   )
 })

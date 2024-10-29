@@ -3,11 +3,11 @@ test_that("mod_ScatterPlot_Server starts as expected", {
 
   dfResults <- filter_byMetricID(
     sample_dfResults[sample_dfResults$GroupLevel == "Site", ],
-    "kri0001"
+    "Analysis_kri0001"
   )
   dfGroups <- sample_dfGroups
-  dfBounds <- filter_byMetricID(sample_dfBounds, "kri0001")
-  lMetric <- as.list(filter_byMetricID(sample_dfMetrics, "kri0001"))
+  dfBounds <- filter_byMetricID(sample_dfBounds, "Analysis_kri0001")
+  lMetric <- as.list(filter_byMetricID(sample_dfMetrics, "Analysis_kri0001"))
 
   testServer(
     mod_ScatterPlot_Server,
@@ -34,11 +34,11 @@ test_that("mod_ScatterPlot_Server starts as expected", {
 test_that("mod_ScatterPlot_Server returns selected site", {
   dfResults <- filter_byMetricID(
     sample_dfResults[sample_dfResults$GroupLevel == "Site", ],
-    "kri0001"
+    "Analysis_kri0001"
   )
   dfGroups <- sample_dfGroups
-  dfBounds <- filter_byMetricID(sample_dfBounds, "kri0001")
-  lMetric <- as.list(filter_byMetricID(sample_dfMetrics, "kri0001"))
+  dfBounds <- filter_byMetricID(sample_dfBounds, "Analysis_kri0001")
+  lMetric <- as.list(filter_byMetricID(sample_dfMetrics, "Analysis_kri0001"))
   testServer(
     mod_ScatterPlot_Server,
     args = list(

@@ -106,79 +106,79 @@ sample_dfAnalyticsInput <- purrr::map(lAnalysis, "Analysis_Input") %>%
 
 # Prep participant data ----
 
-# I don't currently update participant_data, intentionally. Will update before I
-# close this PR.
-
 # Rotate such that the data is by subjid. In a "real" usage, much of this data
 # would likely be fetched via an API or other function call.
-# participant_ids <- sort(lMapped$Mapped_ENROLL$subjid)
-# names(participant_ids) <- participant_ids
-# participant_data <- purrr::map(
-#   participant_ids,
-#   function(this_subjid) {
-#     list(
-#       metadata = lMapped$Mapped_SUBJ %>%
-#         dplyr::filter(subjid == this_subjid) %>%
-#         dplyr::select(
-#           subjectID = "subjid",
-#           siteID = "invid",
-#           # "studyStartDate",
-#           # "studyEndDate",
-#           timeOnStudy = "timeonstudy",
-#           "country" #,
-#           # "sex",
-#           # "age",
-#           # "race"
-#         ) %>%
-#         as.list(),
-#       metric_data = list(
-#         adverseEvents = lMapped$Mapped_AE %>%
-#           dplyr::filter(subjid == this_subjid) %>%
-#           dplyr::select(
-#             subjectID = "subjid",
-#             serious = "aeser",
-#             "startDate",
-#             "endDate",
-#             "grade",
-#             "dictionaryDerivedTerm",
-#             "bodySystemOrOrganClass",
-#             "treatmentEmergent"
-#           ),
-#         protocolDeviations = used_pd %>%
-#           dplyr::filter(subjectenrollmentnumber == this_subjid) %>%
-#           dplyr::select(
-#             subjectID = "subjectenrollmentnumber",
-#             deemedImportant = "deemedimportant",
-#             "deviationDate",
-#             "category"
-#           ),
-#         studyDisposition = used_study_comp %>%
-#           dplyr::filter(subjid == this_subjid, compyn == "N") %>%
-#           dplyr::select(
-#             subjectID = "subjid",
-#             studyDiscontinuationReason = "compreas"
-#           ),
-#         treatmentDisposition = used_treatment_comp %>%
-#           dplyr::filter(
-#             subjid == this_subjid,
-#             treatmentDiscontinuationReason != ""
-#           ) %>%
-#           dplyr::select(
-#             subjectID = "subjid",
-#             "phase",
-#             "treatment",
-#             "treatmentDiscontinuationReason"
-#           )
-#       )
-#     )
-#   }
-# )
+participant_ids <- lMapped$Mapped_SUBJ %>%
+  dplyr::filter(invid %in% site_subset$GroupID) %>%
+  dplyr::arrange(subjid) %>%
+  dplyr::pull(subjid)
+names(participant_ids) <- participant_ids
+participant_data <- purrr::map(
+  participant_ids,
+  function(this_subjid) {
+    list(
+      metadata = lSourceData$Source_SUBJ %>%
+        dplyr::filter(subjid == this_subjid) %>%
+        dplyr::select(
+          "subjectID" = "subjid",
+          "siteID" = "invid",
+          "studyStartDate" = "firstparticipantdate",
+          "studyEndDate" = "lastparticipantdate",
+          "timeOnStudy" = "timeonstudy",
+          "country",
+          "sex",
+          "age" = "age_nsv",
+          "race"
+        ) %>%
+        as.list(),
+      metric_data = list(
+        adverseEvents = lSourceData$Source_AE %>%
+          dplyr::filter(subjid == this_subjid) %>%
+          dplyr::select(
+            "subjectID" = "subjid",
+            "serious" = "aeser",
+            "startDate" = "aest_dt",
+            "endDate" = "aeen_dt",
+            "grade" = "aetoxgr",
+            "dictionaryDerivedTerm" = "mdrpt_nsv",
+            "bodySystemOrOrganClass" = "mdrsoc_nsv",
+            "treatmentEmergent" = "treatmentemergent"
+          ),
+        protocolDeviations = lSourceData$Source_PD %>%
+          dplyr::filter(subjectenrollmentnumber == this_subjid) %>%
+          dplyr::select(
+            "subjectID" = "subjectenrollmentnumber",
+            "deemedImportant" = "deemedimportant",
+            "deviationDate" = "deviationdate",
+            "category" = "companycategory"
+          ),
+        studyDisposition = lSourceData$Source_STUDCOMP %>%
+          dplyr::filter(subjid == this_subjid, compyn == "N") %>%
+          dplyr::select(
+            "subjectID" = "subjid",
+            "studyDiscontinuationReason" = "compreas"
+          ),
+        treatmentDisposition = lSourceData$Source_SDRGCOMP %>%
+          dplyr::filter(
+            subjid == this_subjid,
+            sdrgreas != ""
+          ) %>%
+          dplyr::select(
+            "subjectID" = "subjid",
+            "phase",
+            "treatment" = "extrt",
+            "treatmentDiscontinuationReason" = "sdrgreas"
+          )
+      )
+    )
+  }
+)
 
 # Save ----
 
 # The participant data is fetched using a function, so we don't export it
 # directly.
-# usethis::use_data(participant_data, overwrite = TRUE, internal = TRUE)
+usethis::use_data(participant_data, overwrite = TRUE, internal = TRUE)
 
 # Everything else that we use is exported as sample data. Split things up by
 # compression type.

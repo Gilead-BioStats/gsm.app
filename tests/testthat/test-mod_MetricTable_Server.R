@@ -3,7 +3,7 @@ test_that("mod_MetricTable_Server starts as expected", {
 
   dfResults <- filter_byMetricID(
     sample_dfResults[sample_dfResults$GroupLevel == "Site", ],
-    "kri0001"
+    "Analysis_kri0001"
   )
   dfGroups <- sample_dfGroups
 
@@ -33,7 +33,7 @@ test_that("mod_MetricTable_Server starts as expected", {
 test_that("mod_MetricTable_Server returns selected site", {
   dfResults <- filter_byMetricID(
     sample_dfResults[sample_dfResults$GroupLevel == "Site", ],
-    "kri0001"
+    "Analysis_kri0001"
   )
   dfGroups <- sample_dfGroups
 

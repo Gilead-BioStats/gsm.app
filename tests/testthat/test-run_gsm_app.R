@@ -28,11 +28,11 @@ test_that("run_gsm_app populates Study Overview", {
   app$set_inputs(`study_overview-nav_bar` = "Scatter Plots")
   app$wait_for_idle()
   app$wait_for_js(
-    "isWidgetPlotLoaded('study_overview-scatter-kri0001');",
+    "isWidgetPlotLoaded('study_overview-scatter-Analysis_kri0001');",
     timeout = 8000
   )
   app$wait_for_js(
-    "isWidgetPlotLoaded('study_overview-scatter-kri0002');",
+    "isWidgetPlotLoaded('study_overview-scatter-Analysis_kri0002');",
     timeout = 8000
   )
   app$expect_values(
@@ -43,14 +43,14 @@ test_that("run_gsm_app populates Study Overview", {
   )
 
   # Click on AE plot.
-  app$run_js("clickWidgetPlotGroup('study_overview-scatter-kri0001', '0X159');")
+  app$run_js("clickWidgetPlotGroup('study_overview-scatter-Analysis_kri0001', '0X159');")
   app$wait_for_idle()
   app$wait_for_js(
-    "isWidgetPlotLoaded('study_overview-scatter-kri0001');",
+    "isWidgetPlotLoaded('study_overview-scatter-Analysis_kri0001');",
     timeout = 8000
   )
   app$wait_for_js(
-    "isWidgetPlotLoaded('study_overview-scatter-kri0002');",
+    "isWidgetPlotLoaded('study_overview-scatter-Analysis_kri0002');",
     timeout = 8000
   )
   app$expect_values(
@@ -65,11 +65,11 @@ test_that("run_gsm_app populates Study Overview", {
   app$wait_for_idle()
   app$set_inputs(primary_nav_bar = "Study Overview")
   app$wait_for_js(
-    "isWidgetPlotLoaded('study_overview-scatter-kri0001');",
+    "isWidgetPlotLoaded('study_overview-scatter-Analysis_kri0001');",
     timeout = 8000
   )
   app$wait_for_js(
-    "isWidgetPlotLoaded('study_overview-scatter-kri0002');",
+    "isWidgetPlotLoaded('study_overview-scatter-Analysis_kri0002');",
     timeout = 8000
   )
   app$expect_values(
@@ -79,8 +79,8 @@ test_that("run_gsm_app populates Study Overview", {
   )
 
   # Click on SAE plot.
-  app$run_js("clickWidgetPlotGroup('study_overview-scatter-kri0002', '0X161');")
-  app$set_inputs(`study_overview-scatter-selectedScatterPlot` = "study_overview-scatter-kri0002", allow_no_input_binding_ = TRUE)
+  app$run_js("clickWidgetPlotGroup('study_overview-scatter-Analysis_kri0002', '0X170');")
+  app$set_inputs(`study_overview-scatter-selectedScatterPlot` = "study_overview-scatter-Analysis_kri0002", allow_no_input_binding_ = TRUE)
   app$wait_for_idle()
   app$wait_for_js(
     "isWidgetPlotLoaded('metric_details-scatter_plot');",
@@ -121,7 +121,7 @@ test_that("run_gsm_app populates Metric Details", {
   app$set_inputs(`metric_details-selected_tab` = "Bar Chart (KRI Value)")
   app$wait_for_idle()
   app$wait_for_js(
-    "isWidgetPlotLoaded('barChart--kri0001_Metric');",
+    "isWidgetPlotLoaded('barChart--Analysis_kri0001_Metric');",
     timeout = 8000
   )
   app$expect_values(
@@ -133,7 +133,7 @@ test_that("run_gsm_app populates Metric Details", {
   app$set_inputs(`metric_details-selected_tab` = "Bar Chart (KRI Score)")
   app$wait_for_idle()
   app$wait_for_js(
-    "isWidgetPlotLoaded('barChart--kri0001_Score');",
+    "isWidgetPlotLoaded('barChart--Analysis_kri0001_Score');",
     timeout = 8000
   )
   app$expect_values(
@@ -145,7 +145,7 @@ test_that("run_gsm_app populates Metric Details", {
   app$set_inputs(`metric_details-selected_tab` = "Time Series")
   app$wait_for_idle()
   app$wait_for_js(
-    "isWidgetPlotLoaded('timeSeries--kri0001_Score');",
+    "isWidgetPlotLoaded('timeSeries--Analysis_kri0001_Score');",
     timeout = 8000
   )
   app$expect_values(
@@ -176,7 +176,7 @@ test_that("run_gsm_app populates Metric Details", {
   app$set_inputs(`metric_details-selected_tab` = "Time Series")
   app$wait_for_idle()
   app$wait_for_js(
-    "isWidgetPlotLoaded('timeSeries--kri0001_Score');",
+    "isWidgetPlotLoaded('timeSeries--Analysis_kri0001_Score');",
     timeout = 8000
   )
   app$expect_values(
@@ -184,10 +184,10 @@ test_that("run_gsm_app populates Metric Details", {
     name = "time-site",
     screenshot_args = list(selector = ".active .tabbable")
   )
-  app$run_js("clickWidgetPlotGroup('timeSeries--kri0001_Score', '0X001');")
+  app$run_js("clickWidgetPlotGroup('timeSeries--Analysis_kri0001_Score', '0X001');")
   app$wait_for_idle()
   app$wait_for_js(
-    "isWidgetPlotLoaded('timeSeries--kri0001_Score');",
+    "isWidgetPlotLoaded('timeSeries--Analysis_kri0001_Score');",
     timeout = 8000
   )
   app$expect_values(
@@ -199,7 +199,7 @@ test_that("run_gsm_app populates Metric Details", {
   app$set_inputs(`metric_details-selected_tab` = "Bar Chart (KRI Score)")
   app$wait_for_idle()
   app$wait_for_js(
-    "isWidgetPlotLoaded('barChart--kri0001_Score');",
+    "isWidgetPlotLoaded('barChart--Analysis_kri0001_Score');",
     timeout = 8000
   )
   app$expect_values(
@@ -207,10 +207,10 @@ test_that("run_gsm_app populates Metric Details", {
     name = "bar_score-site",
     screenshot_args = list(selector = ".active .tabbable")
   )
-  app$run_js("clickWidgetPlotGroup('barChart--kri0001_Score', '0X159');")
+  app$run_js("clickWidgetPlotGroup('barChart--Analysis_kri0001_Score', '0X159');")
   app$wait_for_idle()
   app$wait_for_js(
-    "isWidgetPlotLoaded('barChart--kri0001_Score');",
+    "isWidgetPlotLoaded('barChart--Analysis_kri0001_Score');",
     timeout = 8000
   )
   app$expect_values(
@@ -222,7 +222,7 @@ test_that("run_gsm_app populates Metric Details", {
   app$set_inputs(`metric_details-selected_tab` = "Bar Chart (KRI Value)")
   app$wait_for_idle()
   app$wait_for_js(
-    "isWidgetPlotLoaded('barChart--kri0001_Metric');",
+    "isWidgetPlotLoaded('barChart--Analysis_kri0001_Metric');",
     timeout = 8000
   )
   app$expect_values(
@@ -230,10 +230,10 @@ test_that("run_gsm_app populates Metric Details", {
     name = "bar_value-site",
     screenshot_args = list(selector = ".active .tabbable")
   )
-  app$run_js("clickWidgetPlotGroup('barChart--kri0001_Metric', '0X001');")
+  app$run_js("clickWidgetPlotGroup('barChart--Analysis_kri0001_Metric', '0X001');")
   app$wait_for_idle()
   app$wait_for_js(
-    "isWidgetPlotLoaded('barChart--kri0001_Metric');",
+    "isWidgetPlotLoaded('barChart--Analysis_kri0001_Metric');",
     timeout = 8000
   )
   app$expect_values(

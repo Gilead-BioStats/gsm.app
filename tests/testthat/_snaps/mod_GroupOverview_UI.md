@@ -6,8 +6,8 @@
       <div class="card bslib-card bslib-mb-spacing bslib-card-input html-fill-item html-fill-container" data-bslib-card-init data-full-screen="false" data-require-bs-caller="card()" data-require-bs-version="5" id="test_id">
         <div class="card-body bslib-gap-spacing html-fill-item html-fill-container" style="margin-top:auto;margin-bottom:auto;flex:1 1 auto;">
           <div id="test_id-kri_counts">
-            <a class="action-button badge rounded-pill toggle-pill text-dark fs-6 p-2" href="#" id="test_id-kri_counts-red-toggle_pill" style="background-color: #FF5859; opacity: 0.5;">5 Red KRIs</a>
-            <a class="action-button badge rounded-pill toggle-pill text-dark fs-6 p-2" href="#" id="test_id-kri_counts-amber-toggle_pill" style="background-color: #FEAA02; opacity: 0.5;">23 Amber KRIs</a>
+            <a class="action-button badge rounded-pill toggle-pill text-dark fs-6 p-2" href="#" id="test_id-kri_counts-red-toggle_pill" style="background-color: #FF5859; opacity: 0.5;">24 Red KRIs</a>
+            <a class="action-button badge rounded-pill toggle-pill text-dark fs-6 p-2" href="#" id="test_id-kri_counts-amber-toggle_pill" style="background-color: #FEAA02; opacity: 0.5;">22 Amber KRIs</a>
           </div>
           <div class="row gy-2">
             <div class="Widget_GroupOverview html-widget html-widget-output shiny-report-size html-fill-item" id="test_id-group_overview" style="width:100%;height:100%;"></div>

@@ -9,13 +9,13 @@ test_that("mod_ParticipantDetails_Server 'None' participant selection", {
     {
       expect_null(rctv_lParticipantData())
 
-      rctv_strSubjectID("0001")
+      rctv_strSubjectID("0008")
       expect_length(rctv_lParticipantData(), 2)
 
       rctv_strSubjectID("")
       expect_null(rctv_lParticipantData())
 
-      rctv_strSubjectID("0001")
+      rctv_strSubjectID("0010")
       expect_length(rctv_lParticipantData(), 2)
 
       rctv_strSubjectID(NULL)
@@ -30,7 +30,7 @@ test_that("mod_ParticipantDetails_Server fetches participant data", {
     args = list(
       id = "participantDetailsTest",
       fnFetchParticipantData = sample_FetchParticipantData,
-      rctv_strSubjectID = reactiveVal("0001")
+      rctv_strSubjectID = reactiveVal("0008")
     ),
     {
       expect_length(rctv_lParticipantData(), 2)
@@ -61,7 +61,7 @@ test_that("mod_ParticipantDetails_Server fetches participant data", {
         )
       )
 
-      rctv_strSubjectID("0003")
+      rctv_strSubjectID("0010")
       expect_length(rctv_lParticipantData(), 2)
       expect_named(rctv_lParticipantData(), c("metadata", "metric_data"))
       expect_length(rctv_lParticipantMetadata(), 9)
@@ -100,7 +100,7 @@ test_that("mod_ParticipantDetails_Server outputs the expected result", {
     args = list(
       id = "participantDetailsTest",
       fnFetchParticipantData = sample_FetchParticipantData,
-      rctv_strSubjectID = reactiveVal("0001")
+      rctv_strSubjectID = reactiveVal("0008")
     ),
     {
       # Check that the participant metadata UI is rendered correctly
@@ -115,7 +115,7 @@ test_that("mod_ParticipantDetails_Server returns the selected rows", {
     args = list(
       id = "participantDetailsTest",
       fnFetchParticipantData = sample_FetchParticipantData,
-      rctv_strSubjectID = reactiveVal("0001")
+      rctv_strSubjectID = reactiveVal("0008")
     ),
     {
       rctv_intSelectedRows <- session$getReturned()

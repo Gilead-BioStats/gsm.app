@@ -1,6 +1,6 @@
 test_that("mod_MetricDetails_Server initializes and renders scatter plot", {
   # Inputs to simulate things that happen in the main server function.
-  rctv_input_metric <- reactiveVal("kri0001")
+  rctv_input_metric <- reactiveVal("Analysis_kri0001")
   rctv_input_site <- reactiveVal("None")
   rctv_lMetric <- reactive({
     lMetric <- as.list(filter_byMetricID(sample_dfMetrics, rctv_input_metric()))
@@ -39,7 +39,7 @@ test_that("mod_MetricDetails_Server initializes and renders scatter plot", {
 test_that("mod_MetricDetails_Server renders tab outputs", {
   call <- rlang::current_env()
   # Inputs to simulate things that happen in the main server function.
-  rctv_input_metric <- reactiveVal("kri0001")
+  rctv_input_metric <- reactiveVal("Analysis_kri0001")
   rctv_input_site <- reactiveVal("None")
   rctv_lMetric <- reactive({
     lMetric <- as.list(filter_byMetricID(sample_dfMetrics, rctv_input_metric()))

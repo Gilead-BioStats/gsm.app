@@ -1,6 +1,6 @@
 test_that("mod_SiteDetails_Server renders site metadata", {
   # Inputs to simulate things that happen in the main server function.
-  rctv_input_metric <- reactiveVal("kri0001")
+  rctv_input_metric <- reactiveVal("Analysis_kri0001")
   rctv_input_site <- reactiveVal("0X003")
   rctv_lMetric <- reactive({
     lMetric <- as.list(filter_byMetricID(sample_dfMetrics, rctv_input_metric()))
@@ -29,7 +29,7 @@ test_that("mod_SiteDetails_Server renders site metadata", {
 
 test_that("mod_SiteDetails_Server renders participants table", {
   # Inputs to simulate things that happen in the main server function.
-  rctv_input_metric <- reactiveVal("kri0001")
+  rctv_input_metric <- reactiveVal("Analysis_kri0001")
   rctv_input_site <- reactiveVal("0X003")
   rctv_lMetric <- reactive({
     lMetric <- as.list(filter_byMetricID(sample_dfMetrics, rctv_input_metric()))
@@ -60,7 +60,7 @@ test_that("mod_SiteDetails_Server renders participants table", {
 })
 
 test_that("mod_SiteDetails_Server returns selected participant", {
-  rctv_input_metric <- reactiveVal("kri0001")
+  rctv_input_metric <- reactiveVal("Analysis_kri0001")
   rctv_input_site <- reactiveVal("0X003")
   rctv_lMetric <- reactive({
     lMetric <- as.list(filter_byMetricID(sample_dfMetrics, rctv_input_metric()))

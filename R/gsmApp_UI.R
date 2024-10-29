@@ -16,7 +16,6 @@ gsmApp_UI <- function(
   # Transform data for use in lower-level functions. ----
   intNParticipants <- length(unique(dfAnalyticsInput$SubjectID))
   chrMetrics <- rlang::set_names(dfMetrics$MetricID, dfMetrics$Metric)
-  chrSites <- sort(unique(dfGroups$GroupID[dfGroups$GroupLevel == "Site"]))
 
   bslib::page_navbar(
     id = "primary_nav_bar",
