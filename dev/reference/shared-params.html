@@ -154,6 +154,14 @@ of the main app server function.</p></dd>
 (subjects) in the study.</p></dd>
 
 
+<dt id="arg-intred">intRed<a class="anchor" aria-label="anchor" href="#arg-intred"></a></dt>
+<dd><p><code>integer</code> The number of sites with at least one red flag.</p></dd>
+
+
+<dt id="arg-intamber">intAmber<a class="anchor" aria-label="anchor" href="#arg-intamber"></a></dt>
+<dd><p><code>integer</code> The number of sites with at least one amber flag.</p></dd>
+
+
 <dt id="arg-lmetric">lMetric<a class="anchor" aria-label="anchor" href="#arg-lmetric"></a></dt>
 <dd><p><code>list</code> Named list of data describing a single metric, as well
 as things like which group is selected.</p></dd>
@@ -201,6 +209,17 @@ object that returns a list of dataframes for a given participant, one for
 each metric that is available.</p></dd>
 
 
+<dt id="arg-rctv-lglstate">rctv_lglState<a class="anchor" aria-label="anchor" href="#arg-rctv-lglstate"></a></dt>
+<dd><p><code>reactive logical</code> A <code><a href="https://rdrr.io/pkg/shiny/man/reactive.html" class="external-link">shiny::reactive()</a></code>] object that
+returns a Boolean value indicating whether something is "off" (<code>FALSE</code>) or
+"on" (<code>TRUE</code>).</p></dd>
+
+
+<dt id="arg-rctv-strgroupsubset">rctv_strGroupSubset<a class="anchor" aria-label="anchor" href="#arg-rctv-strgroupsubset"></a></dt>
+<dd><p><code>reactive character</code> A <code><a href="https://rdrr.io/pkg/shiny/man/reactive.html" class="external-link">shiny::reactive()</a></code> object
+that returns the selected subset of groups to include in the table.</p></dd>
+
+
 <dt id="arg-rctv-strmetricid">rctv_strMetricID<a class="anchor" aria-label="anchor" href="#arg-rctv-strmetricid"></a></dt>
 <dd><p><code>reactive character</code> A <code><a href="https://rdrr.io/pkg/shiny/man/reactive.html" class="external-link">shiny::reactive()</a></code> object
 that returns the selected <code>MetricID</code>.</p></dd>
@@ -243,8 +262,18 @@ the calling function if the calling function also has a <code>strArg</code> argu
 lower_snake_case.</p></dd>
 
 
-<dt id="arg-strcolor">strColor<a class="anchor" aria-label="anchor" href="#arg-strcolor"></a></dt>
+<dt id="arg-strcolorfamily">strColorFamily<a class="anchor" aria-label="anchor" href="#arg-strcolorfamily"></a></dt>
+<dd><p><code>character</code> Whether to load the <code>"dark"</code> version of
+this color, or the <code>"light"</code> version. Default: <code>"dark"</code>.</p></dd>
+
+
+<dt id="arg-strcolorname">strColorName<a class="anchor" aria-label="anchor" href="#arg-strcolorname"></a></dt>
 <dd><p><code>character</code> The target color to report about.</p></dd>
+
+
+<dt id="arg-strcolorcode">strColorCode<a class="anchor" aria-label="anchor" href="#arg-strcolorcode"></a></dt>
+<dd><p><code>character</code> The hex code (such as <code>"#FFFFFF"</code>) for a
+color.</p></dd>
 
 
 <dt id="arg-strcontainerid">strContainerID<a class="anchor" aria-label="anchor" href="#arg-strcontainerid"></a></dt>
@@ -254,6 +283,25 @@ lower_snake_case.</p></dd>
 
 <dt id="arg-strgroupid">strGroupID<a class="anchor" aria-label="anchor" href="#arg-strgroupid"></a></dt>
 <dd><p><code>character</code> A <code>GroupID</code> to focus on.</p></dd>
+
+
+<dt id="arg-strgrouplabelkey">strGroupLabelKey<a class="anchor" aria-label="anchor" href="#arg-strgrouplabelkey"></a></dt>
+<dd><p><code>character</code> Value for the group label key. Default:
+<code>"InvestigatorLastName"</code>.</p></dd>
+
+
+<dt id="arg-strgrouplevel">strGroupLevel<a class="anchor" aria-label="anchor" href="#arg-strgrouplevel"></a></dt>
+<dd><p><code>character</code> Value for the group level. Default: <code>NULL</code>
+and taken from <code>dfMetrics$GroupLevel</code> if available.</p></dd>
+
+
+<dt id="arg-strgroupsubset">strGroupSubset<a class="anchor" aria-label="anchor" href="#arg-strgroupsubset"></a></dt>
+<dd><p><code>character</code> Subset of groups to include in the table.
+Default: <code>"red"</code>. Options:</p><ul><li><p><code>"all"</code>: All groups.</p></li>
+<li><p><code>"red"</code>: Groups with 1+ red flags.</p></li>
+<li><p><code>"red/amber"</code>: Groups with 1+ red/amber flag.</p></li>
+<li><p><code>"amber"</code>: Groups with 1+ amber flag.</p></li>
+</ul></dd>
 
 
 <dt id="arg-strinputid">strInputID<a class="anchor" aria-label="anchor" href="#arg-strinputid"></a></dt>
