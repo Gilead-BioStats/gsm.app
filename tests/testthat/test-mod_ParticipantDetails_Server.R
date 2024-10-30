@@ -33,61 +33,54 @@ test_that("mod_ParticipantDetails_Server fetches participant data", {
       rctv_strSubjectID = reactiveVal("0008")
     ),
     {
+      expected_metadata_fields <- c(
+        "SubjectID",
+        "enrolled",
+        "study_start_date",
+        "days_on_study",
+        "treatment_start_date",
+        "days_on_treatment",
+        "age",
+        "sex",
+        "race",
+        "ethnicity"
+      )
+      expected_metric_data_tables <- c(
+        "AE",
+        "ENROLL",
+        "LB",
+        "PD",
+        "SDRGCOMP",
+        "STUDCOMP",
+        "DATAENT",
+        "QUERY"
+      )
+
       expect_length(rctv_lParticipantData(), 2)
       expect_named(rctv_lParticipantData(), c("metadata", "metric_data"))
-      expect_length(rctv_lParticipantMetadata(), 9)
+      expect_length(rctv_lParticipantMetadata(), 10)
       expect_named(
         rctv_lParticipantMetadata(),
-        c(
-          "subjectID",
-          "siteID",
-          "studyStartDate",
-          "studyEndDate",
-          "timeOnStudy",
-          "country",
-          "sex",
-          "age",
-          "race"
-        )
+        expected_metadata_fields
       )
-      expect_length(rctv_lParticipantMetricData(), 4)
+      expect_length(rctv_lParticipantMetricData(), 8)
       expect_named(
         rctv_lParticipantMetricData(),
-        c(
-          "adverseEvents",
-          "protocolDeviations",
-          "studyDisposition",
-          "treatmentDisposition"
-        )
+        expected_metric_data_tables
       )
 
       rctv_strSubjectID("0010")
       expect_length(rctv_lParticipantData(), 2)
       expect_named(rctv_lParticipantData(), c("metadata", "metric_data"))
-      expect_length(rctv_lParticipantMetadata(), 9)
+      expect_length(rctv_lParticipantMetadata(), 10)
       expect_named(
         rctv_lParticipantMetadata(),
-        c(
-          "subjectID",
-          "siteID",
-          "studyStartDate",
-          "studyEndDate",
-          "timeOnStudy",
-          "country",
-          "sex",
-          "age",
-          "race"
-        )
+        expected_metadata_fields
       )
-      expect_length(rctv_lParticipantMetricData(), 4)
+      expect_length(rctv_lParticipantMetricData(), 8)
       expect_named(
         rctv_lParticipantMetricData(),
-        c(
-          "adverseEvents",
-          "protocolDeviations",
-          "studyDisposition",
-          "treatmentDisposition"
-        )
+        expected_metric_data_tables
       )
     }
   )

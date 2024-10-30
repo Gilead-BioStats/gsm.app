@@ -1,0 +1,37 @@
+meta:
+  Type: User
+  ID: LB
+  Description: Lab Data Mapping
+  Priority: 1
+spec:
+  Raw_LB:
+    SubjectID:
+      required: true
+      type: character
+      source_col: subjid
+    toxicity_grade:
+      required: true
+      type: character
+      source_col: toxgrg_nsv
+    visit:
+      required: false
+      type: character
+      source_col: visnam
+    visit_date:
+      required: false
+      type: Date
+      source_col: lb_dt
+    lab_test:
+      required: false
+      type: character
+      source_col: lbtstnam
+    result:
+      required: false
+      type: numeric
+      source_col: siresn
+steps:
+  - output: User_LB
+    name: =
+    params:
+      lhs: User_LB
+      rhs: Raw_LB

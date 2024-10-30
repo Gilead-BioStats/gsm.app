@@ -32,14 +32,14 @@ test_that("run_gsm_app populates Study Overview", {
     timeout = 8000
   )
   app$wait_for_js(
-    "isWidgetPlotLoaded('study_overview-scatter-Analysis_kri0002');",
+    "isWidgetPlotLoaded('study_overview-scatter-Analysis_kri0011');",
     timeout = 8000
   )
   app$expect_values(
     export = TRUE,
     name = "plots",
     # This one is somewhat unstable, so give it a little extra time to load.
-    screenshot_args = list(delay = 1, selector = ".main")
+    screenshot_args = list(delay = 2, selector = ".main")
   )
 
   # Click on AE plot.
@@ -50,7 +50,7 @@ test_that("run_gsm_app populates Study Overview", {
     timeout = 8000
   )
   app$wait_for_js(
-    "isWidgetPlotLoaded('study_overview-scatter-Analysis_kri0002');",
+    "isWidgetPlotLoaded('study_overview-scatter-Analysis_kri0011');",
     timeout = 8000
   )
   app$expect_values(
@@ -69,7 +69,7 @@ test_that("run_gsm_app populates Study Overview", {
     timeout = 8000
   )
   app$wait_for_js(
-    "isWidgetPlotLoaded('study_overview-scatter-Analysis_kri0002');",
+    "isWidgetPlotLoaded('study_overview-scatter-Analysis_kri0011');",
     timeout = 8000
   )
   app$expect_values(
@@ -308,7 +308,7 @@ test_that("run_gsm_app populates Participant Details", {
   )
 
   # Select AE data.
-  app$click("participant_details-metric_summary-metric_list_choices-adverseEvents")
+  app$click("participant_details-metric_summary-metric_list_choices-AE")
   app$wait_for_idle()
   app$expect_values(
     export = TRUE,
@@ -326,7 +326,7 @@ test_that("run_gsm_app populates Participant Details", {
   )
 
   # Select Study Disposition data.
-  app$click("participant_details-metric_summary-metric_list_choices-studyDisposition")
+  app$click("participant_details-metric_summary-metric_list_choices-STUDCOMP")
   app$wait_for_idle()
   app$expect_values(
     export = TRUE,
