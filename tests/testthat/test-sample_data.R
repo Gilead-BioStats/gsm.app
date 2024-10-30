@@ -15,14 +15,18 @@ test_that("sample_FetchParticipantData returns expected data", {
   expect_named(
     test_result$metric_data,
     c(
-      "adverseEvents",
-      "protocolDeviations",
-      "studyDisposition",
-      "treatmentDisposition"
+      "AE",
+      "ENROLL",
+      "LB",
+      "PD",
+      "SDRGCOMP",
+      "STUDCOMP",
+      "DATAENT",
+      "QUERY"
     )
   )
-  expect_equal(nrow(test_result$metric_data$adverseEvents), 0)
-  expect_equal(nrow(test_result$metric_data$protocolDeviations), 2)
-  expect_equal(nrow(test_result$metric_data$studyDisposition), 1)
-  expect_equal(nrow(test_result$metric_data$treatmentDisposition), 1)
+  expect_equal(nrow(test_result$metric_data$AE), 0)
+  expect_equal(nrow(test_result$metric_data$PD), 2)
+  expect_equal(nrow(test_result$metric_data$STUDCOMP), 1)
+  expect_equal(nrow(test_result$metric_data$SDRGCOMP), 1)
 })
