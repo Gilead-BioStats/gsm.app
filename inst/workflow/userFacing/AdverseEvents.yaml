@@ -1,7 +1,7 @@
 meta:
   Type: User
-  ID: AE
-  Description: Adverse Event Data Mapping
+  ID: AdverseEvents
+  Description: Adverse Event User-Facing Data
   Priority: 1
 spec:
   Raw_AE:

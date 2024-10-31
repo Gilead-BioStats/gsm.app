@@ -1,7 +1,7 @@
 meta:
   Type: User
-  ID: LB
-  Description: Lab Data Mapping
+  ID: Lab
+  Description: Lab User-Facing Data
   Priority: 1
 spec:
   Raw_LB:

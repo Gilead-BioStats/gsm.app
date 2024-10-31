@@ -308,7 +308,7 @@ test_that("run_gsm_app populates Participant Details", {
   )
 
   # Select AE data.
-  app$click("participant_details-metric_summary-metric_list_choices-AE")
+  app$click("participant_details-metric_summary-metric_list_choices-AdverseEvents")
   app$wait_for_idle()
   app$expect_values(
     export = TRUE,
@@ -326,7 +326,7 @@ test_that("run_gsm_app populates Participant Details", {
   )
 
   # Select Study Disposition data.
-  app$click("participant_details-metric_summary-metric_list_choices-STUDCOMP")
+  app$click("participant_details-metric_summary-metric_list_choices-StudyCompletion")
   app$wait_for_idle()
   app$expect_values(
     export = TRUE,

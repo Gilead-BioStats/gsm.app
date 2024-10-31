@@ -46,14 +46,14 @@ test_that("mod_ParticipantDetails_Server fetches participant data", {
         "ethnicity"
       )
       expected_metric_data_tables <- c(
-        "AE",
-        "ENROLL",
-        "LB",
-        "PD",
-        "SDRGCOMP",
-        "STUDCOMP",
-        "DATAENT",
-        "QUERY"
+        "AdverseEvents",
+        "DataEntry",
+        "Enrollment",
+        "Lab",
+        "ProtocolDeviations",
+        "Queries",
+        "StudyCompletion",
+        "TreatmentCompletion"
       )
 
       expect_length(rctv_lParticipantData(), 2)

@@ -1,7 +1,7 @@
 meta:
   Type: User
-  ID: ENROLL
-  Description: Enrollment Data Mapping
+  ID: Enrollment
+  Description: Enrollment User-Facing Data
   Priority: 1
 spec:
   Raw_ENROLL:

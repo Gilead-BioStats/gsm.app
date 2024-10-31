@@ -146,6 +146,7 @@ names(participant_ids) <- participant_ids
 domains <- lUser
 domains$User_SUBJ <- NULL
 names(domains) <- stringr::str_remove(names(domains), "^User_")
+domains <- domains[sort(names(domains))]
 MakeThisData <- function(df, this_subjid) {
   df %>%
     dplyr::filter(.data$SubjectID == this_subjid) %>%
@@ -193,7 +194,9 @@ usethis::use_data(
   compress = "gzip"
 )
 
-# Use these to figure out ideal compression.
+# Use these to figure out ideal compression. Update the usethis calls
+# accordingly.
+
 # tools::resaveRdaFiles("data/")
 # tools::checkRdaFiles("data/")
 # tools::resaveRdaFiles("R/")

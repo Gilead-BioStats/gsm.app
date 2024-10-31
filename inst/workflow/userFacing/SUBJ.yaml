@@ -1,7 +1,7 @@
 meta:
   Type: User
   ID: SUBJ
-  Description: Subject Data Mapping
+  Description: Subject User-Facing Data
   Priority: 1
 spec:
   Raw_SUBJ:
