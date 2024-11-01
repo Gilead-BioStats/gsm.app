@@ -47,7 +47,8 @@ Suggests:
     usethis,
     withr
 Remotes:
-    gsm=Gilead-BioStats/gsm@dev
+    gsm=Gilead-BioStats/gsm@dev,
+    gt=jonthegeek/gt@selection
 Config/testthat/edition: 3
 Encoding: UTF-8
 Language: en-US
