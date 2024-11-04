@@ -104,8 +104,8 @@ jobs:
               favicon <- "code-pull-request"
               faviconcolor <- colorScheme("gray")
             }
-            cat("GSMAPP_FAVICON=", favicon, "\n", sep = "", file = Sys.getenv("GITHUB_ENV"), append = TRUE)
-            cat("GSMAPP_FAVICONCOLOR=", faviconcolor, "\n", sep = "", file = Sys.getenv("GITHUB_ENV"), append = TRUE)
+            cat("FAVICON=", favicon, "\n", sep = "", file = Sys.getenv("GITHUB_ENV"), append = TRUE)
+            cat("FAVICONCOLOR=", faviconcolor, "\n", sep = "", file = Sys.getenv("GITHUB_ENV"), append = TRUE)
           }
           cat("APPNAME=", appname, "\n", sep = "", file = Sys.getenv("GITHUB_ENV"), append = TRUE)
         shell: Rscript {0}

@@ -127,16 +127,6 @@ lUser <- RunWorkflows(lUserWorkflows, c(lRaw, lMapped))
 lUser <- lUser %>%
   purrr::map(dplyr::as_tibble)
 
-# TEMPORARY: Repair dates ----
-
-# (see https://github.com/Gilead-BioStats/gsm/issues/1925)
-
-lUser$User_SUBJ <- lUser$User_SUBJ %>%
-  dplyr::mutate(
-    dplyr::across(dplyr::ends_with("_date"), as.Date)
-  )
-
-
 # Prep participant data ----
 
 # Rotate such that the data is by subjid. In a "real" usage, much of this data
