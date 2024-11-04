@@ -21,7 +21,7 @@ Imports:
     cli,
     dplyr,
     DT,
-    fontawesome,
+    favawesome,
     glue,
     gsm (>= 2.1.1),
     gt,

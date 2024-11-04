@@ -30,12 +30,12 @@ mod_MetricTable_Server <- function(
       # most, so it's hard to test.
       #
       # nocov start
-      tibble::tibble(
+      dplyr::tibble(
         StudyID = character(),
         GroupID = character(),
         MetricID = character(),
         Group = character(),
-        SnapshotDate = head(as.Date(1), 0),
+        SnapshotDate = as.Date(1)[0],
         Enrolled = integer(),
         Numerator = numeric(),
         Denominator = numeric(),

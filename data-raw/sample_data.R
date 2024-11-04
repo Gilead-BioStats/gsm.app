@@ -34,11 +34,11 @@ lMappings <- MakeWorkflowList(
 raw_spec <- CombineSpecs(lMappings)
 lRaw <- Ingest(lSource, raw_spec)
 lRaw <- lRaw %>%
-  purrr::map(tibble::as_tibble)
+  purrr::map(dplyr::as_tibble)
 
 lMapped <- RunWorkflows(lMappings, lRaw)
 lMapped <- lMapped %>%
-  purrr::map(tibble::as_tibble)
+  purrr::map(dplyr::as_tibble)
 
 # Create Analysis Data - Generate KRIs ----
 
@@ -106,7 +106,7 @@ sample_dfBounds <- MakeBounds(
 sample_dfAnalyticsInput <- purrr::map(lAnalysis, "Analysis_Input") %>%
   dplyr::bind_rows(.id = "MetricID") %>%
   # dplyr::mutate(MetricID = stringr::str_remove(.data$MetricID, "Analysis_")) %>%
-  tibble::as_tibble() %>%
+  dplyr::as_tibble() %>%
   dplyr::semi_join(site_subset)
 
 # Create User-facing Data ----
@@ -121,11 +121,11 @@ lUserWorkflows <- MakeWorkflowList(
 raw_spec <- CombineSpecs(lUserWorkflows)
 lRaw <- Ingest(lSource, raw_spec)
 lRaw <- lRaw %>%
-  purrr::map(tibble::as_tibble)
+  purrr::map(dplyr::as_tibble)
 
 lUser <- RunWorkflows(lUserWorkflows, c(lRaw, lMapped))
 lUser <- lUser %>%
-  purrr::map(tibble::as_tibble)
+  purrr::map(dplyr::as_tibble)
 
 # TEMPORARY: Repair dates ----
 

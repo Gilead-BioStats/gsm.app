@@ -30,6 +30,6 @@ gsmApp_UI <- function(
       intNParticipants,
       tagListSidebar
     ),
-    header = favawesome_icon("angles-up", fill = colorScheme("red"))
+    header = favawesome::fav("angles-up", fill = colorScheme("red"))
   )
 }
