@@ -1,0 +1,32 @@
+meta:
+  Type: User
+  ID: ProtocolDeviations
+  Description: Protocol Deviation User-Facing Data
+  Priority: 1
+spec:
+  Raw_PD:
+    SubjectID:
+      required: true
+      type: character
+      source_col: subjectenrollmentnumber
+    deviation_date:
+      required: false
+      type: Date
+      source_col: deviationdate
+    deemed_important:
+      required: true
+      type: character
+      source_col: deemedimportant
+    company_category:
+      required: false
+      type: character
+      source_col: companycategory
+    description:
+      required: false
+      type: character
+steps:
+  - output: User_PD
+    name: =
+    params:
+      lhs: User_PD
+      rhs: Raw_PD

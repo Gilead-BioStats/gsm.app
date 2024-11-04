@@ -1,0 +1,51 @@
+meta:
+  Type: User
+  ID: SUBJ
+  Description: Subject User-Facing Data
+  Priority: 1
+spec:
+  Raw_SUBJ:
+    SubjectID:
+      required: true
+      type: character
+      source_col: subjid
+    enrolled:
+      required: true
+      type: character
+      source_col: enrollyn
+    study_start_date:
+      required: false
+      type: Date
+      source_col: firstparticipantdate
+    days_on_study:
+      required: false
+      type: numeric
+      source_col: timeonstudy
+    treatment_start_date:
+      required: false
+      type: Date
+      source_col: firstdosedate
+    days_on_treatment:
+      required: false
+      type: numeric
+      source_col: timeontreatment
+    age:
+      required: false
+      type: character
+      source_col: agerep
+    sex:
+      required: false
+      type: character
+    race:
+      required: false
+      type: character
+    ethnicity:
+      required: false
+      type: character
+      source_col: ethnic
+steps:
+  - output: User_SUBJ
+    name: RunQuery
+    params:
+      df: Raw_SUBJ
+      strQuery: "SELECT * FROM df WHERE enrolled == 'Y'"

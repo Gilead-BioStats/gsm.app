@@ -1,0 +1,28 @@
+meta:
+  Type: User
+  ID: TreatmentCompletion
+  Description: Treatment Completion User-Facing Data
+  Priority: 1
+spec:
+  Raw_SDRGCOMP:
+    SubjectID:
+      required: true
+      type: character
+      source_col: subjid
+    phase:
+      required: true
+      type: character
+    completed_treatment:
+      required: true
+      type: character
+      source_col: sdrgyn
+    discontinuation_reason:
+      required: false
+      type: character
+      source_col: sdrgreas
+steps:
+  - output: User_SDRGCOMP
+    name: =
+    params:
+      lhs: User_SDRGCOMP
+      rhs: Raw_SDRGCOMP

@@ -2,260 +2,167 @@
 
 # Used libraries ----
 
-library(gsm)
-
 # clindata is needed to generate this data, but is not a requirement for using
 # or testing the package, so it is not listed in the DESCRIPTION.
+
+library(gsm)
+pkgload::load_all(".", helpers = FALSE, attach_testthat = FALSE)
 library(clindata)
 
 # Set up inputs ----
 
-## Subset sites ----
-##
-## I originally planned to filter the data, but it really isn't that big once we
-## clean it up. I'm leaving the subsetting code in place in case we decide to do
-## so later.
-used_sites <- clindata::rawplus_dm$invid %>%
-  unique() %>%
-  sort()
-
-filter_site <- function(df) {
-  dplyr::filter(df, invid %in% used_sites)
-}
-
-## Create sub-dfs ----
-
-used_subjects <- clindata::rawplus_dm %>%
-  filter_site() %>%
-  dplyr::select(
-    "studyid",
-    "invid",
-    "subjid",
-    "subjectid",
-    "enrollyn",
-    age = "agerep",
-    "sex",
-    "race",
-    "country",
-    studyStartDate = "firstparticipantdate",
-    studyEndDate = "lastparticipantdate",
-    "timeonstudy",
-    "subject_nsv"
-  )
-
-used_ae <- clindata::rawplus_ae %>%
-  dplyr::semi_join(
-    used_subjects,
-    by = "invid"
-  ) %>%
-  dplyr::select(
-    "studyid",
-    "siteid",
-    "invid",
-    "subjid",
-    "subjectid",
-    "aeser",
-    startDate = "aest_dt",
-    endDate = "aeen_dt",
-    grade = "aetoxgr",
-    dictionaryDerivedTerm = "mdrpt_nsv",
-    bodySystemOrOrganClass = "mdrsoc_nsv",
-    treatmentEmergent = "treatmentemergent"
-  )
-
-used_pd <- clindata::ctms_protdev %>%
-  dplyr::semi_join(
-    used_subjects,
-    by = c("subjectenrollmentnumber" = "subjid")
-  ) %>%
-  dplyr::select(
-    "subjectenrollmentnumber",
-    "deemedimportant",
-    deviationDate = "deviationdate",
-    category = "companycategory"
-  )
-
-used_lb <- clindata::rawplus_lb %>%
-  dplyr::semi_join(
-    used_subjects,
-    by = "subjid"
-  )
-
-used_study_comp <- clindata::rawplus_studcomp %>%
-  dplyr::semi_join(
-    used_subjects,
-    by = "subjid"
-  ) %>%
-  dplyr::select(
-    "studyid",
-    "invid",
-    "subjid",
-    "subjectid",
-    "compyn",
-    "compreas"
-  )
-
-used_treatment_comp <- clindata::rawplus_sdrgcomp %>%
-  filter_site() %>%
-  dplyr::filter(.data$phase == 'Blinded Study Drug Completion') %>%
-  dplyr::select(
-    "studyid",
-    "invid",
-    "subjid",
-    "subjectid",
-    "phase",
-    "sdrgyn",
-    treatment = "extrt",
-    treatmentDiscontinuationReason = "sdrgreas"
-  )
-
-used_enroll <- clindata::rawplus_enroll %>%
-  filter_site()
-
-# Create Mapped Data - filter/map raw data
-lData <- list(
-  Raw_SUBJ = used_subjects,
-  Raw_AE = used_ae,
-  Raw_PD = used_pd,
-  Raw_LB = used_lb,
-  Raw_STUDCOMP = used_study_comp,
-  Raw_SDRGCOMP = used_treatment_comp,
-  Raw_DATACHG = clindata::edc_data_points,
-  Raw_DATAENT = clindata::edc_data_pages,
-  Raw_QUERY = clindata::edc_queries,
-  Raw_ENROLL = used_enroll
+lSource <- list(
+  Source_STUDY = clindata::ctms_study,
+  Source_SITE = clindata::ctms_site,
+  Source_SUBJ = clindata::rawplus_dm,
+  Source_AE = clindata::rawplus_ae,
+  Source_PD = clindata::ctms_protdev,
+  Source_LB = clindata::rawplus_lb,
+  Source_STUDCOMP = clindata::rawplus_studcomp,
+  Source_SDRGCOMP = clindata::rawplus_sdrgcomp,
+  Source_QUERY = clindata::edc_queries,
+  Source_DATAENT = clindata::edc_data_pages,
+  Source_DATACHG = clindata::edc_data_points,
+  Source_ENROLL = clindata::rawplus_enroll
 )
-mapping_wf <- MakeWorkflowList(strNames = "data_mapping")
-mapped <- RunWorkflows(mapping_wf, lData)
-mapped <- mapped %>%
+
+# Create Mapped Data ----
+
+lMappings <- MakeWorkflowList(
+  strPath = "workflow/1_mappings"
+)
+raw_spec <- CombineSpecs(lMappings)
+lRaw <- Ingest(lSource, raw_spec)
+lRaw <- lRaw %>%
   purrr::map(tibble::as_tibble)
 
-# Create Analysis Data - Generate KRIs
-lWorkflow <- MakeWorkflowList(strNames = c("kri0001", "kri0002"))
-lAnalysis <- RunWorkflows(lWorkflow, mapped)
+lMapped <- RunWorkflows(lMappings, lRaw)
+lMapped <- lMapped %>%
+  purrr::map(tibble::as_tibble)
 
-# Prep for standard dfs ----
+# Create Analysis Data - Generate KRIs ----
 
-# Transform CTMS Site and Study Level data
-dfCTMSSite <- clindata::ctms_site |>
-  dplyr::rename(
-    GroupID = "pi_number",
-    Status = "site_status",
-    InvestigatorFirstName = "pi_first_name",
-    InvestigatorLastName = "pi_last_name"
-  ) |>
-  MakeLongMeta(strGroupLevel = 'Site')
+lWorkflows <- MakeWorkflowList("^kri", strPath = "workflow/2_metrics")
+## Don't use kri0012 yet.
+lWorkflows$kri0012 <- NULL
+lAnalysis <- RunWorkflows(lWorkflows, lMapped)
 
-dfCTMSStudy <- clindata::ctms_study |>
-  dplyr::rename(GroupID = "studyid") |>
-  MakeLongMeta(strGroupLevel = 'Study')
+# Choose a subset ----
 
-# Get Participant and Site counts for Country, Site and Study
-dfSiteCounts <- RunQuery(
-  df = mapped$Mapped_ENROLL,
-  strQuery = "SELECT invid as GroupID, COUNT(DISTINCT subjid) as ParticipantCount, COUNT(DISTINCT invid) as SiteCount FROM df GROUP BY invid"
-) |>
-  MakeLongMeta(strGroupLevel = "Site")
+dfResults <- BindResults(
+  lAnalysis = lAnalysis,
+  strName = "Analysis_Summary",
+  dSnapshotDate = as.Date("2019-11-01"),
+  strStudyID = "AA-AA-000-0000"
+)
 
-dfStudyCounts <- RunQuery(
-  df = mapped$Mapped_ENROLL,
-  strQuery = "SELECT studyid as GroupID, COUNT(DISTINCT subjid) as ParticipantCount, COUNT(DISTINCT invid) as SiteCount FROM df GROUP BY studyid"
-) |>
-  MakeLongMeta(strGroupLevel = "Study")
+flag_summary <- dfResults %>%
+  dplyr::select(GroupID, MetricID, Flag) %>%
+  dplyr::summarize(
+    has_red = any(abs(.data$Flag) == 2, na.rm = TRUE),
+    has_amber = any(abs(.data$Flag) == 1, na.rm = TRUE),
+    .by = c("GroupID")
+  ) %>%
+  dplyr::arrange(dplyr::desc(has_red), dplyr::desc(has_amber), GroupID)
 
-dfCountryCounts <- RunQuery(
-  df = mapped$Mapped_ENROLL,
-  strQuery = "SELECT country as GroupID, COUNT(DISTINCT subjid) as ParticipantCount, COUNT(DISTINCT invid) as SiteCount FROM df GROUP BY country"
-) |>
-  MakeLongMeta(strGroupLevel = "Country")
+has_both <- flag_summary %>%
+  dplyr::filter(has_red, has_amber) %>%
+  dplyr::select(GroupID) %>%
+  dplyr::arrange(GroupID)
+has_red_only <- flag_summary %>%
+  dplyr::filter(has_red, !has_amber) %>%
+  dplyr::select(GroupID) %>%
+  dplyr::arrange(GroupID)
+has_amber_only <- flag_summary %>%
+  dplyr::filter(!has_red, has_amber) %>%
+  dplyr::select(GroupID) %>%
+  dplyr::arrange(GroupID)
+has_neither <- flag_summary %>%
+  dplyr::filter(!has_red, !has_amber) %>%
+  dplyr::select(GroupID) %>%
+  dplyr::arrange(GroupID)
+
+site_subset <- dplyr::bind_rows(
+  has_both,
+  has_red_only,
+  head(has_amber_only, 10),
+  head(has_neither, 10)
+) %>%
+  dplyr::arrange(GroupID)
 
 # Standard dfs ----
 
 sample_dfGroups <- dplyr::bind_rows(
-  SiteCounts = dfSiteCounts,
-  StudyCounts = dfStudyCounts,
-  CountryCounts = dfCountryCounts,
-  Site = dfCTMSSite,
-  Study = dfCTMSStudy
+  lMapped$Mapped_SITE %>% dplyr::semi_join(site_subset),
+  lMapped$Mapped_STUDY
 )
-sample_dfMetrics <- MakeMetric(lWorkflows = lWorkflow)
-sample_dfResults <- BindResults(
-  lAnalysis = lAnalysis,
-  strName = "Analysis_Summary",
-  dSnapshotDate = as.Date("2019-11-01"),
-  strStudyID = "ABC-123"
-)
+sample_dfMetrics <- MakeMetric(lWorkflows = lWorkflows)
+sample_dfResults <- dfResults %>%
+  dplyr::semi_join(site_subset)
 sample_dfBounds <- MakeBounds(
   dfResults = sample_dfResults,
   dfMetrics = sample_dfMetrics
 )
 sample_dfAnalyticsInput <- purrr::map(lAnalysis, "Analysis_Input") %>%
   dplyr::bind_rows(.id = "MetricID") %>%
-  tibble::as_tibble()
+  # dplyr::mutate(MetricID = stringr::str_remove(.data$MetricID, "Analysis_")) %>%
+  tibble::as_tibble() %>%
+  dplyr::semi_join(site_subset)
+
+# Create User-facing Data ----
+
+## Before I was getting this lRaw at the same time as lMapped, but that caused me to
+## have duplicate columns during Analysis Data creation
+
+lUserWorkflows <- MakeWorkflowList(
+  strPath = system.file("workflow/userFacing", package = "gsm.app"),
+  strPackage = NULL
+)
+raw_spec <- CombineSpecs(lUserWorkflows)
+lRaw <- Ingest(lSource, raw_spec)
+lRaw <- lRaw %>%
+  purrr::map(tibble::as_tibble)
+
+lUser <- RunWorkflows(lUserWorkflows, c(lRaw, lMapped))
+lUser <- lUser %>%
+  purrr::map(tibble::as_tibble)
+
+# TEMPORARY: Repair dates ----
+
+# (see https://github.com/Gilead-BioStats/gsm/issues/1925)
+
+lUser$User_SUBJ <- lUser$User_SUBJ %>%
+  dplyr::mutate(
+    dplyr::across(dplyr::ends_with("_date"), as.Date)
+  )
+
 
 # Prep participant data ----
 
 # Rotate such that the data is by subjid. In a "real" usage, much of this data
 # would likely be fetched via an API or other function call.
-participant_ids <- sort(mapped$Mapped_ENROLL$subjid)
+participant_ids <- sample_dfAnalyticsInput$SubjectID
 names(participant_ids) <- participant_ids
+domains <- lUser
+domains$User_SUBJ <- NULL
+names(domains) <- stringr::str_remove(names(domains), "^User_")
+domains <- domains[sort(names(domains))]
+MakeThisData <- function(df, this_subjid) {
+  df %>%
+    dplyr::filter(.data$SubjectID == this_subjid) %>%
+    dplyr::select("SubjectID", dplyr::everything())
+}
+
 participant_data <- purrr::map(
   participant_ids,
   function(this_subjid) {
     list(
-      metadata = used_subjects %>%
-        dplyr::filter(subjid == this_subjid) %>%
-        dplyr::select(
-          subjectID = "subjid",
-          siteID = "invid",
-          "studyStartDate",
-          "studyEndDate",
-          timeOnStudy = "timeonstudy",
-          "country",
-          "sex",
-          "age",
-          "race"
-        ) %>%
+      metadata = lUser$User_SUBJ %>%
+        MakeThisData(this_subjid) %>%
         as.list(),
-      metric_data = list(
-        adverseEvents = used_ae %>%
-          dplyr::filter(subjid == this_subjid) %>%
-          dplyr::select(
-            subjectID = "subjid",
-            serious = "aeser",
-            "startDate",
-            "endDate",
-            "grade",
-            "dictionaryDerivedTerm",
-            "bodySystemOrOrganClass",
-            "treatmentEmergent"
-          ),
-        protocolDeviations = used_pd %>%
-          dplyr::filter(subjectenrollmentnumber == this_subjid) %>%
-          dplyr::select(
-            subjectID = "subjectenrollmentnumber",
-            deemedImportant = "deemedimportant",
-            "deviationDate",
-            "category"
-          ),
-        studyDisposition = used_study_comp %>%
-          dplyr::filter(subjid == this_subjid, compyn == "N") %>%
-          dplyr::select(
-            subjectID = "subjid",
-            studyDiscontinuationReason = "compreas"
-          ),
-        treatmentDisposition = used_treatment_comp %>%
-          dplyr::filter(
-            subjid == this_subjid,
-            treatmentDiscontinuationReason != ""
-          ) %>%
-          dplyr::select(
-            subjectID = "subjid",
-            "phase",
-            "treatment",
-            "treatmentDiscontinuationReason"
-          )
-      )
+      metric_data = purrr::map(domains, function(this_domain) {
+        MakeThisData(this_domain, this_subjid)
+      })
     )
   }
 )
@@ -264,7 +171,12 @@ participant_data <- purrr::map(
 
 # The participant data is fetched using a function, so we don't export it
 # directly.
-usethis::use_data(participant_data, overwrite = TRUE, internal = TRUE)
+usethis::use_data(
+  participant_data,
+  overwrite = TRUE,
+  internal = TRUE,
+  compress = "xz"
+)
 
 # Everything else that we use is exported as sample data. Split things up by
 # compression type.
@@ -276,47 +188,45 @@ usethis::use_data(
 )
 usethis::use_data(
   sample_dfGroups,
-  overwrite = TRUE,
-  compress = "bzip2"
-)
-usethis::use_data(
   sample_dfMetrics,
   sample_dfResults,
   overwrite = TRUE,
   compress = "gzip"
 )
 
-# Use these to figure out ideal compression.
+# Use these to figure out ideal compression. Update the usethis calls
+# accordingly.
+
 # tools::resaveRdaFiles("data/")
 # tools::checkRdaFiles("data/")
+# tools::resaveRdaFiles("R/")
+# tools::checkRdaFiles("R/")
 
-
-# Clean up
+# Clean up ----
 rm(
-  dfCountryCounts,
-  dfCTMSSite,
-  dfCTMSStudy,
-  dfSiteCounts,
-  dfStudyCounts,
+  dfResults,
+  domains,
+  flag_summary,
+  has_amber_only,
+  has_both,
+  has_neither,
+  has_red_only,
   lAnalysis,
-  lData,
-  lWorkflow,
-  mapped,
-  mapping_wf,
+  lMapped,
+  lMappings,
+  lRaw,
+  lSource,
+  lUser,
+  lUserWorkflows,
+  lWorkflows,
+  MakeThisData,
   participant_data,
+  participant_ids,
+  raw_spec,
   sample_dfAnalyticsInput,
   sample_dfBounds,
   sample_dfGroups,
   sample_dfMetrics,
   sample_dfResults,
-  used_ae,
-  used_enroll,
-  used_lb,
-  used_pd,
-  used_study_comp,
-  used_subjects,
-  used_treatment_comp,
-  participant_ids,
-  used_sites,
-  filter_site
+  site_subset
 )

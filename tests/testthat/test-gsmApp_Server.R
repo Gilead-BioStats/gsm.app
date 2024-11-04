@@ -13,11 +13,11 @@ test_that("gsmApp_Server initializes correctly and updates rctv_lMetric", {
       # Simulation initialization.
       session$setInputs(
         primary_nav_bar = "Study Overview",
-        metric = "kri0001",
+        metric = "Analysis_kri0001",
         site = "None",
         participant = "None"
       )
-      expect_equal(input$metric, "kri0001")
+      expect_equal(input$metric, "Analysis_kri0001")
       expect_null(rctv_lMetric()$selectedGroupIDs)
 
       session$setInputs(
@@ -45,7 +45,7 @@ test_that("gsmApp_Server triggers reset", {
       # Simulation initialization.
       session$setInputs(
         primary_nav_bar = "Study Overview",
-        metric = "kri0001",
+        metric = "Analysis_kri0001",
         site = "None",
         participant = "None"
       )

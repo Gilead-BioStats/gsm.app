@@ -15,8 +15,8 @@ test_that("mod_StudyOverview_Server returns selected group and metric", {
       expect_s3_class(rctv_strSelectedGroupID, "reactive")
       expect_null(rctv_strSelectedGroupID())
 
-      session$setInputs(`scatter-kri0001-plot` = "None")
-      session$setInputs(`scatter-kri0001-plot` = "0X005")
+      session$setInputs(`scatter-Analysis_kri0001-plot` = "None")
+      session$setInputs(`scatter-Analysis_kri0001-plot` = "0X005")
       expect_equal(rctv_strSelectedGroupID(), "0X005")
 
       # Test the selected metric reactive
@@ -25,9 +25,9 @@ test_that("mod_StudyOverview_Server returns selected group and metric", {
 
       # When we click a plot, it updates.
       session$setInputs(
-        `scatter-selectedScatterPlot` = "studyOverviewTest-scatter-kri0001"
+        `scatter-selectedScatterPlot` = "studyOverviewTest-scatter-Analysis_kri0001"
       )
-      expect_equal(rctv_strSelectedMetricID(), "kri0001")
+      expect_equal(rctv_strSelectedMetricID(), "Analysis_kri0001")
     }
   )
 })
