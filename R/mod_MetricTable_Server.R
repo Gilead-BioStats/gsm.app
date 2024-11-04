@@ -26,7 +26,10 @@ mod_MetricTable_Server <- function(
       if (inherits(tbl, "gt_tbl")) {
         return(tbl$`_data`)
       }
-      # Return an empty version of the tibble
+      # Return an empty version of the tibble. This should happen transiently at
+      # most, so it's hard to test.
+      #
+      # nocov start
       tibble::tibble(
         StudyID = character(),
         GroupID = character(),
@@ -40,6 +43,7 @@ mod_MetricTable_Server <- function(
         Score = numeric(),
         Flag = numeric()
       )
+      # nocov end
     })
 
     # The RV ensures that the selection gets updated when the table
@@ -81,7 +85,7 @@ mod_MetricTable_Server <- function(
     })
 
     # Reactive value to store the selected row
-    selected_row <- reactiveVal("None")
+    selected_row <- reactiveVal(NULL)
 
     # Observe table selections
     observe({
