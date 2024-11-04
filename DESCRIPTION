@@ -28,7 +28,6 @@ Imports:
     htmltools,
     htmlwidgets,
     jsonlite,
-    kableExtra,
     magrittr,
     purrr,
     rlang,
