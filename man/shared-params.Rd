@@ -144,6 +144,12 @@ color.}
 \item{strContainerID}{\code{character} The (namespaced) ID of the target container
 (usually a div).}
 
+\item{strFavicon}{The name of an icon to use in the browser tab via
+\code{\link[favawesome:fav]{favawesome::fav()}}.}
+
+\item{strFaviconColor}{The hexcode or name of a color to use as the icon fill
+for \code{\link[favawesome:fav]{favawesome::fav()}}.}
+
 \item{strGroupID}{\code{character} A \code{GroupID} to focus on.}
 
 \item{strGroupLabelKey}{\code{character} Value for the group label key. Default:

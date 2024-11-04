@@ -32,7 +32,6 @@ Imports:
     magrittr,
     purrr,
     rlang,
-    rsvg,
     shiny (>= 1.6.0),
     shinycssloaders,
     shinyjs,
