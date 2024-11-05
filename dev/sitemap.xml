@@ -22,7 +22,6 @@
 <url><loc>https://gilead-biostats.github.io/gsm.app/dev/reference/gsmDependencies.html</loc></url>
 <url><loc>https://gilead-biostats.github.io/gsm.app/dev/reference/gsmWidgetOutput.html</loc></url>
 <url><loc>https://gilead-biostats.github.io/gsm.app/dev/reference/gsmapp_abort.html</loc></url>
-<url><loc>https://gilead-biostats.github.io/gsm.app/dev/reference/gtIO.html</loc></url>
 <url><loc>https://gilead-biostats.github.io/gsm.app/dev/reference/htmlDependency_Default_Stylesheet.html</loc></url>
 <url><loc>https://gilead-biostats.github.io/gsm.app/dev/reference/htmlDependency_DetectCardClicks.html</loc></url>
 <url><loc>https://gilead-biostats.github.io/gsm.app/dev/reference/htmlDependency_GroupOverview.html</loc></url>
@@ -31,9 +30,6 @@
 <url><loc>https://gilead-biostats.github.io/gsm.app/dev/reference/htmlDependency_Stylesheet.html</loc></url>
 <url><loc>https://gilead-biostats.github.io/gsm.app/dev/reference/htmlDependency_TogglePill.html</loc></url>
 <url><loc>https://gilead-biostats.github.io/gsm.app/dev/reference/htmlDependency_WidgetInputHelpers.html</loc></url>
-<url><loc>https://gilead-biostats.github.io/gsm.app/dev/reference/htmlDependency_gtIO.html</loc></url>
-<url><loc>https://gilead-biostats.github.io/gsm.app/dev/reference/htmlDependency_gtIOInput.html</loc></url>
-<url><loc>https://gilead-biostats.github.io/gsm.app/dev/reference/htmlDependency_gtIOjs.html</loc></url>
 <url><loc>https://gilead-biostats.github.io/gsm.app/dev/reference/htmlDependency_updateStyleJS.html</loc></url>
 <url><loc>https://gilead-biostats.github.io/gsm.app/dev/reference/index.html</loc></url>
 <url><loc>https://gilead-biostats.github.io/gsm.app/dev/reference/make_dfParticipantGroups.html</loc></url>
