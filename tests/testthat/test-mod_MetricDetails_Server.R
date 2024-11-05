@@ -84,8 +84,8 @@ test_that("mod_MetricDetails_Server renders tab outputs", {
       expect_s3_class(output$time_series, "json")
 
       session$setInputs(selected_tab = "Analysis Output")
-      expect_type(output$`analysis_output-table`, "list")
-      expect_named(output$`analysis_output-table`, c("html", "deps"))
+      expect_type(output$`analysis_output-gt-table`, "list")
+      expect_named(output$`analysis_output-gt-table`, c("html", "deps"))
     }
   )
 })

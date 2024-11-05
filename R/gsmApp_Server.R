@@ -98,6 +98,7 @@ gsmApp_Server <- function(
       dfGroups = dfGroups,
       dfAnalyticsInput = dfAnalyticsInput,
       rctv_strSiteID = rctv_InputSite,
+      rctv_strSubjectID = reactive(input$participant),
       rctv_strMetricID = rctv_InputMetric,
       rctv_lMetric = rctv_lMetric
     )

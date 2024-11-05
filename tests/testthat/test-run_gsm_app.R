@@ -35,11 +35,12 @@ test_that("run_gsm_app populates Study Overview", {
     "isWidgetPlotLoaded('study_overview-scatter-Analysis_kri0011');",
     timeout = 8000
   )
+  Sys.sleep(1)
   app$expect_values(
     export = TRUE,
     name = "plots",
     # This one is somewhat unstable, so give it a little extra time to load.
-    screenshot_args = list(delay = 2, selector = ".main")
+    screenshot_args = list(delay = 3, selector = ".main")
   )
 
   # Click on AE plot.
@@ -114,7 +115,7 @@ test_that("run_gsm_app populates Metric Details", {
     export = TRUE,
     name = "scatter",
     # This one is somewhat unstable, so give it a little extra time to load.
-    screenshot_args = list(delay = 1, selector = ".main")
+    screenshot_args = list(delay = 2, selector = ".main")
   )
 
   # Click through to each tab.
@@ -299,7 +300,7 @@ test_that("run_gsm_app populates Participant Details", {
   )
 
   # Select a participant from that site.
-  app$set_inputs(`site_details-participants-participant` = "0270", allow_no_input_binding_ = TRUE)
+  app$set_inputs(`site_details-participants-gt-table` = 1)
   app$wait_for_idle()
   app$expect_values(
     export = TRUE,
@@ -317,7 +318,7 @@ test_that("run_gsm_app populates Participant Details", {
   )
 
   # Select a different participant via the drop-down.
-  app$set_inputs(`participant` = "0285", allow_no_input_binding_ = TRUE)
+  app$set_inputs(`participant` = "0285")
   app$wait_for_idle()
   app$expect_values(
     export = TRUE,

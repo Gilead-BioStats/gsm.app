@@ -58,7 +58,7 @@
           <div class="tab-pane" data-value="Analysis Output" id="tab-XXXX-5">
             <div class="card bslib-card bslib-mb-spacing bslib-card-input html-fill-item html-fill-container MetricTable" data-bslib-card-init data-full-screen="false" data-require-bs-caller="card()" data-require-bs-version="5" id="testID-analysis_output">
               <div class="card-body bslib-gap-spacing html-fill-item html-fill-container" style="margin-top:auto;margin-bottom:auto;flex:1 1 auto;">
-                <div class="shiny-html-output gt_shiny" id="testID-analysis_output-table"></div>
+                <div class="shiny-html-output gt_shiny" id="testID-analysis_output-gt-table"></div>
               </div>
               <bslib-tooltip placement="auto" bsOptions="[]" data-require-bs-version="5" data-require-bs-caller="tooltip()">
                 <template>Expand</template>
