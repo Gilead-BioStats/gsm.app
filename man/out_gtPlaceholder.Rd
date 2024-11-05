@@ -4,11 +4,13 @@
 \alias{out_gtPlaceholder}
 \title{Placeholder gt Table}
 \usage{
-out_gtPlaceholder(...)
+out_gtPlaceholder(..., id = NULL)
 }
 \arguments{
 \item{...}{\code{character} Text to describe what is required, as a string,
 character vector, or multiple strings or character vectors.}
+
+\item{id}{\code{character} An optional ID for the table.}
 }
 \value{
 A \code{\link[gt:gt]{gt::gt()}} with a placeholder.
