@@ -25,6 +25,8 @@ run_gsm_app <- function(
   dfResults,
   fnFetchParticipantData,
   strTitle = "GSM Deep Dive",
+  strFavicon = "angles-up",
+  strFaviconColor = "#FF5859",
   tagListSidebar = NULL,
   fnServer = NULL
 ) {
@@ -46,6 +48,8 @@ run_gsm_app <- function(
       dfMetrics = dfMetrics,
       dfResults = dfResults,
       strTitle = strTitle,
+      strFavicon = strFavicon,
+      strFaviconColor = strFaviconColor,
       tagListSidebar = tagListSidebar
     ),
     server = gsmApp_Server(
@@ -61,8 +65,12 @@ run_gsm_app <- function(
 }
 
 #' @rdname run_gsm_app
+#' @inheritParams shared-params
 #' @export
-run_sample_gsm_app <- function() { # nocov start
+run_sample_gsm_app <- function(
+  strFavicon = "angles-up",
+  strFaviconColor = "#FF5859"
+) { # nocov start
   run_gsm_app(
     dfAnalyticsInput = gsm.app::sample_dfAnalyticsInput,
     dfBounds = gsm.app::sample_dfBounds,
@@ -70,6 +78,8 @@ run_sample_gsm_app <- function() { # nocov start
     dfMetrics = gsm.app::sample_dfMetrics,
     dfResults = gsm.app::sample_dfResults,
     fnFetchParticipantData = sample_FetchParticipantData,
-    strTitle = "Sample Deep Dive App"
+    strTitle = "Sample Deep Dive App",
+    strFavicon = strFavicon,
+    strFaviconColor = strFaviconColor
   )
 } # nocov end

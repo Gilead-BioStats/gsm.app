@@ -100,6 +100,10 @@
 #'   color.
 #' @param strContainerID `character` The (namespaced) ID of the target container
 #'   (usually a div).
+#' @param strFavicon The name of an icon to use in the browser tab via
+#'   [favawesome::fav()].
+#' @param strFaviconColor The hexcode or name of a color to use as the icon fill
+#'   for [favawesome::fav()].
 #' @param strGroupID `character` A `GroupID` to focus on.
 #' @param strGroupLabelKey `character` Value for the group label key. Default:
 #'   `"InvestigatorLastName"`.

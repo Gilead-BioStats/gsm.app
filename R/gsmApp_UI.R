@@ -11,6 +11,8 @@ gsmApp_UI <- function(
   dfMetrics,
   dfResults,
   strTitle = "GSM Deep Dive",
+  strFavicon = "angles-up",
+  strFaviconColor = colorScheme("red"),
   tagListSidebar = NULL
 ) {
   # Transform data for use in lower-level functions. ----
@@ -30,6 +32,6 @@ gsmApp_UI <- function(
       intNParticipants,
       tagListSidebar
     ),
-    header = favawesome_icon("angles-up", fill = colorScheme("red"))
+    header = favawesome::fav(strFavicon, fill = strFaviconColor)
   )
 }

@@ -59,6 +59,7 @@ jobs:
       - uses: r-lib/actions/setup-r@v2
         with:
           use-public-rspm: true
+          r-version: '4.4.1'
 
       # Use a cache to speed up installation, if possible. Packages will be
       # restored if they're in the cache, then updated if necessary in the
@@ -89,17 +90,30 @@ jobs:
       - name: Set APPNAME
         run: |
           appname <- gsub("[^A-Za-z0-9]", "-", Sys.getenv("REPO_NAME"))
+          favicon <- "angles-up"
           deployment_type <- Sys.getenv("DEPLOYMENT_TYPE")
           pr_number <- Sys.getenv("PR_NUMBER")
 
           if (deployment_type != "prod") {
+            pkgload::load_all(".", helpers = FALSE, attach_testthat = FALSE)
             appname <- paste(appname, deployment_type, sep = "-")
+            favicon <- "angle-up"
+            faviconcolor <- colorScheme("amber")
             if (nzchar(pr_number)) {
               appname <- paste(appname, pr_number, sep = "-")
+              favicon <- "code-pull-request"
+              faviconcolor <- colorScheme("gray")
             }
+            cat("FAVICON=", favicon, "\n", sep = "", file = Sys.getenv("GITHUB_ENV"), append = TRUE)
+            cat("FAVICONCOLOR=", faviconcolor, "\n", sep = "", file = Sys.getenv("GITHUB_ENV"), append = TRUE)
           }
           cat("APPNAME=", appname, "\n", sep = "", file = Sys.getenv("GITHUB_ENV"), append = TRUE)
         shell: Rscript {0}
+
+      - name: Set up .Renviron
+        run: |
+          echo "GSMAPP_FAVICON=$FAVICON" >> .Renviron
+          echo "GSMAPP_FAVICONCOLOR=$FAVICONCOLOR" >> .Renviron
 
       - name: Push to shinyapps.io
         env:

@@ -67,17 +67,20 @@ test_that("mod_MetricDetails_Server renders tab outputs", {
 
       # Manually set tab (happens automatically via UI).
       session$setInputs(selected_tab = "Scatter Plot")
+      # The value gets set to "None" at this point. None of the non-modules
+      # override, that, since they return `NULL`.
+      expect_equal(rctv_strScatterGroup(), "None")
 
       session$setInputs(selected_tab = "Bar Chart (KRI Value)")
-      expect_null(rctv_strScatterGroup())
+      expect_equal(rctv_strScatterGroup(), "None")
       expect_s3_class(output$bar_chart_metric, "json")
 
       session$setInputs(selected_tab = "Bar Chart (KRI Score)")
-      expect_null(rctv_strScatterGroup())
+      expect_equal(rctv_strScatterGroup(), "None")
       expect_s3_class(output$bar_chart_score, "json")
 
       session$setInputs(selected_tab = "Time Series")
-      expect_null(rctv_strScatterGroup())
+      expect_equal(rctv_strScatterGroup(), "None")
       expect_s3_class(output$time_series, "json")
 
       session$setInputs(selected_tab = "Analysis Output")

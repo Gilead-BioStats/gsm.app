@@ -47,9 +47,15 @@ test_that("mod_MetricTable_Server returns selected site", {
     ),
     {
       expect_null(input$table)
+      expect_null(session$returned())
+      # Without this I don't think the gt data registers properly.
+      session$flushReact()
+      session$setInputs(table = 3L)
+      expect_equal(session$returned(), "0X027")
+      session$setInputs(table = 0L)
       expect_equal(session$returned(), "None")
-      session$setInputs(table = "0X003")
-      expect_equal(session$returned(), "0X003")
+      session$setInputs(table = NULL)
+      expect_null(session$returned())
     }
   )
 })

@@ -39,6 +39,7 @@ mod_MetricDetails_Server <- function(
       dfGroups = dfGroups,
       rctv_dfBounds = rctv_dfBounds_byMetricID
     )
+
     # Placeholders until these are reigned in with modules.
     rctv_strBarValueGroup <- reactive(NULL)
     rctv_strBarScoreGroup <- reactive(NULL)
@@ -51,6 +52,8 @@ mod_MetricDetails_Server <- function(
     )
 
     # Outputs ----
+
+    # Update the value-to-return RV
     rctv_strSelectedGroupID <- reactive({
       req(input$selected_tab)
       switch(input$selected_tab,
@@ -97,10 +100,21 @@ mod_MetricDetails_Server <- function(
           outputOptions(output, "time_series", suspendWhenHidden = FALSE)
           rctv_strTimeSeriesGroup()
         },
-        "Analysis Output" = rctv_strAnalysisOutputGroup()
+        "Analysis Output" = {
+          rctv_strAnalysisOutputGroup()
+        }
       )
     })
 
-    return(rctv_strSelectedGroupID)
+    # Value to return
+    #
+    # TODO: Make a separate observer for each input?
+    rctv_strSelectedGroupID_return <- reactiveVal(NULL)
+    observe({
+      req(rctv_strSelectedGroupID())
+      rctv_strSelectedGroupID_return(rctv_strSelectedGroupID())
+    })
+
+    return(rctv_strSelectedGroupID_return)
   })
 }
