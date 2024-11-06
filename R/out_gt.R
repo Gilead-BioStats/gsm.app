@@ -18,22 +18,7 @@ out_gtInteractive <- function(gt_object, selection_mode = "single") {
       table.background.color = "transparent",
       column_labels.background.color = "transparent"
     ) %>%
-    gt::opt_row_striping() %>%
-    gt::opt_css("
-      /* Hide the selection column */
-      .gt_shiny .rt-th:first-of-type {
-        display: none;
-      }
-      .rt-td-select {
-        display: none;
-      }
-
-      /* Style for selected rows */
-      .rt-tr-selected {
-        background-color: black !important;
-        color: white;
-      }"
-    )
+    gt::opt_row_striping()
 }
 
 #' Placeholder gt Table

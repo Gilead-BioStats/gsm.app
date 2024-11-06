@@ -5,5 +5,8 @@
 #' @keywords internal
 mod_gtBidirectional_UI <- function(id) {
   ns <- NS(id)
-  gt::gt_output(ns("table"))
+  htmltools::tagList(
+    htmlDependency_Stylesheet("gt.css"),
+    gt::gt_output(ns("table"))
+  )
 }

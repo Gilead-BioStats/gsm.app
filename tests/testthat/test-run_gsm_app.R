@@ -128,7 +128,7 @@ test_that("run_gsm_app populates Metric Details", {
   app$expect_values(
     export = TRUE,
     name = "bar_value",
-    screenshot_args = list(selector = ".main")
+    screenshot_args = list(selector = ".main", delay = 1)
   )
 
   app$set_inputs(`metric_details-selected_tab` = "Bar Chart (KRI Score)")

@@ -7,19 +7,3 @@
 .overflow-on {
   overflow: visible !important;
 }
-
-/* CSS to eliminate via future refactors ------------------------------------ */
-
-#metric_details-results tbody > tr {
-    cursor: pointer;
-}
-
-.table-deemphasize {
-  opacity: .55;
-}
-
-#site_details-participants td:nth-child(1) {
-  cursor: pointer;
-  color: blue;
-  text-decoration: underline;
-}

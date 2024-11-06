@@ -30,7 +30,7 @@ mod_SiteParticipants_Server = function(
         return(NULL)
       }
       return(
-        out_CardSubtitle("Select a subject to drill down.")
+        out_CardSubtitle("Click rows for participant details", "fst-italic")
       )
     }) %>%
       bindCache(rctv_lglGroupIsNone())
@@ -43,6 +43,7 @@ mod_SiteParticipants_Server = function(
       gt::gt(df) %>%
         gt::cols_label(.list = rctv_lColumnNames()) %>%
         gt::fmt_number(columns = "Metric", decimals = 5) %>%
+        gt::cols_align("center", columns = "SubjectID") %>%
         out_gtInteractive()
     })
     selected_participant <- mod_gtBidirectional_Server(
