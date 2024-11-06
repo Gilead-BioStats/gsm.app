@@ -86,8 +86,14 @@ returns a vector of ids for modules, inputs, or other elements.}
 returns a set of predicted percentages/rates and upper- and lower-bounds
 across the full range of sample sizes/total exposure values for reporting.}
 
+\item{rctv_dfData}{\verb{reactive dataframe} A \code{\link[shiny:reactive]{shiny::reactive()}} object that
+returns a generic dataframe.}
+
 \item{rctv_dfResults}{\verb{reactive dataframe} A \code{\link[shiny:reactive]{shiny::reactive()}} object that
 returns a stacked summary of analysis pipeline output.}
+
+\item{rctv_gtObject}{\verb{reactive gt_table} A \code{\link[shiny:reactive]{shiny::reactive()}} object that
+returns a \code{\link[gt:gt]{gt::gt()}} object.}
 
 \item{rctv_lData}{\verb{reactive list} A \code{\link[shiny:reactive]{shiny::reactive()}} object that returns a
 named list of dataframes.}
@@ -106,6 +112,9 @@ returns a Boolean value indicating whether something is "off" (\code{FALSE}) or
 
 \item{rctv_strGroupSubset}{\verb{reactive character} A \code{\link[shiny:reactive]{shiny::reactive()}} object
 that returns the selected subset of groups to include in the table.}
+
+\item{rctv_strInput}{\verb{reactive character} A \code{\link[shiny:reactive]{shiny::reactive()}} object
+that returns the name of the target input.}
 
 \item{rctv_strMetricID}{\verb{reactive character} A \code{\link[shiny:reactive]{shiny::reactive()}} object
 that returns the selected \code{MetricID}.}
@@ -143,6 +152,8 @@ color.}
 
 \item{strContainerID}{\code{character} The (namespaced) ID of the target container
 (usually a div).}
+
+\item{strEmpty}{The value to return when everything is deselected.}
 
 \item{strFavicon}{The name of an icon to use in the browser tab via
 \code{\link[favawesome:fav]{favawesome::fav()}}.}

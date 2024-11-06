@@ -10,6 +10,6 @@ mod_MetricTable_UI <- function(id) {
     id = id,
     full_screen = TRUE,
     class = "MetricTable",
-    gt::gt_output(ns("table"))
+    mod_gtBidirectional_UI(ns("gt"))
   )
 }

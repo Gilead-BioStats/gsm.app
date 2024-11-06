@@ -16,7 +16,7 @@ test_that("mod_MetricTable_Server starts as expected", {
       rctv_strSiteID = reactive("None")
     ),
     {
-      test_result <- output$table
+      test_result <- output$`gt-table`
       expect_type(test_result, "list")
       expect_named(test_result, c("html", "deps"))
       test_html <- test_result$html
@@ -46,15 +46,15 @@ test_that("mod_MetricTable_Server returns selected site", {
       rctv_strSiteID = reactive("None")
     ),
     {
-      expect_null(input$table)
+      expect_null(input$`gt-table`)
       expect_null(session$returned())
       # Without this I don't think the gt data registers properly.
       session$flushReact()
-      session$setInputs(table = 3L)
+      session$setInputs(`gt-table` = 3L)
       expect_equal(session$returned(), "0X027")
-      session$setInputs(table = 0L)
+      session$setInputs(`gt-table` = 0L)
       expect_equal(session$returned(), "None")
-      session$setInputs(table = NULL)
+      session$setInputs(`gt-table` = NULL)
       expect_null(session$returned())
     }
   )

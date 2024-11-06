@@ -9,6 +9,7 @@ mod_SiteDetails_Server(
   dfGroups,
   dfAnalyticsInput,
   rctv_strSiteID,
+  rctv_strSubjectID,
   rctv_strMetricID,
   rctv_lMetric
 )
@@ -22,6 +23,9 @@ mod_SiteDetails_Server(
 
 \item{rctv_strSiteID}{\verb{reactive character} A \code{\link[shiny:reactive]{shiny::reactive()}} object that
 returns the \code{GroupID} of a site.}
+
+\item{rctv_strSubjectID}{\verb{reactive character} A \code{\link[shiny:reactive]{shiny::reactive()}} object
+that returns the \code{SubjectID} of the selected participant.}
 
 \item{rctv_strMetricID}{\verb{reactive character} A \code{\link[shiny:reactive]{shiny::reactive()}} object
 that returns the selected \code{MetricID}.}

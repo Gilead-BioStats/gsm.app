@@ -60,8 +60,12 @@
 #' @param rctv_dfBounds `reactive dataframe` A [shiny::reactive()] object that
 #'   returns a set of predicted percentages/rates and upper- and lower-bounds
 #'   across the full range of sample sizes/total exposure values for reporting.
+#' @param rctv_dfData `reactive dataframe` A [shiny::reactive()] object that
+#'   returns a generic dataframe.
 #' @param rctv_dfResults `reactive dataframe` A [shiny::reactive()] object that
 #'   returns a stacked summary of analysis pipeline output.
+#' @param rctv_gtObject `reactive gt_table` A [shiny::reactive()] object that
+#'   returns a [gt::gt()] object.
 #' @param rctv_lData `reactive list` A [shiny::reactive()] object that returns a
 #'   named list of dataframes.
 #' @param rctv_lMetric `reactive list` A [shiny::reactive()] object that returns
@@ -75,6 +79,8 @@
 #'   "on" (`TRUE`).
 #' @param rctv_strGroupSubset `reactive character` A [shiny::reactive()] object
 #'   that returns the selected subset of groups to include in the table.
+#' @param rctv_strInput `reactive character` A [shiny::reactive()] object
+#'   that returns the name of the target input.
 #' @param rctv_strMetricID `reactive character` A [shiny::reactive()] object
 #'   that returns the selected `MetricID`.
 #' @param rctv_strName `reactive character` A [shiny::reactive()] object that
@@ -100,6 +106,7 @@
 #'   color.
 #' @param strContainerID `character` The (namespaced) ID of the target container
 #'   (usually a div).
+#' @param strEmpty The value to return when everything is deselected.
 #' @param strFavicon The name of an icon to use in the browser tab via
 #'   [favawesome::fav()].
 #' @param strFaviconColor The hexcode or name of a color to use as the icon fill

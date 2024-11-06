@@ -1,11 +1,17 @@
-# mod_MetricTable_UI creates the expected UI
+# mod_SiteParticipants_UI() creates the expected object
 
     Code
       test_result
     Output
-      <div class="card bslib-card bslib-mb-spacing bslib-card-input html-fill-item html-fill-container MetricTable" data-bslib-card-init data-full-screen="false" data-require-bs-caller="card()" data-require-bs-version="5" id="myID">
+      <div class="card bslib-card bslib-mb-spacing bslib-card-input html-fill-item html-fill-container" data-bslib-card-init data-full-screen="false" data-require-bs-caller="card()" data-require-bs-version="5" id="myUI-gt_card">
+        <div class="card-header">
+          <h5>
+            <span id="myUI-title" class="shiny-text-output"></span>
+          </h5>
+          <div id="myUI-subtitle" class="shiny-html-output"></div>
+        </div>
         <div class="card-body bslib-gap-spacing html-fill-item html-fill-container" style="margin-top:auto;margin-bottom:auto;flex:1 1 auto;">
-          <div class="shiny-html-output gt_shiny" id="myID-gt-table"></div>
+          <div class="shiny-html-output gt_shiny" id="myUI-gt-table"></div>
         </div>
         <bslib-tooltip placement="auto" bsOptions="[]" data-require-bs-version="5" data-require-bs-caller="tooltip()">
           <template>Expand</template>
