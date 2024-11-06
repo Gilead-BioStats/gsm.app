@@ -56,10 +56,14 @@
 <url><loc>https://gilead-biostats.github.io/gsm.app/dev/reference/mod_ScatterPlot_UI.html</loc></url>
 <url><loc>https://gilead-biostats.github.io/gsm.app/dev/reference/mod_SiteDetails_Server.html</loc></url>
 <url><loc>https://gilead-biostats.github.io/gsm.app/dev/reference/mod_SiteDetails_UI.html</loc></url>
+<url><loc>https://gilead-biostats.github.io/gsm.app/dev/reference/mod_SiteParticipants_Server.html</loc></url>
+<url><loc>https://gilead-biostats.github.io/gsm.app/dev/reference/mod_SiteParticipants_UI.html</loc></url>
 <url><loc>https://gilead-biostats.github.io/gsm.app/dev/reference/mod_StudyOverview_Server.html</loc></url>
 <url><loc>https://gilead-biostats.github.io/gsm.app/dev/reference/mod_StudyOverview_UI.html</loc></url>
 <url><loc>https://gilead-biostats.github.io/gsm.app/dev/reference/mod_TogglePill_Server.html</loc></url>
 <url><loc>https://gilead-biostats.github.io/gsm.app/dev/reference/mod_TogglePill_UI.html</loc></url>
+<url><loc>https://gilead-biostats.github.io/gsm.app/dev/reference/mod_gtBidirectional_Server.html</loc></url>
+<url><loc>https://gilead-biostats.github.io/gsm.app/dev/reference/mod_gtBidirectional_UI.html</loc></url>
 <url><loc>https://gilead-biostats.github.io/gsm.app/dev/reference/null_for_none.html</loc></url>
 <url><loc>https://gilead-biostats.github.io/gsm.app/dev/reference/out_Card.html</loc></url>
 <url><loc>https://gilead-biostats.github.io/gsm.app/dev/reference/out_CardSubtitle.html</loc></url>
@@ -71,8 +75,9 @@
 <url><loc>https://gilead-biostats.github.io/gsm.app/dev/reference/out_ParticipantMetadata.html</loc></url>
 <url><loc>https://gilead-biostats.github.io/gsm.app/dev/reference/out_Placeholder.html</loc></url>
 <url><loc>https://gilead-biostats.github.io/gsm.app/dev/reference/out_Sidebar.html</loc></url>
-<url><loc>https://gilead-biostats.github.io/gsm.app/dev/reference/out_SiteParticipants.html</loc></url>
 <url><loc>https://gilead-biostats.github.io/gsm.app/dev/reference/out_StudyInformation.html</loc></url>
+<url><loc>https://gilead-biostats.github.io/gsm.app/dev/reference/out_gtInteractive.html</loc></url>
+<url><loc>https://gilead-biostats.github.io/gsm.app/dev/reference/out_gtPlaceholder.html</loc></url>
 <url><loc>https://gilead-biostats.github.io/gsm.app/dev/reference/pipe.html</loc></url>
 <url><loc>https://gilead-biostats.github.io/gsm.app/dev/reference/run_gsm_app.html</loc></url>
 <url><loc>https://gilead-biostats.github.io/gsm.app/dev/reference/sample_FetchParticipantData.html</loc></url>
