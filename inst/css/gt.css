@@ -10,7 +10,7 @@
 .gt_shiny .rt-tbody .rt-tr:hover{
   background-color: var(--bs-info) !important;
 }
-.gt_shiny .rt-tr {
+.gt_shiny .rt-td {
   cursor: pointer;
 }
 

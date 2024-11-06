@@ -5,12 +5,12 @@
 #'   table.
 #' @keywords internal
 mod_gtBidirectional_Server <- function(
-    id,
-    rctv_dfData,
-    rctv_gtObject,
-    rctv_strInput,
-    strLabel,
-    strEmpty = "None"
+  id,
+  rctv_dfData,
+  rctv_gtObject,
+  rctv_strInput,
+  strLabel,
+  strEmpty = "None"
 ) {
   moduleServer(id, function(input, output, session) {
     # The RV ensures that the selection gets updated when the table

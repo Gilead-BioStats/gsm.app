@@ -101,29 +101,3 @@ test_that("mod_ParticipantDetails_Server outputs the expected result", {
     }
   )
 })
-
-test_that("mod_ParticipantDetails_Server returns the selected rows", {
-  testServer(
-    mod_ParticipantDetails_Server,
-    args = list(
-      id = "participantDetailsTest",
-      fnFetchParticipantData = sample_FetchParticipantData,
-      rctv_strSubjectID = reactiveVal("0008")
-    ),
-    {
-      rctv_intSelectedRows <- session$getReturned()
-      expect_s3_class(rctv_intSelectedRows, "reactive")
-      expect_null(rctv_intSelectedRows())
-
-      # Simulate selecting rows in the participant domain table
-      session$setInputs(`domain-table_rows_selected` = 1L)
-      expect_equal(rctv_intSelectedRows(), 1L)
-      session$setInputs(`domain-table_rows_selected` = 1:3)
-      expect_equal(rctv_intSelectedRows(), 1:3)
-      session$setInputs(`domain-table_rows_selected` = 5:6)
-      expect_equal(rctv_intSelectedRows(), 5:6)
-      session$setInputs(`domain-table_rows_selected` = integer())
-      expect_equal(rctv_intSelectedRows(), integer())
-    }
-  )
-})

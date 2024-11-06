@@ -3,14 +3,19 @@ test_that("mod_ParticipantDomain_Server sets title and placeholder when no data 
   testServer(
     mod_ParticipantDomain_Server,
     args = list(
+      id = "myPD",
       rctv_lData = reactive(NULL),
       rctv_strName = reactive(NULL)
     ),
     {
       output_title <- output$title
       expect_equal(output_title, "Participant Domain")
+
+      test_html <- output$`gt-table`$html
+      gt_id <- stringr::str_extract(test_html, 'div id="(\\w+)"', 1)
+      test_html <- stringr::str_replace_all(test_html, gt_id, "gtRandID")
       expect_cleaned_html(
-        output$details$html,
+        test_html,
         call = call
       )
     }
@@ -26,14 +31,18 @@ test_that("mod_ParticipantDomain_Server sets title and placeholder when data is 
   testServer(
     mod_ParticipantDomain_Server,
     args = list(
+      id = "myPD",
       rctv_lData = reactive(mock_data),
       rctv_strName = reactive(NULL)
     ),
     {
       output_title <- output$title
       expect_equal(output_title, "Participant Domain")
+      test_html <- output$`gt-table`$html
+      gt_id <- stringr::str_extract(test_html, 'div id="(\\w+)"', 1)
+      test_html <- stringr::str_replace_all(test_html, gt_id, "gtRandID")
       expect_cleaned_html(
-        output$details$html,
+        test_html,
         call = call
       )
     }
@@ -54,7 +63,7 @@ test_that("mod_ParticipantDomain_Server renders selected table names correctly",
       rctv_strName = reactive("tableOne")
     ),
     {
-      table_data <- rctv_selectedTable()
+      table_data <- rctv_tblData()
       expect_equal(nrow(table_data), 5)
       expect_equal(table_data$col1, 1:5)
 
@@ -70,7 +79,7 @@ test_that("mod_ParticipantDomain_Server renders selected table names correctly",
       rctv_strName = reactive("tableTwo")
     ),
     {
-      table_data <- rctv_selectedTable()
+      table_data <- rctv_tblData()
       expect_equal(nrow(table_data), 3)
       expect_equal(table_data$col1, 6:8)
 
@@ -93,31 +102,8 @@ test_that("mod_ParticipantDomain_Server handles non-existent table name graceful
       rctv_strName = reactive("nonexistent_table")
     ),
     {
-      expect_null(rctv_selectedTable())
+      expect_equal(nrow(rctv_tblData()), 0)
       expect_equal(output$title, "Participant Domain")
-    }
-  )
-})
-
-test_that("mod_ParticipantDomain_Server uses selection for return value", {
-  mock_data <- list(
-    tableOne = data.frame(col1 = 1:5, col2 = letters[1:5]),
-    tableTwo = data.frame(col1 = 6:8, col2 = LETTERS[6:8])
-  )
-  testServer(
-    mod_ParticipantDomain_Server,
-    args = list(
-      rctv_lData = reactive(mock_data),
-      rctv_strName = reactive("tableOne")
-    ),
-    {
-      expect_equal(rctv_intSelectedRows(), NULL)
-
-      session$setInputs(table_rows_selected = c(2, 4))
-      expect_equal(rctv_intSelectedRows(), c(2, 4))
-
-      session$setInputs(table_rows_selected = c(1, 3))
-      expect_equal(rctv_intSelectedRows(), c(1, 3))
     }
   )
 })

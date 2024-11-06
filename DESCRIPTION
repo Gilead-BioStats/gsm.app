@@ -20,7 +20,6 @@ Imports:
     bslib,
     cli,
     dplyr,
-    DT,
     favawesome,
     glue,
     gsm (>= 2.1.1),
