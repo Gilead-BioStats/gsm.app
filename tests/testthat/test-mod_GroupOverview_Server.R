@@ -10,19 +10,25 @@ test_that("mod_GroupOverview_Server returns the expected reactives", {
     {
       returned <- session$getReturned()
       expect_type(returned, "list")
-      expect_named(returned, c("rctv_strGroupID", "rctv_strMetricID"))
+      expect_named(
+        returned,
+        c("rctv_strGroupID", "rctv_strMetricID", "rctv_intClickCounter")
+      )
       expect_s3_class(returned$rctv_strGroupID, "reactiveVal")
       expect_s3_class(returned$rctv_strMetricID, "reactiveVal")
+      expect_s3_class(returned$rctv_intClickCounter, "reactiveVal")
 
       session$setInputs(
         group_overview = list(
           selectedGroupID = "aaaa",
-          selectedMetricID = "bbbb"
+          selectedMetricID = "bbbb",
+          clickCounter = 1L
         )
       )
       returned <- session$getReturned()
       expect_equal(returned$rctv_strGroupID(), "aaaa")
       expect_equal(returned$rctv_strMetricID(), "bbbb")
+      expect_equal(returned$rctv_intClickCounter(), 1L)
 
       expect_equal(rctv_strGroupSubset(), "red")
     }

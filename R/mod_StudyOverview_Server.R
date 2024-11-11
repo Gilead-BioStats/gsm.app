@@ -17,9 +17,14 @@ mod_StudyOverview_Server <- function(
   moduleServer(id, function(input, output, session) {
     rctv_strSelectedGroupID <- shiny::reactiveVal()
     rctv_strSelectedMetricID <- shiny::reactiveVal()
+    rctv_intClickCounter <- shiny::reactiveVal()
+
+    # Update the selection when the incoming group changes.
     shiny::observe({
       rctv_strSelectedGroupID(rctv_strSiteID())
     })
+
+    # Update things when the user clicks the GroupOverview table.
     l_rctvs_table <- mod_GroupOverview_Server(
       "table",
       dfResults,
@@ -27,16 +32,19 @@ mod_StudyOverview_Server <- function(
       dfGroups
     )
     shiny::observe({
-      rctv_strSelectedGroupID(
-        l_rctvs_table$rctv_strGroupID()
-      )
-    })
-    shiny::observe({
-      rctv_strSelectedMetricID(
-        l_rctvs_table$rctv_strMetricID()
-      )
-    })
+      strGroupID <- l_rctvs_table$rctv_strGroupID()
+      if (!is.null(strGroupID)) {
+        rctv_strSelectedGroupID(strGroupID)
+      }
+      strMetricID <- l_rctvs_table$rctv_strMetricID()
+      if (!is.null(strMetricID)) {
+        rctv_strSelectedMetricID(strMetricID)
+      }
+      rctv_intClickCounter(l_rctvs_table$rctv_intClickCounter())
+    }) %>%
+      shiny::bindEvent(l_rctvs_table$rctv_intClickCounter(), ignoreInit = TRUE)
 
+    # Update things when the user clicks a plot.
     rctv_strSelectedGroupID_plot <- mod_ScatterPlotSet_Server(
       "scatter",
       dfResults = dfResults,
@@ -46,22 +54,19 @@ mod_StudyOverview_Server <- function(
       rctv_strSiteID = rctv_strSiteID
     )
     shiny::observe({
-      rctv_strSelectedGroupID(
-        rctv_strSelectedGroupID_plot()
-      )
+      rctv_strSelectedGroupID(rctv_strSelectedGroupID_plot())
     })
 
     rctv_strSelectedMetricID_plot <- mod_ScatterPlotSet_Server_MetricID("scatter")
     shiny::observe({
-      rctv_strSelectedMetricID(
-        rctv_strSelectedMetricID_plot()
-      )
+      rctv_strSelectedMetricID(rctv_strSelectedMetricID_plot())
     })
 
     return(
       list(
         rctv_strSelectedGroupID = rctv_strSelectedGroupID,
-        rctv_strSelectedMetricID = rctv_strSelectedMetricID
+        rctv_strSelectedMetricID = rctv_strSelectedMetricID,
+        rctv_intClickCounter = rctv_intClickCounter
       )
     )
   })

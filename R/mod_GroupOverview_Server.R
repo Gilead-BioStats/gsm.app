@@ -16,6 +16,7 @@ mod_GroupOverview_Server <- function(
     rctv_strGroupSubset <- shiny::reactiveVal("red")
     rctv_strGroupID <- shiny::reactiveVal()
     rctv_strMetricID <- shiny::reactiveVal()
+    rctv_intClickCounter <- shiny::reactiveVal()
 
     rctv_strGroupSubset_Pills <- mod_RAGPillSet_Server(
       "kri_counts",
@@ -50,10 +51,15 @@ mod_GroupOverview_Server <- function(
       shiny::req(input$group_overview$groupSubset)
       rctv_strGroupSubset(input$group_overview$groupSubset)
     })
+    shiny::observe({
+      shiny::req(input$group_overview$clickCounter)
+      rctv_intClickCounter(input$group_overview$clickCounter)
+    })
 
     return(list(
       rctv_strGroupID = rctv_strGroupID,
-      rctv_strMetricID = rctv_strMetricID
+      rctv_strMetricID = rctv_strMetricID,
+      rctv_intClickCounter = rctv_intClickCounter
     ))
   })
 }

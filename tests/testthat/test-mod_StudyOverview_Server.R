@@ -28,6 +28,16 @@ test_that("mod_StudyOverview_Server returns selected group and metric", {
         `scatter-selectedScatterPlot` = "studyOverviewTest-scatter-Analysis_kri0001"
       )
       expect_equal(rctv_strSelectedMetricID(), "Analysis_kri0001")
+
+      # When we click the Group Overview, they update.
+      session$setInputs(
+        `table-group_overview` = list(
+          selectedGroupID = "0X024",
+          selectedMetricID = "Analysis_kri0003",
+          clickCounter = 1L
+        )
+      )
+      expect_equal(rctv_strSelectedMetricID(), "Analysis_kri0003")
     }
   )
 })

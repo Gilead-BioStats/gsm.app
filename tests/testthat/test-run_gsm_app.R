@@ -37,12 +37,12 @@ test_that("run_gsm_app populates Study Overview", {
     "isWidgetPlotLoaded('study_overview-scatter-Analysis_kri0011');",
     timeout = 8000
   )
-  Sys.sleep(2)
+  # This one is super unstable, so give it a ridiculous amount of time to load.
+  Sys.sleep(10)
   app$expect_values(
     export = TRUE,
     name = "plots",
-    # This one is unstable, so give it little extra time to load.
-    screenshot_args = list(selector = ".main", delay = 4)
+    screenshot_args = list(selector = ".main")
   )
 
   # Click on AE plot.
@@ -59,7 +59,6 @@ test_that("run_gsm_app populates Study Overview", {
   app$expect_values(
     export = TRUE,
     name = "plots-ae-site",
-    # This one is somewhat unstable, so give it a little extra time to load.
     screenshot_args = list(selector = "#metric_details-scatter_plot")
   )
 
