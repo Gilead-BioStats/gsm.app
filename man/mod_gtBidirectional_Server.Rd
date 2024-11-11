@@ -30,8 +30,8 @@ that returns the name of the target input.}
 \item{strEmpty}{The value to return when everything is deselected.}
 }
 \value{
-A \code{\link[shiny:reactiveVal]{shiny::reactiveVal()}} with the id of the field selected in the
-table.
+A \code{\link[shiny:reactiveVal]{shiny::reactiveVal()}} with the id(s) of the field(s) selected in
+the table.
 }
 \description{
 Bidirectional gt Table Selector Server

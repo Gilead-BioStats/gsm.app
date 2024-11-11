@@ -44,7 +44,7 @@ mod_ParticipantDomain_Server <- function(id, rctv_lData, rctv_strName) {
       }
       return(out_gtPlaceholder(placeholderText))
     })
-    selected_row <- mod_gtBidirectional_Server(
+    selected_rows <- mod_gtBidirectional_Server(
       "gt",
       rctv_tblData,
       rctv_gtObject,
@@ -60,6 +60,6 @@ mod_ParticipantDomain_Server <- function(id, rctv_lData, rctv_strName) {
       }
       return("Participant Domain")
     })
-    return(selected_row)
+    return(selected_rows)
   })
 }
