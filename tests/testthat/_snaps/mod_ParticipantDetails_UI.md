@@ -38,7 +38,7 @@
               <h5>
                 <span id="participant_details-domain-title" class="shiny-text-output"></span>
               </h5>
-              <div id="participant_details-domain-details" class="shiny-html-output"></div>
+              <div class="shiny-html-output gt_shiny" id="participant_details-domain-gt-table"></div>
             </div>
             <bslib-tooltip placement="auto" bsOptions="[]" data-require-bs-version="5" data-require-bs-caller="tooltip()">
               <template>Expand</template>

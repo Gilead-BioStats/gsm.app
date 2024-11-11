@@ -3,12 +3,12 @@
     Code
       test_result
     Output
-      <div class="card bslib-card bslib-mb-spacing bslib-card-input html-fill-item html-fill-container" data-bslib-card-init data-full-screen="false" data-require-bs-caller="card()" data-require-bs-version="5" id="data_table_card_id-card">
+      <div class="card bslib-card bslib-mb-spacing bslib-card-input html-fill-item html-fill-container" data-bslib-card-init data-full-screen="false" data-require-bs-caller="card()" data-require-bs-version="5" id="myParticipantDomain-card">
         <div class="card-body bslib-gap-spacing html-fill-item html-fill-container" style="margin-top:auto;margin-bottom:auto;flex:1 1 auto;">
           <h5>
-            <span id="data_table_card_id-title" class="shiny-text-output"></span>
+            <span id="myParticipantDomain-title" class="shiny-text-output"></span>
           </h5>
-          <div id="data_table_card_id-details" class="shiny-html-output"></div>
+          <div class="shiny-html-output gt_shiny" id="myParticipantDomain-gt-table"></div>
         </div>
         <bslib-tooltip placement="auto" bsOptions="[]" data-require-bs-version="5" data-require-bs-caller="tooltip()">
           <template>Expand</template>

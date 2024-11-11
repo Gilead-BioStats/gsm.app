@@ -2,7 +2,8 @@ test_that("run_gsm_app initializes the expected app", {
   skip_on_cran()
   app <- AppDriver$new(
     test_path("apps", "standard"),
-    name = "init"
+    name = "init",
+    screenshot_args = list(delay = 2)
   )
   app$wait_for_idle()
   app$wait_for_value(input = "participant", timeout = 8000)
@@ -13,7 +14,8 @@ test_that("run_gsm_app populates Study Overview", {
   skip_on_cran()
   app <- AppDriver$new(
     test_path("apps", "standard"),
-    name = "study"
+    name = "study",
+    screenshot_args = list(delay = 2)
   )
   app$wait_for_idle()
   app$wait_for_value(input = "participant", timeout = 8000)
@@ -35,12 +37,12 @@ test_that("run_gsm_app populates Study Overview", {
     "isWidgetPlotLoaded('study_overview-scatter-Analysis_kri0011');",
     timeout = 8000
   )
-  Sys.sleep(1)
+  Sys.sleep(2)
   app$expect_values(
     export = TRUE,
     name = "plots",
-    # This one is somewhat unstable, so give it a little extra time to load.
-    screenshot_args = list(delay = 3, selector = ".main")
+    # This one is unstable, so give it little extra time to load.
+    screenshot_args = list(selector = ".main", delay = 4)
   )
 
   # Click on AE plot.
@@ -58,7 +60,7 @@ test_that("run_gsm_app populates Study Overview", {
     export = TRUE,
     name = "plots-ae-site",
     # This one is somewhat unstable, so give it a little extra time to load.
-    screenshot_args = list(delay = 1, selector = "#metric_details-scatter_plot")
+    screenshot_args = list(selector = "#metric_details-scatter_plot")
   )
 
   # Set site via drop-down.
@@ -98,7 +100,8 @@ test_that("run_gsm_app populates Metric Details", {
   skip_on_cran()
   app <- AppDriver$new(
     test_path("apps", "standard"),
-    name = "metrics"
+    name = "metrics",
+    screenshot_args = list(delay = 2)
   )
   app$wait_for_idle()
   app$wait_for_value(input = "participant", timeout = 8000)
@@ -115,7 +118,7 @@ test_that("run_gsm_app populates Metric Details", {
     export = TRUE,
     name = "scatter",
     # This one is somewhat unstable, so give it a little extra time to load.
-    screenshot_args = list(delay = 2, selector = ".main")
+    screenshot_args = list(selector = ".main")
   )
 
   # Click through to each tab.
@@ -128,7 +131,7 @@ test_that("run_gsm_app populates Metric Details", {
   app$expect_values(
     export = TRUE,
     name = "bar_value",
-    screenshot_args = list(selector = ".main", delay = 1)
+    screenshot_args = list(selector = ".main")
   )
 
   app$set_inputs(`metric_details-selected_tab` = "Bar Chart (KRI Score)")
@@ -271,7 +274,7 @@ test_that("run_gsm_app populates Participant Details", {
   skip_on_cran()
   app <- AppDriver$new(
     test_path("apps", "standard"),
-    screenshot_args = list(delay = 1),
+    screenshot_args = list(delay = 2),
     name = "participants"
   )
   app$wait_for_idle()

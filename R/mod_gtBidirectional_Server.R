@@ -1,16 +1,16 @@
 #' Bidirectional gt Table Selector Server
 #'
 #' @inheritParams shared-params
-#' @returns A [shiny::reactiveVal()] with the id of the field selected in the
-#'   table.
+#' @returns A [shiny::reactiveVal()] with the id(s) of the field(s) selected in
+#'   the table.
 #' @keywords internal
 mod_gtBidirectional_Server <- function(
-    id,
-    rctv_dfData,
-    rctv_gtObject,
-    rctv_strInput,
-    strLabel,
-    strEmpty = "None"
+  id,
+  rctv_dfData,
+  rctv_gtObject,
+  rctv_strInput,
+  strLabel,
+  strEmpty = "None"
 ) {
   moduleServer(id, function(input, output, session) {
     # The RV ensures that the selection gets updated when the table
@@ -34,7 +34,7 @@ mod_gtBidirectional_Server <- function(
       } else {
         if (nrow(tbl_data) && !all(input$table == 0)) {
           if (!identical(input$table, selected_value())) {
-            selected_value(tbl_data[[strLabel]][[input$table]])
+            selected_value(tbl_data[[strLabel]][input$table])
           }
         } else {
           selected_value(strEmpty)

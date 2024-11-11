@@ -2,14 +2,13 @@
 #'
 #' @inheritParams shared-params
 #' @returns A [bslib::card()] with either a placeholder, or a
-#'   [DT::DTOutput()] table.
+#'   [gt::gt_output()] table.
 #' @keywords internal
 mod_ParticipantDomain_UI <- function(id) {
   ns <- NS(id)
   out_Card(
     tagTitle = textOutput(ns("title"), inline = TRUE),
-    # Server chooses between placeholder card & DT table.
-    uiOutput(ns("details")),
+    mod_gtBidirectional_UI(ns("gt")),
     id = ns("card")
   )
 }
