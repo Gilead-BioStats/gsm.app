@@ -76,7 +76,7 @@ function clickWidgetPlotGroup(containerId, targetGroupID) {
  *
  * @returns {boolean} True if the widget is fully loaded, false otherwise.
  */
-function isWidgetPlotLoaded(containerId) {
+function isCanvasLoaded(containerId) {
   var canvas = document.querySelector(`#${containerId} canvas`);
   if (!canvas) return false;
 
