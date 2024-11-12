@@ -1,22 +1,15 @@
 test_that("run_gsm_app initializes the expected app", {
   skip_on_cran()
-  app <- AppDriver$new(
-    test_path("apps", "standard"),
-    name = "init",
-    screenshot_args = list(delay = 2)
-  )
+  app <- AppDriver$new(test_path("apps", "standard"), name = "init")
   app$wait_for_idle()
   app$wait_for_value(input = "participant", timeout = 8000)
   app$expect_values(export = TRUE, name = "init")
+  app$stop()
 })
 
 test_that("run_gsm_app populates Study Overview", {
   skip_on_cran()
-  app <- AppDriver$new(
-    test_path("apps", "standard"),
-    name = "study",
-    screenshot_args = list(delay = 2)
-  )
+  app <- AppDriver$new(test_path("apps", "standard"), name = "study")
   app$wait_for_idle()
   app$wait_for_value(input = "participant", timeout = 8000)
   app$expect_values(
@@ -37,8 +30,6 @@ test_that("run_gsm_app populates Study Overview", {
     "isWidgetPlotLoaded('study_overview-scatter-Analysis_kri0011');",
     timeout = 8000
   )
-  # This one is super unstable, so give it a ridiculous amount of time to load.
-  Sys.sleep(10)
   app$expect_values(
     export = TRUE,
     name = "plots",
@@ -93,15 +84,12 @@ test_that("run_gsm_app populates Study Overview", {
     name = "plots-sae-nav2metric",
     screenshot_args = list(selector = "#metric_details-scatter_plot")
   )
+  app$stop()
 })
 
 test_that("run_gsm_app populates Metric Details", {
   skip_on_cran()
-  app <- AppDriver$new(
-    test_path("apps", "standard"),
-    name = "metrics",
-    screenshot_args = list(delay = 2)
-  )
+  app <- AppDriver$new(test_path("apps", "standard"), name = "metrics")
   app$wait_for_idle()
   app$wait_for_value(input = "participant", timeout = 8000)
 
@@ -116,7 +104,6 @@ test_that("run_gsm_app populates Metric Details", {
   app$expect_values(
     export = TRUE,
     name = "scatter",
-    # This one is somewhat unstable, so give it a little extra time to load.
     screenshot_args = list(selector = ".main")
   )
 
@@ -267,15 +254,12 @@ test_that("run_gsm_app populates Metric Details", {
     name = "scatter-site_circle",
     screenshot_args = list(selector = ".active .tabbable")
   )
+  app$stop()
 })
 
 test_that("run_gsm_app populates Participant Details", {
   skip_on_cran()
-  app <- AppDriver$new(
-    test_path("apps", "standard"),
-    screenshot_args = list(delay = 2),
-    name = "participants"
-  )
+  app <- AppDriver$new(test_path("apps", "standard"), name = "participants")
   app$wait_for_idle()
   app$wait_for_value(input = "participant", timeout = 8000)
 
@@ -336,4 +320,5 @@ test_that("run_gsm_app populates Participant Details", {
     name = "sd",
     screenshot_args = list(selector = "#participant_details-domain-card")
   )
+  app$stop()
 })

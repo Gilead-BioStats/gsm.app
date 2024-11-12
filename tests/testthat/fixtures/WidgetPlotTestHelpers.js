@@ -78,8 +78,11 @@ function clickWidgetPlotGroup(containerId, targetGroupID) {
  */
 function isWidgetPlotLoaded(containerId) {
   var canvas = document.querySelector(`#${containerId} canvas`);
-  var chart = canvas && canvas.chart;
-  return chart && chart.chartArea !== undefined &&
-         chart._animationsDisabled === true &&
-         chart.data.datasets.length > 0;
+  if (!canvas) return false;
+
+  var context = canvas.getContext('2d');
+  if (!context) return false;
+
+  var pixelData = context.getImageData(0, 0, 1, 1).data;
+  return pixelData.some(channel => channel !== 0); // Canvas has content drawn
 }
