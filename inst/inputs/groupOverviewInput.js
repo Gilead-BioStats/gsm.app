@@ -14,7 +14,10 @@ $.extend(GroupOverviewInputBinding, {
         : '',
       groupSubset: el && el.inputData && el.inputData.selectedSubset !== undefined
         ? el.inputData.selectedSubset
-        : ''
+        : '',
+      clickCounter: el && el.inputData && el.inputData.clickCounter !== undefined
+        ? el.inputData.clickCounter
+        : 0
     };
   },
   subscribe: function(el, callback) {

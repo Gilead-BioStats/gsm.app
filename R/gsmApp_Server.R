@@ -70,6 +70,32 @@ gsmApp_Server <- function(
       dfBounds = dfBounds,
       rctv_strSiteID = rctv_InputSite
     )
+
+    # Use clickCounter to update main GroupID and MetricID inputs + tab
+    # movement, even if values don't change.
+    #
+    # I can't get the tests to see this happening.
+    #
+    # nocov start
+    observe({
+      strSelectedGroupID <- lStudyOverviewSelected$rctv_strSelectedGroupID()
+      if (!is.null(strSelectedGroupID) && strSelectedGroupID != "") {
+        updateSelectInput(session, "site", selected = strSelectedGroupID)
+      }
+      strSelectedMetricID <- lStudyOverviewSelected$rctv_strSelectedMetricID()
+      if (!is.null(strSelectedMetricID) && strSelectedMetricID != "") {
+        updateSelectInput(session, "metric", selected = strSelectedMetricID)
+      }
+      updateTabsetPanel(session, "primary_nav_bar", selected = "Metric Details")
+    }) %>%
+      bindEvent(
+        lStudyOverviewSelected$rctv_intClickCounter(),
+        ignoreInit = TRUE
+      )
+    # nocov end
+
+    # Also update main inputs when GroupID or MetricID change independent of
+    # those clicks.
     srvr_SyncSelectInput(
       "site",
       lStudyOverviewSelected$rctv_strSelectedGroupID,

@@ -13,6 +13,7 @@ HTMLWidgets.widget({
         }
 
         // Generate site overview table.
+        let clickCounter = 0;
         const instance = rbmViz.default.groupOverview(
           el,
           input.dfResults,
@@ -20,19 +21,23 @@ HTMLWidgets.widget({
             GroupLevel: input.GroupLevel,
             groupLabelKey: input.strGroupLabelKey,
             groupClickCallback: function(groupData) {
+              clickCounter++;
               const clickedEl = event.target;
               widgetEl = findElementAncestor(clickedEl, "Widget_GroupOverview");
               widgetEl.inputData = {
-                selectedGroupID: groupData.GroupID
+                selectedGroupID: groupData.GroupID,
+                clickCounter: clickCounter
               };
               $(widgetEl).trigger('widget-value-changed');
             },
             metricClickCallback: function(metricData) {
+              clickCounter++;
               const clickedEl = event.target;
               widgetEl = findElementAncestor(clickedEl, "Widget_GroupOverview");
               widgetEl.inputData = {
                 selectedGroupID: metricData.GroupID,
-                selectedMetricID: metricData.MetricID
+                selectedMetricID: metricData.MetricID,
+                clickCounter: clickCounter
               };
               $(widgetEl).trigger('widget-value-changed');
             }
