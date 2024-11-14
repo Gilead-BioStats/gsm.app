@@ -20,9 +20,13 @@ function findWidget(scope, widgetName) {
 function getWidgetPlotValue(el) {
   const canvas = el.querySelector('canvas');
   if (!canvas || !canvas.chart) {
-    return null;
+    return null; // Not yet initialized
   }
-  return canvas.chart.data.config.selectedGroupIDs;
+  const selectedGroupIDs = canvas.chart.data.config.selectedGroupIDs;
+  if (Array.isArray(selectedGroupIDs) && selectedGroupIDs.length === 0) {
+    return ['None']; // Explicit empty selection
+  }
+  return selectedGroupIDs;
 }
 
 /**

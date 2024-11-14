@@ -50,7 +50,7 @@ test_that("mod_ScatterPlot_Server returns selected site", {
     ),
     {
       expect_null(input$plot)
-      expect_equal(session$returned(), "None")
+      expect_null(session$returned())
       session$setInputs(plot = "0X003")
       expect_equal(session$returned(), "0X003")
     }
