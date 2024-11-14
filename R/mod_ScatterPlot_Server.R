@@ -35,7 +35,7 @@ mod_ScatterPlot_Server <- function(
       reactive({
         input_val <- input$plot
         if (is.null(input_val) || input_val == "") {
-          return("None")
+          return(NULL)
         }
         return(input_val)
       })

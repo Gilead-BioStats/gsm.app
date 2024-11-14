@@ -21,7 +21,7 @@ const widgetPlotClickCallback = function(el) {
 
     // Update selectedGroupIDs and update the plot
     instance.data.config.selectedGroupIDs = instance.data.config.selectedGroupIDs.includes(d.GroupID)
-      ? 'None'
+      ? []
       : d.GroupID;
 
     updateWidgetPlot(el, instance);
