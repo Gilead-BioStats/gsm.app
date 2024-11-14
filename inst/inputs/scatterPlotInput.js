@@ -12,7 +12,7 @@ $.extend(ScatterPlotInputBinding, {
    * @returns {jQuery} The jQuery object containing the plot widget.
    */
   find: function(scope) {
-    return findWidget(scope, "Widget_ScatterPlot");
+    return $(scope).find('.Widget_ScatterPlot');
   },
 
   /**
