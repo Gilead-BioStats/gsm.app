@@ -2,7 +2,7 @@ test_that("run_gsm_app initializes the expected app", {
   skip_on_cran()
   app <- AppDriver$new(test_path("apps", "standard"), name = "init")
   app$wait_for_idle()
-  app$wait_for_value(input = "participant", timeout = 8000)
+  app$wait_for_value(input = "participant", timeout = 2000)
   app$expect_values(export = TRUE, name = "init")
   app$stop()
 })
@@ -11,7 +11,7 @@ test_that("run_gsm_app populates Study Overview", {
   skip_on_cran()
   app <- AppDriver$new(test_path("apps", "standard"), name = "study")
   app$wait_for_idle()
-  app$wait_for_value(input = "participant", timeout = 8000)
+  app$wait_for_value(input = "participant", timeout = 2000)
   app$expect_values(
     export = TRUE,
     name = "init",
@@ -21,15 +21,15 @@ test_that("run_gsm_app populates Study Overview", {
   # Scatter Plots subtab.
   app$run_js(file = test_path("fixtures", "WidgetPlotTestHelpers.js"))
   app$set_inputs(`study_overview-nav_bar` = "Scatter Plots")
-  app$wait_for_idle()
   app$wait_for_js(
     "isCanvasLoaded('study_overview-scatter-Analysis_kri0001');",
-    timeout = 8000
+    timeout = 2000
   )
   app$wait_for_js(
-    "isCanvasLoaded('study_overview-scatter-Analysis_kri0011');",
-    timeout = 8000
+    "isCanvasLoaded('study_overview-scatter-Analysis_kri0004');",
+    timeout = 2000
   )
+  app$wait_for_idle()
   app$expect_values(
     export = TRUE,
     name = "plots",
@@ -38,15 +38,11 @@ test_that("run_gsm_app populates Study Overview", {
 
   # Click on AE plot.
   app$run_js("clickWidgetPlotGroup('study_overview-scatter-Analysis_kri0001', '0X159');")
+  app$wait_for_js(
+    "isCanvasLoaded('metric_details-scatter_plot');",
+    timeout = 2000
+  )
   app$wait_for_idle()
-  app$wait_for_js(
-    "isCanvasLoaded('study_overview-scatter-Analysis_kri0001');",
-    timeout = 8000
-  )
-  app$wait_for_js(
-    "isCanvasLoaded('study_overview-scatter-Analysis_kri0011');",
-    timeout = 8000
-  )
   app$expect_values(
     export = TRUE,
     name = "plots-ae-site",
@@ -59,12 +55,13 @@ test_that("run_gsm_app populates Study Overview", {
   app$set_inputs(primary_nav_bar = "Study Overview")
   app$wait_for_js(
     "isCanvasLoaded('study_overview-scatter-Analysis_kri0001');",
-    timeout = 8000
+    timeout = 2000
   )
   app$wait_for_js(
-    "isCanvasLoaded('study_overview-scatter-Analysis_kri0011');",
-    timeout = 8000
+    "isCanvasLoaded('study_overview-scatter-Analysis_kri0004');",
+    timeout = 2000
   )
+  app$wait_for_idle()
   app$expect_values(
     export = TRUE,
     name = "plots-ae-site-dropdown",
@@ -73,12 +70,15 @@ test_that("run_gsm_app populates Study Overview", {
 
   # Click on SAE plot.
   app$run_js("clickWidgetPlotGroup('study_overview-scatter-Analysis_kri0002', '0X170');")
-  app$set_inputs(`study_overview-scatter-selectedScatterPlot` = "study_overview-scatter-Analysis_kri0002", allow_no_input_binding_ = TRUE)
-  app$wait_for_idle()
+  app$set_inputs(
+    `study_overview-scatter-selectedScatterPlot` = "study_overview-scatter-Analysis_kri0002",
+    allow_no_input_binding_ = TRUE
+  )
   app$wait_for_js(
     "isCanvasLoaded('metric_details-scatter_plot');",
-    timeout = 8000
+    timeout = 2000
   )
+  app$wait_for_idle()
   app$expect_values(
     export = TRUE,
     name = "plots-sae-nav2metric",
@@ -91,16 +91,16 @@ test_that("run_gsm_app populates Metric Details", {
   skip_on_cran()
   app <- AppDriver$new(test_path("apps", "standard"), name = "metrics")
   app$wait_for_idle()
-  app$wait_for_value(input = "participant", timeout = 8000)
+  app$wait_for_value(input = "participant", timeout = 2000)
 
   # Navigate to Metric Details tab.
   app$run_js(file = test_path("fixtures", "WidgetPlotTestHelpers.js"))
   app$set_inputs(primary_nav_bar = "Metric Details")
-  app$wait_for_idle()
   app$wait_for_js(
     "isCanvasLoaded('metric_details-scatter_plot');",
-    timeout = 8000
+    timeout = 2000
   )
+  app$wait_for_idle()
   app$expect_values(
     export = TRUE,
     name = "scatter",
@@ -109,11 +109,11 @@ test_that("run_gsm_app populates Metric Details", {
 
   # Click through to each tab.
   app$set_inputs(`metric_details-selected_tab` = "Bar Chart (KRI Value)")
-  app$wait_for_idle()
   app$wait_for_js(
     "isCanvasLoaded('barChart--Analysis_kri0001_Metric');",
-    timeout = 8000
+    timeout = 2000
   )
+  app$wait_for_idle()
   app$expect_values(
     export = TRUE,
     name = "bar_value",
@@ -121,11 +121,11 @@ test_that("run_gsm_app populates Metric Details", {
   )
 
   app$set_inputs(`metric_details-selected_tab` = "Bar Chart (KRI Score)")
-  app$wait_for_idle()
   app$wait_for_js(
     "isCanvasLoaded('barChart--Analysis_kri0001_Score');",
-    timeout = 8000
+    timeout = 2000
   )
+  app$wait_for_idle()
   app$expect_values(
     export = TRUE,
     name = "bar_score",
@@ -133,11 +133,11 @@ test_that("run_gsm_app populates Metric Details", {
   )
 
   app$set_inputs(`metric_details-selected_tab` = "Time Series")
-  app$wait_for_idle()
   app$wait_for_js(
     "isCanvasLoaded('timeSeries--Analysis_kri0001_Score');",
-    timeout = 8000
+    timeout = 2000
   )
+  app$wait_for_idle()
   app$expect_values(
     export = TRUE,
     name = "time",
@@ -164,22 +164,22 @@ test_that("run_gsm_app populates Metric Details", {
   # Click back through to make sure all have the site selected. Alternate
   # between 0X001 and 0X159 as we go.
   app$set_inputs(`metric_details-selected_tab` = "Time Series")
-  app$wait_for_idle()
   app$wait_for_js(
     "isCanvasLoaded('timeSeries--Analysis_kri0001_Score');",
-    timeout = 8000
+    timeout = 2000
   )
+  app$wait_for_idle()
   app$expect_values(
     export = TRUE,
     name = "time-site",
     screenshot_args = list(selector = ".active .tabbable")
   )
   app$run_js("clickWidgetPlotGroup('timeSeries--Analysis_kri0001_Score', '0X001');")
-  app$wait_for_idle()
   app$wait_for_js(
     "isCanvasLoaded('timeSeries--Analysis_kri0001_Score');",
-    timeout = 8000
+    timeout = 2000
   )
+  app$wait_for_idle()
   app$expect_values(
     export = TRUE,
     name = "time-site_click",
@@ -187,22 +187,22 @@ test_that("run_gsm_app populates Metric Details", {
   )
 
   app$set_inputs(`metric_details-selected_tab` = "Bar Chart (KRI Score)")
-  app$wait_for_idle()
   app$wait_for_js(
     "isCanvasLoaded('barChart--Analysis_kri0001_Score');",
-    timeout = 8000
+    timeout = 2000
   )
+  app$wait_for_idle()
   app$expect_values(
     export = TRUE,
     name = "bar_score-site",
     screenshot_args = list(selector = ".active .tabbable")
   )
   app$run_js("clickWidgetPlotGroup('barChart--Analysis_kri0001_Score', '0X159');")
-  app$wait_for_idle()
   app$wait_for_js(
     "isCanvasLoaded('barChart--Analysis_kri0001_Score');",
-    timeout = 8000
+    timeout = 2000
   )
+  app$wait_for_idle()
   app$expect_values(
     export = TRUE,
     name = "bar_score-site_click",
@@ -210,22 +210,22 @@ test_that("run_gsm_app populates Metric Details", {
   )
 
   app$set_inputs(`metric_details-selected_tab` = "Bar Chart (KRI Value)")
-  app$wait_for_idle()
   app$wait_for_js(
     "isCanvasLoaded('barChart--Analysis_kri0001_Metric');",
-    timeout = 8000
+    timeout = 2000
   )
+  app$wait_for_idle()
   app$expect_values(
     export = TRUE,
     name = "bar_value-site",
     screenshot_args = list(selector = ".active .tabbable")
   )
   app$run_js("clickWidgetPlotGroup('barChart--Analysis_kri0001_Metric', '0X001');")
-  app$wait_for_idle()
   app$wait_for_js(
     "isCanvasLoaded('barChart--Analysis_kri0001_Metric');",
-    timeout = 8000
+    timeout = 2000
   )
+  app$wait_for_idle()
   app$expect_values(
     export = TRUE,
     name = "bar_value-site_click",
@@ -233,22 +233,22 @@ test_that("run_gsm_app populates Metric Details", {
   )
 
   app$set_inputs(`metric_details-selected_tab` = "Scatter Plot")
-  app$wait_for_idle()
   app$wait_for_js(
     "isCanvasLoaded('metric_details-scatter_plot');",
-    timeout = 8000
+    timeout = 2000
   )
+  app$wait_for_idle()
   app$expect_values(
     export = TRUE,
     name = "scatter-site",
     screenshot_args = list(selector = ".active .tabbable")
   )
   app$run_js("clickWidgetPlotGroup('metric_details-scatter_plot', '0X159');")
-  app$wait_for_idle()
   app$wait_for_js(
     "isCanvasLoaded('metric_details-scatter_plot');",
-    timeout = 8000
+    timeout = 2000
   )
+  app$wait_for_idle()
   app$expect_values(
     export = TRUE,
     name = "scatter-site_circle",
@@ -261,16 +261,16 @@ test_that("run_gsm_app populates Participant Details", {
   skip_on_cran()
   app <- AppDriver$new(test_path("apps", "standard"), name = "participants")
   app$wait_for_idle()
-  app$wait_for_value(input = "participant", timeout = 8000)
+  app$wait_for_value(input = "participant", timeout = 2000)
 
   # Click "Metric Details" tab.
   app$run_js(file = test_path("fixtures", "WidgetPlotTestHelpers.js"))
   app$set_inputs(primary_nav_bar = "Metric Details")
-  app$wait_for_idle()
   app$wait_for_js(
     "isCanvasLoaded('metric_details-scatter_plot');",
-    timeout = 8000
+    timeout = 2000
   )
+  app$wait_for_idle()
   app$expect_values(
     export = TRUE,
     name = "metric",
@@ -279,11 +279,11 @@ test_that("run_gsm_app populates Participant Details", {
 
   # Select a site in the module.
   app$run_js("clickWidgetPlotGroup('metric_details-scatter_plot', '0X159');")
-  app$wait_for_idle()
   app$wait_for_js(
     "isCanvasLoaded('metric_details-scatter_plot');",
-    timeout = 8000
+    timeout = 2000
   )
+  app$wait_for_idle()
 
   # Select a participant from that site.
   app$set_inputs(`site_details-participants-gt-table` = 1)

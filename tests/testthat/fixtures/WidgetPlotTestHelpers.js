@@ -77,12 +77,27 @@ function clickWidgetPlotGroup(containerId, targetGroupID) {
  * @returns {boolean} True if the widget is fully loaded, false otherwise.
  */
 function isCanvasLoaded(containerId) {
-  var canvas = document.querySelector(`#${containerId} canvas`);
+  const canvas = document.querySelector(`#${containerId} canvas`);
   if (!canvas) return false;
+  if (canvas.width === 0 || canvas.height === 0) return false;
 
-  var context = canvas.getContext('2d');
+  const context = canvas.getContext('2d');
   if (!context) return false;
 
-  var pixelData = context.getImageData(0, 0, 1, 1).data;
-  return pixelData.some(channel => channel !== 0); // Canvas has content drawn
+  // Check if the canvas is visible (i.e., has a non-zero bounding box)
+  const boundingRect = canvas.getBoundingClientRect();
+  if (boundingRect.width === 0 || boundingRect.height === 0) return false;
+  if (boundingRect.top < 0 || boundingRect.left < 0 || boundingRect.bottom > window.innerHeight || boundingRect.right > window.innerWidth) return false;
+
+  // Check pixel contents.
+  const isNonEmptyPixel = (x, y) => {
+    const [r, g, b, a] = context.getImageData(x, y, 1, 1).data;
+    return r !== 0 || g !== 0 || b !== 0 || a !== 0;
+  };
+  if (!isNonEmptyPixel(0, 0)) return false; // Top-left
+  if (!isNonEmptyPixel(canvas.width / 2, canvas.height / 2)) return false; // Center
+  if (!isNonEmptyPixel(canvas.width - 1, canvas.height - 1)) return false; // Bottom-right
+
+  return true; // Canvas is fully loaded
 }
+

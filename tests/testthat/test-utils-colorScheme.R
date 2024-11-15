@@ -10,5 +10,4 @@ test_that("colorScheme loads the expected colors", {
   expect_equal(colorScheme("amber", "light"), "#FED480")
   expect_equal(colorScheme("red", "light"), "#FFABAC")
   expect_equal(colorScheme(strColorFamily = "light"), "#E5E5E5")
-
 })

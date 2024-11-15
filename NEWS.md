@@ -1,4 +1,16 @@
-# gsm.app (development version)
+# gsm.app 2.1.0
+
+This version focuses on stability, as well as integration with `{gsm}` 2.1.2:
+
+## New Features
+- Add optional arguments to allow users to customize the UI and/or server of the resulting Shiny app. This will allow users to add logging functionality, for example (#283).
+- All tables have been standardized to use the {gt} package. This adds sorting and resizing functionality to all columns, and fixes several bugs (#187, #208, #224, #248, #289, #294).
+- The sample data now contains all KRIs, to demonstrate a more fully functional app (#207).
+- The Overview Table on the Study Overview tab is now interactive. Click a site and/or KRI to view details about that KRI at that site. The filters of this table can also be updated by clicking the red/amber pills at the top of the Overview Table tab (#196, #243, #244, #264).
+
+## Other Improvements
+- Code has been separated into easier-to-manage subfunctions (#286).
+- The sidebar now uses `Report_Studyinfo()` from {gsm}, rather than a custom app. The table is collapsible/expandable to show a subset of information vs all available information about the study (#288).
 
 # gsm.app 2.0.0
 

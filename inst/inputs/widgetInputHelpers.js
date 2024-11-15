@@ -1,23 +1,11 @@
 /**
- * Finds a widget within the given scope using the provided class name.
- *
- * @param {HTMLElement} scope  - The scope in which to search for the widget.
- * @param {string} widgetName  - The name of the widget. such as
- *                               "Widget_ScatterPlot".
- * @returns {jQuery} The jQuery object containing the plot widget.
- */
-function findWidget(scope, widgetName) {
-  return $(scope).find('.' + widgetName);
-}
-
-/**
  * Gets the value of the selected group IDs from the plot widget.
  *
  * @param {HTMLElement} el - The element containing the plot.
  * @returns {Array|null} The selected group IDs, or null if the chart is not
  *                       ready.
  */
-function getWidgetPlotValue(el) {
+const getWidgetPlotValue = function(el) {
   const canvas = el.querySelector('canvas');
   if (!canvas || !canvas.chart) {
     return null; // Not yet initialized
@@ -27,7 +15,7 @@ function getWidgetPlotValue(el) {
     return ['None']; // Explicit empty selection
   }
   return selectedGroupIDs;
-}
+};
 
 /**
  * Sets the selected group IDs for the plot widget.
@@ -35,7 +23,7 @@ function getWidgetPlotValue(el) {
  * @param {HTMLElement} el    - The element containing the plot.
  * @param {Array}       value - The new selected group IDs.
  */
-function setWidgetPlotValue(el, value) {
+const setWidgetPlotValue = function(el, value) {
   const instance = el.querySelector('canvas').chart;
   if (instance) {
     instance.data.config.selectedGroupIDs = value;
@@ -43,7 +31,7 @@ function setWidgetPlotValue(el, value) {
       instance.helpers.updateConfig(instance, instance.data.config);
     }
   }
-}
+};
 
 /**
  * Subscribes to widget changes.
@@ -52,22 +40,23 @@ function setWidgetPlotValue(el, value) {
  * @param {function}    callback - The callback to trigger when the widget
  *                                 changes.
  */
-function subscribeWidget(el, callback) {
+const subscribeWidget = function(el, callback) {
   $(el).on('widget-value-changed', function() {
     callback();
   });
-}
+};
 
 /**
  * Unsubscribes from plot widget changes.
  *
- * @param {HTMLElement} el   - The element containing the plot.
- * @param {string} namespace - The event namespace for the specific plot type.
+ * @param {HTMLElement} el        - The element containing the plot.
+ * @param {string}      namespace - The event namespace for the specific plot
+ *                                  type.
  */
-function unsubscribeWidgetPlot(el, namespace) {
+const unsubscribeWidgetPlot = function(el, namespace) {
   $(el).off(namespace);
   el.querySelector('canvas').removeEventListener('click');
-}
+};
 
 /**
  * Custom message handler for updating plot widgets.
