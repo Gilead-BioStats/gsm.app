@@ -472,6 +472,10 @@
         <tbody class="gt_table_body">
           <tr><td headers="Description" class="gt_row gt_left">Nickname</td>
       <td headers="Value" class="gt_row gt_right">Protocol Nickname</td></tr>
+          <tr><td headers="Description" class="gt_row gt_left">Site Activation</td>
+      <td headers="Value" class="gt_row gt_right">176 / 190 (92.6%)</td></tr>
+          <tr><td headers="Description" class="gt_row gt_left">Participant Enrollment</td>
+      <td headers="Value" class="gt_row gt_right">1301 / 1300 (100.1%)</td></tr>
         </tbody>
         
         
@@ -942,10 +946,26 @@
       <td headers="Value" class="gt_row gt_right">190</td></tr>
           <tr><td headers="Description" class="gt_row gt_left">Num Plan Subj</td>
       <td headers="Value" class="gt_row gt_right">1300</td></tr>
+          <tr><td headers="Description" class="gt_row gt_left">Act Fpfv</td>
+      <td headers="Value" class="gt_row gt_right">2003-01-01</td></tr>
+          <tr><td headers="Description" class="gt_row gt_left">Est Fpfv</td>
+      <td headers="Value" class="gt_row gt_right">2003-01-01</td></tr>
+          <tr><td headers="Description" class="gt_row gt_left">Site Target</td>
+      <td headers="Value" class="gt_row gt_right">190</td></tr>
+          <tr><td headers="Description" class="gt_row gt_left">Participant Target</td>
+      <td headers="Value" class="gt_row gt_right">1300</td></tr>
           <tr><td headers="Description" class="gt_row gt_left">Participants Enrolled</td>
       <td headers="Value" class="gt_row gt_right">1301</td></tr>
           <tr><td headers="Description" class="gt_row gt_left">Sites Enrolled</td>
       <td headers="Value" class="gt_row gt_right">176</td></tr>
+          <tr><td headers="Description" class="gt_row gt_left">Percent Sites Activated</td>
+      <td headers="Value" class="gt_row gt_right">92.6</td></tr>
+          <tr><td headers="Description" class="gt_row gt_left">Site Activation</td>
+      <td headers="Value" class="gt_row gt_right">176 / 190 (92.6%)</td></tr>
+          <tr><td headers="Description" class="gt_row gt_left">Percent Participants Enrolled</td>
+      <td headers="Value" class="gt_row gt_right">100.1</td></tr>
+          <tr><td headers="Description" class="gt_row gt_left">Participant Enrollment</td>
+      <td headers="Value" class="gt_row gt_right">1301 / 1300 (100.1%)</td></tr>
         </tbody>
         
         
