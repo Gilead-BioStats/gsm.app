@@ -7,7 +7,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">gsm.app</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">2.0.0</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">2.1.0</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -32,6 +32,22 @@
       <small>Source: <a href="https://github.com/Gilead-BioStats/gsm.app/blob/main/NEWS.md" class="external-link"><code>NEWS.md</code></a></small>
     </div>
 
+    <div class="section level2">
+<h2 class="pkg-version" data-toc-text="2.1.0" id="gsmapp-210">gsm.app 2.1.0<a class="anchor" aria-label="anchor" href="#gsmapp-210"></a></h2>
+<p>This version focuses on stability, as well as integration with <a href="https://github.com/Gilead-BioStats/gsm" class="external-link">gsm</a> 2.1.2:</p>
+<div class="section level3">
+<h3 id="new-features-2-1-0">New Features<a class="anchor" aria-label="anchor" href="#new-features-2-1-0"></a></h3>
+<ul><li>Add optional arguments to allow users to customize the UI and/or server of the resulting Shiny app. This will allow users to add logging functionality, for example (<a href="https://github.com/Gilead-BioStats/gsm.app/issues/283" class="external-link">#283</a>).</li>
+<li>All tables have been standardized to use the {gt} package. This adds sorting and resizing functionality to all columns, and fixes several bugs (<a href="https://github.com/Gilead-BioStats/gsm.app/issues/187" class="external-link">#187</a>, <a href="https://github.com/Gilead-BioStats/gsm.app/issues/208" class="external-link">#208</a>, <a href="https://github.com/Gilead-BioStats/gsm.app/issues/224" class="external-link">#224</a>, <a href="https://github.com/Gilead-BioStats/gsm.app/issues/248" class="external-link">#248</a>, <a href="https://github.com/Gilead-BioStats/gsm.app/issues/289" class="external-link">#289</a>, <a href="https://github.com/Gilead-BioStats/gsm.app/issues/294" class="external-link">#294</a>).</li>
+<li>The sample data now contains all KRIs, to demonstrate a more fully functional app (<a href="https://github.com/Gilead-BioStats/gsm.app/issues/207" class="external-link">#207</a>).</li>
+<li>The Overview Table on the Study Overview tab is now interactive. Click a site and/or KRI to view details about that KRI at that site. The filters of this table can also be updated by clicking the red/amber pills at the top of the Overview Table tab (<a href="https://github.com/Gilead-BioStats/gsm.app/issues/196" class="external-link">#196</a>, <a href="https://github.com/Gilead-BioStats/gsm.app/issues/243" class="external-link">#243</a>, <a href="https://github.com/Gilead-BioStats/gsm.app/issues/244" class="external-link">#244</a>, <a href="https://github.com/Gilead-BioStats/gsm.app/issues/264" class="external-link">#264</a>).</li>
+</ul></div>
+<div class="section level3">
+<h3 id="other-improvements-2-1-0">Other Improvements<a class="anchor" aria-label="anchor" href="#other-improvements-2-1-0"></a></h3>
+<ul><li>Code has been separated into easier-to-manage subfunctions (<a href="https://github.com/Gilead-BioStats/gsm.app/issues/286" class="external-link">#286</a>).</li>
+<li>The sidebar now uses <code>Report_Studyinfo()</code> from {gsm}, rather than a custom app. The table is collapsible/expandable to show a subset of information vs all available information about the study (<a href="https://github.com/Gilead-BioStats/gsm.app/issues/288" class="external-link">#288</a>).</li>
+</ul></div>
+</div>
     <div class="section level2">
 <h2 class="pkg-version" data-toc-text="2.0.0" id="gsmapp-200">gsm.app 2.0.0<a class="anchor" aria-label="anchor" href="#gsmapp-200"></a></h2>
 <p>This is a complete rewrite of the package for use with <a href="https://github.com/Gilead-BioStats/gsm" class="external-link">gsm</a> 2.0+.</p>
