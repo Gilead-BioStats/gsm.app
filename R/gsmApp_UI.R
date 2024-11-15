@@ -6,16 +6,18 @@
 #' @returns A Shiny UI object
 #' @keywords internal
 gsmApp_UI <- function(
-  dfResults,
-  dfMetrics,
+  dfAnalyticsInput,
   dfGroups,
-  intNParticipants,
-  strTitle = "GSM Deep Dive"
+  dfMetrics,
+  dfResults,
+  strTitle = "GSM Deep Dive",
+  strFavicon = "angles-up",
+  strFaviconColor = colorScheme("red"),
+  tagListSidebar = NULL
 ) {
   # Transform data for use in lower-level functions. ----
-  lStudy <- make_lStudy(dfGroups, dfResults)
+  intNParticipants <- length(unique(dfAnalyticsInput$SubjectID))
   chrMetrics <- rlang::set_names(dfMetrics$MetricID, dfMetrics$Metric)
-  chrSites <- sort(unique(dfGroups$GroupID[dfGroups$GroupLevel == "Site"]))
 
   bslib::page_navbar(
     id = "primary_nav_bar",
@@ -23,6 +25,13 @@ gsmApp_UI <- function(
     theme = bslib::bs_theme(version = 5),
     fillable = FALSE,
     !!!out_MainTabs(dfResults = dfResults, chrMetrics = chrMetrics),
-    sidebar = out_Sidebar(lStudy, chrMetrics, chrSites, intNParticipants)
+    sidebar = out_Sidebar(
+      dfGroups,
+      dfResults,
+      chrMetrics,
+      intNParticipants,
+      tagListSidebar
+    ),
+    header = favawesome::fav(strFavicon, fill = strFaviconColor)
   )
 }

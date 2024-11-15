@@ -33,6 +33,9 @@ values for reporting.}
 \item{dfMetrics}{\code{data.frame} Metric-specific metadata for use in charts and
 reporting.}
 
+\item{dfParticipantGroups}{\code{data.frame} Unique \code{SubjectID} and \code{GroupID}
+combos from \code{dfAnalyticsInput}.}
+
 \item{dfResults}{\code{data.frame} A stacked summary of analysis pipeline output.
 This will be filtered to cases where \code{GroupLevel == "Site"}.}
 
@@ -53,12 +56,20 @@ about the participant, and \code{metric_data} should be a named list of
 data.frames, each of which contains information related to the named
 metric.}
 
+\item{fnServer}{\code{function} A Shiny server function that takes arguments
+\code{input}, \code{output}, and \code{session}. This function will be called at the start
+of the main app server function.}
+
 \item{id}{\code{character} The id for this module, widget, or other element.}
 
 \item{intKRIColorCount}{\code{integer} A named vector of counts by color.}
 
 \item{intNParticipants}{\code{integer} The number of unique participants
 (subjects) in the study.}
+
+\item{intRed}{\code{integer} The number of sites with at least one red flag.}
+
+\item{intAmber}{\code{integer} The number of sites with at least one amber flag.}
 
 \item{lMetric}{\code{list} Named list of data describing a single metric, as well
 as things like which group is selected.}
@@ -75,8 +86,14 @@ returns a vector of ids for modules, inputs, or other elements.}
 returns a set of predicted percentages/rates and upper- and lower-bounds
 across the full range of sample sizes/total exposure values for reporting.}
 
+\item{rctv_dfData}{\verb{reactive dataframe} A \code{\link[shiny:reactive]{shiny::reactive()}} object that
+returns a generic dataframe.}
+
 \item{rctv_dfResults}{\verb{reactive dataframe} A \code{\link[shiny:reactive]{shiny::reactive()}} object that
 returns a stacked summary of analysis pipeline output.}
+
+\item{rctv_gtObject}{\verb{reactive gt_table} A \code{\link[shiny:reactive]{shiny::reactive()}} object that
+returns a \code{\link[gt:gt]{gt::gt()}} object.}
 
 \item{rctv_lData}{\verb{reactive list} A \code{\link[shiny:reactive]{shiny::reactive()}} object that returns a
 named list of dataframes.}
@@ -88,6 +105,16 @@ which group is selected.}
 \item{rctv_lParticipantMetricData}{\verb{reactive list} A \code{\link[shiny:reactive]{shiny::reactive()}}
 object that returns a list of dataframes for a given participant, one for
 each metric that is available.}
+
+\item{rctv_lglState}{\verb{reactive logical} A \code{\link[shiny:reactive]{shiny::reactive()}}] object that
+returns a Boolean value indicating whether something is "off" (\code{FALSE}) or
+"on" (\code{TRUE}).}
+
+\item{rctv_strGroupSubset}{\verb{reactive character} A \code{\link[shiny:reactive]{shiny::reactive()}} object
+that returns the selected subset of groups to include in the table.}
+
+\item{rctv_strInput}{\verb{reactive character} A \code{\link[shiny:reactive]{shiny::reactive()}} object
+that returns the name of the target input.}
 
 \item{rctv_strMetricID}{\verb{reactive character} A \code{\link[shiny:reactive]{shiny::reactive()}} object
 that returns the selected \code{MetricID}.}
@@ -115,12 +142,41 @@ the calling function if the calling function also has a \code{strArg} argument.}
 \item{strClass}{\code{character} A descriptive label for this type of error, in
 lower_snake_case.}
 
-\item{strColor}{\code{character} The target color to report about.}
+\item{strColorFamily}{\code{character} Whether to load the \code{"dark"} version of
+this color, or the \code{"light"} version. Default: \code{"dark"}.}
+
+\item{strColorName}{\code{character} The target color to report about.}
+
+\item{strColorCode}{\code{character} The hex code (such as \code{"#FFFFFF"}) for a
+color.}
 
 \item{strContainerID}{\code{character} The (namespaced) ID of the target container
 (usually a div).}
 
+\item{strEmpty}{The value to return when everything is deselected.}
+
+\item{strFavicon}{The name of an icon to use in the browser tab via
+\code{\link[favawesome:fav]{favawesome::fav()}}.}
+
+\item{strFaviconColor}{The hexcode or name of a color to use as the icon fill
+for \code{\link[favawesome:fav]{favawesome::fav()}}.}
+
 \item{strGroupID}{\code{character} A \code{GroupID} to focus on.}
+
+\item{strGroupLabelKey}{\code{character} Value for the group label key. Default:
+\code{"InvestigatorLastName"}.}
+
+\item{strGroupLevel}{\code{character} Value for the group level. Default: \code{NULL}
+and taken from \code{dfMetrics$GroupLevel} if available.}
+
+\item{strGroupSubset}{\code{character} Subset of groups to include in the table.
+Default: \code{"red"}. Options:
+\itemize{
+\item \code{"all"}: All groups.
+\item \code{"red"}: Groups with 1+ red flags.
+\item \code{"red/amber"}: Groups with 1+ red/amber flag.
+\item \code{"amber"}: Groups with 1+ amber flag.
+}}
 
 \item{strInputID}{\code{character} An ID to use for the Shiny input created by
 this module or used by this JavaScript.}
@@ -141,6 +197,9 @@ metric.}
 \item{strTitle}{\code{character} A title to display for the overall app.}
 
 \item{strValue}{\code{character} The value of a field.}
+
+\item{tagListSidebar}{\code{taglist} An optional \code{\link[htmltools:tagList]{htmltools::tagList()}} of
+additional elements to add to the top of the app sidebar.}
 }
 \description{
 Reused parameter definitions are gathered here for easier usage. Note: We

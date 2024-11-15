@@ -4,18 +4,23 @@
 #' @returns A [bslib::sidebar()] with study information, inputs, and the
 #'   stylesheets and dependencies required to display the app.
 #' @keywords internal
-out_Sidebar <- function(lStudy, chrMetrics, chrSites, intNParticipants) {
+out_Sidebar <- function(
+  dfGroups,
+  dfResults,
+  chrMetrics,
+  intNParticipants,
+  tagListSidebar = NULL
+) {
   bslib::sidebar(
     width = 400,
     id = "sidebar",
+    tagListSidebar,
     shinyjs::useShinyjs(),
     htmlDependency_Default_Stylesheet(),
-    htmlDependency_HighlightTableRow(),
-    htmlDependency_TableClick(),
-    out_StudyInformation(lStudy = lStudy),
+    out_StudyInformation(dfGroups, dfResults),
     out_Inputs(
       chrMetrics = chrMetrics,
-      chrSites = chrSites,
+      chrSites = sort(unique(dfGroups$GroupID[dfGroups$GroupLevel == "Site"])),
       intNParticipants = intNParticipants
     )
   )

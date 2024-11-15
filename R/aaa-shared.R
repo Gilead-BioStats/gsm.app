@@ -23,6 +23,8 @@
 #' @param dfGroups `data.frame` Group-level metadata dictionary.
 #' @param dfMetrics `data.frame` Metric-specific metadata for use in charts and
 #'   reporting.
+#' @param dfParticipantGroups `data.frame` Unique `SubjectID` and `GroupID`
+#'   combos from `dfAnalyticsInput`.
 #' @param dfResults `data.frame` A stacked summary of analysis pipeline output.
 #'   This will be filtered to cases where `GroupLevel == "Site"`.
 #' @param envCall `environment` The environment from which this function was
@@ -39,10 +41,15 @@
 #'   about the participant, and `metric_data` should be a named list of
 #'   data.frames, each of which contains information related to the named
 #'   metric.
+#' @param fnServer `function` A Shiny server function that takes arguments
+#'   `input`, `output`, and `session`. This function will be called at the start
+#'   of the main app server function.
 #' @param id `character` The id for this module, widget, or other element.
 #' @param intKRIColorCount `integer` A named vector of counts by color.
 #' @param intNParticipants `integer` The number of unique participants
 #'   (subjects) in the study.
+#' @param intRed `integer` The number of sites with at least one red flag.
+#' @param intAmber `integer` The number of sites with at least one amber flag.
 #' @param lMetric `list` Named list of data describing a single metric, as well
 #'   as things like which group is selected.
 #' @param lParticipantMetadata `list` Named list of data describing a single
@@ -53,8 +60,12 @@
 #' @param rctv_dfBounds `reactive dataframe` A [shiny::reactive()] object that
 #'   returns a set of predicted percentages/rates and upper- and lower-bounds
 #'   across the full range of sample sizes/total exposure values for reporting.
+#' @param rctv_dfData `reactive dataframe` A [shiny::reactive()] object that
+#'   returns a generic dataframe.
 #' @param rctv_dfResults `reactive dataframe` A [shiny::reactive()] object that
 #'   returns a stacked summary of analysis pipeline output.
+#' @param rctv_gtObject `reactive gt_table` A [shiny::reactive()] object that
+#'   returns a [gt::gt()] object.
 #' @param rctv_lData `reactive list` A [shiny::reactive()] object that returns a
 #'   named list of dataframes.
 #' @param rctv_lMetric `reactive list` A [shiny::reactive()] object that returns
@@ -63,6 +74,13 @@
 #' @param rctv_lParticipantMetricData `reactive list` A [shiny::reactive()]
 #'   object that returns a list of dataframes for a given participant, one for
 #'   each metric that is available.
+#' @param rctv_lglState `reactive logical` A [shiny::reactive()]] object that
+#'   returns a Boolean value indicating whether something is "off" (`FALSE`) or
+#'   "on" (`TRUE`).
+#' @param rctv_strGroupSubset `reactive character` A [shiny::reactive()] object
+#'   that returns the selected subset of groups to include in the table.
+#' @param rctv_strInput `reactive character` A [shiny::reactive()] object
+#'   that returns the name of the target input.
 #' @param rctv_strMetricID `reactive character` A [shiny::reactive()] object
 #'   that returns the selected `MetricID`.
 #' @param rctv_strName `reactive character` A [shiny::reactive()] object that
@@ -81,10 +99,29 @@
 #'   the calling function if the calling function also has a `strArg` argument.
 #' @param strClass `character` A descriptive label for this type of error, in
 #'   lower_snake_case.
-#' @param strColor `character` The target color to report about.
+#' @param strColorFamily `character` Whether to load the `"dark"` version of
+#'   this color, or the `"light"` version. Default: `"dark"`.
+#' @param strColorName `character` The target color to report about.
+#' @param strColorCode `character` The hex code (such as `"#FFFFFF"`) for a
+#'   color.
 #' @param strContainerID `character` The (namespaced) ID of the target container
 #'   (usually a div).
+#' @param strEmpty The value to return when everything is deselected.
+#' @param strFavicon The name of an icon to use in the browser tab via
+#'   [favawesome::fav()].
+#' @param strFaviconColor The hexcode or name of a color to use as the icon fill
+#'   for [favawesome::fav()].
 #' @param strGroupID `character` A `GroupID` to focus on.
+#' @param strGroupLabelKey `character` Value for the group label key. Default:
+#'   `"InvestigatorLastName"`.
+#' @param strGroupLevel `character` Value for the group level. Default: `NULL`
+#'   and taken from `dfMetrics$GroupLevel` if available.
+#' @param strGroupSubset `character` Subset of groups to include in the table.
+#'   Default: `"red"`. Options:
+#' - `"all"`: All groups.
+#' - `"red"`: Groups with 1+ red flags.
+#' - `"red/amber"`: Groups with 1+ red/amber flag.
+#' - `"amber"`: Groups with 1+ amber flag.
 #' @param strInputID `character` An ID to use for the Shiny input created by
 #'   this module or used by this JavaScript.
 #' @param strLabel `character` The label of a field.
@@ -96,6 +133,8 @@
 #' @param strText `character` Text to display.
 #' @param strTitle `character` A title to display for the overall app.
 #' @param strValue `character` The value of a field.
+#' @param tagListSidebar `taglist` An optional [htmltools::tagList()] of
+#'   additional elements to add to the top of the app sidebar.
 #'
 #' @name shared-params
 #' @keywords internal

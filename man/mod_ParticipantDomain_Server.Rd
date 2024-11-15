@@ -17,8 +17,9 @@ returns the name of an object, such as a particular dataframe in a named
 list.}
 }
 \value{
-A \code{\link[shiny:reactive]{shiny::reactive()}} with the index(es) of any rows selected by the
-user.
+A \code{\link[shiny:reactive]{shiny::reactive()}} with the SubjectID for each row that is
+selected. Currently not useful but will be converted to row numbers when we
+need it for deeper dives.
 }
 \description{
 Display a specific (named) table, or a placeholder.

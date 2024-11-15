@@ -1,0 +1,22 @@
+/* Hide the selection column */
+.gt_shiny .rt-th:first-of-type {
+  display: none;
+}
+.gt_shiny .rt-td-select {
+  display: none;
+}
+
+/* Hover */
+.gt_shiny .rt-tbody .rt-tr:hover{
+  background-color: var(--bs-info) !important;
+}
+.gt_shiny .rt-td {
+  cursor: pointer;
+}
+
+/* Selected rows */
+.gt_shiny .rt-tr-selected {
+  background-color: var(--bs-primary) !important;
+  color: var(--bs-light) !important;
+}
+

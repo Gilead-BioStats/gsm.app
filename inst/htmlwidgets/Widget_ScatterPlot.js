@@ -1,14 +1,20 @@
+/**
+ * Factory function for creating the Widget_ScatterPlot HTML widget.
+ *
+ * @param {HTMLElement} el     - The HTML element to attach the widget to.
+ * @param {number}      width  - The width of the widget.
+ * @param {number}      height - The height of the widget.
+ * @returns {Object} An object containing the renderValue and resize functions
+ *                   for the widget.
+ */
 HTMLWidgets.widget({
   name: 'Widget_ScatterPlot',
   type: 'output',
   factory: function(el, width, height) {
     return {
       renderValue: function(input) {
-        // Assign a unique ID to the element.
         el.id = `${input.id}`;
-
-        // Add click event callback to chart.
-        input.lMetric.clickCallback = widgetPlotClickCallback(el);
+        input.lMetric.clickCallback = widgetPlotClickFactory(el);
 
         // Generate scatter plot.
         const instance = rbmViz.default.scatterPlot(
@@ -31,7 +37,7 @@ HTMLWidgets.widget({
           el.appendChild(footnote);
         }
       },
-      resize: function(width, height) {}
+      resize: noSpecialResizing // See widgetHelpers.js
     };
   }
 });

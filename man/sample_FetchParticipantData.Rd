@@ -19,7 +19,7 @@ This is a sample function demonstrating the type of function the user will
 supply to find additional data about a given participant.
 }
 \examples{
-sample_FetchParticipantData("0001")
+sample_FetchParticipantData("0008")
 }
 \seealso{
 Other sample data: 

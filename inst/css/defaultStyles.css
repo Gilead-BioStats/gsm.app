@@ -1,0 +1,9 @@
+#primary_nav_bar {
+  margin-left: 2rem
+}
+
+/* Main inputs -------------------------------------------------------------- */
+
+.overflow-on {
+  overflow: visible !important;
+}

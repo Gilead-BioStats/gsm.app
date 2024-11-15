@@ -48,46 +48,14 @@ filter_byGroupID <- function(df, strGroupID) {
   filter_by(df, strGroupID)
 }
 
-#' Reshape group and result info into study information
+#' Filter and sort participants by group
 #'
 #' @inheritParams shared-params
-#' @returns A list with study information.
+#' @returns A data.frame with `SubjectID` and `GroupID`.
 #' @keywords internal
-make_lStudy <- function(dfGroups, dfResults) {
-  dfStudy <- dfGroups[dfGroups$GroupLevel == "Study", c("Param", "Value")]
-  lStudy <- as.list(rlang::set_names(dfStudy$Value, dfStudy$Param))
-  # Temporarily only use some specific columns.
-  lStudy <- temp_subsetLStudy(lStudy)
-  lStudy$snapshot_date <- format(max(as.Date(dfResults$SnapshotDate)), "%Y-%m-%d")
-  return(lStudy)
-}
-
-#' Subset study information
-#'
-#' THIS FUNCTION SHOULD BE REMOVED AS THE APP MATURES
-#'
-#' @inheritParams shared-params
-#' @returns A list with a subset of study information.
-#' @keywords internal
-temp_subsetLStudy <- function(lStudy) {
-  lStudy <- lStudy[c(
-    "studyid",
-    "nickname",
-    "status",
-    "SiteCount",
-    "num_plan_site",
-    "ParticipantCount",
-    "num_plan_subj"
-  )]
-
-  names(lStudy) <- c(
-    "studyid",
-    "nickname",
-    "status",
-    "Sites",
-    "Sites (planned)",
-    "Participants",
-    "Participants (planned)"
+make_dfParticipantGroups <- function(dfAnalyticsInput) {
+  dplyr::arrange(
+    dplyr::distinct(dfAnalyticsInput, .data$SubjectID, .data$GroupID),
+    .data$SubjectID
   )
-  return(lStudy)
 }

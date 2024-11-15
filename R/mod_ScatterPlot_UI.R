@@ -29,7 +29,7 @@ mod_ScatterPlot_UI <- function(id, strPlotTitle = NULL) {
 #' @keywords internal
 htmlDependency_ScatterPlotInput <- function() {
   htmltools::tagList(
-    htmlDependency_WidgetPlotInputHelpers(),
+    htmlDependency_WidgetInputHelpers(),
     htmltools::htmlDependency(
       name = "scatterPlotInput",
       version = "1.0.0",
@@ -40,20 +40,20 @@ htmlDependency_ScatterPlotInput <- function() {
   )
 }
 
-#' Widget Plot Input JavaScript
+#' Widget Input JavaScript
 #'
-#' Attach `widgetPlotInputHelpers.js` to an app or other HTML exactly once.
+#' Attach `widgetInputHelpers.js` to an app or other HTML exactly once.
 #'
 #' @returns An `html_dependency` object (see [htmltools::htmlDependency()]),
 #'   which is attached to the Shiny app exactly once, regardless how many times
 #'   it is added.
 #' @keywords internal
-htmlDependency_WidgetPlotInputHelpers <- function() {
+htmlDependency_WidgetInputHelpers <- function() {
   htmltools::htmlDependency(
-    name = "widgetPlotInputHelpers",
+    name = "widgetInputHelpers",
     version = "1.0.0",
     src = "inputs",
     package = "gsm.app",
-    script = "widgetPlotInputHelpers.js"
+    script = "widgetInputHelpers.js"
   )
 }

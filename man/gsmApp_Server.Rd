@@ -5,28 +5,29 @@
 \title{Define Server}
 \usage{
 gsmApp_Server(
-  dfResults,
+  dfAnalyticsInput,
+  dfBounds,
   dfGroups,
   dfMetrics,
-  dfBounds,
-  dfAnalyticsInput,
-  fnFetchParticipantData
+  dfResults,
+  fnFetchParticipantData,
+  fnServer = NULL
 )
 }
 \arguments{
-\item{dfResults}{\code{data.frame} A stacked summary of analysis pipeline output.
-This will be filtered to cases where \code{GroupLevel == "Site"}.}
+\item{dfAnalyticsInput}{\code{data.frame} Participant-level metric data.}
+
+\item{dfBounds}{\code{data.frame} Set of predicted percentages/rates and upper-
+and lower-bounds across the full range of sample sizes/total exposure
+values for reporting.}
 
 \item{dfGroups}{\code{data.frame} Group-level metadata dictionary.}
 
 \item{dfMetrics}{\code{data.frame} Metric-specific metadata for use in charts and
 reporting.}
 
-\item{dfBounds}{\code{data.frame} Set of predicted percentages/rates and upper-
-and lower-bounds across the full range of sample sizes/total exposure
-values for reporting.}
-
-\item{dfAnalyticsInput}{\code{data.frame} Participant-level metric data.}
+\item{dfResults}{\code{data.frame} A stacked summary of analysis pipeline output.
+This will be filtered to cases where \code{GroupLevel == "Site"}.}
 
 \item{fnFetchParticipantData}{\code{function} A function that takes a single
 \code{strSubjectID} argument such as "0001", and returns a list with components
@@ -35,6 +36,10 @@ values for reporting.}
 about the participant, and \code{metric_data} should be a named list of
 data.frames, each of which contains information related to the named
 metric.}
+
+\item{fnServer}{\code{function} A Shiny server function that takes arguments
+\code{input}, \code{output}, and \code{session}. This function will be called at the start
+of the main app server function.}
 }
 \value{
 The main server function for use in a shiny app.

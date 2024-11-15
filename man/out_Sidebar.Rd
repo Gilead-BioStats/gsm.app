@@ -4,18 +4,28 @@
 \alias{out_Sidebar}
 \title{Study Information Sidebar}
 \usage{
-out_Sidebar(lStudy, chrMetrics, chrSites, intNParticipants)
+out_Sidebar(
+  dfGroups,
+  dfResults,
+  chrMetrics,
+  intNParticipants,
+  tagListSidebar = NULL
+)
 }
 \arguments{
-\item{lStudy}{\code{list} Named list of data describing the overall study.}
+\item{dfGroups}{\code{data.frame} Group-level metadata dictionary.}
+
+\item{dfResults}{\code{data.frame} A stacked summary of analysis pipeline output.
+This will be filtered to cases where \code{GroupLevel == "Site"}.}
 
 \item{chrMetrics}{\code{character} A named vector of MetricIDs, where the names
 are the full Metric.}
 
-\item{chrSites}{\code{character} A vector of sites available in the study.}
-
 \item{intNParticipants}{\code{integer} The number of unique participants
 (subjects) in the study.}
+
+\item{tagListSidebar}{\code{taglist} An optional \code{\link[htmltools:tagList]{htmltools::tagList()}} of
+additional elements to add to the top of the app sidebar.}
 }
 \value{
 A \code{\link[bslib:sidebar]{bslib::sidebar()}} with study information, inputs, and the

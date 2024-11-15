@@ -119,7 +119,7 @@
 #' @export
 #'
 #' @examples
-#' sample_FetchParticipantData("0001")
+#' sample_FetchParticipantData("0008")
 sample_FetchParticipantData <- function(strSubjectID) {
   if (strSubjectID %in% names(participant_data)) {
     return(participant_data[[strSubjectID]])

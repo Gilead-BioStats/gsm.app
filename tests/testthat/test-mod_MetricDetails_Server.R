@@ -1,6 +1,6 @@
 test_that("mod_MetricDetails_Server initializes and renders scatter plot", {
   # Inputs to simulate things that happen in the main server function.
-  rctv_input_metric <- reactiveVal("kri0001")
+  rctv_input_metric <- reactiveVal("Analysis_kri0001")
   rctv_input_site <- reactiveVal("None")
   rctv_lMetric <- reactive({
     lMetric <- as.list(filter_byMetricID(sample_dfMetrics, rctv_input_metric()))
@@ -39,7 +39,7 @@ test_that("mod_MetricDetails_Server initializes and renders scatter plot", {
 test_that("mod_MetricDetails_Server renders tab outputs", {
   call <- rlang::current_env()
   # Inputs to simulate things that happen in the main server function.
-  rctv_input_metric <- reactiveVal("kri0001")
+  rctv_input_metric <- reactiveVal("Analysis_kri0001")
   rctv_input_site <- reactiveVal("None")
   rctv_lMetric <- reactive({
     lMetric <- as.list(filter_byMetricID(sample_dfMetrics, rctv_input_metric()))
@@ -67,6 +67,9 @@ test_that("mod_MetricDetails_Server renders tab outputs", {
 
       # Manually set tab (happens automatically via UI).
       session$setInputs(selected_tab = "Scatter Plot")
+      # The value isn't explicitly set inside the modules; they all return
+      # `NULL`.
+      expect_null(rctv_strScatterGroup())
 
       session$setInputs(selected_tab = "Bar Chart (KRI Value)")
       expect_null(rctv_strScatterGroup())
@@ -81,8 +84,8 @@ test_that("mod_MetricDetails_Server renders tab outputs", {
       expect_s3_class(output$time_series, "json")
 
       session$setInputs(selected_tab = "Analysis Output")
-      expect_null(rctv_strScatterGroup())
-      expect_cleaned_html(output$results$html, call = call)
+      expect_type(output$`analysis_output-gt-table`, "list")
+      expect_named(output$`analysis_output-gt-table`, c("html", "deps"))
     }
   )
 })

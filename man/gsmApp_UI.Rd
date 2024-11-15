@@ -5,26 +5,37 @@
 \title{Shiny UI function}
 \usage{
 gsmApp_UI(
-  dfResults,
-  dfMetrics,
+  dfAnalyticsInput,
   dfGroups,
-  intNParticipants,
-  strTitle = "GSM Deep Dive"
+  dfMetrics,
+  dfResults,
+  strTitle = "GSM Deep Dive",
+  strFavicon = "angles-up",
+  strFaviconColor = colorScheme("red"),
+  tagListSidebar = NULL
 )
 }
 \arguments{
-\item{dfResults}{\code{data.frame} A stacked summary of analysis pipeline output.
-This will be filtered to cases where \code{GroupLevel == "Site"}.}
+\item{dfAnalyticsInput}{\code{data.frame} Participant-level metric data.}
+
+\item{dfGroups}{\code{data.frame} Group-level metadata dictionary.}
 
 \item{dfMetrics}{\code{data.frame} Metric-specific metadata for use in charts and
 reporting.}
 
-\item{dfGroups}{\code{data.frame} Group-level metadata dictionary.}
-
-\item{intNParticipants}{\code{integer} The number of unique participants
-(subjects) in the study.}
+\item{dfResults}{\code{data.frame} A stacked summary of analysis pipeline output.
+This will be filtered to cases where \code{GroupLevel == "Site"}.}
 
 \item{strTitle}{\code{character} A title to display for the overall app.}
+
+\item{strFavicon}{The name of an icon to use in the browser tab via
+\code{\link[favawesome:fav]{favawesome::fav()}}.}
+
+\item{strFaviconColor}{The hexcode or name of a color to use as the icon fill
+for \code{\link[favawesome:fav]{favawesome::fav()}}.}
+
+\item{tagListSidebar}{\code{taglist} An optional \code{\link[htmltools:tagList]{htmltools::tagList()}} of
+additional elements to add to the top of the app sidebar.}
 }
 \value{
 A Shiny UI object

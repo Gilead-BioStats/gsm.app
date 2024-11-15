@@ -27,16 +27,6 @@ mod_MetricDetails_Server <- function(
     }) %>%
       bindCache(rctv_strMetricID())
 
-    rctv_dfResults_AnalysisOutput <- reactive({
-      rctv_dfResults_Latest() %>%
-        dplyr::arrange("GroupID") %>%
-        dplyr::select(
-          "GroupID", "Numerator", "Denominator", "Metric",
-          "Score", "Flag", "MetricID"
-        )
-    }) %>%
-      bindCache(rctv_strMetricID())
-
     rctv_dfBounds_byMetricID <- reactive({
       filter_byMetricID(dfBounds, rctv_strMetricID())
     }) %>%
@@ -49,13 +39,21 @@ mod_MetricDetails_Server <- function(
       dfGroups = dfGroups,
       rctv_dfBounds = rctv_dfBounds_byMetricID
     )
+
     # Placeholders until these are reigned in with modules.
     rctv_strBarValueGroup <- reactive(NULL)
     rctv_strBarScoreGroup <- reactive(NULL)
     rctv_strTimeSeriesGroup <- reactive(NULL)
-    rctv_strAnalysisOutputGroup <- reactive(NULL)
+    rctv_strAnalysisOutputGroup <- mod_MetricTable_Server(
+      "analysis_output",
+      rctv_dfResults = rctv_dfResults_byMetricID,
+      dfGroups = dfGroups,
+      rctv_strSiteID = rctv_strSiteID
+    )
 
     # Outputs ----
+
+    # Update the value-to-return RV
     rctv_strSelectedGroupID <- reactive({
       req(input$selected_tab)
       switch(input$selected_tab,
@@ -103,28 +101,20 @@ mod_MetricDetails_Server <- function(
           rctv_strTimeSeriesGroup()
         },
         "Analysis Output" = {
-          output$results <- renderUI({
-            gsm::Report_MetricTable(
-              rctv_dfResults_AnalysisOutput(),
-              dfGroups,
-              strGroupLevel = "Site"
-            ) %>%
-              HTML()
-          })
-          observe({
-            shinyjs::runjs(
-              sprintf(
-                "highlightTableRow('analysis_output_table', '%s');",
-                rctv_strSiteID()
-              )
-            )
-          })
-          shinyjs::runjs("tableClick('analysis_output_table');")
           rctv_strAnalysisOutputGroup()
         }
       )
     })
 
-    return(rctv_strSelectedGroupID)
+    # Value to return
+    #
+    # TODO: Make a separate observer for each input?
+    rctv_strSelectedGroupID_return <- reactiveVal(NULL)
+    observe({
+      req(rctv_strSelectedGroupID())
+      rctv_strSelectedGroupID_return(rctv_strSelectedGroupID())
+    })
+
+    return(rctv_strSelectedGroupID_return)
   })
 }

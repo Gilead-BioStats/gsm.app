@@ -16,7 +16,7 @@ group_subset <- c(
   "0X021",
   "0X103",
   "0X159",
-  "0X161"
+  "0X170"
 )
 
 sample_dfResults_subset <- gsm.app::sample_dfResults %>%
@@ -43,10 +43,10 @@ slow_FetchParticipantData <- function(strSubjectID) {
 }
 
 gsm.app::run_gsm_app(
-  dfResults = sample_dfResults_subset,
+  dfAnalyticsInput = sample_dfAnalyticsInput_subset,
+  dfBounds = gsm.app::sample_dfBounds,
   dfGroups = sample_dfGroups_subset,
   dfMetrics = gsm.app::sample_dfMetrics,
-  dfBounds = gsm.app::sample_dfBounds,
-  dfAnalyticsInput = sample_dfAnalyticsInput_subset,
+  dfResults = sample_dfResults_subset,
   fnFetchParticipantData = slow_FetchParticipantData
 )

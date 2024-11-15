@@ -3,7 +3,6 @@ Analytics
 CMD
 DetectCardClicks
 GroupID
-HighlightTableRow
 KRI
 MetricID
 MetricIDs
@@ -13,7 +12,6 @@ Param
 Rmd
 ScatterPlot
 ScatterPlotSet
-TableClick
 UI
 chrWords
 df
@@ -25,6 +23,7 @@ dfResults
 gsm
 gsmApp
 io
+lMetric
 magrittr
 namespaced
 pkgdown

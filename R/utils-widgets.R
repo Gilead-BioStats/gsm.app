@@ -22,4 +22,37 @@ gsmDependencies <- function(strWidgetName, excludes = character()) {
       })
     }
   )
+  dependencies
+}
+
+#' Pick Up Dependencies for Rendered Output
+#'
+#' @inheritParams gsmDependencies
+#' @inheritParams htmlwidgets::shinyWidgetOutput
+#' @inheritDotParams htmlwidgets::shinyWidgetOutput inline reportSize
+#'   reportTheme fill
+#'
+#' @return A [htmltools::tagList()] with the [htmlwidgets::shinyWidgetOutput()]
+#'   and its dependencies.
+#' @keywords internal
+gsmWidgetOutput <- function(
+  strWidgetName,
+  outputId,
+  width = "100%",
+  height = "400px",
+  excludes = character(),
+  ...
+) {
+  htmltools::tagList(
+    htmlwidgets::shinyWidgetOutput(
+      outputId,
+      strWidgetName,
+      width,
+      height,
+      package = "gsm.app",
+      ...
+    ),
+    # Can't automatically pick up css dependencies without this.
+    gsmDependencies(strWidgetName, excludes)
+  )
 }

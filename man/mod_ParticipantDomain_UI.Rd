@@ -11,7 +11,7 @@ mod_ParticipantDomain_UI(id)
 }
 \value{
 A \code{\link[bslib:card]{bslib::card()}} with either a placeholder, or a
-\code{\link[DT:dataTableOutput]{DT::DTOutput()}} table.
+\code{\link[gt:gt_output]{gt::gt_output()}} table.
 }
 \description{
 Participant Domain Details Card UI

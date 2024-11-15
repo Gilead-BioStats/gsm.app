@@ -6,31 +6,35 @@
 \title{Run the app}
 \usage{
 run_gsm_app(
-  dfResults,
+  dfAnalyticsInput,
+  dfBounds,
   dfGroups,
   dfMetrics,
-  dfBounds,
-  dfAnalyticsInput,
+  dfResults,
   fnFetchParticipantData,
-  strTitle = "GSM Deep Dive"
+  strTitle = "GSM Deep Dive",
+  strFavicon = "angles-up",
+  strFaviconColor = "#FF5859",
+  tagListSidebar = NULL,
+  fnServer = NULL
 )
 
-run_sample_gsm_app()
+run_sample_gsm_app(strFavicon = "angles-up", strFaviconColor = "#FF5859")
 }
 \arguments{
-\item{dfResults}{\code{data.frame} A stacked summary of analysis pipeline output.
-This will be filtered to cases where \code{GroupLevel == "Site"}.}
+\item{dfAnalyticsInput}{\code{data.frame} Participant-level metric data.}
+
+\item{dfBounds}{\code{data.frame} Set of predicted percentages/rates and upper-
+and lower-bounds across the full range of sample sizes/total exposure
+values for reporting.}
 
 \item{dfGroups}{\code{data.frame} Group-level metadata dictionary.}
 
 \item{dfMetrics}{\code{data.frame} Metric-specific metadata for use in charts and
 reporting.}
 
-\item{dfBounds}{\code{data.frame} Set of predicted percentages/rates and upper-
-and lower-bounds across the full range of sample sizes/total exposure
-values for reporting.}
-
-\item{dfAnalyticsInput}{\code{data.frame} Participant-level metric data.}
+\item{dfResults}{\code{data.frame} A stacked summary of analysis pipeline output.
+This will be filtered to cases where \code{GroupLevel == "Site"}.}
 
 \item{fnFetchParticipantData}{\code{function} A function that takes a single
 \code{strSubjectID} argument such as "0001", and returns a list with components
@@ -41,6 +45,19 @@ data.frames, each of which contains information related to the named
 metric.}
 
 \item{strTitle}{\code{character} A title to display for the overall app.}
+
+\item{strFavicon}{The name of an icon to use in the browser tab via
+\code{\link[favawesome:fav]{favawesome::fav()}}.}
+
+\item{strFaviconColor}{The hexcode or name of a color to use as the icon fill
+for \code{\link[favawesome:fav]{favawesome::fav()}}.}
+
+\item{tagListSidebar}{\code{taglist} An optional \code{\link[htmltools:tagList]{htmltools::tagList()}} of
+additional elements to add to the top of the app sidebar.}
+
+\item{fnServer}{\code{function} A Shiny server function that takes arguments
+\code{input}, \code{output}, and \code{session}. This function will be called at the start
+of the main app server function.}
 }
 \value{
 An object that represents the app. Printing the object or passing it
