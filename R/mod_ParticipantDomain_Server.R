@@ -48,7 +48,9 @@ mod_ParticipantDomain_Server <- function(id, rctv_lData, rctv_strName) {
       "gt",
       rctv_tblData,
       rctv_gtObject,
-      reactive({NULL}), # No input causes selection in this table.
+      reactive({
+        NULL
+      }), # No input causes selection in this table.
       # In the future we might want this to be dynamic, or to have a version of
       # the module that returns the row number or full row or something.
       "SubjectID"

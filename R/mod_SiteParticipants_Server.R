@@ -4,7 +4,7 @@
 #' @returns A [shiny::reactiveVal()] with the id of the participant selected in
 #'   the table.
 #' @keywords internal
-mod_SiteParticipants_Server = function(
+mod_SiteParticipants_Server <- function(
   id,
   rctv_strGroupID,
   rctv_strSubjectID,
