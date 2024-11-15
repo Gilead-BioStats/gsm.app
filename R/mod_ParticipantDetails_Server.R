@@ -50,7 +50,8 @@ mod_ParticipantDetails_Server <- function(
     rctv_intSelectedRows <- mod_ParticipantDomain_Server(
       "domain",
       rctv_lParticipantMetricData,
-      rctv_strSelectedMetric
+      rctv_strSelectedMetric,
+      rctv_strSubjectID
     )
     return(rctv_intSelectedRows)
   })
