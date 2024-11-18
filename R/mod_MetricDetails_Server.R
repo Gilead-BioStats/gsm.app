@@ -59,15 +59,21 @@ mod_MetricDetails_Server <- function(
       rctv_dfBounds = rctv_dfBounds_byMetricID
     )
 
+    rctv_strTimeSeriesGroup <- mod_TimeSeries_Server(
+      "time_series",
+      rctv_dfResults = rctv_dfResults_Latest,
+      rctv_lMetric = rctv_lMetric,
+      dfGroups = dfGroups,
+      strOutcome = "Score",
+      rctv_dfBounds = rctv_dfBounds_byMetricID
+    )
+
     rctv_strAnalysisOutputGroup <- mod_MetricTable_Server(
       "analysis_output",
       rctv_dfResults = rctv_dfResults_byMetricID,
       dfGroups = dfGroups,
       rctv_strSiteID = rctv_strSiteID
     )
-
-    # Placeholders until these are reigned in with modules ----
-    rctv_strTimeSeriesGroup <- reactive(NULL)
 
     # Update the value-to-return reactive ----
     rctv_strSelectedGroupID <- reactive({
@@ -76,20 +82,7 @@ mod_MetricDetails_Server <- function(
         "Scatter Plot" = rctv_strScatterGroup(),
         "Bar Chart (KRI Value)" = rctv_strBarValueGroup(),
         "Bar Chart (KRI Score)" = rctv_strBarScoreGroup(),
-        "Time Series" = {
-          output$time_series <- gsm::renderWidget_TimeSeries({
-            gsm::Widget_TimeSeries(
-              rctv_dfResults_byMetricID(),
-              lMetric = rctv_lMetric(),
-              dfGroups = dfGroups,
-              strOutcome = "Score",
-              bAddGroupSelect = FALSE,
-              strShinyGroupSelectID = "site"
-            )
-          })
-          outputOptions(output, "time_series", suspendWhenHidden = FALSE)
-          rctv_strTimeSeriesGroup()
-        },
+        "Time Series" = rctv_strTimeSeriesGroup(),
         "Analysis Output" = rctv_strAnalysisOutputGroup()
       )
     })

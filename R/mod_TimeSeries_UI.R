@@ -1,10 +1,10 @@
-#' BarChart Module UI
+#' TimeSeries Module UI
 #'
 #' @inheritParams shared-params
 #' @returns A [bslib::card()] with an optional title and a
-#'   [Widget_BarChartOutput()].
+#'   [Widget_TimeSeriesOutput()].
 #' @keywords internal
-mod_BarChart_UI <- function(id, strPlotTitle = NULL) {
+mod_TimeSeries_UI <- function(id, strPlotTitle = NULL) {
   ns <- NS(id)
   card_header <- if (!is.null(strPlotTitle)) {
     bslib::card_header(strPlotTitle)
@@ -14,28 +14,28 @@ mod_BarChart_UI <- function(id, strPlotTitle = NULL) {
     full_screen = TRUE,
     class = "chart",
     card_header,
-    htmlDependency_BarChartInput(),
-    Widget_BarChartOutput(ns("plot"))
+    htmlDependency_TimeSeriesInput(),
+    Widget_TimeSeriesOutput(ns("plot"))
   )
 }
 
-#' Bar Chart Input JavaScript
+#' Time Series Input JavaScript
 #'
-#' Attach `barChartInput.js` to an app or other HTML exactly once.
+#' Attach `timeSeriesInput.js` to an app or other HTML exactly once.
 #'
 #' @returns An [htmltools::tagList()] of `html_dependency` objects (see
 #'   [htmltools::htmlDependency()]), so that each will be attached to the Shiny
 #'   app exactly once, regardless how many times they are added.
 #' @keywords internal
-htmlDependency_BarChartInput <- function() {
+htmlDependency_TimeSeriesInput <- function() {
   htmltools::tagList(
     htmlDependency_WidgetInputHelpers(),
     htmltools::htmlDependency(
-      name = "barChartInput",
+      name = "timeSeriesInput",
       version = "1.0.0",
       src = "inputs",
       package = "gsm.app",
-      script = "barChartInput.js"
+      script = "timeSeriesInput.js"
     )
   )
 }

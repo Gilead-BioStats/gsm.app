@@ -20,14 +20,7 @@ mod_MetricDetails_UI <- function(id) {
     ),
     bslib::nav_panel(
       "Time Series",
-      div(
-        class = "card mb-3",
-        style = "margin-top: 4px;",
-        div(
-          class = "card-body",
-          gsm::Widget_TimeSeriesOutput(ns("time_series"))
-        )
-      )
+      mod_TimeSeries_UI(ns("time_series"))
     ),
     bslib::nav_panel(
       "Analysis Output",
