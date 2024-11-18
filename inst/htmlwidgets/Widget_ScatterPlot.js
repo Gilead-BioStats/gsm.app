@@ -26,16 +26,7 @@ HTMLWidgets.widget({
         );
 
         // Add a footnote below the scatter plot.
-        const footnoteId = `${el.id}-footnote`;
-        let footnote = document.getElementById(footnoteId);
-        if (!footnote) {
-          footnote = document.createElement('div');
-          footnote.id = footnoteId;
-          footnote.style.fontSize = '10px';
-          footnote.style.color = '#555';
-          footnote.innerHTML = input.strFootnote;
-          el.appendChild(footnote);
-        }
+        addFootnote(el, input.strFootnote);
       },
       resize: noSpecialResizing // See widgetHelpers.js
     };

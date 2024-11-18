@@ -126,6 +126,7 @@
 #'   this module or used by this JavaScript.
 #' @param strLabel `character` The label of a field.
 #' @param strMetricID `character` A `MetricID` to focus on.
+#' @param strOutcome `character` Outcome variable. Default: `"Score"`.
 #' @param strPlotTitle `character` A title for a plot, usually the name of a
 #'   metric.
 #' @param strSubjectID `character` A `SubjectID` of an individual participant.

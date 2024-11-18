@@ -1,0 +1,5 @@
+dependencies:
+  - name: widgetHelpers
+    version: 0.0.1
+    src: 'js'
+    script: 'widgetHelpers.js'

@@ -1,16 +1,17 @@
-#' Scatter Plot Widget
+#' Bar Chart Widget
 #'
 #' @description `r lifecycle::badge("stable")`
 #'
-#' A widget that generates a scatter plot of group-level metric results,
+#' A widget that generates a bar chart of group-level metric results,
 #' plotting the denominator on the x-axis and the numerator on the y-axis.
 #'
 #' @inheritParams shared-params
 #'
 #' @keywords internal
-Widget_ScatterPlot <- function(
+Widget_BarChart <- function(
   id,
   dfResults,
+  strOutcome = "Score",
   lMetric = list(),
   dfGroups = NULL,
   dfBounds = NULL
@@ -19,15 +20,26 @@ Widget_ScatterPlot <- function(
     "dfResults is not a data.frame" = is.data.frame(dfResults),
     "lMetric must be a list, but not a data.frame" = is.list(lMetric) && !is.data.frame(lMetric),
     "dfGroups is not a data.frame" = is.null(dfGroups) || is.data.frame(dfGroups),
+    "strOutcome must be length 1" = length(strOutcome) == 1,
+    "strOutcome is not a character" = is.character(strOutcome),
     "dfBounds is not a data.frame" = is.null(dfBounds) || is.data.frame(dfBounds)
   )
+  vThreshold <- NULL
+  if (
+    strOutcome == "Score" &&
+    !is.null(dfBounds) &&
+    "Threshold" %in% colnames(dfBounds)
+  ) {
+    vThreshold <- dfBounds$Threshold
+  }
+
   input <- list(
     id = id,
     dfResults = dfResults,
     lMetric = lMetric,
     dfGroups = dfGroups,
-    dfBounds = dfBounds,
-    strFootnote = "Point size is relative to the number of enrolled participants."
+    strOutcome = strOutcome,
+    vThreshold = vThreshold
   )
   # Get rid of bits we don't use from the main widget.
   excludes <- c(
@@ -39,7 +51,7 @@ Widget_ScatterPlot <- function(
   )
 
   htmlwidgets::createWidget(
-    name = "Widget_ScatterPlot",
+    name = "Widget_BarChart",
     purrr::map(
       input,
       ~ jsonlite::toJSON(
@@ -50,36 +62,36 @@ Widget_ScatterPlot <- function(
       )
     ),
     package = "gsm.app",
-    dependencies = gsmDependencies("Widget_ScatterPlot", excludes)
+    dependencies = gsmDependencies("Widget_BarChart", excludes)
   )
 }
 
-#' Shiny bindings for Widget_ScatterPlot
+#' Shiny bindings for Widget_BarChart
 #'
 #' @description `r lifecycle::badge("stable")`
 #'
-#' Output and render functions for using Widget_ScatterPlot within Shiny
+#' Output and render functions for using Widget_BarChart within Shiny
 #' applications and interactive Rmd documents.
 #'
 #' @param outputId output variable to read from
 #' @param width,height Must be a valid CSS unit (like `'100%'`, `'400px'`,
 #'   `'auto'`) or a number, which will be coerced to a string and have `'px'`
 #'   appended.
-#' @param expr An expression that generates a Widget_ScatterPlot
+#' @param expr An expression that generates a Widget_BarChart
 #' @param env The environment in which to evaluate `expr`.
 #' @param quoted Is `expr` a quoted expression (with [quote()])? This is useful
 #'   if you want to save an expression in a variable.
 #'
-#' @name Widget_ScatterPlot-shiny
+#' @name Widget_BarChart-shiny
 #'
 #' @keywords internal
-Widget_ScatterPlotOutput <- function(
+Widget_BarChartOutput <- function(
   outputId,
   width = "100%",
   height = "400px"
 ) {
   gsmWidgetOutput(
-    "Widget_ScatterPlot",
+    "Widget_BarChart",
     outputId,
     width,
     height,
@@ -93,9 +105,9 @@ Widget_ScatterPlotOutput <- function(
   )
 }
 
-#' @rdname Widget_ScatterPlot-shiny
+#' @rdname Widget_BarChart-shiny
 #' @keywords internal
-renderWidget_ScatterPlot <- function(
+renderWidget_BarChart <- function(
   expr,
   env = parent.frame(),
   quoted = FALSE
@@ -105,7 +117,7 @@ renderWidget_ScatterPlot <- function(
   } # force quoted
   htmlwidgets::shinyRenderWidget(
     expr,
-    Widget_ScatterPlotOutput,
+    Widget_BarChartOutput,
     env,
     quoted = TRUE,
     cacheHint = NULL
