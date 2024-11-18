@@ -16,6 +16,7 @@
 <url><loc>https://gilead-biostats.github.io/gsm.app/dev/reference/filter_by.html</loc></url>
 <url><loc>https://gilead-biostats.github.io/gsm.app/dev/reference/filter_byGroupID.html</loc></url>
 <url><loc>https://gilead-biostats.github.io/gsm.app/dev/reference/filter_byMetricID.html</loc></url>
+<url><loc>https://gilead-biostats.github.io/gsm.app/dev/reference/findNonZeroDecimals.html</loc></url>
 <url><loc>https://gilead-biostats.github.io/gsm.app/dev/reference/gsm.app-package.html</loc></url>
 <url><loc>https://gilead-biostats.github.io/gsm.app/dev/reference/gsmApp_Server.html</loc></url>
 <url><loc>https://gilead-biostats.github.io/gsm.app/dev/reference/gsmApp_UI.html</loc></url>
@@ -78,6 +79,7 @@
 <url><loc>https://gilead-biostats.github.io/gsm.app/dev/reference/out_StudyInformation.html</loc></url>
 <url><loc>https://gilead-biostats.github.io/gsm.app/dev/reference/out_gtInteractive.html</loc></url>
 <url><loc>https://gilead-biostats.github.io/gsm.app/dev/reference/out_gtPlaceholder.html</loc></url>
+<url><loc>https://gilead-biostats.github.io/gsm.app/dev/reference/out_gtSmartFmtNumbers.html</loc></url>
 <url><loc>https://gilead-biostats.github.io/gsm.app/dev/reference/pipe.html</loc></url>
 <url><loc>https://gilead-biostats.github.io/gsm.app/dev/reference/run_gsm_app.html</loc></url>
 <url><loc>https://gilead-biostats.github.io/gsm.app/dev/reference/sample_FetchParticipantData.html</loc></url>
