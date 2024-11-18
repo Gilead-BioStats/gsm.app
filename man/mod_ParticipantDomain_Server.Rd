@@ -4,7 +4,7 @@
 \alias{mod_ParticipantDomain_Server}
 \title{Participant Domain Server}
 \usage{
-mod_ParticipantDomain_Server(id, rctv_lData, rctv_strName)
+mod_ParticipantDomain_Server(id, rctv_lData, rctv_strName, rctv_strSubjectID)
 }
 \arguments{
 \item{id}{\code{character} The id for this module, widget, or other element.}
@@ -15,6 +15,9 @@ named list of dataframes.}
 \item{rctv_strName}{\verb{reactive character} A \code{\link[shiny:reactive]{shiny::reactive()}} object that
 returns the name of an object, such as a particular dataframe in a named
 list.}
+
+\item{rctv_strSubjectID}{\verb{reactive character} A \code{\link[shiny:reactive]{shiny::reactive()}} object
+that returns the \code{SubjectID} of the selected participant.}
 }
 \value{
 A \code{\link[shiny:reactive]{shiny::reactive()}} with the SubjectID for each row that is

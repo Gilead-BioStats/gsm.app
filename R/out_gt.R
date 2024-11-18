@@ -42,3 +42,21 @@ out_gtPlaceholder <- function(..., id = NULL) {
     gt::cols_width(no_data ~ gt::pct(100)) %>%
     gt::opt_table_lines("none")
 }
+
+#' Intelligently format numeric data
+#'
+#' @inheritParams out_gtInteractive
+#' @returns A [gt::gt()] with numeric formatting applied.
+#' @keywords internal
+out_gtSmartFmtNumbers <- function(gt_object, intMaxDecimals = 5L) {
+  df <- gt_object$`_data`
+  cols <- purrr::map_lgl(df, ~ is.numeric(.x) & !rlang::is_integerish(.x))
+  purrr::reduce(
+    names(cols)[cols],
+    function(gt_object, col_name) {
+      decimals_to_keep <- findNonZeroDecimals(df[[col_name]], intMaxDecimals)
+      gt::fmt_number(gt_object, decimals = decimals_to_keep, columns = col_name)
+    },
+    .init = gt_object
+  )
+}
