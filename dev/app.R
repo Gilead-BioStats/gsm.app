@@ -4,18 +4,22 @@ if (basename(getwd()) != 'dev') {
 
 library(shiny)
 library(DT)
-source('mod_AETimelines_UI.R')
-source('mod_AETimelines_Server.R')
-source('AETimelines_Fetch.R')
+load_all()
 
 lModuleConfig <- yaml::read_yaml(
     'AETimelines.yaml'
 )
 
-load_all()
-# wire up AEsimrep as gsm.app plugin
-# modules must be Shiny modules
+# TODO: source module functions dynamically with config
+source('mod_AETimelines_UI.R')
+source('mod_AETimelines_Server.R')
+source('AETimelines_Fetch.R')
 
+# All modules should include the following:
+# - config file with metadata, a data specification, and a function list
+# - UI function
+# - server function
+# - data fetch function
 lModules <- list(
     list(
         lConfig = lModuleConfig,

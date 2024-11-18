@@ -21,6 +21,7 @@ out_MainTabs <- function(dfResults, chrMetrics, lModules = NULL) {
     )
   )
 
+  # TODO: add each module to a dropdown menu instead of as tabs in the main nav bar
   if (!is.null(lModules)) {
     for (lModule in lModules) {
       MainTabs <- c(

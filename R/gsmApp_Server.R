@@ -214,6 +214,7 @@ gsmApp_Server <- function(
 
     if (!is.null(lModules)) {
       for (lModule in lModules) {
+        # TODO: pass all reactive inputs to module server
         lModule$fnServer(
           lModule$lConfig$meta$ID,
           lModule$lConfig,
