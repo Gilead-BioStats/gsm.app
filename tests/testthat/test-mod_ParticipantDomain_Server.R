@@ -5,7 +5,8 @@ test_that("mod_ParticipantDomain_Server sets title and placeholder when no data 
     args = list(
       id = "myPD",
       rctv_lData = reactive(NULL),
-      rctv_strName = reactive(NULL)
+      rctv_strName = reactive(NULL),
+      rctv_strSubjectID = reactive(NULL)
     ),
     {
       output_title <- output$title
@@ -33,7 +34,8 @@ test_that("mod_ParticipantDomain_Server sets title and placeholder when data is 
     args = list(
       id = "myPD",
       rctv_lData = reactive(mock_data),
-      rctv_strName = reactive(NULL)
+      rctv_strName = reactive(NULL),
+      rctv_strSubjectID = reactive(NULL)
     ),
     {
       output_title <- output$title
@@ -99,7 +101,8 @@ test_that("mod_ParticipantDomain_Server handles non-existent table name graceful
     mod_ParticipantDomain_Server,
     args = list(
       rctv_lData = reactive(mock_data),
-      rctv_strName = reactive("nonexistent_table")
+      rctv_strName = reactive("nonexistent_table"),
+      rctv_strSubjectID = reactive("0001")
     ),
     {
       expect_equal(nrow(rctv_tblData()), 0)
