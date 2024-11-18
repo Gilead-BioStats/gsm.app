@@ -32,8 +32,8 @@ Widget_TimeSeries <- function(
   ) {
     vThreshold <- dfBounds$Threshold
   }
-
-  input <- list(
+  Widget_Plot(
+    "Widget_TimeSeries",
     id = id,
     dfResults = dfResults,
     lMetric = lMetric,
@@ -41,85 +41,14 @@ Widget_TimeSeries <- function(
     strOutcome = strOutcome,
     vThreshold = vThreshold
   )
-  # Get rid of bits we don't use from the main widget.
-  excludes <- c(
-    "addSelectControl",
-    "addWidgetControls",
-    "clickCallback",
-    "getGroups",
-    "getCountries"
-  )
-
-  htmlwidgets::createWidget(
-    name = "Widget_TimeSeries",
-    purrr::map(
-      input,
-      ~ jsonlite::toJSON(
-        .x,
-        null = "null",
-        na = "string",
-        auto_unbox = TRUE
-      )
-    ),
-    package = "gsm.app",
-    dependencies = gsmDependencies("Widget_TimeSeries", excludes)
-  )
 }
 
-#' Shiny bindings for Widget_TimeSeries
-#'
-#' @description `r lifecycle::badge("stable")`
-#'
-#' Output and render functions for using Widget_TimeSeries within Shiny
-#' applications and interactive Rmd documents.
-#'
-#' @param outputId output variable to read from
-#' @param width,height Must be a valid CSS unit (like `'100%'`, `'400px'`,
-#'   `'auto'`) or a number, which will be coerced to a string and have `'px'`
-#'   appended.
-#' @param expr An expression that generates a Widget_TimeSeries
-#' @param env The environment in which to evaluate `expr`.
-#' @param quoted Is `expr` a quoted expression (with [quote()])? This is useful
-#'   if you want to save an expression in a variable.
-#'
-#' @name Widget_TimeSeries-shiny
-#'
+#' @rdname Widget_PlotOutput
 #' @keywords internal
 Widget_TimeSeriesOutput <- function(
   outputId,
   width = "100%",
   height = "400px"
 ) {
-  gsmWidgetOutput(
-    "Widget_TimeSeries",
-    outputId,
-    width,
-    height,
-    excludes = c(
-      "addSelectControl",
-      "addWidgetControls",
-      "clickCallback",
-      "getGroups",
-      "getCountries"
-    )
-  )
-}
-
-#' @rdname Widget_TimeSeries-shiny
-#' @keywords internal
-renderWidget_TimeSeries <- function(
-  expr,
-  env = parent.frame(),
-  quoted = FALSE
-) {
-  if (!quoted) {
-    expr <- substitute(expr)
-  } # force quoted
-  htmlwidgets::shinyRenderWidget(
-    expr,
-    Widget_TimeSeriesOutput,
-    env,
-    quoted = TRUE,
-    cacheHint = NULL
-  )
+  Widget_PlotOutput("Widget_TimeSeries", outputId, width, height)
 }

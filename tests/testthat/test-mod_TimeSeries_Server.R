@@ -1,4 +1,4 @@
-test_that("mod_BarChart_Server starts as expected", {
+test_that("mod_TimeSeries_Server starts as expected", {
   call <- rlang::current_env()
 
   dfResults <- filter_byMetricID(
@@ -10,9 +10,9 @@ test_that("mod_BarChart_Server starts as expected", {
   lMetric <- as.list(filter_byMetricID(sample_dfMetrics, "Analysis_kri0001"))
 
   testServer(
-    mod_BarChart_Server,
+    mod_TimeSeries_Server,
     args = list(
-      id = "testingModBarChart",
+      id = "testingModTestingSeries",
       rctv_dfResults = reactive(dfResults),
       rctv_lMetric = reactive(lMetric),
       dfGroups = dfGroups,
@@ -31,7 +31,7 @@ test_that("mod_BarChart_Server starts as expected", {
   )
 })
 
-test_that("mod_BarChart_Server returns selected site", {
+test_that("mod_TimeSeries_Server returns selected site", {
   dfResults <- filter_byMetricID(
     sample_dfResults[sample_dfResults$GroupLevel == "Site", ],
     "Analysis_kri0001"
@@ -40,9 +40,9 @@ test_that("mod_BarChart_Server returns selected site", {
   dfBounds <- filter_byMetricID(sample_dfBounds, "Analysis_kri0001")
   lMetric <- as.list(filter_byMetricID(sample_dfMetrics, "Analysis_kri0001"))
   testServer(
-    mod_BarChart_Server,
+    mod_TimeSeries_Server,
     args = list(
-      id = "testingModBarChart",
+      id = "testingModTimeSeries",
       rctv_dfResults = reactive(dfResults),
       rctv_lMetric = reactive(lMetric),
       dfGroups = dfGroups,

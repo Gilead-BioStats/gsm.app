@@ -5,17 +5,11 @@
 #'   [Widget_BarChartOutput()].
 #' @keywords internal
 mod_BarChart_UI <- function(id, strPlotTitle = NULL) {
-  ns <- NS(id)
-  card_header <- if (!is.null(strPlotTitle)) {
-    bslib::card_header(strPlotTitle)
-  }
-  bslib::card(
+  mod_WidgetPlot_UI(
     id = id,
-    full_screen = TRUE,
-    class = "chart",
-    card_header,
-    htmlDependency_BarChartInput(),
-    Widget_BarChartOutput(ns("plot"))
+    fnHtmlDependency = htmlDependency_BarChartInput,
+    fnWidgetOutput = Widget_BarChartOutput,
+    strPlotTitle = strPlotTitle
   )
 }
 
@@ -28,14 +22,5 @@ mod_BarChart_UI <- function(id, strPlotTitle = NULL) {
 #'   app exactly once, regardless how many times they are added.
 #' @keywords internal
 htmlDependency_BarChartInput <- function() {
-  htmltools::tagList(
-    htmlDependency_WidgetInputHelpers(),
-    htmltools::htmlDependency(
-      name = "barChartInput",
-      version = "1.0.0",
-      src = "inputs",
-      package = "gsm.app",
-      script = "barChartInput.js"
-    )
-  )
+  htmlDependency_WidgetPlotInput("Widget_BarChart")
 }

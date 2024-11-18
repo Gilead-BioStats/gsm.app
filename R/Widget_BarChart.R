@@ -32,8 +32,8 @@ Widget_BarChart <- function(
   ) {
     vThreshold <- dfBounds$Threshold
   }
-
-  input <- list(
+  Widget_Plot(
+    "Widget_BarChart",
     id = id,
     dfResults = dfResults,
     lMetric = lMetric,
@@ -41,85 +41,14 @@ Widget_BarChart <- function(
     strOutcome = strOutcome,
     vThreshold = vThreshold
   )
-  # Get rid of bits we don't use from the main widget.
-  excludes <- c(
-    "addSelectControl",
-    "addWidgetControls",
-    "clickCallback",
-    "getGroups",
-    "getCountries"
-  )
-
-  htmlwidgets::createWidget(
-    name = "Widget_BarChart",
-    purrr::map(
-      input,
-      ~ jsonlite::toJSON(
-        .x,
-        null = "null",
-        na = "string",
-        auto_unbox = TRUE
-      )
-    ),
-    package = "gsm.app",
-    dependencies = gsmDependencies("Widget_BarChart", excludes)
-  )
 }
 
-#' Shiny bindings for Widget_BarChart
-#'
-#' @description `r lifecycle::badge("stable")`
-#'
-#' Output and render functions for using Widget_BarChart within Shiny
-#' applications and interactive Rmd documents.
-#'
-#' @param outputId output variable to read from
-#' @param width,height Must be a valid CSS unit (like `'100%'`, `'400px'`,
-#'   `'auto'`) or a number, which will be coerced to a string and have `'px'`
-#'   appended.
-#' @param expr An expression that generates a Widget_BarChart
-#' @param env The environment in which to evaluate `expr`.
-#' @param quoted Is `expr` a quoted expression (with [quote()])? This is useful
-#'   if you want to save an expression in a variable.
-#'
-#' @name Widget_BarChart-shiny
-#'
+#' @rdname Widget_PlotOutput
 #' @keywords internal
 Widget_BarChartOutput <- function(
   outputId,
   width = "100%",
   height = "400px"
 ) {
-  gsmWidgetOutput(
-    "Widget_BarChart",
-    outputId,
-    width,
-    height,
-    excludes = c(
-      "addSelectControl",
-      "addWidgetControls",
-      "clickCallback",
-      "getGroups",
-      "getCountries"
-    )
-  )
-}
-
-#' @rdname Widget_BarChart-shiny
-#' @keywords internal
-renderWidget_BarChart <- function(
-  expr,
-  env = parent.frame(),
-  quoted = FALSE
-) {
-  if (!quoted) {
-    expr <- substitute(expr)
-  } # force quoted
-  htmlwidgets::shinyRenderWidget(
-    expr,
-    Widget_BarChartOutput,
-    env,
-    quoted = TRUE,
-    cacheHint = NULL
-  )
+  Widget_PlotOutput("Widget_BarChart", outputId, width, height)
 }
