@@ -12,6 +12,7 @@ run_gsm_app(
   dfMetrics,
   dfResults,
   fnFetchParticipantData,
+  lPlugins = NULL,
   strTitle = "GSM Deep Dive",
   strFavicon = "angles-up",
   strFaviconColor = "#FF5859",
@@ -43,6 +44,8 @@ This will be filtered to cases where \code{GroupLevel == "Site"}.}
 about the participant, and \code{metric_data} should be a named list of
 data.frames, each of which contains information related to the named
 metric.}
+
+\item{lPlugins}{\code{list} Optional list of plugins to include in the app.}
 
 \item{strTitle}{\code{character} A title to display for the overall app.}
 

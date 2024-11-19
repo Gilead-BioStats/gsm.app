@@ -1,6 +1,6 @@
-AETimelines_Fetch <- function(lModuleConfig, strSiteID = NULL) {
+AETimelines_Fetch <- function(lPluginConfig, strSiteID = NULL) {
     cli::cli_alert_info('Site ID: {strSiteID}')
-    lData <- lModuleConfig$spec %>%
+    lData <- lPluginConfig$spec %>%
         purrr::imap(~
             do.call(
             '::',
@@ -18,10 +18,10 @@ AETimelines_Fetch <- function(lModuleConfig, strSiteID = NULL) {
         dplyr::filter(
             !is.na(.data$firstparticipantdate)
         ) %>%
-        dplyr::select(tidyselect::all_of(names(lModuleConfig$spec$Mapped_SUBJ)))
+        dplyr::select(tidyselect::all_of(names(lPluginConfig$spec$Mapped_SUBJ)))
 
     dfAE <- lData$Mapped_AE %>%
-        dplyr::select(tidyselect::all_of(names(lModuleConfig$spec$Mapped_AE))) %>%
+        dplyr::select(tidyselect::all_of(names(lPluginConfig$spec$Mapped_AE))) %>%
         dplyr::inner_join(
             dfSUBJ,
             'subjid'

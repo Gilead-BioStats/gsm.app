@@ -54,6 +54,7 @@
 #'   as things like which group is selected.
 #' @param lParticipantMetadata `list` Named list of data describing a single
 #'   participant.
+#' @param lPlugins `list` Optional list of plugins to include in the app.
 #' @param lStudy `list` Named list of data describing the overall study.
 #' @param rctv_chrIDs `reactive character` A [shiny::reactive()] object that
 #'   returns a vector of ids for modules, inputs, or other elements.

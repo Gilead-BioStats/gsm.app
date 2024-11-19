@@ -4,7 +4,7 @@
 #' @returns A list of [bslib::nav_panel()] elements, containing the main tabbed
 #'   content.
 #' @keywords internal
-out_MainTabs <- function(dfResults, chrMetrics, lModules = NULL) {
+out_MainTabs <- function(dfResults, chrMetrics, lPlugins = NULL) {
   MainTabs <- list(
     bslib::nav_panel(
       title = "Study Overview",
@@ -22,14 +22,14 @@ out_MainTabs <- function(dfResults, chrMetrics, lModules = NULL) {
   )
 
   # TODO: add each module to a dropdown menu instead of as tabs in the main nav bar
-  if (!is.null(lModules)) {
-    for (lModule in lModules) {
+  if (!is.null(lPlugins)) {
+    for (lPlugin in lPlugins) {
       MainTabs <- c(
         MainTabs,
         list(
           bslib::nav_panel(
-            title = lModule$lConfig$meta$Name,
-            lModule$fnUI(lModule$lConfig$meta$ID, lModule$lConfig)
+            title = lPlugin$lConfig$meta$Name,
+            lPlugin$fnUI(lPlugin$lConfig$meta$ID, lPlugin$lConfig)
           )
         )
       )

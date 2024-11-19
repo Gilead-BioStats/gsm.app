@@ -4,12 +4,12 @@
 # - participant
 mod_AETimelines_Server <- function(
   id,
-  lModuleConfig,
+  lPluginConfig,
   rctv_InputSite
 ) {
     moduleServer(id, function(input, output, session) {
-        output[[ lModuleConfig$meta$ID ]] <- renderWidget_AETimelines({
-            data <- AETimelines_Fetch(lModuleConfig, rctv_InputSite())
+        output[[ lPluginConfig$meta$ID ]] <- renderWidget_AETimelines({
+            data <- AETimelines_Fetch(lPluginConfig, rctv_InputSite())
             Widget_AETimelines(data)
         })
     })

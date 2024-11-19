@@ -24,7 +24,7 @@ run_gsm_app <- function(
   dfMetrics,
   dfResults,
   fnFetchParticipantData,
-  lModules = NULL,
+  lPlugins = NULL,
   strTitle = "GSM Deep Dive",
   strFavicon = "angles-up",
   strFaviconColor = "#FF5859",
@@ -48,7 +48,7 @@ run_gsm_app <- function(
       dfGroups = dfGroups,
       dfMetrics = dfMetrics,
       dfResults = dfResults,
-      lModules = lModules,
+      lPlugins = lPlugins,
       strTitle = strTitle,
       strFavicon = strFavicon,
       strFaviconColor = strFaviconColor,
@@ -61,7 +61,7 @@ run_gsm_app <- function(
       dfMetrics = dfMetrics,
       dfResults = dfResults,
       fnFetchParticipantData = fnFetchParticipantData,
-      lModules = lModules,
+      lPlugins = lPlugins,
       fnServer = fnServer
     )
   )

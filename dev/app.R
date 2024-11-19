@@ -6,7 +6,7 @@ library(shiny)
 library(DT)
 load_all()
 
-lModuleConfig <- yaml::read_yaml(
+lPluginConfig <- yaml::read_yaml(
     'AETimelines.yaml'
 )
 
@@ -20,9 +20,9 @@ source('AETimelines_Fetch.R')
 # - UI function
 # - server function
 # - data fetch function
-lModules <- list(
+lPlugins <- list(
     list(
-        lConfig = lModuleConfig,
+        lConfig = lPluginConfig,
         fnUI = mod_AETimelines_UI,
         fnServer = mod_AETimelines_Server,
         fnFetch = AETimelines_Fetch
@@ -36,5 +36,5 @@ run_gsm_app(
     dfMetrics = gsm.app::sample_dfMetrics,
     dfResults = gsm.app::sample_dfResults,
     fnFetchParticipantData = sample_FetchParticipantData,
-    lModules = lModules
+    lPlugins = lPlugins
 )

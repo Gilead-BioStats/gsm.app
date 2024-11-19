@@ -10,7 +10,7 @@ gsmApp_Server <- function(
   dfMetrics,
   dfResults,
   fnFetchParticipantData,
-  lModules = NULL,
+  lPlugins = NULL,
   fnServer = NULL
 ) {
   # Force evaluation of everything before factory is constructed to avoid
@@ -212,12 +212,12 @@ gsmApp_Server <- function(
       rctv_strSubjectID = reactive(input$participant)
     )
 
-    if (!is.null(lModules)) {
-      for (lModule in lModules) {
+    if (!is.null(lPlugins)) {
+      for (lPlugin in lPlugins) {
         # TODO: pass all reactive inputs to module server
-        lModule$fnServer(
-          lModule$lConfig$meta$ID,
-          lModule$lConfig,
+        lPlugin$fnServer(
+          lPlugin$lConfig$meta$ID,
+          lPlugin$lConfig,
           rctv_InputSite
         )
       }

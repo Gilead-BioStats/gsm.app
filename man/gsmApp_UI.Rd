@@ -9,6 +9,7 @@ gsmApp_UI(
   dfGroups,
   dfMetrics,
   dfResults,
+  lPlugins = NULL,
   strTitle = "GSM Deep Dive",
   strFavicon = "angles-up",
   strFaviconColor = colorScheme("red"),
@@ -25,6 +26,8 @@ reporting.}
 
 \item{dfResults}{\code{data.frame} A stacked summary of analysis pipeline output.
 This will be filtered to cases where \code{GroupLevel == "Site"}.}
+
+\item{lPlugins}{\code{list} Optional list of plugins to include in the app.}
 
 \item{strTitle}{\code{character} A title to display for the overall app.}
 

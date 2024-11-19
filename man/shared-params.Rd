@@ -77,6 +77,8 @@ as things like which group is selected.}
 \item{lParticipantMetadata}{\code{list} Named list of data describing a single
 participant.}
 
+\item{lPlugins}{\code{list} Optional list of plugins to include in the app.}
+
 \item{lStudy}{\code{list} Named list of data describing the overall study.}
 
 \item{rctv_chrIDs}{\verb{reactive character} A \code{\link[shiny:reactive]{shiny::reactive()}} object that

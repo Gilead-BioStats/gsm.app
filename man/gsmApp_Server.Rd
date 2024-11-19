@@ -11,6 +11,7 @@ gsmApp_Server(
   dfMetrics,
   dfResults,
   fnFetchParticipantData,
+  lPlugins = NULL,
   fnServer = NULL
 )
 }
@@ -36,6 +37,8 @@ This will be filtered to cases where \code{GroupLevel == "Site"}.}
 about the participant, and \code{metric_data} should be a named list of
 data.frames, each of which contains information related to the named
 metric.}
+
+\item{lPlugins}{\code{list} Optional list of plugins to include in the app.}
 
 \item{fnServer}{\code{function} A Shiny server function that takes arguments
 \code{input}, \code{output}, and \code{session}. This function will be called at the start
