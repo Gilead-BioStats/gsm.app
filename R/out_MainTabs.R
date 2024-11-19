@@ -23,10 +23,14 @@ out_MainTabs <- function(dfResults, chrMetrics, lPlugins = NULL) {
 
   if (!is.null(lPlugins)) {
     plugin_items <- list()
-    plugin_items <- purrr::map(lPlugins, function(lPlugin) {
+    ns <- shiny::NS("plugin")
+    plugin_items <- purrr::imap(lPlugins, function(lPlugin, id) {
       bslib::nav_panel(
-        title = lPlugin$lConfig$meta$Name,
-        lPlugin$fnUI(lPlugin$lConfig$meta$ID, lPlugin$lConfig)
+        title = lPlugin$strTitle,
+        lPlugin$fnUI(
+          ns(id),
+          lPlugin$lConfig
+        )
       )
     })
     pluginMenu <- list(bslib::nav_menu(

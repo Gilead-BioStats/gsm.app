@@ -39,6 +39,7 @@ gsmApp_Server <- function(
     ## Inputs pass to modules (etc) as reactives.
     rctv_InputMetric <- reactive(input$metric)
     rctv_InputSite <- reactive(input$site)
+    rctv_InputParticipant <- reactive(input$participant)
 
     ## The listified dfMetrics are used by both metric sub-mods, so calculate
     ## them once. This can/should move inside a single metric-tab module.
@@ -125,7 +126,7 @@ gsmApp_Server <- function(
       dfGroups = dfGroups,
       dfAnalyticsInput = dfAnalyticsInput,
       rctv_strSiteID = rctv_InputSite,
-      rctv_strSubjectID = reactive(input$participant),
+      rctv_strSubjectID = rctv_InputParticipant,
       rctv_strMetricID = rctv_InputMetric,
       rctv_lMetric = rctv_lMetric
     )
@@ -209,16 +210,28 @@ gsmApp_Server <- function(
     mod_ParticipantDetails_Server(
       "participant_details",
       fnFetchParticipantData = fnFetchParticipantData,
-      rctv_strSubjectID = reactive(input$participant)
+      rctv_strSubjectID = rctv_InputParticipant
     )
 
     if (!is.null(lPlugins)) {
-      for (lPlugin in lPlugins) {
-        # TODO: pass all reactive inputs to module server
-        lPlugin$fnServer(
-          lPlugin$lConfig$meta$ID,
-          lPlugin$lConfig,
-          rctv_InputSite
+      ns <- shiny::NS("plugin")
+      for (i in seq_along(lPlugins)) {
+        lPlugin <- lPlugins[[i]]
+        rctvs_available <- list(
+          rctv_InputMetric = rctv_InputMetric,
+          rctv_InputSite = rctv_InputSite,
+          rctv_InputParticipant = rctv_InputParticipant
+        )
+        rctvs_used <- intersect(
+          names(rctvs_available),
+          rlang::fn_fmls_names(lPlugin$fnServer)
+        )
+        rlang::inject(
+          lPlugin$fnServer(
+            ns(i),
+            lPlugin$lConfig,
+            !!!rctvs_available[rctvs_used]
+          )
         )
       }
     }
