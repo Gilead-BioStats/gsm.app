@@ -1,6 +1,5 @@
 # Launch the ShinyApp (Do not remove this comment)
 library(shiny)
-library(DT)
 pkgload::load_all(".", helpers = FALSE, attach_testthat = FALSE)
 
 this_path <- function(...) {
