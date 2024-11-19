@@ -23,17 +23,22 @@ out_MainTabs <- function(dfResults, chrMetrics, lPlugins = NULL) {
 
   # TODO: add each module to a dropdown menu instead of as tabs in the main nav bar
   if (!is.null(lPlugins)) {
+    plugin_items <- list()
     for (lPlugin in lPlugins) {
-      MainTabs <- c(
-        MainTabs,
-        list(
-          bslib::nav_panel(
-            title = lPlugin$lConfig$meta$Name,
-            lPlugin$fnUI(lPlugin$lConfig$meta$ID, lPlugin$lConfig)
-          )
-        )
+      plugin_items <- c(
+        plugin_items,
+        list(bslib::nav_panel(
+          title = lPlugin$lConfig$meta$Name,
+          lPlugin$fnUI(lPlugin$lConfig$meta$ID, lPlugin$lConfig)
+        ))
       )
     }
+
+    pluginMenu <- list(bslib::nav_menu(
+      "Plugins",
+      !!!plugin_items
+    ))
+    MainTabs <- c(MainTabs, pluginMenu)
   }
 
   return(MainTabs)
