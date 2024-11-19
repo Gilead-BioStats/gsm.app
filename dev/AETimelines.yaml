@@ -1,0 +1,50 @@
+meta:
+  Type: module
+  ID: AETimelines
+  Name: AE Timelines
+StudyID: AA-AA-000-0000
+domains:
+  Mapped_SUBJ:
+    db: clindata
+    table: rawplus_dm
+  Mapped_AE:
+    db: clindata
+    table: rawplus_ae
+spec:
+  Mapped_SUBJ:
+    studyid:
+      required: true
+      type: character
+    invid:
+      required: true
+      type: date
+    subjid:
+      required: true
+      type: character
+    firstparticipantdate:
+      required: true
+      type: date
+  Mapped_AE:
+    subjid:
+      required: true
+      type: character
+    aest_dt:
+      required: true
+      type: date
+    aeen_dt:
+      required: true
+      type: date
+    mdrpt_nsv:
+      required: true
+      type: character
+    aetoxgr:
+      required: true
+      type: character
+    aeser:
+      required: true
+      type: character
+functions:
+  server: mod_AETimelines_Server
+  ui: mod_AETimelines_UI
+  data: AETimelines_Fetch
+
