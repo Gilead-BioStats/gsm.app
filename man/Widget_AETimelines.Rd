@@ -24,9 +24,15 @@ Widget_AETimelines(
 \item AE Term
 \item AE Severity
 \item AE Seriousness
-}\if{html}{\out{
-<Add Description>
-}}}
+}}
+
+\item{settings}{TODO}
+
+\item{width}{TODO}
+
+\item{height}{TODO}
+
+\item{elementId}{TODO}
 }
 \description{
 AE Timelines Widget

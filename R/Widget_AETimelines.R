@@ -8,8 +8,10 @@
 #'   - AE Term
 #'   - AE Severity
 #'   - AE Seriousness
-#'
-#' <Add Description>
+#' @param settings TODO
+#' @param width TODO
+#' @param height TODO
+#' @param elementId TODO
 #'
 #' @import htmlwidgets
 #'
