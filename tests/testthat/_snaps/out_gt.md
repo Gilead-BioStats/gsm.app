@@ -1389,8 +1389,8 @@
         
       </table>
       </div>
+    
 
-<<<<<<< HEAD
 # out_gtSmartFmtNumbers() formats numbers as expected
 
     Code
@@ -1864,6 +1864,6 @@
         
       </table>
       </div>
+    
+    =======
 
-=======
->>>>>>> gsm.app.modules
