@@ -1389,7 +1389,6 @@
         
       </table>
       </div>
-    
 
 # out_gtSmartFmtNumbers() formats numbers as expected
 
@@ -1864,6 +1863,4 @@
         
       </table>
       </div>
-    
-    =======
 
