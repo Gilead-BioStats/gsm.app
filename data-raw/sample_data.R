@@ -140,7 +140,7 @@ subject_groups <- dplyr::distinct(
   .data$GroupID
 )
 lDomainData <- purrr::map(lDomainData, function(thisDomain) {
-  dplyr::inner_join(thisDomain, subject_groups, by = "SubjectID")
+  dplyr::inner_join(thisDomain, subject_groups, by = c("SubjectID"))
 })
 
 # Save ----
@@ -181,13 +181,13 @@ usethis::use_data(
 # Clean up ----
 rm(
   dfResults,
-  domains,
   flag_summary,
   has_amber_only,
   has_both,
   has_neither,
   has_red_only,
   lAnalysis,
+  lDomainData,
   lMapped,
   lMappings,
   lRaw,
@@ -195,14 +195,12 @@ rm(
   lUser,
   lUserWorkflows,
   lWorkflows,
-  MakeThisData,
-  participant_data,
-  participant_ids,
   raw_spec,
   sample_dfAnalyticsInput,
   sample_dfBounds,
   sample_dfGroups,
   sample_dfMetrics,
   sample_dfResults,
-  site_subset
+  site_subset,
+  subject_groups
 )
