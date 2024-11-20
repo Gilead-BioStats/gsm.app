@@ -105,30 +105,48 @@
 #' @family sample data
 "sample_dfResults"
 
-#' Fetch Data for a Participant
+#' Fetch Data for a Domain
 #'
 #' This is a sample function demonstrating the type of function the user will
-#' supply to find additional data about a given participant.
+#' supply to find additional data about a given domain.
 #'
 #' @inheritParams shared-params
 #'
-#' @returns A list with elements `metadata` (a list of participant metadata) and
-#'   `metric_data` (a named list, where the names are the available metric
-#'   summaries, and the values are data frames containing the details).
+#' @returns A data.frame with information about the specified domain.
 #' @family sample data
 #' @export
 #'
 #' @examples
-#' sample_FetchParticipantData("0008")
-sample_FetchParticipantData <- function(strSubjectID) {
-  if (strSubjectID %in% names(participant_data)) {
-    return(participant_data[[strSubjectID]])
+#' sample_fnFetchData("AdverseEvents")
+#' sample_fnFetchData("AdverseEvents", strSiteID = "0X103")
+#' sample_fnFetchData("AdverseEvents", strSubjectID = "1350")
+sample_fnFetchData <- function(
+  strDomain = c(
+    "AdverseEvents",
+    "DataEntry",
+    "Enrollment",
+    "Lab",
+    "ProtocolDeviations",
+    "Queries",
+    "StudyCompletion",
+    "Subject",
+    "TreatmentCompletion"
+  ),
+  strSiteID = NULL,
+  strSubjectID = NULL
+) {
+  strDomain <- rlang::arg_match(strDomain)
+  df <- lDomainData[[strDomain]]
+  if (length(strSiteID)) {
+    SiteSubjects <- dplyr::filter(
+      sample_dfAnalyticsInput,
+      .data$GroupID == strSiteID
+    ) %>%
+      dplyr::distinct(.data$SubjectID)
+    df <- dplyr::semi_join(df, SiteSubjects, by = "SubjectID")
   }
-  gsmapp_abort(
-    c(
-      "{.arg strSubjectID} must be one of the participants in the sample data.",
-      i = "Unknown participant {strSubjectID}."
-    ),
-    strClass = "unknown_strSubjectID"
-  )
+  if (length(strSubjectID)) {
+    df <- dplyr::filter(df, SubjectID == strSubjectID)
+  }
+  return(df)
 }

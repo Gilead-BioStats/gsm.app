@@ -1,6 +1,6 @@
 meta:
   Type: User
-  ID: SUBJ
+  ID: Subject
   Description: Subject User-Facing Data
   Priority: 1
 spec:

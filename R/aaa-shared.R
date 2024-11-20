@@ -34,13 +34,10 @@
 #' @param envEvaluate `environment` The environment in which any variables used
 #'   in the message are defined. You almost definitely want to leave this as the
 #'   default value.
-#' @param fnFetchParticipantData `function` A function that takes a single
-#'   `strSubjectID` argument such as "0001", and returns a list with components
-#'   `metadata` and `metric_data`. `metadata` should be a named character vector
-#'   (or something that can be coerced to a character vector) of information
-#'   about the participant, and `metric_data` should be a named list of
-#'   data.frames, each of which contains information related to the named
-#'   metric.
+#' @param fnFetchData `function` A function that takes a `strDomain` argument
+#'   and optional `strSiteID` and `strSubjectID` and returns a data.frame. See
+#'   [sample_fnFetchData()] for an example. The returned data.frame contains
+#'   information about the named domain.
 #' @param fnServer `function` A Shiny server function that takes arguments
 #'   `input`, `output`, and `session`. This function will be called at the start
 #'   of the main app server function.
@@ -80,8 +77,8 @@
 #'   "on" (`TRUE`).
 #' @param rctv_strGroupSubset `reactive character` A [shiny::reactive()] object
 #'   that returns the selected subset of groups to include in the table.
-#' @param rctv_strInput `reactive character` A [shiny::reactive()] object
-#'   that returns the name of the target input.
+#' @param rctv_strInput `reactive character` A [shiny::reactive()] object that
+#'   returns the name of the target input.
 #' @param rctv_strMetricID `reactive character` A [shiny::reactive()] object
 #'   that returns the selected `MetricID`.
 #' @param rctv_strName `reactive character` A [shiny::reactive()] object that
@@ -129,6 +126,8 @@
 #' @param strMetricID `character` A `MetricID` to focus on.
 #' @param strPlotTitle `character` A title for a plot, usually the name of a
 #'   metric.
+#' @param strSiteID `character` A `GroupID` of an individual site within a
+#'   study.
 #' @param strSubjectID `character` A `SubjectID` of an individual participant.
 #' @param strTargetTab `character` The tab to switch to.
 #' @param strText `character` Text to display.

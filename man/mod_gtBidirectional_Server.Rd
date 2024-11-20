@@ -22,8 +22,8 @@ returns a generic dataframe.}
 \item{rctv_gtObject}{\verb{reactive gt_table} A \code{\link[shiny:reactive]{shiny::reactive()}} object that
 returns a \code{\link[gt:gt]{gt::gt()}} object.}
 
-\item{rctv_strInput}{\verb{reactive character} A \code{\link[shiny:reactive]{shiny::reactive()}} object
-that returns the name of the target input.}
+\item{rctv_strInput}{\verb{reactive character} A \code{\link[shiny:reactive]{shiny::reactive()}} object that
+returns the name of the target input.}
 
 \item{strLabel}{\code{character} The label of a field.}
 

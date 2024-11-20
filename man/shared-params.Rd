@@ -48,13 +48,10 @@ also has an \code{envCall} argument.}
 in the message are defined. You almost definitely want to leave this as the
 default value.}
 
-\item{fnFetchParticipantData}{\code{function} A function that takes a single
-\code{strSubjectID} argument such as "0001", and returns a list with components
-\code{metadata} and \code{metric_data}. \code{metadata} should be a named character vector
-(or something that can be coerced to a character vector) of information
-about the participant, and \code{metric_data} should be a named list of
-data.frames, each of which contains information related to the named
-metric.}
+\item{fnFetchData}{\code{function} A function that takes a \code{strDomain} argument
+and optional \code{strSiteID} and \code{strSubjectID} and returns a data.frame. See
+\code{\link[=sample_fnFetchData]{sample_fnFetchData()}} for an example. The returned data.frame contains
+information about the named domain.}
 
 \item{fnServer}{\code{function} A Shiny server function that takes arguments
 \code{input}, \code{output}, and \code{session}. This function will be called at the start
@@ -115,8 +112,8 @@ returns a Boolean value indicating whether something is "off" (\code{FALSE}) or
 \item{rctv_strGroupSubset}{\verb{reactive character} A \code{\link[shiny:reactive]{shiny::reactive()}} object
 that returns the selected subset of groups to include in the table.}
 
-\item{rctv_strInput}{\verb{reactive character} A \code{\link[shiny:reactive]{shiny::reactive()}} object
-that returns the name of the target input.}
+\item{rctv_strInput}{\verb{reactive character} A \code{\link[shiny:reactive]{shiny::reactive()}} object that
+returns the name of the target input.}
 
 \item{rctv_strMetricID}{\verb{reactive character} A \code{\link[shiny:reactive]{shiny::reactive()}} object
 that returns the selected \code{MetricID}.}
@@ -189,6 +186,9 @@ this module or used by this JavaScript.}
 
 \item{strPlotTitle}{\code{character} A title for a plot, usually the name of a
 metric.}
+
+\item{strSiteID}{\code{character} A \code{GroupID} of an individual site within a
+study.}
 
 \item{strSubjectID}{\code{character} A \code{SubjectID} of an individual participant.}
 

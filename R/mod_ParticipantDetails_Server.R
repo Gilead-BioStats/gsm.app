@@ -9,7 +9,7 @@
 #' @keywords internal
 mod_ParticipantDetails_Server <- function(
   id,
-  fnFetchParticipantData,
+  fnFetchData,
   rctv_strSubjectID
 ) {
   moduleServer(id, function(input, output, session) {
@@ -22,19 +22,39 @@ mod_ParticipantDetails_Server <- function(
       ) {
         return(NULL)
       }
+      domains <- c(
+        "AdverseEvents",
+        "DataEntry",
+        "Enrollment",
+        "Lab",
+        "ProtocolDeviations",
+        "Queries",
+        "StudyCompletion",
+        "Subject",
+        "TreatmentCompletion"
+      )
+      SubjectID <- rctv_strSubjectID()
       withProgress(
         message = "Loading participant data",
-        fnFetchParticipantData(rctv_strSubjectID())
+        {
+          l_dfs <- purrr::map(domains, function(this_domain) {
+            fnFetchData(this_domain, strSubjectID = SubjectID)
+          })
+          names(l_dfs) <- domains
+          l_dfs
+        }
       )
     })
     rctv_lParticipantMetadata <- reactive({
       if (length(rctv_lParticipantData())) {
-        rctv_lParticipantData()$metadata
+        as.list(rctv_lParticipantData()$Subject)
       }
     })
     rctv_lParticipantMetricData <- reactive({
-      if (length(rctv_lParticipantData())) {
-        rctv_lParticipantData()$metric_data
+      lParticipantData <- rctv_lParticipantData()
+      if (length(lParticipantData)) {
+        lParticipantData$Subject <- NULL
+        return(lParticipantData)
       }
     })
     rctv_strSelectedMetric <- mod_ParticipantMetricSummary_Server(

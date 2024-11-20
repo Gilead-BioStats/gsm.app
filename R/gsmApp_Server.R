@@ -9,7 +9,7 @@ gsmApp_Server <- function(
   dfGroups,
   dfMetrics,
   dfResults,
-  fnFetchParticipantData,
+  fnFetchData,
   lPlugins = NULL,
   fnServer = NULL
 ) {
@@ -21,7 +21,7 @@ gsmApp_Server <- function(
   force(dfGroups)
   force(dfMetrics)
   force(dfResults)
-  force(fnFetchParticipantData)
+  force(fnFetchData)
   force(fnServer)
   function(input, output, session) {
     if (!is.null(fnServer)) {
@@ -209,7 +209,7 @@ gsmApp_Server <- function(
     )
     mod_ParticipantDetails_Server(
       "participant_details",
-      fnFetchParticipantData = fnFetchParticipantData,
+      fnFetchData = fnFetchData,
       rctv_strSubjectID = rctv_InputParticipant
     )
 
