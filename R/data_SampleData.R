@@ -117,9 +117,9 @@
 #' @export
 #'
 #' @examples
-#' sample_fnFetchData("AdverseEvents")
-#' sample_fnFetchData("AdverseEvents", strSiteID = "0X103")
-#' sample_fnFetchData("AdverseEvents", strSubjectID = "1350")
+#' head(sample_fnFetchData("AdverseEvents"))
+#' head(sample_fnFetchData("AdverseEvents", strSiteID = "0X103"))
+#' head(sample_fnFetchData("AdverseEvents", strSubjectID = "1350"))
 sample_fnFetchData <- function(
   strDomain = c(
     "AdverseEvents",
