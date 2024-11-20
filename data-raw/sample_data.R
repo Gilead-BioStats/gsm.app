@@ -134,9 +134,13 @@ names(lDomainData) <- stringr::str_remove(names(lDomainData), "^User_")
 lDomainData <- lDomainData[sort(names(lDomainData))]
 
 # Apply subset to each df.
-participants <- sample_dfAnalyticsInput$SubjectID
+subject_groups <- dplyr::distinct(
+  sample_dfAnalyticsInput,
+  .data$SubjectID,
+  .data$GroupID
+)
 lDomainData <- purrr::map(lDomainData, function(thisDomain) {
-  dplyr::filter(thisDomain, SubjectID %in% participants)
+  dplyr::inner_join(thisDomain, subject_groups, by = "SubjectID")
 })
 
 # Save ----

@@ -104,11 +104,14 @@
 #'   color.
 #' @param strContainerID `character` The (namespaced) ID of the target container
 #'   (usually a div).
-#' @param strEmpty The value to return when everything is deselected.
-#' @param strFavicon The name of an icon to use in the browser tab via
-#'   [favawesome::fav()].
-#' @param strFaviconColor The hexcode or name of a color to use as the icon fill
-#'   for [favawesome::fav()].
+#' @param strDomain `character` The domain data.frame to load. Supported domains
+#'   are shown in the default value.
+#' @param strEmpty `character` The value to return when everything is
+#'   deselected.
+#' @param strFavicon `character` The name of an icon to use in the browser tab
+#'   via [favawesome::fav()].
+#' @param strFaviconColor `character` The hexcode or name of a color to use as
+#'   the icon fill for [favawesome::fav()].
 #' @param strGroupID `character` A `GroupID` to focus on.
 #' @param strGroupLabelKey `character` Value for the group label key. Default:
 #'   `"InvestigatorLastName"`.

@@ -12,6 +12,9 @@ sample_fnFetchData(
 )
 }
 \arguments{
+\item{strDomain}{\code{character} The domain data.frame to load. Supported domains
+are shown in the default value.}
+
 \item{strSiteID}{\code{character} A \code{GroupID} of an individual site within a
 study.}
 

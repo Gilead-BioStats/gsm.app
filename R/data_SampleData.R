@@ -138,15 +138,11 @@ sample_fnFetchData <- function(
   strDomain <- rlang::arg_match(strDomain)
   df <- lDomainData[[strDomain]]
   if (length(strSiteID)) {
-    SiteSubjects <- dplyr::filter(
-      sample_dfAnalyticsInput,
-      .data$GroupID == strSiteID
-    ) %>%
-      dplyr::distinct(.data$SubjectID)
-    df <- dplyr::semi_join(df, SiteSubjects, by = "SubjectID")
+    df <- dplyr::filter(df, .data$GroupID == strSiteID)
   }
   if (length(strSubjectID)) {
-    df <- dplyr::filter(df, SubjectID == strSubjectID)
+    df <- dplyr::filter(df, .data$SubjectID == strSubjectID)
   }
+  df$GroupID <- NULL
   return(df)
 }

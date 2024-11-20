@@ -152,13 +152,17 @@ color.}
 \item{strContainerID}{\code{character} The (namespaced) ID of the target container
 (usually a div).}
 
-\item{strEmpty}{The value to return when everything is deselected.}
+\item{strDomain}{\code{character} The domain data.frame to load. Supported domains
+are shown in the default value.}
 
-\item{strFavicon}{The name of an icon to use in the browser tab via
-\code{\link[favawesome:fav]{favawesome::fav()}}.}
+\item{strEmpty}{\code{character} The value to return when everything is
+deselected.}
 
-\item{strFaviconColor}{The hexcode or name of a color to use as the icon fill
-for \code{\link[favawesome:fav]{favawesome::fav()}}.}
+\item{strFavicon}{\code{character} The name of an icon to use in the browser tab
+via \code{\link[favawesome:fav]{favawesome::fav()}}.}
+
+\item{strFaviconColor}{\code{character} The hexcode or name of a color to use as
+the icon fill for \code{\link[favawesome:fav]{favawesome::fav()}}.}
 
 \item{strGroupID}{\code{character} A \code{GroupID} to focus on.}
 

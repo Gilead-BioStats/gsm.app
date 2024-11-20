@@ -27,7 +27,8 @@ returns the name of the target input.}
 
 \item{strLabel}{\code{character} The label of a field.}
 
-\item{strEmpty}{The value to return when everything is deselected.}
+\item{strEmpty}{\code{character} The value to return when everything is
+deselected.}
 }
 \value{
 A \code{\link[shiny:reactiveVal]{shiny::reactiveVal()}} with the id(s) of the field(s) selected in
