@@ -79,5 +79,5 @@ run_sample_gsm_app()
 }
 \seealso{
 \link{sample_dfAnalyticsInput}, \link{sample_dfBounds}, \link{sample_dfGroups},
-\link{sample_dfMetrics}, \code{\link[=sample_FetchParticipantData]{sample_FetchParticipantData()}}, \link{sample_dfResults}
+\link{sample_dfMetrics}, \code{\link[=sample_fnFetchData]{sample_fnFetchData()}}, \link{sample_dfResults}
 }

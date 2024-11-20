@@ -1,32 +1,23 @@
-test_that("sample_FetchParticipantData fails gracefully for unknown users", {
-  expect_error(
-    {
-      sample_FetchParticipantData("nobody")
-    },
-    class = "gsm.app-error-unknown_strSubjectID"
-  )
-})
-
-test_that("sample_FetchParticipantData returns expected data", {
+test_that("sample_fnFetchData returns expected data", {
   expect_no_error({
-    test_result <- sample_FetchParticipantData("0008")
+    test_result <- sample_fnFetchData("Subject")
   })
-  expect_named(test_result, c("metadata", "metric_data"))
+  expect_s3_class(test_result, c("tbl_df", "tbl", "data.frame"))
+
   expect_named(
-    test_result$metric_data,
+    test_result,
     c(
-      "AdverseEvents",
-      "DataEntry",
-      "Enrollment",
-      "Lab",
-      "ProtocolDeviations",
-      "Queries",
-      "StudyCompletion",
-      "TreatmentCompletion"
+      "SubjectID",
+      "enrolled",
+      "study_start_date",
+      "days_on_study",
+      "treatment_start_date",
+      "days_on_treatment",
+      "age",
+      "sex",
+      "race",
+      "ethnicity"
     )
   )
-  expect_equal(nrow(test_result$metric_data$AdverseEvents), 0)
-  expect_equal(nrow(test_result$metric_data$ProtocolDeviations), 2)
-  expect_equal(nrow(test_result$metric_data$StudyCompletion), 1)
-  expect_equal(nrow(test_result$metric_data$TreatmentCompletion), 1)
+  expect_equal(nrow(test_result), 243)
 })

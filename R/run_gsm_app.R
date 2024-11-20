@@ -12,7 +12,7 @@
 #' @returns An object that represents the app. Printing the object or passing it
 #'   to [shiny::runApp()] runs the app.
 #' @seealso [sample_dfAnalyticsInput], [sample_dfBounds], [sample_dfGroups],
-#'   [sample_dfMetrics], [sample_FetchParticipantData()], [sample_dfResults]
+#'   [sample_dfMetrics], [sample_fnFetchData()], [sample_dfResults]
 #' @examplesIf interactive()
 #' # Sample app will launch in a new browser window.
 #' run_sample_gsm_app()

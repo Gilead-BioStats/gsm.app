@@ -34,5 +34,5 @@ gsm.app::run_gsm_app(
   dfGroups = sample_dfGroups_subset,
   dfMetrics = gsm.app::sample_dfMetrics,
   dfResults = sample_dfResults_subset,
-  fnFetchParticipantData = sample_FetchParticipantData
+  fnFetchData = sample_fnFetchData
 )

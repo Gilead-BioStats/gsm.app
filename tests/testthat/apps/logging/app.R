@@ -42,7 +42,7 @@ gsm.app::run_gsm_app(
   dfMetrics = gsm.app::sample_dfMetrics,
   dfBounds = gsm.app::sample_dfBounds,
   dfAnalyticsInput = sample_dfAnalyticsInput_subset,
-  fnFetchParticipantData = gsm.app::sample_FetchParticipantData,
+  fnFetchData = gsm.app::sample_fnFetchData,
   tagListSidebar = shiny.telemetry::use_telemetry(),
   fnServer = function(input, output, session) {
     telemetry$start_session()
