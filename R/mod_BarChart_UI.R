@@ -1,26 +1,26 @@
-#' ScatterPlot Module UI
+#' BarChart Module UI
 #'
 #' @inheritParams shared-params
 #' @returns A [bslib::card()] with an optional title and a
-#'   [Widget_ScatterPlotOutput()].
+#'   [Widget_BarChartOutput()].
 #' @keywords internal
-mod_ScatterPlot_UI <- function(id, strPlotTitle = NULL) {
+mod_BarChart_UI <- function(id, strPlotTitle = NULL) {
   mod_WidgetPlot_UI(
     id = id,
-    fnHtmlDependency = htmlDependency_ScatterPlotInput,
-    fnWidgetOutput = Widget_ScatterPlotOutput,
+    fnHtmlDependency = htmlDependency_BarChartInput,
+    fnWidgetOutput = Widget_BarChartOutput,
     strPlotTitle = strPlotTitle
   )
 }
 
-#' Scatter Plot Input JavaScript
+#' Bar Chart Input JavaScript
 #'
-#' Attach `scatterPlotInput.js` to an app or other HTML exactly once.
+#' Attach `barChartInput.js` to an app or other HTML exactly once.
 #'
 #' @returns An [htmltools::tagList()] of `html_dependency` objects (see
 #'   [htmltools::htmlDependency()]), so that each will be attached to the Shiny
 #'   app exactly once, regardless how many times they are added.
 #' @keywords internal
-htmlDependency_ScatterPlotInput <- function() {
-  htmlDependency_WidgetPlotInput("Widget_ScatterPlot")
+htmlDependency_BarChartInput <- function() {
+  htmlDependency_WidgetPlotInput("Widget_BarChart")
 }

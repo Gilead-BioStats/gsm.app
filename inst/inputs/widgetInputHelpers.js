@@ -6,11 +6,11 @@
  *                       ready.
  */
 const getWidgetPlotValue = function(el) {
-  const canvas = el.querySelector('canvas');
-  if (!canvas || !canvas.chart) {
+  const instance = getChartInstance(el);
+  if (!instance) {
     return null; // Not yet initialized
   }
-  const selectedGroupIDs = canvas.chart.data.config.selectedGroupIDs;
+  const selectedGroupIDs = instance.data.config.selectedGroupIDs;
   if (Array.isArray(selectedGroupIDs) && selectedGroupIDs.length === 0) {
     return ['None']; // Explicit empty selection
   }
@@ -24,7 +24,7 @@ const getWidgetPlotValue = function(el) {
  * @param {Array}       value - The new selected group IDs.
  */
 const setWidgetPlotValue = function(el, value) {
-  const instance = el.querySelector('canvas').chart;
+  const instance = getChartInstance(el);
   if (instance) {
     instance.data.config.selectedGroupIDs = value;
     if (Object.keys(instance.helpers).includes('updateConfig')) {
@@ -55,7 +55,10 @@ const subscribeWidget = function(el, callback) {
  */
 const unsubscribeWidgetPlot = function(el, namespace) {
   $(el).off(namespace);
-  el.querySelector('canvas').removeEventListener('click');
+  const instance = getChartInstance(el);
+  if (instance) {
+    el.querySelector('canvas').removeEventListener('click');
+  }
 };
 
 /**
@@ -68,8 +71,7 @@ const unsubscribeWidgetPlot = function(el, namespace) {
  */
 Shiny.addCustomMessageHandler('updateWidgetPlotGroup', function(message) {
   const el = document.getElementById(message.id);
-  const instance = el && el.querySelector('canvas') &&
-                   el.querySelector('canvas').chart;
+  const instance = getChartInstance(el);
   if (instance) {
     instance.data.config.selectedGroupIDs = message.selectedGroupID;
     updateWidgetPlot(el, instance);

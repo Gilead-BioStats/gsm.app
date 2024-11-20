@@ -184,6 +184,8 @@ this module or used by this JavaScript.}
 
 \item{strMetricID}{\code{character} A \code{MetricID} to focus on.}
 
+\item{strOutcome}{\code{character} Outcome variable. Default: \code{"Score"}.}
+
 \item{strPlotTitle}{\code{character} A title for a plot, usually the name of a
 metric.}
 

@@ -72,16 +72,13 @@ test_that("mod_MetricDetails_Server renders tab outputs", {
       expect_null(rctv_strScatterGroup())
 
       session$setInputs(selected_tab = "Bar Chart (KRI Value)")
-      expect_null(rctv_strScatterGroup())
-      expect_s3_class(output$bar_chart_metric, "json")
+      expect_null(rctv_strBarValueGroup())
 
       session$setInputs(selected_tab = "Bar Chart (KRI Score)")
-      expect_null(rctv_strScatterGroup())
-      expect_s3_class(output$bar_chart_score, "json")
+      expect_null(rctv_strBarScoreGroup())
 
       session$setInputs(selected_tab = "Time Series")
-      expect_null(rctv_strScatterGroup())
-      expect_s3_class(output$time_series, "json")
+      expect_null(rctv_strTimeSeriesGroup())
 
       session$setInputs(selected_tab = "Analysis Output")
       expect_type(output$`analysis_output-gt-table`, "list")

@@ -29,7 +29,7 @@ const updateShinyInput = function(inputID, newValue) {
  */
 const widgetPlotClickFactory = function(el) {
   return function(d) {
-    const instance = el.querySelector('canvas').chart;
+    const instance = getChartInstance(el);
 
     // Update selectedGroupIDs and update the plot
     instance.data.config.selectedGroupIDs = instance.data.config.selectedGroupIDs.includes(d.GroupID)
@@ -48,11 +48,12 @@ const widgetPlotClickFactory = function(el) {
  * @param {Object}      instance - The instance of the chart to update.
  */
 const updateWidgetPlot = function(el, instance) {
-  if (Object.keys(instance.helpers).includes('updateConfig')) {
+  if (instance && Object.keys(instance.helpers).includes('updateConfig')) {
     instance.helpers.updateConfig(instance, instance.data.config);
   }
 
-  // Trigger a custom event to notify listeners
+  // Trigger a custom event to notify listeners, even if the value didn't
+  // actually change.
   $(el).trigger('widget-value-changed');
 };
 
@@ -93,4 +94,38 @@ const noSpecialResizing = function(width, height) {
 const removeChildElements = function(el, selector) {
   const elements = el.querySelectorAll(selector);
   elements.forEach((element) => el.removeChild(element));
+};
+
+/**
+ * Safely retrieves the chart instance from a given element.
+ *
+ * @param {HTMLElement} el - The element containing the chart.
+ * @returns {Object|null} The chart instance if found, otherwise null.
+ */
+const getChartInstance = function(el) {
+  const canvas = el.querySelector('canvas');
+  if (!canvas || !canvas.chart) {
+    return null;
+  }
+  return canvas.chart;
+};
+
+/**
+ * Adds a footnote element to the end of the specified element.
+ *
+ * @param {HTMLElement} el           - The element to which the footnote will be
+ *                                     appended.
+ * @param {string}      footnoteText - The text of the footnote to add.
+ */
+const addFootnote = function(el, footnoteText) {
+  const footnoteId = `${el.id}-footnote`;
+  let footnote = document.getElementById(footnoteId);
+  if (!footnote) {
+    footnote = document.createElement('div');
+    footnote.id = footnoteId;
+    footnote.style.fontSize = '10px';
+    footnote.style.color = '#555';
+    footnote.innerHTML = footnoteText;
+    el.appendChild(footnote);
+  }
 };
