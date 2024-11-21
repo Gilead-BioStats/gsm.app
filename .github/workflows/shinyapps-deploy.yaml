@@ -83,7 +83,9 @@ jobs:
           remove.packages(intersect(extras, rownames(installed.packages())))
           pak::pak(extras)
           # Temporarily force-install gt from DESCRIPTION source.
-          remove.packages("gt")
+          if ("gt" %in% rownames(installed.packages())) {
+            remove.packages("gt")
+          }
           pak::pak()
           pak::pak("rsconnect")
         shell: Rscript {0}
