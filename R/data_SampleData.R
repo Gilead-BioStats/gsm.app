@@ -137,10 +137,10 @@ sample_fnFetchData <- function(
 ) {
   strDomain <- rlang::arg_match(strDomain)
   df <- lDomainData[[strDomain]]
-  if (length(strSiteID)) {
+  if (length(strSiteID) && strSiteID != "None") {
     df <- dplyr::filter(df, .data$GroupID == strSiteID)
   }
-  if (length(strSubjectID)) {
+  if (length(strSubjectID) && strSubjectID != "None") {
     df <- dplyr::filter(df, .data$SubjectID == strSubjectID)
   }
   return(df)

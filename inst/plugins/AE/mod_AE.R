@@ -50,13 +50,7 @@ mod_AE_Server <- function(
   moduleServer(id, function(input, output, session) {
     output$explorer <- render_aeExplorer({
       SiteID <- rctv_InputSite()
-      if (SiteID == "None") {
-        SiteID <- NULL
-      }
       ParticipantID <- rctv_InputParticipant()
-      if (ParticipantID == "None") {
-        ParticipantID <- NULL
-      }
       dfAE <- fnFetchData(
         "AdverseEvents",
         strSiteID = SiteID,

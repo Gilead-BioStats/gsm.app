@@ -2,13 +2,7 @@
 library(shiny)
 pkgload::load_all(".", helpers = FALSE, attach_testthat = FALSE)
 
-this_path <- function(...) {
-  system.file("plugins", "AE", ..., package = "gsm.app")
-}
-
-# TODO: Take a path for a plugin, and automatically read R and yaml files.
-source(this_path('mod_AE.R'))
-aePlugin <- yaml::read_yaml(this_path("AE.yaml"))
+aePlugin <- pluginRead(system.file("plugins", "AE", package = "gsm.app"))
 
 run_gsm_app(
   dfAnalyticsInput = gsm.app::sample_dfAnalyticsInput,
