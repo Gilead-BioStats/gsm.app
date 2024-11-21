@@ -59,7 +59,7 @@ jobs:
       - uses: r-lib/actions/setup-r@v2
         with:
           use-public-rspm: true
-          r-version: 'release'
+          r-version: 'oldrel'
 
       # Use a cache to speed up installation, if possible. Packages will be
       # restored if they're in the cache, then updated if necessary in the
