@@ -2,7 +2,7 @@
 library(shiny)
 pkgload::load_all(".", helpers = FALSE, attach_testthat = FALSE)
 
-aePlugin <- pluginRead(system.file("plugins", "AE", package = "gsm.app"))
+aePlugin <- plugin_Read(system.file("plugins", "AE", package = "gsm.app"))
 
 run_gsm_app(
   dfAnalyticsInput = gsm.app::sample_dfAnalyticsInput,
