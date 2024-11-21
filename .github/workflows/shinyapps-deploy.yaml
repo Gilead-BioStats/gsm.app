@@ -82,9 +82,12 @@ jobs:
           )
           remove.packages(intersect(extras, rownames(installed.packages())))
           pak::pak(extras)
-          # Temporarily force-install gt from DESCRIPTION source.
+          # Temporarily force-install gt & safetyCharts from DESCRIPTION source.
           if ("gt" %in% rownames(installed.packages())) {
             remove.packages("gt")
+          }
+          if ("safetyCharts" %in% rownames(installed.packages())) {
+            remove.packages("safetyCharts")
           }
           pak::pak()
           pak::pak("rsconnect")
