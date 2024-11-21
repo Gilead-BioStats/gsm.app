@@ -82,11 +82,10 @@ jobs:
           )
           remove.packages(intersect(extras, rownames(installed.packages())))
           pak::pak(extras)
+          # Temporarily force-install gt from DESCRIPTION source.
+          remove.packages("gt")
           pak::pak()
           pak::pak("rsconnect")
-          # Temporarily force-install gt.
-          remove.packages("gt")
-          pak::pak("rstudio/gt@1e4bae1")
         shell: Rscript {0}
 
       - name: Set APPNAME
