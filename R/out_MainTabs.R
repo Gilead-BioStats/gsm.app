@@ -25,19 +25,24 @@ out_MainTabs <- function(dfResults, chrMetrics, lPlugins = NULL) {
     plugin_items <- list()
     ns <- shiny::NS("plugin")
     plugin_items <- purrr::imap(lPlugins, function(lPlugin, id) {
+      fnUI <- rlang::as_function(lPlugin$fnUI)
       bslib::nav_panel(
         title = lPlugin$strTitle,
-        lPlugin$fnUI(
-          ns(id),
-          lPlugin$lConfig
-        )
+        rlang::inject({
+          fnUI(
+            ns(id),
+            !!!lPlugin$lConfig
+          )
+        })
       )
     })
-    pluginMenu <- list(bslib::nav_menu(
-      "Plugins",
-      !!!plugin_items
-    ))
-    MainTabs <- c(MainTabs, pluginMenu)
+    if (length(plugin_items) > 1) {
+      plugin_items <- list(bslib::nav_menu(
+        "Plugins",
+        !!!plugin_items
+      ))
+    }
+    MainTabs <- c(MainTabs, plugin_items)
   }
 
   return(MainTabs)

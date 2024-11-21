@@ -143,6 +143,5 @@ sample_fnFetchData <- function(
   if (length(strSubjectID)) {
     df <- dplyr::filter(df, .data$SubjectID == strSubjectID)
   }
-  df$GroupID <- NULL
   return(df)
 }

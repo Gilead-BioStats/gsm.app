@@ -75,6 +75,8 @@
 #' @param rctv_lglState `reactive logical` A [shiny::reactive()]] object that
 #'   returns a Boolean value indicating whether something is "off" (`FALSE`) or
 #'   "on" (`TRUE`).
+#' @param rctv_strCurrentTab `reactive character` A [shiny::reactive()] object
+#'   that returns the currently selected tab.
 #' @param rctv_strGroupSubset `reactive character` A [shiny::reactive()] object
 #'   that returns the selected subset of groups to include in the table.
 #' @param rctv_strInput `reactive character` A [shiny::reactive()] object that

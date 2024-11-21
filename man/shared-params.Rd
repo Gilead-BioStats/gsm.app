@@ -109,6 +109,9 @@ each metric that is available.}
 returns a Boolean value indicating whether something is "off" (\code{FALSE}) or
 "on" (\code{TRUE}).}
 
+\item{rctv_strCurrentTab}{\verb{reactive character} A \code{\link[shiny:reactive]{shiny::reactive()}} object
+that returns the currently selected tab.}
+
 \item{rctv_strGroupSubset}{\verb{reactive character} A \code{\link[shiny:reactive]{shiny::reactive()}} object
 that returns the selected subset of groups to include in the table.}
 

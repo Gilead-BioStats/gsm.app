@@ -40,6 +40,7 @@ gsmApp_Server <- function(
     rctv_InputMetric <- reactive(input$metric)
     rctv_InputSite <- reactive(input$site)
     rctv_InputParticipant <- reactive(input$participant)
+    rctv_InputPrimaryNavBar <- reactive(input$primary_nav_bar)
 
     ## The listified dfMetrics are used by both metric sub-mods, so calculate
     ## them once. This can/should move inside a single metric-tab module.
@@ -110,8 +111,20 @@ gsmApp_Server <- function(
     )
 
     ## Metric Details ----
-    srvr_SyncTab("primary_nav_bar", "Metric Details", rctv_InputMetric, session)
-    srvr_SyncTab("primary_nav_bar", "Metric Details", rctv_InputSite, session)
+    srvr_SyncTab(
+      "primary_nav_bar",
+      "Metric Details",
+      rctv_InputMetric,
+      rctv_InputPrimaryNavBar,
+      session
+    )
+    srvr_SyncTab(
+      "primary_nav_bar",
+      "Metric Details",
+      rctv_InputSite,
+      rctv_InputPrimaryNavBar,
+      session
+    )
     rctv_strMetricDetailsGroup <- mod_MetricDetails_Server(
       "metric_details",
       dfResults = dfResults,
@@ -205,6 +218,7 @@ gsmApp_Server <- function(
       "primary_nav_bar",
       "Participant Details",
       rctv_LatestParticipant,
+      rctv_InputPrimaryNavBar,
       session
     )
     mod_ParticipantDetails_Server(
@@ -217,20 +231,22 @@ gsmApp_Server <- function(
       ns <- shiny::NS("plugin")
       for (i in seq_along(lPlugins)) {
         lPlugin <- lPlugins[[i]]
-        rctvs_available <- list(
+        fnServer <- rlang::as_function(lPlugin$fnServer)
+        args_available <- list(
+          fnFetchData = fnFetchData,
           rctv_InputMetric = rctv_InputMetric,
           rctv_InputSite = rctv_InputSite,
           rctv_InputParticipant = rctv_InputParticipant
         )
-        rctvs_used <- intersect(
-          names(rctvs_available),
-          rlang::fn_fmls_names(lPlugin$fnServer)
+        args_used <- intersect(
+          names(args_available),
+          rlang::fn_fmls_names(fnServer)
         )
         rlang::inject(
-          lPlugin$fnServer(
+          fnServer(
             ns(i),
-            lPlugin$lConfig,
-            !!!rctvs_available[rctvs_used]
+            !!!lPlugin$lConfig,
+            !!!args_available[args_used]
           )
         )
       }
