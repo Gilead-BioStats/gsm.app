@@ -16,7 +16,8 @@ test_that("sample_fnFetchData returns expected data", {
       "age",
       "sex",
       "race",
-      "ethnicity"
+      "ethnicity",
+      "GroupID"
     )
   )
   expect_equal(nrow(test_result), 243)

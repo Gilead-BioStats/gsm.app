@@ -43,7 +43,8 @@ test_that("mod_ParticipantDetails_Server fetches participant data", {
         "age",
         "sex",
         "race",
-        "ethnicity"
+        "ethnicity",
+        "GroupID"
       )
       expected_data_tables <- c(
         "AdverseEvents",
@@ -60,7 +61,7 @@ test_that("mod_ParticipantDetails_Server fetches participant data", {
 
       expect_length(rctv_lParticipantData(), 9)
       expect_named(rctv_lParticipantData(), expected_data_tables)
-      expect_length(rctv_lParticipantMetadata(), 10)
+      expect_length(rctv_lParticipantMetadata(), 11)
       expect_named(
         rctv_lParticipantMetadata(),
         expected_metadata_fields
@@ -74,7 +75,7 @@ test_that("mod_ParticipantDetails_Server fetches participant data", {
       rctv_strSubjectID("0010")
       expect_length(rctv_lParticipantData(), 9)
       expect_named(rctv_lParticipantData(), expected_data_tables)
-      expect_length(rctv_lParticipantMetadata(), 10)
+      expect_length(rctv_lParticipantMetadata(), 11)
       expect_named(
         rctv_lParticipantMetadata(),
         expected_metadata_fields
