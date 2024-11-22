@@ -20,30 +20,7 @@ out_MainTabs <- function(dfResults, chrMetrics, lPlugins = NULL) {
       mod_ParticipantDetails_UI("participant_details")
     )
   )
-
-  if (!is.null(lPlugins)) {
-    plugin_items <- list()
-    ns <- shiny::NS("plugin")
-    plugin_items <- purrr::imap(lPlugins, function(lPlugin, id) {
-      fnUI <- rlang::as_function(lPlugin$fnUI)
-      bslib::nav_panel(
-        title = lPlugin$strTitle,
-        rlang::inject({
-          fnUI(
-            ns(id),
-            !!!lPlugin$lConfig
-          )
-        })
-      )
-    })
-    if (length(plugin_items) > 1) {
-      plugin_items <- list(bslib::nav_menu(
-        "Plugins",
-        !!!plugin_items
-      ))
-    }
-    MainTabs <- c(MainTabs, plugin_items)
-  }
+  MainTabs <- c(MainTabs, mod_Plugins_UI("plugins", lPlugins))
 
   return(MainTabs)
 }

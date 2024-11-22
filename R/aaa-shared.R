@@ -64,6 +64,12 @@
 #'   returns a stacked summary of analysis pipeline output.
 #' @param rctv_gtObject `reactive gt_table` A [shiny::reactive()] object that
 #'   returns a [gt::gt()] object.
+#' @param rctv_InputMetric `reactive character` A [shiny::reactive()] object
+#'   that returns the `MetricID` of the selected metric.
+#' @param rctv_InputParticipant `reactive character` A [shiny::reactive()]
+#'   object that returns the `SubjectID` of the selected participant.
+#' @param rctv_InputSite `reactive character` A [shiny::reactive()] object that
+#'   returns the `GroupID` of the selected site.
 #' @param rctv_lData `reactive list` A [shiny::reactive()] object that returns a
 #'   named list of dataframes.
 #' @param rctv_lMetric `reactive list` A [shiny::reactive()] object that returns

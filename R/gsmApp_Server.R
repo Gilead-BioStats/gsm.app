@@ -227,29 +227,14 @@ gsmApp_Server <- function(
       rctv_strSubjectID = rctv_InputParticipant
     )
 
-    if (!is.null(lPlugins)) {
-      ns <- shiny::NS("plugin")
-      for (i in seq_along(lPlugins)) {
-        lPlugin <- lPlugins[[i]]
-        fnServer <- rlang::as_function(lPlugin$fnServer)
-        args_available <- list(
-          fnFetchData = fnFetchData,
-          rctv_InputMetric = rctv_InputMetric,
-          rctv_InputSite = rctv_InputSite,
-          rctv_InputParticipant = rctv_InputParticipant
-        )
-        args_used <- intersect(
-          names(args_available),
-          rlang::fn_fmls_names(fnServer)
-        )
-        rlang::inject(
-          fnServer(
-            ns(i),
-            !!!lPlugin$lConfig,
-            !!!args_available[args_used]
-          )
-        )
-      }
-    }
+    ## Plugins ----
+    mod_Plugins_Server(
+      "plugins",
+      lPlugins = lPlugins,
+      fnFetchData = fnFetchData,
+      rctv_InputMetric = rctv_InputMetric,
+      rctv_InputSite = rctv_InputSite,
+      rctv_InputParticipant = rctv_InputParticipant
+    )
   }
 }
