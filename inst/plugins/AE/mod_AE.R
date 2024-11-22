@@ -1,25 +1,3 @@
-aeExplorerOutput <- function(id) {
-  htmlwidgets::shinyWidgetOutput(
-    id,
-    name = "aeExplorer",
-    width = "100%",
-    height = "100%",
-    package = "safetyCharts"
-  )
-}
-render_aeExplorer <- function(expr, env = parent.frame(), quoted = FALSE) {
-  if (!quoted) {
-    expr <- substitute(expr)
-  } # force quoted
-  htmlwidgets::shinyRenderWidget(
-    expr,
-    aeExplorerOutput,
-    env,
-    quoted = TRUE,
-    cacheHint = NULL
-  )
-}
-
 mod_AE_UI <- function(id) {
   ns <- shiny::NS(id)
   bslib::navset_card_underline(
@@ -35,7 +13,7 @@ mod_AE_UI <- function(id) {
     ),
     bslib::nav_panel(
       "Timeline",
-      "(Timeline coming soon)"
+      aeTimelinesOutput(ns("timeline"))
     ),
     full_screen = TRUE
   )
@@ -64,12 +42,9 @@ mod_AE_Server <- function(
         # We don't really use `dm`, but aeExplorer requires something.
         dfSubj <- dfAE %>%
           dplyr::distinct(.data$SubjectID)
-        safetyCharts::aeExplorer(
-          data = list(
-            dm = dfSubj,
-            aes = dfAE
-          ),
-          mapping = list(
+        render_SC_widget(
+          lData = list(dm = dfSubj, aes = dfAE),
+          lSettings = list(
             dm = list(
               id_col = "SubjectID"
             ),
@@ -83,7 +58,60 @@ mod_AE_Server <- function(
               severity_col = "toxicity_grade",
               serious_col = "serious"
             )
-          )
+          ),
+          fnInit = safetyCharts::init_aeExplorer,
+          strWidgetName = "aeExplorer"
+        )
+      }
+    })
+    output$timeline <- render_aeTimelines({
+      SiteID <- rctv_InputSite()
+      ParticipantID <- rctv_InputParticipant()
+      dfAE <- fnFetchData(
+        "AdverseEvents",
+        strSiteID = SiteID,
+        strSubjectID = ParticipantID
+      )
+      if (NROW(dfAE)) {
+        dfSubj <- fnFetchData(
+          "Subject",
+          strSiteID = SiteID,
+          strSubjectID = ParticipantID
+        ) %>%
+          dplyr::select("SubjectID", "study_start_date")
+
+        dfAE <- dfAE %>%
+          dplyr::inner_join(dfSubj, by = "SubjectID") %>%
+            dplyr::mutate(
+              aest_dy = .data$start_date - .data$study_start_date + 1L,
+              aeen_dy = .data$end_date - .data$study_start_date + 1L
+            ) %>%
+            dplyr::arrange(
+              .data$SubjectID,
+              .data$aest_dy,
+              .data$aeen_dy,
+              .data$preferred_term,
+              .data$toxicity_grade
+            ) %>%
+            dplyr::mutate(
+              seq = dplyr::row_number(),
+              .by = "SubjectID"
+            )
+
+        render_SC_widget(
+          lData = dfAE,
+          lSettings = list(
+            id_col = "SubjectID",
+            seq_col = "seq",
+            stdy_col = "aest_dy",
+            endy_col = "aeen_dy",
+            term_col = "preferred_term",
+            bodsys_col = "system_organ_class",
+            severity_col = "toxicity_grade",
+            serious_col = "serious"
+          ),
+          fnInit = safetyCharts::init_aeTimelines,
+          strWidgetName = "aeTimelines"
         )
       }
     })
