@@ -7,7 +7,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">gsm.app</a>
 
-    <small class="nav-text text-danger me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="In-development version">2.1.0.9000</small>
+    <small class="nav-text text-danger me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="In-development version">2.1.0.9001</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -44,6 +44,7 @@
 <span>  <span class="va">dfGroups</span>,</span>
 <span>  <span class="va">dfMetrics</span>,</span>
 <span>  <span class="va">dfResults</span>,</span>
+<span>  lPlugins <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  strTitle <span class="op">=</span> <span class="st">"GSM Deep Dive"</span>,</span>
 <span>  strFavicon <span class="op">=</span> <span class="st">"angles-up"</span>,</span>
 <span>  strFaviconColor <span class="op">=</span> <span class="fu"><a href="colorScheme.html">colorScheme</a></span><span class="op">(</span><span class="st">"red"</span><span class="op">)</span>,</span>
@@ -73,18 +74,22 @@ reporting.</p></dd>
 This will be filtered to cases where <code>GroupLevel == "Site"</code>.</p></dd>
 
 
+<dt id="arg-lplugins">lPlugins<a class="anchor" aria-label="anchor" href="#arg-lplugins"></a></dt>
+<dd><p><code>list</code> Optional list of plugins to include in the app.</p></dd>
+
+
 <dt id="arg-strtitle">strTitle<a class="anchor" aria-label="anchor" href="#arg-strtitle"></a></dt>
 <dd><p><code>character</code> A title to display for the overall app.</p></dd>
 
 
 <dt id="arg-strfavicon">strFavicon<a class="anchor" aria-label="anchor" href="#arg-strfavicon"></a></dt>
-<dd><p>The name of an icon to use in the browser tab via
-<code><a href="https://favawesome.shinyworks.org/reference/fav.html" class="external-link">favawesome::fav()</a></code>.</p></dd>
+<dd><p><code>character</code> The name of an icon to use in the browser tab
+via <code><a href="https://favawesome.shinyworks.org/reference/fav.html" class="external-link">favawesome::fav()</a></code>.</p></dd>
 
 
 <dt id="arg-strfaviconcolor">strFaviconColor<a class="anchor" aria-label="anchor" href="#arg-strfaviconcolor"></a></dt>
-<dd><p>The hexcode or name of a color to use as the icon fill
-for <code><a href="https://favawesome.shinyworks.org/reference/fav.html" class="external-link">favawesome::fav()</a></code>.</p></dd>
+<dd><p><code>character</code> The hexcode or name of a color to use as
+the icon fill for <code><a href="https://favawesome.shinyworks.org/reference/fav.html" class="external-link">favawesome::fav()</a></code>.</p></dd>
 
 
 <dt id="arg-taglistsidebar">tagListSidebar<a class="anchor" aria-label="anchor" href="#arg-taglistsidebar"></a></dt>

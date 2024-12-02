@@ -15,7 +15,7 @@ sample data provided in this package."><meta name="robots" content="noindex"></h
 
     <a class="navbar-brand me-2" href="../index.html">gsm.app</a>
 
-    <small class="nav-text text-danger me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="In-development version">2.1.0.9000</small>
+    <small class="nav-text text-danger me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="In-development version">2.1.0.9001</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -57,7 +57,8 @@ sample data provided in this package.</p>
 <span>  <span class="va">dfGroups</span>,</span>
 <span>  <span class="va">dfMetrics</span>,</span>
 <span>  <span class="va">dfResults</span>,</span>
-<span>  <span class="va">fnFetchParticipantData</span>,</span>
+<span>  <span class="va">fnFetchData</span>,</span>
+<span>  lPlugins <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  strTitle <span class="op">=</span> <span class="st">"GSM Deep Dive"</span>,</span>
 <span>  strFavicon <span class="op">=</span> <span class="st">"angles-up"</span>,</span>
 <span>  strFaviconColor <span class="op">=</span> <span class="st">"#FF5859"</span>,</span>
@@ -96,14 +97,15 @@ reporting.</p></dd>
 This will be filtered to cases where <code>GroupLevel == "Site"</code>.</p></dd>
 
 
-<dt id="arg-fnfetchparticipantdata">fnFetchParticipantData<a class="anchor" aria-label="anchor" href="#arg-fnfetchparticipantdata"></a></dt>
-<dd><p><code>function</code> A function that takes a single
-<code>strSubjectID</code> argument such as "0001", and returns a list with components
-<code>metadata</code> and <code>metric_data</code>. <code>metadata</code> should be a named character vector
-(or something that can be coerced to a character vector) of information
-about the participant, and <code>metric_data</code> should be a named list of
-data.frames, each of which contains information related to the named
-metric.</p></dd>
+<dt id="arg-fnfetchdata">fnFetchData<a class="anchor" aria-label="anchor" href="#arg-fnfetchdata"></a></dt>
+<dd><p><code>function</code> A function that takes a <code>strDomain</code> argument
+and optional <code>strSiteID</code> and <code>strSubjectID</code> and returns a data.frame. See
+<code><a href="sample_fnFetchData.html">sample_fnFetchData()</a></code> for an example. The returned data.frame contains
+information about the named domain.</p></dd>
+
+
+<dt id="arg-lplugins">lPlugins<a class="anchor" aria-label="anchor" href="#arg-lplugins"></a></dt>
+<dd><p><code>list</code> Optional list of plugins to include in the app.</p></dd>
 
 
 <dt id="arg-strtitle">strTitle<a class="anchor" aria-label="anchor" href="#arg-strtitle"></a></dt>
@@ -111,13 +113,13 @@ metric.</p></dd>
 
 
 <dt id="arg-strfavicon">strFavicon<a class="anchor" aria-label="anchor" href="#arg-strfavicon"></a></dt>
-<dd><p>The name of an icon to use in the browser tab via
-<code><a href="https://favawesome.shinyworks.org/reference/fav.html" class="external-link">favawesome::fav()</a></code>.</p></dd>
+<dd><p><code>character</code> The name of an icon to use in the browser tab
+via <code><a href="https://favawesome.shinyworks.org/reference/fav.html" class="external-link">favawesome::fav()</a></code>.</p></dd>
 
 
 <dt id="arg-strfaviconcolor">strFaviconColor<a class="anchor" aria-label="anchor" href="#arg-strfaviconcolor"></a></dt>
-<dd><p>The hexcode or name of a color to use as the icon fill
-for <code><a href="https://favawesome.shinyworks.org/reference/fav.html" class="external-link">favawesome::fav()</a></code>.</p></dd>
+<dd><p><code>character</code> The hexcode or name of a color to use as
+the icon fill for <code><a href="https://favawesome.shinyworks.org/reference/fav.html" class="external-link">favawesome::fav()</a></code>.</p></dd>
 
 
 <dt id="arg-taglistsidebar">tagListSidebar<a class="anchor" aria-label="anchor" href="#arg-taglistsidebar"></a></dt>
@@ -139,7 +141,7 @@ to <code><a href="https://rdrr.io/pkg/shiny/man/runApp.html" class="external-lin
     <div class="section level2">
     <h2 id="see-also">See also<a class="anchor" aria-label="anchor" href="#see-also"></a></h2>
     <div class="dont-index"><p><a href="sample_dfAnalyticsInput.html">sample_dfAnalyticsInput</a>, <a href="sample_dfBounds.html">sample_dfBounds</a>, <a href="sample_dfGroups.html">sample_dfGroups</a>,
-<a href="sample_dfMetrics.html">sample_dfMetrics</a>, <code><a href="sample_FetchParticipantData.html">sample_FetchParticipantData()</a></code>, <a href="sample_dfResults.html">sample_dfResults</a></p></div>
+<a href="sample_dfMetrics.html">sample_dfMetrics</a>, <code><a href="sample_fnFetchData.html">sample_fnFetchData()</a></code>, <a href="sample_dfResults.html">sample_dfResults</a></p></div>
     </div>
 
     <div class="section level2">
