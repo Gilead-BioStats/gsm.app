@@ -10,6 +10,7 @@ gsmApp_UI <- function(
   dfGroups,
   dfMetrics,
   dfResults,
+  lPlugins = NULL,
   strTitle = "GSM Deep Dive",
   strFavicon = "angles-up",
   strFaviconColor = colorScheme("red"),
@@ -24,7 +25,7 @@ gsmApp_UI <- function(
     title = strTitle,
     theme = bslib::bs_theme(version = 5),
     fillable = FALSE,
-    !!!out_MainTabs(dfResults = dfResults, chrMetrics = chrMetrics),
+    !!!out_MainTabs(dfResults = dfResults, chrMetrics = chrMetrics, lPlugins = lPlugins),
     sidebar = out_Sidebar(
       dfGroups,
       dfResults,

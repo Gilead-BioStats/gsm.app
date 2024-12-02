@@ -28,18 +28,9 @@ sample_dfGroups_subset <- gsm.app::sample_dfGroups %>%
     GroupLevel != "Site" | (GroupLevel == "Site" & GroupID %in% group_subset)
   )
 
-slow_FetchParticipantData <- function(strSubjectID) {
-  if (strSubjectID %in% names(participant_data)) {
-    Sys.sleep(5)
-    return(participant_data[[strSubjectID]])
-  }
-  gsmapp_abort(
-    c(
-      "{.arg strSubjectID} must be one of the participants in the sample data.",
-      i = "Unknown participant {strSubjectID}."
-    ),
-    strClass = "unknown_strSubjectID"
-  )
+slow_fnFetchData <- function(...) {
+  Sys.sleep(5)
+  return(gsm.app::sample_fnFetchData(...))
 }
 
 gsm.app::run_gsm_app(
@@ -48,5 +39,5 @@ gsm.app::run_gsm_app(
   dfGroups = sample_dfGroups_subset,
   dfMetrics = gsm.app::sample_dfMetrics,
   dfResults = sample_dfResults_subset,
-  fnFetchParticipantData = slow_FetchParticipantData
+  fnFetchData = slow_fnFetchData
 )

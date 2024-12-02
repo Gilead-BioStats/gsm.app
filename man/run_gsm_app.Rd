@@ -11,7 +11,8 @@ run_gsm_app(
   dfGroups,
   dfMetrics,
   dfResults,
-  fnFetchParticipantData,
+  fnFetchData,
+  lPlugins = NULL,
   strTitle = "GSM Deep Dive",
   strFavicon = "angles-up",
   strFaviconColor = "#FF5859",
@@ -36,21 +37,20 @@ reporting.}
 \item{dfResults}{\code{data.frame} A stacked summary of analysis pipeline output.
 This will be filtered to cases where \code{GroupLevel == "Site"}.}
 
-\item{fnFetchParticipantData}{\code{function} A function that takes a single
-\code{strSubjectID} argument such as "0001", and returns a list with components
-\code{metadata} and \code{metric_data}. \code{metadata} should be a named character vector
-(or something that can be coerced to a character vector) of information
-about the participant, and \code{metric_data} should be a named list of
-data.frames, each of which contains information related to the named
-metric.}
+\item{fnFetchData}{\code{function} A function that takes a \code{strDomain} argument
+and optional \code{strSiteID} and \code{strSubjectID} and returns a data.frame. See
+\code{\link[=sample_fnFetchData]{sample_fnFetchData()}} for an example. The returned data.frame contains
+information about the named domain.}
+
+\item{lPlugins}{\code{list} Optional list of plugins to include in the app.}
 
 \item{strTitle}{\code{character} A title to display for the overall app.}
 
-\item{strFavicon}{The name of an icon to use in the browser tab via
-\code{\link[favawesome:fav]{favawesome::fav()}}.}
+\item{strFavicon}{\code{character} The name of an icon to use in the browser tab
+via \code{\link[favawesome:fav]{favawesome::fav()}}.}
 
-\item{strFaviconColor}{The hexcode or name of a color to use as the icon fill
-for \code{\link[favawesome:fav]{favawesome::fav()}}.}
+\item{strFaviconColor}{\code{character} The hexcode or name of a color to use as
+the icon fill for \code{\link[favawesome:fav]{favawesome::fav()}}.}
 
 \item{tagListSidebar}{\code{taglist} An optional \code{\link[htmltools:tagList]{htmltools::tagList()}} of
 additional elements to add to the top of the app sidebar.}
@@ -79,5 +79,5 @@ run_sample_gsm_app()
 }
 \seealso{
 \link{sample_dfAnalyticsInput}, \link{sample_dfBounds}, \link{sample_dfGroups},
-\link{sample_dfMetrics}, \code{\link[=sample_FetchParticipantData]{sample_FetchParticipantData()}}, \link{sample_dfResults}
+\link{sample_dfMetrics}, \code{\link[=sample_fnFetchData]{sample_fnFetchData()}}, \link{sample_dfResults}
 }

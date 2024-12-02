@@ -12,7 +12,7 @@
 #' @returns An object that represents the app. Printing the object or passing it
 #'   to [shiny::runApp()] runs the app.
 #' @seealso [sample_dfAnalyticsInput], [sample_dfBounds], [sample_dfGroups],
-#'   [sample_dfMetrics], [sample_FetchParticipantData()], [sample_dfResults]
+#'   [sample_dfMetrics], [sample_fnFetchData()], [sample_dfResults]
 #' @examplesIf interactive()
 #' # Sample app will launch in a new browser window.
 #' run_sample_gsm_app()
@@ -23,7 +23,8 @@ run_gsm_app <- function(
   dfGroups,
   dfMetrics,
   dfResults,
-  fnFetchParticipantData,
+  fnFetchData,
+  lPlugins = NULL,
   strTitle = "GSM Deep Dive",
   strFavicon = "angles-up",
   strFaviconColor = "#FF5859",
@@ -47,6 +48,7 @@ run_gsm_app <- function(
       dfGroups = dfGroups,
       dfMetrics = dfMetrics,
       dfResults = dfResults,
+      lPlugins = lPlugins,
       strTitle = strTitle,
       strFavicon = strFavicon,
       strFaviconColor = strFaviconColor,
@@ -58,7 +60,8 @@ run_gsm_app <- function(
       dfGroups = dfGroups,
       dfMetrics = dfMetrics,
       dfResults = dfResults,
-      fnFetchParticipantData = fnFetchParticipantData,
+      fnFetchData = fnFetchData,
+      lPlugins = lPlugins,
       fnServer = fnServer
     )
   )
@@ -77,7 +80,7 @@ run_sample_gsm_app <- function(
     dfGroups = gsm.app::sample_dfGroups,
     dfMetrics = gsm.app::sample_dfMetrics,
     dfResults = gsm.app::sample_dfResults,
-    fnFetchParticipantData = sample_FetchParticipantData,
+    fnFetchData = sample_fnFetchData,
     strTitle = "Sample Deep Dive App",
     strFavicon = strFavicon,
     strFaviconColor = strFaviconColor

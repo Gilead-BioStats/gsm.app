@@ -9,7 +9,8 @@ gsmApp_Server <- function(
   dfGroups,
   dfMetrics,
   dfResults,
-  fnFetchParticipantData,
+  fnFetchData,
+  lPlugins = NULL,
   fnServer = NULL
 ) {
   # Force evaluation of everything before factory is constructed to avoid
@@ -20,7 +21,7 @@ gsmApp_Server <- function(
   force(dfGroups)
   force(dfMetrics)
   force(dfResults)
-  force(fnFetchParticipantData)
+  force(fnFetchData)
   force(fnServer)
   function(input, output, session) {
     if (!is.null(fnServer)) {
@@ -38,6 +39,8 @@ gsmApp_Server <- function(
     ## Inputs pass to modules (etc) as reactives.
     rctv_InputMetric <- reactive(input$metric)
     rctv_InputSite <- reactive(input$site)
+    rctv_InputParticipant <- reactive(input$participant)
+    rctv_InputPrimaryNavBar <- reactive(input$primary_nav_bar)
 
     ## The listified dfMetrics are used by both metric sub-mods, so calculate
     ## them once. This can/should move inside a single metric-tab module.
@@ -108,8 +111,20 @@ gsmApp_Server <- function(
     )
 
     ## Metric Details ----
-    srvr_SyncTab("primary_nav_bar", "Metric Details", rctv_InputMetric, session)
-    srvr_SyncTab("primary_nav_bar", "Metric Details", rctv_InputSite, session)
+    srvr_SyncTab(
+      "primary_nav_bar",
+      "Metric Details",
+      rctv_InputMetric,
+      rctv_InputPrimaryNavBar,
+      session
+    )
+    srvr_SyncTab(
+      "primary_nav_bar",
+      "Metric Details",
+      rctv_InputSite,
+      rctv_InputPrimaryNavBar,
+      session
+    )
     rctv_strMetricDetailsGroup <- mod_MetricDetails_Server(
       "metric_details",
       dfResults = dfResults,
@@ -124,7 +139,7 @@ gsmApp_Server <- function(
       dfGroups = dfGroups,
       dfAnalyticsInput = dfAnalyticsInput,
       rctv_strSiteID = rctv_InputSite,
-      rctv_strSubjectID = reactive(input$participant),
+      rctv_strSubjectID = rctv_InputParticipant,
       rctv_strMetricID = rctv_InputMetric,
       rctv_lMetric = rctv_lMetric
     )
@@ -203,12 +218,23 @@ gsmApp_Server <- function(
       "primary_nav_bar",
       "Participant Details",
       rctv_LatestParticipant,
+      rctv_InputPrimaryNavBar,
       session
     )
     mod_ParticipantDetails_Server(
       "participant_details",
-      fnFetchParticipantData = fnFetchParticipantData,
-      rctv_strSubjectID = reactive(input$participant)
+      fnFetchData = fnFetchData,
+      rctv_strSubjectID = rctv_InputParticipant
+    )
+
+    ## Plugins ----
+    mod_Plugins_Server(
+      "plugins",
+      lPlugins = lPlugins,
+      fnFetchData = fnFetchData,
+      rctv_InputMetric = rctv_InputMetric,
+      rctv_InputSite = rctv_InputSite,
+      rctv_InputParticipant = rctv_InputParticipant
     )
   }
 }

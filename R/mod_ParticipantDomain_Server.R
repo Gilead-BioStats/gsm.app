@@ -39,6 +39,7 @@ mod_ParticipantDomain_Server <- function(
             .list = gsm::MakeParamLabelsList(colnames(df))
           ) %>%
           out_gtSmartFmtNumbers(intMaxDecimals = 10L)
+
         if ("SubjectID" %in% colnames(df)) {
           gtObj <- gt::cols_align(gtObj, "center", "SubjectID") # nocov
         }
@@ -55,6 +56,7 @@ mod_ParticipantDomain_Server <- function(
         rctv_strName(),
         nrow(rctv_tblData()) # In case data updates live.
       )
+
     selected_rows <- mod_gtBidirectional_Server(
       "gt",
       rctv_tblData,
@@ -74,6 +76,7 @@ mod_ParticipantDomain_Server <- function(
       return("Participant Domain")
     }) %>%
       bindCache(rctv_strName(), rctv_lDataIsValid())
+
     return(selected_rows)
   })
 }

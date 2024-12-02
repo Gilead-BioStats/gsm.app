@@ -9,6 +9,7 @@ gsmApp_UI(
   dfGroups,
   dfMetrics,
   dfResults,
+  lPlugins = NULL,
   strTitle = "GSM Deep Dive",
   strFavicon = "angles-up",
   strFaviconColor = colorScheme("red"),
@@ -26,13 +27,15 @@ reporting.}
 \item{dfResults}{\code{data.frame} A stacked summary of analysis pipeline output.
 This will be filtered to cases where \code{GroupLevel == "Site"}.}
 
+\item{lPlugins}{\code{list} Optional list of plugins to include in the app.}
+
 \item{strTitle}{\code{character} A title to display for the overall app.}
 
-\item{strFavicon}{The name of an icon to use in the browser tab via
-\code{\link[favawesome:fav]{favawesome::fav()}}.}
+\item{strFavicon}{\code{character} The name of an icon to use in the browser tab
+via \code{\link[favawesome:fav]{favawesome::fav()}}.}
 
-\item{strFaviconColor}{The hexcode or name of a color to use as the icon fill
-for \code{\link[favawesome:fav]{favawesome::fav()}}.}
+\item{strFaviconColor}{\code{character} The hexcode or name of a color to use as
+the icon fill for \code{\link[favawesome:fav]{favawesome::fav()}}.}
 
 \item{tagListSidebar}{\code{taglist} An optional \code{\link[htmltools:tagList]{htmltools::tagList()}} of
 additional elements to add to the top of the app sidebar.}

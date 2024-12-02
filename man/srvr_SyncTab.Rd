@@ -2,12 +2,13 @@
 % Please edit documentation in R/srvr_SyncInput.R
 \name{srvr_SyncTab}
 \alias{srvr_SyncTab}
-\title{Synchronize selectizeInput with reactive}
+\title{Synchronize selected tab with reactive}
 \usage{
 srvr_SyncTab(
   id,
   strTargetTab,
   rctv_strValue,
+  rctv_strCurrentTab,
   session = getDefaultReactiveDomain()
 )
 }
@@ -19,6 +20,9 @@ srvr_SyncTab(
 \item{rctv_strValue}{\verb{reactive character} A \code{\link[shiny:reactive]{shiny::reactive()}} object that
 returns the value of a field.}
 
+\item{rctv_strCurrentTab}{\verb{reactive character} A \code{\link[shiny:reactive]{shiny::reactive()}} object
+that returns the currently selected tab.}
+
 \item{session}{\code{environment} Session from which to make a child scope (the
 default should almost always be used).}
 }
@@ -27,6 +31,6 @@ A \code{\link[shiny:observe]{shiny::observe()}} that triggers \code{\link[bslib:
 when the connected reactive changes.
 }
 \description{
-Synchronize selectizeInput with reactive
+Synchronize selected tab with reactive
 }
 \keyword{internal}

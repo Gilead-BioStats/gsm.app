@@ -14,8 +14,16 @@ via \code{\link[cli:cli_bullets]{cli::cli_bullets()}}.}
 \item{chrMetrics}{\code{character} A named vector of MetricIDs, where the names
 are the full Metric.}
 
+\item{chrPluginFields}{\code{character} A vector of allowed fields in a Plugin
+definition.}
+
+\item{chrPluginFiles}{\code{character} The files in a plugin directory.}
+
 \item{chrRequiredColumns}{\code{character} A vector of expected columns in a
 data.frame.}
+
+\item{chrRequiredFields}{\code{character} A vector of expected fields in a Plugin
+definition.}
 
 \item{chrSites}{\code{character} A vector of sites available in the study.}
 
@@ -48,13 +56,10 @@ also has an \code{envCall} argument.}
 in the message are defined. You almost definitely want to leave this as the
 default value.}
 
-\item{fnFetchParticipantData}{\code{function} A function that takes a single
-\code{strSubjectID} argument such as "0001", and returns a list with components
-\code{metadata} and \code{metric_data}. \code{metadata} should be a named character vector
-(or something that can be coerced to a character vector) of information
-about the participant, and \code{metric_data} should be a named list of
-data.frames, each of which contains information related to the named
-metric.}
+\item{fnFetchData}{\code{function} A function that takes a \code{strDomain} argument
+and optional \code{strSiteID} and \code{strSubjectID} and returns a data.frame. See
+\code{\link[=sample_fnFetchData]{sample_fnFetchData()}} for an example. The returned data.frame contains
+information about the named domain.}
 
 \item{fnServer}{\code{function} A Shiny server function that takes arguments
 \code{input}, \code{output}, and \code{session}. This function will be called at the start
@@ -77,6 +82,11 @@ as things like which group is selected.}
 \item{lParticipantMetadata}{\code{list} Named list of data describing a single
 participant.}
 
+\item{lPluginDefinition}{\code{list} A named list with required elements
+\code{strTitle}, \code{fnUI}, and \code{fnServer}, and optional field \code{lConfig}.}
+
+\item{lPlugins}{\code{list} Optional list of plugins to include in the app.}
+
 \item{lStudy}{\code{list} Named list of data describing the overall study.}
 
 \item{rctv_chrIDs}{\verb{reactive character} A \code{\link[shiny:reactive]{shiny::reactive()}} object that
@@ -95,6 +105,15 @@ returns a stacked summary of analysis pipeline output.}
 \item{rctv_gtObject}{\verb{reactive gt_table} A \code{\link[shiny:reactive]{shiny::reactive()}} object that
 returns a \code{\link[gt:gt]{gt::gt()}} object.}
 
+\item{rctv_InputMetric}{\verb{reactive character} A \code{\link[shiny:reactive]{shiny::reactive()}} object
+that returns the \code{MetricID} of the selected metric.}
+
+\item{rctv_InputParticipant}{\verb{reactive character} A \code{\link[shiny:reactive]{shiny::reactive()}}
+object that returns the \code{SubjectID} of the selected participant.}
+
+\item{rctv_InputSite}{\verb{reactive character} A \code{\link[shiny:reactive]{shiny::reactive()}} object that
+returns the \code{GroupID} of the selected site.}
+
 \item{rctv_lData}{\verb{reactive list} A \code{\link[shiny:reactive]{shiny::reactive()}} object that returns a
 named list of dataframes.}
 
@@ -110,11 +129,14 @@ each metric that is available.}
 returns a Boolean value indicating whether something is "off" (\code{FALSE}) or
 "on" (\code{TRUE}).}
 
+\item{rctv_strCurrentTab}{\verb{reactive character} A \code{\link[shiny:reactive]{shiny::reactive()}} object
+that returns the currently selected tab.}
+
 \item{rctv_strGroupSubset}{\verb{reactive character} A \code{\link[shiny:reactive]{shiny::reactive()}} object
 that returns the selected subset of groups to include in the table.}
 
-\item{rctv_strInput}{\verb{reactive character} A \code{\link[shiny:reactive]{shiny::reactive()}} object
-that returns the name of the target input.}
+\item{rctv_strInput}{\verb{reactive character} A \code{\link[shiny:reactive]{shiny::reactive()}} object that
+returns the name of the target input.}
 
 \item{rctv_strMetricID}{\verb{reactive character} A \code{\link[shiny:reactive]{shiny::reactive()}} object
 that returns the selected \code{MetricID}.}
@@ -153,13 +175,17 @@ color.}
 \item{strContainerID}{\code{character} The (namespaced) ID of the target container
 (usually a div).}
 
-\item{strEmpty}{The value to return when everything is deselected.}
+\item{strDomain}{\code{character} The domain data.frame to load. Supported domains
+are shown in the default value.}
 
-\item{strFavicon}{The name of an icon to use in the browser tab via
-\code{\link[favawesome:fav]{favawesome::fav()}}.}
+\item{strEmpty}{\code{character} The value to return when everything is
+deselected.}
 
-\item{strFaviconColor}{The hexcode or name of a color to use as the icon fill
-for \code{\link[favawesome:fav]{favawesome::fav()}}.}
+\item{strFavicon}{\code{character} The name of an icon to use in the browser tab
+via \code{\link[favawesome:fav]{favawesome::fav()}}.}
+
+\item{strFaviconColor}{\code{character} The hexcode or name of a color to use as
+the icon fill for \code{\link[favawesome:fav]{favawesome::fav()}}.}
 
 \item{strGroupID}{\code{character} A \code{GroupID} to focus on.}
 
@@ -189,6 +215,9 @@ this module or used by this JavaScript.}
 
 \item{strPlotTitle}{\code{character} A title for a plot, usually the name of a
 metric.}
+
+\item{strSiteID}{\code{character} A \code{GroupID} of an individual site within a
+study.}
 
 \item{strSubjectID}{\code{character} A \code{SubjectID} of an individual participant.}
 

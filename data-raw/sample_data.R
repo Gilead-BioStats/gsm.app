@@ -127,45 +127,31 @@ lUser <- RunWorkflows(lUserWorkflows, c(lRaw, lMapped))
 lUser <- lUser %>%
   purrr::map(dplyr::as_tibble)
 
-# Prep participant data ----
+# Prep domain data ----
 
-# Rotate such that the data is by subjid. In a "real" usage, much of this data
-# would likely be fetched via an API or other function call.
-participant_ids <- sample_dfAnalyticsInput$SubjectID
-names(participant_ids) <- participant_ids
-domains <- lUser
-domains$User_SUBJ <- NULL
-names(domains) <- stringr::str_remove(names(domains), "^User_")
-domains <- domains[sort(names(domains))]
-MakeThisData <- function(df, this_subjid) {
-  df %>%
-    dplyr::filter(.data$SubjectID == this_subjid) %>%
-    dplyr::select("SubjectID", dplyr::everything())
-}
+lDomainData <- lUser
+names(lDomainData) <- stringr::str_remove(names(lDomainData), "^User_")
+lDomainData <- lDomainData[sort(names(lDomainData))]
 
-participant_data <- purrr::map(
-  participant_ids,
-  function(this_subjid) {
-    list(
-      metadata = lUser$User_SUBJ %>%
-        MakeThisData(this_subjid) %>%
-        as.list(),
-      metric_data = purrr::map(domains, function(this_domain) {
-        MakeThisData(this_domain, this_subjid)
-      })
-    )
-  }
+# Apply subset to each df.
+subject_groups <- dplyr::distinct(
+  sample_dfAnalyticsInput,
+  .data$SubjectID,
+  .data$GroupID
 )
+lDomainData <- purrr::map(lDomainData, function(thisDomain) {
+  dplyr::inner_join(thisDomain, subject_groups, by = c("SubjectID"))
+})
 
 # Save ----
 
-# The participant data is fetched using a function, so we don't export it
+# The domain data is fetched using a function, so we don't export it
 # directly.
 usethis::use_data(
-  participant_data,
+  lDomainData,
   overwrite = TRUE,
   internal = TRUE,
-  compress = "xz"
+  compress = "bzip2"
 )
 
 # Everything else that we use is exported as sample data. Split things up by
@@ -195,13 +181,13 @@ usethis::use_data(
 # Clean up ----
 rm(
   dfResults,
-  domains,
   flag_summary,
   has_amber_only,
   has_both,
   has_neither,
   has_red_only,
   lAnalysis,
+  lDomainData,
   lMapped,
   lMappings,
   lRaw,
@@ -209,14 +195,12 @@ rm(
   lUser,
   lUserWorkflows,
   lWorkflows,
-  MakeThisData,
-  participant_data,
-  participant_ids,
   raw_spec,
   sample_dfAnalyticsInput,
   sample_dfBounds,
   sample_dfGroups,
   sample_dfMetrics,
   sample_dfResults,
-  site_subset
+  site_subset,
+  subject_groups
 )

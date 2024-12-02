@@ -11,8 +11,13 @@
 #'   via [cli::cli_bullets()].
 #' @param chrMetrics `character` A named vector of MetricIDs, where the names
 #'   are the full Metric.
+#' @param chrPluginFields `character` A vector of allowed fields in a Plugin
+#'   definition.
+#' @param chrPluginFiles `character` The files in a plugin directory.
 #' @param chrRequiredColumns `character` A vector of expected columns in a
 #'   data.frame.
+#' @param chrRequiredFields `character` A vector of expected fields in a Plugin
+#'   definition.
 #' @param chrSites `character` A vector of sites available in the study.
 #' @param chrValues `character` A vector of values to associate with a vector of
 #'   labels.
@@ -34,13 +39,10 @@
 #' @param envEvaluate `environment` The environment in which any variables used
 #'   in the message are defined. You almost definitely want to leave this as the
 #'   default value.
-#' @param fnFetchParticipantData `function` A function that takes a single
-#'   `strSubjectID` argument such as "0001", and returns a list with components
-#'   `metadata` and `metric_data`. `metadata` should be a named character vector
-#'   (or something that can be coerced to a character vector) of information
-#'   about the participant, and `metric_data` should be a named list of
-#'   data.frames, each of which contains information related to the named
-#'   metric.
+#' @param fnFetchData `function` A function that takes a `strDomain` argument
+#'   and optional `strSiteID` and `strSubjectID` and returns a data.frame. See
+#'   [sample_fnFetchData()] for an example. The returned data.frame contains
+#'   information about the named domain.
 #' @param fnServer `function` A Shiny server function that takes arguments
 #'   `input`, `output`, and `session`. This function will be called at the start
 #'   of the main app server function.
@@ -54,6 +56,9 @@
 #'   as things like which group is selected.
 #' @param lParticipantMetadata `list` Named list of data describing a single
 #'   participant.
+#' @param lPluginDefinition `list` A named list with required elements
+#'   `strTitle`, `fnUI`, and `fnServer`, and optional field `lConfig`.
+#' @param lPlugins `list` Optional list of plugins to include in the app.
 #' @param lStudy `list` Named list of data describing the overall study.
 #' @param rctv_chrIDs `reactive character` A [shiny::reactive()] object that
 #'   returns a vector of ids for modules, inputs, or other elements.
@@ -66,6 +71,12 @@
 #'   returns a stacked summary of analysis pipeline output.
 #' @param rctv_gtObject `reactive gt_table` A [shiny::reactive()] object that
 #'   returns a [gt::gt()] object.
+#' @param rctv_InputMetric `reactive character` A [shiny::reactive()] object
+#'   that returns the `MetricID` of the selected metric.
+#' @param rctv_InputParticipant `reactive character` A [shiny::reactive()]
+#'   object that returns the `SubjectID` of the selected participant.
+#' @param rctv_InputSite `reactive character` A [shiny::reactive()] object that
+#'   returns the `GroupID` of the selected site.
 #' @param rctv_lData `reactive list` A [shiny::reactive()] object that returns a
 #'   named list of dataframes.
 #' @param rctv_lMetric `reactive list` A [shiny::reactive()] object that returns
@@ -77,10 +88,12 @@
 #' @param rctv_lglState `reactive logical` A [shiny::reactive()]] object that
 #'   returns a Boolean value indicating whether something is "off" (`FALSE`) or
 #'   "on" (`TRUE`).
+#' @param rctv_strCurrentTab `reactive character` A [shiny::reactive()] object
+#'   that returns the currently selected tab.
 #' @param rctv_strGroupSubset `reactive character` A [shiny::reactive()] object
 #'   that returns the selected subset of groups to include in the table.
-#' @param rctv_strInput `reactive character` A [shiny::reactive()] object
-#'   that returns the name of the target input.
+#' @param rctv_strInput `reactive character` A [shiny::reactive()] object that
+#'   returns the name of the target input.
 #' @param rctv_strMetricID `reactive character` A [shiny::reactive()] object
 #'   that returns the selected `MetricID`.
 #' @param rctv_strName `reactive character` A [shiny::reactive()] object that
@@ -106,11 +119,14 @@
 #'   color.
 #' @param strContainerID `character` The (namespaced) ID of the target container
 #'   (usually a div).
-#' @param strEmpty The value to return when everything is deselected.
-#' @param strFavicon The name of an icon to use in the browser tab via
-#'   [favawesome::fav()].
-#' @param strFaviconColor The hexcode or name of a color to use as the icon fill
-#'   for [favawesome::fav()].
+#' @param strDomain `character` The domain data.frame to load. Supported domains
+#'   are shown in the default value.
+#' @param strEmpty `character` The value to return when everything is
+#'   deselected.
+#' @param strFavicon `character` The name of an icon to use in the browser tab
+#'   via [favawesome::fav()].
+#' @param strFaviconColor `character` The hexcode or name of a color to use as
+#'   the icon fill for [favawesome::fav()].
 #' @param strGroupID `character` A `GroupID` to focus on.
 #' @param strGroupLabelKey `character` Value for the group label key. Default:
 #'   `"InvestigatorLastName"`.
@@ -129,6 +145,8 @@
 #' @param strOutcome `character` Outcome variable. Default: `"Score"`.
 #' @param strPlotTitle `character` A title for a plot, usually the name of a
 #'   metric.
+#' @param strSiteID `character` A `GroupID` of an individual site within a
+#'   study.
 #' @param strSubjectID `character` A `SubjectID` of an individual participant.
 #' @param strTargetTab `character` The tab to switch to.
 #' @param strText `character` Text to display.

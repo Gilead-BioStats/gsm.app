@@ -1,0 +1,3 @@
+strTitle: Adverse Events
+fnUI: mod_AE_UI
+fnServer: mod_AE_Server

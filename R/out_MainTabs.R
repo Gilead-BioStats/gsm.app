@@ -4,8 +4,8 @@
 #' @returns A list of [bslib::nav_panel()] elements, containing the main tabbed
 #'   content.
 #' @keywords internal
-out_MainTabs <- function(dfResults, chrMetrics) {
-  list(
+out_MainTabs <- function(dfResults, chrMetrics, lPlugins = NULL) {
+  MainTabs <- list(
     bslib::nav_panel(
       title = "Study Overview",
       mod_StudyOverview_UI("study_overview", dfResults, chrMetrics)
@@ -20,4 +20,7 @@ out_MainTabs <- function(dfResults, chrMetrics) {
       mod_ParticipantDetails_UI("participant_details")
     )
   )
+  MainTabs <- c(MainTabs, mod_Plugins_UI("plugins", lPlugins))
+
+  return(MainTabs)
 }

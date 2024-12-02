@@ -3,20 +3,20 @@ test_that("mod_ParticipantDetails_Server 'None' participant selection", {
     mod_ParticipantDetails_Server,
     args = list(
       id = "participantDetailsTest",
-      fnFetchParticipantData = sample_FetchParticipantData,
+      fnFetchData = sample_fnFetchData,
       rctv_strSubjectID = reactiveVal("None")
     ),
     {
       expect_null(rctv_lParticipantData())
 
       rctv_strSubjectID("0008")
-      expect_length(rctv_lParticipantData(), 2)
+      expect_length(rctv_lParticipantData(), 9)
 
       rctv_strSubjectID("")
       expect_null(rctv_lParticipantData())
 
       rctv_strSubjectID("0010")
-      expect_length(rctv_lParticipantData(), 2)
+      expect_length(rctv_lParticipantData(), 9)
 
       rctv_strSubjectID(NULL)
       expect_null(rctv_lParticipantData())
@@ -29,7 +29,7 @@ test_that("mod_ParticipantDetails_Server fetches participant data", {
     mod_ParticipantDetails_Server,
     args = list(
       id = "participantDetailsTest",
-      fnFetchParticipantData = sample_FetchParticipantData,
+      fnFetchData = sample_fnFetchData,
       rctv_strSubjectID = reactiveVal("0008")
     ),
     {
@@ -43,9 +43,10 @@ test_that("mod_ParticipantDetails_Server fetches participant data", {
         "age",
         "sex",
         "race",
-        "ethnicity"
+        "ethnicity",
+        "GroupID"
       )
-      expected_metric_data_tables <- c(
+      expected_data_tables <- c(
         "AdverseEvents",
         "DataEntry",
         "Enrollment",
@@ -53,12 +54,14 @@ test_that("mod_ParticipantDetails_Server fetches participant data", {
         "ProtocolDeviations",
         "Queries",
         "StudyCompletion",
+        "Subject",
         "TreatmentCompletion"
       )
+      expected_metric_data_tables <- setdiff(expected_data_tables, "Subject")
 
-      expect_length(rctv_lParticipantData(), 2)
-      expect_named(rctv_lParticipantData(), c("metadata", "metric_data"))
-      expect_length(rctv_lParticipantMetadata(), 10)
+      expect_length(rctv_lParticipantData(), 9)
+      expect_named(rctv_lParticipantData(), expected_data_tables)
+      expect_length(rctv_lParticipantMetadata(), 11)
       expect_named(
         rctv_lParticipantMetadata(),
         expected_metadata_fields
@@ -70,9 +73,9 @@ test_that("mod_ParticipantDetails_Server fetches participant data", {
       )
 
       rctv_strSubjectID("0010")
-      expect_length(rctv_lParticipantData(), 2)
-      expect_named(rctv_lParticipantData(), c("metadata", "metric_data"))
-      expect_length(rctv_lParticipantMetadata(), 10)
+      expect_length(rctv_lParticipantData(), 9)
+      expect_named(rctv_lParticipantData(), expected_data_tables)
+      expect_length(rctv_lParticipantMetadata(), 11)
       expect_named(
         rctv_lParticipantMetadata(),
         expected_metadata_fields
@@ -92,7 +95,7 @@ test_that("mod_ParticipantDetails_Server outputs the expected result", {
     mod_ParticipantDetails_Server,
     args = list(
       id = "participantDetailsTest",
-      fnFetchParticipantData = sample_FetchParticipantData,
+      fnFetchData = sample_fnFetchData,
       rctv_strSubjectID = reactiveVal("0008")
     ),
     {

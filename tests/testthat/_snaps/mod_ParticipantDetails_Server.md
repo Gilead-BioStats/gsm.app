@@ -56,6 +56,11 @@
             <div class="metadata-list-item-spacer"></div>
             <div class="metadata-list-item-value">out of bound:Ethnic</div>
           </div>
+          <div class="metadata-list-item">
+            <div class="metadata-list-item-label">Group ID</div>
+            <div class="metadata-list-item-spacer"></div>
+            <div class="metadata-list-item-value">0X103</div>
+          </div>
         </div>
         <bslib-tooltip placement="auto" bsOptions="[]" data-require-bs-version="5" data-require-bs-caller="tooltip()">
           <template>Expand</template>

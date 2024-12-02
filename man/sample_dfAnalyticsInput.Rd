@@ -30,11 +30,11 @@ tab.
 }
 \seealso{
 Other sample data: 
-\code{\link{sample_FetchParticipantData}()},
 \code{\link{sample_dfBounds}},
 \code{\link{sample_dfGroups}},
 \code{\link{sample_dfMetrics}},
-\code{\link{sample_dfResults}}
+\code{\link{sample_dfResults}},
+\code{\link{sample_fnFetchData}()}
 }
 \concept{sample data}
 \keyword{datasets}

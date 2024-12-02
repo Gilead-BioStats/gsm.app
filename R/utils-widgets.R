@@ -32,7 +32,7 @@ gsmDependencies <- function(strWidgetName, excludes = character()) {
 #' @inheritDotParams htmlwidgets::shinyWidgetOutput inline reportSize
 #'   reportTheme fill
 #'
-#' @return A [htmltools::tagList()] with the [htmlwidgets::shinyWidgetOutput()]
+#' @returns A [htmltools::tagList()] with the [htmlwidgets::shinyWidgetOutput()]
 #'   and its dependencies.
 #' @keywords internal
 gsmWidgetOutput <- function(
