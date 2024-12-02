@@ -105,15 +105,6 @@ returns a stacked summary of analysis pipeline output.}
 \item{rctv_gtObject}{\verb{reactive gt_table} A \code{\link[shiny:reactive]{shiny::reactive()}} object that
 returns a \code{\link[gt:gt]{gt::gt()}} object.}
 
-\item{rctv_InputMetric}{\verb{reactive character} A \code{\link[shiny:reactive]{shiny::reactive()}} object
-that returns the \code{MetricID} of the selected metric.}
-
-\item{rctv_InputParticipant}{\verb{reactive character} A \code{\link[shiny:reactive]{shiny::reactive()}}
-object that returns the \code{SubjectID} of the selected participant.}
-
-\item{rctv_InputSite}{\verb{reactive character} A \code{\link[shiny:reactive]{shiny::reactive()}} object that
-returns the \code{GroupID} of the selected site.}
-
 \item{rctv_lData}{\verb{reactive list} A \code{\link[shiny:reactive]{shiny::reactive()}} object that returns a
 named list of dataframes.}
 

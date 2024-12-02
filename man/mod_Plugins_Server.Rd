@@ -8,9 +8,9 @@ mod_Plugins_Server(
   id,
   lPlugins,
   fnFetchData,
-  rctv_InputMetric,
-  rctv_InputSite,
-  rctv_InputParticipant
+  rctv_strMetricID,
+  rctv_strSiteID,
+  rctv_strSubjectID
 )
 }
 \arguments{
@@ -23,14 +23,14 @@ and optional \code{strSiteID} and \code{strSubjectID} and returns a data.frame. 
 \code{\link[=sample_fnFetchData]{sample_fnFetchData()}} for an example. The returned data.frame contains
 information about the named domain.}
 
-\item{rctv_InputMetric}{\verb{reactive character} A \code{\link[shiny:reactive]{shiny::reactive()}} object
-that returns the \code{MetricID} of the selected metric.}
+\item{rctv_strMetricID}{\verb{reactive character} A \code{\link[shiny:reactive]{shiny::reactive()}} object
+that returns the selected \code{MetricID}.}
 
-\item{rctv_InputSite}{\verb{reactive character} A \code{\link[shiny:reactive]{shiny::reactive()}} object that
-returns the \code{GroupID} of the selected site.}
+\item{rctv_strSiteID}{\verb{reactive character} A \code{\link[shiny:reactive]{shiny::reactive()}} object that
+returns the \code{GroupID} of a site.}
 
-\item{rctv_InputParticipant}{\verb{reactive character} A \code{\link[shiny:reactive]{shiny::reactive()}}
-object that returns the \code{SubjectID} of the selected participant.}
+\item{rctv_strSubjectID}{\verb{reactive character} A \code{\link[shiny:reactive]{shiny::reactive()}} object
+that returns the \code{SubjectID} of the selected participant.}
 }
 \value{
 Nothing yet.

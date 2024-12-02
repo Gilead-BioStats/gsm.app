@@ -7,9 +7,9 @@ mod_Plugins_Server <- function(
   id,
   lPlugins,
   fnFetchData,
-  rctv_InputMetric,
-  rctv_InputSite,
-  rctv_InputParticipant
+  rctv_strMetricID,
+  rctv_strSiteID,
+  rctv_strSubjectID
 ) {
   moduleServer(id, function(input, output, session) {
     if (!is.null(lPlugins)) {
@@ -18,9 +18,9 @@ mod_Plugins_Server <- function(
         fnServer <- rlang::as_function(lPlugin$fnServer)
         args_available <- list(
           fnFetchData = fnFetchData,
-          rctv_InputMetric = rctv_InputMetric,
-          rctv_InputSite = rctv_InputSite,
-          rctv_InputParticipant = rctv_InputParticipant
+          rctv_strMetricID = rctv_strMetricID,
+          rctv_strSiteID = rctv_strSiteID,
+          rctv_strSubjectID = rctv_strSubjectID
         )
         args_used <- intersect(
           names(args_available),

@@ -1,12 +1,12 @@
 test_that("mod_SiteDetails_Server renders site metadata", {
   # Inputs to simulate things that happen in the main server function.
-  rctv_input_metric <- reactiveVal("Analysis_kri0001")
-  rctv_input_site <- reactiveVal("0X003")
-  rctv_input_subject <- reactiveVal("0545")
+  rctv_strMetricID <- reactiveVal("Analysis_kri0001")
+  rctv_strSiteID <- reactiveVal("0X003")
+  rctv_strSubjectID <- reactiveVal("0545")
   rctv_lMetric <- reactive({
-    lMetric <- as.list(filter_byMetricID(sample_dfMetrics, rctv_input_metric()))
-    if (rctv_input_site() != "None") {
-      lMetric$selectedGroupIDs <- rctv_input_site()
+    lMetric <- as.list(filter_byMetricID(sample_dfMetrics, rctv_strMetricID()))
+    if (rctv_strSiteID() != "None") {
+      lMetric$selectedGroupIDs <- rctv_strSiteID()
     }
     lMetric
   })
@@ -17,9 +17,9 @@ test_that("mod_SiteDetails_Server renders site metadata", {
       id = "siteDetailsTest",
       dfGroups = sample_dfGroups,
       dfAnalyticsInput = sample_dfAnalyticsInput,
-      rctv_strSiteID = rctv_input_site,
-      rctv_strSubjectID = rctv_input_subject,
-      rctv_strMetricID = rctv_input_metric,
+      rctv_strSiteID = rctv_strSiteID,
+      rctv_strSubjectID = rctv_strSubjectID,
+      rctv_strMetricID = rctv_strMetricID,
       rctv_lMetric = rctv_lMetric
     ),
     {
@@ -31,13 +31,13 @@ test_that("mod_SiteDetails_Server renders site metadata", {
 
 test_that("mod_SiteDetails_Server renders participants table", {
   # Inputs to simulate things that happen in the main server function.
-  rctv_input_metric <- reactiveVal("Analysis_kri0001")
-  rctv_input_site <- reactiveVal("0X003")
-  rctv_input_subject <- reactiveVal("0545")
+  rctv_strMetricID <- reactiveVal("Analysis_kri0001")
+  rctv_strSiteID <- reactiveVal("0X003")
+  rctv_strSubjectID <- reactiveVal("0545")
   rctv_lMetric <- reactive({
-    lMetric <- as.list(filter_byMetricID(sample_dfMetrics, rctv_input_metric()))
-    if (rctv_input_site() != "None") {
-      lMetric$selectedGroupIDs <- rctv_input_site()
+    lMetric <- as.list(filter_byMetricID(sample_dfMetrics, rctv_strMetricID()))
+    if (rctv_strSiteID() != "None") {
+      lMetric$selectedGroupIDs <- rctv_strSiteID()
     }
     lMetric
   })
@@ -48,9 +48,9 @@ test_that("mod_SiteDetails_Server renders participants table", {
       id = "siteDetailsTest",
       dfGroups = sample_dfGroups,
       dfAnalyticsInput = sample_dfAnalyticsInput,
-      rctv_strSiteID = rctv_input_site,
-      rctv_strSubjectID = rctv_input_subject,
-      rctv_strMetricID = rctv_input_metric,
+      rctv_strSiteID = rctv_strSiteID,
+      rctv_strSubjectID = rctv_strSubjectID,
+      rctv_strMetricID = rctv_strMetricID,
       rctv_lMetric = rctv_lMetric
     ),
     {
