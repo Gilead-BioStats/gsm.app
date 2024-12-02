@@ -6,43 +6,63 @@
 #' function to use as the plugin's module server). Use `plugin_Read()` to read
 #' these element definitions and any R files in the same directory.
 #'
-#' @param path The directory that contains the plugin.
+#' @param strPath The directory that contains the plugin.
 #'
 #' @returns A `list` with elements `strTitle`, `fnUi`, `fnServer`, and
-#'   (optionally) `lConfig`, read from the YAML file in `path`. As a side
-#'   effect, any `R` files in `path` are also loaded using `source()`.
+#'   (optionally) `lConfig`, read from the YAML file in `strPath`. As a side
+#'   effect, any `R` files in `strPath` are also loaded using `source()`.
 #' @export
-plugin_Read <- function(path) {
-  plugin_files <- list.files(path, full.names = TRUE)
-  plugin_definition <- plugin_Read_yaml(plugin_files)
+#' @examples
+#' aePlugin <- plugin_Read(system.file("plugins", "AE", package = "gsm.app"))
+plugin_Read <- function(strPath) {
+  chrPluginFiles <- list.files(strPath, full.names = TRUE)
+  lPluginDefinition <- plugin_Read_yaml(chrPluginFiles)
 
   # Source any R files included in the definition. Covr doesn't see most of the
   # code below here as covered when I check this single file, but it's covered
   # in overall pacakge coverage.
-  file_is_r <- grepl("\\.r$", plugin_files, ignore.case = TRUE)
+  file_is_r <- grepl("\\.r$", chrPluginFiles, ignore.case = TRUE)
   if (any(file_is_r)) {
-    for (r_file in plugin_files[file_is_r]) {
+    for (r_file in chrPluginFiles[file_is_r]) {
       source(r_file)
     }
   }
-  return(plugin_definition)
+  return(lPluginDefinition)
 }
 
-plugin_Read_yaml <- function(plugin_files, envCall = rlang::caller_env()) {
-  plugin_definition <- plugin_Read_yaml_file(plugin_files, envCall)
-  req_fields <- c("strTitle", "fnUI", "fnServer")
-  plugin_Read_yaml_has_all(plugin_definition, req_fields, envCall)
-  plugin_Read_yaml_has_only(plugin_definition, c(req_fields, "lConfig"), envCall)
+#' Process a Plugin YAML
+#'
+#' @inheritParams shared-params
+#' @return A list with the validated plugin definition.
+#' @keywords internal
+plugin_Read_yaml <- function(chrPluginFiles, envCall = rlang::caller_env()) {
+  lPluginDefinition <- plugin_Read_yaml_file(chrPluginFiles, envCall)
+  chrRequiredFields <- c("strTitle", "fnUI", "fnServer")
+  lPluginDefinition <- plugin_Read_yaml_has_all(
+    lPluginDefinition,
+    chrRequiredFields,
+    envCall
+  )
+  lPluginDefinition <- plugin_Read_yaml_has_only(
+    lPluginDefinition,
+    c(chrRequiredFields, "lConfig"),
+    envCall
+  )
 
-  return(plugin_definition)
+  return(lPluginDefinition)
 }
 
-plugin_Read_yaml_file <- function(plugin_files, envCall = rlang::caller_env()) {
-  file_is_yaml <- grepl("\\.ya?ml$", plugin_files, ignore.case = TRUE)
+#' Read a Plugin YAML
+#'
+#' @inheritParams shared-params
+#' @return A list with a potential plugin definition.
+#' @keywords internal
+plugin_Read_yaml_file <- function(chrPluginFiles, envCall = rlang::caller_env()) {
+  file_is_yaml <- grepl("\\.ya?ml$", chrPluginFiles, ignore.case = TRUE)
   if (sum(file_is_yaml) != 1) {
     gsmapp_abort(
       c(
-        "Plugin definition not found in {.file {path}}.",
+        "Plugin definition not found in {.file {strPath}}.",
         i = "Plugins must be defined by exactly 1 YAML file."
       ),
       strClass = "plugin-yaml",
@@ -50,42 +70,53 @@ plugin_Read_yaml_file <- function(plugin_files, envCall = rlang::caller_env()) {
       envEvaluate = envCall
     )
   }
-  return(yaml::read_yaml(plugin_files[file_is_yaml]))
+  return(yaml::read_yaml(chrPluginFiles[file_is_yaml]))
 }
 
+#' Check that a plugin definition has all required fields
+#'
+#' @inheritParams shared-params
+#' @return A list with a plugin definition.
+#' @keywords internal
 plugin_Read_yaml_has_all <- function(
-  plugin_definition,
-  req_fields = c("strTitle", "fnUI", "fnServer"),
+  lPluginDefinition,
+  chrRequiredFields = c("strTitle", "fnUI", "fnServer"),
   envCall = rlang::caller_env()
 ) {
-  missing_fields <- setdiff(req_fields, names(plugin_definition))
+  missing_fields <- setdiff(chrRequiredFields, names(lPluginDefinition))
   if (length(missing_fields)) {
     gsmapp_abort(
       c(
-        "Plugin definitions must include these fields: {.field {req_fields}}.",
+        "Plugin definitions must include these fields: {.field {chrRequiredFields}}.",
         x = "Missing fields: {.field {missing_fields}}."
       ),
       strClass = "plugin-definition",
       envCall = envCall
     )
   }
+  return(lPluginDefinition)
 }
 
+#' Check that a plugin definition has only the allowed fields
+#'
+#' @inheritParams shared-params
+#' @return A list with a plugin definition.
+#' @keywords internal
 plugin_Read_yaml_has_only <- function(
-  plugin_definition,
-  plugin_fields = c("strTitle", "fnUI", "fnServer", "lConfig"),
+  lPluginDefinition,
+  chrPluginFields = c("strTitle", "fnUI", "fnServer", "lConfig"),
   envCall = rlang::caller_env()
 ) {
-  extra_fields <- setdiff(names(plugin_definition), plugin_fields)
-  if (!all(names(plugin_definition) %in% plugin_fields)) {
+  extra_fields <- setdiff(names(lPluginDefinition), chrPluginFields)
+  if (!all(names(lPluginDefinition) %in% chrPluginFields)) {
     gsmapp_abort(
       c(
-        "Plugin definitions can only include these fields: {.field {plugin_fields}}.",
+        "Plugin definitions can only include these fields: {.field {chrPluginFields}}.",
         x = "Extra fields: {.field {extra_fields}}."
       ),
       strClass = "plugin-definition",
       envCall = envCall
     )
   }
-  return(plugin_definition)
+  return(lPluginDefinition)
 }

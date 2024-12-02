@@ -11,8 +11,13 @@
 #'   via [cli::cli_bullets()].
 #' @param chrMetrics `character` A named vector of MetricIDs, where the names
 #'   are the full Metric.
+#' @param chrPluginFields `character` A vector of allowed fields in a Plugin
+#'   definition.
+#' @param chrPluginFiles `character` The files in a plugin directory.
 #' @param chrRequiredColumns `character` A vector of expected columns in a
 #'   data.frame.
+#' @param chrRequiredFields `character` A vector of expected fields in a Plugin
+#'   definition.
 #' @param chrSites `character` A vector of sites available in the study.
 #' @param chrValues `character` A vector of values to associate with a vector of
 #'   labels.
@@ -51,6 +56,8 @@
 #'   as things like which group is selected.
 #' @param lParticipantMetadata `list` Named list of data describing a single
 #'   participant.
+#' @param lPluginDefinition `list` A named list with required elements
+#'   `strTitle`, `fnUI`, and `fnServer`, and optional field `lConfig`.
 #' @param lPlugins `list` Optional list of plugins to include in the app.
 #' @param lStudy `list` Named list of data describing the overall study.
 #' @param rctv_chrIDs `reactive character` A [shiny::reactive()] object that

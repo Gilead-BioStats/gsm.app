@@ -14,8 +14,16 @@ via \code{\link[cli:cli_bullets]{cli::cli_bullets()}}.}
 \item{chrMetrics}{\code{character} A named vector of MetricIDs, where the names
 are the full Metric.}
 
+\item{chrPluginFields}{\code{character} A vector of allowed fields in a Plugin
+definition.}
+
+\item{chrPluginFiles}{\code{character} The files in a plugin directory.}
+
 \item{chrRequiredColumns}{\code{character} A vector of expected columns in a
 data.frame.}
+
+\item{chrRequiredFields}{\code{character} A vector of expected fields in a Plugin
+definition.}
 
 \item{chrSites}{\code{character} A vector of sites available in the study.}
 
@@ -73,6 +81,9 @@ as things like which group is selected.}
 
 \item{lParticipantMetadata}{\code{list} Named list of data describing a single
 participant.}
+
+\item{lPluginDefinition}{\code{list} A named list with required elements
+\code{strTitle}, \code{fnUI}, and \code{fnServer}, and optional field \code{lConfig}.}
 
 \item{lPlugins}{\code{list} Optional list of plugins to include in the app.}
 
