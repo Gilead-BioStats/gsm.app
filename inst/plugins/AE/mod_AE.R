@@ -22,23 +22,23 @@ mod_AE_UI <- function(id) {
 mod_AE_Server <- function(
   id,
   fnFetchData,
-  rctv_InputSite,
-  rctv_InputParticipant
+  rctv_strSiteID,
+  rctv_strSubjectID
 ) {
   moduleServer(id, function(input, output, session) {
     rctv_dfSubject <- shiny::reactive({
       fnFetchData(
         "Subject",
-        strSiteID = rctv_InputSite(),
-        strSubjectID = rctv_InputParticipant()
+        strSiteID = rctv_strSiteID(),
+        strSubjectID = rctv_strSubjectID()
       ) %>%
         dplyr::select("SubjectID", "study_start_date")
     })
     rctv_dfAE <- shiny::reactive({
       dfAE <- fnFetchData(
         "AdverseEvents",
-        strSiteID = rctv_InputSite(),
-        strSubjectID = rctv_InputParticipant()
+        strSiteID = rctv_strSiteID(),
+        strSubjectID = rctv_strSubjectID()
       )
       if (NROW(dfAE)) {
         dfAE <- dfAE %>%
