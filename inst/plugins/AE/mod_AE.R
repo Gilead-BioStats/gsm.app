@@ -28,15 +28,18 @@ mod_AE_Server <- function(
   moduleServer(id, function(input, output, session) {
     rctv_dfSubject <- shiny::reactive({
       fnFetchData(
-        "Subject",
+        "SUBJ",
         strSiteID = rctv_strSiteID(),
         strSubjectID = rctv_strSubjectID()
       ) %>%
-        dplyr::select("SubjectID", "study_start_date")
+        dplyr::select(
+          "SubjectID",
+          "firstparticipantdate"
+        )
     })
     rctv_dfAE <- shiny::reactive({
       dfAE <- fnFetchData(
-        "AdverseEvents",
+        "AE",
         strSiteID = rctv_strSiteID(),
         strSubjectID = rctv_strSubjectID()
       )
@@ -44,18 +47,18 @@ mod_AE_Server <- function(
         dfAE <- dfAE %>%
           dplyr::inner_join(rctv_dfSubject(), by = "SubjectID") %>%
           dplyr::mutate(
-            toxicity_grade = toupper(
-              sub("^out of bound:", "", .data$toxicity_grade)
+            aetoxgr = toupper(
+              sub("^out of bound:", "", .data$aetoxgr)
             ),
-            aest_dy = .data$start_date - .data$study_start_date + 1L,
-            aeen_dy = .data$end_date - .data$study_start_date + 1L
+            aest_dy = .data$aest_dt - .data$firstparticipantdate + 1L,
+            aeen_dy = .data$aeen_dt - .data$firstparticipantdate + 1L
           ) %>%
           dplyr::arrange(
             .data$SubjectID,
             .data$aest_dy,
             .data$aeen_dy,
-            .data$preferred_term,
-            .data$toxicity_grade
+            .data$mdrpt_nsv,
+            .data$aetoxgr
           ) %>%
           dplyr::mutate(
             seq = dplyr::row_number(),
@@ -68,10 +71,10 @@ mod_AE_Server <- function(
       seq_col = "seq",
       stdy_col = "aest_dy",
       endy_col = "aeen_dy",
-      term_col = "preferred_term",
-      bodsys_col = "system_organ_class",
-      severity_col = "toxicity_grade",
-      serious_col = "serious"
+      term_col = "mdrpt_nsv",
+      bodsys_col = "mdrsoc_nsv",
+      severity_col = "aetoxgr",
+      serious_col = "aeser"
     )
     mod_AEDashboard_server("dashboard", rctv_dfAE)
     output$explorer <- render_aeExplorer({

@@ -23,15 +23,16 @@ mod_ParticipantDetails_Server <- function(
         return(NULL)
       }
       domains <- c(
-        "AdverseEvents",
-        "DataEntry",
-        "Enrollment",
-        "Lab",
-        "ProtocolDeviations",
-        "Queries",
-        "StudyCompletion",
-        "Subject",
-        "TreatmentCompletion"
+        "AE",
+        "ENROLL",
+        "LB",
+        "PD",
+        "SDRGCOMP",
+        "STUDCOMP",
+        "SUBJ",
+        "DATACHG",
+        "DATAENT",
+        "QUERY"
       )
       SubjectID <- rctv_strSubjectID()
       withProgress(
@@ -47,13 +48,13 @@ mod_ParticipantDetails_Server <- function(
     })
     rctv_lParticipantMetadata <- reactive({
       if (length(rctv_lParticipantData())) {
-        as.list(rctv_lParticipantData()$Subject)
+        as.list(rctv_lParticipantData()$SUBJ)
       }
     })
     rctv_lParticipantMetricData <- reactive({
       lParticipantData <- rctv_lParticipantData()
       if (length(lParticipantData)) {
-        lParticipantData$Subject <- NULL
+        lParticipantData$SUBJ <- NULL
         return(lParticipantData)
       }
     })

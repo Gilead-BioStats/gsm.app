@@ -29,7 +29,8 @@ lSource <- list(
 # Create Mapped Data ----
 
 lMappings <- MakeWorkflowList(
-  strPath = "workflow/1_mappings"
+  strPath = system.file("workflow/1_mappings", package = "gsm.app"),
+  strPackage = NULL
 )
 raw_spec <- CombineSpecs(lMappings)
 lRaw <- Ingest(lSource, raw_spec)
@@ -109,46 +110,33 @@ sample_dfAnalyticsInput <- purrr::map(lAnalysis, "Analysis_Input") %>%
   dplyr::as_tibble() %>%
   dplyr::semi_join(site_subset)
 
-# Create User-facing Data ----
 
-## Before I was getting this lRaw at the same time as lMapped, but that caused me to
-## have duplicate columns during Analysis Data creation
+# lMapped for Domain Data ----
 
-lUserWorkflows <- MakeWorkflowList(
-  strPath = system.file("workflow/userFacing", package = "gsm.app"),
-  strPackage = NULL
-)
-raw_spec <- CombineSpecs(lUserWorkflows)
-lRaw <- Ingest(lSource, raw_spec)
-lRaw <- lRaw %>%
-  purrr::map(dplyr::as_tibble)
+# SITE and STUDY are in dfGroups
+lMapped$Mapped_SITE <- NULL
+lMapped$Mapped_STUDY <- NULL
 
-lUser <- RunWorkflows(lUserWorkflows, c(lRaw, lMapped))
-lUser <- lUser %>%
-  purrr::map(dplyr::as_tibble)
-
-# Prep domain data ----
-
-lDomainData <- lUser
-names(lDomainData) <- stringr::str_remove(names(lDomainData), "^User_")
-lDomainData <- lDomainData[sort(names(lDomainData))]
-
-# Apply subset to each df.
+# Apply subset to each mapped df.
 subject_groups <- dplyr::distinct(
   sample_dfAnalyticsInput,
   .data$SubjectID,
   .data$GroupID
 )
-lDomainData <- purrr::map(lDomainData, function(thisDomain) {
-  dplyr::inner_join(thisDomain, subject_groups, by = c("SubjectID"))
+sample_lMapped <- purrr::map(lMapped, function(thisDomain) {
+  dplyr::inner_join(
+    thisDomain,
+    subject_groups,
+    by = c("subjid" = "SubjectID")
+  )
 })
 
 # Save ----
 
-# The domain data is fetched using a function, so we don't export it
+# The mapped domain data is fetched using a function, so we don't export it
 # directly.
 usethis::use_data(
-  lDomainData,
+  sample_lMapped,
   overwrite = TRUE,
   internal = TRUE,
   compress = "bzip2"
@@ -187,13 +175,10 @@ rm(
   has_neither,
   has_red_only,
   lAnalysis,
-  lDomainData,
   lMapped,
   lMappings,
   lRaw,
   lSource,
-  lUser,
-  lUserWorkflows,
   lWorkflows,
   raw_spec,
   sample_dfAnalyticsInput,
@@ -201,6 +186,7 @@ rm(
   sample_dfGroups,
   sample_dfMetrics,
   sample_dfResults,
+  sample_lMapped,
   site_subset,
   subject_groups
 )

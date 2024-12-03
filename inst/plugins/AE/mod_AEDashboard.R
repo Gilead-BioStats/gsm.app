@@ -26,7 +26,7 @@ mod_AEDashboard_server <- function(id, rctv_dfAE) {
       dfAE <- rctv_dfAE()
       n_sae <- 0L
       if (NROW(dfAE)) {
-        n_sae <- sum(dfAE$serious == "Y")
+        n_sae <- sum(dfAE$aeser == "Y")
       }
       return(n_sae)
     })
@@ -41,7 +41,7 @@ mod_AEDashboard_server <- function(id, rctv_dfAE) {
           axis.title = ggplot2::element_blank(),
           axis.text.y = ggplot2::element_blank()
         ) +
-        ggplot2::aes(x = .data$toxicity_grade) +
+        ggplot2::aes(x = .data$aetoxgr) +
         ggplot2::geom_bar(fill = "#007BC2") +
         ggplot2::geom_text(
           stat = "count",

@@ -117,26 +117,29 @@
 #' @export
 #'
 #' @examples
-#' head(sample_fnFetchData("AdverseEvents"))
-#' head(sample_fnFetchData("AdverseEvents", strSiteID = "0X103"))
-#' head(sample_fnFetchData("AdverseEvents", strSubjectID = "1350"))
+#' head(sample_fnFetchData("AE"))
+#' head(sample_fnFetchData("AE", strSiteID = "0X103"))
+#' head(sample_fnFetchData("AE", strSubjectID = "1350"))
 sample_fnFetchData <- function(
   strDomain = c(
-    "AdverseEvents",
-    "DataEntry",
-    "Enrollment",
-    "Lab",
-    "ProtocolDeviations",
-    "Queries",
-    "StudyCompletion",
-    "Subject",
-    "TreatmentCompletion"
+    "AE",
+    "ENROLL",
+    "LB",
+    "PD",
+    "SDRGCOMP",
+    "STUDCOMP",
+    "SUBJ",
+    "DATACHG",
+    "DATAENT",
+    "QUERY"
   ),
   strSiteID = NULL,
   strSubjectID = NULL
 ) {
+  strDomain <- toupper(strDomain)
   strDomain <- rlang::arg_match(strDomain)
-  df <- lDomainData[[strDomain]]
+  df <- sample_lMapped[[paste0("Mapped_", strDomain)]]
+  df <- dplyr::rename(df, SubjectID = "subjid")
   if (length(strSiteID) && strSiteID != "None") {
     df <- dplyr::filter(df, .data$GroupID == strSiteID)
   }

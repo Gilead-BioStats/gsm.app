@@ -5,8 +5,8 @@
 \title{Fetch Data for a Domain}
 \usage{
 sample_fnFetchData(
-  strDomain = c("AdverseEvents", "DataEntry", "Enrollment", "Lab", "ProtocolDeviations",
-    "Queries", "StudyCompletion", "Subject", "TreatmentCompletion"),
+  strDomain = c("AE", "ENROLL", "LB", "PD", "SDRGCOMP", "STUDCOMP", "SUBJ", "DATACHG",
+    "DATAENT", "QUERY"),
   strSiteID = NULL,
   strSubjectID = NULL
 )
