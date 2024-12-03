@@ -28,9 +28,9 @@ This is a sample function demonstrating the type of function the user will
 supply to find additional data about a given domain.
 }
 \examples{
-head(sample_fnFetchData("AdverseEvents"))
-head(sample_fnFetchData("AdverseEvents", strSiteID = "0X103"))
-head(sample_fnFetchData("AdverseEvents", strSubjectID = "1350"))
+head(sample_fnFetchData("AE"))
+head(sample_fnFetchData("AE", strSiteID = "0X103"))
+head(sample_fnFetchData("AE", strSubjectID = "1350"))
 }
 \seealso{
 Other sample data: 

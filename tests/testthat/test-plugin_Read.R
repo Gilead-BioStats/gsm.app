@@ -1,5 +1,5 @@
 test_that("plugin_Read checks for yaml existence", {
-  path <- test_path("fixtures", "plugins", "empty")
+  path <- test_path("fixtures", "plugins", "doesnotexist")
   expect_error(
     {
       plugin_Read(path)
