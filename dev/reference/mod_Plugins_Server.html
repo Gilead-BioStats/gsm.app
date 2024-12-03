@@ -43,9 +43,9 @@
 <span>  <span class="va">id</span>,</span>
 <span>  <span class="va">lPlugins</span>,</span>
 <span>  <span class="va">fnFetchData</span>,</span>
-<span>  <span class="va">rctv_InputMetric</span>,</span>
-<span>  <span class="va">rctv_InputSite</span>,</span>
-<span>  <span class="va">rctv_InputParticipant</span></span>
+<span>  <span class="va">rctv_strMetricID</span>,</span>
+<span>  <span class="va">rctv_strSiteID</span>,</span>
+<span>  <span class="va">rctv_strSubjectID</span></span>
 <span><span class="op">)</span></span></code></pre></div>
     </div>
 
@@ -68,19 +68,19 @@ and optional <code>strSiteID</code> and <code>strSubjectID</code> and returns a 
 information about the named domain.</p></dd>
 
 
-<dt id="arg-rctv-inputmetric">rctv_InputMetric<a class="anchor" aria-label="anchor" href="#arg-rctv-inputmetric"></a></dt>
+<dt id="arg-rctv-strmetricid">rctv_strMetricID<a class="anchor" aria-label="anchor" href="#arg-rctv-strmetricid"></a></dt>
 <dd><p><code>reactive character</code> A <code><a href="https://rdrr.io/pkg/shiny/man/reactive.html" class="external-link">shiny::reactive()</a></code> object
-that returns the <code>MetricID</code> of the selected metric.</p></dd>
+that returns the selected <code>MetricID</code>.</p></dd>
 
 
-<dt id="arg-rctv-inputsite">rctv_InputSite<a class="anchor" aria-label="anchor" href="#arg-rctv-inputsite"></a></dt>
+<dt id="arg-rctv-strsiteid">rctv_strSiteID<a class="anchor" aria-label="anchor" href="#arg-rctv-strsiteid"></a></dt>
 <dd><p><code>reactive character</code> A <code><a href="https://rdrr.io/pkg/shiny/man/reactive.html" class="external-link">shiny::reactive()</a></code> object that
-returns the <code>GroupID</code> of the selected site.</p></dd>
+returns the <code>GroupID</code> of a site.</p></dd>
 
 
-<dt id="arg-rctv-inputparticipant">rctv_InputParticipant<a class="anchor" aria-label="anchor" href="#arg-rctv-inputparticipant"></a></dt>
-<dd><p><code>reactive character</code> A <code><a href="https://rdrr.io/pkg/shiny/man/reactive.html" class="external-link">shiny::reactive()</a></code>
-object that returns the <code>SubjectID</code> of the selected participant.</p></dd>
+<dt id="arg-rctv-strsubjectid">rctv_strSubjectID<a class="anchor" aria-label="anchor" href="#arg-rctv-strsubjectid"></a></dt>
+<dd><p><code>reactive character</code> A <code><a href="https://rdrr.io/pkg/shiny/man/reactive.html" class="external-link">shiny::reactive()</a></code> object
+that returns the <code>SubjectID</code> of the selected participant.</p></dd>
 
 </dl></div>
     <div class="section level2">
