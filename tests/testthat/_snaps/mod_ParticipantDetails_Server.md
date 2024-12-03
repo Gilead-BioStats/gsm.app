@@ -7,37 +7,57 @@
         <div class="card-body bslib-gap-spacing html-fill-item html-fill-container" style="margin-top:auto;margin-bottom:auto;flex:1 1 auto;">
           <h5>Participant Metadata</h5>
           <div class="metadata-list-item">
+            <div class="metadata-list-item-label">Studyid</div>
+            <div class="metadata-list-item-spacer"></div>
+            <div class="metadata-list-item-value">AA-AA-000-0000</div>
+          </div>
+          <div class="metadata-list-item">
+            <div class="metadata-list-item-label">Invid</div>
+            <div class="metadata-list-item-spacer"></div>
+            <div class="metadata-list-item-value">0X103</div>
+          </div>
+          <div class="metadata-list-item">
+            <div class="metadata-list-item-label">Country</div>
+            <div class="metadata-list-item-spacer"></div>
+            <div class="metadata-list-item-value">US</div>
+          </div>
+          <div class="metadata-list-item">
             <div class="metadata-list-item-label">Subject ID</div>
             <div class="metadata-list-item-spacer"></div>
             <div class="metadata-list-item-value">0008</div>
           </div>
           <div class="metadata-list-item">
-            <div class="metadata-list-item-label">Enrolled</div>
+            <div class="metadata-list-item-label">Subject Nsv</div>
+            <div class="metadata-list-item-spacer"></div>
+            <div class="metadata-list-item-value">0008-069XXX</div>
+          </div>
+          <div class="metadata-list-item">
+            <div class="metadata-list-item-label">Enrollyn</div>
             <div class="metadata-list-item-spacer"></div>
             <div class="metadata-list-item-value">Y</div>
           </div>
           <div class="metadata-list-item">
-            <div class="metadata-list-item-label">Study Start Date</div>
-            <div class="metadata-list-item-spacer"></div>
-            <div class="metadata-list-item-value">2004-10-17</div>
-          </div>
-          <div class="metadata-list-item">
-            <div class="metadata-list-item-label">Days On Study</div>
+            <div class="metadata-list-item-label">Timeonstudy</div>
             <div class="metadata-list-item-spacer"></div>
             <div class="metadata-list-item-value">235</div>
           </div>
           <div class="metadata-list-item">
-            <div class="metadata-list-item-label">Treatment Start Date</div>
+            <div class="metadata-list-item-label">Firstparticipantdate</div>
+            <div class="metadata-list-item-spacer"></div>
+            <div class="metadata-list-item-value">2004-10-17</div>
+          </div>
+          <div class="metadata-list-item">
+            <div class="metadata-list-item-label">Firstdosedate</div>
             <div class="metadata-list-item-spacer"></div>
             <div class="metadata-list-item-value">2004-11-13</div>
           </div>
           <div class="metadata-list-item">
-            <div class="metadata-list-item-label">Days On Treatment</div>
+            <div class="metadata-list-item-label">Timeontreatment</div>
             <div class="metadata-list-item-spacer"></div>
             <div class="metadata-list-item-value">203</div>
           </div>
           <div class="metadata-list-item">
-            <div class="metadata-list-item-label">Age</div>
+            <div class="metadata-list-item-label">Agerep</div>
             <div class="metadata-list-item-spacer"></div>
             <div class="metadata-list-item-value">49</div>
           </div>
@@ -52,7 +72,7 @@
             <div class="metadata-list-item-value">ASIAN</div>
           </div>
           <div class="metadata-list-item">
-            <div class="metadata-list-item-label">Ethnicity</div>
+            <div class="metadata-list-item-label">Ethnic</div>
             <div class="metadata-list-item-spacer"></div>
             <div class="metadata-list-item-value">out of bound:Ethnic</div>
           </div>

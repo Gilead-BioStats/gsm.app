@@ -5,6 +5,8 @@
 #' this package, because [shiny::testServer()] specifically expects an `id`
 #' argument in module server functions.
 #'
+#' @param chrDomains `character` A vector of names of domain data.frames to show
+#'   in the app. Supported domains are shown in the default value.
 #' @param chrLinkIDs `character` Module ids for multiple modules.
 #' @param chrLabels `character` A vector of labels for display to the user.
 #' @param chrMessage `character` A vector of message elements to be formatted

@@ -1,3 +1,16 @@
+# Ideally this should be defined in gsm.mapping.
+lDomainLabels <- list(
+  AE = "Adverse Events",
+  DATACHG = "Data Changes",
+  DATAENT = "Data Entry",
+  ENROLL = "Enrollment",
+  LB = "Lab",
+  PD = "Protocol Deviations",
+  QUERY = "Queries",
+  STUDCOMP = "Study Completion",
+  SDRGCOMP = "Treatment Completion"
+)
+
 #' Participant Details server
 #'
 #' Update Participant Details when the selected participant changes.
@@ -10,6 +23,10 @@
 mod_ParticipantDetails_Server <- function(
   id,
   fnFetchData,
+  chrDomains = c(
+    "AE", "ENROLL", "LB", "PD", "SDRGCOMP", "STUDCOMP",
+    "SUBJ", "DATACHG", "DATAENT", "QUERY"
+  ),
   rctv_strSubjectID
 ) {
   moduleServer(id, function(input, output, session) {
@@ -22,26 +39,22 @@ mod_ParticipantDetails_Server <- function(
       ) {
         return(NULL)
       }
-      domains <- c(
-        "AE",
-        "ENROLL",
-        "LB",
-        "PD",
-        "SDRGCOMP",
-        "STUDCOMP",
-        "SUBJ",
-        "DATACHG",
-        "DATAENT",
-        "QUERY"
-      )
       SubjectID <- rctv_strSubjectID()
       withProgress(
         message = "Loading participant data",
         {
-          l_dfs <- purrr::map(domains, function(this_domain) {
+          l_dfs <- purrr::map(chrDomains, function(this_domain) {
             fnFetchData(this_domain, strSubjectID = SubjectID)
           })
-          names(l_dfs) <- domains
+          names(l_dfs) <- chrDomains
+          # Make the names pretty.
+          domainLabels <- sort(unlist(gsm::MakeParamLabelsList(
+            chrDomains,
+            lParamLabels = lDomainLabels
+          )))
+          domainNames <- names(domainLabels)
+          l_dfs <- l_dfs[domainNames]
+          names(l_dfs) <- gsub(" ", "_", unname(domainLabels))
           l_dfs
         }
       )
@@ -51,16 +64,16 @@ mod_ParticipantDetails_Server <- function(
         as.list(rctv_lParticipantData()$SUBJ)
       }
     })
-    rctv_lParticipantMetricData <- reactive({
+    rctv_lParticipantDomainData <- reactive({
       lParticipantData <- rctv_lParticipantData()
       if (length(lParticipantData)) {
         lParticipantData$SUBJ <- NULL
         return(lParticipantData)
       }
     })
-    rctv_strSelectedMetric <- mod_ParticipantMetricSummary_Server(
-      "metric_summary",
-      rctv_lParticipantMetricData
+    rctv_strSelectedDomain <- mod_ParticipantDomainSummary_Server(
+      "domain_summary",
+      rctv_lParticipantDomainData
     )
 
     # Output ----
@@ -70,8 +83,8 @@ mod_ParticipantDetails_Server <- function(
 
     rctv_intSelectedRows <- mod_ParticipantDomain_Server(
       "domain",
-      rctv_lParticipantMetricData,
-      rctv_strSelectedMetric,
+      rctv_lParticipantDomainData,
+      rctv_strSelectedDomain,
       rctv_strSubjectID
     )
     return(rctv_intSelectedRows)

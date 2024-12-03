@@ -10,6 +10,10 @@ gsmApp_Server <- function(
   dfMetrics,
   dfResults,
   fnFetchData,
+  chrDomains = c(
+    "AE", "ENROLL", "LB", "PD", "SDRGCOMP", "STUDCOMP",
+    "SUBJ", "DATACHG", "DATAENT", "QUERY"
+  ),
   lPlugins = NULL,
   fnServer = NULL
 ) {
@@ -224,6 +228,7 @@ gsmApp_Server <- function(
     mod_ParticipantDetails_Server(
       "participant_details",
       fnFetchData = fnFetchData,
+      chrDomains = chrDomains,
       rctv_strSubjectID = rctv_strSubjectID
     )
 

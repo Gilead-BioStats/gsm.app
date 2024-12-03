@@ -950,6 +950,18 @@
       <td headers="Value" class="gt_row gt_right">2003-01-01</td></tr>
           <tr><td headers="Description" class="gt_row gt_left">Est Fpfv</td>
       <td headers="Value" class="gt_row gt_right">2003-01-01</td></tr>
+          <tr><td headers="Description" class="gt_row gt_left">Est Lplv</td>
+      <td headers="Value" class="gt_row gt_right">2021-06-01</td></tr>
+          <tr><td headers="Description" class="gt_row gt_left">Est Lpfv</td>
+      <td headers="Value" class="gt_row gt_right">2020-06-01</td></tr>
+          <tr><td headers="Description" class="gt_row gt_left">Therapeutic Area</td>
+      <td headers="Value" class="gt_row gt_right">Therapeutic Area</td></tr>
+          <tr><td headers="Description" class="gt_row gt_left">Protocol Indication</td>
+      <td headers="Value" class="gt_row gt_right">Protocol Indication</td></tr>
+          <tr><td headers="Description" class="gt_row gt_left">Phase</td>
+      <td headers="Value" class="gt_row gt_right">P3</td></tr>
+          <tr><td headers="Description" class="gt_row gt_left">Product</td>
+      <td headers="Value" class="gt_row gt_right">Product</td></tr>
           <tr><td headers="Description" class="gt_row gt_left">Site Target</td>
       <td headers="Value" class="gt_row gt_right">190</td></tr>
           <tr><td headers="Description" class="gt_row gt_left">Participant Target</td>

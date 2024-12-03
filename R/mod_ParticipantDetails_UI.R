@@ -13,7 +13,7 @@ mod_ParticipantDetails_UI <- function(id) {
       type = 7,
       id = ns("metadata-spinner")
     ),
-    mod_ParticipantMetricSummary_UI(ns("metric_summary")),
+    mod_ParticipantDomainSummary_UI(ns("domain_summary")),
     mod_ParticipantDomain_UI(ns("domain"))
   )
 }
