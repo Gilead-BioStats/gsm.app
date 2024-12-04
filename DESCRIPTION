@@ -46,7 +46,7 @@ Suggests:
     usethis,
     withr
 Remotes:
-    gsm=Gilead-BioStats/gsm@dev,
+    gsm=Gilead-BioStats/gsm@v2.1.2,
     gt=url::https://rstudio.r-universe.dev/src/contrib/gt_0.11.1.9000.tar.gz,
     safetyCharts=url::https://safetygraphics.r-universe.dev/src/contrib/safetyCharts_0.4.0.tar.gz
 Config/testthat/edition: 3
