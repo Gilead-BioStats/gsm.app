@@ -15,7 +15,7 @@ mod_Plugins_Server <- function(
     if (!is.null(lPlugins)) {
       for (i in seq_along(lPlugins)) {
         lPlugin <- lPlugins[[i]]
-        fnServer <- rlang::as_function(lPlugin$fnServer)
+        fnServer <- rlang::as_function(lPlugin$shiny$Server)
         args_available <- list(
           fnFetchData = fnFetchData,
           rctv_strMetricID = rctv_strMetricID,

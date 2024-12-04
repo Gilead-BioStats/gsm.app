@@ -41,9 +41,10 @@ mod_ParticipantDetails_Server <- function(
           })
           names(l_dfs) <- chrDomains
           # Make the names pretty.
+          usedDomainLabels <- chrDomainLabels[!names(chrDomainLabels) == "SUBJ"]
           domainLabels <- sort(unlist(gsm::MakeParamLabelsList(
             chrDomains,
-            lParamLabels = chrDomainLabels
+            lParamLabels = usedDomainLabels
           )))
           domainNames <- names(domainLabels)
           l_dfs <- l_dfs[domainNames]

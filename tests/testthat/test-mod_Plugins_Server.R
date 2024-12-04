@@ -6,14 +6,14 @@ test_that("mod_Plugins_Server outputs the expected result", {
       id = "testServer",
       lPlugins = list(
         list(
-          strTitle = "Plugin Test",
-          fnServer = function(id, rctv_strSubjectID) {
+          meta = list(ID = "TEST", Name = "Plugin Test"),
+          shiny = list(Server = function(id, rctv_strSubjectID) {
             moduleServer(id, function(input, output, session) {
               output$test <- shiny::renderText({
                 paste("The selected participant is", rctv_strSubjectID())
               })
             })
-          }
+          })
         )
       ),
       fnFetchData = sample_fnFetchData,

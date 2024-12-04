@@ -144,6 +144,7 @@ chrDomainLabels <- c(
   PD = "Protocol Deviations",
   QUERY = "Queries",
   STUDCOMP = "Study Completion",
+  SUBJ = "Subject Metadata",
   SDRGCOMP = "Treatment Completion"
 )
 

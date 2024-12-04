@@ -7,7 +7,7 @@
 validate_dfMetrics(x)
 }
 \arguments{
-\item{x}{The object to validate.}
+\item{x}{An object to validate.}
 }
 \value{
 \code{x}, if it passes the checks.

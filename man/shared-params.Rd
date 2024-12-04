@@ -4,6 +4,11 @@
 \alias{shared-params}
 \title{Parameters used in multiple functions}
 \arguments{
+\item{chrAllowedFields}{\code{character} A vector of names of allowed fields in an
+object.}
+
+\item{chrAllowedValues}{\code{character} A vector of allowed values for a vector.}
+
 \item{chrDomains}{\code{character} A vector of names of domain data.frames to show
 in the app. Supported domains are shown in the default value.}
 
@@ -17,16 +22,13 @@ via \code{\link[cli:cli_bullets]{cli::cli_bullets()}}.}
 \item{chrMetrics}{\code{character} A named vector of MetricIDs, where the names
 are the full Metric.}
 
-\item{chrPluginFields}{\code{character} A vector of allowed fields in a Plugin
-definition.}
-
 \item{chrPluginFiles}{\code{character} The files in a plugin directory.}
 
 \item{chrRequiredColumns}{\code{character} A vector of expected columns in a
 data.frame.}
 
-\item{chrRequiredFields}{\code{character} A vector of expected fields in a Plugin
-definition.}
+\item{chrRequiredFields}{\code{character} A vector of names of required fields in
+an object.}
 
 \item{chrSites}{\code{character} A vector of sites available in the study.}
 
@@ -223,8 +225,13 @@ study.}
 
 \item{strValue}{\code{character} The value of a field.}
 
+\item{strWhat}{\code{character} A sentence-case description of the object being
+inspected.}
+
 \item{tagListSidebar}{\code{taglist} An optional \code{\link[htmltools:tagList]{htmltools::tagList()}} of
 additional elements to add to the top of the app sidebar.}
+
+\item{x}{An object to validate.}
 }
 \description{
 Reused parameter definitions are gathered here for easier usage. Note: We
