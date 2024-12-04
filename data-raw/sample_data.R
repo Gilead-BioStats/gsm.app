@@ -131,12 +131,67 @@ sample_lMapped <- purrr::map(lMapped, function(thisDomain) {
   )
 })
 
+# User-facing names ----
+
+# Ideally this should all be defined in gsm.mapping.
+
+chrDomainLabels <- c(
+  AE = "Adverse Events",
+  DATACHG = "Data Changes",
+  DATAENT = "Data Entry",
+  ENROLL = "Enrollment",
+  LB = "Lab",
+  PD = "Protocol Deviations",
+  QUERY = "Queries",
+  STUDCOMP = "Study Completion",
+  SDRGCOMP = "Treatment Completion"
+)
+
+chrFieldNames <- c(
+  aeen_dt = "End Date",
+  aeser = "Serious",
+  aest_dt = "Start Date",
+  aetoxgr = "Toxicity Grade",
+  agerep = "Age",
+  companycategory = "Company Category",
+  compreas = "Discontinuation Reason",
+  compyn = "Completed Study",
+  deemedimportant = "Deemed Important",
+  deviationdate = "Deviation Date",
+  enroll_dt = "Enrollment Date",
+  enrollyn = "Enrolled",
+  ethnic = "Ethnicity",
+  fieldoid = "Field",
+  firstdosedate = "Treatment Start Date",
+  firstparticipantdate = "Study Start Date",
+  formoid = "Form",
+  lb_dt = "Visit Date",
+  lbtstnam = "Lab Test",
+  mdrpt_nsv = "Preferred Term",
+  mdrsoc_nsv = "System Organ Class",
+  queryage = "Query Age",
+  querystatus = "Query Status",
+  sdrgreas = "Discontinuation Reason",
+  sdrgyn = "Completed Treatment",
+  sfreas = "Screen Failure Reason",
+  siresn = "Result",
+  subject_nsv = "Intake ID",
+  subjectid = "Intake ID",
+  subjid = "Subject ID",
+  timeonstudy = "Days on Study",
+  timeontreatment = "Days on Treatment",
+  toxgrg_nsv = "Toxicity Grade",
+  visnam = "Visit"
+)
+
 # Save ----
 
 # The mapped domain data is fetched using a function, so we don't export it
 # directly.
 usethis::use_data(
   sample_lMapped,
+  chrDomainLabels,
+  chrFieldNames,
   overwrite = TRUE,
   internal = TRUE,
   compress = "bzip2"
@@ -168,6 +223,8 @@ usethis::use_data(
 
 # Clean up ----
 rm(
+  chrDomainLabels,
+  chrFieldNames,
   dfResults,
   flag_summary,
   has_amber_only,

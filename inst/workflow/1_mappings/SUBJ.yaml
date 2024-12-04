@@ -31,8 +31,6 @@ spec:
       type: character
     race:
       type: character
-    ethnic:
-      type: character
 steps:
   - output: Mapped_SUBJ
     name: RunQuery

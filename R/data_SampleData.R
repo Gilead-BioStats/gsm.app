@@ -139,6 +139,8 @@ sample_fnFetchData <- function(
   strDomain <- toupper(strDomain)
   strDomain <- rlang::arg_match(strDomain)
   df <- sample_lMapped[[paste0("Mapped_", strDomain)]]
+  df$studyid <- NULL
+  df$invid <- NULL
   df <- dplyr::rename(df, SubjectID = "subjid")
   if (length(strSiteID) && strSiteID != "None") {
     df <- dplyr::filter(df, .data$GroupID == strSiteID)
@@ -146,5 +148,5 @@ sample_fnFetchData <- function(
   if (length(strSubjectID) && strSubjectID != "None") {
     df <- dplyr::filter(df, .data$SubjectID == strSubjectID)
   }
-  return(df)
+  return(dplyr::select(df, "SubjectID", "GroupID", dplyr::everything()))
 }

@@ -6,9 +6,19 @@ test_that("sample_fnFetchData returns expected data", {
 
   expect_named(
     test_result,
-    c("studyid", "invid", "country", "SubjectID", "subject_nsv",
-      "enrollyn", "timeonstudy", "firstparticipantdate", "firstdosedate",
-      "timeontreatment", "agerep", "sex", "race", "ethnic", "GroupID"
+    c(
+      "SubjectID",
+      "GroupID",
+      "country",
+      "subject_nsv",
+      "enrollyn",
+      "timeonstudy",
+      "firstparticipantdate",
+      "firstdosedate",
+      "timeontreatment",
+      "agerep",
+      "sex",
+      "race"
     )
   )
   expect_equal(nrow(test_result), 243)
@@ -22,9 +32,19 @@ test_that("sample_fnFetchData returns expected data by Site", {
 
   expect_named(
     test_result,
-    c("studyid", "invid", "country", "SubjectID", "subject_nsv",
-      "enrollyn", "timeonstudy", "firstparticipantdate", "firstdosedate",
-      "timeontreatment", "agerep", "sex", "race", "ethnic", "GroupID"
+    c(
+      "SubjectID",
+      "GroupID",
+      "country",
+      "subject_nsv",
+      "enrollyn",
+      "timeonstudy",
+      "firstparticipantdate",
+      "firstdosedate",
+      "timeontreatment",
+      "agerep",
+      "sex",
+      "race"
     )
   )
   expect_equal(nrow(test_result), 5)
@@ -38,9 +58,19 @@ test_that("sample_fnFetchData returns expected data by Subject", {
 
   expect_named(
     test_result,
-    c("studyid", "invid", "country", "SubjectID", "subject_nsv",
-      "enrollyn", "timeonstudy", "firstparticipantdate", "firstdosedate",
-      "timeontreatment", "agerep", "sex", "race", "ethnic", "GroupID"
+    c(
+      "SubjectID",
+      "GroupID",
+      "country",
+      "subject_nsv",
+      "enrollyn",
+      "timeonstudy",
+      "firstparticipantdate",
+      "firstdosedate",
+      "timeontreatment",
+      "agerep",
+      "sex",
+      "race"
     )
   )
   expect_equal(nrow(test_result), 1)

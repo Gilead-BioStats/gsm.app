@@ -1,16 +1,3 @@
-# Ideally this should be defined in gsm.mapping.
-lDomainLabels <- list(
-  AE = "Adverse Events",
-  DATACHG = "Data Changes",
-  DATAENT = "Data Entry",
-  ENROLL = "Enrollment",
-  LB = "Lab",
-  PD = "Protocol Deviations",
-  QUERY = "Queries",
-  STUDCOMP = "Study Completion",
-  SDRGCOMP = "Treatment Completion"
-)
-
 #' Participant Details server
 #'
 #' Update Participant Details when the selected participant changes.
@@ -44,13 +31,19 @@ mod_ParticipantDetails_Server <- function(
         message = "Loading participant data",
         {
           l_dfs <- purrr::map(chrDomains, function(this_domain) {
-            fnFetchData(this_domain, strSubjectID = SubjectID)
+            df <- fnFetchData(this_domain, strSubjectID = SubjectID)
+            clean_colnames <- gsm::MakeParamLabelsList(
+              colnames(df),
+              chrFieldNames
+            )
+            colnames(df) <- unname(unlist(clean_colnames[colnames(df)]))
+            df
           })
           names(l_dfs) <- chrDomains
           # Make the names pretty.
           domainLabels <- sort(unlist(gsm::MakeParamLabelsList(
             chrDomains,
-            lParamLabels = lDomainLabels
+            lParamLabels = chrDomainLabels
           )))
           domainNames <- names(domainLabels)
           l_dfs <- l_dfs[domainNames]

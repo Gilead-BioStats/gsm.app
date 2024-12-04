@@ -34,21 +34,18 @@ test_that("mod_ParticipantDetails_Server fetches participant data", {
     ),
     {
       expected_metadata_fields <- c(
-        "studyid",
-        "invid",
-        "country",
-        "SubjectID",
-        "subject_nsv",
-        "enrollyn",
-        "timeonstudy",
-        "firstparticipantdate",
-        "firstdosedate",
-        "timeontreatment",
-        "agerep",
-        "sex",
-        "race",
-        "ethnic",
-        "GroupID"
+        "Subject ID",
+        "Group ID",
+        "Country",
+        "Intake ID",
+        "Enrolled",
+        "Days on Study",
+        "Study Start Date",
+        "Treatment Start Date",
+        "Days on Treatment",
+        "Age",
+        "Sex",
+        "Race"
       )
       expected_data_tables <- c(
         "Adverse_Events",
@@ -66,7 +63,7 @@ test_that("mod_ParticipantDetails_Server fetches participant data", {
 
       expect_length(rctv_lParticipantData(), 10)
       expect_named(rctv_lParticipantData(), expected_data_tables)
-      expect_length(rctv_lParticipantMetadata(), 15)
+      expect_length(rctv_lParticipantMetadata(), 12)
       expect_named(
         rctv_lParticipantMetadata(),
         expected_metadata_fields
@@ -80,7 +77,7 @@ test_that("mod_ParticipantDetails_Server fetches participant data", {
       rctv_strSubjectID("0010")
       expect_length(rctv_lParticipantData(), 10)
       expect_named(rctv_lParticipantData(), expected_data_tables)
-      expect_length(rctv_lParticipantMetadata(), 15)
+      expect_length(rctv_lParticipantMetadata(), 12)
       expect_named(
         rctv_lParticipantMetadata(),
         expected_metadata_fields
