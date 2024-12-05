@@ -10,6 +10,7 @@
 #' @param chrAllowedValues `character` A vector of allowed values for a vector.
 #' @param chrDomains `character` A vector of names of domain data.frames to show
 #'   in the app. Supported domains are shown in the default value.
+#' @param chrExclude `character` A vector of names to *not* update.
 #' @param chrLinkIDs `character` Module ids for multiple modules.
 #' @param chrLabels `character` A vector of labels for display to the user.
 #' @param chrMessage `character` A vector of message elements to be formatted
@@ -57,6 +58,7 @@
 #' @param intAmber `integer` The number of sites with at least one amber flag.
 #' @param lMetric `list` Named list of data describing a single metric, as well
 #'   as things like which group is selected.
+#' @param lDomains `list` Named list of data domain data.frames.
 #' @param lParticipantMetadata `list` Named list of data describing a single
 #'   participant.
 #' @param lPluginDefinition `list` A named list with required elements

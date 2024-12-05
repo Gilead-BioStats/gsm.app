@@ -82,3 +82,21 @@ findNonZeroDecimals <- function(dblX, intMaxDecimals = 5L) {
   # No interesting decimals.
   return(0L)
 }
+
+#' Apply user-facing domain names
+#'
+#' @inheritParams shared-params
+#' @return The list of domain dfs, with better user-facing names.
+#' @keywords internal
+applyPrettyDomainNames <- function(lDomains, chrExclude = "SUBJ") {
+  chrDomains <- names(lDomains)
+  usedDomainLabels <- chrDomainLabels[!names(chrDomainLabels) %in% chrExclude]
+  domainLabels <- sort(unlist(
+    gsm::MakeParamLabelsList(chrDomains, usedDomainLabels)
+  ))
+  # Sort by those labels.
+  lDomains <- lDomains[names(domainLabels)]
+  # Keep spaces out of names for better Shiny compatability.
+  names(lDomains) <- gsub(" ", "_", unname(domainLabels))
+  lDomains
+}

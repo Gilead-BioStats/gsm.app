@@ -12,6 +12,8 @@ object.}
 \item{chrDomains}{\code{character} A vector of names of domain data.frames to show
 in the app. Supported domains are shown in the default value.}
 
+\item{chrExclude}{\code{character} A vector of names to \emph{not} update.}
+
 \item{chrLinkIDs}{\code{character} Module ids for multiple modules.}
 
 \item{chrLabels}{\code{character} A vector of labels for display to the user.}
@@ -83,6 +85,8 @@ of the main app server function.}
 
 \item{lMetric}{\code{list} Named list of data describing a single metric, as well
 as things like which group is selected.}
+
+\item{lDomains}{\code{list} Named list of data domain data.frames.}
 
 \item{lParticipantMetadata}{\code{list} Named list of data describing a single
 participant.}

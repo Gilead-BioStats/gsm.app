@@ -30,20 +30,11 @@ mod_ParticipantDetails_Server <- function(
       withProgress(
         message = "Loading participant data",
         {
-          l_dfs <- purrr::map(chrDomains, function(this_domain) {
+          lDomains <- purrr::map(chrDomains, function(this_domain) {
             fnFetchData(this_domain, strSubjectID = SubjectID)
           })
-          names(l_dfs) <- chrDomains
-          # Make the names pretty.
-          usedDomainLabels <- chrDomainLabels[!names(chrDomainLabels) == "SUBJ"]
-          domainLabels <- sort(unlist(gsm::MakeParamLabelsList(
-            chrDomains,
-            lParamLabels = usedDomainLabels
-          )))
-          domainNames <- names(domainLabels)
-          l_dfs <- l_dfs[domainNames]
-          names(l_dfs) <- gsub(" ", "_", unname(domainLabels))
-          l_dfs
+          names(lDomains) <- chrDomains
+          applyPrettyDomainNames(lDomains)
         }
       )
     })
