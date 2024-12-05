@@ -34,18 +34,18 @@ test_that("mod_ParticipantDetails_Server fetches participant data", {
     ),
     {
       expected_metadata_fields <- c(
-        "Subject ID",
-        "Group ID",
-        "Country",
-        "Intake ID",
-        "Enrolled",
-        "Days on Study",
-        "Study Start Date",
-        "Treatment Start Date",
-        "Days on Treatment",
-        "Age",
-        "Sex",
-        "Race"
+        "SubjectID",
+        "GroupID",
+        "country",
+        "subject_nsv",
+        "enrollyn",
+        "timeonstudy",
+        "firstparticipantdate",
+        "firstdosedate",
+        "timeontreatment",
+        "agerep",
+        "sex",
+        "race"
       )
       expected_data_tables <- c(
         "Adverse_Events",

@@ -31,13 +31,7 @@ mod_ParticipantDetails_Server <- function(
         message = "Loading participant data",
         {
           l_dfs <- purrr::map(chrDomains, function(this_domain) {
-            df <- fnFetchData(this_domain, strSubjectID = SubjectID)
-            clean_colnames <- gsm::MakeParamLabelsList(
-              colnames(df),
-              chrFieldNames
-            )
-            colnames(df) <- unname(unlist(clean_colnames[colnames(df)]))
-            df
+            fnFetchData(this_domain, strSubjectID = SubjectID)
           })
           names(l_dfs) <- chrDomains
           # Make the names pretty.

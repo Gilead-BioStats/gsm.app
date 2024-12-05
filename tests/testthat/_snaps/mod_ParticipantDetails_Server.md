@@ -32,7 +32,7 @@
             <div class="metadata-list-item-value">Y</div>
           </div>
           <div class="metadata-list-item">
-            <div class="metadata-list-item-label">Days On Study</div>
+            <div class="metadata-list-item-label">Days on Study</div>
             <div class="metadata-list-item-spacer"></div>
             <div class="metadata-list-item-value">235</div>
           </div>
@@ -47,7 +47,7 @@
             <div class="metadata-list-item-value">2004-11-13</div>
           </div>
           <div class="metadata-list-item">
-            <div class="metadata-list-item-label">Days On Treatment</div>
+            <div class="metadata-list-item-label">Days on Treatment</div>
             <div class="metadata-list-item-spacer"></div>
             <div class="metadata-list-item-value">203</div>
           </div>
