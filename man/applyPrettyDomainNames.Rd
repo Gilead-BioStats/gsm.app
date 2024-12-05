@@ -4,12 +4,10 @@
 \alias{applyPrettyDomainNames}
 \title{Apply user-facing domain names}
 \usage{
-applyPrettyDomainNames(lDomains, chrExclude = "SUBJ")
+applyPrettyDomainNames(lDomains)
 }
 \arguments{
 \item{lDomains}{\code{list} Named list of data domain data.frames.}
-
-\item{chrExclude}{\code{character} A vector of names to \emph{not} update.}
 }
 \value{
 The list of domain dfs, with better user-facing names.

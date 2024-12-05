@@ -12,8 +12,6 @@ object.}
 \item{chrDomains}{\code{character} A vector of names of domain data.frames to show
 in the app. Supported domains are shown in the default value.}
 
-\item{chrExclude}{\code{character} A vector of names to \emph{not} update.}
-
 \item{chrLinkIDs}{\code{character} Module ids for multiple modules.}
 
 \item{chrLabels}{\code{character} A vector of labels for display to the user.}
