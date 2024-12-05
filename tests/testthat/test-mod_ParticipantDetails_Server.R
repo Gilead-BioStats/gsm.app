@@ -55,11 +55,11 @@ test_that("mod_ParticipantDetails_Server fetches participant data", {
         "Lab",
         "Protocol_Deviations",
         "Queries",
-        "SUBJ",
         "Study_Completion",
+        "Subject_Metadata",
         "Treatment_Completion"
       )
-      expected_domain_data_tables <- setdiff(expected_data_tables, "SUBJ")
+      expected_domain_data_tables <- setdiff(expected_data_tables, "Subject_Metadata")
 
       expect_length(rctv_lParticipantData(), 10)
       expect_named(rctv_lParticipantData(), expected_data_tables)

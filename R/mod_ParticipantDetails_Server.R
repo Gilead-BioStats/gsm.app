@@ -40,13 +40,13 @@ mod_ParticipantDetails_Server <- function(
     })
     rctv_lParticipantMetadata <- reactive({
       if (length(rctv_lParticipantData())) {
-        as.list(rctv_lParticipantData()$SUBJ)
+        as.list(rctv_lParticipantData()$Subject_Metadata)
       }
     })
     rctv_lParticipantDomainData <- reactive({
       lParticipantData <- rctv_lParticipantData()
       if (length(lParticipantData)) {
-        lParticipantData$SUBJ <- NULL
+        lParticipantData$Subject_Metadata <- NULL
         return(lParticipantData)
       }
     })
