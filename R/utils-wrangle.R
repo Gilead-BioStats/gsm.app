@@ -90,9 +90,8 @@ findNonZeroDecimals <- function(dblX, intMaxDecimals = 5L) {
 #' @keywords internal
 applyPrettyDomainNames <- function(lDomains) {
   chrDomains <- names(lDomains)
-  usedDomainLabels <- chrDomainLabels[!names(chrDomainLabels) %in% chrExclude]
   domainLabels <- sort(unlist(
-    gsm::MakeParamLabelsList(chrDomains, usedDomainLabels)
+    gsm::MakeParamLabelsList(chrDomains, chrDomainLabels)
   ))
   # Sort by those labels.
   lDomains <- lDomains[names(domainLabels)]
