@@ -2,8 +2,8 @@ test_that("mod_Plugins_UI creates the expected UI", {
   test_result <- mod_Plugins_UI(
     "testID",
     lPlugins <- list(list(
-      strTitle = "Plugin Test",
-      fnUI = function(id) "TestUI"
+      meta = list(ID = "TEST", Name = "Plugin Test"),
+      shiny = list(UI = function(id) "TestUI")
     ))
   )
   expect_type(test_result, "list")
@@ -19,12 +19,12 @@ test_that("mod_Plugins_UI creates the expected UI with multiple plugins", {
     "testID",
     lPlugins <- list(
       list(
-        strTitle = "Plugin Test",
-        fnUI = function(id) "TestUI"
+        meta = list(ID = "TEST", Name = "Plugin Test"),
+        shiny = list(UI = function(id) "TestUI")
       ),
       list(
-        strTitle = "Plugin Test 2",
-        fnUI = function(id) "TestUI 2"
+        meta = list(ID = "TESTTOO", Name = "Plugin Test 2"),
+        shiny = list(UI = function(id) "TestUI 2")
       )
     )
   )

@@ -10,13 +10,13 @@ test_that("mod_ParticipantDetails_Server 'None' participant selection", {
       expect_null(rctv_lParticipantData())
 
       rctv_strSubjectID("0008")
-      expect_length(rctv_lParticipantData(), 9)
+      expect_length(rctv_lParticipantData(), 10)
 
       rctv_strSubjectID("")
       expect_null(rctv_lParticipantData())
 
       rctv_strSubjectID("0010")
-      expect_length(rctv_lParticipantData(), 9)
+      expect_length(rctv_lParticipantData(), 10)
 
       rctv_strSubjectID(NULL)
       expect_null(rctv_lParticipantData())
@@ -35,55 +35,57 @@ test_that("mod_ParticipantDetails_Server fetches participant data", {
     {
       expected_metadata_fields <- c(
         "SubjectID",
-        "enrolled",
-        "study_start_date",
-        "days_on_study",
-        "treatment_start_date",
-        "days_on_treatment",
-        "age",
+        "GroupID",
+        "country",
+        "subject_nsv",
+        "enrollyn",
+        "timeonstudy",
+        "firstparticipantdate",
+        "firstdosedate",
+        "timeontreatment",
+        "agerep",
         "sex",
-        "race",
-        "ethnicity",
-        "GroupID"
+        "race"
       )
       expected_data_tables <- c(
-        "AdverseEvents",
-        "DataEntry",
+        "Adverse_Events",
+        "Data_Changes",
+        "Data_Entry",
         "Enrollment",
         "Lab",
-        "ProtocolDeviations",
+        "Protocol_Deviations",
         "Queries",
-        "StudyCompletion",
-        "Subject",
-        "TreatmentCompletion"
+        "Study_Completion",
+        "Subject_Metadata",
+        "Treatment_Completion"
       )
-      expected_metric_data_tables <- setdiff(expected_data_tables, "Subject")
+      expected_domain_data_tables <- setdiff(expected_data_tables, "Subject_Metadata")
 
-      expect_length(rctv_lParticipantData(), 9)
+      expect_length(rctv_lParticipantData(), 10)
       expect_named(rctv_lParticipantData(), expected_data_tables)
-      expect_length(rctv_lParticipantMetadata(), 11)
+      expect_length(rctv_lParticipantMetadata(), 12)
       expect_named(
         rctv_lParticipantMetadata(),
         expected_metadata_fields
       )
-      expect_length(rctv_lParticipantMetricData(), 8)
+      expect_length(rctv_lParticipantDomainData(), 9)
       expect_named(
-        rctv_lParticipantMetricData(),
-        expected_metric_data_tables
+        rctv_lParticipantDomainData(),
+        expected_domain_data_tables
       )
 
       rctv_strSubjectID("0010")
-      expect_length(rctv_lParticipantData(), 9)
+      expect_length(rctv_lParticipantData(), 10)
       expect_named(rctv_lParticipantData(), expected_data_tables)
-      expect_length(rctv_lParticipantMetadata(), 11)
+      expect_length(rctv_lParticipantMetadata(), 12)
       expect_named(
         rctv_lParticipantMetadata(),
         expected_metadata_fields
       )
-      expect_length(rctv_lParticipantMetricData(), 8)
+      expect_length(rctv_lParticipantDomainData(), 9)
       expect_named(
-        rctv_lParticipantMetricData(),
-        expected_metric_data_tables
+        rctv_lParticipantDomainData(),
+        expected_domain_data_tables
       )
     }
   )

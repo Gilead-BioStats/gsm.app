@@ -5,19 +5,22 @@
 #' this package, because [shiny::testServer()] specifically expects an `id`
 #' argument in module server functions.
 #'
+#' @param chrAllowedFields `character` A vector of names of allowed fields in an
+#'   object.
+#' @param chrAllowedValues `character` A vector of allowed values for a vector.
+#' @param chrDomains `character` A vector of names of domain data.frames to show
+#'   in the app. Supported domains are shown in the default value.
 #' @param chrLinkIDs `character` Module ids for multiple modules.
 #' @param chrLabels `character` A vector of labels for display to the user.
 #' @param chrMessage `character` A vector of message elements to be formatted
 #'   via [cli::cli_bullets()].
 #' @param chrMetrics `character` A named vector of MetricIDs, where the names
 #'   are the full Metric.
-#' @param chrPluginFields `character` A vector of allowed fields in a Plugin
-#'   definition.
 #' @param chrPluginFiles `character` The files in a plugin directory.
 #' @param chrRequiredColumns `character` A vector of expected columns in a
 #'   data.frame.
-#' @param chrRequiredFields `character` A vector of expected fields in a Plugin
-#'   definition.
+#' @param chrRequiredFields `character` A vector of names of required fields in
+#'   an object.
 #' @param chrSites `character` A vector of sites available in the study.
 #' @param chrValues `character` A vector of values to associate with a vector of
 #'   labels.
@@ -54,6 +57,7 @@
 #' @param intAmber `integer` The number of sites with at least one amber flag.
 #' @param lMetric `list` Named list of data describing a single metric, as well
 #'   as things like which group is selected.
+#' @param lDomains `list` Named list of data domain data.frames.
 #' @param lParticipantMetadata `list` Named list of data describing a single
 #'   participant.
 #' @param lPluginDefinition `list` A named list with required elements
@@ -146,8 +150,11 @@
 #' @param strText `character` Text to display.
 #' @param strTitle `character` A title to display for the overall app.
 #' @param strValue `character` The value of a field.
+#' @param strWhat `character` A sentence-case description of the object being
+#'   inspected.
 #' @param tagListSidebar `taglist` An optional [htmltools::tagList()] of
 #'   additional elements to add to the top of the app sidebar.
+#' @param x An object to validate.
 #'
 #' @name shared-params
 #' @keywords internal

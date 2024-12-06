@@ -1,5 +1,5 @@
 test_that("plugin_Read checks for yaml existence", {
-  path <- test_path("fixtures", "plugins", "empty")
+  path <- test_path("fixtures", "plugins", "doesnotexist")
   expect_error(
     {
       plugin_Read(path)
@@ -14,7 +14,7 @@ test_that("plugin_Read checks definition fields", {
     {
       plugin_Read(path)
     },
-    class = "gsm.app-error-plugin-definition"
+    class = "gsm.app-error-object-fields"
   )
 
   path <- test_path("fixtures", "plugins", "extra_fields")
@@ -22,7 +22,7 @@ test_that("plugin_Read checks definition fields", {
     {
       plugin_Read(path)
     },
-    class = "gsm.app-error-plugin-definition"
+    class = "gsm.app-error-object-fields"
   )
 })
 
@@ -42,6 +42,10 @@ test_that("plugin_Read returns the expected object", {
   })
   expect_identical(
     plugin_definition,
-    list(strTitle = "Title", fnUI = "mod_UI", fnServer = "mod_Server")
+    list(
+      meta = list(Type = "Plugin", ID = "ID", Name = "Title"),
+      shiny = list(UI = "mod_UI", Server = "mod_Server"),
+      domains = c("AE", "SUBJ")
+    )
   )
 })

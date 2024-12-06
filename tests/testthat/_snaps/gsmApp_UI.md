@@ -358,15 +358,15 @@
                         </div>
                       </div>
                       <div class="bslib-grid-item bslib-gap-spacing html-fill-container">
-                        <div class="card bslib-card bslib-mb-spacing bslib-card-input html-fill-item html-fill-container" data-bslib-card-init data-full-screen="false" data-require-bs-caller="card()" data-require-bs-version="5" id="participant_details-metric_summary-card">
+                        <div class="card bslib-card bslib-mb-spacing bslib-card-input html-fill-item html-fill-container" data-bslib-card-init data-full-screen="false" data-require-bs-caller="card()" data-require-bs-version="5" id="participant_details-domain_summary-card">
                           <div class="card-body bslib-gap-spacing html-fill-item html-fill-container" style="margin-top:auto;margin-bottom:auto;flex:1 1 auto;">
-                            <h5>Metric Summary</h5>
-                            <div data-spinner-id="participant_details-metric_summary-spinner" class="shiny-spinner-output-container shiny-spinner-hideui">
+                            <h5>Domain Summary</h5>
+                            <div data-spinner-id="participant_details-domain_summary-spinner" class="shiny-spinner-output-container shiny-spinner-hideui">
                               <div class="load-container shiny-spinner-hidden load7">
-                                <div id="participant_details-metric_summary-spinner" class="loader">Loading...</div>
+                                <div id="participant_details-domain_summary-spinner" class="loader">Loading...</div>
                               </div>
                               <div style="height:400px" class="shiny-spinner-placeholder"></div>
-                              <div id="participant_details-metric_summary-metric_list" class="shiny-html-output"></div>
+                              <div id="participant_details-domain_summary-domain_list" class="shiny-html-output"></div>
                             </div>
                           </div>
                           <bslib-tooltip placement="auto" bsOptions="[]" data-require-bs-version="5" data-require-bs-caller="tooltip()">
@@ -1345,6 +1345,18 @@
       <td headers="Value" class="gt_row gt_right">2003-01-01</td></tr>
           <tr><td headers="Description" class="gt_row gt_left">Est Fpfv</td>
       <td headers="Value" class="gt_row gt_right">2003-01-01</td></tr>
+          <tr><td headers="Description" class="gt_row gt_left">Est Lplv</td>
+      <td headers="Value" class="gt_row gt_right">2021-06-01</td></tr>
+          <tr><td headers="Description" class="gt_row gt_left">Est Lpfv</td>
+      <td headers="Value" class="gt_row gt_right">2020-06-01</td></tr>
+          <tr><td headers="Description" class="gt_row gt_left">Therapeutic Area</td>
+      <td headers="Value" class="gt_row gt_right">Therapeutic Area</td></tr>
+          <tr><td headers="Description" class="gt_row gt_left">Protocol Indication</td>
+      <td headers="Value" class="gt_row gt_right">Protocol Indication</td></tr>
+          <tr><td headers="Description" class="gt_row gt_left">Phase</td>
+      <td headers="Value" class="gt_row gt_right">P3</td></tr>
+          <tr><td headers="Description" class="gt_row gt_left">Product</td>
+      <td headers="Value" class="gt_row gt_right">Product</td></tr>
           <tr><td headers="Description" class="gt_row gt_left">Site Target</td>
       <td headers="Value" class="gt_row gt_right">190</td></tr>
           <tr><td headers="Description" class="gt_row gt_left">Participant Target</td>

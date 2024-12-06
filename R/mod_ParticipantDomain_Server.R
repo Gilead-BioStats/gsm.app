@@ -36,7 +36,7 @@ mod_ParticipantDomain_Server <- function(
         gtObj <- gt::gt(df) %>%
           out_gtInteractive(selection_mode = "multiple") %>%
           gt::cols_label(
-            .list = gsm::MakeParamLabelsList(colnames(df))
+            .list = gsm::MakeParamLabelsList(colnames(df), chrFieldNames)
           ) %>%
           out_gtSmartFmtNumbers(intMaxDecimals = 10L)
 

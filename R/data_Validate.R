@@ -1,6 +1,37 @@
 # We might want to do this entirely via workflows, but I feel like it's good to
 # check in the app itself since users don't HAVE to use workflows.
 
+validate_chrDomains <- function(chrDomains, envCall = rlang::caller_env()) {
+  known_domains <- c(
+    "AE",
+    "ENROLL",
+    "LB",
+    "PD",
+    "SDRGCOMP",
+    "STUDCOMP",
+    "SUBJ",
+    "DATACHG",
+    "DATAENT",
+    "QUERY"
+  )
+  upper_chrDomains <- union(toupper(chrDomains), "SUBJ")
+  unknown_domains <- setdiff(upper_chrDomains, known_domains)
+  if (length(unknown_domains)) {
+    unknown_domains_display <- chrDomains[
+      upper_chrDomains %in% unknown_domains
+    ]
+    gsmapp_abort(
+      c(
+        "{.arg chrDomains} must only contain known domains.",
+        x = "Unknown domains: {.field {unknown_domains_display}}."
+      ),
+      strClass = "invalid_input",
+      envCall = envCall
+    )
+  }
+  return(upper_chrDomains)
+}
+
 #' Confirm that an object is the expected df
 #'
 #' @inheritParams shared-params
