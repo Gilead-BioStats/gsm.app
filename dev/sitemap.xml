@@ -12,6 +12,7 @@
 <url><loc>https://gilead-biostats.github.io/gsm.app/dev/reference/Widget_PlotOutput.html</loc></url>
 <url><loc>https://gilead-biostats.github.io/gsm.app/dev/reference/Widget_ScatterPlot.html</loc></url>
 <url><loc>https://gilead-biostats.github.io/gsm.app/dev/reference/Widget_TimeSeries.html</loc></url>
+<url><loc>https://gilead-biostats.github.io/gsm.app/dev/reference/applyPrettyDomainNames.html</loc></url>
 <url><loc>https://gilead-biostats.github.io/gsm.app/dev/reference/choose_article.html</loc></url>
 <url><loc>https://gilead-biostats.github.io/gsm.app/dev/reference/colorScheme.html</loc></url>
 <url><loc>https://gilead-biostats.github.io/gsm.app/dev/reference/extract_field_name.html</loc></url>
@@ -51,10 +52,10 @@
 <url><loc>https://gilead-biostats.github.io/gsm.app/dev/reference/mod_MetricTable_UI.html</loc></url>
 <url><loc>https://gilead-biostats.github.io/gsm.app/dev/reference/mod_ParticipantDetails_Server.html</loc></url>
 <url><loc>https://gilead-biostats.github.io/gsm.app/dev/reference/mod_ParticipantDetails_UI.html</loc></url>
+<url><loc>https://gilead-biostats.github.io/gsm.app/dev/reference/mod_ParticipantDomainSummary_Server.html</loc></url>
+<url><loc>https://gilead-biostats.github.io/gsm.app/dev/reference/mod_ParticipantDomainSummary_UI.html</loc></url>
 <url><loc>https://gilead-biostats.github.io/gsm.app/dev/reference/mod_ParticipantDomain_Server.html</loc></url>
 <url><loc>https://gilead-biostats.github.io/gsm.app/dev/reference/mod_ParticipantDomain_UI.html</loc></url>
-<url><loc>https://gilead-biostats.github.io/gsm.app/dev/reference/mod_ParticipantMetricSummary_Server.html</loc></url>
-<url><loc>https://gilead-biostats.github.io/gsm.app/dev/reference/mod_ParticipantMetricSummary_UI.html</loc></url>
 <url><loc>https://gilead-biostats.github.io/gsm.app/dev/reference/mod_Plugins_Server.html</loc></url>
 <url><loc>https://gilead-biostats.github.io/gsm.app/dev/reference/mod_Plugins_UI.html</loc></url>
 <url><loc>https://gilead-biostats.github.io/gsm.app/dev/reference/mod_RAGPillSet_Server.html</loc></url>
@@ -94,10 +95,8 @@
 <url><loc>https://gilead-biostats.github.io/gsm.app/dev/reference/out_gtSmartFmtNumbers.html</loc></url>
 <url><loc>https://gilead-biostats.github.io/gsm.app/dev/reference/pipe.html</loc></url>
 <url><loc>https://gilead-biostats.github.io/gsm.app/dev/reference/plugin_Read.html</loc></url>
-<url><loc>https://gilead-biostats.github.io/gsm.app/dev/reference/plugin_Read_yaml.html</loc></url>
-<url><loc>https://gilead-biostats.github.io/gsm.app/dev/reference/plugin_Read_yaml_file.html</loc></url>
-<url><loc>https://gilead-biostats.github.io/gsm.app/dev/reference/plugin_Read_yaml_has_all.html</loc></url>
-<url><loc>https://gilead-biostats.github.io/gsm.app/dev/reference/plugin_Read_yaml_has_only.html</loc></url>
+<url><loc>https://gilead-biostats.github.io/gsm.app/dev/reference/plugin_ReadYaml.html</loc></url>
+<url><loc>https://gilead-biostats.github.io/gsm.app/dev/reference/plugin_ReadYamlFile.html</loc></url>
 <url><loc>https://gilead-biostats.github.io/gsm.app/dev/reference/run_gsm_app.html</loc></url>
 <url><loc>https://gilead-biostats.github.io/gsm.app/dev/reference/sample_dfAnalyticsInput.html</loc></url>
 <url><loc>https://gilead-biostats.github.io/gsm.app/dev/reference/sample_dfBounds.html</loc></url>
@@ -118,7 +117,10 @@
 <url><loc>https://gilead-biostats.github.io/gsm.app/dev/reference/validate_dfGroups.html</loc></url>
 <url><loc>https://gilead-biostats.github.io/gsm.app/dev/reference/validate_dfMetrics.html</loc></url>
 <url><loc>https://gilead-biostats.github.io/gsm.app/dev/reference/validate_dfResults.html</loc></url>
+<url><loc>https://gilead-biostats.github.io/gsm.app/dev/reference/validate_hasAllFields.html</loc></url>
+<url><loc>https://gilead-biostats.github.io/gsm.app/dev/reference/validate_hasOnlyFields.html</loc></url>
 <url><loc>https://gilead-biostats.github.io/gsm.app/dev/reference/validate_has_columns.html</loc></url>
+<url><loc>https://gilead-biostats.github.io/gsm.app/dev/reference/validate_in.html</loc></url>
 <url><loc>https://gilead-biostats.github.io/gsm.app/dev/reference/validate_is_df.html</loc></url>
 </urlset>
 

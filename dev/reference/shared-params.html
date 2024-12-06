@@ -51,7 +51,21 @@ argument in module server functions.</p>
     <h2 id="arguments">Arguments<a class="anchor" aria-label="anchor" href="#arguments"></a></h2>
 
 
-<dl><dt id="arg-chrlinkids">chrLinkIDs<a class="anchor" aria-label="anchor" href="#arg-chrlinkids"></a></dt>
+<dl><dt id="arg-chrallowedfields">chrAllowedFields<a class="anchor" aria-label="anchor" href="#arg-chrallowedfields"></a></dt>
+<dd><p><code>character</code> A vector of names of allowed fields in an
+object.</p></dd>
+
+
+<dt id="arg-chrallowedvalues">chrAllowedValues<a class="anchor" aria-label="anchor" href="#arg-chrallowedvalues"></a></dt>
+<dd><p><code>character</code> A vector of allowed values for a vector.</p></dd>
+
+
+<dt id="arg-chrdomains">chrDomains<a class="anchor" aria-label="anchor" href="#arg-chrdomains"></a></dt>
+<dd><p><code>character</code> A vector of names of domain data.frames to show
+in the app. Supported domains are shown in the default value.</p></dd>
+
+
+<dt id="arg-chrlinkids">chrLinkIDs<a class="anchor" aria-label="anchor" href="#arg-chrlinkids"></a></dt>
 <dd><p><code>character</code> Module ids for multiple modules.</p></dd>
 
 
@@ -69,11 +83,6 @@ via <code><a href="https://cli.r-lib.org/reference/cli_bullets.html" class="exte
 are the full Metric.</p></dd>
 
 
-<dt id="arg-chrpluginfields">chrPluginFields<a class="anchor" aria-label="anchor" href="#arg-chrpluginfields"></a></dt>
-<dd><p><code>character</code> A vector of allowed fields in a Plugin
-definition.</p></dd>
-
-
 <dt id="arg-chrpluginfiles">chrPluginFiles<a class="anchor" aria-label="anchor" href="#arg-chrpluginfiles"></a></dt>
 <dd><p><code>character</code> The files in a plugin directory.</p></dd>
 
@@ -84,8 +93,8 @@ data.frame.</p></dd>
 
 
 <dt id="arg-chrrequiredfields">chrRequiredFields<a class="anchor" aria-label="anchor" href="#arg-chrrequiredfields"></a></dt>
-<dd><p><code>character</code> A vector of expected fields in a Plugin
-definition.</p></dd>
+<dd><p><code>character</code> A vector of names of required fields in
+an object.</p></dd>
 
 
 <dt id="arg-chrsites">chrSites<a class="anchor" aria-label="anchor" href="#arg-chrsites"></a></dt>
@@ -176,6 +185,10 @@ of the main app server function.</p></dd>
 <dt id="arg-lmetric">lMetric<a class="anchor" aria-label="anchor" href="#arg-lmetric"></a></dt>
 <dd><p><code>list</code> Named list of data describing a single metric, as well
 as things like which group is selected.</p></dd>
+
+
+<dt id="arg-ldomains">lDomains<a class="anchor" aria-label="anchor" href="#arg-ldomains"></a></dt>
+<dd><p><code>list</code> Named list of data domain data.frames.</p></dd>
 
 
 <dt id="arg-lparticipantmetadata">lParticipantMetadata<a class="anchor" aria-label="anchor" href="#arg-lparticipantmetadata"></a></dt>
@@ -411,9 +424,18 @@ study.</p></dd>
 <dd><p><code>character</code> The value of a field.</p></dd>
 
 
+<dt id="arg-strwhat">strWhat<a class="anchor" aria-label="anchor" href="#arg-strwhat"></a></dt>
+<dd><p><code>character</code> A sentence-case description of the object being
+inspected.</p></dd>
+
+
 <dt id="arg-taglistsidebar">tagListSidebar<a class="anchor" aria-label="anchor" href="#arg-taglistsidebar"></a></dt>
 <dd><p><code>taglist</code> An optional <code><a href="https://rstudio.github.io/htmltools/reference/tagList.html" class="external-link">htmltools::tagList()</a></code> of
 additional elements to add to the top of the app sidebar.</p></dd>
+
+
+<dt id="arg-x">x<a class="anchor" aria-label="anchor" href="#arg-x"></a></dt>
+<dd><p>An object to validate.</p></dd>
 
 </dl></div>
 
