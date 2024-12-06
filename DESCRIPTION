@@ -21,7 +21,6 @@ Imports:
     cli,
     dplyr,
     favawesome,
-    ggplot2,
     glue,
     gsm (>= 2.1.2),
     gt (>= 0.11.1.9000),
@@ -31,7 +30,6 @@ Imports:
     magrittr,
     purrr,
     rlang,
-    safetyCharts (>= 0.4.0),
     shiny (>= 1.6.0),
     shinycssloaders,
     shinyjs,
@@ -47,8 +45,7 @@ Suggests:
     withr
 Remotes:
     gsm=Gilead-BioStats/gsm@v2.1.2,
-    gt=url::https://rstudio.r-universe.dev/src/contrib/gt_0.11.1.9000.tar.gz,
-    safetyCharts=url::https://safetygraphics.r-universe.dev/src/contrib/safetyCharts_0.4.0.tar.gz
+    gt=url::https://rstudio.r-universe.dev/src/contrib/gt_0.11.1.9000.tar.gz
 Config/testthat/edition: 3
 Encoding: UTF-8
 Language: en-US
