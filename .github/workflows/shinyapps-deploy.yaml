@@ -82,14 +82,17 @@ jobs:
           )
           remove.packages(intersect(extras, rownames(installed.packages())))
           pak::pak(extras)
-          # Temporarily force-install gt & safetyCharts from DESCRIPTION source.
+          # Temporarily force-install gt from DESCRIPTION
           if ("gt" %in% rownames(installed.packages())) {
             remove.packages("gt")
           }
-          if ("safetyCharts" %in% rownames(installed.packages())) {
-            remove.packages("safetyCharts")
-          }
           pak::pak()
+
+          # Temporarily install ggplot2 & safetyCharts for plugin.
+          pak::pak("url::https://safetygraphics.r-universe.dev/src/contrib/safetyCharts_0.4.0.tar.gz")
+          pak::pak("ggplot2")
+
+          # Manually install rsconnect to deploy.
           pak::pak("rsconnect")
         shell: Rscript {0}
 

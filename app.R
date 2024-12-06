@@ -1,5 +1,11 @@
 # Launch the ShinyApp (Do not remove this comment)
 library(shiny)
+
+# Temporarily force rsconnect to see that these packages are needed for the
+# plugin.
+library(safetyCharts)
+library(ggplot2)
+
 pkgload::load_all(".", helpers = FALSE, attach_testthat = FALSE)
 
 aePlugin <- plugin_Read(system.file("plugins", "AE", package = "gsm.app"))
