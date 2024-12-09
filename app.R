@@ -8,9 +8,7 @@ aePlugin <- plugin_Read(system.file("plugins", "AE", package = "gsm.app"))
 # Pretend I inferred the list of needed extra packages. Is this enough to make
 # renv see them?
 pkgs <- c("safetyCharts", "ggplot2")
-for (pkg in pkgs) {
-  library(pkg, character.only = TRUE)
-}
+plugin_LoadDependencies(pkgs)
 
 run_gsm_app(
   dfAnalyticsInput = gsm.app::sample_dfAnalyticsInput,

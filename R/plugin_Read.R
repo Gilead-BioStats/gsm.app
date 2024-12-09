@@ -104,3 +104,9 @@ plugin_ValidateDefinition <- function(
   )
   return(lPluginDefinition)
 }
+
+plugin_LoadDependencies <- function(pkgs) {
+  for (pkg in pkgs) {
+    library(pkg, character.only = TRUE)
+  }
+}
