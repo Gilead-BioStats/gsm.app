@@ -17,6 +17,7 @@
 plugin_Read <- function(strPath) {
   chrPluginFiles <- list.files(strPath, full.names = TRUE)
   lPluginDefinition <- plugin_ReadYaml(chrPluginFiles)
+  plugin_LoadDependencies(lPluginDefinition$packages)
 
   # Source any R files included in the definition. Covr doesn't see most of the
   # code below here as covered when I check this single file, but it's covered
@@ -66,6 +67,7 @@ plugin_ValidateDefinition <- function(
   envCall = rlang::caller_env()
 ) {
   chrRequiredFields <- c("meta", "shiny", "domains")
+  chrOptionalFields <- c("lConfig", "packages")
   validate_hasAllFields(
     lPluginDefinition,
     c("meta", "shiny", "domains"),
@@ -74,7 +76,7 @@ plugin_ValidateDefinition <- function(
   )
   validate_hasOnlyFields(
     lPluginDefinition,
-    c(chrRequiredFields, "lConfig"),
+    c(chrRequiredFields, chrOptionalFields),
     "Plugin defitions",
     envCall
   )
@@ -102,11 +104,27 @@ plugin_ValidateDefinition <- function(
     "Domains",
     envCall
   )
+  if (length(lPluginDefinition$packages)) {
+    for (pkg in lPluginDefinition$packages) {
+      validate_hasAllFields(
+        pkg,
+        "name",
+        "Plugin definition package requirements",
+        envCall
+      )
+      validate_hasOnlyFields(
+        pkg,
+        c("name", "remote"),
+        "Plugin definition package requirements",
+        envCall
+      )
+    }
+  }
   return(lPluginDefinition)
 }
 
 plugin_LoadDependencies <- function(pkgs) {
   for (pkg in pkgs) {
-    library(pkg, character.only = TRUE)
+    library(pkg$name, character.only = TRUE)
   }
 }
