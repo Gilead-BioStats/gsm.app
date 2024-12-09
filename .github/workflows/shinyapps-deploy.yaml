@@ -88,9 +88,13 @@ jobs:
           }
           pak::pak()
 
-          # Temporarily install ggplot2 & safetyCharts for plugin.
-          pak::pak("url::https://safetygraphics.r-universe.dev/src/contrib/safetyCharts_0.4.0.tar.gz")
-          pak::pak("ggplot2")
+          # Install plugin dependencies.
+          pkgload::load_all(".", helpers = FALSE, attach_testthat = FALSE)
+          aePlugin <- plugin_Read(system.file("plugins", "AE", package = "gsm.app"))
+          plugin_pkgs <- plugin_GetDependencySources(aePlugin)
+          for (pkg in plugin_pkgs) {
+            pak::pak(pkg)
+          }
 
           # Manually install rsconnect to deploy.
           pak::pak("rsconnect")

@@ -14,10 +14,10 @@
 #' @export
 #' @examples
 #' aePlugin <- plugin_Read(system.file("plugins", "AE", package = "gsm.app"))
+#' aePlugin
 plugin_Read <- function(strPath) {
   chrPluginFiles <- list.files(strPath, full.names = TRUE)
   lPluginDefinition <- plugin_ReadYaml(chrPluginFiles)
-  plugin_LoadDependencies(lPluginDefinition$packages)
 
   # Source any R files included in the definition. Covr doesn't see most of the
   # code below here as covered when I check this single file, but it's covered
@@ -123,8 +123,17 @@ plugin_ValidateDefinition <- function(
   return(lPluginDefinition)
 }
 
-plugin_LoadDependencies <- function(pkgs) {
-  for (pkg in pkgs) {
+plugin_LoadDependencies <- function(lPluginDefinition) {
+  for (pkg in lPluginDefinition$packages) {
     library(pkg$name, character.only = TRUE)
   }
+}
+
+plugin_GetDependencySources <- function(lPluginDefinition) {
+  purrr::map_chr(lPluginDefinition$packages, function(pkg) {
+    if (length(pkg$remote)) {
+      return(pkg$remote)
+    }
+    return(pkg$name)
+  })
 }
