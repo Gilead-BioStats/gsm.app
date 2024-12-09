@@ -123,12 +123,40 @@ plugin_ValidateDefinition <- function(
   return(lPluginDefinition)
 }
 
+#' Load Plugin Dependencies
+#'
+#' Load the package dependencies of a plugin. This is designed to be used in an
+#' `app.R` file to ensure that the dependencies are detected by packages like
+#' rsconnect.
+#'
+#' @inheritParams shared-params
+#'
+#' @return `lPluginDefinition`, invisibly. This function is called for its side
+#'   effects.
+#' @export
+#'
+#' @examplesIf interactive()
+#' plugin_LoadDependencies(list(packages = list(list(name = "gsm.app"))))
 plugin_LoadDependencies <- function(lPluginDefinition) {
   for (pkg in lPluginDefinition$packages) {
     library(pkg$name, character.only = TRUE)
   }
+  return(invisible(lPluginDefinition))
 }
 
+#' Get Plugin Package Dependency Sources
+#'
+#' Retrieve a vector of sources for plugin package dependencies, to make it
+#' easier to install those sources. This function is intended for use in
+#' automated deployment systems, such as GitHub Actions.
+#'
+#' @inheritParams shared-params
+#'
+#' @return A character vector of package sources, such as "ggplot2" (to install
+#'   from CRAN) or
+#'   "url::https://safetygraphics.r-universe.dev/src/contrib/safetyCharts_0.4.0.tar.gz"
+#'   (to install from a specific URL on r-universe).
+#' @export
 plugin_GetDependencySources <- function(lPluginDefinition) {
   purrr::map_chr(lPluginDefinition$packages, function(pkg) {
     if (length(pkg$remote)) {
