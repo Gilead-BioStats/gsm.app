@@ -23,4 +23,5 @@ these element definitions and any R files in the same directory.
 }
 \examples{
 aePlugin <- plugin_Read(system.file("plugins", "AE", package = "gsm.app"))
+aePlugin
 }

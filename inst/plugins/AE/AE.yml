@@ -8,3 +8,7 @@ shiny:
 domains:
   - AE
   - SUBJ
+packages:
+  - name: ggplot2
+  - name: safetyCharts
+    remote: url::https://safetygraphics.r-universe.dev/src/contrib/safetyCharts_0.4.0.tar.gz

@@ -6,7 +6,7 @@ mod_Plugins_UI <- function(id, lPlugins = NULL) {
   ns <- NS(id)
   if (!is.null(lPlugins)) {
     plugin_items <- purrr::imap(lPlugins, function(lPlugin, i) {
-      fnUI <- rlang::as_function(lPlugin$shiny$UI)
+      fnUI <- plugin_AsFunction(lPlugin$shiny$UI)
       bslib::nav_panel(
         title = lPlugin$meta$Name,
         rlang::inject({
