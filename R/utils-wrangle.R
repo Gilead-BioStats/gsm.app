@@ -86,7 +86,7 @@ findNonZeroDecimals <- function(dblX, intMaxDecimals = 5L) {
 #' Apply user-facing domain names
 #'
 #' @inheritParams shared-params
-#' @return The list of domain dfs, with better user-facing names.
+#' @returns The list of domain dfs, with better user-facing names.
 #' @keywords internal
 applyPrettyDomainNames <- function(lDomains) {
   chrDomains <- names(lDomains)

@@ -186,6 +186,12 @@ via \code{\link[favawesome:fav]{favawesome::fav()}}.}
 \item{strFaviconColor}{\code{character} The hexcode or name of a color to use as
 the icon fill for \code{\link[favawesome:fav]{favawesome::fav()}}.}
 
+\item{strFunction}{\code{character} The name of a function, with or without
+namespace ("reactive" or "shiny::reactive"). If a namespace is supplied, we
+check that the package is installed, and attach it. The function can also
+be supplied as a function or a purrr-style formula. See
+\code{\link[rlang:as_function]{rlang::as_function()}} (the \code{x} argument) for more details.}
+
 \item{strGroupID}{\code{character} A \code{GroupID} to focus on.}
 
 \item{strGroupLabelKey}{\code{character} Value for the group label key. Default:

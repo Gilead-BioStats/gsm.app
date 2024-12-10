@@ -34,7 +34,7 @@ plugin_Read <- function(strPath) {
 #' Process a Plugin YAML
 #'
 #' @inheritParams shared-params
-#' @return A list with the validated plugin definition.
+#' @returns A list with the validated plugin definition.
 #' @keywords internal
 plugin_ReadYaml <- function(chrPluginFiles, envCall = rlang::caller_env()) {
   lPluginDefinition <- plugin_ReadYamlFile(chrPluginFiles, envCall)
@@ -44,7 +44,7 @@ plugin_ReadYaml <- function(chrPluginFiles, envCall = rlang::caller_env()) {
 #' Read a Plugin YAML
 #'
 #' @inheritParams shared-params
-#' @return A list with a potential plugin definition.
+#' @returns A list with a potential plugin definition.
 #' @keywords internal
 plugin_ReadYamlFile <- function(chrPluginFiles, envCall = rlang::caller_env()) {
   file_is_yaml <- grepl("\\.ya?ml$", chrPluginFiles, ignore.case = TRUE)
@@ -62,6 +62,11 @@ plugin_ReadYamlFile <- function(chrPluginFiles, envCall = rlang::caller_env()) {
   return(yaml::read_yaml(chrPluginFiles[file_is_yaml]))
 }
 
+#' Validate Plugin Definition
+#'
+#' @inheritParams shared-params
+#' @returns The validated `lPluginDefinition`.
+#' @keywords internal
 plugin_ValidateDefinition <- function(
   lPluginDefinition,
   envCall = rlang::caller_env()
@@ -131,7 +136,7 @@ plugin_ValidateDefinition <- function(
 #'
 #' @inheritParams shared-params
 #'
-#' @return `lPluginDefinition`, invisibly. This function is called for its side
+#' @returns `lPluginDefinition`, invisibly. This function is called for its side
 #'   effects.
 #' @export
 #'
@@ -152,7 +157,7 @@ plugin_LoadDependencies <- function(lPluginDefinition) {
 #'
 #' @inheritParams shared-params
 #'
-#' @return A character vector of package sources, such as "ggplot2" (to install
+#' @returns A character vector of package sources, such as "ggplot2" (to install
 #'   from CRAN) or
 #'   "url::https://safetygraphics.r-universe.dev/src/contrib/safetyCharts_0.4.0.tar.gz"
 #'   (to install from a specific URL on r-universe).

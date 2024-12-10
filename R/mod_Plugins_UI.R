@@ -1,12 +1,14 @@
 #' Plugins Wrapper UI
 #'
 #' @inheritParams shared-params
+#' @returns Plugins UI elements, either as a tab (if there is only one plugin)
+#'   or in a drop-down list (for multiple plugins).
 #' @keywords internal
 mod_Plugins_UI <- function(id, lPlugins = NULL) {
   ns <- NS(id)
   if (!is.null(lPlugins)) {
     plugin_items <- purrr::imap(lPlugins, function(lPlugin, i) {
-      fnUI <- plugin_AsFunction(lPlugin$shiny$UI)
+      fnUI <- util_AsFunction(lPlugin$shiny$UI)
       bslib::nav_panel(
         title = lPlugin$meta$Name,
         rlang::inject({

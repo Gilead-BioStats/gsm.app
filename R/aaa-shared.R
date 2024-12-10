@@ -126,6 +126,11 @@
 #'   via [favawesome::fav()].
 #' @param strFaviconColor `character` The hexcode or name of a color to use as
 #'   the icon fill for [favawesome::fav()].
+#' @param strFunction `character` The name of a function, with or without
+#'   namespace ("reactive" or "shiny::reactive"). If a namespace is supplied, we
+#'   check that the package is installed, and attach it. The function can also
+#'   be supplied as a function or a purrr-style formula. See
+#'   [rlang::as_function()] (the `x` argument) for more details.
 #' @param strGroupID `character` A `GroupID` to focus on.
 #' @param strGroupLabelKey `character` Value for the group label key. Default:
 #'   `"InvestigatorLastName"`.
