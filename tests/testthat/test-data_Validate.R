@@ -48,3 +48,15 @@ test_that("Built-in dfAnalyticsInput passes validation", {
     validate_dfAnalyticsInput(gsm.app::sample_dfAnalyticsInput)
   )
 })
+
+test_that("validate_chrDomains fails gracefully", {
+  expect_error(
+    validate_chrDomains("NewDomain"),
+    "NewDomain",
+    class = "gsm.app-error-invalid_input"
+  )
+})
+
+test_that("validate_chrDomains returns valid domains + SUBJ", {
+  expect_identical(validate_chrDomains("AE"), c("AE", "SUBJ"))
+})

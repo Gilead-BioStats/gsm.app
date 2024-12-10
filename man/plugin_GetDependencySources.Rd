@@ -22,3 +22,11 @@ Retrieve a vector of sources for plugin package dependencies, to make it
 easier to install those sources. This function is intended for use in
 automated deployment systems, such as GitHub Actions.
 }
+\examples{
+plugin_GetDependencySources(
+  list(packages = list(
+    list(name = "ggplot2"),
+    list(name = "gsm", remote = "Gilead-BioStats/gsm")
+  ))
+)
+}

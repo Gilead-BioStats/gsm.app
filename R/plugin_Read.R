@@ -139,7 +139,7 @@ plugin_ValidateDefinition <- function(
 #' plugin_LoadDependencies(list(packages = list(list(name = "gsm.app"))))
 plugin_LoadDependencies <- function(lPluginDefinition) {
   for (pkg in lPluginDefinition$packages) {
-    library(pkg$name, character.only = TRUE)
+    suppressPackageStartupMessages(library(pkg$name, character.only = TRUE))
   }
   return(invisible(lPluginDefinition))
 }
@@ -157,6 +157,13 @@ plugin_LoadDependencies <- function(lPluginDefinition) {
 #'   "url::https://safetygraphics.r-universe.dev/src/contrib/safetyCharts_0.4.0.tar.gz"
 #'   (to install from a specific URL on r-universe).
 #' @export
+#' @examples
+#' plugin_GetDependencySources(
+#'   list(packages = list(
+#'     list(name = "ggplot2"),
+#'     list(name = "gsm", remote = "Gilead-BioStats/gsm")
+#'   ))
+#' )
 plugin_GetDependencySources <- function(lPluginDefinition) {
   purrr::map_chr(lPluginDefinition$packages, function(pkg) {
     if (length(pkg$remote)) {

@@ -63,7 +63,7 @@ validate_in <- function(
   if (length(extra_values)) {
     gsmapp_abort(
       c(
-        "{strWhat} must be in these values: {.field {chrRequiredFields}}.",
+        "{strWhat} must be in these values: {.field {chrAllowedValues}}.",
         x = "Unknown values: {.field {extra_values}}."
       ),
       strClass = "vector-values",
