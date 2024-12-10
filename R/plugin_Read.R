@@ -177,3 +177,25 @@ plugin_GetDependencySources <- function(lPluginDefinition) {
     return(pkg$name)
   })
 }
+
+#' Install Plugin Package Dependencies
+#'
+#' Plugins can have additional dependencies that are invisible to the usual
+#' CI/CD pipelines. Use this function to install any such dependencies using the
+#' pak package.
+#'
+#' @inheritParams shared-params
+#'
+#' @returns `lPluginDefinition`, invisibly. This function is called for its side
+#'   effects.
+#' @export
+plugin_InstallDependencySources <- function(lPluginDefinition) {
+  # nocov start
+  rlang::check_installed("pak", "to install plugin dependencies")
+  chrSources <- plugin_GetDependencySources(lPluginDefinition)
+  for (pkg in chrSources) {
+    pak::pak(pkg)
+  }
+  return(invisible(lPluginDefinition))
+  # nocov end
+}

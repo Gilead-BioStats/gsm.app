@@ -1,6 +1,4 @@
 # Launch the ShinyApp (Do not remove this comment)
-library(shiny)
-
 pkgload::load_all(".", helpers = FALSE, attach_testthat = FALSE)
 
 aePlugin <- plugin_Read(system.file("plugins", "AE", package = "gsm.app"))
@@ -17,8 +15,3 @@ run_gsm_app(
   strFavicon = Sys.getenv("GSMAPP_FAVICON", "angles-up"),
   strFaviconColor = Sys.getenv("GSMAPP_FAVICONCOLOR", colorScheme("red"))
 )
-
-# run_sample_gsm_app(
-#   strFavicon = Sys.getenv("GSMAPP_FAVICON", "angles-up"),
-#   strFaviconColor = Sys.getenv("GSMAPP_FAVICONCOLOR", colorScheme("red"))
-# )

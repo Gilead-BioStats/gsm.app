@@ -38,6 +38,9 @@ Suggests:
     chromote (>= 0.3.1),
     devtools,
     here,
+    knitr,
+    pak,
+    rmarkdown,
     shinytest2,
     stringr,
     testthat (>= 3.0.0),
@@ -52,3 +55,4 @@ Language: en-US
 LazyData: true
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.3.2
+VignetteBuilder: knitr
