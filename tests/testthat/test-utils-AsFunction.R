@@ -18,6 +18,6 @@ test_that("util_AsFunction fails gracefully for non-installed packages", {
   rlang::local_interactive(FALSE)
   expect_error(
     util_AsFunction("badpkg::func"),
-    "for use by a gsm\\.app plugin"
+    class = "packageNotFoundError"
   )
 })
