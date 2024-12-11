@@ -1,0 +1,15 @@
+meta:
+  Type: Plugin
+  ID: ID
+  Name: Title
+shiny:
+  UI: mod_UI
+  Server: mod_Server
+domains:
+  - AE
+  - SUBJ
+packages:
+  - name: pkg1
+    also: other_thing
+  - name: pkg2
+    remote: remote_url

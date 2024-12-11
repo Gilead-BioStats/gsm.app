@@ -20,31 +20,48 @@ test_that("validate_df returns dfs when they're ok", {
 })
 
 test_that("Built-in dfResults passes validation", {
-  expect_no_error(
-    validate_dfResults(gsm.app::sample_dfResults)
-  )
+  expect_no_error({
+    test_result <- validate_dfResults(gsm.app::sample_dfResults)
+  })
+  expect_s3_class(test_result, "tbl_df")
 })
 
 test_that("Built-in dfGroups passes validation", {
-  expect_no_error(
-    validate_dfGroups(gsm.app::sample_dfGroups)
-  )
+  expect_no_error({
+    test_result <- validate_dfGroups(gsm.app::sample_dfGroups)
+  })
+  expect_s3_class(test_result, "tbl_df")
 })
 
 test_that("Built-in dfMetrics passes validation", {
-  expect_no_error(
-    validate_dfMetrics(gsm.app::sample_dfMetrics)
-  )
+  expect_no_error({
+    test_result <- validate_dfMetrics(gsm.app::sample_dfMetrics)
+  })
+  expect_s3_class(test_result, "tbl_df")
 })
 
 test_that("Built-in dfBounds passes validation", {
-  expect_no_error(
-    validate_dfBounds(gsm.app::sample_dfBounds)
-  )
+  expect_no_error({
+    test_result <- validate_dfBounds(gsm.app::sample_dfBounds)
+  })
+  expect_s3_class(test_result, "tbl_df")
 })
 
 test_that("Built-in dfAnalyticsInput passes validation", {
-  expect_no_error(
-    validate_dfAnalyticsInput(gsm.app::sample_dfAnalyticsInput)
+  expect_no_error({
+    test_result <- validate_dfAnalyticsInput(gsm.app::sample_dfAnalyticsInput)
+  })
+  expect_s3_class(test_result, "tbl_df")
+})
+
+test_that("validate_chrDomains fails gracefully", {
+  expect_error(
+    validate_chrDomains("NewDomain"),
+    "NewDomain",
+    class = "gsm.app-error-invalid_input"
   )
+})
+
+test_that("validate_chrDomains returns valid domains + SUBJ", {
+  expect_identical(validate_chrDomains("AE"), c("AE", "SUBJ"))
 })

@@ -11,6 +11,10 @@ mod_Plugins_UI(id, lPlugins = NULL)
 
 \item{lPlugins}{\code{list} Optional list of plugins to include in the app.}
 }
+\value{
+Plugins UI elements, either as a tab (if there is only one plugin)
+or in a drop-down list (for multiple plugins).
+}
 \description{
 Plugins Wrapper UI
 }
