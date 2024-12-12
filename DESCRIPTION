@@ -47,7 +47,7 @@ Suggests:
     usethis,
     withr
 Remotes:
-    gsm=Gilead-BioStats/gsm@v2.2.0,
+    gsm=gilead-biostats/gsm@v2.2.0,
     gt=url::https://rstudio.r-universe.dev/src/contrib/gt_0.11.1.9000.tar.gz
 Config/testthat/edition: 3
 Encoding: UTF-8
