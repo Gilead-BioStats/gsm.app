@@ -86,10 +86,6 @@ jobs:
           if ("gt" %in% rownames(installed.packages())) {
             remove.packages("gt")
           }
-          # Temporarily force-install gsm from DESCRIPTION
-          if ("gsm" %in% rownames(installed.packages())) {
-            remove.packages("gsm")
-          }
           pak::pak()
 
           # Install plugin dependencies.
@@ -128,6 +124,7 @@ jobs:
         run: |
           echo "GSMAPP_FAVICON=$FAVICON" >> .Renviron
           echo "GSMAPP_FAVICONCOLOR=$FAVICONCOLOR" >> .Renviron
+          echo "GITHUB_PAT=$GITHUB_PAT" >> .Renviron
 
       - name: Push to shinyapps.io
         env:
