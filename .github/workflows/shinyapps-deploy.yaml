@@ -82,14 +82,7 @@ jobs:
           )
           remove.packages(intersect(extras, rownames(installed.packages())))
           pak::pak(extras)
-          # Temporarily force-install gt from DESCRIPTION
-          if ("gt" %in% rownames(installed.packages())) {
-            remove.packages("gt")
-          }
-          # Temporarily force-install gsm from DESCRIPTION
-          if ("gsm" %in% rownames(installed.packages())) {
-            remove.packages("gsm")
-          } 
+          # Make sure everything is up-to-date.
           pak::pak()
 
           # Install plugin dependencies.
