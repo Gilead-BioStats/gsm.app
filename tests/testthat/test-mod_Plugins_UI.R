@@ -35,3 +35,9 @@ test_that("mod_Plugins_UI creates the expected UI with multiple plugins", {
     test_result
   })
 })
+
+# TODO: Test a plugin from a package.
+
+# TODO: Tests fail when I use a function name (like in real usage), but only
+# when ran in the full suite, so it appears to be an environment issue. No luck
+# so far getting testthat to behave.

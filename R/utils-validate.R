@@ -1,7 +1,7 @@
 #' Check that an object has all required fields
 #'
 #' @inheritParams shared-params
-#' @return The validated object.
+#' @returns The validated object.
 #' @keywords internal
 validate_hasAllFields <- function(
   x,
@@ -26,7 +26,7 @@ validate_hasAllFields <- function(
 #' Check that an object has only the allowed fields
 #'
 #' @inheritParams shared-params
-#' @return The validated object.
+#' @returns The validated object.
 #' @keywords internal
 validate_hasOnlyFields <- function(
     x,
@@ -51,7 +51,7 @@ validate_hasOnlyFields <- function(
 #' Check that a vector is in another vector
 #'
 #' @inheritParams shared-params
-#' @return The validated object.
+#' @returns The validated object.
 #' @keywords internal
 validate_in <- function(
   x,
@@ -63,7 +63,7 @@ validate_in <- function(
   if (length(extra_values)) {
     gsmapp_abort(
       c(
-        "{strWhat} must be in these values: {.field {chrRequiredFields}}.",
+        "{strWhat} must be in these values: {.field {chrAllowedValues}}.",
         x = "Unknown values: {.field {extra_values}}."
       ),
       strClass = "vector-values",

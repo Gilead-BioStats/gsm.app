@@ -82,14 +82,15 @@ jobs:
           )
           remove.packages(intersect(extras, rownames(installed.packages())))
           pak::pak(extras)
-          # Temporarily force-install gt & safetyCharts from DESCRIPTION source.
-          if ("gt" %in% rownames(installed.packages())) {
-            remove.packages("gt")
-          }
-          if ("safetyCharts" %in% rownames(installed.packages())) {
-            remove.packages("safetyCharts")
-          }
+          # Make sure everything is up-to-date.
           pak::pak()
+
+          # Install plugin dependencies.
+          pkgload::load_all(".", helpers = FALSE, attach_testthat = FALSE)
+          aePlugin <- plugin_Read(system.file("plugins", "AE", package = "gsm.app"))
+          plugin_InstallDependencySources(aePlugin)
+
+          # Manually install rsconnect to deploy.
           pak::pak("rsconnect")
         shell: Rscript {0}
 
@@ -120,6 +121,7 @@ jobs:
         run: |
           echo "GSMAPP_FAVICON=$FAVICON" >> .Renviron
           echo "GSMAPP_FAVICONCOLOR=$FAVICONCOLOR" >> .Renviron
+          echo "GITHUB_PAT=$GITHUB_PAT" >> .Renviron
 
       - name: Push to shinyapps.io
         env:
