@@ -9,7 +9,12 @@ gsmApp_Server <- function(
   dfGroups,
   dfMetrics,
   dfResults,
-  fnFetchParticipantData,
+  fnFetchData,
+  chrDomains = c(
+    "AE", "ENROLL", "LB", "PD", "SDRGCOMP", "STUDCOMP",
+    "SUBJ", "DATACHG", "DATAENT", "QUERY"
+  ),
+  lPlugins = NULL,
   fnServer = NULL
 ) {
   # Force evaluation of everything before factory is constructed to avoid
@@ -20,7 +25,7 @@ gsmApp_Server <- function(
   force(dfGroups)
   force(dfMetrics)
   force(dfResults)
-  force(fnFetchParticipantData)
+  force(fnFetchData)
   force(fnServer)
   function(input, output, session) {
     if (!is.null(fnServer)) {
@@ -36,27 +41,29 @@ gsmApp_Server <- function(
     # Shared Reactives ----
 
     ## Inputs pass to modules (etc) as reactives.
-    rctv_InputMetric <- reactive(input$metric)
-    rctv_InputSite <- reactive(input$site)
+    rctv_strMetricID <- reactive(input$metric)
+    rctv_strSiteID <- reactive(input$site)
+    rctv_strSubjectID <- reactive(input$participant)
+    rctv_strPrimaryNavBar <- reactive(input$primary_nav_bar)
 
     ## The listified dfMetrics are used by both metric sub-mods, so calculate
     ## them once. This can/should move inside a single metric-tab module.
     rctv_lMetric_base <- srvr_rctv_lMetric_base(
       dfMetrics,
-      rctv_InputMetric,
+      rctv_strMetricID,
       session
     )
     rctv_lMetric <- srvr_rctv_lMetric(
       dfMetrics,
       rctv_lMetric_base,
-      rctv_InputMetric,
-      rctv_InputSite,
+      rctv_strMetricID,
+      rctv_strSiteID,
       session
     )
     dfParticipantGroups <- make_dfParticipantGroups(dfAnalyticsInput)
     rctv_chrParticipantIDs <- srvr_rctv_chrParticipantIDs(
       dfParticipantGroups,
-      rctv_InputSite
+      rctv_strSiteID
     )
 
     # Tab Contents ----
@@ -68,7 +75,7 @@ gsmApp_Server <- function(
       dfGroups = dfGroups,
       dfMetrics = dfMetrics,
       dfBounds = dfBounds,
-      rctv_strSiteID = rctv_InputSite
+      rctv_strSiteID = rctv_strSiteID
     )
 
     # Use clickCounter to update main GroupID and MetricID inputs + tab
@@ -108,31 +115,43 @@ gsmApp_Server <- function(
     )
 
     ## Metric Details ----
-    srvr_SyncTab("primary_nav_bar", "Metric Details", rctv_InputMetric, session)
-    srvr_SyncTab("primary_nav_bar", "Metric Details", rctv_InputSite, session)
+    srvr_SyncTab(
+      "primary_nav_bar",
+      "Metric Details",
+      rctv_strMetricID,
+      rctv_strPrimaryNavBar,
+      session
+    )
+    srvr_SyncTab(
+      "primary_nav_bar",
+      "Metric Details",
+      rctv_strSiteID,
+      rctv_strPrimaryNavBar,
+      session
+    )
     rctv_strMetricDetailsGroup <- mod_MetricDetails_Server(
       "metric_details",
       dfResults = dfResults,
       dfGroups = dfGroups,
       dfBounds = dfBounds,
       rctv_lMetric = rctv_lMetric,
-      rctv_strSiteID = rctv_InputSite,
-      rctv_strMetricID = rctv_InputMetric
+      rctv_strSiteID = rctv_strSiteID,
+      rctv_strMetricID = rctv_strMetricID
     )
     rctv_strSiteDetailsParticipant <- mod_SiteDetails_Server(
       "site_details",
       dfGroups = dfGroups,
       dfAnalyticsInput = dfAnalyticsInput,
-      rctv_strSiteID = rctv_InputSite,
-      rctv_strSubjectID = reactive(input$participant),
-      rctv_strMetricID = rctv_InputMetric,
+      rctv_strSiteID = rctv_strSiteID,
+      rctv_strSubjectID = rctv_strSubjectID,
+      rctv_strMetricID = rctv_strMetricID,
       rctv_lMetric = rctv_lMetric
     )
     srvr_SyncSelectInput("site", rctv_strMetricDetailsGroup, session)
 
     # Temporary: Update Site drop-down when one of the non-module widgets
     # changes its value without sending a full Shiny event.
-    srvr_SyncSelectInput("site", rctv_InputSite, session)
+    srvr_SyncSelectInput("site", rctv_strSiteID, session)
 
     ### Sync participant dropdown filter ----
     ###
@@ -203,12 +222,24 @@ gsmApp_Server <- function(
       "primary_nav_bar",
       "Participant Details",
       rctv_LatestParticipant,
+      rctv_strPrimaryNavBar,
       session
     )
     mod_ParticipantDetails_Server(
       "participant_details",
-      fnFetchParticipantData = fnFetchParticipantData,
-      rctv_strSubjectID = reactive(input$participant)
+      fnFetchData = fnFetchData,
+      chrDomains = chrDomains,
+      rctv_strSubjectID = rctv_strSubjectID
+    )
+
+    ## Plugins ----
+    mod_Plugins_Server(
+      "plugins",
+      lPlugins = lPlugins,
+      fnFetchData = fnFetchData,
+      rctv_strMetricID = rctv_strMetricID,
+      rctv_strSiteID = rctv_strSiteID,
+      rctv_strSubjectID = rctv_strSubjectID
     )
   }
 }

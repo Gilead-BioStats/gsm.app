@@ -4,7 +4,7 @@
 \alias{out_MainTabs}
 \title{Main Tabbed Content}
 \usage{
-out_MainTabs(dfResults, chrMetrics)
+out_MainTabs(dfResults, chrMetrics, lPlugins = NULL)
 }
 \arguments{
 \item{dfResults}{\code{data.frame} A stacked summary of analysis pipeline output.
@@ -12,6 +12,8 @@ This will be filtered to cases where \code{GroupLevel == "Site"}.}
 
 \item{chrMetrics}{\code{character} A named vector of MetricIDs, where the names
 are the full Metric.}
+
+\item{lPlugins}{\code{list} Optional list of plugins to include in the app.}
 }
 \value{
 A list of \code{\link[bslib:nav-items]{bslib::nav_panel()}} elements, containing the main tabbed

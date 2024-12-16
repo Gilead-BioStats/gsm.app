@@ -1,11 +1,11 @@
 test_that("mod_MetricDetails_Server initializes and renders scatter plot", {
   # Inputs to simulate things that happen in the main server function.
-  rctv_input_metric <- reactiveVal("Analysis_kri0001")
-  rctv_input_site <- reactiveVal("None")
+  rctv_strMetricID <- reactiveVal("Analysis_kri0001")
+  rctv_strSiteID <- reactiveVal("None")
   rctv_lMetric <- reactive({
-    lMetric <- as.list(filter_byMetricID(sample_dfMetrics, rctv_input_metric()))
-    if (rctv_input_site() != "None") {
-      lMetric$selectedGroupIDs <- rctv_input_site()
+    lMetric <- as.list(filter_byMetricID(sample_dfMetrics, rctv_strMetricID()))
+    if (rctv_strSiteID() != "None") {
+      lMetric$selectedGroupIDs <- rctv_strSiteID()
     }
     lMetric
   })
@@ -18,8 +18,8 @@ test_that("mod_MetricDetails_Server initializes and renders scatter plot", {
       dfGroups = sample_dfGroups,
       dfBounds = sample_dfBounds,
       rctv_lMetric = rctv_lMetric,
-      rctv_strSiteID = rctv_input_site,
-      rctv_strMetricID = rctv_input_metric
+      rctv_strSiteID = rctv_strSiteID,
+      rctv_strMetricID = rctv_strMetricID
     ),
     {
       # Set up the return-watcher.
@@ -39,12 +39,12 @@ test_that("mod_MetricDetails_Server initializes and renders scatter plot", {
 test_that("mod_MetricDetails_Server renders tab outputs", {
   call <- rlang::current_env()
   # Inputs to simulate things that happen in the main server function.
-  rctv_input_metric <- reactiveVal("Analysis_kri0001")
-  rctv_input_site <- reactiveVal("None")
+  rctv_strMetricID <- reactiveVal("Analysis_kri0001")
+  rctv_strSiteID <- reactiveVal("None")
   rctv_lMetric <- reactive({
-    lMetric <- as.list(filter_byMetricID(sample_dfMetrics, rctv_input_metric()))
-    if (rctv_input_site() != "None") {
-      lMetric$selectedGroupIDs <- rctv_input_site()
+    lMetric <- as.list(filter_byMetricID(sample_dfMetrics, rctv_strMetricID()))
+    if (rctv_strSiteID() != "None") {
+      lMetric$selectedGroupIDs <- rctv_strSiteID()
     }
     lMetric
   })
@@ -57,8 +57,8 @@ test_that("mod_MetricDetails_Server renders tab outputs", {
       dfGroups = sample_dfGroups,
       dfBounds = sample_dfBounds,
       rctv_lMetric = rctv_lMetric,
-      rctv_strSiteID = rctv_input_site,
-      rctv_strMetricID = rctv_input_metric
+      rctv_strSiteID = rctv_strSiteID,
+      rctv_strMetricID = rctv_strMetricID
     ),
     {
       # Set up the return-watcher.
@@ -72,16 +72,13 @@ test_that("mod_MetricDetails_Server renders tab outputs", {
       expect_null(rctv_strScatterGroup())
 
       session$setInputs(selected_tab = "Bar Chart (KRI Value)")
-      expect_null(rctv_strScatterGroup())
-      expect_s3_class(output$bar_chart_metric, "json")
+      expect_null(rctv_strBarValueGroup())
 
       session$setInputs(selected_tab = "Bar Chart (KRI Score)")
-      expect_null(rctv_strScatterGroup())
-      expect_s3_class(output$bar_chart_score, "json")
+      expect_null(rctv_strBarScoreGroup())
 
       session$setInputs(selected_tab = "Time Series")
-      expect_null(rctv_strScatterGroup())
-      expect_s3_class(output$time_series, "json")
+      expect_null(rctv_strTimeSeriesGroup())
 
       session$setInputs(selected_tab = "Analysis Output")
       expect_type(output$`analysis_output-gt-table`, "list")

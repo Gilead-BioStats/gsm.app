@@ -7,7 +7,12 @@
 #'   selected. Currently not useful but will be converted to row numbers when we
 #'   need it for deeper dives.
 #' @keywords internal
-mod_ParticipantDomain_Server <- function(id, rctv_lData, rctv_strName) {
+mod_ParticipantDomain_Server <- function(
+  id,
+  rctv_lData,
+  rctv_strName,
+  rctv_strSubjectID
+) {
   moduleServer(id, function(input, output, session) {
     rctv_lDataIsValid <- reactive({
       length(rctv_lData()) > 0
@@ -31,8 +36,10 @@ mod_ParticipantDomain_Server <- function(id, rctv_lData, rctv_strName) {
         gtObj <- gt::gt(df) %>%
           out_gtInteractive(selection_mode = "multiple") %>%
           gt::cols_label(
-            .list = gsm::MakeParamLabelsList(colnames(df))
-          )
+            .list = gsm::MakeParamLabelsList(colnames(df), chrFieldNames)
+          ) %>%
+          out_gtSmartFmtNumbers(intMaxDecimals = 10L)
+
         if ("SubjectID" %in% colnames(df)) {
           gtObj <- gt::cols_align(gtObj, "center", "SubjectID") # nocov
         }
@@ -43,7 +50,13 @@ mod_ParticipantDomain_Server <- function(id, rctv_lData, rctv_strName) {
         placeholderText <- c("participant", placeholderText)
       }
       return(out_gtPlaceholder(placeholderText))
-    })
+    }) %>%
+      bindCache(
+        rctv_strSubjectID(),
+        rctv_strName(),
+        nrow(rctv_tblData()) # In case data updates live.
+      )
+
     selected_rows <- mod_gtBidirectional_Server(
       "gt",
       rctv_tblData,
@@ -61,7 +74,9 @@ mod_ParticipantDomain_Server <- function(id, rctv_lData, rctv_strName) {
         return(gsm::MakeParamLabelsList(rctv_strName())[[1]])
       }
       return("Participant Domain")
-    })
+    }) %>%
+      bindCache(rctv_strName(), rctv_lDataIsValid())
+
     return(selected_rows)
   })
 }

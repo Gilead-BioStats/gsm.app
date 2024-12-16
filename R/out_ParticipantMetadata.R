@@ -17,7 +17,7 @@ out_ParticipantMetadata <- function(lParticipantMetadata) {
   out_Card(
     "Participant Metadata",
     out_MetadataList(
-      gsm::MakeParamLabelsList(names(lParticipantMetadata)),
+      gsm::MakeParamLabelsList(names(lParticipantMetadata), chrFieldNames),
       unname(lParticipantMetadata)
     ),
     id = "participant-metadata"

@@ -9,7 +9,11 @@
 #' @keywords internal
 mod_ParticipantDetails_Server <- function(
   id,
-  fnFetchParticipantData,
+  fnFetchData,
+  chrDomains = c(
+    "AE", "ENROLL", "LB", "PD", "SDRGCOMP", "STUDCOMP",
+    "SUBJ", "DATACHG", "DATAENT", "QUERY"
+  ),
   rctv_strSubjectID
 ) {
   moduleServer(id, function(input, output, session) {
@@ -22,24 +26,33 @@ mod_ParticipantDetails_Server <- function(
       ) {
         return(NULL)
       }
+      SubjectID <- rctv_strSubjectID()
       withProgress(
         message = "Loading participant data",
-        fnFetchParticipantData(rctv_strSubjectID())
+        {
+          lDomains <- purrr::map(chrDomains, function(this_domain) {
+            fnFetchData(this_domain, strSubjectID = SubjectID)
+          })
+          names(lDomains) <- chrDomains
+          applyPrettyDomainNames(lDomains)
+        }
       )
     })
     rctv_lParticipantMetadata <- reactive({
       if (length(rctv_lParticipantData())) {
-        rctv_lParticipantData()$metadata
+        as.list(rctv_lParticipantData()$Subject_Metadata)
       }
     })
-    rctv_lParticipantMetricData <- reactive({
-      if (length(rctv_lParticipantData())) {
-        rctv_lParticipantData()$metric_data
+    rctv_lParticipantDomainData <- reactive({
+      lParticipantData <- rctv_lParticipantData()
+      if (length(lParticipantData)) {
+        lParticipantData$Subject_Metadata <- NULL
+        return(lParticipantData)
       }
     })
-    rctv_strSelectedMetric <- mod_ParticipantMetricSummary_Server(
-      "metric_summary",
-      rctv_lParticipantMetricData
+    rctv_strSelectedDomain <- mod_ParticipantDomainSummary_Server(
+      "domain_summary",
+      rctv_lParticipantDomainData
     )
 
     # Output ----
@@ -49,8 +62,9 @@ mod_ParticipantDetails_Server <- function(
 
     rctv_intSelectedRows <- mod_ParticipantDomain_Server(
       "domain",
-      rctv_lParticipantMetricData,
-      rctv_strSelectedMetric
+      rctv_lParticipantDomainData,
+      rctv_strSelectedDomain,
+      rctv_strSubjectID
     )
     return(rctv_intSelectedRows)
   })

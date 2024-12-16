@@ -5,7 +5,7 @@
 \alias{sample_dfGroups}
 \title{Group Metadata Dataset}
 \format{
-A tibble with 376 rows and
+A tibble with 382 rows and
 4 columns:
 \describe{
 \item{GroupID}{grouping variable}
@@ -26,11 +26,11 @@ Information about sites, countries, and the overall study in the sample data.
 }
 \seealso{
 Other sample data: 
-\code{\link{sample_FetchParticipantData}()},
 \code{\link{sample_dfAnalyticsInput}},
 \code{\link{sample_dfBounds}},
 \code{\link{sample_dfMetrics}},
-\code{\link{sample_dfResults}}
+\code{\link{sample_dfResults}},
+\code{\link{sample_fnFetchData}()}
 }
 \concept{sample data}
 \keyword{datasets}

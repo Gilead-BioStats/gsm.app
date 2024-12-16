@@ -12,9 +12,29 @@
             <div class="metadata-list-item-value">0008</div>
           </div>
           <div class="metadata-list-item">
+            <div class="metadata-list-item-label">Group ID</div>
+            <div class="metadata-list-item-spacer"></div>
+            <div class="metadata-list-item-value">0X103</div>
+          </div>
+          <div class="metadata-list-item">
+            <div class="metadata-list-item-label">Country</div>
+            <div class="metadata-list-item-spacer"></div>
+            <div class="metadata-list-item-value">US</div>
+          </div>
+          <div class="metadata-list-item">
+            <div class="metadata-list-item-label">Intake ID</div>
+            <div class="metadata-list-item-spacer"></div>
+            <div class="metadata-list-item-value">0008-069XXX</div>
+          </div>
+          <div class="metadata-list-item">
             <div class="metadata-list-item-label">Enrolled</div>
             <div class="metadata-list-item-spacer"></div>
             <div class="metadata-list-item-value">Y</div>
+          </div>
+          <div class="metadata-list-item">
+            <div class="metadata-list-item-label">Days on Study</div>
+            <div class="metadata-list-item-spacer"></div>
+            <div class="metadata-list-item-value">235</div>
           </div>
           <div class="metadata-list-item">
             <div class="metadata-list-item-label">Study Start Date</div>
@@ -22,17 +42,12 @@
             <div class="metadata-list-item-value">2004-10-17</div>
           </div>
           <div class="metadata-list-item">
-            <div class="metadata-list-item-label">Days On Study</div>
-            <div class="metadata-list-item-spacer"></div>
-            <div class="metadata-list-item-value">235</div>
-          </div>
-          <div class="metadata-list-item">
             <div class="metadata-list-item-label">Treatment Start Date</div>
             <div class="metadata-list-item-spacer"></div>
             <div class="metadata-list-item-value">2004-11-13</div>
           </div>
           <div class="metadata-list-item">
-            <div class="metadata-list-item-label">Days On Treatment</div>
+            <div class="metadata-list-item-label">Days on Treatment</div>
             <div class="metadata-list-item-spacer"></div>
             <div class="metadata-list-item-value">203</div>
           </div>
@@ -50,11 +65,6 @@
             <div class="metadata-list-item-label">Race</div>
             <div class="metadata-list-item-spacer"></div>
             <div class="metadata-list-item-value">ASIAN</div>
-          </div>
-          <div class="metadata-list-item">
-            <div class="metadata-list-item-label">Ethnicity</div>
-            <div class="metadata-list-item-spacer"></div>
-            <div class="metadata-list-item-value">out of bound:Ethnic</div>
           </div>
         </div>
         <bslib-tooltip placement="auto" bsOptions="[]" data-require-bs-version="5" data-require-bs-caller="tooltip()">

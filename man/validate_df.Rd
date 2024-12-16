@@ -12,7 +12,7 @@ validate_df(
 )
 }
 \arguments{
-\item{x}{The object to validate.}
+\item{x}{An object to validate.}
 
 \item{chrRequiredColumns}{\code{character} A vector of expected columns in a
 data.frame.}

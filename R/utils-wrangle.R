@@ -59,3 +59,43 @@ make_dfParticipantGroups <- function(dfAnalyticsInput) {
     .data$SubjectID
   )
 }
+
+#' Find interesting digits for rounding
+#'
+#' @param dblX A vector of numbers (usually with decimal places).
+#' @param intMaxDecimals The maximum number of decimal places to keep.
+#' @returns An integer between `0` and `intMaxDecimals`, representing the number
+#'   of decimal places to keep.
+#' @keywords internal
+findNonZeroDecimals <- function(dblX, intMaxDecimals = 5L) {
+  if (intMaxDecimals > 0 && is.numeric(dblX) && !rlang::is_integerish(dblX)) {
+    # Avoid floating point precision issues.
+    scaled_x <- round(dblX * 10^intMaxDecimals)
+
+    for (pow in seq_len(intMaxDecimals) - 1L) {
+      if (!all((scaled_x %/% (10^pow)) %% 10 == 0)) {
+        return(intMaxDecimals - pow)
+      }
+    }
+  }
+
+  # No interesting decimals.
+  return(0L)
+}
+
+#' Apply user-facing domain names
+#'
+#' @inheritParams shared-params
+#' @returns The list of domain dfs, with better user-facing names.
+#' @keywords internal
+applyPrettyDomainNames <- function(lDomains) {
+  chrDomains <- names(lDomains)
+  domainLabels <- sort(unlist(
+    gsm::MakeParamLabelsList(chrDomains, chrDomainLabels)
+  ))
+  # Sort by those labels.
+  lDomains <- lDomains[names(domainLabels)]
+  # Keep spaces out of names for better Shiny compatability.
+  names(lDomains) <- gsub(" ", "_", unname(domainLabels))
+  lDomains
+}

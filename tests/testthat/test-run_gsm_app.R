@@ -110,7 +110,7 @@ test_that("run_gsm_app populates Metric Details", {
   # Click through to each tab.
   app$set_inputs(`metric_details-selected_tab` = "Bar Chart (KRI Value)")
   app$wait_for_js(
-    "isCanvasLoaded('barChart--Analysis_kri0001_Metric');",
+    "isCanvasLoaded('metric_details-bar_chart_metric');",
     timeout = 2000
   )
   app$wait_for_idle()
@@ -122,7 +122,7 @@ test_that("run_gsm_app populates Metric Details", {
 
   app$set_inputs(`metric_details-selected_tab` = "Bar Chart (KRI Score)")
   app$wait_for_js(
-    "isCanvasLoaded('barChart--Analysis_kri0001_Score');",
+    "isCanvasLoaded('metric_details-bar_chart_score');",
     timeout = 2000
   )
   app$wait_for_idle()
@@ -134,7 +134,7 @@ test_that("run_gsm_app populates Metric Details", {
 
   app$set_inputs(`metric_details-selected_tab` = "Time Series")
   app$wait_for_js(
-    "isCanvasLoaded('timeSeries--Analysis_kri0001_Score');",
+    "isCanvasLoaded('metric_details-time_series');",
     timeout = 2000
   )
   app$wait_for_idle()
@@ -165,7 +165,7 @@ test_that("run_gsm_app populates Metric Details", {
   # between 0X001 and 0X159 as we go.
   app$set_inputs(`metric_details-selected_tab` = "Time Series")
   app$wait_for_js(
-    "isCanvasLoaded('timeSeries--Analysis_kri0001_Score');",
+    "isCanvasLoaded('metric_details-time_series');",
     timeout = 2000
   )
   app$wait_for_idle()
@@ -174,9 +174,9 @@ test_that("run_gsm_app populates Metric Details", {
     name = "time-site",
     screenshot_args = list(selector = ".active .tabbable")
   )
-  app$run_js("clickWidgetPlotGroup('timeSeries--Analysis_kri0001_Score', '0X001');")
+  app$run_js("clickWidgetPlotGroup('metric_details-time_series', '0X001');")
   app$wait_for_js(
-    "isCanvasLoaded('timeSeries--Analysis_kri0001_Score');",
+    "isCanvasLoaded('metric_details-time_series');",
     timeout = 2000
   )
   app$wait_for_idle()
@@ -188,7 +188,7 @@ test_that("run_gsm_app populates Metric Details", {
 
   app$set_inputs(`metric_details-selected_tab` = "Bar Chart (KRI Score)")
   app$wait_for_js(
-    "isCanvasLoaded('barChart--Analysis_kri0001_Score');",
+    "isCanvasLoaded('metric_details-bar_chart_score');",
     timeout = 2000
   )
   app$wait_for_idle()
@@ -197,9 +197,9 @@ test_that("run_gsm_app populates Metric Details", {
     name = "bar_score-site",
     screenshot_args = list(selector = ".active .tabbable")
   )
-  app$run_js("clickWidgetPlotGroup('barChart--Analysis_kri0001_Score', '0X159');")
+  app$run_js("clickWidgetPlotGroup('metric_details-bar_chart_score', '0X159');")
   app$wait_for_js(
-    "isCanvasLoaded('barChart--Analysis_kri0001_Score');",
+    "isCanvasLoaded('metric_details-bar_chart_score');",
     timeout = 2000
   )
   app$wait_for_idle()
@@ -211,7 +211,7 @@ test_that("run_gsm_app populates Metric Details", {
 
   app$set_inputs(`metric_details-selected_tab` = "Bar Chart (KRI Value)")
   app$wait_for_js(
-    "isCanvasLoaded('barChart--Analysis_kri0001_Metric');",
+    "isCanvasLoaded('metric_details-bar_chart_metric');",
     timeout = 2000
   )
   app$wait_for_idle()
@@ -220,9 +220,9 @@ test_that("run_gsm_app populates Metric Details", {
     name = "bar_value-site",
     screenshot_args = list(selector = ".active .tabbable")
   )
-  app$run_js("clickWidgetPlotGroup('barChart--Analysis_kri0001_Metric', '0X001');")
+  app$run_js("clickWidgetPlotGroup('metric_details-bar_chart_metric', '0X001');")
   app$wait_for_js(
-    "isCanvasLoaded('barChart--Analysis_kri0001_Metric');",
+    "isCanvasLoaded('metric_details-bar_chart_metric');",
     timeout = 2000
   )
   app$wait_for_idle()
@@ -295,7 +295,7 @@ test_that("run_gsm_app populates Participant Details", {
   )
 
   # Select AE data.
-  app$click("participant_details-metric_summary-metric_list_choices-AdverseEvents")
+  app$click("participant_details-domain_summary-domain_list_choices-Adverse_Events")
   app$wait_for_idle()
   app$expect_values(
     export = TRUE,
@@ -313,7 +313,7 @@ test_that("run_gsm_app populates Participant Details", {
   )
 
   # Select Study Disposition data.
-  app$click("participant_details-metric_summary-metric_list_choices-StudyCompletion")
+  app$click("participant_details-domain_summary-domain_list_choices-Study_Completion")
   app$wait_for_idle()
   app$expect_values(
     export = TRUE,

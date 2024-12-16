@@ -13,12 +13,15 @@ mod_MetricTable_Server <- function(
     # Update the widget when the source data changes.
     rctv_tbl <- shiny::reactive({
       req(rctv_dfResults())
-      gsm::Report_MetricTable(
+      rmt <- gsm::Report_MetricTable(
         rctv_dfResults(),
         dfGroups = dfGroups,
         strGroupLevel = "Site"
-      ) %>%
-        out_gtInteractive()
+      )
+      if (inherits(rmt, "gt_tbl")) {
+        return(out_gtInteractive(rmt))
+      }
+      return(out_gtPlaceholder("metric with flagged sites"))
     })
 
     # Extract the data back out of the widget.

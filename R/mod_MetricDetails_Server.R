@@ -22,15 +22,17 @@ mod_MetricDetails_Server <- function(
     }) %>%
       bindCache(rctv_strMetricID())
 
+    rctv_dfBounds_byMetricID <- reactive({
+      filter_byMetricID(dfBounds, rctv_strMetricID())
+    }) %>%
+      bindCache(rctv_strMetricID())
+
     rctv_dfResults_Latest <- reactive({
       gsm::FilterByLatestSnapshotDate(rctv_dfResults_byMetricID())
     }) %>%
       bindCache(rctv_strMetricID())
 
-    rctv_dfBounds_byMetricID <- reactive({
-      filter_byMetricID(dfBounds, rctv_strMetricID())
-    }) %>%
-      bindCache(rctv_strMetricID())
+    # Selections from tabs ----
 
     rctv_strScatterGroup <- mod_ScatterPlot_Server(
       "scatter_plot",
@@ -40,10 +42,32 @@ mod_MetricDetails_Server <- function(
       rctv_dfBounds = rctv_dfBounds_byMetricID
     )
 
-    # Placeholders until these are reigned in with modules.
-    rctv_strBarValueGroup <- reactive(NULL)
-    rctv_strBarScoreGroup <- reactive(NULL)
-    rctv_strTimeSeriesGroup <- reactive(NULL)
+    rctv_strBarValueGroup <- mod_BarChart_Server(
+      "bar_chart_metric",
+      rctv_dfResults = rctv_dfResults_Latest,
+      rctv_lMetric = rctv_lMetric,
+      dfGroups = dfGroups,
+      strOutcome = "Metric"
+    )
+
+    rctv_strBarScoreGroup <- mod_BarChart_Server(
+      "bar_chart_score",
+      rctv_dfResults = rctv_dfResults_Latest,
+      rctv_lMetric = rctv_lMetric,
+      dfGroups = dfGroups,
+      strOutcome = "Score",
+      rctv_dfBounds = rctv_dfBounds_byMetricID
+    )
+
+    rctv_strTimeSeriesGroup <- mod_TimeSeries_Server(
+      "time_series",
+      rctv_dfResults = rctv_dfResults_Latest,
+      rctv_lMetric = rctv_lMetric,
+      dfGroups = dfGroups,
+      strOutcome = "Score",
+      rctv_dfBounds = rctv_dfBounds_byMetricID
+    )
+
     rctv_strAnalysisOutputGroup <- mod_MetricTable_Server(
       "analysis_output",
       rctv_dfResults = rctv_dfResults_byMetricID,
@@ -51,70 +75,18 @@ mod_MetricDetails_Server <- function(
       rctv_strSiteID = rctv_strSiteID
     )
 
-    # Outputs ----
-
-    # Update the value-to-return RV
+    # Update the value-to-return reactive ----
     rctv_strSelectedGroupID <- reactive({
       req(input$selected_tab)
       switch(input$selected_tab,
         "Scatter Plot" = rctv_strScatterGroup(),
-        "Bar Chart (KRI Value)" = {
-          output$bar_chart_metric <- gsm::renderWidget_BarChart({
-            gsm::Widget_BarChart(
-              rctv_dfResults_Latest(),
-              lMetric = rctv_lMetric(),
-              dfGroups = dfGroups,
-              strOutcome = "Metric",
-              bAddGroupSelect = FALSE,
-              strShinyGroupSelectID = "site"
-            )
-          })
-          outputOptions(output, "bar_chart_metric", suspendWhenHidden = FALSE)
-          rctv_strBarValueGroup()
-        },
-        "Bar Chart (KRI Score)" = {
-          output$bar_chart_score <- gsm::renderWidget_BarChart({
-            gsm::Widget_BarChart(
-              rctv_dfResults_Latest(),
-              lMetric = rctv_lMetric(),
-              dfGroups = dfGroups,
-              strOutcome = "Score",
-              bAddGroupSelect = FALSE,
-              strShinyGroupSelectID = "site"
-            )
-          })
-          outputOptions(output, "bar_chart_score", suspendWhenHidden = FALSE)
-          rctv_strBarScoreGroup()
-        },
-        "Time Series" = {
-          output$time_series <- gsm::renderWidget_TimeSeries({
-            gsm::Widget_TimeSeries(
-              rctv_dfResults_byMetricID(),
-              lMetric = rctv_lMetric(),
-              dfGroups = dfGroups,
-              strOutcome = "Score",
-              bAddGroupSelect = FALSE,
-              strShinyGroupSelectID = "site"
-            )
-          })
-          outputOptions(output, "time_series", suspendWhenHidden = FALSE)
-          rctv_strTimeSeriesGroup()
-        },
-        "Analysis Output" = {
-          rctv_strAnalysisOutputGroup()
-        }
+        "Bar Chart (KRI Value)" = rctv_strBarValueGroup(),
+        "Bar Chart (KRI Score)" = rctv_strBarScoreGroup(),
+        "Time Series" = rctv_strTimeSeriesGroup(),
+        "Analysis Output" = rctv_strAnalysisOutputGroup()
       )
     })
 
-    # Value to return
-    #
-    # TODO: Make a separate observer for each input?
-    rctv_strSelectedGroupID_return <- reactiveVal(NULL)
-    observe({
-      req(rctv_strSelectedGroupID())
-      rctv_strSelectedGroupID_return(rctv_strSelectedGroupID())
-    })
-
-    return(rctv_strSelectedGroupID_return)
+    return(rctv_strSelectedGroupID)
   })
 }

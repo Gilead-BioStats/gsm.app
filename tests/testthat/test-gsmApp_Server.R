@@ -5,7 +5,7 @@ test_that("gsmApp_Server initializes correctly and updates rctv_lMetric", {
     dfGroups = sample_dfGroups,
     dfMetrics = sample_dfMetrics,
     dfResults = sample_dfResults,
-    fnFetchParticipantData = sample_FetchParticipantData
+    fnFetchData = sample_fnFetchData
   )
   testServer(
     server,
@@ -37,7 +37,7 @@ test_that("gsmApp_Server triggers reset", {
     dfGroups = sample_dfGroups,
     dfMetrics = sample_dfMetrics,
     dfResults = sample_dfResults,
-    fnFetchParticipantData = sample_FetchParticipantData
+    fnFetchData = sample_fnFetchData
   )
   testServer(
     server,
@@ -68,7 +68,7 @@ test_that("gsmApp_Server executes optional server functions", {
     dfMetrics = sample_dfMetrics,
     dfBounds = sample_dfBounds,
     dfAnalyticsInput = sample_dfAnalyticsInput,
-    fnFetchParticipantData = sample_FetchParticipantData,
+    fnFetchData = sample_fnFetchData,
     fnServer = function(input, output, session) {
       rctv_testVal <<- reactiveVal("testing")
     }

@@ -29,7 +29,8 @@ lSource <- list(
 # Create Mapped Data ----
 
 lMappings <- MakeWorkflowList(
-  strPath = "workflow/1_mappings"
+  strPath = system.file("workflow/1_mappings", package = "gsm.app"),
+  strPackage = NULL
 )
 raw_spec <- CombineSpecs(lMappings)
 lRaw <- Ingest(lSource, raw_spec)
@@ -109,63 +110,92 @@ sample_dfAnalyticsInput <- purrr::map(lAnalysis, "Analysis_Input") %>%
   dplyr::as_tibble() %>%
   dplyr::semi_join(site_subset)
 
-# Create User-facing Data ----
 
-## Before I was getting this lRaw at the same time as lMapped, but that caused me to
-## have duplicate columns during Analysis Data creation
+# lMapped for Domain Data ----
 
-lUserWorkflows <- MakeWorkflowList(
-  strPath = system.file("workflow/userFacing", package = "gsm.app"),
-  strPackage = NULL
+# SITE and STUDY are in dfGroups
+lMapped$Mapped_SITE <- NULL
+lMapped$Mapped_STUDY <- NULL
+
+# Apply subset to each mapped df.
+subject_groups <- dplyr::distinct(
+  sample_dfAnalyticsInput,
+  .data$SubjectID,
+  .data$GroupID
 )
-raw_spec <- CombineSpecs(lUserWorkflows)
-lRaw <- Ingest(lSource, raw_spec)
-lRaw <- lRaw %>%
-  purrr::map(dplyr::as_tibble)
+sample_lMapped <- purrr::map(lMapped, function(thisDomain) {
+  dplyr::inner_join(
+    thisDomain,
+    subject_groups,
+    by = c("subjid" = "SubjectID")
+  )
+})
 
-lUser <- RunWorkflows(lUserWorkflows, c(lRaw, lMapped))
-lUser <- lUser %>%
-  purrr::map(dplyr::as_tibble)
+# User-facing names ----
 
-# Prep participant data ----
+# Ideally this should all be defined in gsm.mapping.
 
-# Rotate such that the data is by subjid. In a "real" usage, much of this data
-# would likely be fetched via an API or other function call.
-participant_ids <- sample_dfAnalyticsInput$SubjectID
-names(participant_ids) <- participant_ids
-domains <- lUser
-domains$User_SUBJ <- NULL
-names(domains) <- stringr::str_remove(names(domains), "^User_")
-domains <- domains[sort(names(domains))]
-MakeThisData <- function(df, this_subjid) {
-  df %>%
-    dplyr::filter(.data$SubjectID == this_subjid) %>%
-    dplyr::select("SubjectID", dplyr::everything())
-}
+chrDomainLabels <- c(
+  AE = "Adverse Events",
+  DATACHG = "Data Changes",
+  DATAENT = "Data Entry",
+  ENROLL = "Enrollment",
+  LB = "Lab",
+  PD = "Protocol Deviations",
+  QUERY = "Queries",
+  STUDCOMP = "Study Completion",
+  SUBJ = "Subject Metadata",
+  SDRGCOMP = "Treatment Completion"
+)
 
-participant_data <- purrr::map(
-  participant_ids,
-  function(this_subjid) {
-    list(
-      metadata = lUser$User_SUBJ %>%
-        MakeThisData(this_subjid) %>%
-        as.list(),
-      metric_data = purrr::map(domains, function(this_domain) {
-        MakeThisData(this_domain, this_subjid)
-      })
-    )
-  }
+chrFieldNames <- c(
+  aeen_dt = "End Date",
+  aeser = "Serious",
+  aest_dt = "Start Date",
+  aetoxgr = "Toxicity Grade",
+  agerep = "Age",
+  companycategory = "Company Category",
+  compreas = "Discontinuation Reason",
+  compyn = "Completed Study",
+  deemedimportant = "Deemed Important",
+  deviationdate = "Deviation Date",
+  enroll_dt = "Enrollment Date",
+  enrollyn = "Enrolled",
+  ethnic = "Ethnicity",
+  fieldoid = "Field",
+  firstdosedate = "Treatment Start Date",
+  firstparticipantdate = "Study Start Date",
+  formoid = "Form",
+  lb_dt = "Visit Date",
+  lbtstnam = "Lab Test",
+  mdrpt_nsv = "Preferred Term",
+  mdrsoc_nsv = "System Organ Class",
+  queryage = "Query Age",
+  querystatus = "Query Status",
+  sdrgreas = "Discontinuation Reason",
+  sdrgyn = "Completed Treatment",
+  sfreas = "Screen Failure Reason",
+  siresn = "Result",
+  subject_nsv = "Intake ID",
+  subjectid = "Intake ID",
+  subjid = "Subject ID",
+  timeonstudy = "Days on Study",
+  timeontreatment = "Days on Treatment",
+  toxgrg_nsv = "Toxicity Grade",
+  visnam = "Visit"
 )
 
 # Save ----
 
-# The participant data is fetched using a function, so we don't export it
+# The mapped domain data is fetched using a function, so we don't export it
 # directly.
 usethis::use_data(
-  participant_data,
+  sample_lMapped,
+  chrDomainLabels,
+  chrFieldNames,
   overwrite = TRUE,
   internal = TRUE,
-  compress = "xz"
+  compress = "bzip2"
 )
 
 # Everything else that we use is exported as sample data. Split things up by
@@ -194,8 +224,9 @@ usethis::use_data(
 
 # Clean up ----
 rm(
+  chrDomainLabels,
+  chrFieldNames,
   dfResults,
-  domains,
   flag_summary,
   has_amber_only,
   has_both,
@@ -206,17 +237,14 @@ rm(
   lMappings,
   lRaw,
   lSource,
-  lUser,
-  lUserWorkflows,
   lWorkflows,
-  MakeThisData,
-  participant_data,
-  participant_ids,
   raw_spec,
   sample_dfAnalyticsInput,
   sample_dfBounds,
   sample_dfGroups,
   sample_dfMetrics,
   sample_dfResults,
-  site_subset
+  sample_lMapped,
+  site_subset,
+  subject_groups
 )

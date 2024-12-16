@@ -10,35 +10,13 @@ mod_ScatterPlot_Server <- function(
   dfGroups,
   rctv_dfBounds
 ) {
-  moduleServer(id, function(input, output, session) {
-    output$plot <- renderWidget_ScatterPlot({
-      Widget_ScatterPlot(
-        session$ns("plot"),
-        gsm::FilterByLatestSnapshotDate(rctv_dfResults()),
-        lMetric = rctv_lMetric(),
-        dfGroups = dfGroups,
-        dfBounds = rctv_dfBounds()
-      )
-    })
-    observe({
-      lMetric <- rctv_lMetric()
-      session$sendCustomMessage(
-        type = "updateWidgetPlotGroup",
-        message = list(
-          id = session$ns("plot"),
-          selectedGroupID = lMetric$selectedGroupIDs
-        )
-      )
-    })
-
-    return(
-      reactive({
-        input_val <- input$plot
-        if (is.null(input_val) || input_val == "") {
-          return(NULL)
-        }
-        return(input_val)
-      })
-    )
-  })
+  mod_WidgetPlot_Server(
+    id,
+    fn_Widget = Widget_ScatterPlot,
+    fn_WidgetOutput = Widget_ScatterPlotOutput,
+    rctv_dfResults = rctv_dfResults,
+    rctv_lMetric = rctv_lMetric,
+    dfGroups = dfGroups,
+    rctv_dfBounds = rctv_dfBounds
+  )
 }

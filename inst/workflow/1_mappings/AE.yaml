@@ -1,0 +1,28 @@
+meta:
+  Type: Mapped
+  ID: AE
+  Description: Adverse Event Data Mapping
+  Priority: 1
+spec:
+  Raw_AE:
+    subjid:
+      type: character
+    aeser:
+      type: character
+    aest_dt:
+      type: Date
+    aeen_dt:
+      type: Date
+    mdrpt_nsv:
+      type: character
+    mdrsoc_nsv:
+      type: character
+    aetoxgr:
+      type: character
+steps:
+  - output: Mapped_AE
+    name: =
+    params:
+      lhs: Mapped_AE
+      rhs: Raw_AE
+

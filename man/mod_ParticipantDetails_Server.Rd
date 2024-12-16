@@ -4,18 +4,24 @@
 \alias{mod_ParticipantDetails_Server}
 \title{Participant Details server}
 \usage{
-mod_ParticipantDetails_Server(id, fnFetchParticipantData, rctv_strSubjectID)
+mod_ParticipantDetails_Server(
+  id,
+  fnFetchData,
+  chrDomains = c("AE", "ENROLL", "LB", "PD", "SDRGCOMP", "STUDCOMP", "SUBJ", "DATACHG",
+    "DATAENT", "QUERY"),
+  rctv_strSubjectID
+)
 }
 \arguments{
 \item{id}{\code{character} The id for this module, widget, or other element.}
 
-\item{fnFetchParticipantData}{\code{function} A function that takes a single
-\code{strSubjectID} argument such as "0001", and returns a list with components
-\code{metadata} and \code{metric_data}. \code{metadata} should be a named character vector
-(or something that can be coerced to a character vector) of information
-about the participant, and \code{metric_data} should be a named list of
-data.frames, each of which contains information related to the named
-metric.}
+\item{fnFetchData}{\code{function} A function that takes a \code{strDomain} argument
+and optional \code{strSiteID} and \code{strSubjectID} and returns a data.frame. See
+\code{\link[=sample_fnFetchData]{sample_fnFetchData()}} for an example. The returned data.frame contains
+information about the named domain.}
+
+\item{chrDomains}{\code{character} A vector of names of domain data.frames to show
+in the app. Supported domains are shown in the default value.}
 
 \item{rctv_strSubjectID}{\verb{reactive character} A \code{\link[shiny:reactive]{shiny::reactive()}} object
 that returns the \code{SubjectID} of the selected participant.}

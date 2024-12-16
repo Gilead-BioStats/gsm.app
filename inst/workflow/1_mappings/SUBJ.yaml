@@ -1,0 +1,39 @@
+meta:
+  Type: Mapped
+  ID: SUBJ
+  Description: Subject Data Mapping
+  Priority: 1
+spec:
+  Raw_SUBJ:
+    studyid:
+      type: character
+    invid:
+      type: character
+    country:
+      type: character
+    subjid:
+      type: character
+    subject_nsv:
+      type: character
+    enrollyn:
+      type: character
+    timeonstudy:
+      type: integer
+    firstparticipantdate:
+      type: Date
+    firstdosedate:
+      type: Date
+    timeontreatment:
+      type: numeric
+    agerep:
+      type: character
+    sex:
+      type: character
+    race:
+      type: character
+steps:
+  - output: Mapped_SUBJ
+    name: RunQuery
+    params:
+      df: Raw_SUBJ
+      strQuery: "SELECT * FROM df WHERE enrollyn == 'Y'"

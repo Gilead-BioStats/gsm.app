@@ -1,3 +1,18 @@
+# gsm.app 2.2.0
+
+Introducing Plugins! Plugins allow users to extend the apps produced by {gsm.app} with additional functionality for specific domains or combinations of domains.
+
+## New Features
+- We now support plugins! See the new "Plugins" vignette for details of how to create a plugin. A demo Adverse Events plugin is provided as part of the {gsm.app} installation (#319, #322, #323, #324).
+- Domain data can now be fetched at a site or study level. Such data is currently only used by plugins, but it will also allow for further refinement of the main app going forward (#321).
+
+## Other Improvements
+- Numeric participant-domain data now automatically rounds to an appropriate number of significant digits (#313).
+- All inputs are now implemented as full Shiny module inputs. The end result is that the various charts update more smoothly in response to changes elsewhere in the app (#309, #310).
+- A new argument `chrDomains` can now be provided at launch to limit the domains the app expects (#333).
+- KRIs that have 0 flags no longer break the "Analysis Output" table on the "Metric Details" tab (#339).
+- Some variable names have been standardized (#331).
+
 # gsm.app 2.1.0
 
 This version focuses on stability, as well as integration with `{gsm}` 2.1.2:

@@ -5,17 +5,11 @@
 #'   [Widget_ScatterPlotOutput()].
 #' @keywords internal
 mod_ScatterPlot_UI <- function(id, strPlotTitle = NULL) {
-  ns <- NS(id)
-  card_header <- if (!is.null(strPlotTitle)) {
-    bslib::card_header(strPlotTitle)
-  }
-  bslib::card(
+  mod_WidgetPlot_UI(
     id = id,
-    full_screen = TRUE,
-    class = "chart",
-    card_header,
-    htmlDependency_ScatterPlotInput(),
-    Widget_ScatterPlotOutput(ns("plot"))
+    fnHtmlDependency = htmlDependency_ScatterPlotInput,
+    fnWidgetOutput = Widget_ScatterPlotOutput,
+    strPlotTitle = strPlotTitle
   )
 }
 
@@ -28,32 +22,5 @@ mod_ScatterPlot_UI <- function(id, strPlotTitle = NULL) {
 #'   app exactly once, regardless how many times they are added.
 #' @keywords internal
 htmlDependency_ScatterPlotInput <- function() {
-  htmltools::tagList(
-    htmlDependency_WidgetInputHelpers(),
-    htmltools::htmlDependency(
-      name = "scatterPlotInput",
-      version = "1.0.0",
-      src = "inputs",
-      package = "gsm.app",
-      script = "scatterPlotInput.js"
-    )
-  )
-}
-
-#' Widget Input JavaScript
-#'
-#' Attach `widgetInputHelpers.js` to an app or other HTML exactly once.
-#'
-#' @returns An `html_dependency` object (see [htmltools::htmlDependency()]),
-#'   which is attached to the Shiny app exactly once, regardless how many times
-#'   it is added.
-#' @keywords internal
-htmlDependency_WidgetInputHelpers <- function() {
-  htmltools::htmlDependency(
-    name = "widgetInputHelpers",
-    version = "1.0.0",
-    src = "inputs",
-    package = "gsm.app",
-    script = "widgetInputHelpers.js"
-  )
+  htmlDependency_WidgetPlotInput("Widget_ScatterPlot")
 }
