@@ -1,3 +1,5 @@
+# gsm.app (development version)
+
 # gsm.app 2.2.0
 
 Introducing Plugins! Plugins allow users to extend the apps produced by {gsm.app} with additional functionality for specific domains or combinations of domains.
