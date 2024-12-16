@@ -86,6 +86,10 @@ jobs:
           if ("gt" %in% rownames(installed.packages())) {
             remove.packages("gt")
           }
+          # Temporarily force-install gsm from DESCRIPTION
+          if ("gsm" %in% rownames(installed.packages())) {
+            remove.packages("gsm")
+          } 
           pak::pak()
 
           # Install plugin dependencies.
