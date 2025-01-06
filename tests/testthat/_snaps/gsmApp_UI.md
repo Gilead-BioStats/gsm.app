@@ -867,6 +867,8 @@
         <tbody class="gt_table_body">
           <tr><td headers="Description" class="gt_row gt_left">Nickname</td>
       <td headers="Value" class="gt_row gt_right">Protocol Nickname</td></tr>
+          <tr><td headers="Description" class="gt_row gt_left">Status</td>
+      <td headers="Value" class="gt_row gt_right">Active</td></tr>
           <tr><td headers="Description" class="gt_row gt_left">Site Activation</td>
       <td headers="Value" class="gt_row gt_right">176 / 190 (92.6%)</td></tr>
           <tr><td headers="Description" class="gt_row gt_left">Participant Enrollment</td>
