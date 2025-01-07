@@ -15,7 +15,7 @@ test_that("gsmApp_Server initializes correctly and updates rctv_lMetric", {
         primary_nav_bar = "Study Overview",
         metric = "Analysis_kri0001",
         site = "None",
-        participant = "None"
+        participant = "All"
       )
       expect_equal(input$metric, "Analysis_kri0001")
       expect_null(rctv_lMetric()$selectedGroupIDs)
@@ -47,7 +47,7 @@ test_that("gsmApp_Server triggers reset", {
         primary_nav_bar = "Study Overview",
         metric = "Analysis_kri0001",
         site = "None",
-        participant = "None"
+        participant = "All"
       )
       expect_equal(input$site, "None")
 

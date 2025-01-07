@@ -10,7 +10,8 @@ null_for_none(strValue)
 \item{strValue}{\code{character} The value of a field.}
 }
 \value{
-The value, or \code{NULL} if the value is "None" or an empty string.
+The value, or \code{NULL} if the value is "None", "All", or an empty
+string.
 }
 \description{
 Replace empty values with NULL

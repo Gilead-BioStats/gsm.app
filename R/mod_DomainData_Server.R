@@ -1,4 +1,4 @@
-#' Participant Domain Server
+#' Domain Data Server
 #'
 #' Display a specific (named) table, or a placeholder.
 #'
@@ -7,24 +7,25 @@
 #'   selected. Currently not useful but will be converted to row numbers when we
 #'   need it for deeper dives.
 #' @keywords internal
-mod_ParticipantDomain_Server <- function(
+mod_DomainData_Server <- function(
   id,
   rctv_lData,
-  rctv_strName,
   rctv_strSubjectID
 ) {
   moduleServer(id, function(input, output, session) {
+    strLabel <- unname(unlist(gsm::MakeParamLabelsList(id, chrDomainLabels)))
+    strLabel <- gsub(" ", "_", strLabel)
     rctv_lDataIsValid <- reactive({
       length(rctv_lData()) > 0
     })
     rctv_selectionIsValid <- reactive({
       rctv_lDataIsValid() &&
-        length(rctv_strName()) &&
-        rctv_strName() %in% names(rctv_lData())
+        length(strLabel) &&
+        strLabel %in% names(rctv_lData())
     })
     rctv_tblData <- reactive({
       if (rctv_selectionIsValid()) {
-        df <- rctv_lData()[[rctv_strName()]]
+        df <- rctv_lData()[[strLabel]]
         return(df)
       }
       dplyr::tibble(SubjectID = character()) # nocov
@@ -45,37 +46,18 @@ mod_ParticipantDomain_Server <- function(
         }
         return(gtObj)
       }
-      placeholderText <- "domain"
-      if (!rctv_lDataIsValid()) {
-        placeholderText <- c("participant", placeholderText)
-      }
-      return(out_gtPlaceholder(placeholderText))
-    }) %>%
-      bindCache(
-        rctv_strSubjectID(),
-        rctv_strName(),
-        nrow(rctv_tblData()) # In case data updates live.
-      )
+      return(out_gtPlaceholder("domain"))
+    })
 
     selected_rows <- mod_gtBidirectional_Server(
       "gt",
       rctv_tblData,
       rctv_gtObject,
-      reactive({
-        NULL
-      }), # No input causes selection in this table.
-      # In the future we might want this to be dynamic, or to have a version of
-      # the module that returns the row number or full row or something.
-      "SubjectID"
+      # No input causes selection in this table.
+      reactive(NULL),
+      "nothing",
+      strEmpty = "All"
     )
-
-    output$title <- renderText({
-      if (rctv_selectionIsValid()) {
-        return(gsm::MakeParamLabelsList(rctv_strName())[[1]])
-      }
-      return("Participant Domain")
-    }) %>%
-      bindCache(rctv_strName(), rctv_lDataIsValid())
 
     return(selected_rows)
   })

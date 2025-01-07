@@ -156,7 +156,7 @@ gsmApp_Server <- function(
     ### Sync participant dropdown filter ----
     ###
     ### Revisit as app becomes fully modularized.
-    rctv_LatestParticipant <- reactiveVal("None")
+    rctv_LatestParticipant <- reactiveVal("All")
     observe({
       req(input$participant)
       strParticipantID <- input$participant
@@ -187,7 +187,7 @@ gsmApp_Server <- function(
       req(rctv_LatestParticipant())
       req(rctv_chrParticipantIDs())
       req(rctv_LastSiteFilter())
-      selected <- "None"
+      selected <- "All"
       if (rctv_LatestParticipant() %in% rctv_chrParticipantIDs()) {
         selected <- rctv_LatestParticipant()
       }
@@ -196,12 +196,12 @@ gsmApp_Server <- function(
           rctv_LastSiteFilter() != input$site
       ) {
         rctv_LastSiteFilter(input$site)
-        if (selected == "None") {
+        if (selected == "All") {
           # This double-update prevents the old option from showing in the list
           # erroneously.
           updateSelectizeInput(
             inputId = "participant",
-            selected = "None",
+            selected = "All",
             server = TRUE,
             session = session
           )
@@ -217,18 +217,19 @@ gsmApp_Server <- function(
     }) %>%
       bindEvent(rctv_LatestParticipant(), input$site)
 
-    ## Participant Details ----
+    ## Domain Details ----
     srvr_SyncTab(
       "primary_nav_bar",
-      "Participant Details",
+      "Domain Details",
       rctv_LatestParticipant,
       rctv_strPrimaryNavBar,
       session
     )
-    mod_ParticipantDetails_Server(
-      "participant_details",
+    mod_DomainDetails_Server(
+      "domain_details",
       fnFetchData = fnFetchData,
       chrDomains = chrDomains,
+      rctv_strSiteID = rctv_strSiteID,
       rctv_strSubjectID = rctv_strSubjectID
     )
 

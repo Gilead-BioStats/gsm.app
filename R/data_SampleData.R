@@ -145,7 +145,7 @@ sample_fnFetchData <- function(
   if (length(strSiteID) && strSiteID != "None") {
     df <- dplyr::filter(df, .data$GroupID == strSiteID)
   }
-  if (length(strSubjectID) && strSubjectID != "None") {
+  if (length(strSubjectID) && strSubjectID != "All") {
     df <- dplyr::filter(df, .data$SubjectID == strSubjectID)
   }
   return(dplyr::select(df, "SubjectID", "GroupID", dplyr::everything()))

@@ -6,6 +6,7 @@
 #' @returns A Shiny UI object
 #' @keywords internal
 gsmApp_UI <- function(
+  chrDomains,
   dfAnalyticsInput,
   dfGroups,
   dfMetrics,
@@ -25,7 +26,12 @@ gsmApp_UI <- function(
     title = strTitle,
     theme = bslib::bs_theme(version = 5),
     fillable = FALSE,
-    !!!out_MainTabs(dfResults = dfResults, chrMetrics = chrMetrics, lPlugins = lPlugins),
+    !!!out_MainTabs(
+      chrDomains = chrDomains,
+      dfResults = dfResults,
+      chrMetrics = chrMetrics,
+      lPlugins = lPlugins
+    ),
     sidebar = out_Sidebar(
       dfGroups,
       dfResults,

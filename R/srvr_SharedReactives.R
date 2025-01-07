@@ -54,10 +54,10 @@ srvr_rctv_chrParticipantIDs <- function(
   reactive({
     site <- rctv_strSiteID()
     if (site == "None") {
-      return(c("None", dfParticipantGroups$SubjectID))
+      return(c("All", dfParticipantGroups$SubjectID))
     }
     c(
-      "None",
+      "All",
       dfParticipantGroups$SubjectID[
         dfParticipantGroups$GroupID == site
       ]
