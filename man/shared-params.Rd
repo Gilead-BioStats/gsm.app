@@ -70,7 +70,7 @@ information about the named domain.}
 \code{input}, \code{output}, and \code{session}. This function will be called at the start
 of the main app server function.}
 
-\item{id}{\code{character} The id for this module, widget, or other element.}
+\item{id}{\code{character} The id for this element.}
 
 \item{intKRIColorCount}{\code{integer} A named vector of counts by color.}
 
@@ -84,10 +84,8 @@ of the main app server function.}
 \item{lMetric}{\code{list} Named list of data describing a single metric, as well
 as things like which group is selected.}
 
-\item{lDomains}{\code{list} Named list of data domain data.frames.}
-
-\item{lParticipantMetadata}{\code{list} Named list of data describing a single
-participant.}
+\item{l_rctvDomains}{\code{list} A named list of \code{\link[shiny:reactive]{shiny::reactive()}} objects, each
+of which returns a domain dataframe.}
 
 \item{lPluginDefinition}{\code{list} A named list with required elements
 \code{strTitle}, \code{fnUI}, and \code{fnServer}, and optional fields \code{packages} and
@@ -107,22 +105,18 @@ across the full range of sample sizes/total exposure values for reporting.}
 \item{rctv_dfData}{\verb{reactive dataframe} A \code{\link[shiny:reactive]{shiny::reactive()}} object that
 returns a generic dataframe.}
 
+\item{rctv_dfDomain}{\verb{reactive dataframe} A \code{\link[shiny:reactive]{shiny::reactive()}} object that
+returns a domain dataframe.}
+
 \item{rctv_dfResults}{\verb{reactive dataframe} A \code{\link[shiny:reactive]{shiny::reactive()}} object that
 returns a stacked summary of analysis pipeline output.}
 
 \item{rctv_gtObject}{\verb{reactive gt_table} A \code{\link[shiny:reactive]{shiny::reactive()}} object that
 returns a \code{\link[gt:gt]{gt::gt()}} object.}
 
-\item{rctv_lData}{\verb{reactive list} A \code{\link[shiny:reactive]{shiny::reactive()}} object that returns a
-named list of dataframes.}
-
 \item{rctv_lMetric}{\verb{reactive list} A \code{\link[shiny:reactive]{shiny::reactive()}} object that returns
 a named list of data describing a single metric, as well as things like
 which group is selected.}
-
-\item{rctv_lParticipantMetricData}{\verb{reactive list} A \code{\link[shiny:reactive]{shiny::reactive()}}
-object that returns a list of dataframes for a given participant, one for
-each metric that is available.}
 
 \item{rctv_lglState}{\verb{reactive logical} A \code{\link[shiny:reactive]{shiny::reactive()}}] object that
 returns a Boolean value indicating whether something is "off" (\code{FALSE}) or

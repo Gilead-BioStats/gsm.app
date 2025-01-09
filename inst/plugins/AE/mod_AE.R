@@ -21,31 +21,17 @@ mod_AE_UI <- function(id) {
 
 mod_AE_Server <- function(
   id,
-  fnFetchData,
+  rctv_dfAE,
+  rctv_dfSUBJ,
   rctv_strSiteID,
   rctv_strSubjectID
 ) {
   moduleServer(id, function(input, output, session) {
-    rctv_dfSubject <- shiny::reactive({
-      fnFetchData(
-        "SUBJ",
-        strSiteID = rctv_strSiteID(),
-        strSubjectID = rctv_strSubjectID()
-      ) %>%
-        dplyr::select(
-          "SubjectID",
-          "firstparticipantdate"
-        )
-    })
-    rctv_dfAE <- shiny::reactive({
-      dfAE <- fnFetchData(
-        "AE",
-        strSiteID = rctv_strSiteID(),
-        strSubjectID = rctv_strSubjectID()
-      )
+    rctv_dfAE_mod <- shiny::reactive({
+      dfAE <- rctv_dfAE()
       if (NROW(dfAE)) {
         dfAE <- dfAE %>%
-          dplyr::inner_join(rctv_dfSubject(), by = "SubjectID") %>%
+          dplyr::inner_join(rctv_dfSUBJ(), by = "SubjectID") %>%
           dplyr::mutate(
             aetoxgr = toupper(
               sub("^out of bound:", "", .data$aetoxgr)
@@ -76,12 +62,12 @@ mod_AE_Server <- function(
       severity_col = "aetoxgr",
       serious_col = "aeser"
     )
-    mod_AEDashboard_server("dashboard", rctv_dfAE)
+    mod_AEDashboard_server("dashboard", rctv_dfAE_mod)
     output$explorer <- render_aeExplorer({
-      dfAE <- rctv_dfAE()
+      dfAE <- rctv_dfAE_mod()
       if (NROW(dfAE)) {
         render_SC_widget(
-          lData = list(dm = rctv_dfSubject(), aes = dfAE),
+          lData = list(dm = rctv_dfSUBJ(), aes = dfAE),
           lSettings = list(
             dm = list(
               id_col = "SubjectID"
@@ -94,7 +80,7 @@ mod_AE_Server <- function(
       }
     })
     output$timeline <- render_aeTimelines({
-      dfAE <- rctv_dfAE()
+      dfAE <- rctv_dfAE_mod()
       if (NROW(dfAE)) {
         render_SC_widget(
           lData = dfAE,

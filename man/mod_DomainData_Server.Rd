@@ -4,16 +4,13 @@
 \alias{mod_DomainData_Server}
 \title{Domain Data Server}
 \usage{
-mod_DomainData_Server(id, rctv_lData, rctv_strSubjectID)
+mod_DomainData_Server(id, rctv_dfDomain)
 }
 \arguments{
-\item{id}{\code{character} The id for this module, widget, or other element.}
+\item{id}{\code{character} The id for this element.}
 
-\item{rctv_lData}{\verb{reactive list} A \code{\link[shiny:reactive]{shiny::reactive()}} object that returns a
-named list of dataframes.}
-
-\item{rctv_strSubjectID}{\verb{reactive character} A \code{\link[shiny:reactive]{shiny::reactive()}} object
-that returns the \code{SubjectID} of the selected participant.}
+\item{rctv_dfDomain}{\verb{reactive dataframe} A \code{\link[shiny:reactive]{shiny::reactive()}} object that
+returns a domain dataframe.}
 }
 \value{
 A \code{\link[shiny:reactive]{shiny::reactive()}} with the SubjectID for each row that is

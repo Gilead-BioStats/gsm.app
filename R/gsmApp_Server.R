@@ -33,37 +33,30 @@ gsmApp_Server <- function(
     }
 
     # Reset ----
-    observe({
-      session$reload()
-    }) %>%
-      bindEvent(input$reset)
+    srvr_Reset(input, session)
 
     # Shared Reactives ----
 
+    ## Inputs ----
+    ##
     ## Inputs pass to modules (etc) as reactives.
     rctv_strMetricID <- reactive(input$metric)
     rctv_strSiteID <- reactive(input$site)
     rctv_strSubjectID <- reactive(input$participant)
     rctv_strPrimaryNavBar <- reactive(input$primary_nav_bar)
 
-    ## The listified dfMetrics are used by both metric sub-mods, so calculate
-    ## them once. This can/should move inside a single metric-tab module.
-    rctv_lMetric_base <- srvr_rctv_lMetric_base(
-      dfMetrics,
-      rctv_strMetricID,
-      session
-    )
-    rctv_lMetric <- srvr_rctv_lMetric(
-      dfMetrics,
-      rctv_lMetric_base,
-      rctv_strMetricID,
-      rctv_strSiteID,
-      session
-    )
-    dfParticipantGroups <- make_dfParticipantGroups(dfAnalyticsInput)
+    ## Participants ----
     rctv_chrParticipantIDs <- srvr_rctv_chrParticipantIDs(
-      dfParticipantGroups,
+      dfAnalyticsInput,
       rctv_strSiteID
+    )
+
+    ## Domains ----
+    l_rctvDomains <- srvr_l_rctvDomains(
+      fnFetchData,
+      chrDomains,
+      rctv_strSiteID,
+      rctv_strSubjectID
     )
 
     # Tab Contents ----
@@ -115,47 +108,24 @@ gsmApp_Server <- function(
     )
 
     ## Metric Details ----
-    srvr_SyncTab(
-      "primary_nav_bar",
-      "Metric Details",
-      rctv_strMetricID,
-      rctv_strPrimaryNavBar,
-      session
-    )
-    srvr_SyncTab(
-      "primary_nav_bar",
-      "Metric Details",
-      rctv_strSiteID,
-      rctv_strPrimaryNavBar,
-      session
-    )
-    rctv_strMetricDetailsGroup <- mod_MetricDetails_Server(
-      "metric_details",
-      dfResults = dfResults,
-      dfGroups = dfGroups,
-      dfBounds = dfBounds,
-      rctv_lMetric = rctv_lMetric,
-      rctv_strSiteID = rctv_strSiteID,
-      rctv_strMetricID = rctv_strMetricID
-    )
-    rctv_strSiteDetailsParticipant <- mod_SiteDetails_Server(
-      "site_details",
-      dfGroups = dfGroups,
+    rctv_strSiteDetailsParticipant <- srvr_MetricDetails(
       dfAnalyticsInput = dfAnalyticsInput,
+      dfBounds = dfBounds,
+      dfGroups = dfGroups,
+      dfMetrics = dfMetrics,
+      dfResults = dfResults,
+      rctv_strMetricID = rctv_strMetricID,
+      rctv_strPrimaryNavBar = rctv_strPrimaryNavBar,
       rctv_strSiteID = rctv_strSiteID,
       rctv_strSubjectID = rctv_strSubjectID,
-      rctv_strMetricID = rctv_strMetricID,
-      rctv_lMetric = rctv_lMetric
+      input = input,
+      output = output,
+      session = session
     )
-    srvr_SyncSelectInput("site", rctv_strMetricDetailsGroup, session)
 
-    # Temporary: Update Site drop-down when one of the non-module widgets
-    # changes its value without sending a full Shiny event.
-    srvr_SyncSelectInput("site", rctv_strSiteID, session)
-
-    ### Sync participant dropdown filter ----
-    ###
-    ### Revisit as app becomes fully modularized.
+    ## Sync participant dropdown filter ----
+    ##
+    ## Revisit as app becomes fully modularized.
     rctv_LatestParticipant <- reactiveVal("All")
     observe({
       req(input$participant)
@@ -227,17 +197,14 @@ gsmApp_Server <- function(
     )
     mod_DomainDetails_Server(
       "domain_details",
-      fnFetchData = fnFetchData,
-      chrDomains = chrDomains,
-      rctv_strSiteID = rctv_strSiteID,
-      rctv_strSubjectID = rctv_strSubjectID
+      l_rctvDomains = l_rctvDomains
     )
 
     ## Plugins ----
     mod_Plugins_Server(
       "plugins",
       lPlugins = lPlugins,
-      fnFetchData = fnFetchData,
+      l_rctvDomains = l_rctvDomains,
       rctv_strMetricID = rctv_strMetricID,
       rctv_strSiteID = rctv_strSiteID,
       rctv_strSubjectID = rctv_strSubjectID

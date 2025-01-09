@@ -6,7 +6,7 @@
 mod_Plugins_Server <- function(
   id,
   lPlugins,
-  fnFetchData,
+  l_rctvDomains,
   rctv_strMetricID,
   rctv_strSiteID,
   rctv_strSubjectID
@@ -16,8 +16,9 @@ mod_Plugins_Server <- function(
       for (i in seq_along(lPlugins)) {
         lPlugin <- lPlugins[[i]]
         fnServer <- util_AsFunction(lPlugin$shiny$Server)
-        args_available <- list(
-          fnFetchData = fnFetchData,
+        names(l_rctvDomains) <- glue::glue("rctv_df{names(l_rctvDomains)}")
+        args_available <- c(
+          l_rctvDomains,
           rctv_strMetricID = rctv_strMetricID,
           rctv_strSiteID = rctv_strSiteID,
           rctv_strSubjectID = rctv_strSubjectID

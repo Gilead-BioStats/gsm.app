@@ -11,7 +11,7 @@ mod_DomainDetails_UI(
 )
 }
 \arguments{
-\item{id}{\code{character} The id for this module, widget, or other element.}
+\item{id}{\code{character} The id for this element.}
 
 \item{chrDomains}{\code{character} A vector of names of domain data.frames to show
 in the app. Supported domains are shown in the default value.}

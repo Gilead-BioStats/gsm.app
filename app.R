@@ -4,11 +4,6 @@ pkgload::load_all(".", helpers = FALSE, attach_testthat = FALSE)
 aePlugin <- plugin_Read(system.file("plugins", "AE", package = "gsm.app"))
 plugin_LoadDependencies(aePlugin)
 
-# cli::cli_abort(c(
-#   "TODO:",
-#   "Add counts to tab names OR only load visible"
-# ))
-
 run_gsm_app(
   dfAnalyticsInput = gsm.app::sample_dfAnalyticsInput,
   dfBounds = gsm.app::sample_dfBounds,

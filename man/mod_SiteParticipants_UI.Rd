@@ -7,7 +7,7 @@
 mod_SiteParticipants_UI(id)
 }
 \arguments{
-\item{id}{\code{character} The id for this module, widget, or other element.}
+\item{id}{\code{character} The id for this element.}
 }
 \value{
 A \code{\link[bslib:card]{bslib::card()}} with a placeholder or a clickable table of site

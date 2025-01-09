@@ -17,13 +17,13 @@ mod_AEDashboard_UI <- function(id) {
   )
 }
 
-mod_AEDashboard_server <- function(id, rctv_dfAE) {
+mod_AEDashboard_server <- function(id, rctv_dfAE_mod) {
   moduleServer(id, function(input, output, session) {
     output$ae_count <- shiny::renderText({
-      NROW(rctv_dfAE())
+      NROW(rctv_dfAE_mod())
     })
     output$sae_count <- shiny::renderText({
-      dfAE <- rctv_dfAE()
+      dfAE <- rctv_dfAE_mod()
       n_sae <- 0L
       if (NROW(dfAE)) {
         n_sae <- sum(dfAE$aeser == "Y")
@@ -31,8 +31,8 @@ mod_AEDashboard_server <- function(id, rctv_dfAE) {
       return(n_sae)
     })
     output$severity_bars <- shiny::renderPlot({
-      shiny::req(rctv_dfAE())
-      dfAE <- rctv_dfAE()
+      shiny::req(rctv_dfAE_mod())
+      dfAE <- rctv_dfAE_mod()
       dfAE %>%
         ggplot2::ggplot() +
         ggplot2::theme_minimal(base_size = 20) +

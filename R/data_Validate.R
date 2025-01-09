@@ -1,7 +1,8 @@
-# We might want to do this entirely via workflows, but I feel like it's good to
-# check in the app itself since users don't HAVE to use workflows.
-
-validate_chrDomains <- function(chrDomains, envCall = rlang::caller_env()) {
+validate_chrDomains <- function(
+  chrDomains,
+  lPlugins = NULL,
+  envCall = rlang::caller_env()
+) {
   known_domains <- c(
     "AE",
     "ENROLL",
@@ -14,7 +15,7 @@ validate_chrDomains <- function(chrDomains, envCall = rlang::caller_env()) {
     "DATAENT",
     "QUERY"
   )
-  upper_chrDomains <- union(toupper(chrDomains), "SUBJ")
+  upper_chrDomains <- toupper(chrDomains)
   unknown_domains <- setdiff(upper_chrDomains, known_domains)
   if (length(unknown_domains)) {
     unknown_domains_display <- chrDomains[
@@ -29,6 +30,23 @@ validate_chrDomains <- function(chrDomains, envCall = rlang::caller_env()) {
       envCall = envCall
     )
   }
+  if (length(lPlugins)) {
+    chrPluginDomains <- purrr::map(lPlugins, "domains") %>%
+      unlist() %>%
+      toupper()
+    missing_domains <- setdiff(chrPluginDomains, upper_chrDomains)
+    if (length(missing_domains)) {
+      gsmapp_abort(
+        c(
+          "All {.arg lPlugins} domains must be included in {.arg chrDomains}.",
+          x = "Missing domains: {.field {missing_domains}}."
+        ),
+        strClass = "invalid_input",
+        envCall = envCall
+      )
+    }
+  }
+
   return(upper_chrDomains)
 }
 
