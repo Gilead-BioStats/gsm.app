@@ -13,7 +13,7 @@ srvr_SyncTab(
 )
 }
 \arguments{
-\item{id}{\code{character} The id for this module, widget, or other element.}
+\item{id}{\code{character} The id for this element.}
 
 \item{strTargetTab}{\code{character} The tab to switch to.}
 

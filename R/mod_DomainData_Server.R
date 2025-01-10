@@ -9,30 +9,18 @@
 #' @keywords internal
 mod_DomainData_Server <- function(
   id,
-  rctv_lData,
-  rctv_strSubjectID
+  rctv_dfDomain
 ) {
   moduleServer(id, function(input, output, session) {
-    strLabel <- unname(unlist(gsm::MakeParamLabelsList(id, chrDomainLabels)))
-    strLabel <- gsub(" ", "_", strLabel)
-    rctv_lDataIsValid <- reactive({
-      length(rctv_lData()) > 0
-    })
-    rctv_selectionIsValid <- reactive({
-      rctv_lDataIsValid() &&
-        length(strLabel) &&
-        strLabel %in% names(rctv_lData())
-    })
     rctv_tblData <- reactive({
-      if (rctv_selectionIsValid()) {
-        df <- rctv_lData()[[strLabel]]
-        return(df)
+      if (NROW(rctv_dfDomain())) {
+        return(rctv_dfDomain())
       }
       dplyr::tibble(SubjectID = character()) # nocov
     })
 
     rctv_gtObject <- reactive({
-      if (rctv_selectionIsValid()) {
+      if (!is.null(rctv_dfDomain())) {
         df <- rctv_tblData()
         gtObj <- gt::gt(df) %>%
           out_gtInteractive(selection_mode = "multiple") %>%
@@ -46,7 +34,7 @@ mod_DomainData_Server <- function(
         }
         return(gtObj)
       }
-      return(out_gtPlaceholder("domain"))
+      return(out_gtPlaceholder("site or participant"))
     })
 
     selected_rows <- mod_gtBidirectional_Server(

@@ -16,7 +16,7 @@ test_that("mod_Plugins_Server outputs the expected result", {
           })
         )
       ),
-      fnFetchData = sample_fnFetchData,
+      l_rctvDomains = list(),
       rctv_strMetricID = reactive(NULL),
       rctv_strSiteID = reactive(NULL),
       rctv_strSubjectID = reactiveVal("0008")

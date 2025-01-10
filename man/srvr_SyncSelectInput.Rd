@@ -7,7 +7,7 @@
 srvr_SyncSelectInput(id, rctv_strValue, session = getDefaultReactiveDomain())
 }
 \arguments{
-\item{id}{\code{character} The id for this module, widget, or other element.}
+\item{id}{\code{character} The id for this element.}
 
 \item{rctv_strValue}{\verb{reactive character} A \code{\link[shiny:reactive]{shiny::reactive()}} object that
 returns the value of a field.}

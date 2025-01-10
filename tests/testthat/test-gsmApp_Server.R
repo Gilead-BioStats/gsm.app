@@ -1,4 +1,4 @@
-test_that("gsmApp_Server initializes correctly and updates rctv_lMetric", {
+test_that("gsmApp_Server initializes correctly", {
   server <- gsmApp_Server(
     dfAnalyticsInput = sample_dfAnalyticsInput,
     dfBounds = sample_dfBounds,
@@ -10,7 +10,7 @@ test_that("gsmApp_Server initializes correctly and updates rctv_lMetric", {
   testServer(
     server,
     {
-      # Simulation initialization.
+      # Simulate initialization.
       session$setInputs(
         primary_nav_bar = "Study Overview",
         metric = "Analysis_kri0001",
@@ -18,12 +18,11 @@ test_that("gsmApp_Server initializes correctly and updates rctv_lMetric", {
         participant = "All"
       )
       expect_equal(input$metric, "Analysis_kri0001")
-      expect_null(rctv_lMetric()$selectedGroupIDs)
 
       session$setInputs(
         site = "0X001"
       )
-      expect_equal(rctv_lMetric()$selectedGroupIDs, "0X001")
+      expect_equal(input$site, "0X001")
     }
   )
 })

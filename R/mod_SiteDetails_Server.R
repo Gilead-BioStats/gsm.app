@@ -39,7 +39,6 @@ mod_SiteDetails_Server <- function(
       metric_names <- rctv_lMetric()[c("Numerator", "Denominator", "Metric")]
       new_colnames <- rlang::set_names(chrTargetColumns, chrTargetColumns)
       new_colnames[names(metric_names)] <- metric_names
-      # unname(unlist(new_colnames))
       new_colnames
     }) %>%
       bindCache(rctv_strMetricID())

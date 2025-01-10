@@ -7,21 +7,19 @@
 mod_Plugins_Server(
   id,
   lPlugins,
-  fnFetchData,
+  l_rctvDomains,
   rctv_strMetricID,
   rctv_strSiteID,
   rctv_strSubjectID
 )
 }
 \arguments{
-\item{id}{\code{character} The id for this module, widget, or other element.}
+\item{id}{\code{character} The id for this element.}
 
 \item{lPlugins}{\code{list} Optional list of plugins to include in the app.}
 
-\item{fnFetchData}{\code{function} A function that takes a \code{strDomain} argument
-and optional \code{strSiteID} and \code{strSubjectID} and returns a data.frame. See
-\code{\link[=sample_fnFetchData]{sample_fnFetchData()}} for an example. The returned data.frame contains
-information about the named domain.}
+\item{l_rctvDomains}{\code{list} A named list of \code{\link[shiny:reactive]{shiny::reactive()}} objects, each
+of which returns a domain dataframe.}
 
 \item{rctv_strMetricID}{\verb{reactive character} A \code{\link[shiny:reactive]{shiny::reactive()}} object
 that returns the selected \code{MetricID}.}

@@ -7,7 +7,7 @@
 mod_ActionList_Server(id, rctv_chrIDs)
 }
 \arguments{
-\item{id}{\code{character} The id for this module, widget, or other element.}
+\item{id}{\code{character} The id for this element.}
 
 \item{rctv_chrIDs}{\verb{reactive character} A \code{\link[shiny:reactive]{shiny::reactive()}} object that
 returns a vector of ids for modules, inputs, or other elements.}

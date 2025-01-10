@@ -7,7 +7,7 @@
 mod_TogglePill_UI(id, strLabel, strColorCode)
 }
 \arguments{
-\item{id}{\code{character} The id for this module, widget, or other element.}
+\item{id}{\code{character} The id for this element.}
 
 \item{strLabel}{\code{character} The label of a field.}
 

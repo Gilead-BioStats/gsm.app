@@ -4,8 +4,7 @@ test_that("mod_DomainData_Server sets placeholder when no data is available", {
     mod_DomainData_Server,
     args = list(
       id = "myPD",
-      rctv_lData = reactive(NULL),
-      rctv_strSubjectID = reactive(NULL)
+      rctv_dfDomain = shiny::reactive({NULL})
     ),
     {
       test_html <- output$`gt-table`$html
@@ -21,8 +20,8 @@ test_that("mod_DomainData_Server sets placeholder when no data is available", {
 
 test_that("mod_DomainData_Server renders tables correctly", {
   mock_data <- list(
-    Adverse_Events = data.frame(col1 = 1:5, col2 = letters[1:5]),
-    Data_Changes = data.frame(col1 = 6:8, col2 = LETTERS[6:8])
+    AE = reactive(data.frame(col1 = 1:5, col2 = letters[1:5])),
+    DATACHG = reactive(data.frame(col1 = 6:8, col2 = LETTERS[6:8]))
   )
   call <- rlang::current_env()
 
@@ -30,7 +29,7 @@ test_that("mod_DomainData_Server renders tables correctly", {
     mod_DomainData_Server,
     args = list(
       id = "AE",
-      rctv_lData = reactive(mock_data)
+      rctv_dfDomain = mock_data$AE
     ),
     {
       table_data <- rctv_tblData()
@@ -43,7 +42,7 @@ test_that("mod_DomainData_Server renders tables correctly", {
     mod_DomainData_Server,
     args = list(
       id = "DATACHG",
-      rctv_lData = reactive(mock_data)
+      rctv_dfDomain = mock_data$DATACHG
     ),
     {
       table_data <- rctv_tblData()

@@ -41,7 +41,7 @@ run_gsm_app <- function(
   dfGroups <- validate_dfGroups(dfGroups)
   dfMetrics <- validate_dfMetrics(dfMetrics)
   dfResults <- validate_dfResults(dfResults)
-  chrDomains <- validate_chrDomains(chrDomains)
+  chrDomains <- validate_chrDomains(chrDomains, lPlugins)
 
   # We currently only use site-level data in this app.
   dfAnalyticsInput <- dfAnalyticsInput[dfAnalyticsInput$GroupLevel == "Site", ]

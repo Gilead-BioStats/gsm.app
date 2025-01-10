@@ -4,31 +4,13 @@
 \alias{mod_DomainDetails_Server}
 \title{Domain Details server}
 \usage{
-mod_DomainDetails_Server(
-  id,
-  fnFetchData,
-  chrDomains = c("AE", "ENROLL", "LB", "PD", "SDRGCOMP", "STUDCOMP", "SUBJ", "DATACHG",
-    "DATAENT", "QUERY"),
-  rctv_strSiteID,
-  rctv_strSubjectID
-)
+mod_DomainDetails_Server(id, l_rctvDomains)
 }
 \arguments{
-\item{id}{\code{character} The id for this module, widget, or other element.}
+\item{id}{\code{character} The id for this element.}
 
-\item{fnFetchData}{\code{function} A function that takes a \code{strDomain} argument
-and optional \code{strSiteID} and \code{strSubjectID} and returns a data.frame. See
-\code{\link[=sample_fnFetchData]{sample_fnFetchData()}} for an example. The returned data.frame contains
-information about the named domain.}
-
-\item{chrDomains}{\code{character} A vector of names of domain data.frames to show
-in the app. Supported domains are shown in the default value.}
-
-\item{rctv_strSiteID}{\verb{reactive character} A \code{\link[shiny:reactive]{shiny::reactive()}} object that
-returns the \code{GroupID} of a site.}
-
-\item{rctv_strSubjectID}{\verb{reactive character} A \code{\link[shiny:reactive]{shiny::reactive()}} object
-that returns the \code{SubjectID} of the selected participant.}
+\item{l_rctvDomains}{\code{list} A named list of \code{\link[shiny:reactive]{shiny::reactive()}} objects, each
+of which returns a domain dataframe.}
 }
 \value{
 A \code{\link[shiny:reactive]{shiny::reactive()}} with the ids of rows selected in the table

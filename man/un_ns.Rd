@@ -7,7 +7,7 @@
 un_ns(id, ns)
 }
 \arguments{
-\item{id}{\code{character} The id for this module, widget, or other element.}
+\item{id}{\code{character} The id for this element.}
 
 \item{ns}{A function to apply a namespace to an object, such as the ones
 produced using \code{\link[shiny:NS]{shiny::NS()}} or the one available as \code{session$ns()} in a

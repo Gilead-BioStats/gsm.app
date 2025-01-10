@@ -62,6 +62,26 @@ test_that("validate_chrDomains fails gracefully", {
   )
 })
 
-test_that("validate_chrDomains returns valid domains + SUBJ", {
-  expect_identical(validate_chrDomains("AE"), c("AE", "SUBJ"))
+test_that("validate_chrDomains checks for domains used in plugins", {
+  lPlugins <- list(
+    p1 = list(
+      domains = c("AE", "ENROLL")
+    ),
+    p2 = list(
+      domains = c("AE", "SUBJ")
+    )
+  )
+  chrDomains <- "ENROLL"
+  expect_error(
+    validate_chrDomains(chrDomains, lPlugins),
+    "domains must be included",
+    class = "gsm.app-error-invalid_input"
+  )
+})
+
+test_that("validate_chrDomains returns valid domains", {
+  expect_identical(
+    validate_chrDomains("subj"),
+    "SUBJ"
+  )
 })

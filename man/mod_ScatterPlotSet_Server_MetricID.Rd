@@ -7,7 +7,7 @@
 mod_ScatterPlotSet_Server_MetricID(id)
 }
 \arguments{
-\item{id}{\code{character} The id for this module, widget, or other element.}
+\item{id}{\code{character} The id for this element.}
 }
 \value{
 A \code{\link[shiny:reactive]{shiny::reactive()}} with the id of the selected metric.
