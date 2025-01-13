@@ -7,7 +7,7 @@
 mod_ParticipantDomainSummary_Server(id, rctv_lParticipantDomainData)
 }
 \arguments{
-\item{id}{\code{character} The id for this module, widget, or other element.}
+\item{id}{\code{character} The id for this element.}
 }
 \value{
 A string identifying the selected summary as a \code{\link[shiny:reactive]{shiny::reactive()}}.

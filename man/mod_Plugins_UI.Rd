@@ -7,7 +7,7 @@
 mod_Plugins_UI(id, lPlugins = NULL)
 }
 \arguments{
-\item{id}{\code{character} The id for this module, widget, or other element.}
+\item{id}{\code{character} The id for this element.}
 
 \item{lPlugins}{\code{list} Optional list of plugins to include in the app.}
 }

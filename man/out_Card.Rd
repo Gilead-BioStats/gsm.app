@@ -12,7 +12,7 @@ the card. Will be wrapped inside \code{\link[bslib:card_body]{bslib::card_title(
 
 \item{...}{\verb{html tags} Objects to place in the card.}
 
-\item{id}{\code{character} The id for this module, widget, or other element.}
+\item{id}{\code{character} The id for this element.}
 }
 \value{
 A \code{\link[bslib:card]{bslib::card()}}.

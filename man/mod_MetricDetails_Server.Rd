@@ -15,7 +15,7 @@ mod_MetricDetails_Server(
 )
 }
 \arguments{
-\item{id}{\code{character} The id for this module, widget, or other element.}
+\item{id}{\code{character} The id for this element.}
 
 \item{dfResults}{\code{data.frame} A stacked summary of analysis pipeline output.
 This will be filtered to cases where \code{GroupLevel == "Site"}.}
@@ -38,9 +38,7 @@ that returns the selected \code{MetricID}.}
 }
 \value{
 A \code{\link[shiny:reactive]{shiny::reactive()}} with the id of the group selected that was
-most recently selected on one of the tabs. Currently only implemented for
-the "Scatter Plot" tab (returns a reactive value that evaluates to \code{NULL}
-for the other cases).
+most recently selected on one of the tabs.
 }
 \description{
 Metric Details Server

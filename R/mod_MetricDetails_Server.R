@@ -2,9 +2,7 @@
 #'
 #' @inheritParams shared-params
 #' @returns A [shiny::reactive()] with the id of the group selected that was
-#'   most recently selected on one of the tabs. Currently only implemented for
-#'   the "Scatter Plot" tab (returns a reactive value that evaluates to `NULL`
-#'   for the other cases).
+#'   most recently selected on one of the tabs.
 #' @keywords internal
 mod_MetricDetails_Server <- function(
   id,

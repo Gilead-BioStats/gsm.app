@@ -7,7 +7,7 @@
 mod_ScatterPlot_UI(id, strPlotTitle = NULL)
 }
 \arguments{
-\item{id}{\code{character} The id for this module, widget, or other element.}
+\item{id}{\code{character} The id for this element.}
 
 \item{strPlotTitle}{\code{character} A title for a plot, usually the name of a
 metric.}

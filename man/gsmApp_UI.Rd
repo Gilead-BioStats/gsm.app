@@ -5,6 +5,7 @@
 \title{Shiny UI function}
 \usage{
 gsmApp_UI(
+  chrDomains,
   dfAnalyticsInput,
   dfGroups,
   dfMetrics,
@@ -17,6 +18,9 @@ gsmApp_UI(
 )
 }
 \arguments{
+\item{chrDomains}{\code{character} A vector of names of domain data.frames to show
+in the app. Supported domains are shown in the default value.}
+
 \item{dfAnalyticsInput}{\code{data.frame} Participant-level metric data.}
 
 \item{dfGroups}{\code{data.frame} Group-level metadata dictionary.}

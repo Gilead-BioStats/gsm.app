@@ -7,7 +7,7 @@
 mod_TogglePill_Server(id, rctv_lglState = shiny::reactive(FALSE))
 }
 \arguments{
-\item{id}{\code{character} The id for this module, widget, or other element.}
+\item{id}{\code{character} The id for this element.}
 
 \item{rctv_lglState}{\verb{reactive logical} A \code{\link[shiny:reactive]{shiny::reactive()}}] object that
 returns a Boolean value indicating whether something is "off" (\code{FALSE}) or

@@ -6,7 +6,6 @@
 \usage{
 srvr_rctv_lMetric(
   dfMetrics,
-  rctv_lMetric_base,
   rctv_strMetricID,
   rctv_strSiteID,
   session = getDefaultReactiveDomain()
@@ -15,9 +14,6 @@ srvr_rctv_lMetric(
 \arguments{
 \item{dfMetrics}{\code{data.frame} Metric-specific metadata for use in charts and
 reporting.}
-
-\item{rctv_lMetric_base}{The metric list returned by
-\code{\link[=srvr_rctv_lMetric_base]{srvr_rctv_lMetric_base()}}.}
 
 \item{rctv_strMetricID}{\verb{reactive character} A \code{\link[shiny:reactive]{shiny::reactive()}} object
 that returns the selected \code{MetricID}.}

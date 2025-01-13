@@ -257,9 +257,9 @@ test_that("run_gsm_app populates Metric Details", {
   app$stop()
 })
 
-test_that("run_gsm_app populates Participant Details", {
+test_that("run_gsm_app populates Domain Details", {
   skip_on_cran()
-  app <- AppDriver$new(test_path("apps", "standard"), name = "participants")
+  app <- AppDriver$new(test_path("apps", "standard"), name = "domain")
   app$wait_for_idle()
   app$wait_for_value(input = "participant", timeout = 2000)
 
@@ -294,15 +294,6 @@ test_that("run_gsm_app populates Participant Details", {
     screenshot_args = list(selector = ".main")
   )
 
-  # Select AE data.
-  app$click("participant_details-domain_summary-domain_list_choices-Adverse_Events")
-  app$wait_for_idle()
-  app$expect_values(
-    export = TRUE,
-    name = "ae",
-    screenshot_args = list(selector = "#participant_details-domain-card")
-  )
-
   # Select a different participant via the drop-down.
   app$set_inputs(`participant` = "0285")
   app$wait_for_idle()
@@ -312,13 +303,14 @@ test_that("run_gsm_app populates Participant Details", {
     screenshot_args = list(selector = ".main")
   )
 
-  # Select Study Disposition data.
-  app$click("participant_details-domain_summary-domain_list_choices-Study_Completion")
+  # Select another domain.
+  app$set_inputs(`domain_details-selected_tab` = "STUDCOMP")
   app$wait_for_idle()
   app$expect_values(
     export = TRUE,
     name = "sd",
-    screenshot_args = list(selector = "#participant_details-domain-card")
+    screenshot_args = list(selector = ".main")
   )
+
   app$stop()
 })

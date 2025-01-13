@@ -51,7 +51,8 @@ mod_SiteParticipants_Server <- function(
       rctv_dfAnalyticsInput,
       rctv_gtObject,
       rctv_strSubjectID,
-      "SubjectID"
+      "SubjectID",
+      strEmpty = "All"
     )
 
     # Return the selected row data

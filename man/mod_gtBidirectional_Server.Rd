@@ -14,7 +14,7 @@ mod_gtBidirectional_Server(
 )
 }
 \arguments{
-\item{id}{\code{character} The id for this module, widget, or other element.}
+\item{id}{\code{character} The id for this element.}
 
 \item{rctv_dfData}{\verb{reactive dataframe} A \code{\link[shiny:reactive]{shiny::reactive()}} object that
 returns a generic dataframe.}

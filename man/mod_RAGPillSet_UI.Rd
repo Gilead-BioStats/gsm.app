@@ -7,7 +7,7 @@
 mod_RAGPillSet_UI(id, intRed = NULL, intAmber = NULL, strLabel = "KRIs")
 }
 \arguments{
-\item{id}{\code{character} The id for this module, widget, or other element.}
+\item{id}{\code{character} The id for this element.}
 
 \item{intRed}{\code{integer} The number of sites with at least one red flag.}
 

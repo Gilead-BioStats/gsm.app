@@ -11,7 +11,7 @@ test_that("mod_SiteParticipants_Server starts as expected", {
     args = list(
       id = "testingModSiteParticipants",
       rctv_strGroupID = rctv_strGroupID,
-      rctv_strSubjectID = reactive("None"),
+      rctv_strSubjectID = reactive("All"),
       rctv_dfAnalyticsInput = reactive(dfAnalyticsInput),
       rctv_lColumnNames = reactive({
         list(
@@ -46,7 +46,7 @@ test_that("mod_SiteParticipants_Server starts as expected", {
   )
 })
 
-test_that("mod_MetricTable_Server returns selected site", {
+test_that("mod_SiteParticipants_Server returns selected participant", {
   dfAnalyticsInput <- filter_byMetricID(
     sample_dfAnalyticsInput,
     "Analysis_kri0001"
@@ -57,7 +57,7 @@ test_that("mod_MetricTable_Server returns selected site", {
     args = list(
       id = "testingModSiteParticipants",
       rctv_strGroupID = reactive("None"),
-      rctv_strSubjectID = reactive("None"),
+      rctv_strSubjectID = reactive("All"),
       rctv_dfAnalyticsInput = reactive(dfAnalyticsInput),
       rctv_lColumnNames = reactive({
         list(
@@ -73,7 +73,7 @@ test_that("mod_MetricTable_Server returns selected site", {
       session$setInputs(`gt-table` = 3L)
       expect_equal(session$returned(), "0010")
       session$setInputs(`gt-table` = 0L)
-      expect_equal(session$returned(), "None")
+      expect_equal(session$returned(), "All")
       session$setInputs(`gt-table` = NULL)
       expect_null(session$returned())
     }
