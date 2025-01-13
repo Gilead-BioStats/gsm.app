@@ -166,7 +166,7 @@ of the main app server function.</p></dd>
 
 
 <dt id="arg-id">id<a class="anchor" aria-label="anchor" href="#arg-id"></a></dt>
-<dd><p><code>character</code> The id for this module, widget, or other element.</p></dd>
+<dd><p><code>character</code> The id for this element.</p></dd>
 
 
 <dt id="arg-intkricolorcount">intKRIColorCount<a class="anchor" aria-label="anchor" href="#arg-intkricolorcount"></a></dt>
@@ -191,13 +191,9 @@ of the main app server function.</p></dd>
 as things like which group is selected.</p></dd>
 
 
-<dt id="arg-ldomains">lDomains<a class="anchor" aria-label="anchor" href="#arg-ldomains"></a></dt>
-<dd><p><code>list</code> Named list of data domain data.frames.</p></dd>
-
-
-<dt id="arg-lparticipantmetadata">lParticipantMetadata<a class="anchor" aria-label="anchor" href="#arg-lparticipantmetadata"></a></dt>
-<dd><p><code>list</code> Named list of data describing a single
-participant.</p></dd>
+<dt id="arg-l-rctvdomains">l_rctvDomains<a class="anchor" aria-label="anchor" href="#arg-l-rctvdomains"></a></dt>
+<dd><p><code>list</code> A named list of <code><a href="https://rdrr.io/pkg/shiny/man/reactive.html" class="external-link">shiny::reactive()</a></code> objects, each
+of which returns a domain dataframe.</p></dd>
 
 
 <dt id="arg-lplugindefinition">lPluginDefinition<a class="anchor" aria-label="anchor" href="#arg-lplugindefinition"></a></dt>
@@ -230,6 +226,11 @@ across the full range of sample sizes/total exposure values for reporting.</p></
 returns a generic dataframe.</p></dd>
 
 
+<dt id="arg-rctv-dfdomain">rctv_dfDomain<a class="anchor" aria-label="anchor" href="#arg-rctv-dfdomain"></a></dt>
+<dd><p><code>reactive dataframe</code> A <code><a href="https://rdrr.io/pkg/shiny/man/reactive.html" class="external-link">shiny::reactive()</a></code> object that
+returns a domain dataframe.</p></dd>
+
+
 <dt id="arg-rctv-dfresults">rctv_dfResults<a class="anchor" aria-label="anchor" href="#arg-rctv-dfresults"></a></dt>
 <dd><p><code>reactive dataframe</code> A <code><a href="https://rdrr.io/pkg/shiny/man/reactive.html" class="external-link">shiny::reactive()</a></code> object that
 returns a stacked summary of analysis pipeline output.</p></dd>
@@ -240,21 +241,10 @@ returns a stacked summary of analysis pipeline output.</p></dd>
 returns a <code><a href="https://gt.rstudio.com/reference/gt.html" class="external-link">gt::gt()</a></code> object.</p></dd>
 
 
-<dt id="arg-rctv-ldata">rctv_lData<a class="anchor" aria-label="anchor" href="#arg-rctv-ldata"></a></dt>
-<dd><p><code>reactive list</code> A <code><a href="https://rdrr.io/pkg/shiny/man/reactive.html" class="external-link">shiny::reactive()</a></code> object that returns a
-named list of dataframes.</p></dd>
-
-
 <dt id="arg-rctv-lmetric">rctv_lMetric<a class="anchor" aria-label="anchor" href="#arg-rctv-lmetric"></a></dt>
 <dd><p><code>reactive list</code> A <code><a href="https://rdrr.io/pkg/shiny/man/reactive.html" class="external-link">shiny::reactive()</a></code> object that returns
 a named list of data describing a single metric, as well as things like
 which group is selected.</p></dd>
-
-
-<dt id="arg-rctv-lparticipantmetricdata">rctv_lParticipantMetricData<a class="anchor" aria-label="anchor" href="#arg-rctv-lparticipantmetricdata"></a></dt>
-<dd><p><code>reactive list</code> A <code><a href="https://rdrr.io/pkg/shiny/man/reactive.html" class="external-link">shiny::reactive()</a></code>
-object that returns a list of dataframes for a given participant, one for
-each metric that is available.</p></dd>
 
 
 <dt id="arg-rctv-lglstate">rctv_lglState<a class="anchor" aria-label="anchor" href="#arg-rctv-lglstate"></a></dt>

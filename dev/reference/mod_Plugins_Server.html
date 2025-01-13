@@ -46,7 +46,7 @@
     <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">mod_Plugins_Server</span><span class="op">(</span></span>
 <span>  <span class="va">id</span>,</span>
 <span>  <span class="va">lPlugins</span>,</span>
-<span>  <span class="va">fnFetchData</span>,</span>
+<span>  <span class="va">l_rctvDomains</span>,</span>
 <span>  <span class="va">rctv_strMetricID</span>,</span>
 <span>  <span class="va">rctv_strSiteID</span>,</span>
 <span>  <span class="va">rctv_strSubjectID</span></span>
@@ -58,18 +58,16 @@
 
 
 <dl><dt id="arg-id">id<a class="anchor" aria-label="anchor" href="#arg-id"></a></dt>
-<dd><p><code>character</code> The id for this module, widget, or other element.</p></dd>
+<dd><p><code>character</code> The id for this element.</p></dd>
 
 
 <dt id="arg-lplugins">lPlugins<a class="anchor" aria-label="anchor" href="#arg-lplugins"></a></dt>
 <dd><p><code>list</code> Optional list of plugins to include in the app.</p></dd>
 
 
-<dt id="arg-fnfetchdata">fnFetchData<a class="anchor" aria-label="anchor" href="#arg-fnfetchdata"></a></dt>
-<dd><p><code>function</code> A function that takes a <code>strDomain</code> argument
-and optional <code>strSiteID</code> and <code>strSubjectID</code> and returns a data.frame. See
-<code><a href="sample_fnFetchData.html">sample_fnFetchData()</a></code> for an example. The returned data.frame contains
-information about the named domain.</p></dd>
+<dt id="arg-l-rctvdomains">l_rctvDomains<a class="anchor" aria-label="anchor" href="#arg-l-rctvdomains"></a></dt>
+<dd><p><code>list</code> A named list of <code><a href="https://rdrr.io/pkg/shiny/man/reactive.html" class="external-link">shiny::reactive()</a></code> objects, each
+of which returns a domain dataframe.</p></dd>
 
 
 <dt id="arg-rctv-strmetricid">rctv_strMetricID<a class="anchor" aria-label="anchor" href="#arg-rctv-strmetricid"></a></dt>
