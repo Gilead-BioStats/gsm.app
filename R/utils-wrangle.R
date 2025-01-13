@@ -48,18 +48,6 @@ filter_byGroupID <- function(df, strGroupID) {
   filter_by(df, strGroupID)
 }
 
-#' Filter and sort participants by group
-#'
-#' @inheritParams shared-params
-#' @returns A data.frame with `SubjectID` and `GroupID`.
-#' @keywords internal
-make_dfParticipantGroups <- function(dfAnalyticsInput) {
-  dplyr::arrange(
-    dplyr::distinct(dfAnalyticsInput, .data$SubjectID, .data$GroupID),
-    .data$SubjectID
-  )
-}
-
 #' Find interesting digits for rounding
 #'
 #' @param dblX A vector of numbers (usually with decimal places).

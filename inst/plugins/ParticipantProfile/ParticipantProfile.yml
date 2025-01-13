@@ -1,0 +1,20 @@
+meta:
+  Type: Plugin
+  ID: ParticipantProfile
+  Name: Participant Profile
+shiny:
+  UI: mod_ParticipantProfile_UI
+  Server: mod_ParticipantProfile_Server
+domains:
+  - AE
+  - DATACHG
+  - DATAENT
+  - ENROLL
+  - LB
+  - PD
+  - QUERY
+  - STUDCOMP
+  - SUBJ
+  - SDRGCOMP
+required_inputs:
+  - Participant

@@ -135,19 +135,19 @@ gsmApp_Server <- function(
           strParticipantID != "" &&
           strParticipantID != rctv_LatestParticipant()
       ) {
-        rctv_LatestParticipant(strParticipantID)
+        rctv_LatestParticipant(strParticipantID)           # Tested via UI
       }
     }) %>%
       bindEvent(input$participant)
     observe({
-      req(rctv_strSiteDetailsParticipant())
-      strParticipantID <- rctv_strSiteDetailsParticipant()
+      req(rctv_strSiteDetailsParticipant())                # Tested via UI
+      strParticipantID <- rctv_strSiteDetailsParticipant() # Tested via UI
       if (
-        length(strParticipantID) &&
-          strParticipantID != "" &&
-          strParticipantID != rctv_LatestParticipant()
+        length(strParticipantID) &&                        # Tested via UI
+          strParticipantID != "" &&                        # Tested via UI
+          strParticipantID != rctv_LatestParticipant()     # Tested via UI
       ) {
-        rctv_LatestParticipant(strParticipantID)
+        rctv_LatestParticipant(strParticipantID)           # Tested via UI
       }
     }) %>%
       bindEvent(rctv_strSiteDetailsParticipant())

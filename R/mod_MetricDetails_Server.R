@@ -78,10 +78,10 @@ mod_MetricDetails_Server <- function(
       req(input$selected_tab)
       switch(input$selected_tab,
         "Scatter Plot" = rctv_strScatterGroup(),
-        "Bar Chart (KRI Value)" = rctv_strBarValueGroup(),
-        "Bar Chart (KRI Score)" = rctv_strBarScoreGroup(),
-        "Time Series" = rctv_strTimeSeriesGroup(),
-        "Analysis Output" = rctv_strAnalysisOutputGroup()
+        "Bar Chart (KRI Value)" = rctv_strBarValueGroup(), # Tested via UI
+        "Bar Chart (KRI Score)" = rctv_strBarScoreGroup(), # Tested via UI
+        "Time Series" = rctv_strTimeSeriesGroup(),         # Tested via UI
+        "Analysis Output" = rctv_strAnalysisOutputGroup()  # Tested via UI
       )
     })
 

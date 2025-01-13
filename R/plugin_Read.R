@@ -1,3 +1,6 @@
+# covr thinks a lot of this stuff isn't covered, but it is. Confirm that things
+# are covered in the overall coverage report.
+
 #' Read a Plugin Definition
 #'
 #' Plugins are defined by a named `list` with elements `strTitle` (a title to
@@ -21,7 +24,7 @@ plugin_Read <- function(strPath) {
 
   # Source any R files included in the definition. Covr doesn't see most of the
   # code below here as covered when I check this single file, but it's covered
-  # in overall pacakge coverage.
+  # in overall package coverage.
   file_is_r <- grepl("\\.r$", chrPluginFiles, ignore.case = TRUE)
   if (any(file_is_r)) {
     for (r_file in chrPluginFiles[file_is_r]) {
@@ -72,7 +75,7 @@ plugin_ValidateDefinition <- function(
   envCall = rlang::caller_env()
 ) {
   chrRequiredFields <- c("meta", "shiny", "domains")
-  chrOptionalFields <- c("lConfig", "packages")
+  chrOptionalFields <- c("lConfig", "packages", "required_inputs")
   validate_hasAllFields(
     lPluginDefinition,
     c("meta", "shiny", "domains"),

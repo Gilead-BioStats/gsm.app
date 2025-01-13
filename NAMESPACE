@@ -3,6 +3,7 @@
 S3method(util_AsFunction,character)
 S3method(util_AsFunction,default)
 export("%>%")
+export(out_MetadataList)
 export(plugin_GetDependencySources)
 export(plugin_InstallDependencySources)
 export(plugin_LoadDependencies)
