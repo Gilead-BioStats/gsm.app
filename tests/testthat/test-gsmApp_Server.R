@@ -80,3 +80,28 @@ test_that("gsmApp_Server executes optional server functions", {
     }
   )
 })
+
+test_that("gsmApp_Server sets participant drop-down properly", {
+  server <- gsmApp_Server(
+    dfAnalyticsInput = sample_dfAnalyticsInput,
+    dfBounds = sample_dfBounds,
+    dfGroups = sample_dfGroups,
+    dfMetrics = sample_dfMetrics,
+    dfResults = sample_dfResults,
+    fnFetchData = sample_fnFetchData
+  )
+  testServer(
+    server,
+    {
+      # Simulate initialization.
+      session$setInputs(
+        primary_nav_bar = "Study Overview",
+        metric = "Analysis_kri0001",
+        site = "None",
+        participant = "All"
+      )
+      expect_equal(input$participant, "All")
+      expect_equal(rctv_strSubjectID(), "All")
+    }
+  )
+})

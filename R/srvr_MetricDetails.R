@@ -52,7 +52,7 @@ srvr_MetricDetails <- function(
     rctv_strSiteID = rctv_strSiteID,
     rctv_strMetricID = rctv_strMetricID
   )
-  rctv_strSiteDetailsParticipant <- mod_SiteDetails_Server(
+  mod_SiteDetails_Server(
     "site_details",
     dfGroups = dfGroups,
     dfAnalyticsInput = dfAnalyticsInput,
@@ -61,5 +61,4 @@ srvr_MetricDetails <- function(
     rctv_strMetricID = rctv_strMetricID,
     rctv_lMetric = rctv_lMetric
   )
-  return(rctv_strSiteDetailsParticipant)
 }

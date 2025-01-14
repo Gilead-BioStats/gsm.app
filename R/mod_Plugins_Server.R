@@ -13,7 +13,7 @@ mod_Plugins_Server <- function(
 ) {
   moduleServer(id, function(input, output, session) {
     if (!is.null(lPlugins)) {
-      pluginVals <- purrr::imap(
+      purrr::imap(
         lPlugins,
         function(lPlugin, i) {
           required_inputs <- tolower(lPlugin$required_inputs)

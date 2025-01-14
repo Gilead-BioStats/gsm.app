@@ -39,7 +39,7 @@ gsmApp_Server <- function(
 
     ## Inputs ----
     ##
-    ## Inputs pass to modules (etc) as reactive(Value)s.
+    ## Inputs pass to modules (etc) as reactiveVals.
     rctv_strMetricID <- shiny::reactiveVal()
     shiny::observe({rctv_strMetricID(input$metric)})
     srvr_SyncSelectInput("metric", rctv_strMetricID, session)
@@ -48,14 +48,33 @@ gsmApp_Server <- function(
     shiny::observe({rctv_strSiteID(input$site)})
     srvr_SyncSelectInput("site", rctv_strSiteID, session)
 
-    rctv_strSubjectID <- reactive(input$participant)
-    rctv_strPrimaryNavBar <- reactive(input$primary_nav_bar)
-
-    ## Participants ----
+    ### Participants ----
     rctv_chrParticipantIDs <- srvr_rctv_chrParticipantIDs(
       dfAnalyticsInput,
       rctv_strSiteID
     )
+
+    rctv_strSubjectID <- shiny::reactiveVal("All")
+    shiny::observe({
+      if (input$participant != "" && input$participant != rctv_strSubjectID()) {
+        rctv_strSubjectID(input$participant)           # Tested via UI.
+      }
+    }) %>%
+      shiny::bindEvent(input$participant)
+    shiny::observe({
+      if (input$participant != rctv_strSubjectID()) {
+        updateSelectizeInput(                          # Tested via UI.
+          inputId = "participant",                     # Tested via UI.
+          choices = rctv_chrParticipantIDs(),          # Tested via UI.
+          selected = rctv_strSubjectID(),              # Tested via UI.
+          server = TRUE,                               # Tested via UI.
+          session = session                            # Tested via UI.
+        )
+      }
+    }) %>%
+      shiny::bindEvent(rctv_strSubjectID())
+
+    rctv_strPrimaryNavBar <- reactive(input$primary_nav_bar)
 
     ## Domains ----
     l_rctvDomains <- srvr_l_rctvDomains(
@@ -79,7 +98,7 @@ gsmApp_Server <- function(
     )
 
     ## Metric Details ----
-    rctv_strSiteDetailsParticipant <- srvr_MetricDetails(
+    srvr_MetricDetails(
       dfAnalyticsInput = dfAnalyticsInput,
       dfBounds = dfBounds,
       dfGroups = dfGroups,
@@ -97,40 +116,14 @@ gsmApp_Server <- function(
     ## Sync participant dropdown filter ----
     ##
     ## Revisit as app becomes fully modularized.
-    rctv_LatestParticipant <- reactiveVal("All")
-    observe({
-      req(input$participant)
-      strParticipantID <- input$participant
-      if (
-        length(strParticipantID) &&
-          strParticipantID != "" &&
-          strParticipantID != rctv_LatestParticipant()
-      ) {
-        rctv_LatestParticipant(strParticipantID)           # Tested via UI
-      }
-    }) %>%
-      bindEvent(input$participant)
-    observe({
-      req(rctv_strSiteDetailsParticipant())                # Tested via UI
-      strParticipantID <- rctv_strSiteDetailsParticipant() # Tested via UI
-      if (
-        length(strParticipantID) &&                        # Tested via UI
-          strParticipantID != "" &&                        # Tested via UI
-          strParticipantID != rctv_LatestParticipant()     # Tested via UI
-      ) {
-        rctv_LatestParticipant(strParticipantID)           # Tested via UI
-      }
-    }) %>%
-      bindEvent(rctv_strSiteDetailsParticipant())
-
     rctv_LastSiteFilter <- reactiveVal("unfiltered")
     observe({
-      req(rctv_LatestParticipant())
+      req(rctv_strSubjectID())
       req(rctv_chrParticipantIDs())
       req(rctv_LastSiteFilter())
       selected <- "All"
-      if (rctv_LatestParticipant() %in% rctv_chrParticipantIDs()) {
-        selected <- rctv_LatestParticipant()
+      if (rctv_strSubjectID() %in% rctv_chrParticipantIDs()) {
+        selected <- rctv_strSubjectID()
       }
       if (
         selected != input$participant ||
@@ -156,13 +149,13 @@ gsmApp_Server <- function(
         )
       }
     }) %>%
-      bindEvent(rctv_LatestParticipant(), input$site)
+      bindEvent(rctv_strSubjectID(), input$site)
 
     ## Domain Details ----
     srvr_SyncTab(
       "primary_nav_bar",
       "Domain Details",
-      rctv_LatestParticipant,
+      rctv_strSubjectID,
       rctv_strPrimaryNavBar,
       session
     )
