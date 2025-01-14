@@ -17,6 +17,12 @@ A \code{\link[htmltools:tagList]{htmltools::tagList()}} of label-value pairs, in
 needed to lay them out properly.
 }
 \description{
-Metadata list card
+Display label-value pairs as a vertical list, with a consistent spacer
+between the label and value.
 }
-\keyword{internal}
+\examples{
+out_MetadataList(
+  c("Thing 1", "Thing 2", "Thing 3"),
+  c("value 1", "value 2", "value 3")
+)
+}

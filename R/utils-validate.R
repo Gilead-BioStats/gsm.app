@@ -1,3 +1,5 @@
+# This file is mostly tested via other files.
+
 #' Check that an object has all required fields
 #'
 #' @inheritParams shared-params

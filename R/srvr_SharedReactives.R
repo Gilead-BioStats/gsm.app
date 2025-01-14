@@ -53,7 +53,10 @@ srvr_rctv_chrParticipantIDs <- function(
   dfAnalyticsInput,
   rctv_strSiteID
 ) {
-  dfParticipantGroups <- make_dfParticipantGroups(dfAnalyticsInput)
+  dfParticipantGroups <- dplyr::arrange(
+    dplyr::distinct(dfAnalyticsInput, .data$SubjectID, .data$GroupID),
+    .data$SubjectID
+  )
   reactive({
     site <- rctv_strSiteID()
     if (site == "None") {

@@ -1,9 +1,17 @@
 #' Metadata list card
 #'
+#' Display label-value pairs as a vertical list, with a consistent spacer
+#' between the label and value.
+#'
 #' @inheritParams shared-params
 #' @returns A [htmltools::tagList()] of label-value pairs, including the CSS
 #'   needed to lay them out properly.
-#' @keywords internal
+#' @export
+#' @examples
+#' out_MetadataList(
+#'   c("Thing 1", "Thing 2", "Thing 3"),
+#'   c("value 1", "value 2", "value 3")
+#' )
 out_MetadataList <- function(chrLabels, chrValues) {
   tagList(
     htmlDependency_Stylesheet("metadata.css"),

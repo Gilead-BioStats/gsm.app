@@ -48,16 +48,16 @@ mod_gtBidirectional_Server <- function(
     # Only tested in UI tests.
     observe({
       req(rctv_strInput())
-      req(rctv_dfData())
+      req(rctv_dfData())                                      # Tested via UI
       # We need to "use" this to make sure we always update the selection after
       # the table loads. I'm trying to figure out whether this is something that
       # *can* be fixed at the gt level.
-      force(rctv_widget_update())
-      gt::gt_update_select(
-        "table",
-        which(rctv_dfData()[[strLabel]] %in% rctv_strInput())
-      )
-      rctv_widget_update(NULL)
+      force(rctv_widget_update())                             # Tested via UI
+      gt::gt_update_select(                                   # Tested via UI
+        "table",                                              # Tested via UI
+        which(rctv_dfData()[[strLabel]] %in% rctv_strInput()) # Tested via UI
+      )                                                       # Tested via UI
+      rctv_widget_update(NULL)                                # Tested via UI
     })
 
     # Return the selected row data

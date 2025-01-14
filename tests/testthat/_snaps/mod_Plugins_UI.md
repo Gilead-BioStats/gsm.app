@@ -36,3 +36,12 @@
       attr(,"class")
       [1] "shiny.navbarmenu"
 
+# mod_Plugins_UI creates the expected UI with required input
+
+    Code
+      test_result
+    Output
+      <div class="tab-pane" title="Plugin Test" data-value="Plugin Test">
+        <div id="testID-1" class="shiny-html-output"></div>
+      </div>
+
