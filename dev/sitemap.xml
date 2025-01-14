@@ -40,9 +40,6 @@
 <url><loc>https://gilead-biostats.github.io/gsm.app/dev/reference/htmlDependency_WidgetPlotInput.html</loc></url>
 <url><loc>https://gilead-biostats.github.io/gsm.app/dev/reference/htmlDependency_updateStyleJS.html</loc></url>
 <url><loc>https://gilead-biostats.github.io/gsm.app/dev/reference/index.html</loc></url>
-<url><loc>https://gilead-biostats.github.io/gsm.app/dev/reference/make_dfParticipantGroups.html</loc></url>
-<url><loc>https://gilead-biostats.github.io/gsm.app/dev/reference/mod_ActionList_Server.html</loc></url>
-<url><loc>https://gilead-biostats.github.io/gsm.app/dev/reference/mod_ActionList_UI.html</loc></url>
 <url><loc>https://gilead-biostats.github.io/gsm.app/dev/reference/mod_BarChart_Server.html</loc></url>
 <url><loc>https://gilead-biostats.github.io/gsm.app/dev/reference/mod_BarChart_UI.html</loc></url>
 <url><loc>https://gilead-biostats.github.io/gsm.app/dev/reference/mod_DomainData_Server.html</loc></url>
@@ -55,8 +52,6 @@
 <url><loc>https://gilead-biostats.github.io/gsm.app/dev/reference/mod_MetricDetails_UI.html</loc></url>
 <url><loc>https://gilead-biostats.github.io/gsm.app/dev/reference/mod_MetricTable_Server.html</loc></url>
 <url><loc>https://gilead-biostats.github.io/gsm.app/dev/reference/mod_MetricTable_UI.html</loc></url>
-<url><loc>https://gilead-biostats.github.io/gsm.app/dev/reference/mod_ParticipantDomainSummary_Server.html</loc></url>
-<url><loc>https://gilead-biostats.github.io/gsm.app/dev/reference/mod_ParticipantDomainSummary_UI.html</loc></url>
 <url><loc>https://gilead-biostats.github.io/gsm.app/dev/reference/mod_Plugins_Server.html</loc></url>
 <url><loc>https://gilead-biostats.github.io/gsm.app/dev/reference/mod_Plugins_UI.html</loc></url>
 <url><loc>https://gilead-biostats.github.io/gsm.app/dev/reference/mod_RAGPillSet_Server.html</loc></url>
