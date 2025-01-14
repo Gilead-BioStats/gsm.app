@@ -6,6 +6,7 @@ mod_WidgetPlot_Server <- function(
   rctv_lMetric,
   dfGroups,
   rctv_dfBounds,
+  rctv_strSiteID,
   ...
 ) {
   moduleServer(id, function(input, output, session) {
@@ -29,15 +30,11 @@ mod_WidgetPlot_Server <- function(
         )
       )
     })
-
-    return(
-      reactive({
-        input_val <- input$plot
-        if (is.null(input_val) || input_val == "") {
-          return(NULL)
-        }
-        return(input_val)
-      })
-    )
+    observe({
+      input_val <- input$plot
+      if (!is.null(input_val) && input_val != "") {
+        rctv_strSiteID(input_val)
+      }
+    })
   })
 }

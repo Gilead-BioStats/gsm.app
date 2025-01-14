@@ -46,13 +46,13 @@ test_that("mod_BarChart_Server returns selected site", {
       rctv_dfResults = reactive(dfResults),
       rctv_lMetric = reactive(lMetric),
       dfGroups = dfGroups,
-      rctv_dfBounds = reactive(dfBounds)
+      rctv_dfBounds = reactive(dfBounds),
+      rctv_strSiteID = reactiveVal("None")
     ),
     {
       expect_null(input$plot)
-      expect_null(session$returned())
       session$setInputs(plot = "0X003")
-      expect_equal(session$returned(), "0X003")
+      expect_equal(rctv_strSiteID(), "0X003")
     }
   )
 })

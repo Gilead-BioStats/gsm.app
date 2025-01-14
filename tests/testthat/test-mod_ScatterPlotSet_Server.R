@@ -7,7 +7,8 @@ test_that("mod_ScatterPlotSet_Server initializes and creates scatter plots", {
       dfMetrics = sample_dfMetrics,
       dfGroups = sample_dfGroups,
       dfBounds = sample_dfBounds,
-      rctv_strSiteID = reactive("None")
+      rctv_strMetricID = reactiveVal("whatever"),
+      rctv_strSiteID = reactiveVal("whatever")
     ),
     {
       lMetricIDs <- unique(dfMetrics$MetricID)
@@ -18,7 +19,7 @@ test_that("mod_ScatterPlotSet_Server initializes and creates scatter plots", {
   )
 })
 
-test_that("mod_ScatterPlotSet_Server returns selected group correctly", {
+test_that("mod_ScatterPlotSet_Server sets selected group correctly", {
   testServer(
     mod_ScatterPlotSet_Server,
     args = list(
@@ -27,13 +28,14 @@ test_that("mod_ScatterPlotSet_Server returns selected group correctly", {
       dfMetrics = sample_dfMetrics,
       dfGroups = sample_dfGroups,
       dfBounds = sample_dfBounds,
-      rctv_strSiteID = reactive("None")
+      rctv_strMetricID = reactiveVal("whatever"),
+      rctv_strSiteID = reactiveVal("None")
     ),
     {
       # Initialize the value first.
       session$setInputs(`Analysis_kri0001-plot` = "None")
       session$setInputs(`Analysis_kri0001-plot` = "0X003")
-      expect_equal(session$returned(), "0X003")
+      expect_equal(rctv_strSiteID(), "0X003")
     }
   )
 })
@@ -47,6 +49,7 @@ test_that("mod_ScatterPlotSet_Server selects plots based on outside selection", 
       dfMetrics = sample_dfMetrics,
       dfGroups = sample_dfGroups,
       dfBounds = sample_dfBounds,
+      rctv_strMetricID = reactiveVal("whatever"),
       rctv_strSiteID = reactiveVal("0X003")
     ),
     {
@@ -96,20 +99,22 @@ test_that("mod_ScatterPlotSet_Server selects plots based on outside selection", 
   )
 })
 
-test_that("mod_ScatterPlotSet_Server_MetricID returns selected metric", {
+test_that("mod_ScatterPlotSet_Server sets selected metric", {
   testServer(
-    mod_ScatterPlotSet_Server_MetricID,
-    args = list(id = "scatterSetTest"),
+    mod_ScatterPlotSet_Server,
+    args = list(
+      id = "scatterSetTest",
+      dfResults = sample_dfResults,
+      dfMetrics = sample_dfMetrics,
+      dfGroups = sample_dfGroups,
+      dfBounds = sample_dfBounds,
+      rctv_strMetricID = reactiveVal("whatever"),
+      rctv_strSiteID = reactiveVal("whatever")
+    ),
     {
-      rctv_toReturn <- session$getReturned()
-      expect_s3_class(rctv_toReturn, "reactiveExpr")
-
-      # Before we click anything the return is empty.
-      expect_error(rctv_toReturn(), class = "shiny.silent.error")
-
       # After clicking we get back just the metric.
       session$setInputs(selectedScatterPlot = "scatterSetTest-metric1")
-      expect_equal(rctv_toReturn(), "metric1")
+      expect_equal(rctv_strMetricID(), "metric1")
     }
   )
 })

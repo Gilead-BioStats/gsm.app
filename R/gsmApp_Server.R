@@ -39,9 +39,15 @@ gsmApp_Server <- function(
 
     ## Inputs ----
     ##
-    ## Inputs pass to modules (etc) as reactives.
-    rctv_strMetricID <- reactive(input$metric)
-    rctv_strSiteID <- reactive(input$site)
+    ## Inputs pass to modules (etc) as reactive(Value)s.
+    rctv_strMetricID <- shiny::reactiveVal()
+    shiny::observe({rctv_strMetricID(input$metric)})
+    srvr_SyncSelectInput("metric", rctv_strMetricID, session)
+
+    rctv_strSiteID <- shiny::reactiveVal()
+    shiny::observe({rctv_strSiteID(input$site)})
+    srvr_SyncSelectInput("site", rctv_strSiteID, session)
+
     rctv_strSubjectID <- reactive(input$participant)
     rctv_strPrimaryNavBar <- reactive(input$primary_nav_bar)
 
@@ -62,49 +68,14 @@ gsmApp_Server <- function(
     # Tab Contents ----
 
     ## Study Overview ----
-    lStudyOverviewSelected <- mod_StudyOverview_Server(
+    mod_StudyOverview_Server(
       "study_overview",
       dfResults = dfResults,
       dfGroups = dfGroups,
       dfMetrics = dfMetrics,
       dfBounds = dfBounds,
-      rctv_strSiteID = rctv_strSiteID
-    )
-
-    # Use clickCounter to update main GroupID and MetricID inputs + tab
-    # movement, even if values don't change.
-    #
-    # I can't get the tests to see this happening.
-    #
-    # nocov start
-    observe({
-      strSelectedGroupID <- lStudyOverviewSelected$rctv_strSelectedGroupID()
-      if (!is.null(strSelectedGroupID) && strSelectedGroupID != "") {
-        updateSelectInput(session, "site", selected = strSelectedGroupID)
-      }
-      strSelectedMetricID <- lStudyOverviewSelected$rctv_strSelectedMetricID()
-      if (!is.null(strSelectedMetricID) && strSelectedMetricID != "") {
-        updateSelectInput(session, "metric", selected = strSelectedMetricID)
-      }
-      updateTabsetPanel(session, "primary_nav_bar", selected = "Metric Details")
-    }) %>%
-      bindEvent(
-        lStudyOverviewSelected$rctv_intClickCounter(),
-        ignoreInit = TRUE
-      )
-    # nocov end
-
-    # Also update main inputs when GroupID or MetricID change independent of
-    # those clicks.
-    srvr_SyncSelectInput(
-      "site",
-      lStudyOverviewSelected$rctv_strSelectedGroupID,
-      session
-    )
-    srvr_SyncSelectInput(
-      "metric",
-      lStudyOverviewSelected$rctv_strSelectedMetricID,
-      session
+      rctv_strSiteID = rctv_strSiteID,
+      rctv_strMetricID
     )
 
     ## Metric Details ----

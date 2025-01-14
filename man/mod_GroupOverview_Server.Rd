@@ -4,7 +4,14 @@
 \alias{mod_GroupOverview_Server}
 \title{Group Overview Module Server}
 \usage{
-mod_GroupOverview_Server(id, dfResults, dfMetrics, dfGroups)
+mod_GroupOverview_Server(
+  id,
+  dfResults,
+  dfMetrics,
+  dfGroups,
+  rctv_strMetricID,
+  rctv_strSiteID
+)
 }
 \arguments{
 \item{id}{\code{character} The id for this element.}
@@ -16,11 +23,17 @@ This will be filtered to cases where \code{GroupLevel == "Site"}.}
 reporting.}
 
 \item{dfGroups}{\code{data.frame} Group-level metadata dictionary.}
+
+\item{rctv_strMetricID}{\verb{reactive character} A \code{\link[shiny:reactive]{shiny::reactive()}} object
+that returns the selected \code{MetricID}.}
+
+\item{rctv_strSiteID}{\verb{reactive character} A \code{\link[shiny:reactiveVal]{shiny::reactiveVal()}} object
+that returns the \code{GroupID} of the selected site, and can be used to update
+the selected site.}
 }
 \value{
-A list of two \code{\link[shiny:reactiveVal]{shiny::reactiveVal()}} values: \code{rctv_strGroupID} (the
-selected group, if any) and \code{rctv_strMetricID} (the selected metric, if
-any).
+A list of two \code{\link[shiny:reactiveVal]{shiny::reactiveVal()}} values: \code{rctv_strMetricID} (the
+selected metric, if any).
 }
 \description{
 Group Overview Module Server

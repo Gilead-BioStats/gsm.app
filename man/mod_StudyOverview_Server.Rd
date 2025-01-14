@@ -10,7 +10,8 @@ mod_StudyOverview_Server(
   dfMetrics,
   dfGroups,
   dfBounds,
-  rctv_strSiteID
+  rctv_strSiteID,
+  rctv_strMetricID
 )
 }
 \arguments{
@@ -28,8 +29,12 @@ reporting.}
 and lower-bounds across the full range of sample sizes/total exposure
 values for reporting.}
 
-\item{rctv_strSiteID}{\verb{reactive character} A \code{\link[shiny:reactive]{shiny::reactive()}} object that
-returns the \code{GroupID} of a site.}
+\item{rctv_strSiteID}{\verb{reactive character} A \code{\link[shiny:reactiveVal]{shiny::reactiveVal()}} object
+that returns the \code{GroupID} of the selected site, and can be used to update
+the selected site.}
+
+\item{rctv_strMetricID}{\verb{reactive character} A \code{\link[shiny:reactive]{shiny::reactive()}} object
+that returns the selected \code{MetricID}.}
 }
 \value{
 A named list of \code{\link[shiny:reactive]{shiny::reactive()}} objects, each of which is a

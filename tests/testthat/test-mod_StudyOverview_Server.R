@@ -1,4 +1,4 @@
-test_that("mod_StudyOverview_Server returns selected group and metric", {
+test_that("mod_StudyOverview_Server sets selected group and metric", {
   testServer(
     mod_StudyOverview_Server,
     args = list(
@@ -7,27 +7,22 @@ test_that("mod_StudyOverview_Server returns selected group and metric", {
       dfMetrics = sample_dfMetrics,
       dfGroups = sample_dfGroups,
       dfBounds = sample_dfBounds,
+      rctv_strMetricID = reactiveVal("Analysis_kri0002"),
       rctv_strSiteID = reactiveVal("0X003")
     ),
     {
       # Test the selected group reactive
-      rctv_strSelectedGroupID <- session$getReturned()$rctv_strSelectedGroupID
-      expect_s3_class(rctv_strSelectedGroupID, "reactive")
-      expect_null(rctv_strSelectedGroupID())
-
       session$setInputs(`scatter-Analysis_kri0001-plot` = "None")
+      expect_equal(rctv_strSiteID(), "None")
       session$setInputs(`scatter-Analysis_kri0001-plot` = "0X005")
-      expect_equal(rctv_strSelectedGroupID(), "0X005")
+      expect_equal(rctv_strSiteID(), "0X005")
 
       # Test the selected metric reactive
-      rctv_strSelectedMetricID <- session$getReturned()$rctv_strSelectedMetricID
-      expect_s3_class(rctv_strSelectedMetricID, "reactive")
-
       # When we click a plot, it updates.
       session$setInputs(
         `scatter-selectedScatterPlot` = "studyOverviewTest-scatter-Analysis_kri0001"
       )
-      expect_equal(rctv_strSelectedMetricID(), "Analysis_kri0001")
+      expect_equal(rctv_strMetricID(), "Analysis_kri0001")
 
       # When we click the Group Overview, they update.
       session$setInputs(
@@ -37,7 +32,8 @@ test_that("mod_StudyOverview_Server returns selected group and metric", {
           clickCounter = 1L
         )
       )
-      expect_equal(rctv_strSelectedMetricID(), "Analysis_kri0003")
+      expect_equal(rctv_strSiteID(), "0X024")
+      expect_equal(rctv_strMetricID(), "Analysis_kri0003")
     }
   )
 })

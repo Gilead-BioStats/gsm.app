@@ -8,6 +8,7 @@ mod_TimeSeries_Server <- function(
   rctv_dfResults,
   rctv_lMetric,
   dfGroups,
+  rctv_strSiteID,
   strOutcome = "Score",
   rctv_dfBounds = shiny::reactive(NULL)
 ) {
@@ -19,6 +20,7 @@ mod_TimeSeries_Server <- function(
     rctv_lMetric = rctv_lMetric,
     dfGroups = dfGroups,
     rctv_dfBounds = rctv_dfBounds,
+    rctv_strSiteID = rctv_strSiteID,
     strOutcome = strOutcome
   )
 }

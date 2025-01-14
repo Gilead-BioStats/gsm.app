@@ -9,13 +9,16 @@ srvr_SyncSelectInput <- function(
   rctv_strValue,
   session = getDefaultReactiveDomain()
 ) {
-  observe({
-    updateSelectInput(
-      inputId = id,
-      selected = rctv_strValue(),
-      session = session
-    )
-  })
+  shiny::bindEvent(
+    observe({
+      updateSelectInput(
+        inputId = id,
+        selected = rctv_strValue(),
+        session = session
+      )
+    }),
+    rctv_strValue()
+  )
 }
 
 #' Synchronize selected tab with reactive

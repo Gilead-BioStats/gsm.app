@@ -88,14 +88,17 @@
 #' @param rctv_strGroupSubset `reactive character` A [shiny::reactive()] object
 #'   that returns the selected subset of groups to include in the table.
 #' @param rctv_strInput `reactive character` A [shiny::reactive()] object that
-#'   returns the name of the target input.
+#'   returns the value(s) of an input to share with an interactive gt table. If
+#'   this argument is a [shiny::reactiveVal()], it will be used to push updates
+#'   back to the calling function.
 #' @param rctv_strMetricID `reactive character` A [shiny::reactive()] object
 #'   that returns the selected `MetricID`.
 #' @param rctv_strName `reactive character` A [shiny::reactive()] object that
 #'   returns the name of an object, such as a particular dataframe in a named
 #'   list.
-#' @param rctv_strSiteID `reactive character` A [shiny::reactive()] object that
-#'   returns the `GroupID` of a site.
+#' @param rctv_strSiteID `reactive character` A [shiny::reactiveVal()] object
+#'   that returns the `GroupID` of the selected site, and can be used to update
+#'   the selected site.
 #' @param rctv_strSubjectID `reactive character` A [shiny::reactive()] object
 #'   that returns the `SubjectID` of the selected participant.
 #' @param rctv_strValue `reactive character` A [shiny::reactive()] object that

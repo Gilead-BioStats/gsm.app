@@ -8,7 +8,8 @@ mod_ScatterPlot_Server <- function(
   rctv_dfResults,
   rctv_lMetric,
   dfGroups,
-  rctv_dfBounds
+  rctv_dfBounds,
+  rctv_strSiteID
 ) {
   mod_WidgetPlot_Server(
     id,
@@ -17,6 +18,7 @@ mod_ScatterPlot_Server <- function(
     rctv_dfResults = rctv_dfResults,
     rctv_lMetric = rctv_lMetric,
     dfGroups = dfGroups,
-    rctv_dfBounds = rctv_dfBounds
+    rctv_dfBounds = rctv_dfBounds,
+    rctv_strSiteID = rctv_strSiteID
   )
 }

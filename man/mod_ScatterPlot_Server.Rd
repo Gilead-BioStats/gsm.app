@@ -9,7 +9,8 @@ mod_ScatterPlot_Server(
   rctv_dfResults,
   rctv_lMetric,
   dfGroups,
-  rctv_dfBounds
+  rctv_dfBounds,
+  rctv_strSiteID
 )
 }
 \arguments{
@@ -27,6 +28,10 @@ which group is selected.}
 \item{rctv_dfBounds}{\verb{reactive dataframe} A \code{\link[shiny:reactive]{shiny::reactive()}} object that
 returns a set of predicted percentages/rates and upper- and lower-bounds
 across the full range of sample sizes/total exposure values for reporting.}
+
+\item{rctv_strSiteID}{\verb{reactive character} A \code{\link[shiny:reactiveVal]{shiny::reactiveVal()}} object
+that returns the \code{GroupID} of the selected site, and can be used to update
+the selected site.}
 }
 \value{
 A \code{\link[shiny:reactive]{shiny::reactive()}} with the id of the selected group.

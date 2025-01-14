@@ -15,8 +15,9 @@ information about the named domain.}
 \item{chrDomains}{\code{character} A vector of names of domain data.frames to show
 in the app. Supported domains are shown in the default value.}
 
-\item{rctv_strSiteID}{\verb{reactive character} A \code{\link[shiny:reactive]{shiny::reactive()}} object that
-returns the \code{GroupID} of a site.}
+\item{rctv_strSiteID}{\verb{reactive character} A \code{\link[shiny:reactiveVal]{shiny::reactiveVal()}} object
+that returns the \code{GroupID} of the selected site, and can be used to update
+the selected site.}
 
 \item{rctv_strSubjectID}{\verb{reactive character} A \code{\link[shiny:reactive]{shiny::reactive()}} object
 that returns the \code{SubjectID} of the selected participant.}

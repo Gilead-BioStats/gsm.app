@@ -129,7 +129,9 @@ that returns the currently selected tab.}
 that returns the selected subset of groups to include in the table.}
 
 \item{rctv_strInput}{\verb{reactive character} A \code{\link[shiny:reactive]{shiny::reactive()}} object that
-returns the name of the target input.}
+returns the value(s) of an input to share with an interactive gt table. If
+this argument is a \code{\link[shiny:reactiveVal]{shiny::reactiveVal()}}, it will be used to push updates
+back to the calling function.}
 
 \item{rctv_strMetricID}{\verb{reactive character} A \code{\link[shiny:reactive]{shiny::reactive()}} object
 that returns the selected \code{MetricID}.}
@@ -138,8 +140,9 @@ that returns the selected \code{MetricID}.}
 returns the name of an object, such as a particular dataframe in a named
 list.}
 
-\item{rctv_strSiteID}{\verb{reactive character} A \code{\link[shiny:reactive]{shiny::reactive()}} object that
-returns the \code{GroupID} of a site.}
+\item{rctv_strSiteID}{\verb{reactive character} A \code{\link[shiny:reactiveVal]{shiny::reactiveVal()}} object
+that returns the \code{GroupID} of the selected site, and can be used to update
+the selected site.}
 
 \item{rctv_strSubjectID}{\verb{reactive character} A \code{\link[shiny:reactive]{shiny::reactive()}} object
 that returns the \code{SubjectID} of the selected participant.}

@@ -14,8 +14,9 @@ returns a stacked summary of analysis pipeline output.}
 
 \item{dfGroups}{\code{data.frame} Group-level metadata dictionary.}
 
-\item{rctv_strSiteID}{\verb{reactive character} A \code{\link[shiny:reactive]{shiny::reactive()}} object that
-returns the \code{GroupID} of a site.}
+\item{rctv_strSiteID}{\verb{reactive character} A \code{\link[shiny:reactiveVal]{shiny::reactiveVal()}} object
+that returns the \code{GroupID} of the selected site, and can be used to update
+the selected site.}
 }
 \value{
 A \code{\link[shiny:reactive]{shiny::reactive()}} with the id of the selected group.
