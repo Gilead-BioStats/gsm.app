@@ -1,10 +1,6 @@
 #' Study Overview Server
 #'
 #' @inheritParams shared-params
-#' @returns A named list of [shiny::reactive()] objects, each of which is a
-#'   string. `rctv_strSelectedGroupID` identifies the selected group, and
-#'   `rctv_strSelectedMetricID` identifies the selected metric (the plot most
-#'   recently clicked by the user).
 #' @keywords internal
 mod_StudyOverview_Server <- function(
   id,
@@ -37,12 +33,6 @@ mod_StudyOverview_Server <- function(
       dfBounds = dfBounds,
       rctv_strMetricID = rctv_strMetricID,
       rctv_strSiteID = rctv_strSiteID
-    )
-
-    return(
-      list(
-        rctv_intClickCounter = rctv_intClickCounter
-      )
     )
   })
 }

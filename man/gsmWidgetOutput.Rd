@@ -14,7 +14,7 @@ gsmWidgetOutput(
 )
 }
 \arguments{
-\item{strWidgetName}{The name of a widget in the gsm package.}
+\item{strWidgetName}{\code{character} The name of a widget in the gsm package.}
 
 \item{outputId}{output variable to read from}
 

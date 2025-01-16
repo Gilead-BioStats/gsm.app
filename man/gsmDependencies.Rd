@@ -7,7 +7,7 @@
 gsmDependencies(strWidgetName, excludes = character())
 }
 \arguments{
-\item{strWidgetName}{The name of a widget in the gsm package.}
+\item{strWidgetName}{\code{character} The name of a widget in the gsm package.}
 
 \item{excludes}{An optional vector of named dependencies to \emph{not} include.}
 }

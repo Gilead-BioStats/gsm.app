@@ -36,9 +36,6 @@ the selected site.}
 returns a set of predicted percentages/rates and upper- and lower-bounds
 across the full range of sample sizes/total exposure values for reporting.}
 }
-\value{
-A \code{\link[shiny:reactive]{shiny::reactive()}} with the id of the selected group.
-}
 \description{
 TimeSeries Module Server
 }

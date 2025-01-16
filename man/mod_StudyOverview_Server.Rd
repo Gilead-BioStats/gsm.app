@@ -36,12 +36,6 @@ the selected site.}
 \item{rctv_strMetricID}{\verb{reactive character} A \code{\link[shiny:reactive]{shiny::reactive()}} object
 that returns the selected \code{MetricID}.}
 }
-\value{
-A named list of \code{\link[shiny:reactive]{shiny::reactive()}} objects, each of which is a
-string. \code{rctv_strSelectedGroupID} identifies the selected group, and
-\code{rctv_strSelectedMetricID} identifies the selected metric (the plot most
-recently clicked by the user).
-}
 \description{
 Study Overview Server
 }

@@ -46,7 +46,7 @@ mod_SiteParticipants_Server <- function(
         gt::cols_align("center", columns = "SubjectID") %>%
         out_gtInteractive()
     })
-     mod_gtBidirectional_Server(
+    mod_gtBidirectional_Server(
       "gt",
       rctv_dfAnalyticsInput,
       rctv_gtObject,

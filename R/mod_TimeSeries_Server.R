@@ -1,7 +1,6 @@
 #' TimeSeries Module Server
 #'
 #' @inheritParams shared-params
-#' @returns A [shiny::reactive()] with the id of the selected group.
 #' @keywords internal
 mod_TimeSeries_Server <- function(
   id,

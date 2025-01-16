@@ -21,6 +21,7 @@
 #'   data.frame.
 #' @param chrRequiredFields `character` A vector of names of required fields in
 #'   an object.
+#' @param chrRequiredInputs `character` A vector of inputs required by a Plugin.
 #' @param chrSites `character` A vector of sites available in the study.
 #' @param chrValues `character` A vector of values to associate with a vector of
 #'   labels.
@@ -143,6 +144,8 @@
 #' - `"amber"`: Groups with 1+ amber flag.
 #' @param strInputID `character` An ID to use for the Shiny input created by
 #'   this module or used by this JavaScript.
+#' @param strInputName `character` The name of an input. One of `"site"`,
+#'   `"participant"`, or `"domain"`.
 #' @param strLabel `character` The label of a field.
 #' @param strMetricID `character` A `MetricID` to focus on.
 #' @param strOutcome `character` Outcome variable. Default: `"Score"`.
@@ -157,6 +160,7 @@
 #' @param strValue `character` The value of a field.
 #' @param strWhat `character` A sentence-case description of the object being
 #'   inspected.
+#' @param strWidgetName `character` The name of a widget in the gsm package.
 #' @param tagListSidebar `taglist` An optional [htmltools::tagList()] of
 #'   additional elements to add to the top of the app sidebar.
 #' @param x An object to validate.

@@ -1,6 +1,6 @@
 #' Get dependencies for a gsm widget
 #'
-#' @param strWidgetName The name of a widget in the gsm package.
+#' @inheritParams shared-params
 #' @param excludes An optional vector of named dependencies to *not* include.
 #'
 #' @returns A list of `htmltools::htmlDependency` objects for use in

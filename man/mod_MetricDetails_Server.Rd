@@ -37,10 +37,6 @@ the selected site.}
 \item{rctv_strMetricID}{\verb{reactive character} A \code{\link[shiny:reactive]{shiny::reactive()}} object
 that returns the selected \code{MetricID}.}
 }
-\value{
-A \code{\link[shiny:reactive]{shiny::reactive()}} with the id of the group selected that was
-most recently selected on one of the tabs.
-}
 \description{
 Metric Details Server
 }

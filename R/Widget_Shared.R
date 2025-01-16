@@ -1,9 +1,17 @@
+#' Adapt a gsm widget for use here
+#'
+#' This should go away eventually by making sure everything from gsm is
+#' compatible here.
+#'
+#' @inheritParams shared-params
+#' @param ... Additional parameters passed on to the widgetas JSON.
+#' @returns An htmlwidget object as created by [htmlwidgets::createWidget()].
+#' @keywords internal
 Widget_Plot <- function(
     id,
     strWidgetName,
     ...
 ) {
-
   input <- list(id = id, ...)
   # Get rid of bits we don't use from the main widget.
   excludes <- c(
@@ -38,7 +46,7 @@ Widget_Plot <- function(
 #'   Output and render functions for using Widgets within Shiny applications and
 #'   interactive Rmd documents.
 #'
-#' @param strWidgetName Widget to load.
+#' @inheritParams shared-params
 #' @param outputId output variable to read from
 #' @param width,height Must be a valid CSS unit (like `'100%'`, `'400px'`,
 #'   `'auto'`) or a number, which will be coerced to a string and have `'px'`

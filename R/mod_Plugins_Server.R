@@ -1,7 +1,6 @@
 #' Plugins Wrapper Server
 #'
 #' @inheritParams shared-params
-#' @returns Nothing yet.
 #' @keywords internal
 mod_Plugins_Server <- function(
   id,
@@ -65,6 +64,11 @@ mod_Plugins_Server <- function(
   })
 }
 
+#' Figure out which required inputs aren't available
+#'
+#' @inheritParams shared-params
+#' @returns A character vector of missing inputs.
+#' @keywords internal
 util_compileMissingInputs <- function(
   chrRequiredInputs,
   rctv_strSiteID,
@@ -79,6 +83,12 @@ util_compileMissingInputs <- function(
   return(missing_inputs)
 }
 
+#' Check whether an input is set
+#'
+#' @inheritParams shared-params
+#' @returns `strInputName` if the input is required and is not set, or
+#'   `character()` if it isn't required or is set.
+#' @keywords internal
 util_checkInputMissing <- function(
   strInputName,
   chrRequiredInputs,

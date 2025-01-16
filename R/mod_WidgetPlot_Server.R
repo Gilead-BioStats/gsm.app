@@ -1,3 +1,12 @@
+#' Standardized Plot Widgets as Shiny Modules
+#'
+#' @inheritParams shared-params
+#' @param fn_Widget A function that uses [htmlwidgets::createWidget()] to create
+#'   a widget.
+#' @param fn_WidgetOutput A function that uses
+#'   [htmlwidgets::shinyWidgetOutput()] to create the shiny version of a widget.
+#' @param ... Additional parameters passed to `fn_Widget`.
+#' @keywords internal
 mod_WidgetPlot_Server <- function(
   id,
   fn_Widget,
