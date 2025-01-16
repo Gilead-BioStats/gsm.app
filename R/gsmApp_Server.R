@@ -107,6 +107,7 @@ gsmApp_Server <- function(
 
     ## Metric Details ----
     srvr_MetricDetails(
+    srvr_MetricDetails(
       dfAnalyticsInput = dfAnalyticsInput,
       dfBounds = dfBounds,
       dfGroups = dfGroups,
@@ -127,9 +128,12 @@ gsmApp_Server <- function(
     rctv_LastSiteFilter <- reactiveVal("unfiltered")
     observe({
       req(rctv_strSubjectID())
+      req(rctv_strSubjectID())
       req(rctv_chrParticipantIDs())
       req(rctv_LastSiteFilter())
       selected <- "All"
+      if (rctv_strSubjectID() %in% rctv_chrParticipantIDs()) {
+        selected <- rctv_strSubjectID()
       if (rctv_strSubjectID() %in% rctv_chrParticipantIDs()) {
         selected <- rctv_strSubjectID()
       }
@@ -157,6 +161,7 @@ gsmApp_Server <- function(
         )
       }
     }) %>%
+      bindEvent(rctv_strSubjectID(), input$site)
       bindEvent(rctv_strSubjectID(), input$site)
 
     ## Domain Details ----
