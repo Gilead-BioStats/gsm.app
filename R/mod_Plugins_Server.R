@@ -9,23 +9,23 @@ mod_Plugins_Server <- function(
   l_rctvDomains,
   rctv_strMetricID,
   rctv_strSiteID,
-  rctv_strSubjectID
+  rctv_strSubjectID,
+  rctv_strDomainID
 ) {
   moduleServer(id, function(input, output, session) {
     if (!is.null(lPlugins)) {
       purrr::imap(
         lPlugins,
         function(lPlugin, i) {
-          required_inputs <- tolower(lPlugin$required_inputs)
-          if (length(required_inputs)) {
+          chrRequiredInputs <- tolower(lPlugin$required_inputs)
+          if (length(chrRequiredInputs)) {
             shiny_UI <- shiny::reactive({
-              missing_inputs <- character()
-              if ("site" %in% required_inputs && is.null(null_for_none(rctv_strSiteID()))) {
-                missing_inputs <- "site"
-              }
-              if ("participant" %in% required_inputs && is.null(null_for_none(rctv_strSubjectID()))) {
-                missing_inputs <- c(missing_inputs, "participant")
-              }
+              missing_inputs <- util_compileMissingInputs(
+                chrRequiredInputs = chrRequiredInputs,
+                rctv_strSiteID = rctv_strSiteID,
+                rctv_strSubjectID = rctv_strSubjectID,
+                rctv_strDomainID = rctv_strDomainID
+              )
               if (length(missing_inputs)) {
                 return(out_Placeholder(missing_inputs))
               }
@@ -45,7 +45,8 @@ mod_Plugins_Server <- function(
             l_rctvDomains,
             rctv_strMetricID = rctv_strMetricID,
             rctv_strSiteID = rctv_strSiteID,
-            rctv_strSubjectID = rctv_strSubjectID
+            rctv_strSubjectID = rctv_strSubjectID,
+            rctv_strDomainID = rctv_strDomainID
           )
           args_used <- intersect(
             names(args_available),
@@ -62,4 +63,32 @@ mod_Plugins_Server <- function(
       )
     }
   })
+}
+
+util_compileMissingInputs <- function(
+  chrRequiredInputs,
+  rctv_strSiteID,
+  rctv_strSubjectID,
+  rctv_strDomainID
+) {
+  missing_inputs <- c(
+    util_checkInputMissing("site", chrRequiredInputs, rctv_strSiteID),
+    util_checkInputMissing("participant", chrRequiredInputs, rctv_strSubjectID),
+    util_checkInputMissing("domain", chrRequiredInputs, rctv_strDomainID)
+  )
+  return(missing_inputs)
+}
+
+util_checkInputMissing <- function(
+  strInputName,
+  chrRequiredInputs,
+  rctv_strValue
+) {
+  if (
+    strInputName %in% chrRequiredInputs &&
+    is.null(null_for_none(rctv_strValue()))
+  ) {
+    return(strInputName)
+  }
+  return(character())
 }

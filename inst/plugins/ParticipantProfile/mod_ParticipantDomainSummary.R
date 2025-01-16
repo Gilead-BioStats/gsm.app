@@ -8,17 +8,31 @@ mod_ParticipantDomainSummary_UI <- function(id) {
 }
 
 mod_ParticipantDomainSummary_Server <- function(
-    id,
-    l_rctvParticipantDomainData
+  id,
+  rctv_strDomainID,
+  l_rctvParticipantDomainData
 ) {
   moduleServer(id, function(input, output, session) {
+    chrDomainNames <- names(l_rctvParticipantDomainData)
     output$domain_list <- shiny::renderUI({
-      out_MetadataList(
-        chrLabels = names(l_rctvParticipantDomainData),
-        chrValues = purrr::map_int(l_rctvParticipantDomainData, function(rctv_dfDomain) {
+      mod_ActionList_UI(
+        session$ns("domain_list_choices"),
+        chrDomainNames,
+        chrDomainNames,
+        purrr::map_int(l_rctvParticipantDomainData, function(rctv_dfDomain) {
           NROW(rctv_dfDomain())
         })
       )
+    })
+    rctv_strSelectedDomain <- mod_ActionList_Server(
+      "domain_list_choices",
+      chrDomainNames
+    )
+    shiny::observe({
+      strSelectedDomain <- rctv_strSelectedDomain()
+      if (!is.null(strSelectedDomain)) {
+        rctv_strDomainID(strSelectedDomain)
+      }
     })
   })
 }

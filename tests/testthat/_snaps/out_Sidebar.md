@@ -1064,6 +1064,19 @@
               <script type="application/json" data-for="participant">{"maxOptions":10,"plugins":["selectize-plugin-a11y"]}</script>
             </div>
           </div>
+          <div class="form-group shiny-input-container" style="width:100%;">
+            <label class="control-label" id="domain-label" for="domain">
+              <strong>Domain</strong>
+            </label>
+            <div>
+              <select id="domain" class="shiny-input-select"><option value="None" selected>None</option>
+      <option value="AE">Adverse Events</option>
+      <option value="ENROLL">Enrollment</option>
+      <option value="LB">Lab</option>
+      <option value="SUBJ">Subject Metadata</option></select>
+              <script type="application/json" data-for="domain" data-nonempty="">{"plugins":["selectize-plugin-a11y"]}</script>
+            </div>
+          </div>
           <button class="btn btn-default action-button btn btn-primary btn-sm" id="reset" type="button">Reset All</button>
         </div>
         <script data-bslib-card-init>bslib.Card.initializeAllCards();</script>

@@ -10,7 +10,8 @@ mod_Plugins_Server(
   l_rctvDomains,
   rctv_strMetricID,
   rctv_strSiteID,
-  rctv_strSubjectID
+  rctv_strSubjectID,
+  rctv_strDomainID
 )
 }
 \arguments{
@@ -30,6 +31,9 @@ the selected site.}
 
 \item{rctv_strSubjectID}{\verb{reactive character} A \code{\link[shiny:reactive]{shiny::reactive()}} object
 that returns the \code{SubjectID} of the selected participant.}
+
+\item{rctv_strDomainID}{\verb{reactive character} A \code{\link[shiny:reactive]{shiny::reactive()}} object
+that returns the selected \code{DomainID} (such as "AE" or "SUBJ").}
 }
 \value{
 Nothing yet.

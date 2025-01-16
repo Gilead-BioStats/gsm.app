@@ -35,6 +35,7 @@ gsmApp_UI <- function(
     sidebar = out_Sidebar(
       dfGroups,
       dfResults,
+      chrDomains,
       chrMetrics,
       intNParticipants,
       tagListSidebar

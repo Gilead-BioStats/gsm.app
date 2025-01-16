@@ -19,7 +19,8 @@ test_that("mod_Plugins_Server outputs the expected result", {
       l_rctvDomains = list(),
       rctv_strMetricID = reactive(NULL),
       rctv_strSiteID = reactive(NULL),
-      rctv_strSubjectID = reactiveVal("0008")
+      rctv_strSubjectID = reactiveVal("0008"),
+      rctv_strDomainID = reactiveVal("None")
     ),
     {
       expect_equal(output$`plugin-1-test`, "The selected participant is 0008")
@@ -57,7 +58,8 @@ test_that("mod_Plugins_Server outputs the expected result with required inputs",
       l_rctvDomains = list(),
       rctv_strMetricID = reactive(NULL),
       rctv_strSiteID = reactiveVal("None"),
-      rctv_strSubjectID = reactiveVal("All")
+      rctv_strSubjectID = reactiveVal("All"),
+      rctv_strDomainID = reactiveVal("None")
     ),
     {
       expect_cleaned_html(output$`1`$html, call = call)

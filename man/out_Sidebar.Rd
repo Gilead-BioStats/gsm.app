@@ -7,6 +7,7 @@
 out_Sidebar(
   dfGroups,
   dfResults,
+  chrDomains,
   chrMetrics,
   intNParticipants,
   tagListSidebar = NULL
@@ -17,6 +18,9 @@ out_Sidebar(
 
 \item{dfResults}{\code{data.frame} A stacked summary of analysis pipeline output.
 This will be filtered to cases where \code{GroupLevel == "Site"}.}
+
+\item{chrDomains}{\code{character} A vector of names of domain data.frames to show
+in the app. Supported domains are shown in the default value.}
 
 \item{chrMetrics}{\code{character} A named vector of MetricIDs, where the names
 are the full Metric.}

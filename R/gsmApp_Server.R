@@ -25,6 +25,7 @@ gsmApp_Server <- function(
   force(dfGroups)
   force(dfMetrics)
   force(dfResults)
+  force(chrDomains)
   force(fnFetchData)
   force(fnServer)
   function(input, output, session) {
@@ -47,6 +48,11 @@ gsmApp_Server <- function(
     rctv_strSiteID <- shiny::reactiveVal()
     shiny::observe({rctv_strSiteID(input$site)})
     srvr_SyncSelectInput("site", rctv_strSiteID, session)
+
+    # rctv_strPrimaryNavBar <- shiny::reactive(input$primary_nav_bar)
+    rctv_strPrimaryNavBar <- shiny::reactiveVal()
+    shiny::observe({rctv_strPrimaryNavBar(input$primary_nav_bar)})
+    # TODO: Sync tab in response to this reactive.
 
     ### Participants ----
     rctv_chrParticipantIDs <- srvr_rctv_chrParticipantIDs(
@@ -74,9 +80,11 @@ gsmApp_Server <- function(
     }) %>%
       shiny::bindEvent(rctv_strSubjectID())
 
-    rctv_strPrimaryNavBar <- reactive(input$primary_nav_bar)
+    ### Domains ----
+    rctv_strDomainID <- shiny::reactiveVal()
+    shiny::observe({rctv_strDomainID(input$domain)})
+    srvr_SyncSelectInput("domain", rctv_strDomainID, session)
 
-    ## Domains ----
     l_rctvDomains <- srvr_l_rctvDomains(
       fnFetchData,
       chrDomains,
@@ -155,13 +163,14 @@ gsmApp_Server <- function(
     srvr_SyncTab(
       "primary_nav_bar",
       "Domain Details",
-      rctv_strSubjectID,
+      rctv_strDomainID,
       rctv_strPrimaryNavBar,
       session
     )
     mod_DomainDetails_Server(
       "domain_details",
-      l_rctvDomains = l_rctvDomains
+      l_rctvDomains = l_rctvDomains,
+      rctv_strDomainID = rctv_strDomainID
     )
 
     ## Plugins ----
@@ -171,7 +180,8 @@ gsmApp_Server <- function(
       l_rctvDomains = l_rctvDomains,
       rctv_strMetricID = rctv_strMetricID,
       rctv_strSiteID = rctv_strSiteID,
-      rctv_strSubjectID = rctv_strSubjectID
+      rctv_strSubjectID = rctv_strSubjectID,
+      rctv_strDomainID = rctv_strDomainID
     )
   }
 }

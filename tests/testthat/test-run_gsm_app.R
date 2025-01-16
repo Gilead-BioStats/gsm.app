@@ -263,43 +263,21 @@ test_that("run_gsm_app populates Domain Details", {
   app$wait_for_idle()
   app$wait_for_value(input = "participant", timeout = 2000)
 
-  # Click "Metric Details" tab.
-  app$run_js(file = test_path("fixtures", "WidgetPlotTestHelpers.js"))
-  app$set_inputs(primary_nav_bar = "Metric Details")
-  app$wait_for_js(
-    "isCanvasLoaded('metric_details-scatter_plot');",
-    timeout = 2000
-  )
+  # Navigate to Domain Details tab.
+  app$set_inputs(primary_nav_bar = "Domain Details")
   app$wait_for_idle()
   app$expect_values(
     export = TRUE,
-    name = "metric",
+    name = "no-participant",
     screenshot_args = list(selector = ".main")
   )
 
-  # Select a site in the module.
-  app$run_js("clickWidgetPlotGroup('metric_details-scatter_plot', '0X159');")
-  app$wait_for_js(
-    "isCanvasLoaded('metric_details-scatter_plot');",
-    timeout = 2000
-  )
-  app$wait_for_idle()
-
-  # Select a participant from that site.
-  app$set_inputs(`site_details-participants-gt-table` = 1)
-  app$wait_for_idle()
-  app$expect_values(
-    export = TRUE,
-    name = "participant1",
-    screenshot_args = list(selector = ".main")
-  )
-
-  # Select a different participant via the drop-down.
+  # Select a participant via the drop-down.
   app$set_inputs(`participant` = "0285")
   app$wait_for_idle()
   app$expect_values(
     export = TRUE,
-    name = "participant2",
+    name = "participant",
     screenshot_args = list(selector = ".main")
   )
 

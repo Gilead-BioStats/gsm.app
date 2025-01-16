@@ -9,6 +9,7 @@ mod_ParticipantProfile_UI <- function(id) {
 
 mod_ParticipantProfile_Server <- function(
   id,
+  rctv_strDomainID,
   rctv_dfAE,
   rctv_dfDATACHG,
   rctv_dfDATAENT,
@@ -24,6 +25,7 @@ mod_ParticipantProfile_Server <- function(
     mod_ParticipantMetadata_Server("metadata", rctv_dfSUBJ)
     mod_ParticipantDomainSummary_Server(
       "domains",
+      rctv_strDomainID,
       list(
         AE = rctv_dfAE,
         DATACHG = rctv_dfDATACHG,

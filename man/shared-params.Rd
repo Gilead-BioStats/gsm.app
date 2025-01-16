@@ -95,9 +95,6 @@ of which returns a domain dataframe.}
 
 \item{lStudy}{\code{list} Named list of data describing the overall study.}
 
-\item{rctv_chrIDs}{\verb{reactive character} A \code{\link[shiny:reactive]{shiny::reactive()}} object that
-returns a vector of ids for modules, inputs, or other elements.}
-
 \item{rctv_dfBounds}{\verb{reactive dataframe} A \code{\link[shiny:reactive]{shiny::reactive()}} object that
 returns a set of predicted percentages/rates and upper- and lower-bounds
 across the full range of sample sizes/total exposure values for reporting.}
@@ -121,6 +118,9 @@ which group is selected.}
 \item{rctv_lglState}{\verb{reactive logical} A \code{\link[shiny:reactive]{shiny::reactive()}}] object that
 returns a Boolean value indicating whether something is "off" (\code{FALSE}) or
 "on" (\code{TRUE}).}
+
+\item{rctv_strDomainID}{\verb{reactive character} A \code{\link[shiny:reactive]{shiny::reactive()}} object
+that returns the selected \code{DomainID} (such as "AE" or "SUBJ").}
 
 \item{rctv_strCurrentTab}{\verb{reactive character} A \code{\link[shiny:reactive]{shiny::reactive()}} object
 that returns the currently selected tab.}
