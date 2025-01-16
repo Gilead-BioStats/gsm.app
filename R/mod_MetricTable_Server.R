@@ -51,15 +51,12 @@ mod_MetricTable_Server <- function(
       # nocov end
     })
 
-    selected_row <- mod_gtBidirectional_Server(
+    mod_gtBidirectional_Server(
       "gt",
       rctv_tblData,
       rctv_tbl,
       rctv_strSiteID,
       "GroupID"
     )
-
-    # Return the selected row data
-    return(selected_row)
   })
 }

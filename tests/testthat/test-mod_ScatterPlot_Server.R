@@ -31,7 +31,7 @@ test_that("mod_ScatterPlot_Server starts as expected", {
   )
 })
 
-test_that("mod_ScatterPlot_Server returns selected site", {
+test_that("mod_ScatterPlot_Server sets selected site", {
   dfResults <- filter_byMetricID(
     sample_dfResults[sample_dfResults$GroupLevel == "Site", ],
     "Analysis_kri0001"
@@ -46,13 +46,13 @@ test_that("mod_ScatterPlot_Server returns selected site", {
       rctv_dfResults = reactive(dfResults),
       rctv_lMetric = reactive(lMetric),
       dfGroups = dfGroups,
-      rctv_dfBounds = reactive(dfBounds)
+      rctv_dfBounds = reactive(dfBounds),
+      rctv_strSiteID = reactiveVal("None")
     ),
     {
       expect_null(input$plot)
-      expect_null(session$returned())
       session$setInputs(plot = "0X003")
-      expect_equal(session$returned(), "0X003")
+      expect_equal(rctv_strSiteID(), "0X003")
     }
   )
 })

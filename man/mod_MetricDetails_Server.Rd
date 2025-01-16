@@ -30,8 +30,9 @@ values for reporting.}
 a named list of data describing a single metric, as well as things like
 which group is selected.}
 
-\item{rctv_strSiteID}{\verb{reactive character} A \code{\link[shiny:reactive]{shiny::reactive()}} object that
-returns the \code{GroupID} of a site.}
+\item{rctv_strSiteID}{\verb{reactive character} A \code{\link[shiny:reactiveVal]{shiny::reactiveVal()}} object
+that returns the \code{GroupID} of the selected site, and can be used to update
+the selected site.}
 
 \item{rctv_strMetricID}{\verb{reactive character} A \code{\link[shiny:reactive]{shiny::reactive()}} object
 that returns the selected \code{MetricID}.}

@@ -81,14 +81,12 @@ mod_SiteDetails_Server <- function(
     })
 
     ### Site Participants Table Across Site Selected
-    rctv_strSubjectID_Internal <- mod_SiteParticipants_Server(
+    mod_SiteParticipants_Server(
       "participants",
       rctv_strSiteID,
       rctv_strSubjectID,
       rctv_dfAnalyticsInput_byMetric_bySite,
       rctv_lColumnNames
     )
-
-    return(rctv_strSubjectID_Internal)
   })
 }

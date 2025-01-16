@@ -46,7 +46,7 @@ mod_SiteParticipants_Server <- function(
         gt::cols_align("center", columns = "SubjectID") %>%
         out_gtInteractive()
     })
-    selected_participant <- mod_gtBidirectional_Server(
+     mod_gtBidirectional_Server(
       "gt",
       rctv_dfAnalyticsInput,
       rctv_gtObject,
@@ -54,8 +54,5 @@ mod_SiteParticipants_Server <- function(
       "SubjectID",
       strEmpty = "All"
     )
-
-    # Return the selected row data
-    return(selected_participant)
   })
 }

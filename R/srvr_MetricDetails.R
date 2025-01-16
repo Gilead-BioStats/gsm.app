@@ -43,7 +43,7 @@ srvr_MetricDetails <- function(
     session
   )
 
-  rctv_strMetricDetailsGroup <- mod_MetricDetails_Server(
+  mod_MetricDetails_Server(
     "metric_details",
     dfResults = dfResults,
     dfGroups = dfGroups,
@@ -52,7 +52,7 @@ srvr_MetricDetails <- function(
     rctv_strSiteID = rctv_strSiteID,
     rctv_strMetricID = rctv_strMetricID
   )
-  rctv_strSiteDetailsParticipant <- mod_SiteDetails_Server(
+  mod_SiteDetails_Server(
     "site_details",
     dfGroups = dfGroups,
     dfAnalyticsInput = dfAnalyticsInput,
@@ -61,6 +61,4 @@ srvr_MetricDetails <- function(
     rctv_strMetricID = rctv_strMetricID,
     rctv_lMetric = rctv_lMetric
   )
-  srvr_SyncSelectInput("site", rctv_strMetricDetailsGroup, session)
-  return(rctv_strSiteDetailsParticipant)
 }

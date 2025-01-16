@@ -60,6 +60,14 @@ mod_gtBidirectional_Server <- function(
       rctv_widget_update(NULL)                                # Tested via UI
     })
 
+    # Send the value back out.
+    observe({
+      strSelectedValue <- selected_value()
+      if (!is.null(strSelectedValue) && inherits(rctv_strInput, "reactiveVal")) {
+        rctv_strInput(strSelectedValue)
+      }
+    })
+
     # Return the selected row data
     return(selected_value)
   })

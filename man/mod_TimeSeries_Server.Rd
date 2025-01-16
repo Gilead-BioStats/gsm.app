@@ -9,6 +9,7 @@ mod_TimeSeries_Server(
   rctv_dfResults,
   rctv_lMetric,
   dfGroups,
+  rctv_strSiteID,
   strOutcome = "Score",
   rctv_dfBounds = shiny::reactive(NULL)
 )
@@ -24,6 +25,10 @@ a named list of data describing a single metric, as well as things like
 which group is selected.}
 
 \item{dfGroups}{\code{data.frame} Group-level metadata dictionary.}
+
+\item{rctv_strSiteID}{\verb{reactive character} A \code{\link[shiny:reactiveVal]{shiny::reactiveVal()}} object
+that returns the \code{GroupID} of the selected site, and can be used to update
+the selected site.}
 
 \item{strOutcome}{\code{character} Outcome variable. Default: \code{"Score"}.}
 

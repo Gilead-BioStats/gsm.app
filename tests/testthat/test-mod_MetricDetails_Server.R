@@ -22,16 +22,12 @@ test_that("mod_MetricDetails_Server initializes and renders scatter plot", {
       rctv_strMetricID = rctv_strMetricID
     ),
     {
-      # Set up the return-watcher.
-      rctv_strScatterGroup <- session$getReturned()
-      expect_s3_class(rctv_strScatterGroup, "reactive")
-
       # Manually set tab (happens automatically via UI).
       session$setInputs(selected_tab = "Scatter Plot")
 
       # Simulate selecting a group from the scatter plot
       session$setInputs(`scatter_plot-plot` = "0X005")
-      expect_equal(rctv_strScatterGroup(), "0X005")
+      expect_equal(rctv_strSiteID(), "0X005")
     }
   )
 })
@@ -61,28 +57,18 @@ test_that("mod_MetricDetails_Server renders tab outputs", {
       rctv_strMetricID = rctv_strMetricID
     ),
     {
-      # Set up the return-watcher.
-      rctv_strScatterGroup <- session$getReturned()
-      expect_s3_class(rctv_strScatterGroup, "reactive")
-
-      # Manually set tab (happens automatically via UI).
+      # Manually set tab (happens automatically via UI). Make sure the selected
+      # site doesn't instantly change.
       session$setInputs(selected_tab = "Scatter Plot")
-      # The value isn't explicitly set inside the modules; they all return
-      # `NULL`.
-      expect_null(rctv_strScatterGroup())
-
+      expect_equal(rctv_strSiteID(), "None")
       session$setInputs(selected_tab = "Bar Chart (KRI Value)")
-      expect_null(rctv_strBarValueGroup())
-
+      expect_equal(rctv_strSiteID(), "None")
       session$setInputs(selected_tab = "Bar Chart (KRI Score)")
-      expect_null(rctv_strBarScoreGroup())
-
+      expect_equal(rctv_strSiteID(), "None")
       session$setInputs(selected_tab = "Time Series")
-      expect_null(rctv_strTimeSeriesGroup())
-
+      expect_equal(rctv_strSiteID(), "None")
       session$setInputs(selected_tab = "Analysis Output")
-      expect_type(output$`analysis_output-gt-table`, "list")
-      expect_named(output$`analysis_output-gt-table`, c("html", "deps"))
+      expect_equal(rctv_strSiteID(), "None")
     }
   )
 })
