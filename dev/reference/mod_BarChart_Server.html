@@ -48,6 +48,7 @@
 <span>  <span class="va">rctv_dfResults</span>,</span>
 <span>  <span class="va">rctv_lMetric</span>,</span>
 <span>  <span class="va">dfGroups</span>,</span>
+<span>  <span class="va">rctv_strSiteID</span>,</span>
 <span>  strOutcome <span class="op">=</span> <span class="st">"Score"</span>,</span>
 <span>  rctv_dfBounds <span class="op">=</span> <span class="fu">shiny</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/shiny/man/reactive.html" class="external-link">reactive</a></span><span class="op">(</span><span class="cn">NULL</span><span class="op">)</span></span>
 <span><span class="op">)</span></span></code></pre></div>
@@ -74,6 +75,12 @@ which group is selected.</p></dd>
 
 <dt id="arg-dfgroups">dfGroups<a class="anchor" aria-label="anchor" href="#arg-dfgroups"></a></dt>
 <dd><p><code>data.frame</code> Group-level metadata dictionary.</p></dd>
+
+
+<dt id="arg-rctv-strsiteid">rctv_strSiteID<a class="anchor" aria-label="anchor" href="#arg-rctv-strsiteid"></a></dt>
+<dd><p><code>reactive character</code> A <code><a href="https://rdrr.io/pkg/shiny/man/reactiveVal.html" class="external-link">shiny::reactiveVal()</a></code> object
+that returns the <code>GroupID</code> of the selected site, and can be used to update
+the selected site.</p></dd>
 
 
 <dt id="arg-stroutcome">strOutcome<a class="anchor" aria-label="anchor" href="#arg-stroutcome"></a></dt>

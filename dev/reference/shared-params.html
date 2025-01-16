@@ -265,7 +265,9 @@ that returns the selected subset of groups to include in the table.</p></dd>
 
 <dt id="arg-rctv-strinput">rctv_strInput<a class="anchor" aria-label="anchor" href="#arg-rctv-strinput"></a></dt>
 <dd><p><code>reactive character</code> A <code><a href="https://rdrr.io/pkg/shiny/man/reactive.html" class="external-link">shiny::reactive()</a></code> object that
-returns the name of the target input.</p></dd>
+returns the value(s) of an input to share with an interactive gt table. If
+this argument is a <code><a href="https://rdrr.io/pkg/shiny/man/reactiveVal.html" class="external-link">shiny::reactiveVal()</a></code>, it will be used to push updates
+back to the calling function.</p></dd>
 
 
 <dt id="arg-rctv-strmetricid">rctv_strMetricID<a class="anchor" aria-label="anchor" href="#arg-rctv-strmetricid"></a></dt>
@@ -280,8 +282,9 @@ list.</p></dd>
 
 
 <dt id="arg-rctv-strsiteid">rctv_strSiteID<a class="anchor" aria-label="anchor" href="#arg-rctv-strsiteid"></a></dt>
-<dd><p><code>reactive character</code> A <code><a href="https://rdrr.io/pkg/shiny/man/reactive.html" class="external-link">shiny::reactive()</a></code> object that
-returns the <code>GroupID</code> of a site.</p></dd>
+<dd><p><code>reactive character</code> A <code><a href="https://rdrr.io/pkg/shiny/man/reactiveVal.html" class="external-link">shiny::reactiveVal()</a></code> object
+that returns the <code>GroupID</code> of the selected site, and can be used to update
+the selected site.</p></dd>
 
 
 <dt id="arg-rctv-strsubjectid">rctv_strSubjectID<a class="anchor" aria-label="anchor" href="#arg-rctv-strsubjectid"></a></dt>

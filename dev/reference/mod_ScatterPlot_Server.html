@@ -48,7 +48,8 @@
 <span>  <span class="va">rctv_dfResults</span>,</span>
 <span>  <span class="va">rctv_lMetric</span>,</span>
 <span>  <span class="va">dfGroups</span>,</span>
-<span>  <span class="va">rctv_dfBounds</span></span>
+<span>  <span class="va">rctv_dfBounds</span>,</span>
+<span>  <span class="va">rctv_strSiteID</span></span>
 <span><span class="op">)</span></span></code></pre></div>
     </div>
 
@@ -79,6 +80,12 @@ which group is selected.</p></dd>
 <dd><p><code>reactive dataframe</code> A <code><a href="https://rdrr.io/pkg/shiny/man/reactive.html" class="external-link">shiny::reactive()</a></code> object that
 returns a set of predicted percentages/rates and upper- and lower-bounds
 across the full range of sample sizes/total exposure values for reporting.</p></dd>
+
+
+<dt id="arg-rctv-strsiteid">rctv_strSiteID<a class="anchor" aria-label="anchor" href="#arg-rctv-strsiteid"></a></dt>
+<dd><p><code>reactive character</code> A <code><a href="https://rdrr.io/pkg/shiny/man/reactiveVal.html" class="external-link">shiny::reactiveVal()</a></code> object
+that returns the <code>GroupID</code> of the selected site, and can be used to update
+the selected site.</p></dd>
 
 </dl></div>
     <div class="section level2">
