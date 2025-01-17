@@ -49,23 +49,24 @@
 <code>l</code> (eg: <code>lAssessment</code>) = list</li>
 <li>
 <code>str</code> (eg: <code>strMetricID</code>) = length-1 character vector</li>
+<li>
+<code>chr</code> (eg: <code>chrDomains</code>) = character vector (length &gt;= 1)</li>
 </ul></li>
-<li>The remainder of the argument name should use camelCase.</li>
+<li>The remainder of the argument name should use CamelCase.</li>
 <li>If an argument is expected to be reactive (as in <code><a href="https://rdrr.io/pkg/shiny/man/reactive.html" class="external-link">shiny::reactive()</a></code>), it should be prefixed by <code>rctv_</code>, and then follow the rules above for the value <em>returned</em> by that reactive function. For example, a reactive expression that returns a MetricID string should be <code>rctv_strMetricID</code>.</li>
 <li>If an argument is used more than once, document it in <code>R/aaa-shared.R</code>.
 <ul><li>Within the function help, use <code>#' @inheritParams shared-params</code> to inherit globally defined parameters.</li>
-<li>Arguments should be alphabetized in this document to make it easier to find whether they have already been documented.</li>
+<li>Arguments should be alphabetized in that document to make it easier to find whether they have already been documented.</li>
 <li>Note: If a parameter is documented in a function, that definition will override the imported definition, even with <code>@inheritParams shared-params</code> (so it’s safe to use that pretty much everywhere).</li>
 </ul></li>
 </ul></div>
 <div class="section level2">
 <h2 id="minimize-reactivity">Minimize reactivity<a class="anchor" aria-label="anchor" href="#minimize-reactivity"></a></h2>
 <p>If a function makes sense to be non-reactive, make it non-reactive. This applies even if the return is built out of HTML components, for example using <code>tagList()</code>. The module that calls the function can pass in an (evaluated) reactive expression to make the result reactive, but the function itself should be non-reactive whenever possible.</p>
-<p>(tentative) Only <code>mod_*_Server()</code> functions should have <code>rctv_*</code> arguments, and only <code>mod_*_Server()</code> functions should return reactive expressions.</p>
 </div>
 <div class="section level2">
 <h2 id="dont-namespace-shiny">Don’t namespace shiny<a class="anchor" aria-label="anchor" href="#dont-namespace-shiny"></a></h2>
-<p>I’ve gone back and forth on this one, but the current rule is to skip namespace for {shiny} functions, particularly for basic HTML elements (reexported from {htmltools} by {shiny}). So <code>div()</code>, not <code><a href="https://rstudio.github.io/htmltools/reference/builder.html" class="external-link">shiny::div()</a></code> nor <code><a href="https://rstudio.github.io/htmltools/reference/builder.html" class="external-link">htmltools::div()</a></code> nor <code>htmltools::tag$div()</code>.</p>
+<p>I’ve gone back and forth on this one, but the current rule is to skip namespace for {shiny} functions, particularly for basic HTML elements (reexported from {htmltools} by {shiny}). So <code>div()</code>, not <code><a href="https://rstudio.github.io/htmltools/reference/builder.html" class="external-link">shiny::div()</a></code> nor <code><a href="https://rstudio.github.io/htmltools/reference/builder.html" class="external-link">htmltools::div()</a></code> nor <code>htmltools::tag$div()</code>. Exceptions: roxygen documentation blocks and default arguments.</p>
 <p>However, <em>do</em> use the namespace for anything in {htmltools} that isn’t reexported by {shiny}, such as <code><a href="https://rstudio.github.io/htmltools/reference/htmlDependency.html" class="external-link">htmltools::htmlDependency()</a></code>. This exception is why I’ve gone back and forth on this rule.</p>
 </div>
 <div class="section level2">
@@ -136,9 +137,8 @@
 <span><span class="op">}</span></span></code></pre></div>
 </div>
 <div class="section level2">
-<h2 id="separate-ui-and-server-files">Separate UI and Server files<a class="anchor" aria-label="anchor" href="#separate-ui-and-server-files"></a></h2>
-<p>For modules, create two files: <code>mod_ModuleName_UI.R</code> and <code>mod_ModuleName_Server.R</code>. The UI function and its (small, not reused) helper functions go in the first one, and the server function and its (small, not reused) helper functions go in the other. It’s theoretically easier to have them both open and tab between them (or open them side-by-side) than to scroll up and down in one file.</p>
-<p>This is noted here specifically <em>because</em> I’m going back and forth about how I feel about this.</p>
+<h2 id="single-mod-files">Single mod files<a class="anchor" aria-label="anchor" href="#single-mod-files"></a></h2>
+<p>For modules, create one file: <code>mod_ModuleName.R</code>. We previously used separate <code>_UI.R</code> and <code>_Server.R</code> files, but it made it harder to update things than it needed to be.</p>
 </div>
 </div>
 
