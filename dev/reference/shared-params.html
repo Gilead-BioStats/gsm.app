@@ -210,11 +210,6 @@ of which returns a domain dataframe.</p></dd>
 <dd><p><code>list</code> Named list of data describing the overall study.</p></dd>
 
 
-<dt id="arg-rctv-chrids">rctv_chrIDs<a class="anchor" aria-label="anchor" href="#arg-rctv-chrids"></a></dt>
-<dd><p><code>reactive character</code> A <code><a href="https://rdrr.io/pkg/shiny/man/reactive.html" class="external-link">shiny::reactive()</a></code> object that
-returns a vector of ids for modules, inputs, or other elements.</p></dd>
-
-
 <dt id="arg-rctv-dfbounds">rctv_dfBounds<a class="anchor" aria-label="anchor" href="#arg-rctv-dfbounds"></a></dt>
 <dd><p><code>reactive dataframe</code> A <code><a href="https://rdrr.io/pkg/shiny/man/reactive.html" class="external-link">shiny::reactive()</a></code> object that
 returns a set of predicted percentages/rates and upper- and lower-bounds
@@ -251,6 +246,11 @@ which group is selected.</p></dd>
 <dd><p><code>reactive logical</code> A <code><a href="https://rdrr.io/pkg/shiny/man/reactive.html" class="external-link">shiny::reactive()</a></code>] object that
 returns a Boolean value indicating whether something is "off" (<code>FALSE</code>) or
 "on" (<code>TRUE</code>).</p></dd>
+
+
+<dt id="arg-rctv-strdomainid">rctv_strDomainID<a class="anchor" aria-label="anchor" href="#arg-rctv-strdomainid"></a></dt>
+<dd><p><code>reactive character</code> A <code><a href="https://rdrr.io/pkg/shiny/man/reactive.html" class="external-link">shiny::reactive()</a></code> object
+that returns the selected <code>DomainID</code> (such as "AE" or "SUBJ").</p></dd>
 
 
 <dt id="arg-rctv-strcurrenttab">rctv_strCurrentTab<a class="anchor" aria-label="anchor" href="#arg-rctv-strcurrenttab"></a></dt>

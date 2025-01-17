@@ -134,10 +134,10 @@ to any domains specified in the <code>chrDomains</code> argument to
 <h3 id="required_inputs">required_inputs<a class="anchor" aria-label="anchor" href="#required_inputs"></a>
 </h3>
 <p>The <code>required_inputs</code> section lists any inputs (“Metric”,
-“Site”, or “Participant”) that must have a non-empty value before the
-plugin can load. “None” and “All” count as “empty” for this check. If
-the user has not set a value for that input, the app will display a
-placeholder instructing the user to make a selection.</p>
+“Site”, “Participant”, or “Domain”) that must have a non-empty value
+before the plugin can load. “None” and “All” count as “empty” for this
+check. If the user has not set a value for that input, the app will
+display a placeholder instructing the user to make a selection.</p>
 </div>
 <div class="section level3">
 <h3 id="packages">packages<a class="anchor" aria-label="anchor" href="#packages"></a>
@@ -162,6 +162,9 @@ connected to the “Site” input)</li>
 <li>
 <code>rctv_strSubjectID</code> (a <code><a href="https://rdrr.io/pkg/shiny/man/reactiveVal.html" class="external-link">shiny::reactiveVal()</a></code>
 connected to the “Participant” input)</li>
+<li>
+<code>rctv_strDomainID</code> (a <code><a href="https://rdrr.io/pkg/shiny/man/reactiveVal.html" class="external-link">shiny::reactiveVal()</a></code>
+connected to the “Domain” input)</li>
 <li>
 <code>rctv_dfDOMAIN</code> (eg rctv_dfAE, one for each
 <code>domain</code> as defined above)</li>

@@ -43,7 +43,7 @@
 
     <div class="section level2">
     <h2 id="ref-usage">Usage<a class="anchor" aria-label="anchor" href="#ref-usage"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">mod_DomainDetails_Server</span><span class="op">(</span><span class="va">id</span>, <span class="va">l_rctvDomains</span><span class="op">)</span></span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">mod_DomainDetails_Server</span><span class="op">(</span><span class="va">id</span>, <span class="va">l_rctvDomains</span>, <span class="va">rctv_strDomainID</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div class="section level2">
@@ -58,13 +58,12 @@
 <dd><p><code>list</code> A named list of <code><a href="https://rdrr.io/pkg/shiny/man/reactive.html" class="external-link">shiny::reactive()</a></code> objects, each
 of which returns a domain dataframe.</p></dd>
 
+
+<dt id="arg-rctv-strdomainid">rctv_strDomainID<a class="anchor" aria-label="anchor" href="#arg-rctv-strdomainid"></a></dt>
+<dd><p><code>reactive character</code> A <code><a href="https://rdrr.io/pkg/shiny/man/reactive.html" class="external-link">shiny::reactive()</a></code> object
+that returns the selected <code>DomainID</code> (such as "AE" or "SUBJ").</p></dd>
+
 </dl></div>
-    <div class="section level2">
-    <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
-    <p>A <code><a href="https://rdrr.io/pkg/shiny/man/reactive.html" class="external-link">shiny::reactive()</a></code> with the ids of rows selected in the table
-(currently unused but implemented as a proof-of-concept for future
-extensions).</p>
-    </div>
 
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
     </nav></aside></div>
