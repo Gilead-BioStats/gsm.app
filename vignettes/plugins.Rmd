@@ -72,7 +72,7 @@ The `domains` section specifies the data domains that are used by the plugin. Th
 
 ## required_inputs
 
-The `required_inputs` section lists any inputs ("Metric", "Site", or "Participant") that must have a non-empty value before the plugin can load. "None" and "All" count as "empty" for this check. If the user has not set a value for that input, the app will display a placeholder instructing the user to make a selection.
+The `required_inputs` section lists any inputs ("Metric", "Site", "Participant", or "Domain") that must have a non-empty value before the plugin can load. "None" and "All" count as "empty" for this check. If the user has not set a value for that input, the app will display a placeholder instructing the user to make a selection.
 
 ## packages
 
@@ -85,6 +85,7 @@ If plugins have any of these arguments, the corresponding reactive will be passe
 - `rctv_strMetricID` (a `shiny::reactiveVal()` connected to the "Metric" input)
 - `rctv_strSiteID` (a `shiny::reactiveVal()` connected to the "Site" input)
 - `rctv_strSubjectID` (a `shiny::reactiveVal()` connected to the "Participant" input)
+- `rctv_strDomainID` (a `shiny::reactiveVal()` connected to the "Domain" input)
 - `rctv_dfDOMAIN` (eg rctv_dfAE, one for each `domain` as defined above)
 
 For the input-connected `reactiveVal()`s, setting a value will pass the value back up to the main app. For example, to set the `Participant` drop-down menu to subject "0008", call `rctv_strSubjectID("0008")` inside your plugin.

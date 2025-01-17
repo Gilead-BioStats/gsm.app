@@ -35,10 +35,7 @@ srvr_SyncTab <- function(
   session = getDefaultReactiveDomain()
 ) {
   observe({
-    main_tabs <- c("Study Overview", "Metric Details", "Participant Details")
-    if (rctv_strCurrentTab() %in% main_tabs) {
-      bslib::nav_select(id, strTargetTab, session = session)
-    }
+    bslib::nav_select(id, strTargetTab, session = session)
   }) %>%
     bindEvent(
       null_for_none(rctv_strValue()),

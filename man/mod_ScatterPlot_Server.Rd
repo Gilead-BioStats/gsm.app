@@ -33,9 +33,6 @@ across the full range of sample sizes/total exposure values for reporting.}
 that returns the \code{GroupID} of the selected site, and can be used to update
 the selected site.}
 }
-\value{
-A \code{\link[shiny:reactive]{shiny::reactive()}} with the id of the selected group.
-}
 \description{
 ScatterPlot Module Server
 }

@@ -4,18 +4,16 @@
 \alias{mod_DomainDetails_Server}
 \title{Domain Details server}
 \usage{
-mod_DomainDetails_Server(id, l_rctvDomains)
+mod_DomainDetails_Server(id, l_rctvDomains, rctv_strDomainID)
 }
 \arguments{
 \item{id}{\code{character} The id for this element.}
 
 \item{l_rctvDomains}{\code{list} A named list of \code{\link[shiny:reactive]{shiny::reactive()}} objects, each
 of which returns a domain dataframe.}
-}
-\value{
-A \code{\link[shiny:reactive]{shiny::reactive()}} with the ids of rows selected in the table
-(currently unused but implemented as a proof-of-concept for future
-extensions).
+
+\item{rctv_strDomainID}{\verb{reactive character} A \code{\link[shiny:reactive]{shiny::reactive()}} object
+that returns the selected \code{DomainID} (such as "AE" or "SUBJ").}
 }
 \description{
 Update Domain Details when the selected participant changes.

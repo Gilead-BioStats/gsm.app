@@ -40,8 +40,8 @@ title: "Plugin: ProvideATitle"
 - [ ] `rctv_strSiteID`
 - [ ] `rctv_strMetricID`
 - [ ] `rctv_strSubjectID`
+- [ ] `rctv_strDomainID`
 - [ ] `rctv_strPrimaryNavBar`
-- [ ] `rctv_strDomainID` (when/if it becomes available)
 - [ ] `l_rctvDomainRowsSelected` (when/if it becomes available)
 
 ### New Inputs
