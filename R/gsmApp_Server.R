@@ -167,6 +167,13 @@ gsmApp_Server <- function(
       rctv_strPrimaryNavBar,
       session
     )
+    srvr_SyncTab(
+      "primary_nav_bar",
+      "Domain Details",
+      rctv_strSubjectID,
+      rctv_strPrimaryNavBar,
+      session
+    )
     mod_DomainDetails_Server(
       "domain_details",
       l_rctvDomains = l_rctvDomains,
