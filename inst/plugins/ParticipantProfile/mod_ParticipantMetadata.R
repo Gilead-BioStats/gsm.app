@@ -46,7 +46,7 @@ mod_ParticipantMetadata_Server <- function(id, rctv_dfSUBJ) {
       toxgrg_nsv = "Toxicity Grade",
       visnam = "Visit"
     )
-    output$metadata <- shiny::renderUI({
+    output$metadata <- renderUI({
       req(rctv_dfSUBJ())
       lParticipantMetadata <- as.list(rctv_dfSUBJ())
       out_MetadataList(

@@ -1,5 +1,5 @@
 mod_AE_UI <- function(id) {
-  ns <- shiny::NS(id)
+  ns <- NS(id)
   bslib::navset_card_underline(
     id = ns("selected_tab"),
     title = "Adverse Events",
@@ -27,7 +27,7 @@ mod_AE_Server <- function(
   rctv_strSubjectID
 ) {
   moduleServer(id, function(input, output, session) {
-    rctv_dfAE_mod <- shiny::reactive({
+    rctv_dfAE_mod <- reactive({
       dfAE <- rctv_dfAE()
       if (NROW(dfAE)) {
         dfAE <- dfAE %>%

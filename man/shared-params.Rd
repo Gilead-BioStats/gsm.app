@@ -30,6 +30,8 @@ data.frame.}
 \item{chrRequiredFields}{\code{character} A vector of names of required fields in
 an object.}
 
+\item{chrRequiredInputs}{\code{character} A vector of inputs required by a Plugin.}
+
 \item{chrSites}{\code{character} A vector of sites available in the study.}
 
 \item{chrValues}{\code{character} A vector of values to associate with a vector of
@@ -209,6 +211,9 @@ Default: \code{"red"}. Options:
 \item{strInputID}{\code{character} An ID to use for the Shiny input created by
 this module or used by this JavaScript.}
 
+\item{strInputName}{\code{character} The name of an input. One of \code{"site"},
+\code{"participant"}, or \code{"domain"}.}
+
 \item{strLabel}{\code{character} The label of a field.}
 
 \item{strMetricID}{\code{character} A \code{MetricID} to focus on.}
@@ -233,6 +238,8 @@ study.}
 
 \item{strWhat}{\code{character} A sentence-case description of the object being
 inspected.}
+
+\item{strWidgetName}{\code{character} The name of a widget in the gsm package.}
 
 \item{tagListSidebar}{\code{taglist} An optional \code{\link[htmltools:tagList]{htmltools::tagList()}} of
 additional elements to add to the top of the app sidebar.}

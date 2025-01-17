@@ -9,7 +9,7 @@ srvr_SyncSelectInput <- function(
   rctv_strValue,
   session = getDefaultReactiveDomain()
 ) {
-  shiny::bindEvent(
+  bindEvent(
     observe({
       updateSelectInput(
         inputId = id,
@@ -38,7 +38,7 @@ srvr_SyncTab <- function(
     bslib::nav_select(id, strTargetTab, session = session)
   }) %>%
     bindEvent(
-      null_for_none(rctv_strValue()),
+      NullifyEmpty(rctv_strValue()),
       ignoreInit = TRUE
     )
 }
