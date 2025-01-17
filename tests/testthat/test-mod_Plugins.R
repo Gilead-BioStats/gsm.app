@@ -64,7 +64,7 @@ test_that("mod_Plugins_Server outputs the expected result", {
           meta = list(ID = "TEST", Name = "Plugin Test"),
           shiny = list(Server = function(id, rctv_strSubjectID) {
             moduleServer(id, function(input, output, session) {
-              output$test <- shiny::renderText({
+              output$test <- renderText({
                 paste("The selected participant is", rctv_strSubjectID())
               })
             })
@@ -101,7 +101,7 @@ test_that("mod_Plugins_Server outputs the expected result with required inputs",
             },
             Server = function(id, rctv_strSubjectID) {
               moduleServer(id, function(input, output, session) {
-                output$test <- shiny::renderText({
+                output$test <- renderText({
                   paste("The selected participant is", rctv_strSubjectID())
                 })
               })

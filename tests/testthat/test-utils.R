@@ -1,5 +1,5 @@
 test_that("UnNS removes namespaces", {
-  my_namespacer <- shiny::NS("test_namespace")
+  my_namespacer <- NS("test_namespace")
   namespaced <- my_namespacer("target")
   expect_identical(
     UnNS(namespaced, my_namespacer),
@@ -38,7 +38,7 @@ test_that("AsFunction works for unnamespaced functions", {
 
 test_that("AsFunction works for namespaced functions", {
   test_result <- AsFunction("shiny::reactive")
-  expect_identical(test_result, shiny::reactive)
+  expect_identical(test_result, reactive)
 })
 
 test_that("AsFunction works for bare functions", {

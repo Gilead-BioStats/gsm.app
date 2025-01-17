@@ -27,7 +27,7 @@ mod_MetricTable_Server <- function(
 ) {
   moduleServer(id, function(input, output, session) {
     # Update the widget when the source data changes.
-    rctv_tbl <- shiny::reactive({
+    rctv_tbl <- reactive({
       req(rctv_dfResults())
       rmt <- gsm::Report_MetricTable(
         rctv_dfResults(),
@@ -41,8 +41,8 @@ mod_MetricTable_Server <- function(
     })
 
     # Extract the data back out of the widget.
-    rctv_tblData <- shiny::reactive({
-      shiny::req(rctv_tbl())
+    rctv_tblData <- reactive({
+      req(rctv_tbl())
       tbl <- rctv_tbl()
       if (inherits(tbl, "gt_tbl")) {
         return(tbl$`_data`)

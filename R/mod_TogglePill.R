@@ -5,9 +5,9 @@
 #'   and the necessary CSS and JavaScript to manage the link.
 #' @keywords internal
 mod_TogglePill_UI <- function(id, strLabel, strColorCode) {
-  ns <- shiny::NS(id)
-  htmltools::tagList(
-    shiny::actionLink(
+  ns <- NS(id)
+  tagList(
+    actionLink(
       ns("toggle_pill"),
       label = strLabel,
       style = glue::glue("background-color: {strColorCode}; opacity: 0.5;"),
@@ -27,7 +27,7 @@ mod_TogglePill_UI <- function(id, strLabel, strColorCode) {
 #'   app exactly once, regardless how many times they are added.
 #' @keywords internal
 htmlDependency_TogglePill <- function() {
-  htmltools::tagList(
+  tagList(
     htmlDependency_updateStyleJS(),
     htmlDependency_Stylesheet("togglePill.css")
   )
@@ -58,27 +58,27 @@ htmlDependency_updateStyleJS <- function() {
 #'   (`TRUE`) or "off" (`FALSE`).
 #' @keywords internal
 mod_TogglePill_Server <- function(id, rctv_lglState = shiny::reactive(FALSE)) {
-  shiny::moduleServer(
+  moduleServer(
     id,
     function(input, output, session) {
       pill_id <- session$ns("toggle_pill")
 
-      rctv_lglStateInternal <- shiny::reactiveVal(FALSE)
+      rctv_lglStateInternal <- reactiveVal(FALSE)
 
       # Update rctv_lglStateInternal if the external state changes.
-      shiny::observe({
+      observe({
         rctv_lglStateInternal(rctv_lglState())
       })
 
       # Update rctv_lglStateInternal on click.
-      shiny::observe({
+      observe({
         lglNewState <- !rctv_lglStateInternal()
         rctv_lglStateInternal(lglNewState)
       }) %>%
-        shiny::bindEvent(input$toggle_pill)
+        bindEvent(input$toggle_pill)
 
       # Observe changes in the reactive state to update the opacity
-      shiny::observe({
+      observe({
         session$sendCustomMessage("updateOpacity", list(
           id = pill_id,
           opacity = if (rctv_lglStateInternal()) "1" else "0.5"

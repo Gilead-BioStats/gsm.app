@@ -67,9 +67,9 @@ mod_ScatterPlotSet_Server <- function(
       req(input$selectedScatterPlot)
       UnNS(input$selectedScatterPlot, session$ns)
     })
-    shiny::observe({
+    observe({
       rctv_strMetricID(rctv_strSelectedMetricID())
     }) %>%
-      shiny::bindEvent(rctv_strSelectedMetricID())
+      bindEvent(rctv_strSelectedMetricID())
   })
 }

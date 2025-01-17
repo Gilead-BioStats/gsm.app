@@ -34,17 +34,17 @@ mod_GroupOverview_Server <- function(
 ) {
   moduleServer(id, function(input, output, session) {
     dfResults <- gsm::FilterByLatestSnapshotDate(dfResults)
-    rctv_strGroupSubset <- shiny::reactiveVal("red")
+    rctv_strGroupSubset <- reactiveVal("red")
 
     rctv_strGroupSubset_Pills <- mod_RAGPillSet_Server(
       "kri_counts",
       rctv_strGroupSubset
     )
 
-    shiny::observe({
+    observe({
       rctv_strGroupSubset(rctv_strGroupSubset_Pills())
     }) %>%
-      shiny::bindEvent(rctv_strGroupSubset_Pills())
+      bindEvent(rctv_strGroupSubset_Pills())
 
     output$group_overview <- renderWidget_GroupOverview({
       Widget_GroupOverview(
@@ -57,16 +57,16 @@ mod_GroupOverview_Server <- function(
     })
     outputOptions(output, "group_overview", suspendWhenHidden = FALSE)
 
-    shiny::observe({
-      shiny::req(input$group_overview$selectedMetricID)
+    observe({
+      req(input$group_overview$selectedMetricID)
       rctv_strMetricID(input$group_overview$selectedMetricID)
     })
-    shiny::observe({
-      shiny::req(input$group_overview$selectedGroupID)
+    observe({
+      req(input$group_overview$selectedGroupID)
       rctv_strSiteID(input$group_overview$selectedGroupID)
     })
-    shiny::observe({
-      shiny::req(input$group_overview$groupSubset)
+    observe({
+      req(input$group_overview$groupSubset)
       rctv_strGroupSubset(input$group_overview$groupSubset)
     })
   })
@@ -138,9 +138,9 @@ Widget_GroupOverview <- function(
 #' @name Widget_GroupOverview-shiny
 #' @keywords internal
 Widget_GroupOverviewOutput <- function(outputId, width = "100%", height = "100%") {
-  htmltools::tagList(
+  tagList(
     htmlDependency_GroupOverview(),
-    shiny::fluidRow(
+    fluidRow(
       class = "gy-2",
       gsmWidgetOutput(
         "Widget_GroupOverview",
@@ -148,7 +148,7 @@ Widget_GroupOverviewOutput <- function(outputId, width = "100%", height = "100%"
         width,
         height
       ),
-      htmltools::div(
+      div(
         "Click cells for associated risk signal details.",
         class = "footnote"
       )
@@ -178,7 +178,7 @@ renderWidget_GroupOverview <- function(expr, env = parent.frame(), quoted = FALS
 #'   app exactly once, regardless how many times they are added.
 #' @keywords internal
 htmlDependency_GroupOverview <- function() {
-  htmltools::tagList(
+  tagList(
     htmlDependency_Stylesheet("groupOverview.css"),
     htmlDependency_WidgetInputHelpers(),
     htmlDependency_GroupOverviewInput()
@@ -192,7 +192,7 @@ htmlDependency_GroupOverview <- function() {
 #'   app exactly once, regardless how many times they are added.
 #' @keywords internal
 htmlDependency_GroupOverviewInput <- function() {
-  htmltools::tagList(
+  tagList(
     htmlDependency_WidgetInputHelpers(),
     htmltools::htmlDependency(
       name = "groupOverviewInput",

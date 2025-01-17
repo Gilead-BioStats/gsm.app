@@ -11,7 +11,7 @@ test_that("mod_RAGPillSet_Server responds to external state", {
     mod_RAGPillSet_Server,
     args = list(
       id = "test_id",
-      rctv_strGroupSubset = shiny::reactiveVal("red")
+      rctv_strGroupSubset = reactiveVal("red")
     ),
     {
       rctv_toReturn <- session$getReturned()

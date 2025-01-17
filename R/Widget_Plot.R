@@ -143,7 +143,7 @@ gsmWidgetOutput <- function(
     excludes = character(),
     ...
 ) {
-  htmltools::tagList(
+  tagList(
     htmlwidgets::shinyWidgetOutput(
       outputId,
       strWidgetName,

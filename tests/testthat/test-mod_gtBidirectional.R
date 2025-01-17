@@ -10,7 +10,7 @@ test_that("mod_gtBidirectional_Server starts as expected and updates", {
   call <- rlang::current_env()
 
   dfData <- data.frame(a = 1:3, b = 4:6)
-  rctv_gtObj <- shiny::reactive({
+  rctv_gtObj <- reactive({
     gt::gt(dfData) %>% out_gtInteractive()
   })
   rct_strA <- reactiveVal(NULL)
@@ -54,7 +54,7 @@ test_that("mod_gtBidirectional_Server starts as expected and updates", {
 
 test_that("mod_gtBidirectional_Server returns selected thing", {
   dfData <- data.frame(a = 4:6, b = 7:9)
-  rctv_gtObj <- shiny::reactive({
+  rctv_gtObj <- reactive({
     gt::gt(dfData) %>% out_gtInteractive()
   })
   rct_strA <- reactiveVal(NULL)

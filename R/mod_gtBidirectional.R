@@ -5,7 +5,7 @@
 #' @keywords internal
 mod_gtBidirectional_UI <- function(id) {
   ns <- NS(id)
-  htmltools::tagList(
+  tagList(
     htmlDependency_Stylesheet("gt.css"),
     gt::gt_output(ns("table"))
   )
@@ -54,7 +54,7 @@ mod_gtBidirectional_Server <- function(
         }
       }
     }) %>%
-      shiny::bindEvent(input$table, ignoreInit = TRUE, ignoreNULL = FALSE)
+      bindEvent(input$table, ignoreInit = TRUE, ignoreNULL = FALSE)
 
     # Update selections from outside.
     #

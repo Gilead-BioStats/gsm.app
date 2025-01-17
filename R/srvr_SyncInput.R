@@ -9,7 +9,7 @@ srvr_SyncSelectInput <- function(
   rctv_strValue,
   session = getDefaultReactiveDomain()
 ) {
-  shiny::bindEvent(
+  bindEvent(
     observe({
       updateSelectInput(
         inputId = id,

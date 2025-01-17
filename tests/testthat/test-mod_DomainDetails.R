@@ -15,7 +15,7 @@ test_that("mod_DomainDetails_Server sets domain", {
     args = list(
       id = "domainDetailsTest",
       l_rctvDomains = list(),
-      rctv_strDomainID = shiny::reactiveVal("z")
+      rctv_strDomainID = reactiveVal("z")
     ),
     {
       # Initialize input.

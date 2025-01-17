@@ -9,7 +9,7 @@ mod_SiteParticipants_UI <- function(id) {
   bslib::card(
     bslib::card_header(
       bslib::card_title(shiny::textOutput(ns("title"), inline = TRUE)),
-      shiny::uiOutput(ns("subtitle"))
+      uiOutput(ns("subtitle"))
     ),
     mod_gtBidirectional_UI(ns("gt")),
     full_screen = TRUE,

@@ -13,7 +13,7 @@ test_that("mod_DomainData_Server sets placeholder when no data is available", {
     mod_DomainData_Server,
     args = list(
       id = "myPD",
-      rctv_dfDomain = shiny::reactive({NULL})
+      rctv_dfDomain = reactive({NULL})
     ),
     {
       test_html <- output$`gt-table`$html

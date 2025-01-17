@@ -14,7 +14,7 @@ mod_ParticipantDomainSummary_Server <- function(
 ) {
   moduleServer(id, function(input, output, session) {
     chrDomainNames <- names(l_rctvParticipantDomainData)
-    output$domain_list <- shiny::renderUI({
+    output$domain_list <- renderUI({
       mod_ActionList_UI(
         session$ns("domain_list_choices"),
         chrDomainNames,
@@ -28,7 +28,7 @@ mod_ParticipantDomainSummary_Server <- function(
       "domain_list_choices",
       chrDomainNames
     )
-    shiny::observe({
+    observe({
       strSelectedDomain <- rctv_strSelectedDomain()
       if (!is.null(strSelectedDomain)) {
         rctv_strDomainID(strSelectedDomain)

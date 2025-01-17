@@ -10,7 +10,7 @@ mod_Plugins_UI <- function(id, lPlugins = NULL) {
     plugin_items <- purrr::imap(lPlugins, function(lPlugin, i) {
       if (length(lPlugin$required_inputs)) {
         # Allow for a placeholder instead of the plugin.
-        pluginUI <- shiny::uiOutput(ns(i))
+        pluginUI <- uiOutput(ns(i))
       } else {
         fnUI <- AsFunction(lPlugin$shiny$UI)
         pluginUI <- rlang::inject({
@@ -52,7 +52,7 @@ mod_Plugins_Server <- function(
         function(lPlugin, i) {
           chrRequiredInputs <- tolower(lPlugin$required_inputs)
           if (length(chrRequiredInputs)) {
-            shiny_UI <- shiny::reactive({
+            shiny_UI <- reactive({
               missing_inputs <- CompileUnsetInputs(
                 chrRequiredInputs = chrRequiredInputs,
                 rctv_strSiteID = rctv_strSiteID,
@@ -70,7 +70,7 @@ mod_Plugins_Server <- function(
                 )
               })
             })
-            output[[i]] <- shiny::renderUI({shiny_UI()})
+            output[[i]] <- renderUI({shiny_UI()})
           }
           fnServer <- AsFunction(lPlugin$shiny$Server)
           names(l_rctvDomains) <- glue::glue("rctv_df{names(l_rctvDomains)}")

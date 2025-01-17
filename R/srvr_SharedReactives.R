@@ -41,7 +41,7 @@ srvr_rctv_lMetric <- function(
     }
     lMetric
   }) %>%
-    shiny::bindCache(rctv_strMetricID(), rctv_strSiteID())
+    bindCache(rctv_strMetricID(), rctv_strSiteID())
 }
 
 #' Reactive participant IDs
@@ -86,7 +86,7 @@ srvr_l_rctvDomains <- function(
   # This is an area that could use a lot of optimization; this is almost
   # certainly the slowest part of the app.
   l_rctvDomains <- purrr::map(chrDomains, function(this_domain) {
-    shiny::reactive({
+    reactive({
       withProgress(
         message = glue::glue("Loading {this_domain} data"),
         {
@@ -98,7 +98,7 @@ srvr_l_rctvDomains <- function(
         }
       )
     }) %>%
-      shiny::bindCache(this_domain, rctv_strSiteID(), rctv_strSubjectID())
+      bindCache(this_domain, rctv_strSiteID(), rctv_strSubjectID())
   })
   names(l_rctvDomains) <- chrDomains
   return(l_rctvDomains)

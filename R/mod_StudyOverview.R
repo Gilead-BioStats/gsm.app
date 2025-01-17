@@ -33,7 +33,7 @@ mod_StudyOverview_Server <- function(
     rctv_strMetricID
 ) {
   moduleServer(id, function(input, output, session) {
-    rctv_intClickCounter <- shiny::reactiveVal()
+    rctv_intClickCounter <- reactiveVal()
 
     # Update things when the user clicks the GroupOverview table.
     mod_GroupOverview_Server(

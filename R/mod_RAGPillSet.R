@@ -10,7 +10,7 @@ mod_RAGPillSet_UI <- function(
   intAmber = NULL,
   strLabel = "KRIs"
 ) {
-  ns <- shiny::NS(id)
+  ns <- NS(id)
   intRed <- intRed %||% 0L
   intAmber <- intAmber %||% 0L
 
@@ -36,10 +36,10 @@ mod_RAGPillSet_UI <- function(
 #' @keywords internal
 mod_RAGPillSet_Server <- function(id, rctv_strGroupSubset = reactive("red")) {
   moduleServer(id, function(input, output, session) {
-    rctv_lglRed <- shiny::reactive({
+    rctv_lglRed <- reactive({
       stringr::str_detect(rctv_strGroupSubset(), "red")
     })
-    rctv_lglAmber <- shiny::reactive({
+    rctv_lglAmber <- reactive({
       stringr::str_detect(rctv_strGroupSubset(), "amber")
     })
     rctv_lglRedState <- mod_TogglePill_Server(
@@ -50,7 +50,7 @@ mod_RAGPillSet_Server <- function(id, rctv_strGroupSubset = reactive("red")) {
       "amber",
       rctv_lglAmber
     )
-    rctv_strGroupSubset_internal <- shiny::reactive({
+    rctv_strGroupSubset_internal <- reactive({
       states <- c("red", "amber")
       selected_states <- states[c(rctv_lglRedState(), rctv_lglAmberState())]
       if (length(selected_states)) {

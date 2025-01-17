@@ -41,17 +41,16 @@ gsmApp_Server <- function(
     ## Inputs ----
     ##
     ## Inputs pass to modules (etc) as reactiveVals.
-    rctv_strMetricID <- shiny::reactiveVal()
-    shiny::observe({rctv_strMetricID(input$metric)})
+    rctv_strMetricID <- reactiveVal()
+    observe({rctv_strMetricID(input$metric)})
     srvr_SyncSelectInput("metric", rctv_strMetricID, session)
 
-    rctv_strSiteID <- shiny::reactiveVal()
-    shiny::observe({rctv_strSiteID(input$site)})
+    rctv_strSiteID <- reactiveVal()
+    observe({rctv_strSiteID(input$site)})
     srvr_SyncSelectInput("site", rctv_strSiteID, session)
 
-    # rctv_strPrimaryNavBar <- shiny::reactive(input$primary_nav_bar)
-    rctv_strPrimaryNavBar <- shiny::reactiveVal()
-    shiny::observe({rctv_strPrimaryNavBar(input$primary_nav_bar)})
+    rctv_strPrimaryNavBar <- reactiveVal()
+    observe({rctv_strPrimaryNavBar(input$primary_nav_bar)})
     # TODO: Sync tab in response to this reactive.
 
     ### Participants ----
@@ -60,14 +59,14 @@ gsmApp_Server <- function(
       rctv_strSiteID
     )
 
-    rctv_strSubjectID <- shiny::reactiveVal("All")
-    shiny::observe({
+    rctv_strSubjectID <- reactiveVal("All")
+    observe({
       if (input$participant != "" && input$participant != rctv_strSubjectID()) {
         rctv_strSubjectID(input$participant)           # Tested via UI.
       }
     }) %>%
-      shiny::bindEvent(input$participant)
-    shiny::observe({
+      bindEvent(input$participant)
+    observe({
       if (input$participant != rctv_strSubjectID()) {
         updateSelectizeInput(                          # Tested via UI.
           inputId = "participant",                     # Tested via UI.
@@ -78,11 +77,11 @@ gsmApp_Server <- function(
         )
       }
     }) %>%
-      shiny::bindEvent(rctv_strSubjectID())
+      bindEvent(rctv_strSubjectID())
 
     ### Domains ----
-    rctv_strDomainID <- shiny::reactiveVal()
-    shiny::observe({rctv_strDomainID(input$domain)})
+    rctv_strDomainID <- reactiveVal()
+    observe({rctv_strDomainID(input$domain)})
     srvr_SyncSelectInput("domain", rctv_strDomainID, session)
 
     l_rctvDomains <- srvr_l_rctvDomains(

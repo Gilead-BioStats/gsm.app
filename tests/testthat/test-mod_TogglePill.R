@@ -19,7 +19,7 @@ test_that("mod_TogglePill_Server returns the state of the pill", {
   testServer(
     mod_TogglePill_Server,
     args = list(
-      rctv_lglState = shiny::reactiveVal(FALSE)
+      rctv_lglState = reactiveVal(FALSE)
     ),
     {
       rctv_toReturn <- session$getReturned()

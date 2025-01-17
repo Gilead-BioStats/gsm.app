@@ -40,7 +40,7 @@ gsmApp_UI <- function(
       intNParticipants,
       tagListSidebar
     ),
-    header = htmltools::tagList(
+    header = tagList(
       favawesome::fav(strFavicon, fill = strFaviconColor),
       htmlDependency_Stylesheet("defaultStyles.css"),
       shinyjs::useShinyjs()

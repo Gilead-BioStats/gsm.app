@@ -35,7 +35,7 @@ mod_WidgetPlot_UI <- function(
 htmlDependency_WidgetPlotInput <- function(strWidgetName) {
   strBaseName <- sub("Widget_", "", strWidgetName)
   substr(strBaseName, 1, 1) <- tolower(substr(strBaseName, 1, 1))
-  htmltools::tagList(
+  tagList(
     htmlDependency_WidgetInputHelpers(),
     htmltools::htmlDependency(
       name = paste0(strBaseName, "Input"),
