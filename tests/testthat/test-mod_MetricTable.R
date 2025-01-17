@@ -10,7 +10,7 @@ test_that("mod_MetricTable_UI creates the expected UI", {
 test_that("mod_MetricTable_Server starts as expected", {
   call <- rlang::current_env()
 
-  dfResults <- filter_byMetricID(
+  dfResults <- FilterbyMetricID(
     sample_dfResults[sample_dfResults$GroupLevel == "Site", ],
     "Analysis_kri0001"
   )
@@ -42,7 +42,7 @@ test_that("mod_MetricTable_Server starts as expected", {
 test_that("mod_MetricTable_Server works with no flags", {
   call <- rlang::current_env()
 
-  dfResults <- filter_byMetricID(
+  dfResults <- FilterbyMetricID(
     sample_dfResults[sample_dfResults$GroupLevel == "Site", ],
     "Analysis_kri0008"
   )

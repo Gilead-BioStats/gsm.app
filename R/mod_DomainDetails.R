@@ -48,7 +48,7 @@ mod_DomainDetails_Server <- function(
         ignoreInit = TRUE
       )
     shiny::observe({
-      input_val <- null_for_none(rctv_strDomainID())
+      input_val <- NullifyEmpty(rctv_strDomainID())
       if (!is.null(input_val) && input_val != input$selected_tab) {
         bslib::nav_select("selected_tab", input_val, session = session)
       }

@@ -27,13 +27,13 @@ test_that("mod_BarChart_UI uses title when it's supplied", {
 test_that("mod_BarChart_Server starts as expected", {
   call <- rlang::current_env()
 
-  dfResults <- filter_byMetricID(
+  dfResults <- FilterbyMetricID(
     sample_dfResults[sample_dfResults$GroupLevel == "Site", ],
     "Analysis_kri0001"
   )
   dfGroups <- sample_dfGroups
-  dfBounds <- filter_byMetricID(sample_dfBounds, "Analysis_kri0001")
-  lMetric <- as.list(filter_byMetricID(sample_dfMetrics, "Analysis_kri0001"))
+  dfBounds <- FilterbyMetricID(sample_dfBounds, "Analysis_kri0001")
+  lMetric <- as.list(FilterbyMetricID(sample_dfMetrics, "Analysis_kri0001"))
 
   testServer(
     mod_BarChart_Server,
@@ -58,13 +58,13 @@ test_that("mod_BarChart_Server starts as expected", {
 })
 
 test_that("mod_BarChart_Server returns selected site", {
-  dfResults <- filter_byMetricID(
+  dfResults <- FilterbyMetricID(
     sample_dfResults[sample_dfResults$GroupLevel == "Site", ],
     "Analysis_kri0001"
   )
   dfGroups <- sample_dfGroups
-  dfBounds <- filter_byMetricID(sample_dfBounds, "Analysis_kri0001")
-  lMetric <- as.list(filter_byMetricID(sample_dfMetrics, "Analysis_kri0001"))
+  dfBounds <- FilterbyMetricID(sample_dfBounds, "Analysis_kri0001")
+  lMetric <- as.list(FilterbyMetricID(sample_dfMetrics, "Analysis_kri0001"))
   testServer(
     mod_BarChart_Server,
     args = list(

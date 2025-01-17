@@ -39,7 +39,7 @@ mod_ScatterPlotSet_Server <- function(
         # some of these "reactives" aren't really reacting to anything, but we
         # need to create them for the module to get what it's expecting.
         rctv_lMetric <- reactive({
-          lMetric <- as.list(filter_byMetricID(dfMetrics, strMetricID))
+          lMetric <- as.list(FilterbyMetricID(dfMetrics, strMetricID))
           strSiteID <- rctv_strSiteID()
           if (strSiteID != "None") {
             lMetric$selectedGroupIDs <- strSiteID
@@ -47,10 +47,10 @@ mod_ScatterPlotSet_Server <- function(
           lMetric
         })
         rctv_dfResults_byMetricID <- reactive({
-          filter_byMetricID(dfResults, strMetricID)
+          FilterbyMetricID(dfResults, strMetricID)
         })
         rctv_dfBounds_byMetricID <- reactive({
-          filter_byMetricID(dfBounds, strMetricID)
+          FilterbyMetricID(dfBounds, strMetricID)
         })
 
         mod_ScatterPlot_Server(
@@ -65,7 +65,7 @@ mod_ScatterPlotSet_Server <- function(
     )
     rctv_strSelectedMetricID <- reactive({
       req(input$selectedScatterPlot)
-      un_ns(input$selectedScatterPlot, session$ns)
+      UnNS(input$selectedScatterPlot, session$ns)
     })
     shiny::observe({
       rctv_strMetricID(rctv_strSelectedMetricID())

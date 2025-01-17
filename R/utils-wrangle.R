@@ -6,10 +6,10 @@
 #'   variable used to provide `Value`.
 #' @returns The filtered data.frame.
 #' @keywords internal
-filter_by <- function(
+FilterBy <- function(
   df,
   Value,
-  strField = extract_field_name(rlang::caller_arg(Value))) {
+  strField = ExtractFieldName(rlang::caller_arg(Value))) {
   df[df[[strField]] == Value, ]
 }
 
@@ -20,32 +20,32 @@ filter_by <- function(
 #' @param strArgName The name of the argument.
 #' @returns `strArgName` with the beginning part removed.
 #' @keywords internal
-extract_field_name <- function(strArgName) {
+ExtractFieldName <- function(strArgName) {
   # Delete the lowercase "arg type" info at the start of the value.
   sub("^[a-z]*", "", strArgName)
 }
 
 #' Filter by MetricID
 #'
-#' @inheritParams filter_by
+#' @inheritParams FilterBy
 #' @inheritParams shared-params
-#' @inherit filter_by return
+#' @inherit FilterBy return
 #' @keywords internal
-filter_byMetricID <- function(df, strMetricID) {
-  filter_by(df, strMetricID)
+FilterbyMetricID <- function(df, strMetricID) {
+  FilterBy(df, strMetricID)
 }
 
 #' Filter by GroupID
 #'
-#' @inheritParams filter_by
+#' @inheritParams FilterBy
 #' @inheritParams shared-params
-#' @inherit filter_by return
+#' @inherit FilterBy return
 #' @keywords internal
-filter_byGroupID <- function(df, strGroupID) {
+FilterbyGroupID <- function(df, strGroupID) {
   if (strGroupID == "None") {
     return(df)
   }
-  filter_by(df, strGroupID)
+  FilterBy(df, strGroupID)
 }
 
 #' Find interesting digits for rounding
@@ -55,7 +55,7 @@ filter_byGroupID <- function(df, strGroupID) {
 #' @returns An integer between `0` and `intMaxDecimals`, representing the number
 #'   of decimal places to keep.
 #' @keywords internal
-findNonZeroDecimals <- function(dblX, intMaxDecimals = 5L) {
+FindNonZeroDecimals <- function(dblX, intMaxDecimals = 5L) {
   if (intMaxDecimals > 0 && is.numeric(dblX) && !rlang::is_integerish(dblX)) {
     # Avoid floating point precision issues.
     scaled_x <- round(dblX * 10^intMaxDecimals)

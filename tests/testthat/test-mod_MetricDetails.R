@@ -12,7 +12,7 @@ test_that("mod_MetricDetails_Server initializes and renders scatter plot", {
   rctv_strMetricID <- reactiveVal("Analysis_kri0001")
   rctv_strSiteID <- reactiveVal("None")
   rctv_lMetric <- reactive({
-    lMetric <- as.list(filter_byMetricID(sample_dfMetrics, rctv_strMetricID()))
+    lMetric <- as.list(FilterbyMetricID(sample_dfMetrics, rctv_strMetricID()))
     if (rctv_strSiteID() != "None") {
       lMetric$selectedGroupIDs <- rctv_strSiteID()
     }
@@ -47,7 +47,7 @@ test_that("mod_MetricDetails_Server renders tab outputs", {
   rctv_strMetricID <- reactiveVal("Analysis_kri0001")
   rctv_strSiteID <- reactiveVal("None")
   rctv_lMetric <- reactive({
-    lMetric <- as.list(filter_byMetricID(sample_dfMetrics, rctv_strMetricID()))
+    lMetric <- as.list(FilterbyMetricID(sample_dfMetrics, rctv_strMetricID()))
     if (rctv_strSiteID() != "None") {
       lMetric$selectedGroupIDs <- rctv_strSiteID()
     }

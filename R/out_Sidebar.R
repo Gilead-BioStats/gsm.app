@@ -16,8 +16,6 @@ out_Sidebar <- function(
     width = 400,
     id = "sidebar",
     tagListSidebar,
-    shinyjs::useShinyjs(),
-    htmlDependency_Default_Stylesheet(),
     out_StudyInformation(dfGroups, dfResults),
     out_Inputs(
       chrDomains = chrDomains,

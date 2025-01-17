@@ -91,7 +91,7 @@ Widget_GroupOverview <- function(
   }
 
   if (is.null(strGroupLevel) || length(strGroupLevel) != 1) {
-    gsmapp_abort(
+    gsmappAbort(
       "A single group level must be provided to create group-level output.",
       strClass = "missing_strGroupLevel"
     )

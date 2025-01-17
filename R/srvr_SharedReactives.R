@@ -10,7 +10,7 @@ srvr_rctv_lMetric_base <- function(
 ) {
   reactive({
     as.list(
-      filter_byMetricID(dfMetrics, rctv_strMetricID())
+      FilterbyMetricID(dfMetrics, rctv_strMetricID())
     )
   }) %>%
     bindCache(rctv_strMetricID())
@@ -92,8 +92,8 @@ srvr_l_rctvDomains <- function(
         {
           fnFetchData(
             this_domain,
-            strSiteID = null_for_none(rctv_strSiteID()),
-            strSubjectID = null_for_none(rctv_strSubjectID())
+            strSiteID = NullifyEmpty(rctv_strSiteID()),
+            strSubjectID = NullifyEmpty(rctv_strSubjectID())
           )
         }
       )

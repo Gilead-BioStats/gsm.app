@@ -14,7 +14,7 @@ gsmApp_UI <- function(
   lPlugins = NULL,
   strTitle = "GSM Deep Dive",
   strFavicon = "angles-up",
-  strFaviconColor = colorScheme("red"),
+  strFaviconColor = ColorScheme("red"),
   tagListSidebar = NULL
 ) {
   # Transform data for use in lower-level functions. ----
@@ -40,6 +40,10 @@ gsmApp_UI <- function(
       intNParticipants,
       tagListSidebar
     ),
-    header = favawesome::fav(strFavicon, fill = strFaviconColor)
+    header = htmltools::tagList(
+      favawesome::fav(strFavicon, fill = strFaviconColor),
+      htmlDependency_Stylesheet("defaultStyles.css"),
+      shinyjs::useShinyjs()
+    )
   )
 }

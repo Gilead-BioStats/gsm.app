@@ -45,12 +45,12 @@ mod_MetricDetails_Server <- function(
   moduleServer(id, function(input, output, session) {
     # Shared reactives ----
     rctv_dfResults_byMetricID <- reactive({
-      filter_byMetricID(dfResults, rctv_strMetricID())
+      FilterbyMetricID(dfResults, rctv_strMetricID())
     }) %>%
       bindCache(rctv_strMetricID())
 
     rctv_dfBounds_byMetricID <- reactive({
-      filter_byMetricID(dfBounds, rctv_strMetricID())
+      FilterbyMetricID(dfBounds, rctv_strMetricID())
     }) %>%
       bindCache(rctv_strMetricID())
 

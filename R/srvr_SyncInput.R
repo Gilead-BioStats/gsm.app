@@ -38,7 +38,7 @@ srvr_SyncTab <- function(
     bslib::nav_select(id, strTargetTab, session = session)
   }) %>%
     bindEvent(
-      null_for_none(rctv_strValue()),
+      NullifyEmpty(rctv_strValue()),
       ignoreInit = TRUE
     )
 }

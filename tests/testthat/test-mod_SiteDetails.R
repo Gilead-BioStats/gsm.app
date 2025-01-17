@@ -13,7 +13,7 @@ test_that("mod_SiteDetails_Server renders site metadata", {
   rctv_strSiteID <- reactiveVal("0X003")
   rctv_strSubjectID <- reactiveVal("0545")
   rctv_lMetric <- reactive({
-    lMetric <- as.list(filter_byMetricID(sample_dfMetrics, rctv_strMetricID()))
+    lMetric <- as.list(FilterbyMetricID(sample_dfMetrics, rctv_strMetricID()))
     if (rctv_strSiteID() != "None") {
       lMetric$selectedGroupIDs <- rctv_strSiteID()
     }
@@ -44,7 +44,7 @@ test_that("mod_SiteDetails_Server renders participants table", {
   rctv_strSiteID <- reactiveVal("0X003")
   rctv_strSubjectID <- reactiveVal("0545")
   rctv_lMetric <- reactive({
-    lMetric <- as.list(filter_byMetricID(sample_dfMetrics, rctv_strMetricID()))
+    lMetric <- as.list(FilterbyMetricID(sample_dfMetrics, rctv_strMetricID()))
     if (rctv_strSiteID() != "None") {
       lMetric$selectedGroupIDs <- rctv_strSiteID()
     }

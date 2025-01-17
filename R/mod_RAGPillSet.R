@@ -18,12 +18,12 @@ mod_RAGPillSet_UI <- function(
     mod_TogglePill_UI(
       id = ns("red"),
       glue::glue("{intRed} Red {strLabel}"),
-      colorScheme("red")
+      ColorScheme("red")
     ),
     mod_TogglePill_UI(
       id = ns("amber"),
       glue::glue("{intAmber} Amber {strLabel}"),
-      colorScheme("amber")
+      ColorScheme("amber")
     ),
     id = id
   )

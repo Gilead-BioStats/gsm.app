@@ -13,7 +13,7 @@ gsmApp_UI(
   lPlugins = NULL,
   strTitle = "GSM Deep Dive",
   strFavicon = "angles-up",
-  strFaviconColor = colorScheme("red"),
+  strFaviconColor = ColorScheme("red"),
   tagListSidebar = NULL
 )
 }

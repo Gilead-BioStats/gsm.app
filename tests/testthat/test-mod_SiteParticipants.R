@@ -9,7 +9,7 @@ test_that("mod_SiteParticipants_UI() creates the expected object", {
 
 test_that("mod_SiteParticipants_Server starts as expected", {
   call <- rlang::current_env()
-  dfAnalyticsInput <- filter_byMetricID(
+  dfAnalyticsInput <- FilterbyMetricID(
     sample_dfAnalyticsInput,
     "Analysis_kri0001"
   )
@@ -56,7 +56,7 @@ test_that("mod_SiteParticipants_Server starts as expected", {
 })
 
 test_that("mod_SiteParticipants_Server returns selected participant", {
-  dfAnalyticsInput <- filter_byMetricID(
+  dfAnalyticsInput <- FilterbyMetricID(
     sample_dfAnalyticsInput,
     "Analysis_kri0001"
   )

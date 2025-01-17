@@ -2,7 +2,7 @@ test_that("mod_TogglePill_UI creates the expected UI", {
   test_result <- mod_TogglePill_UI(
     "toggle_pill_id",
     "12 Red KRIs",
-    colorScheme("red")
+    ColorScheme("red")
   )
   expect_s3_class(test_result, c("shiny.tag.list", "list"))
   expect_length(test_result, 2)

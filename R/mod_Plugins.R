@@ -12,7 +12,7 @@ mod_Plugins_UI <- function(id, lPlugins = NULL) {
         # Allow for a placeholder instead of the plugin.
         pluginUI <- shiny::uiOutput(ns(i))
       } else {
-        fnUI <- util_AsFunction(lPlugin$shiny$UI)
+        fnUI <- AsFunction(lPlugin$shiny$UI)
         pluginUI <- rlang::inject({
           fnUI(
             ns(paste0("plugin-", i)),
@@ -53,7 +53,7 @@ mod_Plugins_Server <- function(
           chrRequiredInputs <- tolower(lPlugin$required_inputs)
           if (length(chrRequiredInputs)) {
             shiny_UI <- shiny::reactive({
-              missing_inputs <- util_compileMissingInputs(
+              missing_inputs <- CompileUnsetInputs(
                 chrRequiredInputs = chrRequiredInputs,
                 rctv_strSiteID = rctv_strSiteID,
                 rctv_strSubjectID = rctv_strSubjectID,
@@ -62,7 +62,7 @@ mod_Plugins_Server <- function(
               if (length(missing_inputs)) {
                 return(out_Placeholder(missing_inputs))
               }
-              fnUI <- util_AsFunction(lPlugin$shiny$UI)
+              fnUI <- AsFunction(lPlugin$shiny$UI)
               rlang::inject({
                 fnUI(
                   session$ns(paste0("plugin-", i)),
@@ -72,7 +72,7 @@ mod_Plugins_Server <- function(
             })
             output[[i]] <- shiny::renderUI({shiny_UI()})
           }
-          fnServer <- util_AsFunction(lPlugin$shiny$Server)
+          fnServer <- AsFunction(lPlugin$shiny$Server)
           names(l_rctvDomains) <- glue::glue("rctv_df{names(l_rctvDomains)}")
           args_available <- c(
             l_rctvDomains,
@@ -103,16 +103,16 @@ mod_Plugins_Server <- function(
 #' @inheritParams shared-params
 #' @returns A character vector of missing inputs.
 #' @keywords internal
-util_compileMissingInputs <- function(
-    chrRequiredInputs,
-    rctv_strSiteID,
-    rctv_strSubjectID,
-    rctv_strDomainID
+CompileUnsetInputs <- function(
+  chrRequiredInputs,
+  rctv_strSiteID,
+  rctv_strSubjectID,
+  rctv_strDomainID
 ) {
   missing_inputs <- c(
-    util_checkInputMissing("site", chrRequiredInputs, rctv_strSiteID),
-    util_checkInputMissing("participant", chrRequiredInputs, rctv_strSubjectID),
-    util_checkInputMissing("domain", chrRequiredInputs, rctv_strDomainID)
+    CheckInputUnset("site", chrRequiredInputs, rctv_strSiteID),
+    CheckInputUnset("participant", chrRequiredInputs, rctv_strSubjectID),
+    CheckInputUnset("domain", chrRequiredInputs, rctv_strDomainID)
   )
   return(missing_inputs)
 }
@@ -123,14 +123,14 @@ util_compileMissingInputs <- function(
 #' @returns `strInputName` if the input is required and is not set, or
 #'   `character()` if it isn't required or is set.
 #' @keywords internal
-util_checkInputMissing <- function(
-    strInputName,
-    chrRequiredInputs,
-    rctv_strValue
+CheckInputUnset <- function(
+  strInputName,
+  chrRequiredInputs,
+  rctv_strValue
 ) {
   if (
     strInputName %in% chrRequiredInputs &&
-    is.null(null_for_none(rctv_strValue()))
+    is.null(NullifyEmpty(rctv_strValue()))
   ) {
     return(strInputName)
   }
