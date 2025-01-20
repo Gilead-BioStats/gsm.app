@@ -71,35 +71,3 @@ srvr_rctv_chrParticipantIDs <- function(
   }) %>%
     bindCache(rctv_strSiteID())
 }
-
-#' List of reactive domain dfs
-#'
-#' @inheritParams shared-params
-#' @returns A list of [shiny::reactive()]s with domain dfs.
-#' @keywords internal
-srvr_l_rctvDomains <- function(
-  fnFetchData,
-  chrDomains,
-  rctv_strSiteID,
-  rctv_strSubjectID
-) {
-  # This is an area that could use a lot of optimization; this is almost
-  # certainly the slowest part of the app.
-  l_rctvDomains <- purrr::map(chrDomains, function(this_domain) {
-    reactive({
-      withProgress(
-        message = glue::glue("Loading {this_domain} data"),
-        {
-          fnFetchData(
-            this_domain,
-            strSiteID = NullifyEmpty(rctv_strSiteID()),
-            strSubjectID = NullifyEmpty(rctv_strSubjectID())
-          )
-        }
-      )
-    }) %>%
-      bindCache(this_domain, rctv_strSiteID(), rctv_strSubjectID())
-  })
-  names(l_rctvDomains) <- chrDomains
-  return(l_rctvDomains)
-}

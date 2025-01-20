@@ -75,3 +75,10 @@ test_that("sample_fnFetchData returns expected data by Subject", {
   )
   expect_equal(nrow(test_result), 1)
 })
+
+test_that("sample_fnFetchData throws an error in one situation", {
+  expect_error(
+    sample_fnFetchData("LB", "0X013"),
+    class = "gsm.app-error-sample_data-demo"
+  )
+})

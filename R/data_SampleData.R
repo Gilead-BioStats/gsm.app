@@ -138,14 +138,31 @@ sample_fnFetchData <- function(
 ) {
   strDomain <- toupper(strDomain)
   strDomain <- rlang::arg_match(strDomain)
+
+  strSiteID <- NullifyEmpty(strSiteID)
+  strSubjectID <- NullifyEmpty(strSubjectID)
+
+  if (
+      !is.null(strSiteID) && strSiteID == "0X013" && strDomain == "LB"
+  ) {
+    gsmappAbort(
+      c(
+        "Site 0X013 has data issues for the Lab domain.",
+        "This is to demonstrate behavior with errors.",
+        "Please select another Site."
+      ),
+      strClass = "sample_data-demo"
+    )
+  }
+
   df <- sample_lMapped[[paste0("Mapped_", strDomain)]]
   df$studyid <- NULL
   df$invid <- NULL
   df <- dplyr::rename(df, SubjectID = "subjid")
-  if (length(strSiteID) && strSiteID != "None") {
+  if (length(strSiteID)) {
     df <- dplyr::filter(df, .data$GroupID == strSiteID)
   }
-  if (length(strSubjectID) && strSubjectID != "All") {
+  if (length(strSubjectID)) {
     df <- dplyr::filter(df, .data$SubjectID == strSubjectID)
   }
   return(dplyr::select(df, "SubjectID", "GroupID", dplyr::everything()))

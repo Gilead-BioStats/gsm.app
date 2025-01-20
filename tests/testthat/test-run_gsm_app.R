@@ -292,3 +292,25 @@ test_that("run_gsm_app populates Domain Details", {
 
   app$stop()
 })
+
+test_that("run_gsm_app display Domain error", {
+  skip_on_cran()
+  app <- AppDriver$new(test_path("apps", "error"), name = "error")
+  app$wait_for_idle()
+  app$wait_for_value(input = "participant", timeout = 2000)
+
+  # Trigger the error.
+  app$set_inputs(site = "0X013")
+  app$wait_for_idle()
+  app$set_inputs(primary_nav_bar = "Domain Details")
+  app$wait_for_idle()
+  app$set_inputs(`domain` = "LB")
+  app$wait_for_idle()
+  app$expect_values(
+    export = TRUE,
+    name = "lb13",
+    screenshot_args = list(selector = ".modal-content")
+  )
+
+  app$stop()
+})

@@ -66,7 +66,9 @@ default value.}
 \item{fnFetchData}{\code{function} A function that takes a \code{strDomain} argument
 and optional \code{strSiteID} and \code{strSubjectID} and returns a data.frame. See
 \code{\link[=sample_fnFetchData]{sample_fnFetchData()}} for an example. The returned data.frame contains
-information about the named domain.}
+information about the named domain. If the function throws an error, the
+error is elevated to the user, so you can use errors to pass requirements
+through to the user.}
 
 \item{fnServer}{\code{function} A Shiny server function that takes arguments
 \code{input}, \code{output}, and \code{session}. This function will be called at the start
