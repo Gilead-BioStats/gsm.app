@@ -3,7 +3,7 @@
     Code
       test_result
     Output
-      <div class="tab-pane" title="Adverse Events" data-value="AE">
+      <div class="tab-pane" title="&lt;span id=&quot;myDomain-title&quot; class=&quot;shiny-html-output&quot;&gt;Adverse Events&lt;/span&gt;" data-value="AE">
         <div class="shiny-html-output gt_shiny" id="myDomain-gt-table"></div>
       </div>
 

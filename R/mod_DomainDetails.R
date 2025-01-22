@@ -31,6 +31,24 @@ mod_DomainDetails_Server <- function(
     rctv_strDomainID
 ) {
   moduleServer(id, function(input, output, session) {
+    # Initialize domains.
+    observe({
+      purrr::walk(
+        names(l_rctvDomains),
+        function(this_domain) {
+          mod_DomainData_Server(
+            id = this_domain,
+            l_rctvDomains[[this_domain]]
+          )
+        }
+      )
+    }) %>%
+      bindEvent(
+        input$selected_tab,
+        ignoreNULL = FALSE,
+        ignoreInit = FALSE,
+        once = TRUE
+      )
     observe({
       mod_DomainData_Server(
         id = input$selected_tab,

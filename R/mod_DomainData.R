@@ -8,7 +8,15 @@ mod_DomainData_UI <- function(id, strDomain) {
   ns <- NS(id)
   label <- unname(unlist(gsm::MakeParamLabelsList(strDomain, chrDomainLabels)))
   bslib::nav_panel(
-    title = label,
+    title = suppressWarnings({
+      shiny::uiOutput(
+        ns("title"),
+        inline = TRUE,
+        container = span,
+        fill = FALSE,
+        label
+      )
+    }),
     value = strDomain,
     mod_gtBidirectional_UI(ns("gt"))
   )
@@ -28,6 +36,24 @@ mod_DomainData_Server <- function(
     rctv_dfDomain
 ) {
   moduleServer(id, function(input, output, session) {
+    strDomain <- UnNS(id, session$ns)
+    strLabel <- unname(unlist(
+      gsm::MakeParamLabelsList(strDomain, chrDomainLabels)
+    ))
+    output$title <- shiny::renderUI({
+      if (!is.null(rctv_dfDomain())) {
+        intRows <- nrow(rctv_dfDomain())
+        strLabelText <- glue::glue("{strLabel} ({nrow(rctv_dfDomain())})")
+        if (intRows) {
+          return(strLabelText)
+        }
+        return(
+          tags$span(strLabelText, style = "opacity: 0.3; font-style: italic;")
+        )
+      }
+      strLabel
+    })
+
     rctv_tblData <- reactive({
       if (NROW(rctv_dfDomain())) {
         return(rctv_dfDomain())
