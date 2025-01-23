@@ -88,6 +88,8 @@
 <url><loc>https://gilead-biostats.github.io/gsm.app/dev/reference/mod_TogglePill_UI.html</loc></url>
 <url><loc>https://gilead-biostats.github.io/gsm.app/dev/reference/mod_WidgetPlot_Server.html</loc></url>
 <url><loc>https://gilead-biostats.github.io/gsm.app/dev/reference/mod_WidgetPlot_UI.html</loc></url>
+<url><loc>https://gilead-biostats.github.io/gsm.app/dev/reference/mod_dfDomain_Server.html</loc></url>
+<url><loc>https://gilead-biostats.github.io/gsm.app/dev/reference/mod_dfDomains_Server.html</loc></url>
 <url><loc>https://gilead-biostats.github.io/gsm.app/dev/reference/mod_gtBidirectional_Server.html</loc></url>
 <url><loc>https://gilead-biostats.github.io/gsm.app/dev/reference/mod_gtBidirectional_UI.html</loc></url>
 <url><loc>https://gilead-biostats.github.io/gsm.app/dev/reference/out_Card.html</loc></url>
@@ -121,9 +123,9 @@
 <url><loc>https://gilead-biostats.github.io/gsm.app/dev/reference/shared-params.html</loc></url>
 <url><loc>https://gilead-biostats.github.io/gsm.app/dev/reference/srvr_MetricDetails.html</loc></url>
 <url><loc>https://gilead-biostats.github.io/gsm.app/dev/reference/srvr_Reset.html</loc></url>
+<url><loc>https://gilead-biostats.github.io/gsm.app/dev/reference/srvr_ShowConditionMessage.html</loc></url>
 <url><loc>https://gilead-biostats.github.io/gsm.app/dev/reference/srvr_SyncSelectInput.html</loc></url>
 <url><loc>https://gilead-biostats.github.io/gsm.app/dev/reference/srvr_SyncTab.html</loc></url>
-<url><loc>https://gilead-biostats.github.io/gsm.app/dev/reference/srvr_l_rctvDomains.html</loc></url>
 <url><loc>https://gilead-biostats.github.io/gsm.app/dev/reference/srvr_rctv_chrParticipantIDs.html</loc></url>
 <url><loc>https://gilead-biostats.github.io/gsm.app/dev/reference/srvr_rctv_lMetric.html</loc></url>
 <url><loc>https://gilead-biostats.github.io/gsm.app/dev/reference/srvr_rctv_lMetric_base.html</loc></url>
