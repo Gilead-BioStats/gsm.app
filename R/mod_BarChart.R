@@ -71,6 +71,12 @@ Widget_BarChart <- function(
     "strOutcome is not a character" = is.character(strOutcome),
     "dfBounds is not a data.frame" = is.null(dfBounds) || is.data.frame(dfBounds)
   )
+  if (length(dfResults)) {
+    dfResults <- gsm::FilterByLatestSnapshotDate(dfResults)
+  }
+  if (length(dfBounds)) {
+    dfBounds <- gsm::FilterByLatestSnapshotDate(dfBounds)
+  }
   vThreshold <- NULL
   if (
     strOutcome == "Score" &&

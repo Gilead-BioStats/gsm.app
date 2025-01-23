@@ -66,6 +66,12 @@ Widget_ScatterPlot <- function(
     "dfGroups is not a data.frame" = is.null(dfGroups) || is.data.frame(dfGroups),
     "dfBounds is not a data.frame" = is.null(dfBounds) || is.data.frame(dfBounds)
   )
+  if (length(dfResults)) {
+    dfResults <- gsm::FilterByLatestSnapshotDate(dfResults)
+  }
+  if (length(dfBounds)) {
+    dfBounds <- gsm::FilterByLatestSnapshotDate(dfBounds)
+  }
   Widget_Plot(
     "Widget_ScatterPlot",
     id = id,
