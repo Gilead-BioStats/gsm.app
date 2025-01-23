@@ -11,11 +11,15 @@ mod_DomainDetails_UI <- function(
   )
 ) {
   ns <- NS(id)
-  bslib::navset_underline(
-    id = ns("selected_tab"),
-    !!!purrr::map(chrDomains, function(domain) {
-      mod_DomainData_UI(ns(domain), domain)
-    })
+  bslib::layout_columns(
+    col_widths = c(3, 9),
+    mod_DomainSummary_UI(ns("counts")),
+    bslib::navset_underline(
+      id = ns("selected_tab"),
+      !!!purrr::map(chrDomains, function(domain) {
+        mod_DomainData_UI(ns(domain), domain)
+      })
+    )
   )
 }
 
@@ -35,6 +39,13 @@ mod_DomainDetails_Server <- function(
       mod_DomainData_Server(
         id = input$selected_tab,
         l_rctvDomains[[input$selected_tab]]
+      )
+    })
+    observe({
+      mod_DomainSummary_Server(
+        "counts",
+        rctv_strDomainID,
+        l_rctvDomains
       )
     })
     observe({
