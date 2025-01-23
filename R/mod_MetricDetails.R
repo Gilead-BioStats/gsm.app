@@ -101,7 +101,7 @@ mod_MetricDetails_Server <- function(
 
     mod_MetricTable_Server(
       "analysis_output",
-      rctv_dfResults = rctv_dfResults_byMetricID,
+      rctv_dfResults = rctv_dfResults_Latest,
       dfGroups = dfGroups,
       rctv_strSiteID = rctv_strSiteID
     )

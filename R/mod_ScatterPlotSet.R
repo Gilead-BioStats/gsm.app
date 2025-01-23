@@ -49,13 +49,16 @@ mod_ScatterPlotSet_Server <- function(
         rctv_dfResults_byMetricID <- reactive({
           FilterbyMetricID(dfResults, strMetricID)
         })
+        rctv_dfResults_Latest <- reactive({
+          gsm::FilterByLatestSnapshotDate(rctv_dfResults_byMetricID())
+        })
         rctv_dfBounds_byMetricID <- reactive({
           FilterbyMetricID(dfBounds, strMetricID)
         })
 
         mod_ScatterPlot_Server(
           strMetricID,
-          rctv_dfResults = rctv_dfResults_byMetricID,
+          rctv_dfResults = rctv_dfResults_Latest,
           rctv_lMetric = rctv_lMetric,
           dfGroups = dfGroups,
           rctv_dfBounds = rctv_dfBounds_byMetricID,
