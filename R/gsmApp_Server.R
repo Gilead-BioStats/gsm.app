@@ -84,7 +84,8 @@ gsmApp_Server <- function(
     observe({rctv_strDomainID(input$domain)})
     srvr_SyncSelectInput("domain", rctv_strDomainID, session)
 
-    l_rctvDomains <- srvr_l_rctvDomains(
+    l_rctvDomains <- mod_dfDomains_Server(
+      "l_rctv_dfDomains",
       fnFetchData,
       chrDomains,
       rctv_strSiteID,

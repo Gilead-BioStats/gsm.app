@@ -42,7 +42,9 @@ This will be filtered to cases where \code{GroupLevel == "Site"}.}
 \item{fnFetchData}{\code{function} A function that takes a \code{strDomain} argument
 and optional \code{strSiteID} and \code{strSubjectID} and returns a data.frame. See
 \code{\link[=sample_fnFetchData]{sample_fnFetchData()}} for an example. The returned data.frame contains
-information about the named domain.}
+information about the named domain. If the function throws an error, the
+error is elevated to the user, so you can use errors to pass requirements
+through to the user.}
 
 \item{chrDomains}{\code{character} A vector of names of domain data.frames to show
 in the app. Supported domains are shown in the default value.}
