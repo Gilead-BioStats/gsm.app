@@ -91,7 +91,7 @@ mod_MetricDetails_Server <- function(
 
     mod_TimeSeries_Server(
       "time_series",
-      rctv_dfResults = rctv_dfResults_Latest,
+      rctv_dfResults = rctv_dfResults_byMetricID,
       rctv_lMetric = rctv_lMetric,
       dfGroups = dfGroups,
       strOutcome = "Score",
