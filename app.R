@@ -12,11 +12,11 @@ plugin_LoadDependencies(ParticipantProfilePlugin)
 
 sample_dfBounds2 <- dplyr::mutate(
   gsm.app::sample_dfBounds,
-  SnapshotDate = lubridate::ymd("2019-10-01")
+  SnapshotDate = as.Date("2019-10-01")
 )
 sample_dfResults2 <- dplyr::mutate(
   gsm.app::sample_dfResults,
-  SnapshotDate = lubridate::ymd("2019-10-01")
+  SnapshotDate = as.Date("2019-10-01")
 )
 
 run_gsm_app(
