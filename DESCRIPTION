@@ -22,7 +22,7 @@ Imports:
     dplyr,
     favawesome,
     glue,
-    gsm (>= 2.2.1),
+    gsm (>= 2.2.2),
     gt (>= 0.11.1.9000),
     htmltools,
     htmlwidgets,
@@ -46,7 +46,7 @@ Suggests:
     usethis,
     withr
 Remotes:
-    gsm=gilead-biostats/gsm@v2.2.1,
+    gsm=gilead-biostats/gsm@v2.2.2,
     gt=rstudio/gt
 Config/testthat/edition: 3
 Encoding: UTF-8

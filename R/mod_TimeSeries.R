@@ -86,7 +86,8 @@ Widget_TimeSeries <- function(
     lMetric = lMetric,
     dfGroups = dfGroups,
     strOutcome = strOutcome,
-    vThreshold = vThreshold
+    vThreshold = vThreshold,
+    strFootnote = "Only data from the most recent snapshot is included in the Site Subjects table."
   )
 }
 

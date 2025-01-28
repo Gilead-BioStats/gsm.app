@@ -17,6 +17,10 @@ HTMLWidgets.widget({
           null, // confidence intervals parameter
           input.dfGroups
         );
+
+
+        // Add a footnote below the plot.
+        addFootnote(el, input.strFootnote);
       },
       resize: noSpecialResizing // See widgetHelpers.js
     };
