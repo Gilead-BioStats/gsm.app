@@ -33,14 +33,16 @@ srvr_MetricDetails <- function(
     "Metric Details",
     rctv_strMetricID,
     rctv_strPrimaryNavBar,
-    session
+    chrFromTabs = c("Study Overview", "Domain Details"),
+    session = session
   )
   srvr_SyncTab(
     "primary_nav_bar",
     "Metric Details",
     rctv_strSiteID,
     rctv_strPrimaryNavBar,
-    session
+    chrFromTabs = "Study Overview",
+    session = session
   )
 
   mod_MetricDetails_Server(

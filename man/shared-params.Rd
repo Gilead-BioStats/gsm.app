@@ -12,6 +12,9 @@ object.}
 \item{chrDomains}{\code{character} A vector of names of domain data.frames to show
 in the app. Supported domains are shown in the default value.}
 
+\item{chrFromTabs}{\code{character} A vector of tab names. Syncing is only
+triggered if the user is currently on one of these tabs.}
+
 \item{chrLinkIDs}{\code{character} Module ids for multiple modules.}
 
 \item{chrLabels}{\code{character} A vector of labels for display to the user.}
