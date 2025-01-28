@@ -59,14 +59,19 @@ mod_MetricDetails_Server <- function(
     }) %>%
       bindCache(rctv_strMetricID())
 
+    rctv_dfBounds_Latest <- reactive({
+      gsm::FilterByLatestSnapshotDate(rctv_dfBounds_byMetricID())
+    }) %>%
+      bindCache(rctv_strMetricID())
+
     # Selections from tabs ----
 
     mod_ScatterPlot_Server(
       "scatter_plot",
-      rctv_dfResults = rctv_dfResults_byMetricID,
+      rctv_dfResults = rctv_dfResults_Latest,
       rctv_lMetric = rctv_lMetric,
       dfGroups = dfGroups,
-      rctv_dfBounds = rctv_dfBounds_byMetricID,
+      rctv_dfBounds = rctv_dfBounds_Latest,
       rctv_strSiteID = rctv_strSiteID
     )
 
@@ -85,13 +90,13 @@ mod_MetricDetails_Server <- function(
       rctv_lMetric = rctv_lMetric,
       dfGroups = dfGroups,
       strOutcome = "Score",
-      rctv_dfBounds = rctv_dfBounds_byMetricID,
+      rctv_dfBounds = rctv_dfBounds_Latest,
       rctv_strSiteID = rctv_strSiteID
     )
 
     mod_TimeSeries_Server(
       "time_series",
-      rctv_dfResults = rctv_dfResults_Latest,
+      rctv_dfResults = rctv_dfResults_byMetricID,
       rctv_lMetric = rctv_lMetric,
       dfGroups = dfGroups,
       strOutcome = "Score",
@@ -101,7 +106,7 @@ mod_MetricDetails_Server <- function(
 
     mod_MetricTable_Server(
       "analysis_output",
-      rctv_dfResults = rctv_dfResults_byMetricID,
+      rctv_dfResults = rctv_dfResults_Latest,
       dfGroups = dfGroups,
       rctv_strSiteID = rctv_strSiteID
     )

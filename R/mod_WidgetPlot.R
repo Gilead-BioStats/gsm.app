@@ -89,7 +89,7 @@ mod_WidgetPlot_Server <- function(
     output$plot <- renderWidgetPlot({
       fn_Widget(
         session$ns("plot"),
-        gsm::FilterByLatestSnapshotDate(rctv_dfResults()),
+        rctv_dfResults(),
         lMetric = rctv_lMetric(),
         dfGroups = dfGroups,
         dfBounds = rctv_dfBounds(),
