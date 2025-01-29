@@ -7,7 +7,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">gsm.app</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">2.2.0</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">2.3.0</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -33,7 +33,7 @@
   <main id="main" class="col-md-9"><div class="page-header">
 
       <h1>Bidirectional gt Table Selector Server</h1>
-      <small class="dont-index">Source: <a href="https://github.com/Gilead-BioStats/gsm.app/blob/main/R/mod_gtBidirectional_Server.R" class="external-link"><code>R/mod_gtBidirectional_Server.R</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/Gilead-BioStats/gsm.app/blob/main/R/mod_gtBidirectional.R" class="external-link"><code>R/mod_gtBidirectional.R</code></a></small>
       <div class="d-none name"><code>mod_gtBidirectional_Server.Rd</code></div>
     </div>
 
@@ -58,7 +58,7 @@
 
 
 <dl><dt id="arg-id">id<a class="anchor" aria-label="anchor" href="#arg-id"></a></dt>
-<dd><p><code>character</code> The id for this module, widget, or other element.</p></dd>
+<dd><p><code>character</code> The id for this element.</p></dd>
 
 
 <dt id="arg-rctv-dfdata">rctv_dfData<a class="anchor" aria-label="anchor" href="#arg-rctv-dfdata"></a></dt>
@@ -73,7 +73,9 @@ returns a <code><a href="https://gt.rstudio.com/reference/gt.html" class="extern
 
 <dt id="arg-rctv-strinput">rctv_strInput<a class="anchor" aria-label="anchor" href="#arg-rctv-strinput"></a></dt>
 <dd><p><code>reactive character</code> A <code><a href="https://rdrr.io/pkg/shiny/man/reactive.html" class="external-link">shiny::reactive()</a></code> object that
-returns the name of the target input.</p></dd>
+returns the value(s) of an input to share with an interactive gt table. If
+this argument is a <code><a href="https://rdrr.io/pkg/shiny/man/reactiveVal.html" class="external-link">shiny::reactiveVal()</a></code>, it will be used to push updates
+back to the calling function.</p></dd>
 
 
 <dt id="arg-strlabel">strLabel<a class="anchor" aria-label="anchor" href="#arg-strlabel"></a></dt>

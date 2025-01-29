@@ -7,7 +7,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">gsm.app</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">2.2.0</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">2.3.0</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -33,7 +33,7 @@
   <main id="main" class="col-md-9"><div class="page-header">
 
       <h1>ScatterPlot Module Server</h1>
-      <small class="dont-index">Source: <a href="https://github.com/Gilead-BioStats/gsm.app/blob/main/R/mod_ScatterPlot_Server.R" class="external-link"><code>R/mod_ScatterPlot_Server.R</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/Gilead-BioStats/gsm.app/blob/main/R/mod_ScatterPlot.R" class="external-link"><code>R/mod_ScatterPlot.R</code></a></small>
       <div class="d-none name"><code>mod_ScatterPlot_Server.Rd</code></div>
     </div>
 
@@ -48,7 +48,8 @@
 <span>  <span class="va">rctv_dfResults</span>,</span>
 <span>  <span class="va">rctv_lMetric</span>,</span>
 <span>  <span class="va">dfGroups</span>,</span>
-<span>  <span class="va">rctv_dfBounds</span></span>
+<span>  <span class="va">rctv_dfBounds</span>,</span>
+<span>  <span class="va">rctv_strSiteID</span></span>
 <span><span class="op">)</span></span></code></pre></div>
     </div>
 
@@ -57,7 +58,7 @@
 
 
 <dl><dt id="arg-id">id<a class="anchor" aria-label="anchor" href="#arg-id"></a></dt>
-<dd><p><code>character</code> The id for this module, widget, or other element.</p></dd>
+<dd><p><code>character</code> The id for this element.</p></dd>
 
 
 <dt id="arg-rctv-dfresults">rctv_dfResults<a class="anchor" aria-label="anchor" href="#arg-rctv-dfresults"></a></dt>
@@ -80,11 +81,13 @@ which group is selected.</p></dd>
 returns a set of predicted percentages/rates and upper- and lower-bounds
 across the full range of sample sizes/total exposure values for reporting.</p></dd>
 
+
+<dt id="arg-rctv-strsiteid">rctv_strSiteID<a class="anchor" aria-label="anchor" href="#arg-rctv-strsiteid"></a></dt>
+<dd><p><code>reactive character</code> A <code><a href="https://rdrr.io/pkg/shiny/man/reactiveVal.html" class="external-link">shiny::reactiveVal()</a></code> object
+that returns the <code>GroupID</code> of the selected site, and can be used to update
+the selected site.</p></dd>
+
 </dl></div>
-    <div class="section level2">
-    <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
-    <p>A <code><a href="https://rdrr.io/pkg/shiny/man/reactive.html" class="external-link">shiny::reactive()</a></code> with the id of the selected group.</p>
-    </div>
 
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
     </nav></aside></div>

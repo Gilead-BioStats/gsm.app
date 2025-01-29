@@ -15,7 +15,7 @@ sample data provided in this package."></head><body>
 
     <a class="navbar-brand me-2" href="../index.html">gsm.app</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">2.2.0</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">2.3.0</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -107,7 +107,9 @@ This will be filtered to cases where <code>GroupLevel == "Site"</code>.</p></dd>
 <dd><p><code>function</code> A function that takes a <code>strDomain</code> argument
 and optional <code>strSiteID</code> and <code>strSubjectID</code> and returns a data.frame. See
 <code><a href="sample_fnFetchData.html">sample_fnFetchData()</a></code> for an example. The returned data.frame contains
-information about the named domain.</p></dd>
+information about the named domain. If the function throws an error, the
+error is elevated to the user, so you can use errors to pass requirements
+through to the user.</p></dd>
 
 
 <dt id="arg-chrdomains">chrDomains<a class="anchor" aria-label="anchor" href="#arg-chrdomains"></a></dt>

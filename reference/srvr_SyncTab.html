@@ -7,7 +7,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">gsm.app</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">2.2.0</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">2.3.0</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -48,6 +48,7 @@
 <span>  <span class="va">strTargetTab</span>,</span>
 <span>  <span class="va">rctv_strValue</span>,</span>
 <span>  <span class="va">rctv_strCurrentTab</span>,</span>
+<span>  <span class="va">chrFromTabs</span>,</span>
 <span>  session <span class="op">=</span> <span class="fu">getDefaultReactiveDomain</span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="op">)</span></span></code></pre></div>
     </div>
@@ -57,7 +58,7 @@
 
 
 <dl><dt id="arg-id">id<a class="anchor" aria-label="anchor" href="#arg-id"></a></dt>
-<dd><p><code>character</code> The id for this module, widget, or other element.</p></dd>
+<dd><p><code>character</code> The id for this element.</p></dd>
 
 
 <dt id="arg-strtargettab">strTargetTab<a class="anchor" aria-label="anchor" href="#arg-strtargettab"></a></dt>
@@ -72,6 +73,11 @@ returns the value of a field.</p></dd>
 <dt id="arg-rctv-strcurrenttab">rctv_strCurrentTab<a class="anchor" aria-label="anchor" href="#arg-rctv-strcurrenttab"></a></dt>
 <dd><p><code>reactive character</code> A <code><a href="https://rdrr.io/pkg/shiny/man/reactive.html" class="external-link">shiny::reactive()</a></code> object
 that returns the currently selected tab.</p></dd>
+
+
+<dt id="arg-chrfromtabs">chrFromTabs<a class="anchor" aria-label="anchor" href="#arg-chrfromtabs"></a></dt>
+<dd><p><code>character</code> A vector of tab names. Syncing is only
+triggered if the user is currently on one of these tabs.</p></dd>
 
 
 <dt id="arg-session">session<a class="anchor" aria-label="anchor" href="#arg-session"></a></dt>

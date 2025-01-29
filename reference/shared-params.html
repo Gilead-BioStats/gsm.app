@@ -13,7 +13,7 @@ argument in module server functions."></head><body>
 
     <a class="navbar-brand me-2" href="../index.html">gsm.app</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">2.2.0</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">2.3.0</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -69,6 +69,11 @@ object.</p></dd>
 in the app. Supported domains are shown in the default value.</p></dd>
 
 
+<dt id="arg-chrfromtabs">chrFromTabs<a class="anchor" aria-label="anchor" href="#arg-chrfromtabs"></a></dt>
+<dd><p><code>character</code> A vector of tab names. Syncing is only
+triggered if the user is currently on one of these tabs.</p></dd>
+
+
 <dt id="arg-chrlinkids">chrLinkIDs<a class="anchor" aria-label="anchor" href="#arg-chrlinkids"></a></dt>
 <dd><p><code>character</code> Module ids for multiple modules.</p></dd>
 
@@ -99,6 +104,10 @@ data.frame.</p></dd>
 <dt id="arg-chrrequiredfields">chrRequiredFields<a class="anchor" aria-label="anchor" href="#arg-chrrequiredfields"></a></dt>
 <dd><p><code>character</code> A vector of names of required fields in
 an object.</p></dd>
+
+
+<dt id="arg-chrrequiredinputs">chrRequiredInputs<a class="anchor" aria-label="anchor" href="#arg-chrrequiredinputs"></a></dt>
+<dd><p><code>character</code> A vector of inputs required by a Plugin.</p></dd>
 
 
 <dt id="arg-chrsites">chrSites<a class="anchor" aria-label="anchor" href="#arg-chrsites"></a></dt>
@@ -156,7 +165,9 @@ default value.</p></dd>
 <dd><p><code>function</code> A function that takes a <code>strDomain</code> argument
 and optional <code>strSiteID</code> and <code>strSubjectID</code> and returns a data.frame. See
 <code><a href="sample_fnFetchData.html">sample_fnFetchData()</a></code> for an example. The returned data.frame contains
-information about the named domain.</p></dd>
+information about the named domain. If the function throws an error, the
+error is elevated to the user, so you can use errors to pass requirements
+through to the user.</p></dd>
 
 
 <dt id="arg-fnserver">fnServer<a class="anchor" aria-label="anchor" href="#arg-fnserver"></a></dt>
@@ -166,7 +177,7 @@ of the main app server function.</p></dd>
 
 
 <dt id="arg-id">id<a class="anchor" aria-label="anchor" href="#arg-id"></a></dt>
-<dd><p><code>character</code> The id for this module, widget, or other element.</p></dd>
+<dd><p><code>character</code> The id for this element.</p></dd>
 
 
 <dt id="arg-intkricolorcount">intKRIColorCount<a class="anchor" aria-label="anchor" href="#arg-intkricolorcount"></a></dt>
@@ -191,13 +202,9 @@ of the main app server function.</p></dd>
 as things like which group is selected.</p></dd>
 
 
-<dt id="arg-ldomains">lDomains<a class="anchor" aria-label="anchor" href="#arg-ldomains"></a></dt>
-<dd><p><code>list</code> Named list of data domain data.frames.</p></dd>
-
-
-<dt id="arg-lparticipantmetadata">lParticipantMetadata<a class="anchor" aria-label="anchor" href="#arg-lparticipantmetadata"></a></dt>
-<dd><p><code>list</code> Named list of data describing a single
-participant.</p></dd>
+<dt id="arg-l-rctvdomains">l_rctvDomains<a class="anchor" aria-label="anchor" href="#arg-l-rctvdomains"></a></dt>
+<dd><p><code>list</code> A named list of <code><a href="https://rdrr.io/pkg/shiny/man/reactive.html" class="external-link">shiny::reactive()</a></code> objects, each
+of which returns a domain dataframe.</p></dd>
 
 
 <dt id="arg-lplugindefinition">lPluginDefinition<a class="anchor" aria-label="anchor" href="#arg-lplugindefinition"></a></dt>
@@ -214,11 +221,6 @@ participant.</p></dd>
 <dd><p><code>list</code> Named list of data describing the overall study.</p></dd>
 
 
-<dt id="arg-rctv-chrids">rctv_chrIDs<a class="anchor" aria-label="anchor" href="#arg-rctv-chrids"></a></dt>
-<dd><p><code>reactive character</code> A <code><a href="https://rdrr.io/pkg/shiny/man/reactive.html" class="external-link">shiny::reactive()</a></code> object that
-returns a vector of ids for modules, inputs, or other elements.</p></dd>
-
-
 <dt id="arg-rctv-dfbounds">rctv_dfBounds<a class="anchor" aria-label="anchor" href="#arg-rctv-dfbounds"></a></dt>
 <dd><p><code>reactive dataframe</code> A <code><a href="https://rdrr.io/pkg/shiny/man/reactive.html" class="external-link">shiny::reactive()</a></code> object that
 returns a set of predicted percentages/rates and upper- and lower-bounds
@@ -228,6 +230,11 @@ across the full range of sample sizes/total exposure values for reporting.</p></
 <dt id="arg-rctv-dfdata">rctv_dfData<a class="anchor" aria-label="anchor" href="#arg-rctv-dfdata"></a></dt>
 <dd><p><code>reactive dataframe</code> A <code><a href="https://rdrr.io/pkg/shiny/man/reactive.html" class="external-link">shiny::reactive()</a></code> object that
 returns a generic dataframe.</p></dd>
+
+
+<dt id="arg-rctv-dfdomain">rctv_dfDomain<a class="anchor" aria-label="anchor" href="#arg-rctv-dfdomain"></a></dt>
+<dd><p><code>reactive dataframe</code> A <code><a href="https://rdrr.io/pkg/shiny/man/reactive.html" class="external-link">shiny::reactive()</a></code> object that
+returns a domain dataframe.</p></dd>
 
 
 <dt id="arg-rctv-dfresults">rctv_dfResults<a class="anchor" aria-label="anchor" href="#arg-rctv-dfresults"></a></dt>
@@ -240,27 +247,21 @@ returns a stacked summary of analysis pipeline output.</p></dd>
 returns a <code><a href="https://gt.rstudio.com/reference/gt.html" class="external-link">gt::gt()</a></code> object.</p></dd>
 
 
-<dt id="arg-rctv-ldata">rctv_lData<a class="anchor" aria-label="anchor" href="#arg-rctv-ldata"></a></dt>
-<dd><p><code>reactive list</code> A <code><a href="https://rdrr.io/pkg/shiny/man/reactive.html" class="external-link">shiny::reactive()</a></code> object that returns a
-named list of dataframes.</p></dd>
-
-
 <dt id="arg-rctv-lmetric">rctv_lMetric<a class="anchor" aria-label="anchor" href="#arg-rctv-lmetric"></a></dt>
 <dd><p><code>reactive list</code> A <code><a href="https://rdrr.io/pkg/shiny/man/reactive.html" class="external-link">shiny::reactive()</a></code> object that returns
 a named list of data describing a single metric, as well as things like
 which group is selected.</p></dd>
 
 
-<dt id="arg-rctv-lparticipantmetricdata">rctv_lParticipantMetricData<a class="anchor" aria-label="anchor" href="#arg-rctv-lparticipantmetricdata"></a></dt>
-<dd><p><code>reactive list</code> A <code><a href="https://rdrr.io/pkg/shiny/man/reactive.html" class="external-link">shiny::reactive()</a></code>
-object that returns a list of dataframes for a given participant, one for
-each metric that is available.</p></dd>
-
-
 <dt id="arg-rctv-lglstate">rctv_lglState<a class="anchor" aria-label="anchor" href="#arg-rctv-lglstate"></a></dt>
 <dd><p><code>reactive logical</code> A <code><a href="https://rdrr.io/pkg/shiny/man/reactive.html" class="external-link">shiny::reactive()</a></code>] object that
 returns a Boolean value indicating whether something is "off" (<code>FALSE</code>) or
 "on" (<code>TRUE</code>).</p></dd>
+
+
+<dt id="arg-rctv-strdomainid">rctv_strDomainID<a class="anchor" aria-label="anchor" href="#arg-rctv-strdomainid"></a></dt>
+<dd><p><code>reactive character</code> A <code><a href="https://rdrr.io/pkg/shiny/man/reactive.html" class="external-link">shiny::reactive()</a></code> object
+that returns the selected <code>DomainID</code> (such as "AE" or "SUBJ").</p></dd>
 
 
 <dt id="arg-rctv-strcurrenttab">rctv_strCurrentTab<a class="anchor" aria-label="anchor" href="#arg-rctv-strcurrenttab"></a></dt>
@@ -275,7 +276,9 @@ that returns the selected subset of groups to include in the table.</p></dd>
 
 <dt id="arg-rctv-strinput">rctv_strInput<a class="anchor" aria-label="anchor" href="#arg-rctv-strinput"></a></dt>
 <dd><p><code>reactive character</code> A <code><a href="https://rdrr.io/pkg/shiny/man/reactive.html" class="external-link">shiny::reactive()</a></code> object that
-returns the name of the target input.</p></dd>
+returns the value(s) of an input to share with an interactive gt table. If
+this argument is a <code><a href="https://rdrr.io/pkg/shiny/man/reactiveVal.html" class="external-link">shiny::reactiveVal()</a></code>, it will be used to push updates
+back to the calling function.</p></dd>
 
 
 <dt id="arg-rctv-strmetricid">rctv_strMetricID<a class="anchor" aria-label="anchor" href="#arg-rctv-strmetricid"></a></dt>
@@ -290,8 +293,9 @@ list.</p></dd>
 
 
 <dt id="arg-rctv-strsiteid">rctv_strSiteID<a class="anchor" aria-label="anchor" href="#arg-rctv-strsiteid"></a></dt>
-<dd><p><code>reactive character</code> A <code><a href="https://rdrr.io/pkg/shiny/man/reactive.html" class="external-link">shiny::reactive()</a></code> object that
-returns the <code>GroupID</code> of a site.</p></dd>
+<dd><p><code>reactive character</code> A <code><a href="https://rdrr.io/pkg/shiny/man/reactiveVal.html" class="external-link">shiny::reactiveVal()</a></code> object
+that returns the <code>GroupID</code> of the selected site, and can be used to update
+the selected site.</p></dd>
 
 
 <dt id="arg-rctv-strsubjectid">rctv_strSubjectID<a class="anchor" aria-label="anchor" href="#arg-rctv-strsubjectid"></a></dt>
@@ -395,6 +399,11 @@ Default: <code>"red"</code>. Options:</p><ul><li><p><code>"all"</code>: All grou
 this module or used by this JavaScript.</p></dd>
 
 
+<dt id="arg-strinputname">strInputName<a class="anchor" aria-label="anchor" href="#arg-strinputname"></a></dt>
+<dd><p><code>character</code> The name of an input. One of <code>"site"</code>,
+<code>"participant"</code>, or <code>"domain"</code>.</p></dd>
+
+
 <dt id="arg-strlabel">strLabel<a class="anchor" aria-label="anchor" href="#arg-strlabel"></a></dt>
 <dd><p><code>character</code> The label of a field.</p></dd>
 
@@ -440,6 +449,10 @@ study.</p></dd>
 <dt id="arg-strwhat">strWhat<a class="anchor" aria-label="anchor" href="#arg-strwhat"></a></dt>
 <dd><p><code>character</code> A sentence-case description of the object being
 inspected.</p></dd>
+
+
+<dt id="arg-strwidgetname">strWidgetName<a class="anchor" aria-label="anchor" href="#arg-strwidgetname"></a></dt>
+<dd><p><code>character</code> The name of a widget in the gsm package.</p></dd>
 
 
 <dt id="arg-taglistsidebar">tagListSidebar<a class="anchor" aria-label="anchor" href="#arg-taglistsidebar"></a></dt>
