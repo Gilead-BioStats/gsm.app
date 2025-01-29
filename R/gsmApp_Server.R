@@ -165,14 +165,16 @@ gsmApp_Server <- function(
       "Domain Details",
       rctv_strDomainID,
       rctv_strPrimaryNavBar,
-      session
+      chrFromTabs = c("Study Overview", "Metric Details"),
+      session = session
     )
     srvr_SyncTab(
       "primary_nav_bar",
       "Domain Details",
       rctv_strSubjectID,
       rctv_strPrimaryNavBar,
-      session
+      chrFromTabs = c("Study Overview", "Metric Details"),
+      session = session
     )
     mod_DomainDetails_Server(
       "domain_details",

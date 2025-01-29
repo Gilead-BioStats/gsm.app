@@ -32,10 +32,13 @@ srvr_SyncTab <- function(
   strTargetTab,
   rctv_strValue,
   rctv_strCurrentTab,
+  chrFromTabs,
   session = getDefaultReactiveDomain()
 ) {
   observe({
-    bslib::nav_select(id, strTargetTab, session = session)
+    if (rctv_strCurrentTab() %in% chrFromTabs) {
+      bslib::nav_select(id, strTargetTab, session = session)
+    }
   }) %>%
     bindEvent(
       NullifyEmpty(rctv_strValue()),

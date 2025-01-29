@@ -3,7 +3,7 @@
 Apps now feature site-level domain details!
 
 ## New Features
-- A new "Domain Details" tab shows domain data at whatever level is selected via inputs -- study-level, site-level, or participant-level (#245, #353).
+- A new "Domain Details" tab shows domain data at whatever level is selected via inputs -- study-level, site-level, or participant-level (#245, #353, #374).
 - The former "Participant Details" has formed the core of a new "Participant Profile" plugin. We will expand and refine this plugin via user feedback (#342, #328).
 - Communication with plugins is now bidirectional! Plugin authors can set inputs such as "Site" or "Participant", and those inputs push back to the app and to other tabs and plugins (#329).
 

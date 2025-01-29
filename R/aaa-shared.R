@@ -10,6 +10,8 @@
 #' @param chrAllowedValues `character` A vector of allowed values for a vector.
 #' @param chrDomains `character` A vector of names of domain data.frames to show
 #'   in the app. Supported domains are shown in the default value.
+#' @param chrFromTabs `character` A vector of tab names. Syncing is only
+#'   triggered if the user is currently on one of these tabs.
 #' @param chrLinkIDs `character` Module ids for multiple modules.
 #' @param chrLabels `character` A vector of labels for display to the user.
 #' @param chrMessage `character` A vector of message elements to be formatted
