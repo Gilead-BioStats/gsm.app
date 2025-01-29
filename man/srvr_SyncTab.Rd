@@ -9,11 +9,12 @@ srvr_SyncTab(
   strTargetTab,
   rctv_strValue,
   rctv_strCurrentTab,
+  chrFromTabs,
   session = getDefaultReactiveDomain()
 )
 }
 \arguments{
-\item{id}{\code{character} The id for this module, widget, or other element.}
+\item{id}{\code{character} The id for this element.}
 
 \item{strTargetTab}{\code{character} The tab to switch to.}
 
@@ -22,6 +23,9 @@ returns the value of a field.}
 
 \item{rctv_strCurrentTab}{\verb{reactive character} A \code{\link[shiny:reactive]{shiny::reactive()}} object
 that returns the currently selected tab.}
+
+\item{chrFromTabs}{\code{character} A vector of tab names. Syncing is only
+triggered if the user is currently on one of these tabs.}
 
 \item{session}{\code{environment} Session from which to make a child scope (the
 default should almost always be used).}

@@ -1,3 +1,6 @@
+# covr thinks a lot of this stuff isn't covered, but it is. Confirm that things
+# are covered in the overall coverage report.
+
 #' Read a Plugin Definition
 #'
 #' Plugins are defined by a named `list` with elements `strTitle` (a title to
@@ -21,7 +24,7 @@ plugin_Read <- function(strPath) {
 
   # Source any R files included in the definition. Covr doesn't see most of the
   # code below here as covered when I check this single file, but it's covered
-  # in overall pacakge coverage.
+  # in overall package coverage.
   file_is_r <- grepl("\\.r$", chrPluginFiles, ignore.case = TRUE)
   if (any(file_is_r)) {
     for (r_file in chrPluginFiles[file_is_r]) {
@@ -49,7 +52,7 @@ plugin_ReadYaml <- function(chrPluginFiles, envCall = rlang::caller_env()) {
 plugin_ReadYamlFile <- function(chrPluginFiles, envCall = rlang::caller_env()) {
   file_is_yaml <- grepl("\\.ya?ml$", chrPluginFiles, ignore.case = TRUE)
   if (sum(file_is_yaml) != 1) {
-    gsmapp_abort(
+    gsmappAbort(
       c(
         "Plugin definition not found in {.file {strPath}}.",
         i = "Plugins must be defined by exactly 1 YAML file."
@@ -72,38 +75,38 @@ plugin_ValidateDefinition <- function(
   envCall = rlang::caller_env()
 ) {
   chrRequiredFields <- c("meta", "shiny", "domains")
-  chrOptionalFields <- c("lConfig", "packages")
-  validate_hasAllFields(
+  chrOptionalFields <- c("lConfig", "packages", "required_inputs")
+  CheckHasAllFields(
     lPluginDefinition,
     c("meta", "shiny", "domains"),
     "Plugin defitions",
     envCall
   )
-  validate_hasOnlyFields(
+  CheckHasOnlyFields(
     lPluginDefinition,
     c(chrRequiredFields, chrOptionalFields),
     "Plugin defitions",
     envCall
   )
-  validate_hasAllFields(
+  CheckHasAllFields(
     lPluginDefinition$meta,
     "Name",
     "Plugin defitions",
     envCall
   )
-  validate_hasAllFields(
+  CheckHasAllFields(
     lPluginDefinition$shiny,
     c("UI", "Server"),
     "Plugin defition shiny sections",
     envCall
   )
-  validate_hasOnlyFields(
+  CheckHasOnlyFields(
     lPluginDefinition$shiny,
     c("UI", "Server"),
     "Plugin defition shiny sections",
     envCall
   )
-  validate_in(
+  CheckIsIn(
     lPluginDefinition$domains,
     names(chrDomainLabels),
     "Domains",
@@ -111,13 +114,13 @@ plugin_ValidateDefinition <- function(
   )
   if (length(lPluginDefinition$packages)) {
     for (pkg in lPluginDefinition$packages) {
-      validate_hasAllFields(
+      CheckHasAllFields(
         pkg,
         "name",
         "Plugin definition package requirements",
         envCall
       )
-      validate_hasOnlyFields(
+      CheckHasOnlyFields(
         pkg,
         c("name", "remote"),
         "Plugin definition package requirements",

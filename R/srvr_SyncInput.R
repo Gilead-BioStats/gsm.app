@@ -9,13 +9,16 @@ srvr_SyncSelectInput <- function(
   rctv_strValue,
   session = getDefaultReactiveDomain()
 ) {
-  observe({
-    updateSelectInput(
-      inputId = id,
-      selected = rctv_strValue(),
-      session = session
-    )
-  })
+  bindEvent(
+    observe({
+      updateSelectInput(
+        inputId = id,
+        selected = rctv_strValue(),
+        session = session
+      )
+    }),
+    rctv_strValue()
+  )
 }
 
 #' Synchronize selected tab with reactive
@@ -29,16 +32,16 @@ srvr_SyncTab <- function(
   strTargetTab,
   rctv_strValue,
   rctv_strCurrentTab,
+  chrFromTabs,
   session = getDefaultReactiveDomain()
 ) {
   observe({
-    main_tabs <- c("Study Overview", "Metric Details", "Participant Details")
-    if (rctv_strCurrentTab() %in% main_tabs) {
+    if (rctv_strCurrentTab() %in% chrFromTabs) {
       bslib::nav_select(id, strTargetTab, session = session)
     }
   }) %>%
     bindEvent(
-      null_for_none(rctv_strValue()),
+      NullifyEmpty(rctv_strValue()),
       ignoreInit = TRUE
     )
 }

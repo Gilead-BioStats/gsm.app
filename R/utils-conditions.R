@@ -5,7 +5,7 @@
 #' @returns An error condition with classes `"gsm.app-condition"`,
 #'   `"gsm.app-error"`, and `"gsm.app-error-{strClass}"`.
 #' @keywords internal
-gsmapp_abort <- function(
+gsmappAbort <- function(
   chrMessage,
   strClass,
   ...,

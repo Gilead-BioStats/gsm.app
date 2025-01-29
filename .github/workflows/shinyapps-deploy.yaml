@@ -105,11 +105,11 @@ jobs:
             pkgload::load_all(".", helpers = FALSE, attach_testthat = FALSE)
             appname <- paste(appname, deployment_type, sep = "-")
             favicon <- "angle-up"
-            faviconcolor <- colorScheme("amber")
+            faviconcolor <- ColorScheme("amber")
             if (nzchar(pr_number)) {
               appname <- paste(appname, pr_number, sep = "-")
               favicon <- "code-pull-request"
-              faviconcolor <- colorScheme("gray")
+              faviconcolor <- ColorScheme("gray")
             }
             cat("FAVICON=", favicon, "\n", sep = "", file = Sys.getenv("GITHUB_ENV"), append = TRUE)
             cat("FAVICONCOLOR=", faviconcolor, "\n", sep = "", file = Sys.getenv("GITHUB_ENV"), append = TRUE)

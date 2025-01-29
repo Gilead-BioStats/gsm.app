@@ -1,24 +1,3 @@
-test_that("validate_df throws informative errors", {
-  expect_error(
-    validate_df(1:10),
-    "integer vector",
-    class = "gsm.app-error-invalid_input"
-  )
-  expect_error(
-    validate_df(data.frame(a = 1:10), chrRequiredColumns = "b"),
-    "required columns",
-    class = "gsm.app-error-invalid_input"
-  )
-})
-
-test_that("validate_df returns dfs when they're ok", {
-  given_df <- data.frame(a = 1:10)
-  expect_no_error({
-    test_result <- validate_df(given_df, chrRequiredColumns = "a")
-  })
-  expect_identical(test_result, given_df)
-})
-
 test_that("Built-in dfResults passes validation", {
   expect_no_error({
     test_result <- validate_dfResults(gsm.app::sample_dfResults)
@@ -62,6 +41,26 @@ test_that("validate_chrDomains fails gracefully", {
   )
 })
 
-test_that("validate_chrDomains returns valid domains + SUBJ", {
-  expect_identical(validate_chrDomains("AE"), c("AE", "SUBJ"))
+test_that("validate_chrDomains checks for domains used in plugins", {
+  lPlugins <- list(
+    p1 = list(
+      domains = c("AE", "ENROLL")
+    ),
+    p2 = list(
+      domains = c("AE", "SUBJ")
+    )
+  )
+  chrDomains <- "ENROLL"
+  expect_error(
+    validate_chrDomains(chrDomains, lPlugins),
+    "domains must be included",
+    class = "gsm.app-error-invalid_input"
+  )
+})
+
+test_that("validate_chrDomains returns valid domains", {
+  expect_identical(
+    validate_chrDomains("subj"),
+    "SUBJ"
+  )
 })

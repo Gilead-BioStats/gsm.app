@@ -4,9 +4,12 @@
 \alias{out_MainTabs}
 \title{Main Tabbed Content}
 \usage{
-out_MainTabs(dfResults, chrMetrics, lPlugins = NULL)
+out_MainTabs(chrDomains, dfResults, chrMetrics, lPlugins = NULL)
 }
 \arguments{
+\item{chrDomains}{\code{character} A vector of names of domain data.frames to show
+in the app. Supported domains are shown in the default value.}
+
 \item{dfResults}{\code{data.frame} A stacked summary of analysis pipeline output.
 This will be filtered to cases where \code{GroupLevel == "Site"}.}
 

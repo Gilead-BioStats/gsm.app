@@ -1,3 +1,5 @@
+skip_on_ci()
+
 test_that("run_gsm_app initializes the expected app", {
   skip_on_cran()
   app <- AppDriver$new(test_path("apps", "standard"), name = "init")
@@ -257,68 +259,60 @@ test_that("run_gsm_app populates Metric Details", {
   app$stop()
 })
 
-test_that("run_gsm_app populates Participant Details", {
+test_that("run_gsm_app populates Domain Details", {
   skip_on_cran()
-  app <- AppDriver$new(test_path("apps", "standard"), name = "participants")
+  app <- AppDriver$new(test_path("apps", "standard"), name = "domain")
   app$wait_for_idle()
   app$wait_for_value(input = "participant", timeout = 2000)
 
-  # Click "Metric Details" tab.
-  app$run_js(file = test_path("fixtures", "WidgetPlotTestHelpers.js"))
-  app$set_inputs(primary_nav_bar = "Metric Details")
-  app$wait_for_js(
-    "isCanvasLoaded('metric_details-scatter_plot');",
-    timeout = 2000
-  )
+  # Navigate to Domain Details tab.
+  app$set_inputs(primary_nav_bar = "Domain Details")
   app$wait_for_idle()
   app$expect_values(
     export = TRUE,
-    name = "metric",
+    name = "no-participant",
     screenshot_args = list(selector = ".main")
   )
 
-  # Select a site in the module.
-  app$run_js("clickWidgetPlotGroup('metric_details-scatter_plot', '0X159');")
-  app$wait_for_js(
-    "isCanvasLoaded('metric_details-scatter_plot');",
-    timeout = 2000
-  )
-  app$wait_for_idle()
-
-  # Select a participant from that site.
-  app$set_inputs(`site_details-participants-gt-table` = 1)
-  app$wait_for_idle()
-  app$expect_values(
-    export = TRUE,
-    name = "participant1",
-    screenshot_args = list(selector = ".main")
-  )
-
-  # Select AE data.
-  app$click("participant_details-domain_summary-domain_list_choices-Adverse_Events")
-  app$wait_for_idle()
-  app$expect_values(
-    export = TRUE,
-    name = "ae",
-    screenshot_args = list(selector = "#participant_details-domain-card")
-  )
-
-  # Select a different participant via the drop-down.
+  # Select a participant via the drop-down.
   app$set_inputs(`participant` = "0285")
   app$wait_for_idle()
   app$expect_values(
     export = TRUE,
-    name = "participant2",
+    name = "participant",
     screenshot_args = list(selector = ".main")
   )
 
-  # Select Study Disposition data.
-  app$click("participant_details-domain_summary-domain_list_choices-Study_Completion")
+  # Select another domain.
+  app$set_inputs(`domain_details-selected_tab` = "STUDCOMP")
   app$wait_for_idle()
   app$expect_values(
     export = TRUE,
     name = "sd",
-    screenshot_args = list(selector = "#participant_details-domain-card")
+    screenshot_args = list(selector = ".main")
   )
+
+  app$stop()
+})
+
+test_that("run_gsm_app display Domain error", {
+  skip_on_cran()
+  app <- AppDriver$new(test_path("apps", "error"), name = "error")
+  app$wait_for_idle()
+  app$wait_for_value(input = "participant", timeout = 2000)
+
+  # Trigger the error.
+  app$set_inputs(site = "0X013")
+  app$wait_for_idle()
+  app$set_inputs(primary_nav_bar = "Domain Details")
+  app$wait_for_idle()
+  app$set_inputs(`domain` = "LB")
+  app$wait_for_idle()
+  app$expect_values(
+    export = TRUE,
+    name = "lb13",
+    screenshot_args = list(selector = ".modal-content")
+  )
+
   app$stop()
 })

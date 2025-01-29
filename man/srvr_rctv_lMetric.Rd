@@ -6,7 +6,6 @@
 \usage{
 srvr_rctv_lMetric(
   dfMetrics,
-  rctv_lMetric_base,
   rctv_strMetricID,
   rctv_strSiteID,
   session = getDefaultReactiveDomain()
@@ -16,14 +15,12 @@ srvr_rctv_lMetric(
 \item{dfMetrics}{\code{data.frame} Metric-specific metadata for use in charts and
 reporting.}
 
-\item{rctv_lMetric_base}{The metric list returned by
-\code{\link[=srvr_rctv_lMetric_base]{srvr_rctv_lMetric_base()}}.}
-
 \item{rctv_strMetricID}{\verb{reactive character} A \code{\link[shiny:reactive]{shiny::reactive()}} object
 that returns the selected \code{MetricID}.}
 
-\item{rctv_strSiteID}{\verb{reactive character} A \code{\link[shiny:reactive]{shiny::reactive()}} object that
-returns the \code{GroupID} of a site.}
+\item{rctv_strSiteID}{\verb{reactive character} A \code{\link[shiny:reactiveVal]{shiny::reactiveVal()}} object
+that returns the \code{GroupID} of the selected site, and can be used to update
+the selected site.}
 
 \item{session}{\code{environment} Session from which to make a child scope (the
 default should almost always be used).}

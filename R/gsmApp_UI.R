@@ -6,6 +6,7 @@
 #' @returns A Shiny UI object
 #' @keywords internal
 gsmApp_UI <- function(
+  chrDomains,
   dfAnalyticsInput,
   dfGroups,
   dfMetrics,
@@ -13,7 +14,7 @@ gsmApp_UI <- function(
   lPlugins = NULL,
   strTitle = "GSM Deep Dive",
   strFavicon = "angles-up",
-  strFaviconColor = colorScheme("red"),
+  strFaviconColor = ColorScheme("red"),
   tagListSidebar = NULL
 ) {
   # Transform data for use in lower-level functions. ----
@@ -25,14 +26,24 @@ gsmApp_UI <- function(
     title = strTitle,
     theme = bslib::bs_theme(version = 5),
     fillable = FALSE,
-    !!!out_MainTabs(dfResults = dfResults, chrMetrics = chrMetrics, lPlugins = lPlugins),
+    !!!out_MainTabs(
+      chrDomains = chrDomains,
+      dfResults = dfResults,
+      chrMetrics = chrMetrics,
+      lPlugins = lPlugins
+    ),
     sidebar = out_Sidebar(
       dfGroups,
       dfResults,
+      chrDomains,
       chrMetrics,
       intNParticipants,
       tagListSidebar
     ),
-    header = favawesome::fav(strFavicon, fill = strFaviconColor)
+    header = tagList(
+      favawesome::fav(strFavicon, fill = strFaviconColor),
+      htmlDependency_Stylesheet("defaultStyles.css"),
+      shinyjs::useShinyjs()
+    )
   )
 }

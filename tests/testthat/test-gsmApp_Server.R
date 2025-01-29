@@ -1,4 +1,4 @@
-test_that("gsmApp_Server initializes correctly and updates rctv_lMetric", {
+test_that("gsmApp_Server initializes correctly", {
   server <- gsmApp_Server(
     dfAnalyticsInput = sample_dfAnalyticsInput,
     dfBounds = sample_dfBounds,
@@ -10,20 +10,19 @@ test_that("gsmApp_Server initializes correctly and updates rctv_lMetric", {
   testServer(
     server,
     {
-      # Simulation initialization.
+      # Simulate initialization.
       session$setInputs(
         primary_nav_bar = "Study Overview",
         metric = "Analysis_kri0001",
         site = "None",
-        participant = "None"
+        participant = "All"
       )
       expect_equal(input$metric, "Analysis_kri0001")
-      expect_null(rctv_lMetric()$selectedGroupIDs)
 
       session$setInputs(
         site = "0X001"
       )
-      expect_equal(rctv_lMetric()$selectedGroupIDs, "0X001")
+      expect_equal(input$site, "0X001")
     }
   )
 })
@@ -47,7 +46,7 @@ test_that("gsmApp_Server triggers reset", {
         primary_nav_bar = "Study Overview",
         metric = "Analysis_kri0001",
         site = "None",
-        participant = "None"
+        participant = "All"
       )
       expect_equal(input$site, "None")
 
@@ -78,6 +77,31 @@ test_that("gsmApp_Server executes optional server functions", {
     {
       expect_s3_class(rctv_testVal, "reactiveVal")
       expect_equal(rctv_testVal(), "testing")
+    }
+  )
+})
+
+test_that("gsmApp_Server sets participant drop-down properly", {
+  server <- gsmApp_Server(
+    dfAnalyticsInput = sample_dfAnalyticsInput,
+    dfBounds = sample_dfBounds,
+    dfGroups = sample_dfGroups,
+    dfMetrics = sample_dfMetrics,
+    dfResults = sample_dfResults,
+    fnFetchData = sample_fnFetchData
+  )
+  testServer(
+    server,
+    {
+      # Simulate initialization.
+      session$setInputs(
+        primary_nav_bar = "Study Overview",
+        metric = "Analysis_kri0001",
+        site = "None",
+        participant = "All"
+      )
+      expect_equal(input$participant, "All")
+      expect_equal(rctv_strSubjectID(), "All")
     }
   )
 })

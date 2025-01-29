@@ -1,38 +1,38 @@
 mod_AEDashboard_UI <- function(id) {
-  ns <- shiny::NS(id)
+  ns <- NS(id)
   bslib::layout_columns(
     bslib::value_box(
       "# of AE",
-      shiny::textOutput(ns("ae_count"))
+      textOutput(ns("ae_count"))
     ),
     bslib::value_box(
       "# of SAE",
-      shiny::textOutput(ns("sae_count"))
+      textOutput(ns("sae_count"))
     ),
     bslib::card(
       bslib::card_title("Severity"),
       full_screen = TRUE,
-      shiny::plotOutput(ns("severity_bars"))
+      plotOutput(ns("severity_bars"))
     )
   )
 }
 
-mod_AEDashboard_server <- function(id, rctv_dfAE) {
+mod_AEDashboard_server <- function(id, rctv_dfAE_mod) {
   moduleServer(id, function(input, output, session) {
-    output$ae_count <- shiny::renderText({
-      NROW(rctv_dfAE())
+    output$ae_count <- renderText({
+      NROW(rctv_dfAE_mod())
     })
-    output$sae_count <- shiny::renderText({
-      dfAE <- rctv_dfAE()
+    output$sae_count <- renderText({
+      dfAE <- rctv_dfAE_mod()
       n_sae <- 0L
       if (NROW(dfAE)) {
         n_sae <- sum(dfAE$aeser == "Y")
       }
       return(n_sae)
     })
-    output$severity_bars <- shiny::renderPlot({
-      shiny::req(rctv_dfAE())
-      dfAE <- rctv_dfAE()
+    output$severity_bars <- renderPlot({
+      req(rctv_dfAE_mod())
+      dfAE <- rctv_dfAE_mod()
       dfAE %>%
         ggplot2::ggplot() +
         ggplot2::theme_minimal(base_size = 20) +

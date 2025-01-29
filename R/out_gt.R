@@ -54,7 +54,7 @@ out_gtSmartFmtNumbers <- function(gt_object, intMaxDecimals = 5L) {
   purrr::reduce(
     names(cols)[cols],
     function(gt_object, col_name) {
-      decimals_to_keep <- findNonZeroDecimals(df[[col_name]], intMaxDecimals)
+      decimals_to_keep <- FindNonZeroDecimals(df[[col_name]], intMaxDecimals)
       gt::fmt_number(gt_object, decimals = decimals_to_keep, columns = col_name)
     },
     .init = gt_object

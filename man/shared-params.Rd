@@ -12,6 +12,9 @@ object.}
 \item{chrDomains}{\code{character} A vector of names of domain data.frames to show
 in the app. Supported domains are shown in the default value.}
 
+\item{chrFromTabs}{\code{character} A vector of tab names. Syncing is only
+triggered if the user is currently on one of these tabs.}
+
 \item{chrLinkIDs}{\code{character} Module ids for multiple modules.}
 
 \item{chrLabels}{\code{character} A vector of labels for display to the user.}
@@ -29,6 +32,8 @@ data.frame.}
 
 \item{chrRequiredFields}{\code{character} A vector of names of required fields in
 an object.}
+
+\item{chrRequiredInputs}{\code{character} A vector of inputs required by a Plugin.}
 
 \item{chrSites}{\code{character} A vector of sites available in the study.}
 
@@ -64,13 +69,15 @@ default value.}
 \item{fnFetchData}{\code{function} A function that takes a \code{strDomain} argument
 and optional \code{strSiteID} and \code{strSubjectID} and returns a data.frame. See
 \code{\link[=sample_fnFetchData]{sample_fnFetchData()}} for an example. The returned data.frame contains
-information about the named domain.}
+information about the named domain. If the function throws an error, the
+error is elevated to the user, so you can use errors to pass requirements
+through to the user.}
 
 \item{fnServer}{\code{function} A Shiny server function that takes arguments
 \code{input}, \code{output}, and \code{session}. This function will be called at the start
 of the main app server function.}
 
-\item{id}{\code{character} The id for this module, widget, or other element.}
+\item{id}{\code{character} The id for this element.}
 
 \item{intKRIColorCount}{\code{integer} A named vector of counts by color.}
 
@@ -84,10 +91,8 @@ of the main app server function.}
 \item{lMetric}{\code{list} Named list of data describing a single metric, as well
 as things like which group is selected.}
 
-\item{lDomains}{\code{list} Named list of data domain data.frames.}
-
-\item{lParticipantMetadata}{\code{list} Named list of data describing a single
-participant.}
+\item{l_rctvDomains}{\code{list} A named list of \code{\link[shiny:reactive]{shiny::reactive()}} objects, each
+of which returns a domain dataframe.}
 
 \item{lPluginDefinition}{\code{list} A named list with required elements
 \code{strTitle}, \code{fnUI}, and \code{fnServer}, and optional fields \code{packages} and
@@ -97,9 +102,6 @@ participant.}
 
 \item{lStudy}{\code{list} Named list of data describing the overall study.}
 
-\item{rctv_chrIDs}{\verb{reactive character} A \code{\link[shiny:reactive]{shiny::reactive()}} object that
-returns a vector of ids for modules, inputs, or other elements.}
-
 \item{rctv_dfBounds}{\verb{reactive dataframe} A \code{\link[shiny:reactive]{shiny::reactive()}} object that
 returns a set of predicted percentages/rates and upper- and lower-bounds
 across the full range of sample sizes/total exposure values for reporting.}
@@ -107,26 +109,25 @@ across the full range of sample sizes/total exposure values for reporting.}
 \item{rctv_dfData}{\verb{reactive dataframe} A \code{\link[shiny:reactive]{shiny::reactive()}} object that
 returns a generic dataframe.}
 
+\item{rctv_dfDomain}{\verb{reactive dataframe} A \code{\link[shiny:reactive]{shiny::reactive()}} object that
+returns a domain dataframe.}
+
 \item{rctv_dfResults}{\verb{reactive dataframe} A \code{\link[shiny:reactive]{shiny::reactive()}} object that
 returns a stacked summary of analysis pipeline output.}
 
 \item{rctv_gtObject}{\verb{reactive gt_table} A \code{\link[shiny:reactive]{shiny::reactive()}} object that
 returns a \code{\link[gt:gt]{gt::gt()}} object.}
 
-\item{rctv_lData}{\verb{reactive list} A \code{\link[shiny:reactive]{shiny::reactive()}} object that returns a
-named list of dataframes.}
-
 \item{rctv_lMetric}{\verb{reactive list} A \code{\link[shiny:reactive]{shiny::reactive()}} object that returns
 a named list of data describing a single metric, as well as things like
 which group is selected.}
 
-\item{rctv_lParticipantMetricData}{\verb{reactive list} A \code{\link[shiny:reactive]{shiny::reactive()}}
-object that returns a list of dataframes for a given participant, one for
-each metric that is available.}
-
 \item{rctv_lglState}{\verb{reactive logical} A \code{\link[shiny:reactive]{shiny::reactive()}}] object that
 returns a Boolean value indicating whether something is "off" (\code{FALSE}) or
 "on" (\code{TRUE}).}
+
+\item{rctv_strDomainID}{\verb{reactive character} A \code{\link[shiny:reactive]{shiny::reactive()}} object
+that returns the selected \code{DomainID} (such as "AE" or "SUBJ").}
 
 \item{rctv_strCurrentTab}{\verb{reactive character} A \code{\link[shiny:reactive]{shiny::reactive()}} object
 that returns the currently selected tab.}
@@ -135,7 +136,9 @@ that returns the currently selected tab.}
 that returns the selected subset of groups to include in the table.}
 
 \item{rctv_strInput}{\verb{reactive character} A \code{\link[shiny:reactive]{shiny::reactive()}} object that
-returns the name of the target input.}
+returns the value(s) of an input to share with an interactive gt table. If
+this argument is a \code{\link[shiny:reactiveVal]{shiny::reactiveVal()}}, it will be used to push updates
+back to the calling function.}
 
 \item{rctv_strMetricID}{\verb{reactive character} A \code{\link[shiny:reactive]{shiny::reactive()}} object
 that returns the selected \code{MetricID}.}
@@ -144,8 +147,9 @@ that returns the selected \code{MetricID}.}
 returns the name of an object, such as a particular dataframe in a named
 list.}
 
-\item{rctv_strSiteID}{\verb{reactive character} A \code{\link[shiny:reactive]{shiny::reactive()}} object that
-returns the \code{GroupID} of a site.}
+\item{rctv_strSiteID}{\verb{reactive character} A \code{\link[shiny:reactiveVal]{shiny::reactiveVal()}} object
+that returns the \code{GroupID} of the selected site, and can be used to update
+the selected site.}
 
 \item{rctv_strSubjectID}{\verb{reactive character} A \code{\link[shiny:reactive]{shiny::reactive()}} object
 that returns the \code{SubjectID} of the selected participant.}
@@ -212,6 +216,9 @@ Default: \code{"red"}. Options:
 \item{strInputID}{\code{character} An ID to use for the Shiny input created by
 this module or used by this JavaScript.}
 
+\item{strInputName}{\code{character} The name of an input. One of \code{"site"},
+\code{"participant"}, or \code{"domain"}.}
+
 \item{strLabel}{\code{character} The label of a field.}
 
 \item{strMetricID}{\code{character} A \code{MetricID} to focus on.}
@@ -236,6 +243,8 @@ study.}
 
 \item{strWhat}{\code{character} A sentence-case description of the object being
 inspected.}
+
+\item{strWidgetName}{\code{character} The name of a widget in the gsm package.}
 
 \item{tagListSidebar}{\code{taglist} An optional \code{\link[htmltools:tagList]{htmltools::tagList()}} of
 additional elements to add to the top of the app sidebar.}
