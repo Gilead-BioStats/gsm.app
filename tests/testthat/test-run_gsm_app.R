@@ -1,8 +1,11 @@
-skip_on_ci()
-
 test_that("run_gsm_app initializes the expected app", {
   skip_on_cran()
-  app <- AppDriver$new(test_path("apps", "standard"), name = "init")
+  app <- AppDriver$new(
+    test_path("apps", "standard"),
+    name = "init",
+    width = 1200,
+    height = 1200
+  )
   app$wait_for_idle()
   app$wait_for_value(input = "participant", timeout = 2000)
   app$expect_values(export = TRUE, name = "init")
@@ -11,7 +14,12 @@ test_that("run_gsm_app initializes the expected app", {
 
 test_that("run_gsm_app populates Study Overview", {
   skip_on_cran()
-  app <- AppDriver$new(test_path("apps", "standard"), name = "study")
+  app <- AppDriver$new(
+    test_path("apps", "standard"),
+    name = "study",
+    width = 1200,
+    height = 1200
+  )
   app$wait_for_idle()
   app$wait_for_value(input = "participant", timeout = 2000)
   app$expect_values(
@@ -91,7 +99,12 @@ test_that("run_gsm_app populates Study Overview", {
 
 test_that("run_gsm_app populates Metric Details", {
   skip_on_cran()
-  app <- AppDriver$new(test_path("apps", "standard"), name = "metrics")
+  app <- AppDriver$new(
+    test_path("apps", "standard"),
+    name = "metrics",
+    width = 1200,
+    height = 1200
+  )
   app$wait_for_idle()
   app$wait_for_value(input = "participant", timeout = 2000)
 
@@ -261,7 +274,12 @@ test_that("run_gsm_app populates Metric Details", {
 
 test_that("run_gsm_app populates Domain Details", {
   skip_on_cran()
-  app <- AppDriver$new(test_path("apps", "standard"), name = "domain")
+  app <- AppDriver$new(
+    test_path("apps", "standard"),
+    name = "domain",
+    width = 1200,
+    height = 1200
+  )
   app$wait_for_idle()
   app$wait_for_value(input = "participant", timeout = 2000)
 
@@ -297,7 +315,12 @@ test_that("run_gsm_app populates Domain Details", {
 
 test_that("run_gsm_app display Domain error", {
   skip_on_cran()
-  app <- AppDriver$new(test_path("apps", "error"), name = "error")
+  app <- AppDriver$new(
+    test_path("apps", "error"),
+    name = "error",
+    width = 1200,
+    height = 1200
+  )
   app$wait_for_idle()
   app$wait_for_value(input = "participant", timeout = 2000)
 
