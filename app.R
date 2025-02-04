@@ -1,7 +1,7 @@
 # Launch the ShinyApp (Do not remove this comment)
 if (grepl("gsm\\.app", getwd()) ||
     !("gsm.app" %in% list.files(.libPaths()))) {
-  pkgload::load_all(".", export_all = FALSE, helpers = FALSE, attach_testthat = FALSE)
+  pkgload::load_all(".", export_all = FALSE, attach_testthat = FALSE)
 } else {
   library(gsm.app)
 }

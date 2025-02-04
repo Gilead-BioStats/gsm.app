@@ -129,14 +129,12 @@ jobs:
           SHINYAPPSIO_SECRET: ${{ secrets.SHINYAPPSIO_SECRET }}
         run: |
           appname <- Sys.getenv("APPNAME")
-          pkgload::load_all(".", export_all = FALSE, attach_testthat = FALSE)
           rsconnect::setAccountInfo(
             name = "openrbqm",
             token = Sys.getenv("SHINYAPPSIO_TOKEN"),
             secret = Sys.getenv("SHINYAPPSIO_SECRET")
           )
           rsconnect::deployApp(
-            appDir = system.file("demoApp", package = "gsm.app"),
             appName = appname,
             forceUpdate = TRUE
           )
