@@ -10,7 +10,11 @@ mod_DomainData_UI <- function(id, strDomain) {
   bslib::nav_panel(
     title = label,
     value = strDomain,
-    mod_gtBidirectional_UI(ns("gt"))
+    bslib::card(
+      full_screen = TRUE,
+      mod_gtBidirectional_UI(ns("gt")),
+      id = ns("card")
+    )
   )
 }
 
