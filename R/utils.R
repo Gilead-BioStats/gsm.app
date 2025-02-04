@@ -31,12 +31,17 @@ NullifyEmpty <- function(strValue) {
 
 #' gsm Color Scheme
 #'
-#' Eventually this should have a single home, but it doesn't make sense yet for
-#' anything to export it, so it exists in both gsm and gsm.app.
+#' Choose a color from the "official" colors of the gsm family of packages.
 #'
 #' @inheritParams shared-params
 #' @returns The hex code of a color.
-#' @keywords internal
+#' @export
+#' @examples
+#' ColorScheme("gray")
+#' ColorScheme("gray", "light")
+#' ColorScheme("green")
+#' ColorScheme("amber")
+#' ColorScheme("red")
 ColorScheme <- function(
   strColorName = c("gray", "green", "amber", "red"),
   strColorFamily = c("dark", "light")

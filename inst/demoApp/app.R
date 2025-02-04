@@ -1,5 +1,9 @@
 # Launch the ShinyApp (Do not remove this comment)
-pkgload::load_all(".", helpers = FALSE, attach_testthat = FALSE)
+if (grepl("gsm\\.app", getwd())) {
+  pkgload::load_all(".", export_all = FALSE, helpers = FALSE, attach_testthat = FALSE)
+} else {
+  library(gsm.app)
+}
 
 aePlugin <- plugin_Read(
   system.file("plugins", "AE", package = "gsm.app")

@@ -19,7 +19,12 @@ this color, or the \code{"light"} version. Default: \code{"dark"}.}
 The hex code of a color.
 }
 \description{
-Eventually this should have a single home, but it doesn't make sense yet for
-anything to export it, so it exists in both gsm and gsm.app.
+Choose a color from the "official" colors of the gsm family of packages.
 }
-\keyword{internal}
+\examples{
+ColorScheme("gray")
+ColorScheme("gray", "light")
+ColorScheme("green")
+ColorScheme("amber")
+ColorScheme("red")
+}

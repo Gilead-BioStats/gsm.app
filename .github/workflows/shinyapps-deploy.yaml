@@ -86,7 +86,7 @@ jobs:
           pak::pak()
 
           # Install plugin dependencies.
-          pkgload::load_all(".", helpers = FALSE, attach_testthat = FALSE)
+          pkgload::load_all(".", export_all = FALSE, attach_testthat = FALSE)
           aePlugin <- plugin_Read(system.file("plugins", "AE", package = "gsm.app"))
           plugin_InstallDependencySources(aePlugin)
 
@@ -102,7 +102,7 @@ jobs:
           pr_number <- Sys.getenv("PR_NUMBER")
 
           if (deployment_type != "prod") {
-            pkgload::load_all(".", helpers = FALSE, attach_testthat = FALSE)
+            pkgload::load_all(".", export_all = FALSE, attach_testthat = FALSE)
             appname <- paste(appname, deployment_type, sep = "-")
             favicon <- "angle-up"
             faviconcolor <- ColorScheme("amber")
@@ -129,12 +129,14 @@ jobs:
           SHINYAPPSIO_SECRET: ${{ secrets.SHINYAPPSIO_SECRET }}
         run: |
           appname <- Sys.getenv("APPNAME")
+          pkgload::load_all(".", export_all = FALSE, attach_testthat = FALSE)
           rsconnect::setAccountInfo(
             name = "openrbqm",
             token = Sys.getenv("SHINYAPPSIO_TOKEN"),
             secret = Sys.getenv("SHINYAPPSIO_SECRET")
           )
           rsconnect::deployApp(
+            appDir = system.file("demoApp", package = "gsm.app"),
             appName = appname,
             forceUpdate = TRUE
           )
