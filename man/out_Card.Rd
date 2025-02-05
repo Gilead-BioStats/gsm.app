@@ -4,20 +4,32 @@
 \alias{out_Card}
 \title{Standardized card}
 \usage{
-out_Card(tagTitle, ..., id = NULL)
+out_Card(tagTitle, ..., id = NULL, lglFullScreen = TRUE)
 }
 \arguments{
-\item{tagTitle}{\verb{html tag} A string or other html to use as the title of
-the card. Will be wrapped inside \code{\link[bslib:card_body]{bslib::card_title()}}.}
+\item{tagTitle}{\verb{html tag} A string or other html to use as the title of the
+card. Will be wrapped inside \code{\link[bslib:card_body]{bslib::card_title()}}.}
 
 \item{...}{\verb{html tags} Objects to place in the card.}
 
 \item{id}{\code{character} The id for this element.}
+
+\item{lglFullScreen}{\code{logical} Passed to the \code{full_screen} argument of
+\code{\link[bslib:card]{bslib::card()}}. Default: \code{TRUE}.}
 }
 \value{
 A \code{\link[bslib:card]{bslib::card()}}.
 }
 \description{
-Standardized card
+A standardized \code{\link[bslib:card]{bslib::card()}} for gsm.app modules and modules in plugins for
+gsm.app. The \code{tagTitle} is applied as a \code{\link[bslib:card_body]{bslib::card_title()}}, and
+\code{full_screen} is set to \code{TRUE} by default.
 }
-\keyword{internal}
+\examples{
+ns <- shiny::NS("MyModule")
+out_Card(
+  "Domain Summary",
+  shiny::textOutput(ns("text")),
+  id = ns("card")
+)
+}

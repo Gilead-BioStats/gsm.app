@@ -7,8 +7,8 @@
 out_CardSubtitle(tagTitle, chrAdditionalClass = character())
 }
 \arguments{
-\item{tagTitle}{\verb{html tag} A string or other html to use as the title of
-the card. Will be wrapped inside \code{\link[bslib:card_body]{bslib::card_title()}}.}
+\item{tagTitle}{\verb{html tag} A string or other html to use as the title of the
+card. Will be wrapped inside \code{\link[bslib:card_body]{bslib::card_title()}}.}
 
 \item{chrAdditionalClass}{\code{character} One or more additional classes to apply
 to the subtitle.}

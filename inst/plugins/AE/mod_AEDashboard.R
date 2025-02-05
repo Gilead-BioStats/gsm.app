@@ -9,9 +9,8 @@ mod_AEDashboard_UI <- function(id) {
       "# of SAE",
       textOutput(ns("sae_count"))
     ),
-    bslib::card(
-      bslib::card_title("Severity"),
-      full_screen = TRUE,
+    out_Card(
+      "Severity",
       plotOutput(ns("severity_bars"))
     )
   )

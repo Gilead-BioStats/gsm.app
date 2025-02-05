@@ -1,15 +1,28 @@
 #' Standardized card
 #'
+#' A standardized [bslib::card()] for gsm.app modules and modules in plugins for
+#' gsm.app. The `tagTitle` is applied as a [bslib::card_title()], and
+#' `full_screen` is set to `TRUE` by default.
+#'
 #' @inheritParams shared-params
-#' @param tagTitle `html tag` A string or other html to use as the title of
-#'   the card. Will be wrapped inside [bslib::card_title()].
+#' @param tagTitle `html tag` A string or other html to use as the title of the
+#'   card. Will be wrapped inside [bslib::card_title()].
+#' @param lglFullScreen `logical` Passed to the `full_screen` argument of
+#'   [bslib::card()]. Default: `TRUE`.
 #' @param ... `html tags` Objects to place in the card.
 #'
 #' @returns A [bslib::card()].
-#' @keywords internal
-out_Card <- function(tagTitle, ..., id = NULL) {
+#' @export
+#' @examples
+#' ns <- shiny::NS("MyModule")
+#' out_Card(
+#'   "Domain Summary",
+#'   shiny::textOutput(ns("text")),
+#'   id = ns("card")
+#' )
+out_Card <- function(tagTitle, ..., id = NULL, lglFullScreen = TRUE) {
   bslib::card(
-    full_screen = TRUE,
+    full_screen = lglFullScreen,
     id = id,
     bslib::card_title(tagTitle),
     ...
