@@ -3,21 +3,25 @@
 
 #' Read a Plugin Definition
 #'
-#' Plugins are defined by a named `list` with elements `strTitle` (a title to
-#' show in the plugin menu), `fnUI` (a function or the name of a function to use
-#' as the plugin's module UI), and `fnServer` (a function or the name of a
-#' function to use as the plugin's module server). Use `plugin_Read()` to read
+#' Plugins are defined by a named `list` with elements `meta` (containing at
+#' least a `Name` to show in the plugin menu), `shiny` (containing `UI` and
+#' `Server` fields to define the Shiny UI and Server functions for the plugin),
+#' and `domains` (to specify the data domains that the plugin uses), plus
+#' optional fields `required_inputs` and `packages`. Use `plugin_Read()` to read
 #' these element definitions and any R files in the same directory.
 #'
 #' @param strPath The directory that contains the plugin.
 #'
-#' @returns A `list` with elements `strTitle`, `fnUi`, `fnServer`, and
-#'   (optionally) `lConfig`, read from the YAML file in `strPath`. As a side
-#'   effect, any `R` files in `strPath` are also loaded using `source()`.
+#' @returns A `list` with elements `meta`, `shiny`, `domains`, and (optionally)
+#'   `required_inputs` and/or `packages`, read from the YAML file in `strPath`.
+#'   As a side effect, any `R` files in `strPath` are also loaded using
+#'   `source()`.
 #' @export
 #' @examples
-#' aePlugin <- plugin_Read(system.file("plugins", "AE", package = "gsm.app"))
-#' aePlugin
+#' subjPlugin <- plugin_Read(
+#'   system.file("plugins", "ParticipantProfile", package = "gsm.app")
+#' )
+#' subjPlugin
 plugin_Read <- function(strPath) {
   chrPluginFiles <- list.files(strPath, full.names = TRUE)
   lPluginDefinition <- plugin_ReadYaml(chrPluginFiles)
@@ -71,39 +75,40 @@ plugin_ReadYamlFile <- function(chrPluginFiles, envCall = rlang::caller_env()) {
 #' @returns The validated `lPluginDefinition`.
 #' @keywords internal
 plugin_ValidateDefinition <- function(
-  lPluginDefinition,
-  envCall = rlang::caller_env()
+    lPluginDefinition,
+    envCall = rlang::caller_env()
 ) {
+  lPluginDefinition <- purrr::keep(lPluginDefinition, rlang::has_length)
   chrRequiredFields <- c("meta", "shiny", "domains")
   chrOptionalFields <- c("lConfig", "packages", "required_inputs")
   CheckHasAllFields(
     lPluginDefinition,
     c("meta", "shiny", "domains"),
-    "Plugin defitions",
+    "Plugin definitions",
     envCall
   )
   CheckHasOnlyFields(
     lPluginDefinition,
     c(chrRequiredFields, chrOptionalFields),
-    "Plugin defitions",
+    "Plugin definitions",
     envCall
   )
   CheckHasAllFields(
     lPluginDefinition$meta,
     "Name",
-    "Plugin defitions",
+    "Plugin definitions",
     envCall
   )
   CheckHasAllFields(
     lPluginDefinition$shiny,
     c("UI", "Server"),
-    "Plugin defition shiny sections",
+    "Plugin definition shiny sections",
     envCall
   )
   CheckHasOnlyFields(
     lPluginDefinition$shiny,
     c("UI", "Server"),
-    "Plugin defition shiny sections",
+    "Plugin definition shiny sections",
     envCall
   )
   CheckIsIn(

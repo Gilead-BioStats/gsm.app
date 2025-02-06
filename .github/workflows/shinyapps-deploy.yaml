@@ -85,10 +85,13 @@ jobs:
           # Make sure everything is up-to-date.
           pak::pak()
 
-          # Install plugin dependencies.
+          # Install plugin dependencies. Technically this plugin doesn't have
+          # any, but keep this in place as an example.
           pkgload::load_all(".", export_all = FALSE, attach_testthat = FALSE)
-          aePlugin <- plugin_Read(system.file("plugins", "AE", package = "gsm.app"))
-          plugin_InstallDependencySources(aePlugin)
+          subjPlugin <- plugin_Read(
+            system.file("plugins", "ParticipantProfile", package = "gsm.app")
+          )
+          plugin_InstallDependencySources(subjPlugin)
 
           # Manually install rsconnect to deploy.
           pak::pak("rsconnect")

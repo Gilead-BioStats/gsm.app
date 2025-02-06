@@ -50,7 +50,7 @@ packages:
 
 ## meta
 
-The `meta` section must contain `Type: Plugin`, and `ID` that matches the name of the file, and a `Name:`. The `Name:` appears in the resulting app as the label for the tab containing the plugin.
+The `meta` section must contain a `Name:`. The `Name:` appears in the resulting app as the label for the tab containing the plugin.
 
 ## shiny
 
@@ -99,7 +99,9 @@ Use `plugin_Read(strPath)` to read a plugin definition and prepare it for use in
 For example, this code launches an app with our sample AE plugin:
 
 ```{r launch, eval = FALSE}
-aePlugin <- plugin_Read(system.file("plugins", "AE", package = "gsm.app"))
+subjPlugin <- plugin_Read(
+  system.file("plugins", "ParticipantProfile", package = "gsm.app")
+)
 run_gsm_app(
   dfAnalyticsInput = gsm.app::sample_dfAnalyticsInput,
   dfBounds = gsm.app::sample_dfBounds,
@@ -107,18 +109,18 @@ run_gsm_app(
   dfMetrics = gsm.app::sample_dfMetrics,
   dfResults = gsm.app::sample_dfResults,
   fnFetchData = sample_fnFetchData,
-  lPlugins = list(aePlugin)
+  lPlugins = list(subjPlugin)
 )
 ```
 
-Note that `aePlugin` must be supplied inside an enclosing `list()`, to allow for multiple plugin definitions.
+Note that `subjPlugin` must be supplied inside an enclosing `list()`, to allow for multiple plugin definitions.
 
 # Deploying an App with a Plugin
 
 If you wish to deploy an app that uses one or more plugins using {renv} and/or {rsconnect}, you need to let the system know about the plugins used by your app. The `plugin_LoadDependencies()` function serves to alert such systems of your requirements.
 
 ```{r load-dependencies, eval = FALSE}
-plugin_LoadDependencies(aePlugin)
+plugin_LoadDependencies(subjPlugin)
 ```
 
 # Plugins in CI/CD
@@ -126,7 +128,7 @@ plugin_LoadDependencies(aePlugin)
 To integrate plugins into a CI/CD pipeline, use the `plugin_InstallDependencySources()` function to install plugin dependencies. This function requires the {pak} package.
 
 ```{r install-sources, eval = FALSE}
-plugin_InstallDependencySources(aePlugin)
+plugin_InstallDependencySources(subjPlugin)
 ```
 
 See the [`shinyapps-deploy.yaml` file used by this package](https://github.com/Gilead-BioStats/gsm.app/blob/dev/.github/workflows/shinyapps-deploy.yaml) for an example use of this function.
