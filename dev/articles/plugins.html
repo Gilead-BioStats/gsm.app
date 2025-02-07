@@ -103,10 +103,9 @@ Adverse Events plugin:</p>
 <div class="section level3">
 <h3 id="meta">meta<a class="anchor" aria-label="anchor" href="#meta"></a>
 </h3>
-<p>The <code>meta</code> section must contain <code>Type: Plugin</code>,
-and <code>ID</code> that matches the name of the file, and a
-<code>Name:</code>. The <code>Name:</code> appears in the resulting app
-as the label for the tab containing the plugin.</p>
+<p>The <code>meta</code> section must contain a <code>Name:</code>. The
+<code>Name:</code> appears in the resulting app as the label for the tab
+containing the plugin.</p>
 </div>
 <div class="section level3">
 <h3 id="shiny">shiny<a class="anchor" aria-label="anchor" href="#shiny"></a>
@@ -183,9 +182,12 @@ your app, to avoid issues with synchronization.</p>
 prepare it for use in an app. Supply a list of one or more plugin
 definitions to the <code><a href="../reference/run_gsm_app.html">run_gsm_app()</a></code> function through the
 <code>lPlugins</code> argument.</p>
-<p>For example, this code launches an app with our sample AE plugin:</p>
+<p>For example, this code launches an app with our sample Participant
+Profile plugin:</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">aePlugin</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/plugin_Read.html">plugin_Read</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">"plugins"</span>, <span class="st">"AE"</span>, package <span class="op">=</span> <span class="st">"gsm.app"</span><span class="op">)</span><span class="op">)</span></span>
+<code class="sourceCode R"><span><span class="va">subjPlugin</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/plugin_Read.html">plugin_Read</a></span><span class="op">(</span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">"plugins"</span>, <span class="st">"ParticipantProfile"</span>, package <span class="op">=</span> <span class="st">"gsm.app"</span><span class="op">)</span></span>
+<span><span class="op">)</span></span>
 <span><span class="fu"><a href="../reference/run_gsm_app.html">run_gsm_app</a></span><span class="op">(</span></span>
 <span>  dfAnalyticsInput <span class="op">=</span> <span class="fu">gsm.app</span><span class="fu">::</span><span class="va"><a href="../reference/sample_dfAnalyticsInput.html">sample_dfAnalyticsInput</a></span>,</span>
 <span>  dfBounds <span class="op">=</span> <span class="fu">gsm.app</span><span class="fu">::</span><span class="va"><a href="../reference/sample_dfBounds.html">sample_dfBounds</a></span>,</span>
@@ -193,10 +195,11 @@ definitions to the <code><a href="../reference/run_gsm_app.html">run_gsm_app()</
 <span>  dfMetrics <span class="op">=</span> <span class="fu">gsm.app</span><span class="fu">::</span><span class="va"><a href="../reference/sample_dfMetrics.html">sample_dfMetrics</a></span>,</span>
 <span>  dfResults <span class="op">=</span> <span class="fu">gsm.app</span><span class="fu">::</span><span class="va"><a href="../reference/sample_dfResults.html">sample_dfResults</a></span>,</span>
 <span>  fnFetchData <span class="op">=</span> <span class="va">sample_fnFetchData</span>,</span>
-<span>  lPlugins <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="va">aePlugin</span><span class="op">)</span></span>
+<span>  lPlugins <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="va">subjPlugin</span><span class="op">)</span></span>
 <span><span class="op">)</span></span></code></pre></div>
-<p>Note that <code>aePlugin</code> must be supplied inside an enclosing
-<code><a href="https://rdrr.io/r/base/list.html" class="external-link">list()</a></code>, to allow for multiple plugin definitions.</p>
+<p>Note that <code>subjPlugin</code> must be supplied inside an
+enclosing <code><a href="https://rdrr.io/r/base/list.html" class="external-link">list()</a></code>, to allow for multiple plugin
+definitions.</p>
 </div>
 <div class="section level2">
 <h2 id="deploying-an-app-with-a-plugin">Deploying an App with a Plugin<a class="anchor" aria-label="anchor" href="#deploying-an-app-with-a-plugin"></a>
@@ -206,7 +209,7 @@ definitions to the <code><a href="../reference/run_gsm_app.html">run_gsm_app()</
 plugins used by your app. The <code><a href="../reference/plugin_LoadDependencies.html">plugin_LoadDependencies()</a></code>
 function serves to alert such systems of your requirements.</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="../reference/plugin_LoadDependencies.html">plugin_LoadDependencies</a></span><span class="op">(</span><span class="va">aePlugin</span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/plugin_LoadDependencies.html">plugin_LoadDependencies</a></span><span class="op">(</span><span class="va">subjPlugin</span><span class="op">)</span></span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="plugins-in-cicd">Plugins in CI/CD<a class="anchor" aria-label="anchor" href="#plugins-in-cicd"></a>
@@ -215,7 +218,7 @@ function serves to alert such systems of your requirements.</p>
 <code><a href="../reference/plugin_InstallDependencySources.html">plugin_InstallDependencySources()</a></code> function to install
 plugin dependencies. This function requires the {pak} package.</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="../reference/plugin_InstallDependencySources.html">plugin_InstallDependencySources</a></span><span class="op">(</span><span class="va">aePlugin</span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/plugin_InstallDependencySources.html">plugin_InstallDependencySources</a></span><span class="op">(</span><span class="va">subjPlugin</span><span class="op">)</span></span></code></pre></div>
 <p>See the <a href="https://github.com/Gilead-BioStats/gsm.app/blob/dev/.github/workflows/shinyapps-deploy.yaml" class="external-link"><code>shinyapps-deploy.yaml</code>
 file used by this package</a> for an example use of this function.</p>
 <p>If you wish to use something other than <code><a href="https://pak.r-lib.org/reference/pak.html" class="external-link">pak::pak()</a></code> to

@@ -54,6 +54,16 @@
 <dd><p><code>character</code> The id for this element.</p></dd>
 
 
+<dt id="arg-fnhtmldependency">fnHtmlDependency<a class="anchor" aria-label="anchor" href="#arg-fnhtmldependency"></a></dt>
+<dd><p><code>function</code> A function that returns an
+<code><a href="https://rstudio.github.io/htmltools/reference/htmlDependency.html" class="external-link">htmltools::htmlDependency()</a></code> or multiple wrapped in <code><a href="https://rdrr.io/pkg/shiny/man/reexports.html" class="external-link">shiny::tagList()</a></code>.</p></dd>
+
+
+<dt id="arg-fnwidgetoutput">fnWidgetOutput<a class="anchor" aria-label="anchor" href="#arg-fnwidgetoutput"></a></dt>
+<dd><p><code>function</code> An <code><a href="https://rdrr.io/pkg/htmlwidgets/man/htmlwidgets-shiny.html" class="external-link">htmlwidgets::shinyWidgetOutput()</a></code>
+function.</p></dd>
+
+
 <dt id="arg-strplottitle">strPlotTitle<a class="anchor" aria-label="anchor" href="#arg-strplottitle"></a></dt>
 <dd><p><code>character</code> A title for a plot, usually the name of a
 metric.</p></dd>
@@ -61,8 +71,8 @@ metric.</p></dd>
 </dl></div>
     <div class="section level2">
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
-    <p>A <code><a href="https://rstudio.github.io/bslib/reference/card.html" class="external-link">bslib::card()</a></code> with an optional title and a
-<code><a href="Widget_BarChartOutput.html">Widget_BarChartOutput()</a></code>.</p>
+    <p>A <code><a href="https://rstudio.github.io/bslib/reference/card.html" class="external-link">bslib::card()</a></code> with an optional title and the corresponding
+<code>fnWidgetOutput</code> and dependencies to load it.</p>
     </div>
 
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
