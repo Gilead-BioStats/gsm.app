@@ -1,8 +1,8 @@
 #' Widget Plot Module UI
 #'
 #' @inheritParams shared-params
-#' @returns A [bslib::card()] with an optional title and a
-#'   [Widget_BarChartOutput()].
+#' @returns A [bslib::card()] with an optional title and the corresponding
+#'   `fnWidgetOutput` and dependencies to load it.
 #' @keywords internal
 mod_WidgetPlot_UI <- function(
   id,

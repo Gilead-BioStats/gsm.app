@@ -43,17 +43,21 @@
 #'   as the default, or passed from the calling function if the calling function
 #'   also has an `envCall` argument.
 #' @param envEvaluate `environment` The environment in which any variables used
-#'   in the message are defined. You almost definitely want to leave this as the
-#'   default value.
+#'   in the message or widget are defined. You almost definitely want to leave
+#'   this as the default value.
 #' @param fnFetchData `function` A function that takes a `strDomain` argument
 #'   and optional `strSiteID` and `strSubjectID` and returns a data.frame. See
 #'   [sample_fnFetchData()] for an example. The returned data.frame contains
 #'   information about the named domain. If the function throws an error, the
 #'   error is elevated to the user, so you can use errors to pass requirements
 #'   through to the user.
+#' @param fnHtmlDependency `function` A function that returns an
+#'   [htmltools::htmlDependency()] or multiple wrapped in [shiny::tagList()].
 #' @param fnServer `function` A Shiny server function that takes arguments
 #'   `input`, `output`, and `session`. This function will be called at the start
 #'   of the main app server function.
+#' @param fnWidgetOutput `function` An [htmlwidgets::shinyWidgetOutput()]
+#'   function.
 #' @param id `character` The id for this element.
 #' @param intKRIColorCount `integer` A named vector of counts by color.
 #' @param intNParticipants `integer` The number of unique participants

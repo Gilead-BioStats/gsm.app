@@ -148,3 +148,28 @@ CheckHasColumns <- function(
   }
   return(df)
 }
+
+#' Confirm that an object is a string
+#'
+#' @inheritParams shared-params
+#' @param x The object to validate.
+#'
+#' @returns `x`, if it is a length-1 character vector and isn't `NA`.
+#' @keywords internal
+CheckIsString <- function(
+  x,
+  strArg = rlang::caller_arg(x),
+  envCall = rlang::caller_env()
+) {
+  if (rlang::is_scalar_character(x) && !is.na(x)) {
+    return(x)
+  }
+  gsmappAbort(
+    c(
+      "{.arg {strArg}} must be a length-1 character vector.",
+      x = "{.arg {strArg}} is {.obj_type_friendly {x}}."
+    ),
+    strClass = "invalid_input",
+    envCall = envCall
+  )
+}

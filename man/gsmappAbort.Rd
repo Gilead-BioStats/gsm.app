@@ -28,8 +28,8 @@ as the default, or passed from the calling function if the calling function
 also has an \code{envCall} argument.}
 
 \item{envEvaluate}{\code{environment} The environment in which any variables used
-in the message are defined. You almost definitely want to leave this as the
-default value.}
+in the message or widget are defined. You almost definitely want to leave
+this as the default value.}
 }
 \value{
 An error condition with classes \code{"gsm.app-condition"},

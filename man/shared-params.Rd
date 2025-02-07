@@ -63,8 +63,8 @@ as the default, or passed from the calling function if the calling function
 also has an \code{envCall} argument.}
 
 \item{envEvaluate}{\code{environment} The environment in which any variables used
-in the message are defined. You almost definitely want to leave this as the
-default value.}
+in the message or widget are defined. You almost definitely want to leave
+this as the default value.}
 
 \item{fnFetchData}{\code{function} A function that takes a \code{strDomain} argument
 and optional \code{strSiteID} and \code{strSubjectID} and returns a data.frame. See
@@ -73,9 +73,15 @@ information about the named domain. If the function throws an error, the
 error is elevated to the user, so you can use errors to pass requirements
 through to the user.}
 
+\item{fnHtmlDependency}{\code{function} A function that returns an
+\code{\link[htmltools:htmlDependency]{htmltools::htmlDependency()}} or multiple wrapped in \code{\link[shiny:reexports]{shiny::tagList()}}.}
+
 \item{fnServer}{\code{function} A Shiny server function that takes arguments
 \code{input}, \code{output}, and \code{session}. This function will be called at the start
 of the main app server function.}
+
+\item{fnWidgetOutput}{\code{function} An \code{\link[htmlwidgets:htmlwidgets-shiny]{htmlwidgets::shinyWidgetOutput()}}
+function.}
 
 \item{id}{\code{character} The id for this element.}
 
