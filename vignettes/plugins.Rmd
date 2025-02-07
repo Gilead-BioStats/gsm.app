@@ -96,7 +96,7 @@ We recommend avoiding setting values to `NULL` from inside your app, to avoid is
 
 Use `plugin_Read(strPath)` to read a plugin definition and prepare it for use in an app. Supply a list of one or more plugin definitions to the `run_gsm_app()` function through the `lPlugins` argument.
 
-For example, this code launches an app with our sample AE plugin:
+For example, this code launches an app with our sample Participant Profile plugin:
 
 ```{r launch, eval = FALSE}
 subjPlugin <- plugin_Read(
