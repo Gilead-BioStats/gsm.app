@@ -4,7 +4,12 @@
 \alias{out_Card}
 \title{Standardized card}
 \usage{
-out_Card(tagTitle, ..., id = NULL, lglFullScreen = TRUE)
+out_Card(
+  tagTitle,
+  ...,
+  id = NULL,
+  strFullScreenPosition = c("top", "bottom", "none")
+)
 }
 \arguments{
 \item{tagTitle}{\verb{html tag} A string or other html to use as the title of the
@@ -14,8 +19,12 @@ card. Will be wrapped inside \code{\link[bslib:card_body]{bslib::card_title()}}.
 
 \item{id}{\code{character} The id for this element.}
 
-\item{lglFullScreen}{\code{logical} Passed to the \code{full_screen} argument of
-\code{\link[bslib:card]{bslib::card()}}. Default: \code{TRUE}.}
+\item{strFullScreenPosition}{\verb{length-1 character} Used to set the
+\code{full_screen} argument of \code{\link[bslib:card]{bslib::card()}}, and, if necessary, update
+styling to position the "expand" button. The default value \code{"top"} sets
+\code{full_screen} to \code{TRUE} and positions the button at the top-right corner of
+the card. The value \code{"bottom"} positions the button at the bottom-right of
+the card, and the value \code{"none"} sets \code{full_screen} to \code{FALSE}.}
 }
 \value{
 A \code{\link[bslib:card]{bslib::card()}}.

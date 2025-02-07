@@ -6,9 +6,9 @@
 #' @keywords internal
 mod_MetricTable_UI <- function(id) {
   ns <- NS(id)
-  bslib::card(
+  out_Card(
+    tagTitle = NULL,
     id = id,
-    full_screen = TRUE,
     class = "MetricTable",
     mod_gtBidirectional_UI(ns("gt"))
   )

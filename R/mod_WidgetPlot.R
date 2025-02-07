@@ -11,14 +11,10 @@ mod_WidgetPlot_UI <- function(
   strPlotTitle = NULL
 ) {
   ns <- NS(id)
-  card_header <- if (!is.null(strPlotTitle)) {
-    bslib::card_header(strPlotTitle)
-  }
-  bslib::card(
+  out_Card(
+    tagTitle = strPlotTitle,
     id = id,
-    full_screen = TRUE,
     class = "chart",
-    card_header,
     fnHtmlDependency(),
     fnWidgetOutput(ns("plot"))
   )

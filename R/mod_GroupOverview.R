@@ -6,8 +6,8 @@
 #' @keywords internal
 mod_GroupOverview_UI <- function(id, dfResults) {
   ns <- NS(id)
-  bslib::card(
-    full_screen = TRUE,
+  out_Card(
+    tagTitle = NULL,
     bslib::card_body(
       mod_RAGPillSet_UI(
         ns("kri_counts"),
