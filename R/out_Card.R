@@ -7,8 +7,12 @@
 #' @inheritParams shared-params
 #' @param tagTitle `html tag` A string or other html to use as the title of the
 #'   card. Will be wrapped inside [bslib::card_title()].
-#' @param lglFullScreen `logical` Passed to the `full_screen` argument of
-#'   [bslib::card()]. Default: `TRUE`.
+#' @param strFullScreenPosition `length-1 character` Used to set the
+#'   `full_screen` argument of [bslib::card()], and, if necessary, update
+#'   styling to position the "expand" button. The default value `"top"` sets
+#'   `full_screen` to `TRUE` and positions the button at the top-right corner of
+#'   the card. The value `"bottom"` positions the button at the bottom-right of
+#'   the card, and the value `"none"` sets `full_screen` to `FALSE`.
 #' @param ... `html tags` Objects to place in the card.
 #'
 #' @returns A [bslib::card()].
@@ -20,13 +24,37 @@
 #'   shiny::textOutput(ns("text")),
 #'   id = ns("card")
 #' )
-out_Card <- function(tagTitle, ..., id = NULL, lglFullScreen = TRUE) {
-  bslib::card(
-    full_screen = lglFullScreen,
-    id = id,
-    bslib::card_title(tagTitle),
-    ...
+out_Card <- function(
+  tagTitle,
+  ...,
+  id = NULL,
+  strFullScreenPosition = c("top", "bottom", "none")
+) {
+  strFullScreenPosition <- rlang::arg_match(strFullScreenPosition)
+  lglFullScreen <- strFullScreenPosition != "none"
+  div(
+    out_FullScreenButtonStyle(id, strFullScreenPosition),
+    bslib::card(
+      full_screen = lglFullScreen,
+      id = id,
+      out_CardTitle(tagTitle),
+      ...
+    )
   )
+}
+
+out_CardTitle <- function(tagTitle = NULL) {
+  if (!is.null(tagTitle)) {
+    bslib::card_title(tagTitle)
+  }
+}
+
+out_FullScreenButtonStyle <- function(id, strFullScreenPosition) {
+  if (length(id) && strFullScreenPosition == "top") {
+    tags$style(
+      paste0("#", id, " .bslib-full-screen-enter { bottom: unset !important; }")
+    )
+  }
 }
 
 #' Placeholder card
