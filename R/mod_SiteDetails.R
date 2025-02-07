@@ -8,12 +8,16 @@ mod_SiteDetails_UI <- function(id) {
   bslib::layout_columns(
     col_widths = c(5, 7),
     tagList(
-      # TODO: Replace with a single module.
+      # TODO: Replace with a single module. Extra div is temporary to make the
+      # hide/show cleaner.
       shinyjs::hidden(
-        out_Card(
-          "Site Metadata",
-          uiOutput(ns("site_metadata_list")),
-          id = ns("card_site_metadata_list")
+        div(
+          id = ns("card_site_metadata_list"),
+          out_Card(
+            "Site Metadata",
+            uiOutput(ns("site_metadata_list")),
+            id = ns("card_site_metadata_list-contents")
+          )
         )
       ),
       out_Card(
