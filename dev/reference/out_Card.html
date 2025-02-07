@@ -49,7 +49,12 @@ gsm.app. The <code>tagTitle</code> is applied as a <code><a href="https://rstudi
 
     <div class="section level2">
     <h2 id="ref-usage">Usage<a class="anchor" aria-label="anchor" href="#ref-usage"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">out_Card</span><span class="op">(</span><span class="va">tagTitle</span>, <span class="va">...</span>, id <span class="op">=</span> <span class="cn">NULL</span>, lglFullScreen <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">out_Card</span><span class="op">(</span></span>
+<span>  <span class="va">tagTitle</span>,</span>
+<span>  <span class="va">...</span>,</span>
+<span>  id <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  strFullScreenPosition <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"top"</span>, <span class="st">"bottom"</span>, <span class="st">"none"</span><span class="op">)</span></span>
+<span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div class="section level2">
@@ -69,9 +74,13 @@ card. Will be wrapped inside <code><a href="https://rstudio.github.io/bslib/refe
 <dd><p><code>character</code> The id for this element.</p></dd>
 
 
-<dt id="arg-lglfullscreen">lglFullScreen<a class="anchor" aria-label="anchor" href="#arg-lglfullscreen"></a></dt>
-<dd><p><code>logical</code> Passed to the <code>full_screen</code> argument of
-<code><a href="https://rstudio.github.io/bslib/reference/card.html" class="external-link">bslib::card()</a></code>. Default: <code>TRUE</code>.</p></dd>
+<dt id="arg-strfullscreenposition">strFullScreenPosition<a class="anchor" aria-label="anchor" href="#arg-strfullscreenposition"></a></dt>
+<dd><p><code>length-1 character</code> Used to set the
+<code>full_screen</code> argument of <code><a href="https://rstudio.github.io/bslib/reference/card.html" class="external-link">bslib::card()</a></code>, and, if necessary, update
+styling to position the "expand" button. The default value <code>"top"</code> sets
+<code>full_screen</code> to <code>TRUE</code> and positions the button at the top-right corner of
+the card. The value <code>"bottom"</code> positions the button at the bottom-right of
+the card, and the value <code>"none"</code> sets <code>full_screen</code> to <code>FALSE</code>.</p></dd>
 
 </dl></div>
     <div class="section level2">
@@ -87,7 +96,8 @@ card. Will be wrapped inside <code><a href="https://rstudio.github.io/bslib/refe
 <span class="r-in"><span>  <span class="fu">shiny</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/shiny/man/textOutput.html" class="external-link">textOutput</a></span><span class="op">(</span><span class="fu">ns</span><span class="op">(</span><span class="st">"text"</span><span class="op">)</span><span class="op">)</span>,</span></span>
 <span class="r-in"><span>  id <span class="op">=</span> <span class="fu">ns</span><span class="op">(</span><span class="st">"card"</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> &lt;div class="container-fluid"&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> &lt;div&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   &lt;style&gt;#MyModule-card .bslib-full-screen-enter { bottom: unset !important; }&lt;/style&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   &lt;div class="card bslib-card bslib-mb-spacing bslib-card-input html-fill-item html-fill-container" data-bslib-card-init data-full-screen="false" data-require-bs-caller="card()" data-require-bs-version="5" id="MyModule-card"&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>     &lt;div class="card-body bslib-gap-spacing html-fill-item html-fill-container" style="margin-top:auto;margin-bottom:auto;flex:1 1 auto;"&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>       &lt;h5&gt;Domain Summary&lt;/h5&gt;</span>
