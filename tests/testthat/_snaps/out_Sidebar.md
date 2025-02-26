@@ -1004,8 +1004,8 @@
       <option value="Analysis_kri0006">Study Discontinuation Rate</option>
       <option value="Analysis_kri0007">Treatment Discontinuation Rate</option>
       <option value="Analysis_kri0008">Query Rate</option>
-      <option value="Analysis_kri0009">Outstanding Query Rate</option>
-      <option value="Analysis_kri0010">Outstanding Data Entry Rate</option>
+      <option value="Analysis_kri0009">Delayed Query Resolution Rate</option>
+      <option value="Analysis_kri0010">Delayed Data Entry Rate</option>
       <option value="Analysis_kri0011">Data Change Rate</option></select>
               <script type="application/json" data-for="metric" data-nonempty="">{"plugins":["selectize-plugin-a11y"]}</script>
             </div>

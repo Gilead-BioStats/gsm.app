@@ -203,7 +203,7 @@
                                 <style>#study_overview-scatter-Analysis_kri0009 .bslib-full-screen-enter { bottom: unset !important; }</style>
                                 <div class="card bslib-card bslib-mb-spacing bslib-card-input html-fill-item html-fill-container chart" data-bslib-card-init data-full-screen="false" data-require-bs-caller="card()" data-require-bs-version="5" id="study_overview-scatter-Analysis_kri0009">
                                   <div class="card-body bslib-gap-spacing html-fill-item html-fill-container" style="margin-top:auto;margin-bottom:auto;flex:1 1 auto;">
-                                    <h5>Outstanding Query Rate</h5>
+                                    <h5>Delayed Query Resolution Rate</h5>
                                     <div class="Widget_ScatterPlot html-widget html-widget-output shiny-report-size html-fill-item" id="study_overview-scatter-Analysis_kri0009-plot" style="width:100%;height:400px;"></div>
                                   </div>
                                   <bslib-tooltip placement="auto" bsOptions="[]" data-require-bs-version="5" data-require-bs-caller="tooltip()">
@@ -219,7 +219,7 @@
                                 <style>#study_overview-scatter-Analysis_kri0010 .bslib-full-screen-enter { bottom: unset !important; }</style>
                                 <div class="card bslib-card bslib-mb-spacing bslib-card-input html-fill-item html-fill-container chart" data-bslib-card-init data-full-screen="false" data-require-bs-caller="card()" data-require-bs-version="5" id="study_overview-scatter-Analysis_kri0010">
                                   <div class="card-body bslib-gap-spacing html-fill-item html-fill-container" style="margin-top:auto;margin-bottom:auto;flex:1 1 auto;">
-                                    <h5>Outstanding Data Entry Rate</h5>
+                                    <h5>Delayed Data Entry Rate</h5>
                                     <div class="Widget_ScatterPlot html-widget html-widget-output shiny-report-size html-fill-item" id="study_overview-scatter-Analysis_kri0010-plot" style="width:100%;height:400px;"></div>
                                   </div>
                                   <bslib-tooltip placement="auto" bsOptions="[]" data-require-bs-version="5" data-require-bs-caller="tooltip()">
@@ -1622,8 +1622,8 @@
       <option value="Analysis_kri0006">Study Discontinuation Rate</option>
       <option value="Analysis_kri0007">Treatment Discontinuation Rate</option>
       <option value="Analysis_kri0008">Query Rate</option>
-      <option value="Analysis_kri0009">Outstanding Query Rate</option>
-      <option value="Analysis_kri0010">Outstanding Data Entry Rate</option>
+      <option value="Analysis_kri0009">Delayed Query Resolution Rate</option>
+      <option value="Analysis_kri0010">Delayed Data Entry Rate</option>
       <option value="Analysis_kri0011">Data Change Rate</option></select>
                         <script type="application/json" data-for="metric" data-nonempty="">{"plugins":["selectize-plugin-a11y"]}</script>
                       </div>

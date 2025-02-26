@@ -1,13 +1,22 @@
-# Sample datasets generated from {clindata} filtered then passed through {gsm}.
+# Sample datasets generated from {clindata} filtered then passed through
+# {gsm.mapping}.
 
 # Used libraries ----
 
 # clindata is needed to generate this data, but is not a requirement for using
-# or testing the package, so it is not listed in the DESCRIPTION.
+# or testing the package, so it is not listed in the DESCRIPTION. Likewise for
+# gsm.mapping and gsm.reporting.
+# pak::pak("Gilead-BioStats/clindata")
+# pak::pak("Gilead-BioStats/gsm.mapping")
+# pak::pak("Gilead-BioStats/gsm.reporting")
 
 library(gsm)
-pkgload::load_all(".", helpers = FALSE, attach_testthat = FALSE)
+library(gsm.mapping)
+library(gsm.kri)
+library(gsm.reporting)
 library(clindata)
+library(dplyr)
+library(purrr)
 
 # Set up inputs ----
 
@@ -28,29 +37,35 @@ lSource <- list(
 
 # Create Mapped Data ----
 
-lMappings <- MakeWorkflowList(
-  strPath = system.file("workflow/1_mappings", package = "gsm.app"),
+lMappings <- gsm::MakeWorkflowList(
+  strPath = system.file("workflow/1_mappings", package = "gsm.mapping"),
   strPackage = NULL
 )
-raw_spec <- CombineSpecs(lMappings)
-lRaw <- Ingest(lSource, raw_spec)
+# We don't use COUNTRY yet.
+lMappings$COUNTRY <- NULL
+raw_spec <- gsm.mapping::CombineSpecs(lMappings)
+lRaw <- gsm.mapping::Ingest(lSource, raw_spec)
 lRaw <- lRaw %>%
   purrr::map(dplyr::as_tibble)
 
-lMapped <- RunWorkflows(lMappings, lRaw)
+lMapped <- gsm::RunWorkflows(lMappings, lRaw)
 lMapped <- lMapped %>%
   purrr::map(dplyr::as_tibble)
 
 # Create Analysis Data - Generate KRIs ----
 
-lWorkflows <- MakeWorkflowList("^kri", strPath = "workflow/2_metrics")
+lWorkflows <- gsm::MakeWorkflowList(
+  "^kri",
+  strPath = "workflow/2_metrics",
+  strPackage = "gsm.kri"
+)
 ## Don't use kri0012 yet.
 lWorkflows$kri0012 <- NULL
-lAnalysis <- RunWorkflows(lWorkflows, lMapped)
+lAnalysis <- gsm::RunWorkflows(lWorkflows, lMapped)
 
 # Choose a subset ----
 
-dfResults <- BindResults(
+dfResults <- gsm.reporting::BindResults(
   lAnalysis = lAnalysis,
   strName = "Analysis_Summary",
   dSnapshotDate = as.Date("2019-11-01"),
@@ -97,10 +112,10 @@ sample_dfGroups <- dplyr::bind_rows(
   lMapped$Mapped_SITE %>% dplyr::semi_join(site_subset),
   lMapped$Mapped_STUDY
 )
-sample_dfMetrics <- MakeMetric(lWorkflows = lWorkflows)
+sample_dfMetrics <- gsm.reporting::MakeMetric(lWorkflows = lWorkflows)
 sample_dfResults <- dfResults %>%
   dplyr::semi_join(site_subset)
-sample_dfBounds <- MakeBounds(
+sample_dfBounds <- gsm.reporting::MakeBounds(
   dfResults = sample_dfResults,
   dfMetrics = sample_dfMetrics
 )
