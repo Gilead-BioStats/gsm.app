@@ -11,7 +11,7 @@ mod_MetricTable_UI(id)
 }
 \value{
 A \code{\link[bslib:card]{bslib::card()}} with an optional title and a
-\code{\link[gsm:Report_MetricTable]{gsm::Report_MetricTable()}}.
+\code{\link[gsm.kri:Report_MetricTable]{gsm.kri::Report_MetricTable()}}.
 }
 \description{
 Metric Table Module UI

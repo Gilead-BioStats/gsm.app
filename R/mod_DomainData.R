@@ -6,7 +6,7 @@
 #' @keywords internal
 mod_DomainData_UI <- function(id, strDomain) {
   ns <- NS(id)
-  label <- unname(unlist(gsm::MakeParamLabelsList(strDomain, chrDomainLabels)))
+  label <- unname(unlist(gsm.kri::MakeParamLabelsList(strDomain, chrDomainLabels)))
   bslib::nav_panel(
     title = label,
     value = strDomain,
@@ -45,7 +45,7 @@ mod_DomainData_Server <- function(
         gtObj <- gt::gt(df) %>%                                           # Tested via UI
           out_gtInteractive(selection_mode = "multiple") %>%              # Tested via UI
           gt::cols_label(                                                 # Tested via UI
-            .list = gsm::MakeParamLabelsList(colnames(df), chrFieldNames) # Tested via UI
+            .list = gsm.kri::MakeParamLabelsList(colnames(df), chrFieldNames) # Tested via UI
           ) %>%                                                           # Tested via UI
           out_gtSmartFmtNumbers(intMaxDecimals = 10L)                     # Tested via UI
 

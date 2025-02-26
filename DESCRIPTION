@@ -23,6 +23,7 @@ Imports:
     favawesome,
     glue,
     gsm (>= 2.2.2),
+    gsm.kri,
     gt (>= 0.11.1.9000),
     htmltools,
     htmlwidgets,
@@ -46,7 +47,8 @@ Suggests:
     usethis,
     withr
 Remotes:
-    gsm=gilead-biostats/gsm@v2.2.2,
+    gsm=gilead-biostats/gsm@gsm-core-test,
+    gsm.kri=gilead-biostats/gsm.kri@dev,
     gt=rstudio/gt
 Config/testthat/edition: 3
 Encoding: UTF-8

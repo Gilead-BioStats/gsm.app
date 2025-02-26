@@ -7,11 +7,7 @@
 #' @param ... Additional parameters passed on to the widgetas JSON.
 #' @returns An htmlwidget object as created by [htmlwidgets::createWidget()].
 #' @keywords internal
-Widget_Plot <- function(
-    id,
-    strWidgetName,
-    ...
-) {
+Widget_Plot <- function(id, strWidgetName, ...) {
   input <- list(id = id, ...)
   # Get rid of bits we don't use from the main widget.
   excludes <- c(
@@ -118,7 +114,7 @@ gsmDependencies <- function(strWidgetName, excludes = character()) {
     gsm_dependencies,
     function(dependency) {
       rlang::inject({
-        htmltools::htmlDependency(!!!dependency, package = "gsm")
+        htmltools::htmlDependency(!!!dependency, package = "gsm.kri")
       })
     }
   )

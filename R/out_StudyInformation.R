@@ -11,6 +11,6 @@ out_StudyInformation <- function(dfGroups, dfResults) {
       bslib::card_title("Study Information"),
       out_CardSubtitle(glue::glue("Snapshot Date: {SnapshotDate}"))
     ),
-    gsm::Report_StudyInfo(dfGroups, tagHeader = NULL),
+    gsm.kri::Report_StudyInfo(dfGroups, tagHeader = NULL),
   )
 }

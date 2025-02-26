@@ -25,7 +25,7 @@ mod_DomainSummary_Server <- function(
   moduleServer(id, function(input, output, session) {
     chrDomainNames <- names(l_rctvDomains)
     chrDomainLabels <- unname(unlist(
-      gsm::MakeParamLabelsList(chrDomainNames, chrDomainLabels)
+      gsm.kri::MakeParamLabelsList(chrDomainNames, chrDomainLabels)
     ))
     output$domain_list <- renderUI({
       mod_ActionList_UI(
