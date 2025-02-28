@@ -55,12 +55,12 @@ mod_MetricDetails_Server <- function(
       bindCache(rctv_strMetricID())
 
     rctv_dfResults_Latest <- reactive({
-      gsm::FilterByLatestSnapshotDate(rctv_dfResults_byMetricID())
+      gsm.kri::FilterByLatestSnapshotDate(rctv_dfResults_byMetricID())
     }) %>%
       bindCache(rctv_strMetricID())
 
     rctv_dfBounds_Latest <- reactive({
-      gsm::FilterByLatestSnapshotDate(rctv_dfBounds_byMetricID())
+      gsm.kri::FilterByLatestSnapshotDate(rctv_dfBounds_byMetricID())
     }) %>%
       bindCache(rctv_strMetricID())
 

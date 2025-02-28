@@ -4,7 +4,7 @@
 #' @keywords internal
 mod_StudyOverview_UI <- function(id, dfResults, chrMetrics) {
   ns <- NS(id)
-  dfResults <- gsm::FilterByLatestSnapshotDate(dfResults)
+  dfResults <- gsm.kri::FilterByLatestSnapshotDate(dfResults)
 
   bslib::navset_underline(
     id = ns("nav_bar"),

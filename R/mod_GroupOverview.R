@@ -33,7 +33,7 @@ mod_GroupOverview_Server <- function(
     rctv_strSiteID
 ) {
   moduleServer(id, function(input, output, session) {
-    dfResults <- gsm::FilterByLatestSnapshotDate(dfResults)
+    dfResults <- gsm.kri::FilterByLatestSnapshotDate(dfResults)
     rctv_strGroupSubset <- reactiveVal("red")
 
     rctv_strGroupSubset_Pills <- mod_RAGPillSet_Server(

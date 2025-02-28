@@ -67,10 +67,10 @@ Widget_ScatterPlot <- function(
     "dfBounds is not a data.frame" = is.null(dfBounds) || is.data.frame(dfBounds)
   )
   if (length(dfResults)) {
-    dfResults <- gsm::FilterByLatestSnapshotDate(dfResults)
+    dfResults <- gsm.kri::FilterByLatestSnapshotDate(dfResults)
   }
   if (length(dfBounds)) {
-    dfBounds <- gsm::FilterByLatestSnapshotDate(dfBounds)
+    dfBounds <- gsm.kri::FilterByLatestSnapshotDate(dfBounds)
   }
   Widget_Plot(
     "Widget_ScatterPlot",
