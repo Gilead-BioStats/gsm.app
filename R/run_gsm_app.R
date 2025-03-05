@@ -78,6 +78,7 @@ run_gsm_app <- function(
 #' @inheritParams shared-params
 #' @export
 run_sample_gsm_app <- function(
+  lPlugins = NULL,
   strFavicon = "angles-up",
   strFaviconColor = "#FF5859"
 ) { # nocov start
@@ -88,6 +89,7 @@ run_sample_gsm_app <- function(
     dfMetrics = gsm.app::sample_dfMetrics,
     dfResults = gsm.app::sample_dfResults,
     fnFetchData = sample_fnFetchData,
+    lPlugins = lPlugins,
     strTitle = "Sample Deep Dive App",
     strFavicon = strFavicon,
     strFaviconColor = strFaviconColor

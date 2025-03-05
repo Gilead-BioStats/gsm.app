@@ -19,6 +19,12 @@ spec:
       type: character
     aetoxgr:
       type: character
+    aerel:
+      type: character
+    aeacn:
+      type: character
+    aeout:
+      type: character
 steps:
   - output: Mapped_AE
     name: =
