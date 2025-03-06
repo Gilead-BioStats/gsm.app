@@ -111,12 +111,6 @@ plugin_ValidateDefinition <- function(
     "Plugin definition shiny sections",
     envCall
   )
-  CheckIsIn(
-    lPluginDefinition$domains,
-    names(chrDomainLabels),
-    "Domains",
-    envCall
-  )
   if (length(lPluginDefinition$packages)) {
     for (pkg in lPluginDefinition$packages) {
       CheckHasAllFields(

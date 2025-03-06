@@ -17,7 +17,8 @@ test_that("mod_DomainSummary_Server outputs the expected result", {
       l_rctvDomains = list(
         AE = reactiveVal(sample_fnFetchData("AE", strSiteID = "0X001")),
         ENROLL = reactiveVal(sample_fnFetchData("ENROLL", strSiteID = "0X001"))
-      )
+      ),
+      chrDomains = c(AE = "Adverse Events", ENROLL = "Enrollment")
     ),
     {
       # Check that the domain summary UI is rendered correctly

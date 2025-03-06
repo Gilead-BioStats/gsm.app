@@ -6,7 +6,12 @@ test_that("out_Sidebar generates the expected UI", {
   test_result <- out_Sidebar(
     sample_dfGroups,
     sample_dfResults,
-    c("AE", "ENROLL", "LB", "SUBJ"),
+    c(
+      AE = "Adverse Events",
+      ENROLL = "Enrollment",
+      LB = "Lab",
+      SUBJ = "Subject Metadata"
+    ),
     chrMetrics,
     10L
   )

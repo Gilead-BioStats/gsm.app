@@ -6,19 +6,29 @@
 mod_DomainDetails_UI <- function(
   id,
   chrDomains = c(
-    "AE", "ENROLL", "LB", "PD", "SDRGCOMP", "STUDCOMP",
-    "SUBJ", "DATACHG", "DATAENT", "QUERY"
+    AE = "Adverse Events",
+    DATACHG = "Data Changes",
+    DATAENT = "Data Entry",
+    ENROLL = "Enrollment",
+    LB = "Lab",
+    PD = "Protocol Deviations",
+    QUERY = "Queries",
+    STUDCOMP = "Study Completion",
+    SUBJ = "Subject Metadata",
+    SDRGCOMP = "Treatment Completion"
   )
 ) {
   ns <- NS(id)
+  domain_tabs <- purrr::imap(chrDomains, function(strDomainLabel, strDomainID) {
+    mod_DomainData_UI(ns(strDomainID), strDomainLabel, strDomainID)
+  }) %>%
+    unname()
   bslib::layout_columns(
     col_widths = c(3, 9),
     mod_DomainSummary_UI(ns("counts")),
     bslib::navset_underline(
       id = ns("selected_tab"),
-      !!!purrr::map(chrDomains, function(domain) {
-        mod_DomainData_UI(ns(domain), domain)
-      })
+      !!!domain_tabs
     )
   )
 }
@@ -30,9 +40,10 @@ mod_DomainDetails_UI <- function(
 #' @inheritParams shared-params
 #' @keywords internal
 mod_DomainDetails_Server <- function(
-    id,
-    l_rctvDomains,
-    rctv_strDomainID
+  id,
+  l_rctvDomains,
+  rctv_strDomainID,
+  chrDomains
 ) {
   moduleServer(id, function(input, output, session) {
     observe({
@@ -45,7 +56,8 @@ mod_DomainDetails_Server <- function(
       mod_DomainSummary_Server(
         "counts",
         rctv_strDomainID,
-        l_rctvDomains
+        l_rctvDomains,
+        chrDomains
       )
     })
     observe({

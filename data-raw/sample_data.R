@@ -7,8 +7,8 @@
 # or testing the package, so it is not listed in the DESCRIPTION. Likewise for
 # gsm.mapping and gsm.reporting.
 # pak::pak("Gilead-BioStats/clindata")
-# pak::pak("Gilead-BioStats/gsm.mapping")
-# pak::pak("Gilead-BioStats/gsm.reporting")
+# pak::pak("Gilead-BioStats/gsm.mapping@dev")
+# pak::pak("Gilead-BioStats/gsm.reporting@dev")
 
 library(gsm)
 library(gsm.mapping)
@@ -150,18 +150,18 @@ sample_lMapped <- purrr::map(lMapped, function(thisDomain) {
 
 # Ideally this should all be defined in gsm.mapping.
 
-chrDomainLabels <- c(
-  AE = "Adverse Events",
-  DATACHG = "Data Changes",
-  DATAENT = "Data Entry",
-  ENROLL = "Enrollment",
-  LB = "Lab",
-  PD = "Protocol Deviations",
-  QUERY = "Queries",
-  STUDCOMP = "Study Completion",
-  SUBJ = "Subject Metadata",
-  SDRGCOMP = "Treatment Completion"
-)
+# chrDomainLabels <- c(
+#   AE = "Adverse Events",
+#   DATACHG = "Data Changes",
+#   DATAENT = "Data Entry",
+#   ENROLL = "Enrollment",
+#   LB = "Lab",
+#   PD = "Protocol Deviations",
+#   QUERY = "Queries",
+#   STUDCOMP = "Study Completion",
+#   SUBJ = "Subject Metadata",
+#   SDRGCOMP = "Treatment Completion"
+# )
 
 chrFieldNames <- c(
   aeen_dt = "End Date",
@@ -206,7 +206,7 @@ chrFieldNames <- c(
 # directly.
 usethis::use_data(
   sample_lMapped,
-  chrDomainLabels,
+  # chrDomainLabels,
   chrFieldNames,
   overwrite = TRUE,
   internal = TRUE,

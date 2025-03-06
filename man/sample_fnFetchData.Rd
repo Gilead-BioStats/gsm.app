@@ -5,15 +5,14 @@
 \title{Fetch Data for a Domain}
 \usage{
 sample_fnFetchData(
-  strDomain = c("AE", "ENROLL", "LB", "PD", "SDRGCOMP", "STUDCOMP", "SUBJ", "DATACHG",
+  strDomainID = c("AE", "ENROLL", "LB", "PD", "SDRGCOMP", "STUDCOMP", "SUBJ", "DATACHG",
     "DATAENT", "QUERY"),
   strSiteID = NULL,
   strSubjectID = NULL
 )
 }
 \arguments{
-\item{strDomain}{\code{character} The domain data.frame to load. Supported domains
-are shown in the default value.}
+\item{strDomainID}{\code{character} The domain data.frame to load.}
 
 \item{strSiteID}{\code{character} A \code{GroupID} of an individual site within a
 study.}

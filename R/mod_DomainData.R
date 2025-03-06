@@ -4,12 +4,11 @@
 #' @returns A [bslib::nav_panel()] with either a placeholder, or a
 #'   [gt::gt_output()] table.
 #' @keywords internal
-mod_DomainData_UI <- function(id, strDomain) {
+mod_DomainData_UI <- function(id, strDomainLabel, strDomainID) {
   ns <- NS(id)
-  label <- unname(unlist(gsm.kri::MakeParamLabelsList(strDomain, chrDomainLabels)))
   bslib::nav_panel(
-    title = label,
-    value = strDomain,
+    title = strDomainLabel,
+    value = strDomainID,
     out_Card(
       tagTitle = NULL,
       mod_gtBidirectional_UI(ns("gt")),
@@ -28,8 +27,8 @@ mod_DomainData_UI <- function(id, strDomain) {
 #'   need it for deeper dives.
 #' @keywords internal
 mod_DomainData_Server <- function(
-    id,
-    rctv_dfDomain
+  id,
+  rctv_dfDomain
 ) {
   moduleServer(id, function(input, output, session) {
     rctv_tblData <- reactive({

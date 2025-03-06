@@ -4,13 +4,15 @@
 \alias{mod_DomainData_UI}
 \title{Domain Data Tab UI}
 \usage{
-mod_DomainData_UI(id, strDomain)
+mod_DomainData_UI(id, strDomainLabel, strDomainID)
 }
 \arguments{
 \item{id}{\code{character} The id for this element.}
 
-\item{strDomain}{\code{character} The domain data.frame to load. Supported domains
-are shown in the default value.}
+\item{strDomainLabel}{\code{character} The domain name to display. For example,
+for ID \code{"AE"}, the label is \code{"Adverse Events"}.}
+
+\item{strDomainID}{\code{character} The domain data.frame to load.}
 }
 \value{
 A \code{\link[bslib:nav-items]{bslib::nav_panel()}} with either a placeholder, or a

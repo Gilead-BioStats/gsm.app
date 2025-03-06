@@ -8,15 +8,6 @@ test_that("plugin_Define errors informatively", {
     {
       plugin_Define(
         strName = "Name",
-        chrDomains = "bad-domain"
-      )
-    },
-    class = "gsm.app-error-vector-values"
-  )
-  expect_error(
-    {
-      plugin_Define(
-        strName = "Name",
         chrDomains = "AE",
         chrRequiredInputs = "bad-input"
       )

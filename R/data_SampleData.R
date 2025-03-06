@@ -121,7 +121,7 @@
 #' head(sample_fnFetchData("AE", strSiteID = "0X103"))
 #' head(sample_fnFetchData("AE", strSubjectID = "1350"))
 sample_fnFetchData <- function(
-  strDomain = c(
+  strDomainID = c(
     "AE",
     "ENROLL",
     "LB",
@@ -136,14 +136,14 @@ sample_fnFetchData <- function(
   strSiteID = NULL,
   strSubjectID = NULL
 ) {
-  strDomain <- toupper(strDomain)
-  strDomain <- rlang::arg_match(strDomain)
+  strDomainID <- toupper(strDomainID)
+  strDomainID <- rlang::arg_match(strDomainID)
 
   strSiteID <- NullifyEmpty(strSiteID)
   strSubjectID <- NullifyEmpty(strSubjectID)
 
   if (
-      !is.null(strSiteID) && strSiteID == "0X013" && strDomain == "LB"
+    !is.null(strSiteID) && strSiteID == "0X013" && strDomainID == "LB"
   ) {
     gsmappAbort(
       c(
@@ -155,7 +155,7 @@ sample_fnFetchData <- function(
     )
   }
 
-  df <- sample_lMapped[[paste0("Mapped_", strDomain)]]
+  df <- sample_lMapped[[paste0("Mapped_", strDomainID)]]
   df$studyid <- NULL
   df$invid <- NULL
   df <- dplyr::rename(df, SubjectID = "subjid")

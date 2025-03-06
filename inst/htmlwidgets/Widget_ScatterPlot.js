@@ -17,7 +17,7 @@ HTMLWidgets.widget({
         input.lMetric.clickCallback = widgetPlotClickFactory(el);
 
         // Generate scatter plot.
-        const instance = rbmViz.default.scatterPlot(
+        const instance = gsmViz.default.scatterPlot(
           el,
           input.dfResults,
           input.lMetric,
