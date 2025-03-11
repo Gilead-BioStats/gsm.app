@@ -26,7 +26,7 @@ automated deployment systems, such as GitHub Actions.
 plugin_GetDependencySources(
   list(packages = list(
     list(name = "ggplot2"),
-    list(name = "gsm", remote = "Gilead-BioStats/gsm")
+    list(name = "gsm.core", remote = "Gilead-BioStats/gsm.core")
   ))
 )
 }

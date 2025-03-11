@@ -14,8 +14,8 @@
 #'   \item{Denominator}{denominator for this individual}
 #'   \item{Metric}{calculated rate/metric value}
 #' }
-#' @source Generated from data in the `clindata` package, using the `gsm`
-#'   package.
+#' @source Generated from data in the `clindata` package, using the
+#'   `gsm.mapping` package.
 #' @family sample data
 "sample_dfAnalyticsInput"
 
@@ -35,8 +35,8 @@
 #'   \item{StudyID}{unique study identifier}
 #'   \item{SnapshotDate}{date of the snapshot}
 #' }
-#' @source Generated from data in the `clindata` package, using the `gsm`
-#'   package.
+#' @source Generated from data in the `clindata` package, using the
+#'   `gsm.mapping` package.
 #' @family sample data
 "sample_dfBounds"
 
@@ -52,8 +52,8 @@
 #'   \item{Param}{Parameter of interest for the group}
 #'   \item{Value}{Value of specified Param}
 #' }
-#' @source Generated from data in the `clindata` package, using the `gsm`
-#'   package.
+#' @source Generated from data in the `clindata` package, using the
+#'   `gsm.mapping` package.
 #' @family sample data
 "sample_dfGroups"
 
@@ -77,8 +77,8 @@
 #'   \item{Threshold}{thresholds to be used for bounds and flags}
 #'   \item{nMinDenominator}{minimum denominator required to return a score and calculate a flag}
 #' }
-#' @source Generated from data in the `clindata` package, using the `gsm`
-#'   package.
+#' @source Generated from data in the `clindata` package, using the
+#'   `gsm.mapping` package.
 #' @family sample data
 "sample_dfMetrics"
 
@@ -100,8 +100,8 @@
 #'   \item{StudyID}{unique study identifier}
 #'   \item{SnapshotDate}{date of the snapshot}
 #' }
-#' @source Generated from data in the `clindata` package, using the `gsm`
-#'   package.
+#' @source Generated from data in the `clindata` package, using the
+#'   `gsm.mapping` package.
 #' @family sample data
 "sample_dfResults"
 

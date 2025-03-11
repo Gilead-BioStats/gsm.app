@@ -10,7 +10,7 @@
 # pak::pak("Gilead-BioStats/gsm.mapping@dev")
 # pak::pak("Gilead-BioStats/gsm.reporting@dev")
 
-library(gsm)
+library(gsm.core)
 library(gsm.mapping)
 library(gsm.kri)
 library(gsm.reporting)
@@ -37,7 +37,7 @@ lSource <- list(
 
 # Create Mapped Data ----
 
-lMappings <- gsm::MakeWorkflowList(
+lMappings <- gsm.core::MakeWorkflowList(
   strPath = system.file("workflow/1_mappings", package = "gsm.mapping"),
   strPackage = NULL
 )
@@ -48,20 +48,20 @@ lRaw <- gsm.mapping::Ingest(lSource, raw_spec)
 lRaw <- lRaw %>%
   purrr::map(dplyr::as_tibble)
 
-lMapped <- gsm::RunWorkflows(lMappings, lRaw)
+lMapped <- gsm.core::RunWorkflows(lMappings, lRaw)
 lMapped <- lMapped %>%
   purrr::map(dplyr::as_tibble)
 
 # Create Analysis Data - Generate KRIs ----
 
-lWorkflows <- gsm::MakeWorkflowList(
+lWorkflows <- gsm.core::MakeWorkflowList(
   "^kri",
   strPath = "workflow/2_metrics",
   strPackage = "gsm.kri"
 )
 ## Don't use kri0012 yet.
 lWorkflows$kri0012 <- NULL
-lAnalysis <- gsm::RunWorkflows(lWorkflows, lMapped)
+lAnalysis <- gsm.core::RunWorkflows(lWorkflows, lMapped)
 
 # Choose a subset ----
 

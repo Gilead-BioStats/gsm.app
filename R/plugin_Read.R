@@ -168,7 +168,7 @@ plugin_LoadDependencies <- function(lPluginDefinition) {
 #' plugin_GetDependencySources(
 #'   list(packages = list(
 #'     list(name = "ggplot2"),
-#'     list(name = "gsm", remote = "Gilead-BioStats/gsm")
+#'     list(name = "gsm.core", remote = "Gilead-BioStats/gsm.core")
 #'   ))
 #' )
 plugin_GetDependencySources <- function(lPluginDefinition) {
