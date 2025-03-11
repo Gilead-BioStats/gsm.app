@@ -51,8 +51,10 @@
 
 
 <dl><dt id="arg-chrdomains">chrDomains<a class="anchor" aria-label="anchor" href="#arg-chrdomains"></a></dt>
-<dd><p><code>character</code> A vector of names of domain data.frames to show
-in the app. Supported domains are shown in the default value.</p></dd>
+<dd><p><code>character</code> A (named) vector of domains to include in the
+app. The values of the vector will be used as labels, and the names will be
+used as IDs. The IDs will be passed to <code>fnFetchData()</code> to fetch data about
+that domain.</p></dd>
 
 
 <dt id="arg-lplugins">lPlugins<a class="anchor" aria-label="anchor" href="#arg-lplugins"></a></dt>
@@ -68,7 +70,7 @@ also has an <code>envCall</code> argument.</p></dd>
 </dl></div>
     <div class="section level2">
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
-    <p><code>chrDomains</code> in all caps, if valid.</p>
+    <p><code>chrDomains</code> with names in all caps.</p>
     </div>
 
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>

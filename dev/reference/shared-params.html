@@ -65,8 +65,10 @@ object.</p></dd>
 
 
 <dt id="arg-chrdomains">chrDomains<a class="anchor" aria-label="anchor" href="#arg-chrdomains"></a></dt>
-<dd><p><code>character</code> A vector of names of domain data.frames to show
-in the app. Supported domains are shown in the default value.</p></dd>
+<dd><p><code>character</code> A (named) vector of domains to include in the
+app. The values of the vector will be used as labels, and the names will be
+used as IDs. The IDs will be passed to <code>fnFetchData()</code> to fetch data about
+that domain.</p></dd>
 
 
 <dt id="arg-chrfromtabs">chrFromTabs<a class="anchor" aria-label="anchor" href="#arg-chrfromtabs"></a></dt>
@@ -162,7 +164,7 @@ this as the default value.</p></dd>
 
 
 <dt id="arg-fnfetchdata">fnFetchData<a class="anchor" aria-label="anchor" href="#arg-fnfetchdata"></a></dt>
-<dd><p><code>function</code> A function that takes a <code>strDomain</code> argument
+<dd><p><code>function</code> A function that takes a <code>strDomainID</code> argument
 and optional <code>strSiteID</code> and <code>strSubjectID</code> and returns a data.frame. See
 <code><a href="sample_fnFetchData.html">sample_fnFetchData()</a></code> for an example. The returned data.frame contains
 information about the named domain. If the function throws an error, the
@@ -353,9 +355,13 @@ color.</p></dd>
 (usually a div).</p></dd>
 
 
-<dt id="arg-strdomain">strDomain<a class="anchor" aria-label="anchor" href="#arg-strdomain"></a></dt>
-<dd><p><code>character</code> The domain data.frame to load. Supported domains
-are shown in the default value.</p></dd>
+<dt id="arg-strdomainid">strDomainID<a class="anchor" aria-label="anchor" href="#arg-strdomainid"></a></dt>
+<dd><p><code>character</code> The domain data.frame to load.</p></dd>
+
+
+<dt id="arg-strdomainlabel">strDomainLabel<a class="anchor" aria-label="anchor" href="#arg-strdomainlabel"></a></dt>
+<dd><p><code>character</code> The domain name to display. For example,
+for ID <code>"AE"</code>, the label is <code>"Adverse Events"</code>.</p></dd>
 
 
 <dt id="arg-strempty">strEmpty<a class="anchor" aria-label="anchor" href="#arg-strempty"></a></dt>

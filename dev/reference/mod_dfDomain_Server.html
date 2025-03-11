@@ -45,7 +45,7 @@
     <h2 id="ref-usage">Usage<a class="anchor" aria-label="anchor" href="#ref-usage"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">mod_dfDomain_Server</span><span class="op">(</span></span>
 <span>  <span class="va">id</span>,</span>
-<span>  <span class="va">strDomain</span>,</span>
+<span>  <span class="va">strDomainID</span>,</span>
 <span>  <span class="va">fnFetchData</span>,</span>
 <span>  <span class="va">rctv_strSiteID</span>,</span>
 <span>  <span class="va">rctv_strSubjectID</span></span>
@@ -60,13 +60,12 @@
 <dd><p><code>character</code> The id for this element.</p></dd>
 
 
-<dt id="arg-strdomain">strDomain<a class="anchor" aria-label="anchor" href="#arg-strdomain"></a></dt>
-<dd><p><code>character</code> The domain data.frame to load. Supported domains
-are shown in the default value.</p></dd>
+<dt id="arg-strdomainid">strDomainID<a class="anchor" aria-label="anchor" href="#arg-strdomainid"></a></dt>
+<dd><p><code>character</code> The domain data.frame to load.</p></dd>
 
 
 <dt id="arg-fnfetchdata">fnFetchData<a class="anchor" aria-label="anchor" href="#arg-fnfetchdata"></a></dt>
-<dd><p><code>function</code> A function that takes a <code>strDomain</code> argument
+<dd><p><code>function</code> A function that takes a <code>strDomainID</code> argument
 and optional <code>strSiteID</code> and <code>strSubjectID</code> and returns a data.frame. See
 <code><a href="sample_fnFetchData.html">sample_fnFetchData()</a></code> for an example. The returned data.frame contains
 information about the named domain. If the function throws an error, the

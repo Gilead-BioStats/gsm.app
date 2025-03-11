@@ -43,7 +43,7 @@
 
     <div class="section level2">
     <h2 id="ref-usage">Usage<a class="anchor" aria-label="anchor" href="#ref-usage"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">mod_DomainSummary_Server</span><span class="op">(</span><span class="va">id</span>, <span class="va">rctv_strDomainID</span>, <span class="va">l_rctvDomains</span><span class="op">)</span></span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">mod_DomainSummary_Server</span><span class="op">(</span><span class="va">id</span>, <span class="va">rctv_strDomainID</span>, <span class="va">l_rctvDomains</span>, <span class="va">chrDomains</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div class="section level2">
@@ -62,6 +62,13 @@ that returns the selected <code>DomainID</code> (such as "AE" or "SUBJ").</p></d
 <dt id="arg-l-rctvdomains">l_rctvDomains<a class="anchor" aria-label="anchor" href="#arg-l-rctvdomains"></a></dt>
 <dd><p><code>list</code> A named list of <code><a href="https://rdrr.io/pkg/shiny/man/reactive.html" class="external-link">shiny::reactive()</a></code> objects, each
 of which returns a domain dataframe.</p></dd>
+
+
+<dt id="arg-chrdomains">chrDomains<a class="anchor" aria-label="anchor" href="#arg-chrdomains"></a></dt>
+<dd><p><code>character</code> A (named) vector of domains to include in the
+app. The values of the vector will be used as labels, and the names will be
+used as IDs. The IDs will be passed to <code>fnFetchData()</code> to fetch data about
+that domain.</p></dd>
 
 </dl></div>
 

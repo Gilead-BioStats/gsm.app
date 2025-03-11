@@ -119,15 +119,10 @@ one or more R scripts in the plugin folder.</p>
 <h3 id="domains">domains<a class="anchor" aria-label="anchor" href="#domains"></a>
 </h3>
 <p>The <code>domains</code> section specifies the data domains that are
-used by the plugin. These domains will be loaded by the app, in addition
-to any domains specified in the <code>chrDomains</code> argument to
-<code><a href="../reference/run_gsm_app.html">run_gsm_app()</a></code>. The domains can be any of the following: -
-<code>AE</code> (Adverse Events) - <code>DATACHG</code> (Data Changes) -
-<code>DATAENT</code> (Data Entry) - <code>ENROLL</code> (Enrollment) -
-<code>LB</code> (Lab) - <code>PD</code> (Protocol Deviations) -
-<code>QUERY</code> (Queries) - <code>STUDCOMP</code> (Study Completion)
-- <code>SUBJ</code> (Subject Metadata) - <code>SDRGCOMP</code>
-(Treatment Completion)</p>
+used by the plugin. These domains must be loaded into the app via the
+<code>chrDomains</code> argument to <code><a href="../reference/run_gsm_app.html">run_gsm_app()</a></code>. The
+domains specified here should be the ID (the name of named arguments to
+<code>chrDomains</code>), not the label</p>
 </div>
 <div class="section level3">
 <h3 id="required_inputs">required_inputs<a class="anchor" aria-label="anchor" href="#required_inputs"></a>
@@ -165,7 +160,7 @@ connected to the “Participant” input)</li>
 <code>rctv_strDomainID</code> (a <code><a href="https://rdrr.io/pkg/shiny/man/reactiveVal.html" class="external-link">shiny::reactiveVal()</a></code>
 connected to the “Domain” input)</li>
 <li>
-<code>rctv_dfDOMAIN</code> (eg rctv_dfAE, one for each
+<code>rctv_dfDOMAIN</code> (eg <code>rctv_dfAE</code>, one for each
 <code>domain</code> as defined above)</li>
 </ul>
 <p>For the input-connected <code>reactiveVal()</code>s, setting a value

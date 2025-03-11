@@ -50,8 +50,10 @@
 <span>  <span class="va">dfMetrics</span>,</span>
 <span>  <span class="va">dfResults</span>,</span>
 <span>  <span class="va">fnFetchData</span>,</span>
-<span>  chrDomains <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"AE"</span>, <span class="st">"ENROLL"</span>, <span class="st">"LB"</span>, <span class="st">"PD"</span>, <span class="st">"SDRGCOMP"</span>, <span class="st">"STUDCOMP"</span>, <span class="st">"SUBJ"</span>, <span class="st">"DATACHG"</span>,</span>
-<span>    <span class="st">"DATAENT"</span>, <span class="st">"QUERY"</span><span class="op">)</span>,</span>
+<span>  chrDomains <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span>AE <span class="op">=</span> <span class="st">"Adverse Events"</span>, DATACHG <span class="op">=</span> <span class="st">"Data Changes"</span>, DATAENT <span class="op">=</span> <span class="st">"Data Entry"</span>,</span>
+<span>    ENROLL <span class="op">=</span> <span class="st">"Enrollment"</span>, LB <span class="op">=</span> <span class="st">"Lab"</span>, PD <span class="op">=</span> <span class="st">"Protocol Deviations"</span>, QUERY <span class="op">=</span> <span class="st">"Queries"</span>,</span>
+<span>    STUDCOMP <span class="op">=</span> <span class="st">"Study Completion"</span>, SUBJ <span class="op">=</span> <span class="st">"Subject Metadata"</span>, SDRGCOMP <span class="op">=</span></span>
+<span>    <span class="st">"Treatment Completion"</span><span class="op">)</span>,</span>
 <span>  lPlugins <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  fnServer <span class="op">=</span> <span class="cn">NULL</span></span>
 <span><span class="op">)</span></span></code></pre></div>
@@ -86,7 +88,7 @@ This will be filtered to cases where <code>GroupLevel == "Site"</code>.</p></dd>
 
 
 <dt id="arg-fnfetchdata">fnFetchData<a class="anchor" aria-label="anchor" href="#arg-fnfetchdata"></a></dt>
-<dd><p><code>function</code> A function that takes a <code>strDomain</code> argument
+<dd><p><code>function</code> A function that takes a <code>strDomainID</code> argument
 and optional <code>strSiteID</code> and <code>strSubjectID</code> and returns a data.frame. See
 <code><a href="sample_fnFetchData.html">sample_fnFetchData()</a></code> for an example. The returned data.frame contains
 information about the named domain. If the function throws an error, the
@@ -95,8 +97,10 @@ through to the user.</p></dd>
 
 
 <dt id="arg-chrdomains">chrDomains<a class="anchor" aria-label="anchor" href="#arg-chrdomains"></a></dt>
-<dd><p><code>character</code> A vector of names of domain data.frames to show
-in the app. Supported domains are shown in the default value.</p></dd>
+<dd><p><code>character</code> A (named) vector of domains to include in the
+app. The values of the vector will be used as labels, and the names will be
+used as IDs. The IDs will be passed to <code>fnFetchData()</code> to fetch data about
+that domain.</p></dd>
 
 
 <dt id="arg-lplugins">lPlugins<a class="anchor" aria-label="anchor" href="#arg-lplugins"></a></dt>

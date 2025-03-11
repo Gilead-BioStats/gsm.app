@@ -62,8 +62,10 @@
 
 
 <dl><dt id="arg-chrdomains">chrDomains<a class="anchor" aria-label="anchor" href="#arg-chrdomains"></a></dt>
-<dd><p><code>character</code> A vector of names of domain data.frames to show
-in the app. Supported domains are shown in the default value.</p></dd>
+<dd><p><code>character</code> A (named) vector of domains to include in the
+app. The values of the vector will be used as labels, and the names will be
+used as IDs. The IDs will be passed to <code>fnFetchData()</code> to fetch data about
+that domain.</p></dd>
 
 
 <dt id="arg-dfanalyticsinput">dfAnalyticsInput<a class="anchor" aria-label="anchor" href="#arg-dfanalyticsinput"></a></dt>
