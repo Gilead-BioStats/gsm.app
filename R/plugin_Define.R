@@ -1,4 +1,4 @@
-#' Title
+#' Define a plugin
 #'
 #' @inheritParams shared-params
 #' @inheritParams rlang::args_dots_empty
@@ -45,11 +45,6 @@ plugin_Define <- function(
 ) {
   rlang::check_dots_empty()
   CheckIsString(strName)
-  CheckIsIn(
-    chrDomains,
-    names(chrDomainLabels),
-    envCall = envCall
-  )
   if (length(chrRequiredInputs)) {
     CheckIsIn(
       tolower(chrRequiredInputs),

@@ -8,7 +8,7 @@ HTMLWidgets.widget({
         input.lMetric.clickCallback = widgetPlotClickFactory(el);
 
         // Generate bar chart.
-        const instance = rbmViz.default.barChart(
+        const instance = gsmViz.default.barChart(
           el,
           input.dfResults,
           // specify outcome to be plotted on the y-axis

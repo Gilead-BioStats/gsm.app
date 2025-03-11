@@ -15,8 +15,8 @@ A tibble with 382 rows and
 }
 }
 \source{
-Generated from data in the \code{clindata} package, using the \code{gsm}
-package.
+Generated from data in the \code{clindata} package, using the
+\code{gsm.mapping} package.
 }
 \usage{
 sample_dfGroups

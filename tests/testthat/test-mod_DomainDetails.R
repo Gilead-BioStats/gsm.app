@@ -10,12 +10,14 @@ test_that("mod_DomainDetails_UI() returns the expected UI", {
 test_that("mod_DomainDetails_Server sets domain", {
   # There really isn't much to test in this server until/unless we use the
   # returned data.
+
   testServer(
     mod_DomainDetails_Server,
     args = list(
       id = "domainDetailsTest",
       l_rctvDomains = list(),
-      rctv_strDomainID = reactiveVal("z")
+      rctv_strDomainID = reactiveVal("z"),
+      chrDomains = c(a = "a", b = "b", z = "z")
     ),
     {
       # Initialize input.

@@ -7,10 +7,10 @@
 # or testing the package, so it is not listed in the DESCRIPTION. Likewise for
 # gsm.mapping and gsm.reporting.
 # pak::pak("Gilead-BioStats/clindata")
-# pak::pak("Gilead-BioStats/gsm.mapping")
-# pak::pak("Gilead-BioStats/gsm.reporting")
+# pak::pak("Gilead-BioStats/gsm.mapping@dev")
+# pak::pak("Gilead-BioStats/gsm.reporting@dev")
 
-library(gsm)
+library(gsm.core)
 library(gsm.mapping)
 library(gsm.kri)
 library(gsm.reporting)
@@ -37,7 +37,7 @@ lSource <- list(
 
 # Create Mapped Data ----
 
-lMappings <- gsm::MakeWorkflowList(
+lMappings <- gsm.core::MakeWorkflowList(
   strPath = system.file("workflow/1_mappings", package = "gsm.mapping"),
   strPackage = NULL
 )
@@ -48,20 +48,20 @@ lRaw <- gsm.mapping::Ingest(lSource, raw_spec)
 lRaw <- lRaw %>%
   purrr::map(dplyr::as_tibble)
 
-lMapped <- gsm::RunWorkflows(lMappings, lRaw)
+lMapped <- gsm.core::RunWorkflows(lMappings, lRaw)
 lMapped <- lMapped %>%
   purrr::map(dplyr::as_tibble)
 
 # Create Analysis Data - Generate KRIs ----
 
-lWorkflows <- gsm::MakeWorkflowList(
+lWorkflows <- gsm.core::MakeWorkflowList(
   "^kri",
   strPath = "workflow/2_metrics",
   strPackage = "gsm.kri"
 )
 ## Don't use kri0012 yet.
 lWorkflows$kri0012 <- NULL
-lAnalysis <- gsm::RunWorkflows(lWorkflows, lMapped)
+lAnalysis <- gsm.core::RunWorkflows(lWorkflows, lMapped)
 
 # Choose a subset ----
 
@@ -150,18 +150,18 @@ sample_lMapped <- purrr::map(lMapped, function(thisDomain) {
 
 # Ideally this should all be defined in gsm.mapping.
 
-chrDomainLabels <- c(
-  AE = "Adverse Events",
-  DATACHG = "Data Changes",
-  DATAENT = "Data Entry",
-  ENROLL = "Enrollment",
-  LB = "Lab",
-  PD = "Protocol Deviations",
-  QUERY = "Queries",
-  STUDCOMP = "Study Completion",
-  SUBJ = "Subject Metadata",
-  SDRGCOMP = "Treatment Completion"
-)
+# chrDomainLabels <- c(
+#   AE = "Adverse Events",
+#   DATACHG = "Data Changes",
+#   DATAENT = "Data Entry",
+#   ENROLL = "Enrollment",
+#   LB = "Lab",
+#   PD = "Protocol Deviations",
+#   QUERY = "Queries",
+#   STUDCOMP = "Study Completion",
+#   SUBJ = "Subject Metadata",
+#   SDRGCOMP = "Treatment Completion"
+# )
 
 chrFieldNames <- c(
   aeen_dt = "End Date",
@@ -206,7 +206,7 @@ chrFieldNames <- c(
 # directly.
 usethis::use_data(
   sample_lMapped,
-  chrDomainLabels,
+  # chrDomainLabels,
   chrFieldNames,
   overwrite = TRUE,
   internal = TRUE,

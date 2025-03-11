@@ -104,7 +104,7 @@ renderWidgetPlot <- function(
 #' @keywords internal
 gsmDependencies <- function(strWidgetName, excludes = character()) {
   gsm_dependencies <- yaml::read_yaml(
-    system.file("htmlwidgets", paste0(strWidgetName, ".yaml"), package = "gsm")
+    system.file("htmlwidgets", paste0(strWidgetName, ".yaml"), package = "gsm.kri")
   )$dependencies
   dependency_is_included <- function(dependency) {
     !(dependency$name %in% excludes)

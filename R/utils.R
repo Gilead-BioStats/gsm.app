@@ -84,7 +84,7 @@ AsFunction.default <- function(strFunction) {
 
 #' @export
 AsFunction.character <- function(strFunction) {
-  fnFunction <- gsm::GetStrFunctionIfNamespaced(strFunction)
+  fnFunction <- gsm.core::GetStrFunctionIfNamespaced(strFunction)
   # Extra step to work around things that are still character.
   rlang::as_function(fnFunction)
 }

@@ -1,8 +1,16 @@
 test_that("out_MainTabs generates the expected UI", {
   dfResults <- head(sample_dfResults[sample_dfResults$GroupLevel == "Site", ])
   chrDomains <- c(
-    "AE", "ENROLL", "LB", "PD", "SDRGCOMP", "STUDCOMP",
-    "SUBJ", "DATACHG", "DATAENT", "QUERY"
+    AE = "Adverse Events",
+    ENROLL = "Enrollment",
+    LB = "Lab",
+    PD = "Protocol Deviations",
+    SDRGCOMP = "Treatment Completion",
+    STUDCOMP = "Study Completion",
+    SUBJ = "Subject Metadata",
+    DATACHG = "Data Changes",
+    DATAENT = "Data Entry",
+    QUERY = "Queries"
   )
   test_result <- gsmApp_UI(
     chrDomains,

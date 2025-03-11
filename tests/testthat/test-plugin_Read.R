@@ -94,11 +94,11 @@ test_that("plugin_GetDependencySources gets plugin dependency sources", {
   test_result <- plugin_GetDependencySources(
     list(packages = list(
       list(name = "ggplot2"),
-      list(name = "gsm", remote = "Gilead-BioStats/gsm@dev")
+      list(name = "gsm.core", remote = "Gilead-BioStats/gsm.core@dev")
     ))
   )
   expect_identical(
     test_result,
-    c("ggplot2", "Gilead-BioStats/gsm@dev")
+    c("ggplot2", "Gilead-BioStats/gsm.core@dev")
   )
 })

@@ -33,14 +33,6 @@ test_that("Built-in dfAnalyticsInput passes validation", {
   expect_s3_class(test_result, "tbl_df")
 })
 
-test_that("validate_chrDomains fails gracefully", {
-  expect_error(
-    validate_chrDomains("NewDomain"),
-    "NewDomain",
-    class = "gsm.app-error-invalid_input"
-  )
-})
-
 test_that("validate_chrDomains checks for domains used in plugins", {
   lPlugins <- list(
     p1 = list(
@@ -61,6 +53,6 @@ test_that("validate_chrDomains checks for domains used in plugins", {
 test_that("validate_chrDomains returns valid domains", {
   expect_identical(
     validate_chrDomains("subj"),
-    "SUBJ"
+    c(SUBJ = "subj")
   )
 })

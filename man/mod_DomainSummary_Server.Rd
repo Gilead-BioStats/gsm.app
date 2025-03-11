@@ -4,7 +4,7 @@
 \alias{mod_DomainSummary_Server}
 \title{Dynamically Generate the Domain Summary}
 \usage{
-mod_DomainSummary_Server(id, rctv_strDomainID, l_rctvDomains)
+mod_DomainSummary_Server(id, rctv_strDomainID, l_rctvDomains, chrDomains)
 }
 \arguments{
 \item{id}{\code{character} The id for this element.}
@@ -14,6 +14,11 @@ that returns the selected \code{DomainID} (such as "AE" or "SUBJ").}
 
 \item{l_rctvDomains}{\code{list} A named list of \code{\link[shiny:reactive]{shiny::reactive()}} objects, each
 of which returns a domain dataframe.}
+
+\item{chrDomains}{\code{character} A (named) vector of domains to include in the
+app. The values of the vector will be used as labels, and the names will be
+used as IDs. The IDs will be passed to \code{fnFetchData()} to fetch data about
+that domain.}
 }
 \description{
 Dynamically Generate the Domain Summary

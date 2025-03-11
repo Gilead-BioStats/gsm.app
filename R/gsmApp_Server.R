@@ -11,8 +11,16 @@ gsmApp_Server <- function(
   dfResults,
   fnFetchData,
   chrDomains = c(
-    "AE", "ENROLL", "LB", "PD", "SDRGCOMP", "STUDCOMP",
-    "SUBJ", "DATACHG", "DATAENT", "QUERY"
+    AE = "Adverse Events",
+    DATACHG = "Data Changes",
+    DATAENT = "Data Entry",
+    ENROLL = "Enrollment",
+    LB = "Lab",
+    PD = "Protocol Deviations",
+    QUERY = "Queries",
+    STUDCOMP = "Study Completion",
+    SUBJ = "Subject Metadata",
+    SDRGCOMP = "Treatment Completion"
   ),
   lPlugins = NULL,
   fnServer = NULL
@@ -179,7 +187,8 @@ gsmApp_Server <- function(
     mod_DomainDetails_Server(
       "domain_details",
       l_rctvDomains = l_rctvDomains,
-      rctv_strDomainID = rctv_strDomainID
+      rctv_strDomainID = rctv_strDomainID,
+      chrDomains = chrDomains
     )
 
     ## Plugins ----

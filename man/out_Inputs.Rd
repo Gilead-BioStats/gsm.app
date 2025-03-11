@@ -7,8 +7,10 @@
 out_Inputs(chrDomains, chrMetrics, chrSites, intNParticipants)
 }
 \arguments{
-\item{chrDomains}{\code{character} A vector of names of domain data.frames to show
-in the app. Supported domains are shown in the default value.}
+\item{chrDomains}{\code{character} A (named) vector of domains to include in the
+app. The values of the vector will be used as labels, and the names will be
+used as IDs. The IDs will be passed to \code{fnFetchData()} to fetch data about
+that domain.}
 
 \item{chrMetrics}{\code{character} A named vector of MetricIDs, where the names
 are the full Metric.}

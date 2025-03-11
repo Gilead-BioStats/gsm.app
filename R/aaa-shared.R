@@ -8,8 +8,10 @@
 #' @param chrAllowedFields `character` A vector of names of allowed fields in an
 #'   object.
 #' @param chrAllowedValues `character` A vector of allowed values for a vector.
-#' @param chrDomains `character` A vector of names of domain data.frames to show
-#'   in the app. Supported domains are shown in the default value.
+#' @param chrDomains `character` A (named) vector of domains to include in the
+#'   app. The values of the vector will be used as labels, and the names will be
+#'   used as IDs. The IDs will be passed to `fnFetchData()` to fetch data about
+#'   that domain.
 #' @param chrFromTabs `character` A vector of tab names. Syncing is only
 #'   triggered if the user is currently on one of these tabs.
 #' @param chrLinkIDs `character` Module ids for multiple modules.
@@ -45,7 +47,7 @@
 #' @param envEvaluate `environment` The environment in which any variables used
 #'   in the message or widget are defined. You almost definitely want to leave
 #'   this as the default value.
-#' @param fnFetchData `function` A function that takes a `strDomain` argument
+#' @param fnFetchData `function` A function that takes a `strDomainID` argument
 #'   and optional `strSiteID` and `strSubjectID` and returns a data.frame. See
 #'   [sample_fnFetchData()] for an example. The returned data.frame contains
 #'   information about the named domain. If the function throws an error, the
@@ -126,8 +128,9 @@
 #'   color.
 #' @param strContainerID `character` The (namespaced) ID of the target container
 #'   (usually a div).
-#' @param strDomain `character` The domain data.frame to load. Supported domains
-#'   are shown in the default value.
+#' @param strDomainID `character` The domain data.frame to load.
+#' @param strDomainLabel `character` The domain name to display. For example,
+#'   for ID `"AE"`, the label is `"Adverse Events"`.
 #' @param strEmpty `character` The value to return when everything is
 #'   deselected.
 #' @param strFavicon `character` The name of an icon to use in the browser tab

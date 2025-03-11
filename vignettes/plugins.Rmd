@@ -58,17 +58,7 @@ The `shiny` section specifies the names of the plugin module's UI and server fun
 
 ## domains
 
-The `domains` section specifies the data domains that are used by the plugin. These domains will be loaded by the app, in addition to any domains specified in the `chrDomains` argument to `run_gsm_app()`. The domains can be any of the following:
-- `AE` (Adverse Events)
-- `DATACHG` (Data Changes)
-- `DATAENT` (Data Entry)
-- `ENROLL` (Enrollment)
-- `LB` (Lab)
-- `PD` (Protocol Deviations)
-- `QUERY` (Queries)
-- `STUDCOMP` (Study Completion)
-- `SUBJ` (Subject Metadata)
-- `SDRGCOMP` (Treatment Completion)
+The `domains` section specifies the data domains that are used by the plugin. These domains must be loaded into the app via the `chrDomains` argument to `run_gsm_app()`. The domains specified here should be the ID (the name of named arguments to `chrDomains`), not the label
 
 ## required_inputs
 
@@ -86,7 +76,7 @@ If plugins have any of these arguments, the corresponding reactive will be passe
 - `rctv_strSiteID` (a `shiny::reactiveVal()` connected to the "Site" input)
 - `rctv_strSubjectID` (a `shiny::reactiveVal()` connected to the "Participant" input)
 - `rctv_strDomainID` (a `shiny::reactiveVal()` connected to the "Domain" input)
-- `rctv_dfDOMAIN` (eg rctv_dfAE, one for each `domain` as defined above)
+- `rctv_dfDOMAIN` (eg `rctv_dfAE`, one for each `domain` as defined above)
 
 For the input-connected `reactiveVal()`s, setting a value will pass the value back up to the main app. For example, to set the `Participant` drop-down menu to subject "0008", call `rctv_strSubjectID("0008")` inside your plugin.
 

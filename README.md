@@ -20,7 +20,7 @@
 <!-- badges: end -->
 
 gsm.app produces Shiny applications with drill-down functionality for
-[{gsm}](https://github.com/Gilead-BioStats/gsm) Assessments.
+[`gsm`](https://github.com/Gilead-BioStats/gsm.core) Assessments.
 
 <div class="pkgdown-release">
 

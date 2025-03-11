@@ -8,7 +8,7 @@ HTMLWidgets.widget({
         input.lMetric.clickCallback = widgetPlotClickFactory(el);
 
         // Generate time series.
-        const instance = rbmViz.default.timeSeries(
+        const instance = gsmViz.default.timeSeries(
           el,
           input.dfResults,
           // specify outcome to be plotted on the y-axis

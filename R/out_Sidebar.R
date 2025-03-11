@@ -32,7 +32,6 @@ out_Sidebar <- function(
 #' @returns A [bslib::card()] with app inputs.
 #' @keywords internal
 out_Inputs <- function(chrDomains, chrMetrics, chrSites, intNParticipants) {
-  chrDomainLabels_subset <- chrDomainLabels[chrDomains]
   bslib::card(
     class = "overflow-on",
     bslib::card_body(
@@ -61,10 +60,7 @@ out_Inputs <- function(chrDomains, chrMetrics, chrSites, intNParticipants) {
         strong("Domain"),
         choices = c(
           None = "None",
-          rlang::set_names(
-            names(chrDomainLabels_subset),
-            chrDomainLabels_subset
-          )
+          rlang::set_names(names(chrDomains), chrDomains)
         ),
         width = "100%"
       ),

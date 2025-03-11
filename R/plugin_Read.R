@@ -111,12 +111,6 @@ plugin_ValidateDefinition <- function(
     "Plugin definition shiny sections",
     envCall
   )
-  CheckIsIn(
-    lPluginDefinition$domains,
-    names(chrDomainLabels),
-    "Domains",
-    envCall
-  )
   if (length(lPluginDefinition$packages)) {
     for (pkg in lPluginDefinition$packages) {
       CheckHasAllFields(
@@ -174,7 +168,7 @@ plugin_LoadDependencies <- function(lPluginDefinition) {
 #' plugin_GetDependencySources(
 #'   list(packages = list(
 #'     list(name = "ggplot2"),
-#'     list(name = "gsm", remote = "Gilead-BioStats/gsm")
+#'     list(name = "gsm.core", remote = "Gilead-BioStats/gsm.core")
 #'   ))
 #' )
 plugin_GetDependencySources <- function(lPluginDefinition) {

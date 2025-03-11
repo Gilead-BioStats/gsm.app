@@ -9,8 +9,10 @@ object.}
 
 \item{chrAllowedValues}{\code{character} A vector of allowed values for a vector.}
 
-\item{chrDomains}{\code{character} A vector of names of domain data.frames to show
-in the app. Supported domains are shown in the default value.}
+\item{chrDomains}{\code{character} A (named) vector of domains to include in the
+app. The values of the vector will be used as labels, and the names will be
+used as IDs. The IDs will be passed to \code{fnFetchData()} to fetch data about
+that domain.}
 
 \item{chrFromTabs}{\code{character} A vector of tab names. Syncing is only
 triggered if the user is currently on one of these tabs.}
@@ -66,7 +68,7 @@ also has an \code{envCall} argument.}
 in the message or widget are defined. You almost definitely want to leave
 this as the default value.}
 
-\item{fnFetchData}{\code{function} A function that takes a \code{strDomain} argument
+\item{fnFetchData}{\code{function} A function that takes a \code{strDomainID} argument
 and optional \code{strSiteID} and \code{strSubjectID} and returns a data.frame. See
 \code{\link[=sample_fnFetchData]{sample_fnFetchData()}} for an example. The returned data.frame contains
 information about the named domain. If the function throws an error, the
@@ -184,8 +186,10 @@ color.}
 \item{strContainerID}{\code{character} The (namespaced) ID of the target container
 (usually a div).}
 
-\item{strDomain}{\code{character} The domain data.frame to load. Supported domains
-are shown in the default value.}
+\item{strDomainID}{\code{character} The domain data.frame to load.}
+
+\item{strDomainLabel}{\code{character} The domain name to display. For example,
+for ID \code{"AE"}, the label is \code{"Adverse Events"}.}
 
 \item{strEmpty}{\code{character} The value to return when everything is
 deselected.}

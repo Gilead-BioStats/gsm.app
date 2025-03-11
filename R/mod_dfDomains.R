@@ -11,12 +11,13 @@ mod_dfDomains_Server <- function(
   rctv_strSubjectID
 ) {
   moduleServer(id, function(input, output, session) {
-    l_rctvDomains <- purrr::map(chrDomains, function(this_domain) {
+    chrDomainIDs <- names(chrDomains)
+    l_rctvDomains <- purrr::map(chrDomainIDs, function(this_domain) {
       mod_dfDomain_Server(
         this_domain, this_domain, fnFetchData, rctv_strSiteID, rctv_strSubjectID
       )
     })
-    names(l_rctvDomains) <- chrDomains
+    names(l_rctvDomains) <- chrDomainIDs
     return(l_rctvDomains)
   })
 }
@@ -30,7 +31,7 @@ mod_dfDomains_Server <- function(
 #' @keywords internal
 mod_dfDomain_Server <- function(
   id,
-  strDomain,
+  strDomainID,
   fnFetchData,
   rctv_strSiteID,
   rctv_strSubjectID
@@ -39,12 +40,12 @@ mod_dfDomain_Server <- function(
   # certainly the slowest part of the app.
   reactive({
     withProgress(
-      message = glue::glue("Loading {strDomain} data"),
+      message = glue::glue("Loading {strDomainID} data"),
       {
         tryCatch(
           {
             fnFetchData(
-              strDomain,
+              strDomainID,
               strSiteID = NullifyEmpty(rctv_strSiteID()),
               strSubjectID = NullifyEmpty(rctv_strSubjectID())
             )
@@ -53,9 +54,9 @@ mod_dfDomain_Server <- function(
             srvr_ShowConditionMessage(
               cnd,
               chrPreMessage = glue::glue(
-                "Could not fetch data for the {strDomain} domain."
+                "Could not fetch data for the {strDomainID} domain."
               ),
-              strTitle = glue::glue("Error loading {strDomain} data")
+              strTitle = glue::glue("Error loading {strDomainID} data")
             )
           }
         )
@@ -63,7 +64,7 @@ mod_dfDomain_Server <- function(
     )
   }) %>%
     bindCache(
-      strDomain,
+      strDomainID,
       rctv_strSiteID(),
       rctv_strSubjectID(),
       cache = "session"

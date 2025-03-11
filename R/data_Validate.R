@@ -1,45 +1,30 @@
 #' Confirm that an object is valid chrDomains
 #'
 #' @inheritParams shared-params
-#' @returns `chrDomains` in all caps, if valid.
+#' @returns `chrDomains` with names in all caps.
 #' @keywords internal
 validate_chrDomains <- function(
   chrDomains,
   lPlugins = NULL,
   envCall = rlang::caller_env()
 ) {
-  known_domains <- c(
-    "AE",
-    "ENROLL",
-    "LB",
-    "PD",
-    "SDRGCOMP",
-    "STUDCOMP",
-    "SUBJ",
-    "DATACHG",
-    "DATAENT",
-    "QUERY"
-  )
-  upper_chrDomains <- toupper(chrDomains)
-  unknown_domains <- setdiff(upper_chrDomains, known_domains)
-  if (length(unknown_domains)) {
-    unknown_domains_display <- chrDomains[
-      upper_chrDomains %in% unknown_domains
-    ]
-    gsmappAbort(
-      c(
-        "{.arg chrDomains} must only contain known domains.",
-        x = "Unknown domains: {.field {unknown_domains_display}}."
-      ),
-      strClass = "invalid_input",
-      envCall = envCall
+  # Fill in any missing names.
+  names(chrDomains) <- toupper(
+    dplyr::coalesce(
+      dplyr::na_if(rlang::names2(chrDomains), ""),
+      chrDomains
     )
-  }
+  )
+
   if (length(lPlugins)) {
     chrPluginDomains <- purrr::map(lPlugins, "domains") %>%
       unlist() %>%
       toupper()
-    missing_domains <- setdiff(chrPluginDomains, upper_chrDomains)
+    pluginDomainIsKnown <- chrPluginDomains %in% c(
+      names(chrDomains),
+      toupper(chrDomains)
+    )
+    missing_domains <- chrPluginDomains[!pluginDomainIsKnown]
     if (length(missing_domains)) {
       gsmappAbort(
         c(
@@ -52,7 +37,7 @@ validate_chrDomains <- function(
     }
   }
 
-  return(upper_chrDomains)
+  return(chrDomains)
 }
 
 ## df-specific Validation Functions ----

@@ -2,7 +2,7 @@
 % Please edit documentation in R/plugin_Define.R
 \name{plugin_Define}
 \alias{plugin_Define}
-\title{Title}
+\title{Define a plugin}
 \usage{
 plugin_Define(
   strName,
@@ -52,7 +52,7 @@ A \code{list} with elements \code{meta}, \code{shiny}, \code{domains}, and (opti
 \code{required_inputs}.
 }
 \description{
-Title
+Define a plugin
 }
 \examples{
 aePlugin <- plugin_Define(

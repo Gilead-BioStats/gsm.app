@@ -25,8 +25,16 @@ run_gsm_app <- function(
   dfResults,
   fnFetchData,
   chrDomains = c(
-    "AE", "ENROLL", "LB", "PD", "SDRGCOMP", "STUDCOMP",
-    "SUBJ", "DATACHG", "DATAENT", "QUERY"
+    AE = "Adverse Events",
+    DATACHG = "Data Changes",
+    DATAENT = "Data Entry",
+    ENROLL = "Enrollment",
+    LB = "Lab",
+    PD = "Protocol Deviations",
+    QUERY = "Queries",
+    STUDCOMP = "Study Completion",
+    SUBJ = "Subject Metadata",
+    SDRGCOMP = "Treatment Completion"
   ),
   lPlugins = NULL,
   strTitle = "GSM Deep Dive",
