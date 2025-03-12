@@ -23,7 +23,7 @@ mod_gtBidirectional_Server <- function(
     rctv_gtObject,
     rctv_strInput,
     strLabel,
-    strEmpty = "None"
+    strEmpty = "All"
 ) {
   moduleServer(id, function(input, output, session) {
     # The RV ensures that the selection gets updated when the table

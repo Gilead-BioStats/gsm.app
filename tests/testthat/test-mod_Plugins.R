@@ -112,7 +112,7 @@ test_that("mod_Plugins_Server outputs the expected result with required inputs",
       ),
       l_rctvDomains = list(),
       rctv_strMetricID = reactive(NULL),
-      rctv_strSiteID = reactiveVal("None"),
+      rctv_strSiteID = reactiveVal("All"),
       rctv_strSubjectID = reactiveVal("All"),
       rctv_strDomainID = reactiveVal("None")
     ),

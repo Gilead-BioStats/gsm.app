@@ -180,7 +180,6 @@ renderWidget_GroupOverview <- function(expr, env = parent.frame(), quoted = FALS
 htmlDependency_GroupOverview <- function() {
   tagList(
     htmlDependency_Stylesheet("groupOverview.css"),
-    htmlDependency_WidgetInputHelpers(),
     htmlDependency_GroupOverviewInput()
   )
 }

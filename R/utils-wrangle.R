@@ -42,7 +42,7 @@ FilterbyMetricID <- function(df, strMetricID) {
 #' @inherit FilterBy return
 #' @keywords internal
 FilterbyGroupID <- function(df, strGroupID) {
-  if (strGroupID == "None") {
+  if (strGroupID == "All") {
     return(df)
   }
   FilterBy(df, strGroupID)

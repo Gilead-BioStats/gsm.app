@@ -73,7 +73,7 @@ test_that("mod_BarChart_Server returns selected site", {
       rctv_lMetric = reactive(lMetric),
       dfGroups = dfGroups,
       rctv_dfBounds = reactive(dfBounds),
-      rctv_strSiteID = reactiveVal("None")
+      rctv_strSiteID = reactiveVal("All")
     ),
     {
       expect_null(input$plot)

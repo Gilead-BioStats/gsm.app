@@ -43,7 +43,11 @@ gsmApp_UI <- function(
     header = tagList(
       favawesome::fav(strFavicon, fill = strFaviconColor),
       htmlDependency_Stylesheet("defaultStyles.css"),
-      shinyjs::useShinyjs()
+      shinyjs::useShinyjs(),
+      out_NavbarExtras(
+        chrSites = sort(unique(dfGroups$GroupID[dfGroups$GroupLevel == "Site"])),
+        intNParticipants = intNParticipants
+      )
     )
   )
 }

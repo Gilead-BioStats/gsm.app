@@ -10,7 +10,7 @@ mod_gtBidirectional_Server(
   rctv_gtObject,
   rctv_strInput,
   strLabel,
-  strEmpty = "None"
+  strEmpty = "All"
 )
 }
 \arguments{

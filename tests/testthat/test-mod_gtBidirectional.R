@@ -23,7 +23,7 @@ test_that("mod_gtBidirectional_Server starts as expected and updates", {
       rctv_gtObject = rctv_gtObj,
       rctv_strInput = rct_strA,
       strLabel = "a",
-      strEmpty = "None"
+      strEmpty = "All"
     ),
     {
       test_result <- output$`table`
@@ -67,7 +67,7 @@ test_that("mod_gtBidirectional_Server returns selected thing", {
       rctv_gtObject = rctv_gtObj,
       rctv_strInput = rct_strA,
       strLabel = "a",
-      strEmpty = "None"
+      strEmpty = "All"
     ),
     {
       expect_null(input$`table`)
@@ -77,7 +77,7 @@ test_that("mod_gtBidirectional_Server returns selected thing", {
       session$setInputs(`table` = 3L)
       expect_equal(session$returned(), 6L)
       session$setInputs(`table` = 0L)
-      expect_equal(session$returned(), "None")
+      expect_equal(session$returned(), "All")
       session$setInputs(`table` = NULL)
       expect_null(session$returned())
     }

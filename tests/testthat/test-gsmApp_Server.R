@@ -14,7 +14,7 @@ test_that("gsmApp_Server initializes correctly", {
       session$setInputs(
         primary_nav_bar = "Study Overview",
         metric = "Analysis_kri0001",
-        site = "None",
+        site = "All",
         participant = "All"
       )
       expect_equal(input$metric, "Analysis_kri0001")
@@ -45,10 +45,10 @@ test_that("gsmApp_Server triggers reset", {
       session$setInputs(
         primary_nav_bar = "Study Overview",
         metric = "Analysis_kri0001",
-        site = "None",
+        site = "All",
         participant = "All"
       )
-      expect_equal(input$site, "None")
+      expect_equal(input$site, "All")
 
       # Change something from default.
       session$setInputs(site = "0X001")
@@ -97,7 +97,7 @@ test_that("gsmApp_Server sets participant drop-down properly", {
       session$setInputs(
         primary_nav_bar = "Study Overview",
         metric = "Analysis_kri0001",
-        site = "None",
+        site = "All",
         participant = "All"
       )
       expect_equal(input$participant, "All")

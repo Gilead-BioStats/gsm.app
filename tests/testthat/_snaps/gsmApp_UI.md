@@ -31,9 +31,69 @@
           </div>
         </nav>
         <div class="html-fill-item html-fill-container">
-          <div class="bslib-sidebar-layout bslib-mb-spacing html-fill-item" data-bslib-sidebar-border="false" data-bslib-sidebar-border-radius="false" data-bslib-sidebar-init="TRUE" data-collapsible-desktop="true" data-collapsible-mobile="false" data-open-desktop="open" data-open-mobile="always" data-require-bs-caller="layout_sidebar()" data-require-bs-version="5" style="--_sidebar-width:400px;">
+          <div class="bslib-sidebar-layout bslib-mb-spacing sidebar-collapsed html-fill-item" data-bslib-sidebar-border="false" data-bslib-sidebar-border-radius="false" data-bslib-sidebar-init="TRUE" data-collapsible-desktop="true" data-collapsible-mobile="true" data-open-desktop="closed" data-open-mobile="closed" data-require-bs-caller="layout_sidebar()" data-require-bs-version="5" style="--_sidebar-width:400px;">
             <div class="main">
               <main class="bslib-page-main bslib-gap-spacing html-fill-item html-fill-container">
+                <bslib-layout-columns class="bslib-grid grid bslib-mb-spacing html-fill-item navbar-extras" data-require-bs-caller="layout_columns()" data-require-bs-version="5" id="custom-navbar-right">
+                  <div class="bslib-grid-item bslib-gap-spacing html-fill-container">
+                    <div class="form-group shiny-input-container" style="width:100%;">
+                      <label class="control-label" id="site-label" for="site">
+                        <strong>Site</strong>
+                      </label>
+                      <div>
+                        <select id="site" class="shiny-input-select"><option value="All" selected>All</option>
+      <option value="0X001">0X001</option>
+      <option value="0X002">0X002</option>
+      <option value="0X003">0X003</option>
+      <option value="0X004">0X004</option>
+      <option value="0X005">0X005</option>
+      <option value="0X006">0X006</option>
+      <option value="0X007">0X007</option>
+      <option value="0X008">0X008</option>
+      <option value="0X010">0X010</option>
+      <option value="0X011">0X011</option>
+      <option value="0X012">0X012</option>
+      <option value="0X013">0X013</option>
+      <option value="0X014">0X014</option>
+      <option value="0X015">0X015</option>
+      <option value="0X016">0X016</option>
+      <option value="0X018">0X018</option>
+      <option value="0X021">0X021</option>
+      <option value="0X022">0X022</option>
+      <option value="0X024">0X024</option>
+      <option value="0X026">0X026</option>
+      <option value="0X027">0X027</option>
+      <option value="0X028">0X028</option>
+      <option value="0X029">0X029</option>
+      <option value="0X037">0X037</option>
+      <option value="0X041">0X041</option>
+      <option value="0X064">0X064</option>
+      <option value="0X079">0X079</option>
+      <option value="0X103">0X103</option>
+      <option value="0X109">0X109</option>
+      <option value="0X124">0X124</option>
+      <option value="0X155">0X155</option>
+      <option value="0X159">0X159</option>
+      <option value="0X170">0X170</option>
+      <option value="0X173">0X173</option>
+      <option value="0X180">0X180</option>
+      <option value="X185X">X185X</option></select>
+                        <script type="application/json" data-for="site" data-nonempty="">{"plugins":["selectize-plugin-a11y"]}</script>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="bslib-grid-item bslib-gap-spacing html-fill-container">
+                    <div class="form-group shiny-input-container" style="width:100%;">
+                      <label class="control-label" id="participant-label" for="participant">
+                        <strong>Participant</strong>
+                      </label>
+                      <div>
+                        <select class="shiny-input-select form-control" id="participant"></select>
+                        <script type="application/json" data-for="participant">{"maxOptions":10,"plugins":["selectize-plugin-a11y"]}</script>
+                      </div>
+                    </div>
+                  </div>
+                </bslib-layout-columns>
                 <div class="tab-content" data-tabsetid="XXXX">
                   <div class="tab-pane active" data-value="Study Overview" id="tab-XXXX-1">
                     <div class="tabbable">
@@ -1629,60 +1689,6 @@
                       </div>
                     </div>
                     <div class="form-group shiny-input-container" style="width:100%;">
-                      <label class="control-label" id="site-label" for="site">
-                        <strong>Site</strong>
-                      </label>
-                      <div>
-                        <select id="site" class="shiny-input-select"><option value="None" selected>None</option>
-      <option value="0X001">0X001</option>
-      <option value="0X002">0X002</option>
-      <option value="0X003">0X003</option>
-      <option value="0X004">0X004</option>
-      <option value="0X005">0X005</option>
-      <option value="0X006">0X006</option>
-      <option value="0X007">0X007</option>
-      <option value="0X008">0X008</option>
-      <option value="0X010">0X010</option>
-      <option value="0X011">0X011</option>
-      <option value="0X012">0X012</option>
-      <option value="0X013">0X013</option>
-      <option value="0X014">0X014</option>
-      <option value="0X015">0X015</option>
-      <option value="0X016">0X016</option>
-      <option value="0X018">0X018</option>
-      <option value="0X021">0X021</option>
-      <option value="0X022">0X022</option>
-      <option value="0X024">0X024</option>
-      <option value="0X026">0X026</option>
-      <option value="0X027">0X027</option>
-      <option value="0X028">0X028</option>
-      <option value="0X029">0X029</option>
-      <option value="0X037">0X037</option>
-      <option value="0X041">0X041</option>
-      <option value="0X064">0X064</option>
-      <option value="0X079">0X079</option>
-      <option value="0X103">0X103</option>
-      <option value="0X109">0X109</option>
-      <option value="0X124">0X124</option>
-      <option value="0X155">0X155</option>
-      <option value="0X159">0X159</option>
-      <option value="0X170">0X170</option>
-      <option value="0X173">0X173</option>
-      <option value="0X180">0X180</option>
-      <option value="X185X">X185X</option></select>
-                        <script type="application/json" data-for="site" data-nonempty="">{"plugins":["selectize-plugin-a11y"]}</script>
-                      </div>
-                    </div>
-                    <div class="form-group shiny-input-container" style="width:100%;">
-                      <label class="control-label" id="participant-label" for="participant">
-                        <strong>Participant</strong>
-                      </label>
-                      <div>
-                        <select class="shiny-input-select form-control" id="participant"></select>
-                        <script type="application/json" data-for="participant">{"maxOptions":10,"plugins":["selectize-plugin-a11y"]}</script>
-                      </div>
-                    </div>
-                    <div class="form-group shiny-input-container" style="width:100%;">
                       <label class="control-label" id="domain-label" for="domain">
                         <strong>Domain</strong>
                       </label>
@@ -1707,7 +1713,7 @@
                 </div>
               </div>
             </aside>
-            <button class="collapse-toggle" type="button" title="Toggle sidebar" aria-expanded="true" aria-controls="sidebar"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" class="bi bi-chevron-left collapse-icon" style="fill:currentColor;" aria-hidden="true" role="img" ><path fill-rule="evenodd" d="M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z"></path></svg></button>
+            <button class="collapse-toggle" type="button" title="Toggle sidebar" aria-expanded="false" aria-controls="sidebar"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" class="bi bi-chevron-left collapse-icon" style="fill:currentColor;" aria-hidden="true" role="img" ><path fill-rule="evenodd" d="M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z"></path></svg></button>
             <script data-bslib-sidebar-init>bslib.Sidebar.initCollapsibleAll()</script>
           </div>
         </div>
