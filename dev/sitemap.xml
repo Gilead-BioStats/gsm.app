@@ -47,6 +47,8 @@
 <url><loc>https://gilead-biostats.github.io/gsm.app/dev/reference/htmlDependency_DetectCardClicks.html</loc></url>
 <url><loc>https://gilead-biostats.github.io/gsm.app/dev/reference/htmlDependency_GroupOverview.html</loc></url>
 <url><loc>https://gilead-biostats.github.io/gsm.app/dev/reference/htmlDependency_GroupOverviewInput.html</loc></url>
+<url><loc>https://gilead-biostats.github.io/gsm.app/dev/reference/htmlDependency_NavbarExtras.html</loc></url>
+<url><loc>https://gilead-biostats.github.io/gsm.app/dev/reference/htmlDependency_NavbarExtrasPosition.html</loc></url>
 <url><loc>https://gilead-biostats.github.io/gsm.app/dev/reference/htmlDependency_ScatterPlotInput.html</loc></url>
 <url><loc>https://gilead-biostats.github.io/gsm.app/dev/reference/htmlDependency_Stylesheet.html</loc></url>
 <url><loc>https://gilead-biostats.github.io/gsm.app/dev/reference/htmlDependency_TimeSeriesInput.html</loc></url>
@@ -102,6 +104,7 @@
 <url><loc>https://gilead-biostats.github.io/gsm.app/dev/reference/out_MainTabs.html</loc></url>
 <url><loc>https://gilead-biostats.github.io/gsm.app/dev/reference/out_MetadataItem.html</loc></url>
 <url><loc>https://gilead-biostats.github.io/gsm.app/dev/reference/out_MetadataList.html</loc></url>
+<url><loc>https://gilead-biostats.github.io/gsm.app/dev/reference/out_NavbarExtras.html</loc></url>
 <url><loc>https://gilead-biostats.github.io/gsm.app/dev/reference/out_Placeholder.html</loc></url>
 <url><loc>https://gilead-biostats.github.io/gsm.app/dev/reference/out_Sidebar.html</loc></url>
 <url><loc>https://gilead-biostats.github.io/gsm.app/dev/reference/out_StudyInformation.html</loc></url>
