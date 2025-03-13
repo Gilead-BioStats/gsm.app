@@ -42,11 +42,11 @@ test_that("mod_ScatterPlotSet_Server sets selected group correctly", {
       dfGroups = sample_dfGroups,
       dfBounds = sample_dfBounds,
       rctv_strMetricID = reactiveVal("whatever"),
-      rctv_strSiteID = reactiveVal("None")
+      rctv_strSiteID = reactiveVal("All")
     ),
     {
       # Initialize the value first.
-      session$setInputs(`Analysis_kri0001-plot` = "None")
+      session$setInputs(`Analysis_kri0001-plot` = "All")
       session$setInputs(`Analysis_kri0001-plot` = "0X003")
       expect_equal(rctv_strSiteID(), "0X003")
     }
@@ -94,8 +94,8 @@ test_that("mod_ScatterPlotSet_Server selects plots based on outside selection", 
         rep("0X005", length(unique(sample_dfMetrics$MetricID)))
       )
 
-      # Update the simulated outside input to "None" (deselect).
-      rctv_strSiteID("None")
+      # Update the simulated outside input to "All" (deselect).
+      rctv_strSiteID("All")
       session$flushReact()
 
       # Confirm that the outputs update.

@@ -14,7 +14,6 @@ test_that("out_MainTabs generates the expected UI", {
   )
   test_result <- gsmApp_UI(
     chrDomains,
-    dfAnalyticsInput = head(sample_dfAnalyticsInput, 10),
     dfGroups = sample_dfGroups,
     dfMetrics = sample_dfMetrics,
     dfResults = dfResults

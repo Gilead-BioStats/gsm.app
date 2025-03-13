@@ -19,7 +19,7 @@ mod_BarChart_UI <- function(id, strPlotTitle = NULL) {
 #'
 #' @returns An [htmltools::tagList()] of `html_dependency` objects (see
 #'   [htmltools::htmlDependency()]), so that each will be attached to the Shiny
-#'   app exactly once, regardless how many times they are added.
+#'   app exactly once, regardless of how many times they are added.
 #' @keywords internal
 htmlDependency_BarChartInput <- function() {
   htmlDependency_WidgetPlotInput("Widget_BarChart")

@@ -41,7 +41,7 @@ mod_ScatterPlotSet_Server <- function(
         rctv_lMetric <- reactive({
           lMetric <- as.list(FilterbyMetricID(dfMetrics, strMetricID))
           strSiteID <- rctv_strSiteID()
-          if (strSiteID != "None") {
+          if (strSiteID != "All") {
             lMetric$selectedGroupIDs <- strSiteID
           }
           lMetric

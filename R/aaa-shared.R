@@ -62,8 +62,6 @@
 #'   function.
 #' @param id `character` The id for this element.
 #' @param intKRIColorCount `integer` A named vector of counts by color.
-#' @param intNParticipants `integer` The number of unique participants
-#'   (subjects) in the study.
 #' @param intRed `integer` The number of sites with at least one red flag.
 #' @param intAmber `integer` The number of sites with at least one amber flag.
 #' @param lMetric `list` Named list of data describing a single metric, as well

@@ -4,7 +4,7 @@
 \alias{out_Inputs}
 \title{Card with inputs}
 \usage{
-out_Inputs(chrDomains, chrMetrics, chrSites, intNParticipants)
+out_Inputs(chrDomains, chrMetrics)
 }
 \arguments{
 \item{chrDomains}{\code{character} A (named) vector of domains to include in the
@@ -14,11 +14,6 @@ that domain.}
 
 \item{chrMetrics}{\code{character} A named vector of MetricIDs, where the names
 are the full Metric.}
-
-\item{chrSites}{\code{character} A vector of sites available in the study.}
-
-\item{intNParticipants}{\code{integer} The number of unique participants
-(subjects) in the study.}
 }
 \value{
 A \code{\link[bslib:card]{bslib::card()}} with app inputs.

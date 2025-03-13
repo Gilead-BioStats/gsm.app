@@ -12,8 +12,7 @@ test_that("out_Sidebar generates the expected UI", {
       LB = "Lab",
       SUBJ = "Subject Metadata"
     ),
-    chrMetrics,
-    10L
+    chrMetrics
   )
   expect_s3_class(test_result, c("bslib_sidebar", "sidebar", "list"))
   expect_cleaned_html({

@@ -4,14 +4,7 @@
 \alias{out_Sidebar}
 \title{Study Information Sidebar}
 \usage{
-out_Sidebar(
-  dfGroups,
-  dfResults,
-  chrDomains,
-  chrMetrics,
-  intNParticipants,
-  tagListSidebar = NULL
-)
+out_Sidebar(dfGroups, dfResults, chrDomains, chrMetrics, tagListSidebar = NULL)
 }
 \arguments{
 \item{dfGroups}{\code{data.frame} Group-level metadata dictionary.}
@@ -26,9 +19,6 @@ that domain.}
 
 \item{chrMetrics}{\code{character} A named vector of MetricIDs, where the names
 are the full Metric.}
-
-\item{intNParticipants}{\code{integer} The number of unique participants
-(subjects) in the study.}
 
 \item{tagListSidebar}{\code{taglist} An optional \code{\link[htmltools:tagList]{htmltools::tagList()}} of
 additional elements to add to the top of the app sidebar.}

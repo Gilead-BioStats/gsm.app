@@ -89,9 +89,6 @@ function.}
 
 \item{intKRIColorCount}{\code{integer} A named vector of counts by color.}
 
-\item{intNParticipants}{\code{integer} The number of unique participants
-(subjects) in the study.}
-
 \item{intRed}{\code{integer} The number of sites with at least one red flag.}
 
 \item{intAmber}{\code{integer} The number of sites with at least one amber flag.}

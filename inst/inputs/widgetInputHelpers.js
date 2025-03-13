@@ -12,7 +12,7 @@ const getWidgetPlotValue = function(el) {
   }
   const selectedGroupIDs = instance.data.config.selectedGroupIDs;
   if (Array.isArray(selectedGroupIDs) && selectedGroupIDs.length === 0) {
-    return ['None']; // Explicit empty selection
+    return ['All']; // Explicit empty selection
   }
   return selectedGroupIDs;
 };

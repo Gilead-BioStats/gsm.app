@@ -1011,60 +1011,6 @@
             </div>
           </div>
           <div class="form-group shiny-input-container" style="width:100%;">
-            <label class="control-label" id="site-label" for="site">
-              <strong>Site</strong>
-            </label>
-            <div>
-              <select id="site" class="shiny-input-select"><option value="None" selected>None</option>
-      <option value="0X001">0X001</option>
-      <option value="0X002">0X002</option>
-      <option value="0X003">0X003</option>
-      <option value="0X004">0X004</option>
-      <option value="0X005">0X005</option>
-      <option value="0X006">0X006</option>
-      <option value="0X007">0X007</option>
-      <option value="0X008">0X008</option>
-      <option value="0X010">0X010</option>
-      <option value="0X011">0X011</option>
-      <option value="0X012">0X012</option>
-      <option value="0X013">0X013</option>
-      <option value="0X014">0X014</option>
-      <option value="0X015">0X015</option>
-      <option value="0X016">0X016</option>
-      <option value="0X018">0X018</option>
-      <option value="0X021">0X021</option>
-      <option value="0X022">0X022</option>
-      <option value="0X024">0X024</option>
-      <option value="0X026">0X026</option>
-      <option value="0X027">0X027</option>
-      <option value="0X028">0X028</option>
-      <option value="0X029">0X029</option>
-      <option value="0X037">0X037</option>
-      <option value="0X041">0X041</option>
-      <option value="0X064">0X064</option>
-      <option value="0X079">0X079</option>
-      <option value="0X103">0X103</option>
-      <option value="0X109">0X109</option>
-      <option value="0X124">0X124</option>
-      <option value="0X155">0X155</option>
-      <option value="0X159">0X159</option>
-      <option value="0X170">0X170</option>
-      <option value="0X173">0X173</option>
-      <option value="0X180">0X180</option>
-      <option value="X185X">X185X</option></select>
-              <script type="application/json" data-for="site" data-nonempty="">{"plugins":["selectize-plugin-a11y"]}</script>
-            </div>
-          </div>
-          <div class="form-group shiny-input-container" style="width:100%;">
-            <label class="control-label" id="participant-label" for="participant">
-              <strong>Participant</strong>
-            </label>
-            <div>
-              <select class="shiny-input-select form-control" id="participant"></select>
-              <script type="application/json" data-for="participant">{"maxOptions":10,"plugins":["selectize-plugin-a11y"]}</script>
-            </div>
-          </div>
-          <div class="form-group shiny-input-container" style="width:100%;">
             <label class="control-label" id="domain-label" for="domain">
               <strong>Domain</strong>
             </label>

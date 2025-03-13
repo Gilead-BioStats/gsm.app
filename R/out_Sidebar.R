@@ -9,7 +9,6 @@ out_Sidebar <- function(
   dfResults,
   chrDomains,
   chrMetrics,
-  intNParticipants,
   tagListSidebar = NULL
 ) {
   bslib::sidebar(
@@ -19,10 +18,9 @@ out_Sidebar <- function(
     out_StudyInformation(dfGroups, dfResults),
     out_Inputs(
       chrDomains = chrDomains,
-      chrMetrics = chrMetrics,
-      chrSites = sort(unique(dfGroups$GroupID[dfGroups$GroupLevel == "Site"])),
-      intNParticipants = intNParticipants
-    )
+      chrMetrics = chrMetrics
+    ),
+    open = FALSE
   )
 }
 
@@ -31,7 +29,7 @@ out_Sidebar <- function(
 #' @inheritParams shared-params
 #' @returns A [bslib::card()] with app inputs.
 #' @keywords internal
-out_Inputs <- function(chrDomains, chrMetrics, chrSites, intNParticipants) {
+out_Inputs <- function(chrDomains, chrMetrics) {
   bslib::card(
     class = "overflow-on",
     bslib::card_body(
@@ -40,19 +38,6 @@ out_Inputs <- function(chrDomains, chrMetrics, chrSites, intNParticipants) {
         "metric",
         strong("Metric"),
         choices = chrMetrics,
-        width = "100%"
-      ),
-      selectInput(
-        "site",
-        strong("Site"),
-        choices = c("None", chrSites),
-        width = "100%"
-      ),
-      selectizeInput(
-        "participant",
-        strong("Participant"),
-        choices = NULL,
-        options = list(maxOptions = intNParticipants),
         width = "100%"
       ),
       selectInput(

@@ -36,7 +36,7 @@ srvr_rctv_lMetric <- function(
   reactive({
     lMetric <- rctv_lMetric_base()
     site <- rctv_strSiteID()
-    if (site != "None") {
+    if (site != "All") {
       lMetric$selectedGroupIDs <- site
     }
     lMetric
@@ -59,7 +59,7 @@ srvr_rctv_chrParticipantIDs <- function(
   )
   reactive({
     site <- rctv_strSiteID()
-    if (site == "None") {
+    if (site == "All") {
       return(c("All", dfParticipantGroups$SubjectID))
     }
     c(

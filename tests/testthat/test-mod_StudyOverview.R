@@ -25,8 +25,8 @@ test_that("mod_StudyOverview_Server sets selected group and metric", {
     ),
     {
       # Test the selected group reactive
-      session$setInputs(`scatter-Analysis_kri0001-plot` = "None")
-      expect_equal(rctv_strSiteID(), "None")
+      session$setInputs(`scatter-Analysis_kri0001-plot` = "All")
+      expect_equal(rctv_strSiteID(), "All")
       session$setInputs(`scatter-Analysis_kri0001-plot` = "0X005")
       expect_equal(rctv_strSiteID(), "0X005")
 

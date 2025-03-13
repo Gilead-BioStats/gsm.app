@@ -33,7 +33,7 @@ mod_SiteParticipants_Server <- function(
   moduleServer(id, function(input, output, session) {
     rctv_lglGroupIsNone <- reactive({
       strGroupID <- rctv_strGroupID()
-      is.null(strGroupID) || strGroupID == "None"
+      is.null(strGroupID) || strGroupID == "All"
     }) %>%
       bindCache(rctv_strGroupID())
 

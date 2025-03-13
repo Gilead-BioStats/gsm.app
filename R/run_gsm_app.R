@@ -58,7 +58,6 @@ run_gsm_app <- function(
   shinyApp(
     ui = gsmApp_UI(
       chrDomains = chrDomains,
-      dfAnalyticsInput = dfAnalyticsInput,
       dfGroups = dfGroups,
       dfMetrics = dfMetrics,
       dfResults = dfResults,

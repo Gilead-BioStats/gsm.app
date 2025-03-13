@@ -92,7 +92,7 @@ mod_SiteDetails_Server <- function(
     #
     # nocov start
     observe({
-      if (rctv_strSiteID() == "None") {
+      if (rctv_strSiteID() == "All") {
         ## Show placeholders
         shinyjs::hide("card_site_metadata_list")
         shinyjs::show("card_placeholder_site_metadata_list")

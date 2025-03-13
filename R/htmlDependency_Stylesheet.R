@@ -3,8 +3,8 @@
 #' Attach a stylesheet from this package to an app or other HTML exactly once.
 #'
 #' @returns An `html_dependency` object (see [htmltools::htmlDependency()]),
-#'   which is attached to the Shiny app exactly once, regardless how many times
-#'   it is added.
+#'   which is attached to the Shiny app exactly once, regardless of how many
+#'   times it is added.
 #' @keywords internal
 htmlDependency_Stylesheet <- function(
   filename,
