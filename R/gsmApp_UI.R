@@ -7,7 +7,6 @@
 #' @keywords internal
 gsmApp_UI <- function(
   chrDomains,
-  dfAnalyticsInput,
   dfGroups,
   dfMetrics,
   dfResults,
@@ -18,7 +17,6 @@ gsmApp_UI <- function(
   tagListSidebar = NULL
 ) {
   # Transform data for use in lower-level functions. ----
-  intNParticipants <- length(unique(dfAnalyticsInput$SubjectID))
   chrMetrics <- rlang::set_names(dfMetrics$MetricID, dfMetrics$Metric)
 
   bslib::page_navbar(
@@ -37,7 +35,6 @@ gsmApp_UI <- function(
       dfResults,
       chrDomains,
       chrMetrics,
-      intNParticipants,
       tagListSidebar
     ),
     header = tagList(

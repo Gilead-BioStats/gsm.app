@@ -6,7 +6,6 @@
 \usage{
 gsmApp_UI(
   chrDomains,
-  dfAnalyticsInput,
   dfGroups,
   dfMetrics,
   dfResults,
@@ -22,8 +21,6 @@ gsmApp_UI(
 app. The values of the vector will be used as labels, and the names will be
 used as IDs. The IDs will be passed to \code{fnFetchData()} to fetch data about
 that domain.}
-
-\item{dfAnalyticsInput}{\code{data.frame} Participant-level metric data.}
 
 \item{dfGroups}{\code{data.frame} Group-level metadata dictionary.}
 
