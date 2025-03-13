@@ -45,8 +45,7 @@ gsmApp_UI <- function(
       htmlDependency_Stylesheet("defaultStyles.css"),
       shinyjs::useShinyjs(),
       out_NavbarExtras(
-        chrSites = sort(unique(dfGroups$GroupID[dfGroups$GroupLevel == "Site"])),
-        intNParticipants = intNParticipants
+        sort(unique(dfGroups$GroupID[dfGroups$GroupLevel == "Site"]))
       )
     )
   )

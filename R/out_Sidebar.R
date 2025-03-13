@@ -43,19 +43,6 @@ out_Inputs <- function(chrDomains, chrMetrics, chrSites, intNParticipants) {
         choices = chrMetrics,
         width = "100%"
       ),
-      # selectInput(
-      #   "site",
-      #   strong("Site"),
-      #   choices = c("All", chrSites),
-      #   width = "100%"
-      # ),
-      # selectizeInput(
-      #   "participant",
-      #   strong("Participant"),
-      #   choices = NULL,
-      #   options = list(maxOptions = intNParticipants),
-      #   width = "100%"
-      # ),
       selectInput(
         "domain",
         strong("Domain"),

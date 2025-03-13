@@ -1,8 +1,14 @@
 .navbar-extras {
-  display: block;
   align-items: center;
-  min-width: 300px;
   white-space: nowrap;
   overflow: visible !important;
   z-index: 100;
+}
+
+.navbar-extras .form-group {
+  margin-bottom: 0px;
+}
+
+#custom-navbar-extra {
+  margin-bottom: 0px;
 }

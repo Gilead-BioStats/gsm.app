@@ -1,4 +1,5 @@
 skip_on_ci()
+# skip()
 test_that("run_gsm_app initializes the expected app", {
   skip_on_cran()
   app <- AppDriver$new(

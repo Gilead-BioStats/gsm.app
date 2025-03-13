@@ -34,62 +34,24 @@
           <div class="bslib-sidebar-layout bslib-mb-spacing sidebar-collapsed html-fill-item" data-bslib-sidebar-border="false" data-bslib-sidebar-border-radius="false" data-bslib-sidebar-init="TRUE" data-collapsible-desktop="true" data-collapsible-mobile="true" data-open-desktop="closed" data-open-mobile="closed" data-require-bs-caller="layout_sidebar()" data-require-bs-version="5" style="--_sidebar-width:400px;">
             <div class="main">
               <main class="bslib-page-main bslib-gap-spacing html-fill-item html-fill-container">
-                <bslib-layout-columns class="bslib-grid grid bslib-mb-spacing html-fill-item navbar-extras" data-require-bs-caller="layout_columns()" data-require-bs-version="5" id="custom-navbar-right">
+                <bslib-layout-columns class="bslib-grid grid bslib-mb-spacing html-fill-item navbar-extras" data-require-bs-caller="layout_columns()" data-require-bs-version="5" id="custom-navbar-extra">
                   <div class="bslib-grid-item bslib-gap-spacing html-fill-container">
-                    <div class="form-group shiny-input-container" style="width:100%;">
+                    <div class="form-group shiny-input-container shiny-input-container-inline" style="width:fit-content;">
                       <label class="control-label" id="site-label" for="site">
                         <strong>Site</strong>
                       </label>
-                      <div>
-                        <select id="site" class="shiny-input-select"><option value="All" selected>All</option>
-      <option value="0X001">0X001</option>
-      <option value="0X002">0X002</option>
-      <option value="0X003">0X003</option>
-      <option value="0X004">0X004</option>
-      <option value="0X005">0X005</option>
-      <option value="0X006">0X006</option>
-      <option value="0X007">0X007</option>
-      <option value="0X008">0X008</option>
-      <option value="0X010">0X010</option>
-      <option value="0X011">0X011</option>
-      <option value="0X012">0X012</option>
-      <option value="0X013">0X013</option>
-      <option value="0X014">0X014</option>
-      <option value="0X015">0X015</option>
-      <option value="0X016">0X016</option>
-      <option value="0X018">0X018</option>
-      <option value="0X021">0X021</option>
-      <option value="0X022">0X022</option>
-      <option value="0X024">0X024</option>
-      <option value="0X026">0X026</option>
-      <option value="0X027">0X027</option>
-      <option value="0X028">0X028</option>
-      <option value="0X029">0X029</option>
-      <option value="0X037">0X037</option>
-      <option value="0X041">0X041</option>
-      <option value="0X064">0X064</option>
-      <option value="0X079">0X079</option>
-      <option value="0X103">0X103</option>
-      <option value="0X109">0X109</option>
-      <option value="0X124">0X124</option>
-      <option value="0X155">0X155</option>
-      <option value="0X159">0X159</option>
-      <option value="0X170">0X170</option>
-      <option value="0X173">0X173</option>
-      <option value="0X180">0X180</option>
-      <option value="X185X">X185X</option></select>
-                        <script type="application/json" data-for="site" data-nonempty="">{"plugins":["selectize-plugin-a11y"]}</script>
+                      <div id="site" class="virtual-select" style="display:inline-block;" data-update="change">
+                        <script type="application/json" data-for="site">{"stateInput":true,"options":{"type":["vector"],"choices":["All","0X001","0X002","0X003","0X004","0X005","0X006","0X007","0X008","0X010","0X011","0X012","0X013","0X014","0X015","0X016","0X018","0X021","0X022","0X024","0X026","0X027","0X028","0X029","0X037","0X041","0X064","0X079","0X103","0X109","0X124","0X155","0X159","0X170","0X173","0X180","X185X"]},"config":{"multiple":false,"search":false,"hideClearButton":true,"autoSelectFirstOption":true,"showSelectedOptionsFirst":false,"showValueAsTags":false,"optionsCount":10,"noOfDisplayValues":50,"allowNewOption":false,"disableSelectAll":true,"disableOptionGroupCheckbox":true,"disabled":false}}</script>
                       </div>
                     </div>
                   </div>
                   <div class="bslib-grid-item bslib-gap-spacing html-fill-container">
-                    <div class="form-group shiny-input-container" style="width:100%;">
+                    <div class="form-group shiny-input-container shiny-input-container-inline" style="width:fit-content;">
                       <label class="control-label" id="participant-label" for="participant">
                         <strong>Participant</strong>
                       </label>
-                      <div>
-                        <select class="shiny-input-select form-control" id="participant"></select>
-                        <script type="application/json" data-for="participant">{"maxOptions":10,"plugins":["selectize-plugin-a11y"]}</script>
+                      <div id="participant" class="virtual-select" style="display:inline-block;" data-update="change">
+                        <script type="application/json" data-for="participant">{"stateInput":true,"options":{"type":["transpose"],"choices":{"label":[],"value":[]}},"config":{"multiple":false,"search":false,"hideClearButton":true,"autoSelectFirstOption":true,"showSelectedOptionsFirst":false,"showValueAsTags":false,"optionsCount":10,"noOfDisplayValues":50,"allowNewOption":false,"disableSelectAll":true,"disableOptionGroupCheckbox":true,"disabled":false}}</script>
                       </div>
                     </div>
                   </div>

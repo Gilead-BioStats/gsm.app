@@ -55,7 +55,7 @@ gsmApp_Server <- function(
 
     rctv_strSiteID <- reactiveVal()
     observe({rctv_strSiteID(input$site)})
-    srvr_SyncSelectInput("site", rctv_strSiteID, session)
+    srvr_SyncVirtualSelectInput("site", rctv_strSiteID, session)
 
     rctv_strPrimaryNavBar <- reactiveVal()
     observe({rctv_strPrimaryNavBar(input$primary_nav_bar)})
@@ -76,12 +76,11 @@ gsmApp_Server <- function(
       bindEvent(input$participant)
     observe({
       if (input$participant != rctv_strSubjectID()) {
-        updateSelectizeInput(                          # Tested via UI.
-          inputId = "participant",                     # Tested via UI.
-          choices = rctv_chrParticipantIDs(),          # Tested via UI.
-          selected = rctv_strSubjectID(),              # Tested via UI.
-          server = TRUE,                               # Tested via UI.
-          session = session                            # Tested via UI.
+        shinyWidgets::updateVirtualSelect(
+          inputId = "participant",
+          choices = rctv_chrParticipantIDs(),
+          selected = rctv_strSubjectID(),
+          session = session
         )
       }
     }) %>%
@@ -149,18 +148,16 @@ gsmApp_Server <- function(
         if (selected == "All") {
           # This double-update prevents the old option from showing in the list
           # erroneously.
-          updateSelectizeInput(
+          shinyWidgets::updateVirtualSelect(
             inputId = "participant",
             selected = "All",
-            server = TRUE,
             session = session
           )
         }
-        updateSelectizeInput(
+        shinyWidgets::updateVirtualSelect(
           inputId = "participant",
           choices = rctv_chrParticipantIDs(),
           selected = selected,
-          server = TRUE,
           session = session
         )
       }

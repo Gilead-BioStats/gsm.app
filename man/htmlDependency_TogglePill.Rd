@@ -9,7 +9,7 @@ htmlDependency_TogglePill()
 \value{
 An \code{\link[htmltools:tagList]{htmltools::tagList()}} of \code{html_dependency} objects (see
 \code{\link[htmltools:htmlDependency]{htmltools::htmlDependency()}}), so that each will be attached to the Shiny
-app exactly once, regardless how many times they are added.
+app exactly once, regardless of how many times they are added.
 }
 \description{
 Attach CSS and JavaScript necessary for TogglePill to an app or other HTML

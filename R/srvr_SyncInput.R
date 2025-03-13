@@ -21,6 +21,23 @@ srvr_SyncSelectInput <- function(
   )
 }
 
+srvr_SyncVirtualSelectInput <- function(
+  id,
+  rctv_strValue,
+  session = getDefaultReactiveDomain()
+) {
+  bindEvent(
+    observe({
+      shinyWidgets::updateVirtualSelect(
+        inputId = id,
+        selected = rctv_strValue(),
+        session = session
+      )
+    }),
+    rctv_strValue()
+  )
+}
+
 #' Synchronize selected tab with reactive
 #'
 #' @inheritParams shared-params

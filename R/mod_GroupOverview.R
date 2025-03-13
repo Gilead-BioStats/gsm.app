@@ -175,7 +175,7 @@ renderWidget_GroupOverview <- function(expr, env = parent.frame(), quoted = FALS
 #'
 #' @returns An [htmltools::tagList()] of `html_dependency` objects (see
 #'   [htmltools::htmlDependency()]), so that each will be attached to the Shiny
-#'   app exactly once, regardless how many times they are added.
+#'   app exactly once, regardless of how many times they are added.
 #' @keywords internal
 htmlDependency_GroupOverview <- function() {
   tagList(
@@ -188,7 +188,7 @@ htmlDependency_GroupOverview <- function() {
 #'
 #' @returns An [htmltools::tagList()] of `html_dependency` objects (see
 #'   [htmltools::htmlDependency()]), so that each will be attached to the Shiny
-#'   app exactly once, regardless how many times they are added.
+#'   app exactly once, regardless of how many times they are added.
 #' @keywords internal
 htmlDependency_GroupOverviewInput <- function() {
   tagList(

@@ -33,6 +33,7 @@ Imports:
     rlang,
     shiny (>= 1.6.0),
     shinyjs,
+    shinyWidgets,
     yaml
 Suggests: 
     chromote (>= 0.4.0),
@@ -49,7 +50,9 @@ Suggests:
 Remotes:
     gsm.core=gilead-biostats/gsm.core@dev,
     gsm.kri=gilead-biostats/gsm.kri@dev,
-    gt=rstudio/gt
+    gt=rstudio/gt,
+    chromote=rstudio/chromote,
+    shinytest2=rstudio/shinytest2
 Config/testthat/edition: 3
 Encoding: UTF-8
 Language: en-US

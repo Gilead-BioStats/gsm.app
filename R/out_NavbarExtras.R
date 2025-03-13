@@ -1,28 +1,38 @@
-out_NavbarExtras <- function(chrSites, intNParticipants) {
+#' Things on the right side of navbar
+#'
+#' @inheritParams shared-params
+#' @returns A [htmltools::tagList()] with app inputs.
+#' @keywords internal
+out_NavbarExtras <- function(chrSites) {
   tagList(
     htmlDependency_NavbarExtras(),
     bslib::layout_columns(
-      id = "custom-navbar-right",
+      id = "custom-navbar-extra",
       class = "navbar-extras",
-      selectInput(
-        "site",
-        strong("Site"),
-        NULL,
+      shinyWidgets::virtualSelectInput(
+        inputId = "site",
+        label = strong("Site"),
         choices = c("All", chrSites),
-        width = "100%"
+        inline = TRUE,
+        width = "fit-content"
       ),
-      selectizeInput(
-        "participant",
-        strong("Participant"),
-        NULL,
+      shinyWidgets::virtualSelectInput(
+        inputId = "participant",
+        label = strong("Participant"),
         choices = NULL,
-        options = list(maxOptions = intNParticipants),
-        width = "100%"
+        inline = TRUE,
+        width = "fit-content"
       )
     )
   )
 }
 
+#' NavbarExtras Dependencies
+#'
+#' @returns An [htmltools::tagList()] of `html_dependency` objects (see
+#'   [htmltools::htmlDependency()]), so that each will be attached to the Shiny
+#'   app exactly once, regardless of how many times they are added.
+#' @keywords internal
 htmlDependency_NavbarExtras <- function() {
   tagList(
     htmlDependency_Stylesheet("navbarExtras.css"),
@@ -30,6 +40,14 @@ htmlDependency_NavbarExtras <- function() {
   )
 }
 
+#' NavbarExtrasPosition JavaScript
+#'
+#' Attach `navbarExtrasPosition.js` to an app or other HTML exactly once.
+#'
+#' @returns An `html_dependency` object (see [htmltools::htmlDependency()]),
+#'   which is attached to the Shiny app exactly once, regardless of how many
+#'   times it is added.
+#' @keywords internal
 htmlDependency_NavbarExtrasPosition <- function() {
   tagList(
     htmltools::htmlDependency(
