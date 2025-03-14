@@ -1,5 +1,5 @@
 .navbar-extras .form-group {
-  margin-bottom: 0px;
+  margin-bottom: 0;
   display: inline-flex; /* Ensure it grows to fit its contents */
   align-items: center;  /* Keep label and input aligned */
   gap: 0.5rem; /* Space between label and input */
@@ -10,7 +10,7 @@
 }
 
 .navbar-extras .control-label {
-  margin-bottom: 0px !important;
+  margin-bottom: 0 !important;
 }
 
 .navbar-extras .virtual-select {
