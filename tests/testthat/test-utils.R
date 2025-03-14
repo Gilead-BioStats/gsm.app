@@ -71,4 +71,8 @@ test_that("ExtractAppTitle extracts titles", {
         sample_dfGroups$Param == "nickname"
     ]
   )
+  expect_identical(
+    ExtractAppTitle(data.frame()),
+    "GSM Deep Dive"
+  )
 })
