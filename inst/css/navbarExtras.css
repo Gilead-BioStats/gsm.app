@@ -5,6 +5,10 @@
   gap: 0.5rem; /* Space between label and input */
 }
 
+.navbar-extras .vscomp-dropbox-container {
+  z-index: 100 !important;
+}
+
 .navbar-extras .control-label {
   margin-bottom: 0px !important;
 }
