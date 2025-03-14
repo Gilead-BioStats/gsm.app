@@ -37,7 +37,7 @@ run_gsm_app <- function(
     SDRGCOMP = "Treatment Completion"
   ),
   lPlugins = NULL,
-  strTitle = "GSM Deep Dive",
+  strTitle = ExtractAppTitle(dfGroups),
   strFavicon = "angles-up",
   strFaviconColor = "#FF5859",
   tagListSidebar = NULL,

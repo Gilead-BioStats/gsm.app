@@ -10,7 +10,7 @@ gsmApp_UI(
   dfMetrics,
   dfResults,
   lPlugins = NULL,
-  strTitle = "GSM Deep Dive",
+  strTitle = ExtractAppTitle(dfGroups),
   strFavicon = "angles-up",
   strFaviconColor = ColorScheme("red"),
   tagListSidebar = NULL

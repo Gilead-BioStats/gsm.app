@@ -17,7 +17,7 @@ run_gsm_app(
     STUDCOMP = "Study Completion", SUBJ = "Subject Metadata", SDRGCOMP =
     "Treatment Completion"),
   lPlugins = NULL,
-  strTitle = "GSM Deep Dive",
+  strTitle = ExtractAppTitle(dfGroups),
   strFavicon = "angles-up",
   strFaviconColor = "#FF5859",
   tagListSidebar = NULL,

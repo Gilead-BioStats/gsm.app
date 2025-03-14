@@ -11,7 +11,7 @@ gsmApp_UI <- function(
   dfMetrics,
   dfResults,
   lPlugins = NULL,
-  strTitle = "GSM Deep Dive",
+  strTitle = ExtractAppTitle(dfGroups),
   strFavicon = "angles-up",
   strFaviconColor = ColorScheme("red"),
   tagListSidebar = NULL
@@ -30,6 +30,10 @@ gsmApp_UI <- function(
       chrMetrics = chrMetrics,
       lPlugins = lPlugins
     ),
+    bslib::nav_spacer(),
+    !!!out_NavbarExtras(
+      sort(unique(dfGroups$GroupID[dfGroups$GroupLevel == "Site"]))
+    ),
     sidebar = out_Sidebar(
       dfGroups,
       dfResults,
@@ -40,10 +44,7 @@ gsmApp_UI <- function(
     header = tagList(
       favawesome::fav(strFavicon, fill = strFaviconColor),
       htmlDependency_Stylesheet("defaultStyles.css"),
-      shinyjs::useShinyjs(),
-      out_NavbarExtras(
-        sort(unique(dfGroups$GroupID[dfGroups$GroupLevel == "Site"]))
-      )
+      shinyjs::useShinyjs()
     )
   )
 }

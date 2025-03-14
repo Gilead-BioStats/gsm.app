@@ -13,7 +13,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
               </button>
-              <span class="navbar-brand">GSM Deep Dive</span>
+              <span class="navbar-brand">Protocol Nickname</span>
             </div>
             <div class="navbar-collapse collapse" id="navbar-collapse-XXXX">
               <ul class="nav navbar-nav nav-underline shiny-tab-input" id="primary_nav_bar" data-tabsetid="XXXX">
@@ -26,6 +26,27 @@
                 <li>
                   <a href="#tab-XXXX-3" data-toggle="tab" data-bs-toggle="tab" data-value="Domain Details">Domain Details</a>
                 </li>
+                <div class="bslib-nav-spacer"></div>
+                <li class="bslib-nav-item nav-item form-inline navbar-extras">
+                  <div class="form-group shiny-input-container shiny-input-container-inline">
+                    <label class="control-label" id="site-label" for="site">
+                      <strong>Site</strong>
+                    </label>
+                    <div id="site" class="virtual-select" style="display:inline-block;" data-update="change">
+                      <script type="application/json" data-for="site">{"stateInput":true,"options":{"type":["vector"],"choices":["All","0X001","0X002","0X003","0X004","0X005","0X006","0X007","0X008","0X010","0X011","0X012","0X013","0X014","0X015","0X016","0X018","0X021","0X022","0X024","0X026","0X027","0X028","0X029","0X037","0X041","0X064","0X079","0X103","0X109","0X124","0X155","0X159","0X170","0X173","0X180","X185X"]},"config":{"multiple":false,"search":false,"hideClearButton":true,"autoSelectFirstOption":true,"showSelectedOptionsFirst":false,"showValueAsTags":false,"optionsCount":10,"noOfDisplayValues":50,"allowNewOption":false,"disableSelectAll":true,"disableOptionGroupCheckbox":true,"disabled":false}}</script>
+                    </div>
+                  </div>
+                </li>
+                <li class="bslib-nav-item nav-item form-inline navbar-extras">
+                  <div class="form-group shiny-input-container shiny-input-container-inline">
+                    <label class="control-label" id="participant-label" for="participant">
+                      <strong>Participant</strong>
+                    </label>
+                    <div id="participant" class="virtual-select" style="display:inline-block;" data-update="change">
+                      <script type="application/json" data-for="participant">{"stateInput":true,"options":{"type":["transpose"],"choices":{"label":[],"value":[]}},"config":{"multiple":false,"search":false,"hideClearButton":true,"autoSelectFirstOption":true,"showSelectedOptionsFirst":false,"showValueAsTags":false,"optionsCount":10,"noOfDisplayValues":50,"allowNewOption":false,"disableSelectAll":true,"disableOptionGroupCheckbox":true,"disabled":false}}</script>
+                    </div>
+                  </div>
+                </li>
               </ul>
             </div>
           </div>
@@ -34,28 +55,6 @@
           <div class="bslib-sidebar-layout bslib-mb-spacing sidebar-collapsed html-fill-item" data-bslib-sidebar-border="false" data-bslib-sidebar-border-radius="false" data-bslib-sidebar-init="TRUE" data-collapsible-desktop="true" data-collapsible-mobile="true" data-open-desktop="closed" data-open-mobile="closed" data-require-bs-caller="layout_sidebar()" data-require-bs-version="5" style="--_sidebar-width:400px;">
             <div class="main">
               <main class="bslib-page-main bslib-gap-spacing html-fill-item html-fill-container">
-                <bslib-layout-columns class="bslib-grid grid bslib-mb-spacing html-fill-item navbar-extras" data-require-bs-caller="layout_columns()" data-require-bs-version="5" id="custom-navbar-extra">
-                  <div class="bslib-grid-item bslib-gap-spacing html-fill-container">
-                    <div class="form-group shiny-input-container shiny-input-container-inline" style="width:fit-content;">
-                      <label class="control-label" id="site-label" for="site">
-                        <strong>Site</strong>
-                      </label>
-                      <div id="site" class="virtual-select" style="display:inline-block;" data-update="change">
-                        <script type="application/json" data-for="site">{"stateInput":true,"options":{"type":["vector"],"choices":["All","0X001","0X002","0X003","0X004","0X005","0X006","0X007","0X008","0X010","0X011","0X012","0X013","0X014","0X015","0X016","0X018","0X021","0X022","0X024","0X026","0X027","0X028","0X029","0X037","0X041","0X064","0X079","0X103","0X109","0X124","0X155","0X159","0X170","0X173","0X180","X185X"]},"config":{"multiple":false,"search":false,"hideClearButton":true,"autoSelectFirstOption":true,"showSelectedOptionsFirst":false,"showValueAsTags":false,"optionsCount":10,"noOfDisplayValues":50,"allowNewOption":false,"disableSelectAll":true,"disableOptionGroupCheckbox":true,"disabled":false}}</script>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="bslib-grid-item bslib-gap-spacing html-fill-container">
-                    <div class="form-group shiny-input-container shiny-input-container-inline" style="width:fit-content;">
-                      <label class="control-label" id="participant-label" for="participant">
-                        <strong>Participant</strong>
-                      </label>
-                      <div id="participant" class="virtual-select" style="display:inline-block;" data-update="change">
-                        <script type="application/json" data-for="participant">{"stateInput":true,"options":{"type":["transpose"],"choices":{"label":[],"value":[]}},"config":{"multiple":false,"search":false,"hideClearButton":true,"autoSelectFirstOption":true,"showSelectedOptionsFirst":false,"showValueAsTags":false,"optionsCount":10,"noOfDisplayValues":50,"allowNewOption":false,"disableSelectAll":true,"disableOptionGroupCheckbox":true,"disabled":false}}</script>
-                      </div>
-                    </div>
-                  </div>
-                </bslib-layout-columns>
                 <div class="tab-content" data-tabsetid="XXXX">
                   <div class="tab-pane active" data-value="Study Overview" id="tab-XXXX-1">
                     <div class="tabbable">

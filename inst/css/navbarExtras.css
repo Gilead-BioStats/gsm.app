@@ -1,14 +1,14 @@
-.navbar-extras {
-  align-items: center;
-  white-space: nowrap;
-  overflow: visible !important;
-  z-index: 100;
-}
-
 .navbar-extras .form-group {
   margin-bottom: 0px;
+  display: inline-flex; /* Ensure it grows to fit its contents */
+  align-items: center;  /* Keep label and input aligned */
+  gap: 0.5rem; /* Space between label and input */
 }
 
-#custom-navbar-extra {
-  margin-bottom: 0px;
+.navbar-extras .control-label {
+  margin-bottom: 0px !important;
+}
+
+.navbar-extras .virtual-select {
+  min-width: 150px;
 }

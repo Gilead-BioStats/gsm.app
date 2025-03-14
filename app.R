@@ -31,5 +31,6 @@ run_gsm_app(
   fnFetchData = sample_fnFetchData,
   lPlugins = list(ParticipantProfilePlugin),
   strFavicon = Sys.getenv("GSMAPP_FAVICON", "angles-up"),
-  strFaviconColor = Sys.getenv("GSMAPP_FAVICONCOLOR", ColorScheme("red"))
+  strFaviconColor = Sys.getenv("GSMAPP_FAVICONCOLOR", ColorScheme("red")),
+  strTitle = Sys.getenv("GSMAPP_TITLE", "Sample Deep Dive App")
 )

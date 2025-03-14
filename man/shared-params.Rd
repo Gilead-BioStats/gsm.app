@@ -9,6 +9,9 @@ object.}
 
 \item{chrAllowedValues}{\code{character} A vector of allowed values for a vector.}
 
+\item{chrChoices}{\code{character} A (named, optionally) vector of choices for a
+\code{\link[shiny:selectInput]{shiny::selectInput()}} or similar input function.}
+
 \item{chrDomains}{\code{character} A (named) vector of domains to include in the
 app. The values of the vector will be used as labels, and the names will be
 used as IDs. The IDs will be passed to \code{fnFetchData()} to fetch data about
