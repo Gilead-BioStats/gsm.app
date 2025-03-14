@@ -54,3 +54,25 @@ test_that("AsFunction fails gracefully for non-installed packages", {
     class = "packageNotFoundError"
   )
 })
+
+test_that("MakeParamLabelsChr works", {
+  expect_identical(MakeParamLabelsChr(letters), LETTERS)
+  expect_identical(
+    MakeParamLabelsChr(c("b", "a"), c(a = "aaa", b = "bbb")),
+    c("bbb", "aaa")
+  )
+})
+
+test_that("ExtractAppTitle extracts titles", {
+  expect_identical(
+    ExtractAppTitle(sample_dfGroups),
+    sample_dfGroups$Value[
+      sample_dfGroups$GroupLevel == "Study" &
+        sample_dfGroups$Param == "nickname"
+    ]
+  )
+  expect_identical(
+    ExtractAppTitle(data.frame()),
+    "GSM Deep Dive"
+  )
+})

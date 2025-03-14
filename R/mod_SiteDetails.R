@@ -80,9 +80,9 @@ mod_SiteDetails_Server <- function(
       target_rows <- dfSitesAll$GroupID == rctv_strSiteID()
       rlang::set_names(
         dfSitesAll$Value[target_rows],
-        unlist(unname(gsm.kri::MakeParamLabelsList(
+        MakeParamLabelsChr(
           dfSitesAll$Param[target_rows]
-        )))
+        )
       )
     }) %>%
       bindCache(rctv_strSiteID())

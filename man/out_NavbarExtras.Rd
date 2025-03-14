@@ -10,7 +10,8 @@ out_NavbarExtras(chrSites)
 \item{chrSites}{\code{character} A vector of sites available in the study.}
 }
 \value{
-A \code{\link[htmltools:tagList]{htmltools::tagList()}} with app inputs.
+A list of \code{\link[bslib:nav-items]{bslib::nav_item()}} with
+\code{\link[shinyWidgets:virtualSelectInput]{shinyWidgets::virtualSelectInput()}}.
 }
 \description{
 Things on the right side of navbar
