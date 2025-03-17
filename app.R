@@ -29,7 +29,7 @@ run_gsm_app(
   # dfResults = gsm.app::sample_dfResults,
   dfResults = dplyr::bind_rows(gsm.app::sample_dfResults, sample_dfResults2),
   fnFetchData = sample_fnFetchData,
-  lPlugins = list(ParticipantProfilePlugin),
+  #lPlugins = list(ParticipantProfilePlugin),
   strFavicon = Sys.getenv("GSMAPP_FAVICON", "angles-up"),
   strFaviconColor = Sys.getenv("GSMAPP_FAVICONCOLOR", ColorScheme("red")),
   strTitle = Sys.getenv("GSMAPP_TITLE", "Sample Deep Dive App")

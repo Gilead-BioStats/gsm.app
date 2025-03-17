@@ -20,7 +20,7 @@ library(purrr)
 
 # Set up inputs ----
 
-core_mappings <- c("AE", "DATACHG", "DATAENT", "ENROLL", "LB",
+core_mappings <- c("AE", "DATACHG", "DATAENT", "ENROLL",
                    "PD", "QUERY", "STUDY", "STUDCOMP", "SDRGCOMP", "SITE", "SUBJ")
 
 lSource <- list(
@@ -76,22 +76,24 @@ dfResults <- gsm.reporting::BindResults(
 )
 
 
-# Standard dfs ----
-
-sample_dfGroups <- dplyr::bind_rows(
-  lMapped$Mapped_SITE,
-  lMapped$Mapped_STUDY
-)
-sample_dfMetrics <- gsm.reporting::MakeMetric(lWorkflows = lWorkflows)
-sample_dfResults <- dfResults
-sample_dfBounds <- gsm.reporting::MakeBounds(
-  dfResults = sample_dfResults,
-  dfMetrics = sample_dfMetrics
-)
-sample_dfAnalyticsInput <- purrr::map(lAnalysis, "Analysis_Input") %>%
-  dplyr::bind_rows(.id = "MetricID") %>%
-  # dplyr::mutate(MetricID = stringr::str_remove(.data$MetricID, "Analysis_")) %>%
-  dplyr::as_tibble()
+# # Standard dfs ----
+#
+# sample_dfGroups <- dplyr::bind_rows(
+#   lMapped$Mapped_SITE %>% dplyr::semi_join(site_subset),
+#   lMapped$Mapped_STUDY
+# )
+# sample_dfMetrics <- gsm.reporting::MakeMetric(lWorkflows = lWorkflows)
+# sample_dfResults <- dfResults %>%
+#   dplyr::semi_join(site_subset)
+# sample_dfBounds <- gsm.reporting::MakeBounds(
+#   dfResults = dfResults,
+#   dfMetrics = sample_dfMetrics
+# )
+# sample_dfAnalyticsInput <- purrr::map(lAnalysis, "Analysis_Input") %>%
+#   dplyr::bind_rows(.id = "MetricID") %>%
+#   # dplyr::mutate(MetricID = stringr::str_remove(.data$MetricID, "Analysis_")) %>%
+#   dplyr::as_tibble() %>%
+#   dplyr::semi_join(site_subset)
 
 
 # lMapped for Domain Data ----

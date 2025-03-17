@@ -10,7 +10,6 @@ mod_DomainDetails_UI <- function(
     DATACHG = "Data Changes",
     DATAENT = "Data Entry",
     ENROLL = "Enrollment",
-    LB = "Lab",
     PD = "Protocol Deviations",
     QUERY = "Queries",
     STUDCOMP = "Study Completion",
