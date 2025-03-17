@@ -99,7 +99,7 @@ jobs:
 
       - name: Set APPNAME
         run: |
-          appname <- "gsm-app-clindata-v2"
+          appname <- "gsm-app-clindata"
           favicon <- "angles-up"
           deployment_type <- Sys.getenv("DEPLOYMENT_TYPE")
           apptitle <- "gsm.app Demo"
