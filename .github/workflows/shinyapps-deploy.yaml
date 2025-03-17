@@ -99,7 +99,7 @@ jobs:
 
       - name: Set APPNAME
         run: |
-          appname <- "gsm-app-clindata"
+          appname <- gsub("[^A-Za-z0-9]", "-", Sys.getenv("REPO_NAME"))
           favicon <- "angles-up"
           deployment_type <- Sys.getenv("DEPLOYMENT_TYPE")
           apptitle <- "gsm.app Demo"
@@ -107,13 +107,13 @@ jobs:
 
           if (deployment_type != "prod") {
             pkgload::load_all(".", export_all = FALSE, attach_testthat = FALSE)
-            #appname <- paste(appname, deployment_type, sep = "-")
-            #apptitle <- paste(apptitle, toupper(deployment_type))
+            appname <- paste(appname, deployment_type, sep = "-")
+            apptitle <- paste(apptitle, toupper(deployment_type))
             favicon <- "angle-up"
             faviconcolor <- ColorScheme("amber")
             if (nzchar(pr_number)) {
-              appname <- appname
-              apptitle <- apptitle
+              appname <- paste(appname, pr_number, sep = "-")
+              apptitle <- paste(apptitle, pr_number)
               favicon <- "code-pull-request"
               faviconcolor <- ColorScheme("gray")
             }
