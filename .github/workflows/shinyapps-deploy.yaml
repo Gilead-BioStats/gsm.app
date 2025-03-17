@@ -136,16 +136,16 @@ jobs:
           SHINYAPPSIO_TOKEN: ${{ secrets.SHINYAPPSIO_TOKEN }}
           SHINYAPPSIO_SECRET: ${{ secrets.SHINYAPPSIO_SECRET }}
         run: |
-          appname <- Sys.getenv("APPNAME")
-          rsconnect::setAccountInfo(
-            name = "openrbqm",
-            token = Sys.getenv("SHINYAPPSIO_TOKEN"),
-            secret = Sys.getenv("SHINYAPPSIO_SECRET")
-          )
-          rsconnect::deployApp(
-            appName = appname,
-            forceUpdate = TRUE
-          )
+           appname <- "gsm-app-clindata"
+           rsconnect::setAccountInfo(
+             name = "openrbqm",
+             token = Sys.getenv("SHINYAPPSIO_TOKEN"),
+             secret = Sys.getenv("SHINYAPPSIO_SECRET")
+           )
+           rsconnect::deployApp(
+             appName = appname,
+             forceUpdate = TRUE
+           )
         shell: Rscript {0}
 
       - name: Comment on PR with deployment link
