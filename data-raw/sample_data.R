@@ -45,7 +45,7 @@ lMappings <- gsm.core::MakeWorkflowList(
   strNames = core_mappings,
   strPackage = NULL
 )
-# We don't use COUNTRY yet.
+
 raw_spec <- gsm.mapping::CombineSpecs(lMappings)
 lRaw <- gsm.mapping::Ingest(lSource, raw_spec)
 lRaw <- lRaw %>%
@@ -64,9 +64,9 @@ lWorkflows <- gsm.core::MakeWorkflowList(
 )
 ## Don't use kri0012 yet.
 lWorkflows$kri0012 <- NULL
+lWorkflows$kri0005 <- NULL
 lAnalysis <- gsm.core::RunWorkflows(lWorkflows, lMapped)
 
-# Choose a subset ----
 
 dfResults <- gsm.reporting::BindResults(
   lAnalysis = lAnalysis,
@@ -75,58 +75,23 @@ dfResults <- gsm.reporting::BindResults(
   strStudyID = "AA-AA-000-0000"
 )
 
-flag_summary <- dfResults %>%
-  dplyr::select(GroupID, MetricID, Flag) %>%
-  dplyr::summarize(
-    has_red = any(abs(.data$Flag) == 2, na.rm = TRUE),
-    has_amber = any(abs(.data$Flag) == 1, na.rm = TRUE),
-    .by = c("GroupID")
-  ) %>%
-  dplyr::arrange(dplyr::desc(has_red), dplyr::desc(has_amber), GroupID)
-
-has_both <- flag_summary %>%
-  dplyr::filter(has_red, has_amber) %>%
-  dplyr::select(GroupID) %>%
-  dplyr::arrange(GroupID)
-has_red_only <- flag_summary %>%
-  dplyr::filter(has_red, !has_amber) %>%
-  dplyr::select(GroupID) %>%
-  dplyr::arrange(GroupID)
-has_amber_only <- flag_summary %>%
-  dplyr::filter(!has_red, has_amber) %>%
-  dplyr::select(GroupID) %>%
-  dplyr::arrange(GroupID)
-has_neither <- flag_summary %>%
-  dplyr::filter(!has_red, !has_amber) %>%
-  dplyr::select(GroupID) %>%
-  dplyr::arrange(GroupID)
-
-site_subset <- dplyr::bind_rows(
-  has_both,
-  has_red_only,
-  head(has_amber_only, 10),
-  head(has_neither, 10)
-) %>%
-  dplyr::arrange(GroupID)
 
 # Standard dfs ----
 
 sample_dfGroups <- dplyr::bind_rows(
-  lMapped$Mapped_SITE %>% dplyr::semi_join(site_subset),
+  lMapped$Mapped_SITE,
   lMapped$Mapped_STUDY
 )
 sample_dfMetrics <- gsm.reporting::MakeMetric(lWorkflows = lWorkflows)
-sample_dfResults <- dfResults %>%
-  dplyr::semi_join(site_subset)
+sample_dfResults <- dfResults
 sample_dfBounds <- gsm.reporting::MakeBounds(
-  dfResults = dfResults,
+  dfResults = sample_dfResults,
   dfMetrics = sample_dfMetrics
 )
 sample_dfAnalyticsInput <- purrr::map(lAnalysis, "Analysis_Input") %>%
   dplyr::bind_rows(.id = "MetricID") %>%
   # dplyr::mutate(MetricID = stringr::str_remove(.data$MetricID, "Analysis_")) %>%
-  dplyr::as_tibble() %>%
-  dplyr::semi_join(site_subset)
+  dplyr::as_tibble()
 
 
 # lMapped for Domain Data ----
