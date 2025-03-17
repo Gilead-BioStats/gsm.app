@@ -20,6 +20,9 @@ library(purrr)
 
 # Set up inputs ----
 
+core_mappings <- c("AE", "DATACHG", "DATAENT", "ENROLL", "LB",
+                   "PD", "QUERY", "STUDY", "STUDCOMP", "SDRGCOMP", "SITE", "SUBJ")
+
 lSource <- list(
   Source_STUDY = clindata::ctms_study,
   Source_SITE = clindata::ctms_site,
@@ -39,10 +42,10 @@ lSource <- list(
 
 lMappings <- gsm.core::MakeWorkflowList(
   strPath = system.file("workflow/1_mappings", package = "gsm.mapping"),
+  strNames = core_mappings,
   strPackage = NULL
 )
 # We don't use COUNTRY yet.
-lMappings$COUNTRY <- NULL
 raw_spec <- gsm.mapping::CombineSpecs(lMappings)
 lRaw <- gsm.mapping::Ingest(lSource, raw_spec)
 lRaw <- lRaw %>%
@@ -116,7 +119,7 @@ sample_dfMetrics <- gsm.reporting::MakeMetric(lWorkflows = lWorkflows)
 sample_dfResults <- dfResults %>%
   dplyr::semi_join(site_subset)
 sample_dfBounds <- gsm.reporting::MakeBounds(
-  dfResults = sample_dfResults,
+  dfResults = dfResults,
   dfMetrics = sample_dfMetrics
 )
 sample_dfAnalyticsInput <- purrr::map(lAnalysis, "Analysis_Input") %>%
