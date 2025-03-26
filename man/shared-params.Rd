@@ -256,8 +256,8 @@ inspected.}
 
 \item{strWidgetName}{\code{character} The name of a widget in the gsm package.}
 
-\item{tagListSidebar}{\code{taglist} An optional \code{\link[htmltools:tagList]{htmltools::tagList()}} of
-additional elements to add to the top of the app sidebar.}
+\item{tagListExtra}{\code{taglist} An optional \code{\link[htmltools:tagList]{htmltools::tagList()}} of
+additional elements to add to the top of the app.}
 
 \item{x}{An object to validate.}
 }

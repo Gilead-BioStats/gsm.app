@@ -47,12 +47,14 @@ mod_DomainDetails_Server <- function(
 ) {
   moduleServer(id, function(input, output, session) {
     observe({
+      req(input$selected_tab)
       mod_DomainData_Server(
         id = input$selected_tab,
         l_rctvDomains[[input$selected_tab]]
       )
     })
     observe({
+      req(rctv_strDomainID())
       mod_DomainSummary_Server(
         "counts",
         rctv_strDomainID,
@@ -61,6 +63,8 @@ mod_DomainDetails_Server <- function(
       )
     })
     observe({
+      req(rctv_strDomainID())
+      req(input$selected_tab)
       input_val <- input$selected_tab
       if (!is.null(input_val) && input_val != "") {
         rctv_strDomainID(input_val)
@@ -71,6 +75,8 @@ mod_DomainDetails_Server <- function(
         ignoreInit = TRUE
       )
     observe({
+      req(rctv_strDomainID())
+      req(input$selected_tab)
       input_val <- NullifyEmpty(rctv_strDomainID())
       if (!is.null(input_val) && input_val != input$selected_tab) {
         bslib::nav_select("selected_tab", input_val, session = session)

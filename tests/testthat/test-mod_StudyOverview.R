@@ -1,6 +1,7 @@
 test_that("mod_StudyOverview_UI creates the expected UI", {
   test_result <- mod_StudyOverview_UI(
     "testID",
+    sample_dfGroups,
     sample_dfResults,
     rlang::set_names(sample_dfMetrics$MetricID, sample_dfMetrics$Metric)
   )
