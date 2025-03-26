@@ -10,10 +10,10 @@ test_that("mod_MetricDetails_UI creates the expected UI", {
 test_that("mod_MetricDetails_Server initializes and renders scatter plot", {
   # Inputs to simulate things that happen in the main server function.
   rctv_strMetricID <- reactiveVal("Analysis_kri0001")
-  rctv_strSiteID <- reactiveVal("None")
+  rctv_strSiteID <- reactiveVal("All")
   rctv_lMetric <- reactive({
     lMetric <- as.list(FilterbyMetricID(sample_dfMetrics, rctv_strMetricID()))
-    if (rctv_strSiteID() != "None") {
+    if (rctv_strSiteID() != "All") {
       lMetric$selectedGroupIDs <- rctv_strSiteID()
     }
     lMetric
@@ -45,10 +45,10 @@ test_that("mod_MetricDetails_Server renders tab outputs", {
   call <- rlang::current_env()
   # Inputs to simulate things that happen in the main server function.
   rctv_strMetricID <- reactiveVal("Analysis_kri0001")
-  rctv_strSiteID <- reactiveVal("None")
+  rctv_strSiteID <- reactiveVal("All")
   rctv_lMetric <- reactive({
     lMetric <- as.list(FilterbyMetricID(sample_dfMetrics, rctv_strMetricID()))
-    if (rctv_strSiteID() != "None") {
+    if (rctv_strSiteID() != "All") {
       lMetric$selectedGroupIDs <- rctv_strSiteID()
     }
     lMetric
@@ -69,15 +69,15 @@ test_that("mod_MetricDetails_Server renders tab outputs", {
       # Manually set tab (happens automatically via UI). Make sure the selected
       # site doesn't instantly change.
       session$setInputs(selected_tab = "Scatter Plot")
-      expect_equal(rctv_strSiteID(), "None")
+      expect_equal(rctv_strSiteID(), "All")
       session$setInputs(selected_tab = "Bar Chart (KRI Value)")
-      expect_equal(rctv_strSiteID(), "None")
+      expect_equal(rctv_strSiteID(), "All")
       session$setInputs(selected_tab = "Bar Chart (KRI Score)")
-      expect_equal(rctv_strSiteID(), "None")
+      expect_equal(rctv_strSiteID(), "All")
       session$setInputs(selected_tab = "Time Series")
-      expect_equal(rctv_strSiteID(), "None")
+      expect_equal(rctv_strSiteID(), "All")
       session$setInputs(selected_tab = "Analysis Output")
-      expect_equal(rctv_strSiteID(), "None")
+      expect_equal(rctv_strSiteID(), "All")
     }
   )
 })

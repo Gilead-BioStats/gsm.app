@@ -4,13 +4,16 @@
 #' @returns A [bslib::nav_panel()] with either a placeholder, or a
 #'   [gt::gt_output()] table.
 #' @keywords internal
-mod_DomainData_UI <- function(id, strDomain) {
+mod_DomainData_UI <- function(id, strDomainLabel, strDomainID) {
   ns <- NS(id)
-  label <- unname(unlist(gsm::MakeParamLabelsList(strDomain, chrDomainLabels)))
   bslib::nav_panel(
-    title = label,
-    value = strDomain,
-    mod_gtBidirectional_UI(ns("gt"))
+    title = strDomainLabel,
+    value = strDomainID,
+    out_Card(
+      tagTitle = NULL,
+      mod_gtBidirectional_UI(ns("gt")),
+      id = ns("card")
+    )
   )
 }
 
@@ -24,8 +27,8 @@ mod_DomainData_UI <- function(id, strDomain) {
 #'   need it for deeper dives.
 #' @keywords internal
 mod_DomainData_Server <- function(
-    id,
-    rctv_dfDomain
+  id,
+  rctv_dfDomain
 ) {
   moduleServer(id, function(input, output, session) {
     rctv_tblData <- reactive({
@@ -41,7 +44,7 @@ mod_DomainData_Server <- function(
         gtObj <- gt::gt(df) %>%                                           # Tested via UI
           out_gtInteractive(selection_mode = "multiple") %>%              # Tested via UI
           gt::cols_label(                                                 # Tested via UI
-            .list = gsm::MakeParamLabelsList(colnames(df), chrFieldNames) # Tested via UI
+            .list = gsm.kri::MakeParamLabelsList(colnames(df), chrFieldNames) # Tested via UI
           ) %>%                                                           # Tested via UI
           out_gtSmartFmtNumbers(intMaxDecimals = 10L)                     # Tested via UI
 

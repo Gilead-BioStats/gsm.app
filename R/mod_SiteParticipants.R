@@ -6,13 +6,13 @@
 #' @keywords internal
 mod_SiteParticipants_UI <- function(id) {
   ns <- NS(id)
-  bslib::card(
+  out_Card(
+    tagTitle = NULL,
     bslib::card_header(
       bslib::card_title(shiny::textOutput(ns("title"), inline = TRUE)),
       uiOutput(ns("subtitle"))
     ),
     mod_gtBidirectional_UI(ns("gt")),
-    full_screen = TRUE,
     id = ns("gt_card")
   )
 }
@@ -33,7 +33,7 @@ mod_SiteParticipants_Server <- function(
   moduleServer(id, function(input, output, session) {
     rctv_lglGroupIsNone <- reactive({
       strGroupID <- rctv_strGroupID()
-      is.null(strGroupID) || strGroupID == "None"
+      is.null(strGroupID) || strGroupID == "All"
     }) %>%
       bindCache(rctv_strGroupID())
 

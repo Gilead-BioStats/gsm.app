@@ -21,7 +21,7 @@ HTMLWidgets.widget({
         // Generate site overview table.
         let clickCounter = 0;
         const incrementer = () => ++clickCounter;
-        const instance = rbmViz.default.groupOverview(
+        const instance = gsmViz.default.groupOverview(
           el,
           input.dfResults,
           {

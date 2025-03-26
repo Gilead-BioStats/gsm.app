@@ -4,7 +4,7 @@
       test_result
     Output
       <body class="bslib-page-fill bslib-gap-spacing bslib-flow-mobile html-fill-container bslib-page-navbar has-page-sidebar" style="padding:0px;gap:0px;">
-        <nav class="navbar navbar-default navbar-static-top" role="navigation">
+        <nav class="navbar navbar-default navbar-static-top" role="navigation" data-bs-theme="auto">
           <div class="container-fluid">
             <div class="navbar-header">
               <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse-XXXX" data-bs-toggle="collapse" data-bs-target="#navbar-collapse-XXXX">
@@ -13,7 +13,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
               </button>
-              <span class="navbar-brand">GSM Deep Dive</span>
+              <span class="navbar-brand">Protocol Nickname</span>
             </div>
             <div class="navbar-collapse collapse" id="navbar-collapse-XXXX">
               <ul class="nav navbar-nav nav-underline shiny-tab-input" id="primary_nav_bar" data-tabsetid="XXXX">
@@ -26,12 +26,33 @@
                 <li>
                   <a href="#tab-XXXX-3" data-toggle="tab" data-bs-toggle="tab" data-value="Domain Details">Domain Details</a>
                 </li>
+                <div class="bslib-nav-spacer"></div>
+                <li class="bslib-nav-item nav-item form-inline navbar-extras">
+                  <div class="form-group shiny-input-container shiny-input-container-inline">
+                    <label class="control-label" id="site-label" for="site">
+                      <strong>Site</strong>
+                    </label>
+                    <div id="site" class="virtual-select" style="display:inline-block;" data-update="change">
+                      <script type="application/json" data-for="site">{"stateInput":true,"options":{"type":["vector"],"choices":["All","0X001","0X002","0X003","0X004","0X005","0X006","0X007","0X008","0X010","0X011","0X012","0X013","0X014","0X015","0X016","0X018","0X021","0X022","0X024","0X026","0X027","0X028","0X029","0X037","0X041","0X064","0X079","0X103","0X109","0X124","0X155","0X159","0X170","0X173","0X180","X185X"]},"config":{"multiple":false,"search":false,"hideClearButton":true,"autoSelectFirstOption":true,"showSelectedOptionsFirst":false,"showValueAsTags":false,"optionsCount":10,"noOfDisplayValues":50,"allowNewOption":false,"disableSelectAll":true,"disableOptionGroupCheckbox":true,"disabled":false}}</script>
+                    </div>
+                  </div>
+                </li>
+                <li class="bslib-nav-item nav-item form-inline navbar-extras">
+                  <div class="form-group shiny-input-container shiny-input-container-inline">
+                    <label class="control-label" id="participant-label" for="participant">
+                      <strong>Participant</strong>
+                    </label>
+                    <div id="participant" class="virtual-select" style="display:inline-block;" data-update="change">
+                      <script type="application/json" data-for="participant">{"stateInput":true,"options":{"type":["transpose"],"choices":{"label":[],"value":[]}},"config":{"multiple":false,"search":false,"hideClearButton":true,"autoSelectFirstOption":true,"showSelectedOptionsFirst":false,"showValueAsTags":false,"optionsCount":10,"noOfDisplayValues":50,"allowNewOption":false,"disableSelectAll":true,"disableOptionGroupCheckbox":true,"disabled":false}}</script>
+                    </div>
+                  </div>
+                </li>
               </ul>
             </div>
           </div>
         </nav>
         <div class="html-fill-item html-fill-container">
-          <div class="bslib-sidebar-layout bslib-mb-spacing html-fill-item" data-bslib-sidebar-border="false" data-bslib-sidebar-border-radius="false" data-bslib-sidebar-init="TRUE" data-collapsible-desktop="true" data-collapsible-mobile="false" data-open-desktop="open" data-open-mobile="always" data-require-bs-caller="layout_sidebar()" data-require-bs-version="5" style="--_sidebar-width:400px;">
+          <div class="bslib-sidebar-layout bslib-mb-spacing sidebar-collapsed html-fill-item" data-bslib-sidebar-border="false" data-bslib-sidebar-border-radius="false" data-bslib-sidebar-init="TRUE" data-collapsible-desktop="true" data-collapsible-mobile="true" data-open-desktop="closed" data-open-mobile="closed" data-require-bs-caller="layout_sidebar()" data-require-bs-version="5" style="--_sidebar-width:400px;">
             <div class="main">
               <main class="bslib-page-main bslib-gap-spacing html-fill-item html-fill-container">
                 <div class="tab-content" data-tabsetid="XXXX">
@@ -47,167 +68,203 @@
                       </ul>
                       <div class="tab-content" data-tabsetid="XXXX">
                         <div class="tab-pane active" data-value="Overview Table" id="tab-XXXX-1">
-                          <div class="card bslib-card bslib-mb-spacing bslib-card-input html-fill-item html-fill-container" data-bslib-card-init data-full-screen="false" data-require-bs-caller="card()" data-require-bs-version="5" id="study_overview-table">
-                            <div class="card-body bslib-gap-spacing html-fill-item html-fill-container" style="margin-top:auto;margin-bottom:auto;flex:1 1 auto;">
-                              <div id="study_overview-table-kri_counts">
-                                <a class="action-button badge rounded-pill toggle-pill text-dark fs-6 p-2" href="#" id="study_overview-table-kri_counts-red-toggle_pill" style="background-color: #FF5859; opacity: 0.5;">3 Red KRIs</a>
-                                <a class="action-button badge rounded-pill toggle-pill text-dark fs-6 p-2" href="#" id="study_overview-table-kri_counts-amber-toggle_pill" style="background-color: #FEAA02; opacity: 0.5;">3 Amber KRIs</a>
+                          <div>
+                            <style>#study_overview-table .bslib-full-screen-enter { bottom: unset !important; }</style>
+                            <div class="card bslib-card bslib-mb-spacing bslib-card-input html-fill-item html-fill-container" data-bslib-card-init data-full-screen="false" data-require-bs-caller="card()" data-require-bs-version="5" id="study_overview-table">
+                              <div class="card-body bslib-gap-spacing html-fill-item html-fill-container" style="margin-top:auto;margin-bottom:auto;flex:1 1 auto;">
+                                <div id="study_overview-table-kri_counts">
+                                  <a class="action-button badge rounded-pill toggle-pill text-dark fs-6 p-2" href="#" id="study_overview-table-kri_counts-red-toggle_pill" style="background-color: #FF5859; opacity: 0.5;">3 Red KRIs</a>
+                                  <a class="action-button badge rounded-pill toggle-pill text-dark fs-6 p-2" href="#" id="study_overview-table-kri_counts-amber-toggle_pill" style="background-color: #FEAA02; opacity: 0.5;">3 Amber KRIs</a>
+                                </div>
+                                <div class="row gy-2">
+                                  <div class="Widget_GroupOverview html-widget html-widget-output shiny-report-size html-fill-item" id="study_overview-table-group_overview" style="width:100%;height:100%;"></div>
+                                  <div class="footnote">Click cells for associated risk signal details.</div>
+                                </div>
                               </div>
-                              <div class="row gy-2">
-                                <div class="Widget_GroupOverview html-widget html-widget-output shiny-report-size html-fill-item" id="study_overview-table-group_overview" style="width:100%;height:100%;"></div>
-                                <div class="footnote">Click cells for associated risk signal details.</div>
-                              </div>
+                              <bslib-tooltip placement="auto" bsOptions="[]" data-require-bs-version="5" data-require-bs-caller="tooltip()">
+                                <template>Expand</template>
+                                <button aria-expanded="false" aria-label="Expand card" class="bslib-full-screen-enter badge rounded-pill"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" style="height:1em;width:1em;fill:currentColor;" aria-hidden="true" role="img"><path d="M20 5C20 4.4 19.6 4 19 4H13C12.4 4 12 3.6 12 3C12 2.4 12.4 2 13 2H21C21.6 2 22 2.4 22 3V11C22 11.6 21.6 12 21 12C20.4 12 20 11.6 20 11V5ZM4 19C4 19.6 4.4 20 5 20H11C11.6 20 12 20.4 12 21C12 21.6 11.6 22 11 22H3C2.4 22 2 21.6 2 21V13C2 12.4 2.4 12 3 12C3.6 12 4 12.4 4 13V19Z"/></svg></button>
+                              </bslib-tooltip>
+                              <script data-bslib-card-init>bslib.Card.initializeAllCards();</script>
                             </div>
-                            <bslib-tooltip placement="auto" bsOptions="[]" data-require-bs-version="5" data-require-bs-caller="tooltip()">
-                              <template>Expand</template>
-                              <button aria-expanded="false" aria-label="Expand card" class="bslib-full-screen-enter badge rounded-pill"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" style="height:1em;width:1em;fill:currentColor;" aria-hidden="true" role="img"><path d="M20 5C20 4.4 19.6 4 19 4H13C12.4 4 12 3.6 12 3C12 2.4 12.4 2 13 2H21C21.6 2 22 2.4 22 3V11C22 11.6 21.6 12 21 12C20.4 12 20 11.6 20 11V5ZM4 19C4 19.6 4.4 20 5 20H11C11.6 20 12 20.4 12 21C12 21.6 11.6 22 11 22H3C2.4 22 2 21.6 2 21V13C2 12.4 2.4 12 3 12C3.6 12 4 12.4 4 13V19Z"/></svg></button>
-                            </bslib-tooltip>
-                            <script data-bslib-card-init>bslib.Card.initializeAllCards();</script>
                           </div>
                         </div>
                         <div class="tab-pane" data-value="Scatter Plots" id="tab-XXXX-2">
                           <div class="bslib-grid bslib-mb-spacing html-fill-item" data-require-bs-caller="layout_column_wrap()" data-require-bs-version="5" id="study_overview-scatter" style="grid-template-columns:repeat(2, minmax(0, 1fr));grid-auto-rows:1fr;--bslib-grid-height:auto;--bslib-grid-height-mobile:auto;">
                             <div class="bslib-grid-item bslib-gap-spacing html-fill-container">
-                              <div class="card bslib-card bslib-mb-spacing bslib-card-input html-fill-item html-fill-container chart" data-bslib-card-init data-full-screen="false" data-require-bs-caller="card()" data-require-bs-version="5" id="study_overview-scatter-Analysis_kri0001">
-                                <div class="card-header">Adverse Event Rate</div>
-                                <div class="card-body bslib-gap-spacing html-fill-item html-fill-container" style="margin-top:auto;margin-bottom:auto;flex:1 1 auto;">
-                                  <div class="Widget_ScatterPlot html-widget html-widget-output shiny-report-size html-fill-item" id="study_overview-scatter-Analysis_kri0001-plot" style="width:100%;height:400px;"></div>
+                              <div>
+                                <style>#study_overview-scatter-Analysis_kri0001 .bslib-full-screen-enter { bottom: unset !important; }</style>
+                                <div class="card bslib-card bslib-mb-spacing bslib-card-input html-fill-item html-fill-container chart" data-bslib-card-init data-full-screen="false" data-require-bs-caller="card()" data-require-bs-version="5" id="study_overview-scatter-Analysis_kri0001">
+                                  <div class="card-body bslib-gap-spacing html-fill-item html-fill-container" style="margin-top:auto;margin-bottom:auto;flex:1 1 auto;">
+                                    <h5>Adverse Event Rate</h5>
+                                    <div class="Widget_ScatterPlot html-widget html-widget-output shiny-report-size html-fill-item" id="study_overview-scatter-Analysis_kri0001-plot" style="width:100%;height:400px;"></div>
+                                  </div>
+                                  <bslib-tooltip placement="auto" bsOptions="[]" data-require-bs-version="5" data-require-bs-caller="tooltip()">
+                                    <template>Expand</template>
+                                    <button aria-expanded="false" aria-label="Expand card" class="bslib-full-screen-enter badge rounded-pill"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" style="height:1em;width:1em;fill:currentColor;" aria-hidden="true" role="img"><path d="M20 5C20 4.4 19.6 4 19 4H13C12.4 4 12 3.6 12 3C12 2.4 12.4 2 13 2H21C21.6 2 22 2.4 22 3V11C22 11.6 21.6 12 21 12C20.4 12 20 11.6 20 11V5ZM4 19C4 19.6 4.4 20 5 20H11C11.6 20 12 20.4 12 21C12 21.6 11.6 22 11 22H3C2.4 22 2 21.6 2 21V13C2 12.4 2.4 12 3 12C3.6 12 4 12.4 4 13V19Z"/></svg></button>
+                                  </bslib-tooltip>
+                                  <script data-bslib-card-init>bslib.Card.initializeAllCards();</script>
                                 </div>
-                                <bslib-tooltip placement="auto" bsOptions="[]" data-require-bs-version="5" data-require-bs-caller="tooltip()">
-                                  <template>Expand</template>
-                                  <button aria-expanded="false" aria-label="Expand card" class="bslib-full-screen-enter badge rounded-pill"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" style="height:1em;width:1em;fill:currentColor;" aria-hidden="true" role="img"><path d="M20 5C20 4.4 19.6 4 19 4H13C12.4 4 12 3.6 12 3C12 2.4 12.4 2 13 2H21C21.6 2 22 2.4 22 3V11C22 11.6 21.6 12 21 12C20.4 12 20 11.6 20 11V5ZM4 19C4 19.6 4.4 20 5 20H11C11.6 20 12 20.4 12 21C12 21.6 11.6 22 11 22H3C2.4 22 2 21.6 2 21V13C2 12.4 2.4 12 3 12C3.6 12 4 12.4 4 13V19Z"/></svg></button>
-                                </bslib-tooltip>
-                                <script data-bslib-card-init>bslib.Card.initializeAllCards();</script>
                               </div>
                             </div>
                             <div class="bslib-grid-item bslib-gap-spacing html-fill-container">
-                              <div class="card bslib-card bslib-mb-spacing bslib-card-input html-fill-item html-fill-container chart" data-bslib-card-init data-full-screen="false" data-require-bs-caller="card()" data-require-bs-version="5" id="study_overview-scatter-Analysis_kri0002">
-                                <div class="card-header">Serious Adverse Event Rate</div>
-                                <div class="card-body bslib-gap-spacing html-fill-item html-fill-container" style="margin-top:auto;margin-bottom:auto;flex:1 1 auto;">
-                                  <div class="Widget_ScatterPlot html-widget html-widget-output shiny-report-size html-fill-item" id="study_overview-scatter-Analysis_kri0002-plot" style="width:100%;height:400px;"></div>
+                              <div>
+                                <style>#study_overview-scatter-Analysis_kri0002 .bslib-full-screen-enter { bottom: unset !important; }</style>
+                                <div class="card bslib-card bslib-mb-spacing bslib-card-input html-fill-item html-fill-container chart" data-bslib-card-init data-full-screen="false" data-require-bs-caller="card()" data-require-bs-version="5" id="study_overview-scatter-Analysis_kri0002">
+                                  <div class="card-body bslib-gap-spacing html-fill-item html-fill-container" style="margin-top:auto;margin-bottom:auto;flex:1 1 auto;">
+                                    <h5>Serious Adverse Event Rate</h5>
+                                    <div class="Widget_ScatterPlot html-widget html-widget-output shiny-report-size html-fill-item" id="study_overview-scatter-Analysis_kri0002-plot" style="width:100%;height:400px;"></div>
+                                  </div>
+                                  <bslib-tooltip placement="auto" bsOptions="[]" data-require-bs-version="5" data-require-bs-caller="tooltip()">
+                                    <template>Expand</template>
+                                    <button aria-expanded="false" aria-label="Expand card" class="bslib-full-screen-enter badge rounded-pill"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" style="height:1em;width:1em;fill:currentColor;" aria-hidden="true" role="img"><path d="M20 5C20 4.4 19.6 4 19 4H13C12.4 4 12 3.6 12 3C12 2.4 12.4 2 13 2H21C21.6 2 22 2.4 22 3V11C22 11.6 21.6 12 21 12C20.4 12 20 11.6 20 11V5ZM4 19C4 19.6 4.4 20 5 20H11C11.6 20 12 20.4 12 21C12 21.6 11.6 22 11 22H3C2.4 22 2 21.6 2 21V13C2 12.4 2.4 12 3 12C3.6 12 4 12.4 4 13V19Z"/></svg></button>
+                                  </bslib-tooltip>
+                                  <script data-bslib-card-init>bslib.Card.initializeAllCards();</script>
                                 </div>
-                                <bslib-tooltip placement="auto" bsOptions="[]" data-require-bs-version="5" data-require-bs-caller="tooltip()">
-                                  <template>Expand</template>
-                                  <button aria-expanded="false" aria-label="Expand card" class="bslib-full-screen-enter badge rounded-pill"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" style="height:1em;width:1em;fill:currentColor;" aria-hidden="true" role="img"><path d="M20 5C20 4.4 19.6 4 19 4H13C12.4 4 12 3.6 12 3C12 2.4 12.4 2 13 2H21C21.6 2 22 2.4 22 3V11C22 11.6 21.6 12 21 12C20.4 12 20 11.6 20 11V5ZM4 19C4 19.6 4.4 20 5 20H11C11.6 20 12 20.4 12 21C12 21.6 11.6 22 11 22H3C2.4 22 2 21.6 2 21V13C2 12.4 2.4 12 3 12C3.6 12 4 12.4 4 13V19Z"/></svg></button>
-                                </bslib-tooltip>
-                                <script data-bslib-card-init>bslib.Card.initializeAllCards();</script>
                               </div>
                             </div>
                             <div class="bslib-grid-item bslib-gap-spacing html-fill-container">
-                              <div class="card bslib-card bslib-mb-spacing bslib-card-input html-fill-item html-fill-container chart" data-bslib-card-init data-full-screen="false" data-require-bs-caller="card()" data-require-bs-version="5" id="study_overview-scatter-Analysis_kri0003">
-                                <div class="card-header">Non-Important Protocol Deviation Rate</div>
-                                <div class="card-body bslib-gap-spacing html-fill-item html-fill-container" style="margin-top:auto;margin-bottom:auto;flex:1 1 auto;">
-                                  <div class="Widget_ScatterPlot html-widget html-widget-output shiny-report-size html-fill-item" id="study_overview-scatter-Analysis_kri0003-plot" style="width:100%;height:400px;"></div>
+                              <div>
+                                <style>#study_overview-scatter-Analysis_kri0003 .bslib-full-screen-enter { bottom: unset !important; }</style>
+                                <div class="card bslib-card bslib-mb-spacing bslib-card-input html-fill-item html-fill-container chart" data-bslib-card-init data-full-screen="false" data-require-bs-caller="card()" data-require-bs-version="5" id="study_overview-scatter-Analysis_kri0003">
+                                  <div class="card-body bslib-gap-spacing html-fill-item html-fill-container" style="margin-top:auto;margin-bottom:auto;flex:1 1 auto;">
+                                    <h5>Non-Important Protocol Deviation Rate</h5>
+                                    <div class="Widget_ScatterPlot html-widget html-widget-output shiny-report-size html-fill-item" id="study_overview-scatter-Analysis_kri0003-plot" style="width:100%;height:400px;"></div>
+                                  </div>
+                                  <bslib-tooltip placement="auto" bsOptions="[]" data-require-bs-version="5" data-require-bs-caller="tooltip()">
+                                    <template>Expand</template>
+                                    <button aria-expanded="false" aria-label="Expand card" class="bslib-full-screen-enter badge rounded-pill"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" style="height:1em;width:1em;fill:currentColor;" aria-hidden="true" role="img"><path d="M20 5C20 4.4 19.6 4 19 4H13C12.4 4 12 3.6 12 3C12 2.4 12.4 2 13 2H21C21.6 2 22 2.4 22 3V11C22 11.6 21.6 12 21 12C20.4 12 20 11.6 20 11V5ZM4 19C4 19.6 4.4 20 5 20H11C11.6 20 12 20.4 12 21C12 21.6 11.6 22 11 22H3C2.4 22 2 21.6 2 21V13C2 12.4 2.4 12 3 12C3.6 12 4 12.4 4 13V19Z"/></svg></button>
+                                  </bslib-tooltip>
+                                  <script data-bslib-card-init>bslib.Card.initializeAllCards();</script>
                                 </div>
-                                <bslib-tooltip placement="auto" bsOptions="[]" data-require-bs-version="5" data-require-bs-caller="tooltip()">
-                                  <template>Expand</template>
-                                  <button aria-expanded="false" aria-label="Expand card" class="bslib-full-screen-enter badge rounded-pill"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" style="height:1em;width:1em;fill:currentColor;" aria-hidden="true" role="img"><path d="M20 5C20 4.4 19.6 4 19 4H13C12.4 4 12 3.6 12 3C12 2.4 12.4 2 13 2H21C21.6 2 22 2.4 22 3V11C22 11.6 21.6 12 21 12C20.4 12 20 11.6 20 11V5ZM4 19C4 19.6 4.4 20 5 20H11C11.6 20 12 20.4 12 21C12 21.6 11.6 22 11 22H3C2.4 22 2 21.6 2 21V13C2 12.4 2.4 12 3 12C3.6 12 4 12.4 4 13V19Z"/></svg></button>
-                                </bslib-tooltip>
-                                <script data-bslib-card-init>bslib.Card.initializeAllCards();</script>
                               </div>
                             </div>
                             <div class="bslib-grid-item bslib-gap-spacing html-fill-container">
-                              <div class="card bslib-card bslib-mb-spacing bslib-card-input html-fill-item html-fill-container chart" data-bslib-card-init data-full-screen="false" data-require-bs-caller="card()" data-require-bs-version="5" id="study_overview-scatter-Analysis_kri0004">
-                                <div class="card-header">Important Protocol Deviation Rate</div>
-                                <div class="card-body bslib-gap-spacing html-fill-item html-fill-container" style="margin-top:auto;margin-bottom:auto;flex:1 1 auto;">
-                                  <div class="Widget_ScatterPlot html-widget html-widget-output shiny-report-size html-fill-item" id="study_overview-scatter-Analysis_kri0004-plot" style="width:100%;height:400px;"></div>
+                              <div>
+                                <style>#study_overview-scatter-Analysis_kri0004 .bslib-full-screen-enter { bottom: unset !important; }</style>
+                                <div class="card bslib-card bslib-mb-spacing bslib-card-input html-fill-item html-fill-container chart" data-bslib-card-init data-full-screen="false" data-require-bs-caller="card()" data-require-bs-version="5" id="study_overview-scatter-Analysis_kri0004">
+                                  <div class="card-body bslib-gap-spacing html-fill-item html-fill-container" style="margin-top:auto;margin-bottom:auto;flex:1 1 auto;">
+                                    <h5>Important Protocol Deviation Rate</h5>
+                                    <div class="Widget_ScatterPlot html-widget html-widget-output shiny-report-size html-fill-item" id="study_overview-scatter-Analysis_kri0004-plot" style="width:100%;height:400px;"></div>
+                                  </div>
+                                  <bslib-tooltip placement="auto" bsOptions="[]" data-require-bs-version="5" data-require-bs-caller="tooltip()">
+                                    <template>Expand</template>
+                                    <button aria-expanded="false" aria-label="Expand card" class="bslib-full-screen-enter badge rounded-pill"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" style="height:1em;width:1em;fill:currentColor;" aria-hidden="true" role="img"><path d="M20 5C20 4.4 19.6 4 19 4H13C12.4 4 12 3.6 12 3C12 2.4 12.4 2 13 2H21C21.6 2 22 2.4 22 3V11C22 11.6 21.6 12 21 12C20.4 12 20 11.6 20 11V5ZM4 19C4 19.6 4.4 20 5 20H11C11.6 20 12 20.4 12 21C12 21.6 11.6 22 11 22H3C2.4 22 2 21.6 2 21V13C2 12.4 2.4 12 3 12C3.6 12 4 12.4 4 13V19Z"/></svg></button>
+                                  </bslib-tooltip>
+                                  <script data-bslib-card-init>bslib.Card.initializeAllCards();</script>
                                 </div>
-                                <bslib-tooltip placement="auto" bsOptions="[]" data-require-bs-version="5" data-require-bs-caller="tooltip()">
-                                  <template>Expand</template>
-                                  <button aria-expanded="false" aria-label="Expand card" class="bslib-full-screen-enter badge rounded-pill"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" style="height:1em;width:1em;fill:currentColor;" aria-hidden="true" role="img"><path d="M20 5C20 4.4 19.6 4 19 4H13C12.4 4 12 3.6 12 3C12 2.4 12.4 2 13 2H21C21.6 2 22 2.4 22 3V11C22 11.6 21.6 12 21 12C20.4 12 20 11.6 20 11V5ZM4 19C4 19.6 4.4 20 5 20H11C11.6 20 12 20.4 12 21C12 21.6 11.6 22 11 22H3C2.4 22 2 21.6 2 21V13C2 12.4 2.4 12 3 12C3.6 12 4 12.4 4 13V19Z"/></svg></button>
-                                </bslib-tooltip>
-                                <script data-bslib-card-init>bslib.Card.initializeAllCards();</script>
                               </div>
                             </div>
                             <div class="bslib-grid-item bslib-gap-spacing html-fill-container">
-                              <div class="card bslib-card bslib-mb-spacing bslib-card-input html-fill-item html-fill-container chart" data-bslib-card-init data-full-screen="false" data-require-bs-caller="card()" data-require-bs-version="5" id="study_overview-scatter-Analysis_kri0005">
-                                <div class="card-header">Grade 3+ Lab Abnormality Rate</div>
-                                <div class="card-body bslib-gap-spacing html-fill-item html-fill-container" style="margin-top:auto;margin-bottom:auto;flex:1 1 auto;">
-                                  <div class="Widget_ScatterPlot html-widget html-widget-output shiny-report-size html-fill-item" id="study_overview-scatter-Analysis_kri0005-plot" style="width:100%;height:400px;"></div>
+                              <div>
+                                <style>#study_overview-scatter-Analysis_kri0005 .bslib-full-screen-enter { bottom: unset !important; }</style>
+                                <div class="card bslib-card bslib-mb-spacing bslib-card-input html-fill-item html-fill-container chart" data-bslib-card-init data-full-screen="false" data-require-bs-caller="card()" data-require-bs-version="5" id="study_overview-scatter-Analysis_kri0005">
+                                  <div class="card-body bslib-gap-spacing html-fill-item html-fill-container" style="margin-top:auto;margin-bottom:auto;flex:1 1 auto;">
+                                    <h5>Grade 3+ Lab Abnormality Rate</h5>
+                                    <div class="Widget_ScatterPlot html-widget html-widget-output shiny-report-size html-fill-item" id="study_overview-scatter-Analysis_kri0005-plot" style="width:100%;height:400px;"></div>
+                                  </div>
+                                  <bslib-tooltip placement="auto" bsOptions="[]" data-require-bs-version="5" data-require-bs-caller="tooltip()">
+                                    <template>Expand</template>
+                                    <button aria-expanded="false" aria-label="Expand card" class="bslib-full-screen-enter badge rounded-pill"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" style="height:1em;width:1em;fill:currentColor;" aria-hidden="true" role="img"><path d="M20 5C20 4.4 19.6 4 19 4H13C12.4 4 12 3.6 12 3C12 2.4 12.4 2 13 2H21C21.6 2 22 2.4 22 3V11C22 11.6 21.6 12 21 12C20.4 12 20 11.6 20 11V5ZM4 19C4 19.6 4.4 20 5 20H11C11.6 20 12 20.4 12 21C12 21.6 11.6 22 11 22H3C2.4 22 2 21.6 2 21V13C2 12.4 2.4 12 3 12C3.6 12 4 12.4 4 13V19Z"/></svg></button>
+                                  </bslib-tooltip>
+                                  <script data-bslib-card-init>bslib.Card.initializeAllCards();</script>
                                 </div>
-                                <bslib-tooltip placement="auto" bsOptions="[]" data-require-bs-version="5" data-require-bs-caller="tooltip()">
-                                  <template>Expand</template>
-                                  <button aria-expanded="false" aria-label="Expand card" class="bslib-full-screen-enter badge rounded-pill"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" style="height:1em;width:1em;fill:currentColor;" aria-hidden="true" role="img"><path d="M20 5C20 4.4 19.6 4 19 4H13C12.4 4 12 3.6 12 3C12 2.4 12.4 2 13 2H21C21.6 2 22 2.4 22 3V11C22 11.6 21.6 12 21 12C20.4 12 20 11.6 20 11V5ZM4 19C4 19.6 4.4 20 5 20H11C11.6 20 12 20.4 12 21C12 21.6 11.6 22 11 22H3C2.4 22 2 21.6 2 21V13C2 12.4 2.4 12 3 12C3.6 12 4 12.4 4 13V19Z"/></svg></button>
-                                </bslib-tooltip>
-                                <script data-bslib-card-init>bslib.Card.initializeAllCards();</script>
                               </div>
                             </div>
                             <div class="bslib-grid-item bslib-gap-spacing html-fill-container">
-                              <div class="card bslib-card bslib-mb-spacing bslib-card-input html-fill-item html-fill-container chart" data-bslib-card-init data-full-screen="false" data-require-bs-caller="card()" data-require-bs-version="5" id="study_overview-scatter-Analysis_kri0006">
-                                <div class="card-header">Study Discontinuation Rate</div>
-                                <div class="card-body bslib-gap-spacing html-fill-item html-fill-container" style="margin-top:auto;margin-bottom:auto;flex:1 1 auto;">
-                                  <div class="Widget_ScatterPlot html-widget html-widget-output shiny-report-size html-fill-item" id="study_overview-scatter-Analysis_kri0006-plot" style="width:100%;height:400px;"></div>
+                              <div>
+                                <style>#study_overview-scatter-Analysis_kri0006 .bslib-full-screen-enter { bottom: unset !important; }</style>
+                                <div class="card bslib-card bslib-mb-spacing bslib-card-input html-fill-item html-fill-container chart" data-bslib-card-init data-full-screen="false" data-require-bs-caller="card()" data-require-bs-version="5" id="study_overview-scatter-Analysis_kri0006">
+                                  <div class="card-body bslib-gap-spacing html-fill-item html-fill-container" style="margin-top:auto;margin-bottom:auto;flex:1 1 auto;">
+                                    <h5>Study Discontinuation Rate</h5>
+                                    <div class="Widget_ScatterPlot html-widget html-widget-output shiny-report-size html-fill-item" id="study_overview-scatter-Analysis_kri0006-plot" style="width:100%;height:400px;"></div>
+                                  </div>
+                                  <bslib-tooltip placement="auto" bsOptions="[]" data-require-bs-version="5" data-require-bs-caller="tooltip()">
+                                    <template>Expand</template>
+                                    <button aria-expanded="false" aria-label="Expand card" class="bslib-full-screen-enter badge rounded-pill"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" style="height:1em;width:1em;fill:currentColor;" aria-hidden="true" role="img"><path d="M20 5C20 4.4 19.6 4 19 4H13C12.4 4 12 3.6 12 3C12 2.4 12.4 2 13 2H21C21.6 2 22 2.4 22 3V11C22 11.6 21.6 12 21 12C20.4 12 20 11.6 20 11V5ZM4 19C4 19.6 4.4 20 5 20H11C11.6 20 12 20.4 12 21C12 21.6 11.6 22 11 22H3C2.4 22 2 21.6 2 21V13C2 12.4 2.4 12 3 12C3.6 12 4 12.4 4 13V19Z"/></svg></button>
+                                  </bslib-tooltip>
+                                  <script data-bslib-card-init>bslib.Card.initializeAllCards();</script>
                                 </div>
-                                <bslib-tooltip placement="auto" bsOptions="[]" data-require-bs-version="5" data-require-bs-caller="tooltip()">
-                                  <template>Expand</template>
-                                  <button aria-expanded="false" aria-label="Expand card" class="bslib-full-screen-enter badge rounded-pill"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" style="height:1em;width:1em;fill:currentColor;" aria-hidden="true" role="img"><path d="M20 5C20 4.4 19.6 4 19 4H13C12.4 4 12 3.6 12 3C12 2.4 12.4 2 13 2H21C21.6 2 22 2.4 22 3V11C22 11.6 21.6 12 21 12C20.4 12 20 11.6 20 11V5ZM4 19C4 19.6 4.4 20 5 20H11C11.6 20 12 20.4 12 21C12 21.6 11.6 22 11 22H3C2.4 22 2 21.6 2 21V13C2 12.4 2.4 12 3 12C3.6 12 4 12.4 4 13V19Z"/></svg></button>
-                                </bslib-tooltip>
-                                <script data-bslib-card-init>bslib.Card.initializeAllCards();</script>
                               </div>
                             </div>
                             <div class="bslib-grid-item bslib-gap-spacing html-fill-container">
-                              <div class="card bslib-card bslib-mb-spacing bslib-card-input html-fill-item html-fill-container chart" data-bslib-card-init data-full-screen="false" data-require-bs-caller="card()" data-require-bs-version="5" id="study_overview-scatter-Analysis_kri0007">
-                                <div class="card-header">Treatment Discontinuation Rate</div>
-                                <div class="card-body bslib-gap-spacing html-fill-item html-fill-container" style="margin-top:auto;margin-bottom:auto;flex:1 1 auto;">
-                                  <div class="Widget_ScatterPlot html-widget html-widget-output shiny-report-size html-fill-item" id="study_overview-scatter-Analysis_kri0007-plot" style="width:100%;height:400px;"></div>
+                              <div>
+                                <style>#study_overview-scatter-Analysis_kri0007 .bslib-full-screen-enter { bottom: unset !important; }</style>
+                                <div class="card bslib-card bslib-mb-spacing bslib-card-input html-fill-item html-fill-container chart" data-bslib-card-init data-full-screen="false" data-require-bs-caller="card()" data-require-bs-version="5" id="study_overview-scatter-Analysis_kri0007">
+                                  <div class="card-body bslib-gap-spacing html-fill-item html-fill-container" style="margin-top:auto;margin-bottom:auto;flex:1 1 auto;">
+                                    <h5>Treatment Discontinuation Rate</h5>
+                                    <div class="Widget_ScatterPlot html-widget html-widget-output shiny-report-size html-fill-item" id="study_overview-scatter-Analysis_kri0007-plot" style="width:100%;height:400px;"></div>
+                                  </div>
+                                  <bslib-tooltip placement="auto" bsOptions="[]" data-require-bs-version="5" data-require-bs-caller="tooltip()">
+                                    <template>Expand</template>
+                                    <button aria-expanded="false" aria-label="Expand card" class="bslib-full-screen-enter badge rounded-pill"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" style="height:1em;width:1em;fill:currentColor;" aria-hidden="true" role="img"><path d="M20 5C20 4.4 19.6 4 19 4H13C12.4 4 12 3.6 12 3C12 2.4 12.4 2 13 2H21C21.6 2 22 2.4 22 3V11C22 11.6 21.6 12 21 12C20.4 12 20 11.6 20 11V5ZM4 19C4 19.6 4.4 20 5 20H11C11.6 20 12 20.4 12 21C12 21.6 11.6 22 11 22H3C2.4 22 2 21.6 2 21V13C2 12.4 2.4 12 3 12C3.6 12 4 12.4 4 13V19Z"/></svg></button>
+                                  </bslib-tooltip>
+                                  <script data-bslib-card-init>bslib.Card.initializeAllCards();</script>
                                 </div>
-                                <bslib-tooltip placement="auto" bsOptions="[]" data-require-bs-version="5" data-require-bs-caller="tooltip()">
-                                  <template>Expand</template>
-                                  <button aria-expanded="false" aria-label="Expand card" class="bslib-full-screen-enter badge rounded-pill"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" style="height:1em;width:1em;fill:currentColor;" aria-hidden="true" role="img"><path d="M20 5C20 4.4 19.6 4 19 4H13C12.4 4 12 3.6 12 3C12 2.4 12.4 2 13 2H21C21.6 2 22 2.4 22 3V11C22 11.6 21.6 12 21 12C20.4 12 20 11.6 20 11V5ZM4 19C4 19.6 4.4 20 5 20H11C11.6 20 12 20.4 12 21C12 21.6 11.6 22 11 22H3C2.4 22 2 21.6 2 21V13C2 12.4 2.4 12 3 12C3.6 12 4 12.4 4 13V19Z"/></svg></button>
-                                </bslib-tooltip>
-                                <script data-bslib-card-init>bslib.Card.initializeAllCards();</script>
                               </div>
                             </div>
                             <div class="bslib-grid-item bslib-gap-spacing html-fill-container">
-                              <div class="card bslib-card bslib-mb-spacing bslib-card-input html-fill-item html-fill-container chart" data-bslib-card-init data-full-screen="false" data-require-bs-caller="card()" data-require-bs-version="5" id="study_overview-scatter-Analysis_kri0008">
-                                <div class="card-header">Query Rate</div>
-                                <div class="card-body bslib-gap-spacing html-fill-item html-fill-container" style="margin-top:auto;margin-bottom:auto;flex:1 1 auto;">
-                                  <div class="Widget_ScatterPlot html-widget html-widget-output shiny-report-size html-fill-item" id="study_overview-scatter-Analysis_kri0008-plot" style="width:100%;height:400px;"></div>
+                              <div>
+                                <style>#study_overview-scatter-Analysis_kri0008 .bslib-full-screen-enter { bottom: unset !important; }</style>
+                                <div class="card bslib-card bslib-mb-spacing bslib-card-input html-fill-item html-fill-container chart" data-bslib-card-init data-full-screen="false" data-require-bs-caller="card()" data-require-bs-version="5" id="study_overview-scatter-Analysis_kri0008">
+                                  <div class="card-body bslib-gap-spacing html-fill-item html-fill-container" style="margin-top:auto;margin-bottom:auto;flex:1 1 auto;">
+                                    <h5>Query Rate</h5>
+                                    <div class="Widget_ScatterPlot html-widget html-widget-output shiny-report-size html-fill-item" id="study_overview-scatter-Analysis_kri0008-plot" style="width:100%;height:400px;"></div>
+                                  </div>
+                                  <bslib-tooltip placement="auto" bsOptions="[]" data-require-bs-version="5" data-require-bs-caller="tooltip()">
+                                    <template>Expand</template>
+                                    <button aria-expanded="false" aria-label="Expand card" class="bslib-full-screen-enter badge rounded-pill"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" style="height:1em;width:1em;fill:currentColor;" aria-hidden="true" role="img"><path d="M20 5C20 4.4 19.6 4 19 4H13C12.4 4 12 3.6 12 3C12 2.4 12.4 2 13 2H21C21.6 2 22 2.4 22 3V11C22 11.6 21.6 12 21 12C20.4 12 20 11.6 20 11V5ZM4 19C4 19.6 4.4 20 5 20H11C11.6 20 12 20.4 12 21C12 21.6 11.6 22 11 22H3C2.4 22 2 21.6 2 21V13C2 12.4 2.4 12 3 12C3.6 12 4 12.4 4 13V19Z"/></svg></button>
+                                  </bslib-tooltip>
+                                  <script data-bslib-card-init>bslib.Card.initializeAllCards();</script>
                                 </div>
-                                <bslib-tooltip placement="auto" bsOptions="[]" data-require-bs-version="5" data-require-bs-caller="tooltip()">
-                                  <template>Expand</template>
-                                  <button aria-expanded="false" aria-label="Expand card" class="bslib-full-screen-enter badge rounded-pill"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" style="height:1em;width:1em;fill:currentColor;" aria-hidden="true" role="img"><path d="M20 5C20 4.4 19.6 4 19 4H13C12.4 4 12 3.6 12 3C12 2.4 12.4 2 13 2H21C21.6 2 22 2.4 22 3V11C22 11.6 21.6 12 21 12C20.4 12 20 11.6 20 11V5ZM4 19C4 19.6 4.4 20 5 20H11C11.6 20 12 20.4 12 21C12 21.6 11.6 22 11 22H3C2.4 22 2 21.6 2 21V13C2 12.4 2.4 12 3 12C3.6 12 4 12.4 4 13V19Z"/></svg></button>
-                                </bslib-tooltip>
-                                <script data-bslib-card-init>bslib.Card.initializeAllCards();</script>
                               </div>
                             </div>
                             <div class="bslib-grid-item bslib-gap-spacing html-fill-container">
-                              <div class="card bslib-card bslib-mb-spacing bslib-card-input html-fill-item html-fill-container chart" data-bslib-card-init data-full-screen="false" data-require-bs-caller="card()" data-require-bs-version="5" id="study_overview-scatter-Analysis_kri0009">
-                                <div class="card-header">Outstanding Query Rate</div>
-                                <div class="card-body bslib-gap-spacing html-fill-item html-fill-container" style="margin-top:auto;margin-bottom:auto;flex:1 1 auto;">
-                                  <div class="Widget_ScatterPlot html-widget html-widget-output shiny-report-size html-fill-item" id="study_overview-scatter-Analysis_kri0009-plot" style="width:100%;height:400px;"></div>
+                              <div>
+                                <style>#study_overview-scatter-Analysis_kri0009 .bslib-full-screen-enter { bottom: unset !important; }</style>
+                                <div class="card bslib-card bslib-mb-spacing bslib-card-input html-fill-item html-fill-container chart" data-bslib-card-init data-full-screen="false" data-require-bs-caller="card()" data-require-bs-version="5" id="study_overview-scatter-Analysis_kri0009">
+                                  <div class="card-body bslib-gap-spacing html-fill-item html-fill-container" style="margin-top:auto;margin-bottom:auto;flex:1 1 auto;">
+                                    <h5>Delayed Query Resolution Rate</h5>
+                                    <div class="Widget_ScatterPlot html-widget html-widget-output shiny-report-size html-fill-item" id="study_overview-scatter-Analysis_kri0009-plot" style="width:100%;height:400px;"></div>
+                                  </div>
+                                  <bslib-tooltip placement="auto" bsOptions="[]" data-require-bs-version="5" data-require-bs-caller="tooltip()">
+                                    <template>Expand</template>
+                                    <button aria-expanded="false" aria-label="Expand card" class="bslib-full-screen-enter badge rounded-pill"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" style="height:1em;width:1em;fill:currentColor;" aria-hidden="true" role="img"><path d="M20 5C20 4.4 19.6 4 19 4H13C12.4 4 12 3.6 12 3C12 2.4 12.4 2 13 2H21C21.6 2 22 2.4 22 3V11C22 11.6 21.6 12 21 12C20.4 12 20 11.6 20 11V5ZM4 19C4 19.6 4.4 20 5 20H11C11.6 20 12 20.4 12 21C12 21.6 11.6 22 11 22H3C2.4 22 2 21.6 2 21V13C2 12.4 2.4 12 3 12C3.6 12 4 12.4 4 13V19Z"/></svg></button>
+                                  </bslib-tooltip>
+                                  <script data-bslib-card-init>bslib.Card.initializeAllCards();</script>
                                 </div>
-                                <bslib-tooltip placement="auto" bsOptions="[]" data-require-bs-version="5" data-require-bs-caller="tooltip()">
-                                  <template>Expand</template>
-                                  <button aria-expanded="false" aria-label="Expand card" class="bslib-full-screen-enter badge rounded-pill"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" style="height:1em;width:1em;fill:currentColor;" aria-hidden="true" role="img"><path d="M20 5C20 4.4 19.6 4 19 4H13C12.4 4 12 3.6 12 3C12 2.4 12.4 2 13 2H21C21.6 2 22 2.4 22 3V11C22 11.6 21.6 12 21 12C20.4 12 20 11.6 20 11V5ZM4 19C4 19.6 4.4 20 5 20H11C11.6 20 12 20.4 12 21C12 21.6 11.6 22 11 22H3C2.4 22 2 21.6 2 21V13C2 12.4 2.4 12 3 12C3.6 12 4 12.4 4 13V19Z"/></svg></button>
-                                </bslib-tooltip>
-                                <script data-bslib-card-init>bslib.Card.initializeAllCards();</script>
                               </div>
                             </div>
                             <div class="bslib-grid-item bslib-gap-spacing html-fill-container">
-                              <div class="card bslib-card bslib-mb-spacing bslib-card-input html-fill-item html-fill-container chart" data-bslib-card-init data-full-screen="false" data-require-bs-caller="card()" data-require-bs-version="5" id="study_overview-scatter-Analysis_kri0010">
-                                <div class="card-header">Outstanding Data Entry Rate</div>
-                                <div class="card-body bslib-gap-spacing html-fill-item html-fill-container" style="margin-top:auto;margin-bottom:auto;flex:1 1 auto;">
-                                  <div class="Widget_ScatterPlot html-widget html-widget-output shiny-report-size html-fill-item" id="study_overview-scatter-Analysis_kri0010-plot" style="width:100%;height:400px;"></div>
+                              <div>
+                                <style>#study_overview-scatter-Analysis_kri0010 .bslib-full-screen-enter { bottom: unset !important; }</style>
+                                <div class="card bslib-card bslib-mb-spacing bslib-card-input html-fill-item html-fill-container chart" data-bslib-card-init data-full-screen="false" data-require-bs-caller="card()" data-require-bs-version="5" id="study_overview-scatter-Analysis_kri0010">
+                                  <div class="card-body bslib-gap-spacing html-fill-item html-fill-container" style="margin-top:auto;margin-bottom:auto;flex:1 1 auto;">
+                                    <h5>Delayed Data Entry Rate</h5>
+                                    <div class="Widget_ScatterPlot html-widget html-widget-output shiny-report-size html-fill-item" id="study_overview-scatter-Analysis_kri0010-plot" style="width:100%;height:400px;"></div>
+                                  </div>
+                                  <bslib-tooltip placement="auto" bsOptions="[]" data-require-bs-version="5" data-require-bs-caller="tooltip()">
+                                    <template>Expand</template>
+                                    <button aria-expanded="false" aria-label="Expand card" class="bslib-full-screen-enter badge rounded-pill"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" style="height:1em;width:1em;fill:currentColor;" aria-hidden="true" role="img"><path d="M20 5C20 4.4 19.6 4 19 4H13C12.4 4 12 3.6 12 3C12 2.4 12.4 2 13 2H21C21.6 2 22 2.4 22 3V11C22 11.6 21.6 12 21 12C20.4 12 20 11.6 20 11V5ZM4 19C4 19.6 4.4 20 5 20H11C11.6 20 12 20.4 12 21C12 21.6 11.6 22 11 22H3C2.4 22 2 21.6 2 21V13C2 12.4 2.4 12 3 12C3.6 12 4 12.4 4 13V19Z"/></svg></button>
+                                  </bslib-tooltip>
+                                  <script data-bslib-card-init>bslib.Card.initializeAllCards();</script>
                                 </div>
-                                <bslib-tooltip placement="auto" bsOptions="[]" data-require-bs-version="5" data-require-bs-caller="tooltip()">
-                                  <template>Expand</template>
-                                  <button aria-expanded="false" aria-label="Expand card" class="bslib-full-screen-enter badge rounded-pill"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" style="height:1em;width:1em;fill:currentColor;" aria-hidden="true" role="img"><path d="M20 5C20 4.4 19.6 4 19 4H13C12.4 4 12 3.6 12 3C12 2.4 12.4 2 13 2H21C21.6 2 22 2.4 22 3V11C22 11.6 21.6 12 21 12C20.4 12 20 11.6 20 11V5ZM4 19C4 19.6 4.4 20 5 20H11C11.6 20 12 20.4 12 21C12 21.6 11.6 22 11 22H3C2.4 22 2 21.6 2 21V13C2 12.4 2.4 12 3 12C3.6 12 4 12.4 4 13V19Z"/></svg></button>
-                                </bslib-tooltip>
-                                <script data-bslib-card-init>bslib.Card.initializeAllCards();</script>
                               </div>
                             </div>
                             <div class="bslib-grid-item bslib-gap-spacing html-fill-container">
-                              <div class="card bslib-card bslib-mb-spacing bslib-card-input html-fill-item html-fill-container chart" data-bslib-card-init data-full-screen="false" data-require-bs-caller="card()" data-require-bs-version="5" id="study_overview-scatter-Analysis_kri0011">
-                                <div class="card-header">Data Change Rate</div>
-                                <div class="card-body bslib-gap-spacing html-fill-item html-fill-container" style="margin-top:auto;margin-bottom:auto;flex:1 1 auto;">
-                                  <div class="Widget_ScatterPlot html-widget html-widget-output shiny-report-size html-fill-item" id="study_overview-scatter-Analysis_kri0011-plot" style="width:100%;height:400px;"></div>
+                              <div>
+                                <style>#study_overview-scatter-Analysis_kri0011 .bslib-full-screen-enter { bottom: unset !important; }</style>
+                                <div class="card bslib-card bslib-mb-spacing bslib-card-input html-fill-item html-fill-container chart" data-bslib-card-init data-full-screen="false" data-require-bs-caller="card()" data-require-bs-version="5" id="study_overview-scatter-Analysis_kri0011">
+                                  <div class="card-body bslib-gap-spacing html-fill-item html-fill-container" style="margin-top:auto;margin-bottom:auto;flex:1 1 auto;">
+                                    <h5>Data Change Rate</h5>
+                                    <div class="Widget_ScatterPlot html-widget html-widget-output shiny-report-size html-fill-item" id="study_overview-scatter-Analysis_kri0011-plot" style="width:100%;height:400px;"></div>
+                                  </div>
+                                  <bslib-tooltip placement="auto" bsOptions="[]" data-require-bs-version="5" data-require-bs-caller="tooltip()">
+                                    <template>Expand</template>
+                                    <button aria-expanded="false" aria-label="Expand card" class="bslib-full-screen-enter badge rounded-pill"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" style="height:1em;width:1em;fill:currentColor;" aria-hidden="true" role="img"><path d="M20 5C20 4.4 19.6 4 19 4H13C12.4 4 12 3.6 12 3C12 2.4 12.4 2 13 2H21C21.6 2 22 2.4 22 3V11C22 11.6 21.6 12 21 12C20.4 12 20 11.6 20 11V5ZM4 19C4 19.6 4.4 20 5 20H11C11.6 20 12 20.4 12 21C12 21.6 11.6 22 11 22H3C2.4 22 2 21.6 2 21V13C2 12.4 2.4 12 3 12C3.6 12 4 12.4 4 13V19Z"/></svg></button>
+                                  </bslib-tooltip>
+                                  <script data-bslib-card-init>bslib.Card.initializeAllCards();</script>
                                 </div>
-                                <bslib-tooltip placement="auto" bsOptions="[]" data-require-bs-version="5" data-require-bs-caller="tooltip()">
-                                  <template>Expand</template>
-                                  <button aria-expanded="false" aria-label="Expand card" class="bslib-full-screen-enter badge rounded-pill"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" style="height:1em;width:1em;fill:currentColor;" aria-hidden="true" role="img"><path d="M20 5C20 4.4 19.6 4 19 4H13C12.4 4 12 3.6 12 3C12 2.4 12.4 2 13 2H21C21.6 2 22 2.4 22 3V11C22 11.6 21.6 12 21 12C20.4 12 20 11.6 20 11V5ZM4 19C4 19.6 4.4 20 5 20H11C11.6 20 12 20.4 12 21C12 21.6 11.6 22 11 22H3C2.4 22 2 21.6 2 21V13C2 12.4 2.4 12 3 12C3.6 12 4 12.4 4 13V19Z"/></svg></button>
-                                </bslib-tooltip>
-                                <script data-bslib-card-init>bslib.Card.initializeAllCards();</script>
                               </div>
                             </div>
                           </div>
@@ -237,111 +294,137 @@
                       </ul>
                       <div class="tab-content" data-tabsetid="XXXX">
                         <div class="tab-pane active" data-value="Scatter Plot" id="tab-XXXX-1">
-                          <div class="card bslib-card bslib-mb-spacing bslib-card-input html-fill-item html-fill-container chart" data-bslib-card-init data-full-screen="false" data-require-bs-caller="card()" data-require-bs-version="5" id="metric_details-scatter_plot">
-                            <div class="card-body bslib-gap-spacing html-fill-item html-fill-container" style="margin-top:auto;margin-bottom:auto;flex:1 1 auto;">
-                              <div class="Widget_ScatterPlot html-widget html-widget-output shiny-report-size html-fill-item" id="metric_details-scatter_plot-plot" style="width:100%;height:400px;"></div>
+                          <div>
+                            <style>#metric_details-scatter_plot .bslib-full-screen-enter { bottom: unset !important; }</style>
+                            <div class="card bslib-card bslib-mb-spacing bslib-card-input html-fill-item html-fill-container chart" data-bslib-card-init data-full-screen="false" data-require-bs-caller="card()" data-require-bs-version="5" id="metric_details-scatter_plot">
+                              <div class="card-body bslib-gap-spacing html-fill-item html-fill-container" style="margin-top:auto;margin-bottom:auto;flex:1 1 auto;">
+                                <div class="Widget_ScatterPlot html-widget html-widget-output shiny-report-size html-fill-item" id="metric_details-scatter_plot-plot" style="width:100%;height:400px;"></div>
+                              </div>
+                              <bslib-tooltip placement="auto" bsOptions="[]" data-require-bs-version="5" data-require-bs-caller="tooltip()">
+                                <template>Expand</template>
+                                <button aria-expanded="false" aria-label="Expand card" class="bslib-full-screen-enter badge rounded-pill"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" style="height:1em;width:1em;fill:currentColor;" aria-hidden="true" role="img"><path d="M20 5C20 4.4 19.6 4 19 4H13C12.4 4 12 3.6 12 3C12 2.4 12.4 2 13 2H21C21.6 2 22 2.4 22 3V11C22 11.6 21.6 12 21 12C20.4 12 20 11.6 20 11V5ZM4 19C4 19.6 4.4 20 5 20H11C11.6 20 12 20.4 12 21C12 21.6 11.6 22 11 22H3C2.4 22 2 21.6 2 21V13C2 12.4 2.4 12 3 12C3.6 12 4 12.4 4 13V19Z"/></svg></button>
+                              </bslib-tooltip>
+                              <script data-bslib-card-init>bslib.Card.initializeAllCards();</script>
                             </div>
-                            <bslib-tooltip placement="auto" bsOptions="[]" data-require-bs-version="5" data-require-bs-caller="tooltip()">
-                              <template>Expand</template>
-                              <button aria-expanded="false" aria-label="Expand card" class="bslib-full-screen-enter badge rounded-pill"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" style="height:1em;width:1em;fill:currentColor;" aria-hidden="true" role="img"><path d="M20 5C20 4.4 19.6 4 19 4H13C12.4 4 12 3.6 12 3C12 2.4 12.4 2 13 2H21C21.6 2 22 2.4 22 3V11C22 11.6 21.6 12 21 12C20.4 12 20 11.6 20 11V5ZM4 19C4 19.6 4.4 20 5 20H11C11.6 20 12 20.4 12 21C12 21.6 11.6 22 11 22H3C2.4 22 2 21.6 2 21V13C2 12.4 2.4 12 3 12C3.6 12 4 12.4 4 13V19Z"/></svg></button>
-                            </bslib-tooltip>
-                            <script data-bslib-card-init>bslib.Card.initializeAllCards();</script>
                           </div>
                         </div>
                         <div class="tab-pane" data-value="Bar Chart (KRI Value)" id="tab-XXXX-2">
-                          <div class="card bslib-card bslib-mb-spacing bslib-card-input html-fill-item html-fill-container chart" data-bslib-card-init data-full-screen="false" data-require-bs-caller="card()" data-require-bs-version="5" id="metric_details-bar_chart_metric">
-                            <div class="card-body bslib-gap-spacing html-fill-item html-fill-container" style="margin-top:auto;margin-bottom:auto;flex:1 1 auto;">
-                              <div class="Widget_BarChart html-widget html-widget-output shiny-report-size html-fill-item" id="metric_details-bar_chart_metric-plot" style="width:100%;height:400px;"></div>
+                          <div>
+                            <style>#metric_details-bar_chart_metric .bslib-full-screen-enter { bottom: unset !important; }</style>
+                            <div class="card bslib-card bslib-mb-spacing bslib-card-input html-fill-item html-fill-container chart" data-bslib-card-init data-full-screen="false" data-require-bs-caller="card()" data-require-bs-version="5" id="metric_details-bar_chart_metric">
+                              <div class="card-body bslib-gap-spacing html-fill-item html-fill-container" style="margin-top:auto;margin-bottom:auto;flex:1 1 auto;">
+                                <div class="Widget_BarChart html-widget html-widget-output shiny-report-size html-fill-item" id="metric_details-bar_chart_metric-plot" style="width:100%;height:400px;"></div>
+                              </div>
+                              <bslib-tooltip placement="auto" bsOptions="[]" data-require-bs-version="5" data-require-bs-caller="tooltip()">
+                                <template>Expand</template>
+                                <button aria-expanded="false" aria-label="Expand card" class="bslib-full-screen-enter badge rounded-pill"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" style="height:1em;width:1em;fill:currentColor;" aria-hidden="true" role="img"><path d="M20 5C20 4.4 19.6 4 19 4H13C12.4 4 12 3.6 12 3C12 2.4 12.4 2 13 2H21C21.6 2 22 2.4 22 3V11C22 11.6 21.6 12 21 12C20.4 12 20 11.6 20 11V5ZM4 19C4 19.6 4.4 20 5 20H11C11.6 20 12 20.4 12 21C12 21.6 11.6 22 11 22H3C2.4 22 2 21.6 2 21V13C2 12.4 2.4 12 3 12C3.6 12 4 12.4 4 13V19Z"/></svg></button>
+                              </bslib-tooltip>
+                              <script data-bslib-card-init>bslib.Card.initializeAllCards();</script>
                             </div>
-                            <bslib-tooltip placement="auto" bsOptions="[]" data-require-bs-version="5" data-require-bs-caller="tooltip()">
-                              <template>Expand</template>
-                              <button aria-expanded="false" aria-label="Expand card" class="bslib-full-screen-enter badge rounded-pill"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" style="height:1em;width:1em;fill:currentColor;" aria-hidden="true" role="img"><path d="M20 5C20 4.4 19.6 4 19 4H13C12.4 4 12 3.6 12 3C12 2.4 12.4 2 13 2H21C21.6 2 22 2.4 22 3V11C22 11.6 21.6 12 21 12C20.4 12 20 11.6 20 11V5ZM4 19C4 19.6 4.4 20 5 20H11C11.6 20 12 20.4 12 21C12 21.6 11.6 22 11 22H3C2.4 22 2 21.6 2 21V13C2 12.4 2.4 12 3 12C3.6 12 4 12.4 4 13V19Z"/></svg></button>
-                            </bslib-tooltip>
-                            <script data-bslib-card-init>bslib.Card.initializeAllCards();</script>
                           </div>
                         </div>
                         <div class="tab-pane" data-value="Bar Chart (KRI Score)" id="tab-XXXX-3">
-                          <div class="card bslib-card bslib-mb-spacing bslib-card-input html-fill-item html-fill-container chart" data-bslib-card-init data-full-screen="false" data-require-bs-caller="card()" data-require-bs-version="5" id="metric_details-bar_chart_score">
-                            <div class="card-body bslib-gap-spacing html-fill-item html-fill-container" style="margin-top:auto;margin-bottom:auto;flex:1 1 auto;">
-                              <div class="Widget_BarChart html-widget html-widget-output shiny-report-size html-fill-item" id="metric_details-bar_chart_score-plot" style="width:100%;height:400px;"></div>
+                          <div>
+                            <style>#metric_details-bar_chart_score .bslib-full-screen-enter { bottom: unset !important; }</style>
+                            <div class="card bslib-card bslib-mb-spacing bslib-card-input html-fill-item html-fill-container chart" data-bslib-card-init data-full-screen="false" data-require-bs-caller="card()" data-require-bs-version="5" id="metric_details-bar_chart_score">
+                              <div class="card-body bslib-gap-spacing html-fill-item html-fill-container" style="margin-top:auto;margin-bottom:auto;flex:1 1 auto;">
+                                <div class="Widget_BarChart html-widget html-widget-output shiny-report-size html-fill-item" id="metric_details-bar_chart_score-plot" style="width:100%;height:400px;"></div>
+                              </div>
+                              <bslib-tooltip placement="auto" bsOptions="[]" data-require-bs-version="5" data-require-bs-caller="tooltip()">
+                                <template>Expand</template>
+                                <button aria-expanded="false" aria-label="Expand card" class="bslib-full-screen-enter badge rounded-pill"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" style="height:1em;width:1em;fill:currentColor;" aria-hidden="true" role="img"><path d="M20 5C20 4.4 19.6 4 19 4H13C12.4 4 12 3.6 12 3C12 2.4 12.4 2 13 2H21C21.6 2 22 2.4 22 3V11C22 11.6 21.6 12 21 12C20.4 12 20 11.6 20 11V5ZM4 19C4 19.6 4.4 20 5 20H11C11.6 20 12 20.4 12 21C12 21.6 11.6 22 11 22H3C2.4 22 2 21.6 2 21V13C2 12.4 2.4 12 3 12C3.6 12 4 12.4 4 13V19Z"/></svg></button>
+                              </bslib-tooltip>
+                              <script data-bslib-card-init>bslib.Card.initializeAllCards();</script>
                             </div>
-                            <bslib-tooltip placement="auto" bsOptions="[]" data-require-bs-version="5" data-require-bs-caller="tooltip()">
-                              <template>Expand</template>
-                              <button aria-expanded="false" aria-label="Expand card" class="bslib-full-screen-enter badge rounded-pill"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" style="height:1em;width:1em;fill:currentColor;" aria-hidden="true" role="img"><path d="M20 5C20 4.4 19.6 4 19 4H13C12.4 4 12 3.6 12 3C12 2.4 12.4 2 13 2H21C21.6 2 22 2.4 22 3V11C22 11.6 21.6 12 21 12C20.4 12 20 11.6 20 11V5ZM4 19C4 19.6 4.4 20 5 20H11C11.6 20 12 20.4 12 21C12 21.6 11.6 22 11 22H3C2.4 22 2 21.6 2 21V13C2 12.4 2.4 12 3 12C3.6 12 4 12.4 4 13V19Z"/></svg></button>
-                            </bslib-tooltip>
-                            <script data-bslib-card-init>bslib.Card.initializeAllCards();</script>
                           </div>
                         </div>
                         <div class="tab-pane" data-value="Time Series" id="tab-XXXX-4">
-                          <div class="card bslib-card bslib-mb-spacing bslib-card-input html-fill-item html-fill-container chart" data-bslib-card-init data-full-screen="false" data-require-bs-caller="card()" data-require-bs-version="5" id="metric_details-time_series">
-                            <div class="card-body bslib-gap-spacing html-fill-item html-fill-container" style="margin-top:auto;margin-bottom:auto;flex:1 1 auto;">
-                              <div class="Widget_TimeSeries html-widget html-widget-output shiny-report-size html-fill-item" id="metric_details-time_series-plot" style="width:100%;height:400px;"></div>
+                          <div>
+                            <style>#metric_details-time_series .bslib-full-screen-enter { bottom: unset !important; }</style>
+                            <div class="card bslib-card bslib-mb-spacing bslib-card-input html-fill-item html-fill-container chart" data-bslib-card-init data-full-screen="false" data-require-bs-caller="card()" data-require-bs-version="5" id="metric_details-time_series">
+                              <div class="card-body bslib-gap-spacing html-fill-item html-fill-container" style="margin-top:auto;margin-bottom:auto;flex:1 1 auto;">
+                                <div class="Widget_TimeSeries html-widget html-widget-output shiny-report-size html-fill-item" id="metric_details-time_series-plot" style="width:100%;height:400px;"></div>
+                              </div>
+                              <bslib-tooltip placement="auto" bsOptions="[]" data-require-bs-version="5" data-require-bs-caller="tooltip()">
+                                <template>Expand</template>
+                                <button aria-expanded="false" aria-label="Expand card" class="bslib-full-screen-enter badge rounded-pill"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" style="height:1em;width:1em;fill:currentColor;" aria-hidden="true" role="img"><path d="M20 5C20 4.4 19.6 4 19 4H13C12.4 4 12 3.6 12 3C12 2.4 12.4 2 13 2H21C21.6 2 22 2.4 22 3V11C22 11.6 21.6 12 21 12C20.4 12 20 11.6 20 11V5ZM4 19C4 19.6 4.4 20 5 20H11C11.6 20 12 20.4 12 21C12 21.6 11.6 22 11 22H3C2.4 22 2 21.6 2 21V13C2 12.4 2.4 12 3 12C3.6 12 4 12.4 4 13V19Z"/></svg></button>
+                              </bslib-tooltip>
+                              <script data-bslib-card-init>bslib.Card.initializeAllCards();</script>
                             </div>
-                            <bslib-tooltip placement="auto" bsOptions="[]" data-require-bs-version="5" data-require-bs-caller="tooltip()">
-                              <template>Expand</template>
-                              <button aria-expanded="false" aria-label="Expand card" class="bslib-full-screen-enter badge rounded-pill"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" style="height:1em;width:1em;fill:currentColor;" aria-hidden="true" role="img"><path d="M20 5C20 4.4 19.6 4 19 4H13C12.4 4 12 3.6 12 3C12 2.4 12.4 2 13 2H21C21.6 2 22 2.4 22 3V11C22 11.6 21.6 12 21 12C20.4 12 20 11.6 20 11V5ZM4 19C4 19.6 4.4 20 5 20H11C11.6 20 12 20.4 12 21C12 21.6 11.6 22 11 22H3C2.4 22 2 21.6 2 21V13C2 12.4 2.4 12 3 12C3.6 12 4 12.4 4 13V19Z"/></svg></button>
-                            </bslib-tooltip>
-                            <script data-bslib-card-init>bslib.Card.initializeAllCards();</script>
                           </div>
                         </div>
                         <div class="tab-pane" data-value="Analysis Output" id="tab-XXXX-5">
-                          <div class="card bslib-card bslib-mb-spacing bslib-card-input html-fill-item html-fill-container MetricTable" data-bslib-card-init data-full-screen="false" data-require-bs-caller="card()" data-require-bs-version="5" id="metric_details-analysis_output">
-                            <div class="card-body bslib-gap-spacing html-fill-item html-fill-container" style="margin-top:auto;margin-bottom:auto;flex:1 1 auto;">
-                              <div class="shiny-html-output gt_shiny" id="metric_details-analysis_output-gt-table"></div>
+                          <div>
+                            <style>#metric_details-analysis_output .bslib-full-screen-enter { bottom: unset !important; }</style>
+                            <div class="card bslib-card bslib-mb-spacing bslib-card-input html-fill-item html-fill-container MetricTable" data-bslib-card-init data-full-screen="false" data-require-bs-caller="card()" data-require-bs-version="5" id="metric_details-analysis_output">
+                              <div class="card-body bslib-gap-spacing html-fill-item html-fill-container" style="margin-top:auto;margin-bottom:auto;flex:1 1 auto;">
+                                <div class="shiny-html-output gt_shiny" id="metric_details-analysis_output-gt-table"></div>
+                              </div>
+                              <bslib-tooltip placement="auto" bsOptions="[]" data-require-bs-version="5" data-require-bs-caller="tooltip()">
+                                <template>Expand</template>
+                                <button aria-expanded="false" aria-label="Expand card" class="bslib-full-screen-enter badge rounded-pill"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" style="height:1em;width:1em;fill:currentColor;" aria-hidden="true" role="img"><path d="M20 5C20 4.4 19.6 4 19 4H13C12.4 4 12 3.6 12 3C12 2.4 12.4 2 13 2H21C21.6 2 22 2.4 22 3V11C22 11.6 21.6 12 21 12C20.4 12 20 11.6 20 11V5ZM4 19C4 19.6 4.4 20 5 20H11C11.6 20 12 20.4 12 21C12 21.6 11.6 22 11 22H3C2.4 22 2 21.6 2 21V13C2 12.4 2.4 12 3 12C3.6 12 4 12.4 4 13V19Z"/></svg></button>
+                              </bslib-tooltip>
+                              <script data-bslib-card-init>bslib.Card.initializeAllCards();</script>
                             </div>
-                            <bslib-tooltip placement="auto" bsOptions="[]" data-require-bs-version="5" data-require-bs-caller="tooltip()">
-                              <template>Expand</template>
-                              <button aria-expanded="false" aria-label="Expand card" class="bslib-full-screen-enter badge rounded-pill"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" style="height:1em;width:1em;fill:currentColor;" aria-hidden="true" role="img"><path d="M20 5C20 4.4 19.6 4 19 4H13C12.4 4 12 3.6 12 3C12 2.4 12.4 2 13 2H21C21.6 2 22 2.4 22 3V11C22 11.6 21.6 12 21 12C20.4 12 20 11.6 20 11V5ZM4 19C4 19.6 4.4 20 5 20H11C11.6 20 12 20.4 12 21C12 21.6 11.6 22 11 22H3C2.4 22 2 21.6 2 21V13C2 12.4 2.4 12 3 12C3.6 12 4 12.4 4 13V19Z"/></svg></button>
-                            </bslib-tooltip>
-                            <script data-bslib-card-init>bslib.Card.initializeAllCards();</script>
                           </div>
                         </div>
                       </div>
                     </div>
                     <bslib-layout-columns class="bslib-grid grid bslib-mb-spacing html-fill-item" col-widths-sm="5,7" data-require-bs-caller="layout_columns()" data-require-bs-version="5">
                       <div class="bslib-grid-item bslib-gap-spacing html-fill-container">
-                        <div class="card bslib-card bslib-mb-spacing bslib-card-input html-fill-item html-fill-container shinyjs-hide" data-bslib-card-init data-full-screen="false" data-require-bs-caller="card()" data-require-bs-version="5" id="site_details-card_site_metadata_list">
-                          <div class="card-body bslib-gap-spacing html-fill-item html-fill-container" style="margin-top:auto;margin-bottom:auto;flex:1 1 auto;">
-                            <h5>Site Metadata</h5>
-                            <div id="site_details-site_metadata_list" class="shiny-html-output"></div>
-                          </div>
-                          <bslib-tooltip placement="auto" bsOptions="[]" data-require-bs-version="5" data-require-bs-caller="tooltip()">
-                            <template>Expand</template>
-                            <button aria-expanded="false" aria-label="Expand card" class="bslib-full-screen-enter badge rounded-pill"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" style="height:1em;width:1em;fill:currentColor;" aria-hidden="true" role="img"><path d="M20 5C20 4.4 19.6 4 19 4H13C12.4 4 12 3.6 12 3C12 2.4 12.4 2 13 2H21C21.6 2 22 2.4 22 3V11C22 11.6 21.6 12 21 12C20.4 12 20 11.6 20 11V5ZM4 19C4 19.6 4.4 20 5 20H11C11.6 20 12 20.4 12 21C12 21.6 11.6 22 11 22H3C2.4 22 2 21.6 2 21V13C2 12.4 2.4 12 3 12C3.6 12 4 12.4 4 13V19Z"/></svg></button>
-                          </bslib-tooltip>
-                          <script data-bslib-card-init>bslib.Card.initializeAllCards();</script>
-                        </div>
-                        <div class="card bslib-card bslib-mb-spacing bslib-card-input html-fill-item html-fill-container" data-bslib-card-init data-full-screen="false" data-require-bs-caller="card()" data-require-bs-version="5" id="site_details-card_placeholder_site_metadata_list">
-                          <div class="card-body bslib-gap-spacing html-fill-item html-fill-container" style="margin-top:auto;margin-bottom:auto;flex:1 1 auto;">
-                            <h5>Site Metadata</h5>
-                            <div class="card bslib-card bslib-mb-spacing html-fill-item html-fill-container placeholder" data-bslib-card-init data-require-bs-caller="card()" data-require-bs-version="5">
-                              <div class="card-body bslib-gap-spacing html-fill-item html-fill-container" style="margin-top:auto;margin-bottom:auto;flex:1 1 auto;">Please select a site.</div>
+                        <div id="site_details-card_site_metadata_list" class="shinyjs-hide">
+                          <div>
+                            <style>#site_details-card_site_metadata_list-contents .bslib-full-screen-enter { bottom: unset !important; }</style>
+                            <div class="card bslib-card bslib-mb-spacing bslib-card-input html-fill-item html-fill-container" data-bslib-card-init data-full-screen="false" data-require-bs-caller="card()" data-require-bs-version="5" id="site_details-card_site_metadata_list-contents">
+                              <div class="card-body bslib-gap-spacing html-fill-item html-fill-container" style="margin-top:auto;margin-bottom:auto;flex:1 1 auto;">
+                                <h5>Site Metadata</h5>
+                                <div id="site_details-site_metadata_list" class="shiny-html-output"></div>
+                              </div>
+                              <bslib-tooltip placement="auto" bsOptions="[]" data-require-bs-version="5" data-require-bs-caller="tooltip()">
+                                <template>Expand</template>
+                                <button aria-expanded="false" aria-label="Expand card" class="bslib-full-screen-enter badge rounded-pill"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" style="height:1em;width:1em;fill:currentColor;" aria-hidden="true" role="img"><path d="M20 5C20 4.4 19.6 4 19 4H13C12.4 4 12 3.6 12 3C12 2.4 12.4 2 13 2H21C21.6 2 22 2.4 22 3V11C22 11.6 21.6 12 21 12C20.4 12 20 11.6 20 11V5ZM4 19C4 19.6 4.4 20 5 20H11C11.6 20 12 20.4 12 21C12 21.6 11.6 22 11 22H3C2.4 22 2 21.6 2 21V13C2 12.4 2.4 12 3 12C3.6 12 4 12.4 4 13V19Z"/></svg></button>
+                              </bslib-tooltip>
                               <script data-bslib-card-init>bslib.Card.initializeAllCards();</script>
                             </div>
                           </div>
-                          <bslib-tooltip placement="auto" bsOptions="[]" data-require-bs-version="5" data-require-bs-caller="tooltip()">
-                            <template>Expand</template>
-                            <button aria-expanded="false" aria-label="Expand card" class="bslib-full-screen-enter badge rounded-pill"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" style="height:1em;width:1em;fill:currentColor;" aria-hidden="true" role="img"><path d="M20 5C20 4.4 19.6 4 19 4H13C12.4 4 12 3.6 12 3C12 2.4 12.4 2 13 2H21C21.6 2 22 2.4 22 3V11C22 11.6 21.6 12 21 12C20.4 12 20 11.6 20 11V5ZM4 19C4 19.6 4.4 20 5 20H11C11.6 20 12 20.4 12 21C12 21.6 11.6 22 11 22H3C2.4 22 2 21.6 2 21V13C2 12.4 2.4 12 3 12C3.6 12 4 12.4 4 13V19Z"/></svg></button>
-                          </bslib-tooltip>
-                          <script data-bslib-card-init>bslib.Card.initializeAllCards();</script>
+                        </div>
+                        <div>
+                          <style>#site_details-card_placeholder_site_metadata_list .bslib-full-screen-enter { bottom: unset !important; }</style>
+                          <div class="card bslib-card bslib-mb-spacing bslib-card-input html-fill-item html-fill-container" data-bslib-card-init data-full-screen="false" data-require-bs-caller="card()" data-require-bs-version="5" id="site_details-card_placeholder_site_metadata_list">
+                            <div class="card-body bslib-gap-spacing html-fill-item html-fill-container" style="margin-top:auto;margin-bottom:auto;flex:1 1 auto;">
+                              <h5>Site Metadata</h5>
+                              <div class="card bslib-card bslib-mb-spacing html-fill-item html-fill-container placeholder" data-bslib-card-init data-require-bs-caller="card()" data-require-bs-version="5">
+                                <div class="card-body bslib-gap-spacing html-fill-item html-fill-container" style="margin-top:auto;margin-bottom:auto;flex:1 1 auto;">Please select a site.</div>
+                                <script data-bslib-card-init>bslib.Card.initializeAllCards();</script>
+                              </div>
+                            </div>
+                            <bslib-tooltip placement="auto" bsOptions="[]" data-require-bs-version="5" data-require-bs-caller="tooltip()">
+                              <template>Expand</template>
+                              <button aria-expanded="false" aria-label="Expand card" class="bslib-full-screen-enter badge rounded-pill"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" style="height:1em;width:1em;fill:currentColor;" aria-hidden="true" role="img"><path d="M20 5C20 4.4 19.6 4 19 4H13C12.4 4 12 3.6 12 3C12 2.4 12.4 2 13 2H21C21.6 2 22 2.4 22 3V11C22 11.6 21.6 12 21 12C20.4 12 20 11.6 20 11V5ZM4 19C4 19.6 4.4 20 5 20H11C11.6 20 12 20.4 12 21C12 21.6 11.6 22 11 22H3C2.4 22 2 21.6 2 21V13C2 12.4 2.4 12 3 12C3.6 12 4 12.4 4 13V19Z"/></svg></button>
+                            </bslib-tooltip>
+                            <script data-bslib-card-init>bslib.Card.initializeAllCards();</script>
+                          </div>
                         </div>
                       </div>
                       <div class="bslib-grid-item bslib-gap-spacing html-fill-container">
-                        <div class="card bslib-card bslib-mb-spacing bslib-card-input html-fill-item html-fill-container" data-bslib-card-init data-full-screen="false" data-require-bs-caller="card()" data-require-bs-version="5" id="site_details-participants-gt_card">
-                          <div class="card-header">
-                            <h5>
-                              <span id="site_details-participants-title" class="shiny-text-output"></span>
-                            </h5>
-                            <div id="site_details-participants-subtitle" class="shiny-html-output"></div>
+                        <div>
+                          <style>#site_details-participants-gt_card .bslib-full-screen-enter { bottom: unset !important; }</style>
+                          <div class="card bslib-card bslib-mb-spacing bslib-card-input html-fill-item html-fill-container" data-bslib-card-init data-full-screen="false" data-require-bs-caller="card()" data-require-bs-version="5" id="site_details-participants-gt_card">
+                            <div class="card-header">
+                              <h5>
+                                <span id="site_details-participants-title" class="shiny-text-output"></span>
+                              </h5>
+                              <div id="site_details-participants-subtitle" class="shiny-html-output"></div>
+                            </div>
+                            <div class="card-body bslib-gap-spacing html-fill-item html-fill-container" style="margin-top:auto;margin-bottom:auto;flex:1 1 auto;">
+                              <div class="shiny-html-output gt_shiny" id="site_details-participants-gt-table"></div>
+                            </div>
+                            <bslib-tooltip placement="auto" bsOptions="[]" data-require-bs-version="5" data-require-bs-caller="tooltip()">
+                              <template>Expand</template>
+                              <button aria-expanded="false" aria-label="Expand card" class="bslib-full-screen-enter badge rounded-pill"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" style="height:1em;width:1em;fill:currentColor;" aria-hidden="true" role="img"><path d="M20 5C20 4.4 19.6 4 19 4H13C12.4 4 12 3.6 12 3C12 2.4 12.4 2 13 2H21C21.6 2 22 2.4 22 3V11C22 11.6 21.6 12 21 12C20.4 12 20 11.6 20 11V5ZM4 19C4 19.6 4.4 20 5 20H11C11.6 20 12 20.4 12 21C12 21.6 11.6 22 11 22H3C2.4 22 2 21.6 2 21V13C2 12.4 2.4 12 3 12C3.6 12 4 12.4 4 13V19Z"/></svg></button>
+                            </bslib-tooltip>
+                            <script data-bslib-card-init>bslib.Card.initializeAllCards();</script>
                           </div>
-                          <div class="card-body bslib-gap-spacing html-fill-item html-fill-container" style="margin-top:auto;margin-bottom:auto;flex:1 1 auto;">
-                            <div class="shiny-html-output gt_shiny" id="site_details-participants-gt-table"></div>
-                          </div>
-                          <bslib-tooltip placement="auto" bsOptions="[]" data-require-bs-version="5" data-require-bs-caller="tooltip()">
-                            <template>Expand</template>
-                            <button aria-expanded="false" aria-label="Expand card" class="bslib-full-screen-enter badge rounded-pill"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" style="height:1em;width:1em;fill:currentColor;" aria-hidden="true" role="img"><path d="M20 5C20 4.4 19.6 4 19 4H13C12.4 4 12 3.6 12 3C12 2.4 12.4 2 13 2H21C21.6 2 22 2.4 22 3V11C22 11.6 21.6 12 21 12C20.4 12 20 11.6 20 11V5ZM4 19C4 19.6 4.4 20 5 20H11C11.6 20 12 20.4 12 21C12 21.6 11.6 22 11 22H3C2.4 22 2 21.6 2 21V13C2 12.4 2.4 12 3 12C3.6 12 4 12.4 4 13V19Z"/></svg></button>
-                          </bslib-tooltip>
-                          <script data-bslib-card-init>bslib.Card.initializeAllCards();</script>
                         </div>
                       </div>
                     </bslib-layout-columns>
@@ -349,16 +432,19 @@
                   <div class="tab-pane" data-value="Domain Details" id="tab-XXXX-3">
                     <bslib-layout-columns class="bslib-grid grid bslib-mb-spacing html-fill-item" col-widths-sm="3,9" data-require-bs-caller="layout_columns()" data-require-bs-version="5">
                       <div class="bslib-grid-item bslib-gap-spacing html-fill-container">
-                        <div class="card bslib-card bslib-mb-spacing bslib-card-input html-fill-item html-fill-container" data-bslib-card-init data-full-screen="false" data-require-bs-caller="card()" data-require-bs-version="5" id="domain_details-counts-card">
-                          <div class="card-body bslib-gap-spacing html-fill-item html-fill-container" style="margin-top:auto;margin-bottom:auto;flex:1 1 auto;">
-                            <h5>Domain Summary</h5>
-                            <div id="domain_details-counts-domain_list" class="shiny-html-output"></div>
+                        <div>
+                          <style>#domain_details-counts-card .bslib-full-screen-enter { bottom: unset !important; }</style>
+                          <div class="card bslib-card bslib-mb-spacing bslib-card-input html-fill-item html-fill-container" data-bslib-card-init data-full-screen="false" data-require-bs-caller="card()" data-require-bs-version="5" id="domain_details-counts-card">
+                            <div class="card-body bslib-gap-spacing html-fill-item html-fill-container" style="margin-top:auto;margin-bottom:auto;flex:1 1 auto;">
+                              <h5>Domain Summary</h5>
+                              <div id="domain_details-counts-domain_list" class="shiny-html-output"></div>
+                            </div>
+                            <bslib-tooltip placement="auto" bsOptions="[]" data-require-bs-version="5" data-require-bs-caller="tooltip()">
+                              <template>Expand</template>
+                              <button aria-expanded="false" aria-label="Expand card" class="bslib-full-screen-enter badge rounded-pill"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" style="height:1em;width:1em;fill:currentColor;" aria-hidden="true" role="img"><path d="M20 5C20 4.4 19.6 4 19 4H13C12.4 4 12 3.6 12 3C12 2.4 12.4 2 13 2H21C21.6 2 22 2.4 22 3V11C22 11.6 21.6 12 21 12C20.4 12 20 11.6 20 11V5ZM4 19C4 19.6 4.4 20 5 20H11C11.6 20 12 20.4 12 21C12 21.6 11.6 22 11 22H3C2.4 22 2 21.6 2 21V13C2 12.4 2.4 12 3 12C3.6 12 4 12.4 4 13V19Z"/></svg></button>
+                            </bslib-tooltip>
+                            <script data-bslib-card-init>bslib.Card.initializeAllCards();</script>
                           </div>
-                          <bslib-tooltip placement="auto" bsOptions="[]" data-require-bs-version="5" data-require-bs-caller="tooltip()">
-                            <template>Expand</template>
-                            <button aria-expanded="false" aria-label="Expand card" class="bslib-full-screen-enter badge rounded-pill"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" style="height:1em;width:1em;fill:currentColor;" aria-hidden="true" role="img"><path d="M20 5C20 4.4 19.6 4 19 4H13C12.4 4 12 3.6 12 3C12 2.4 12.4 2 13 2H21C21.6 2 22 2.4 22 3V11C22 11.6 21.6 12 21 12C20.4 12 20 11.6 20 11V5ZM4 19C4 19.6 4.4 20 5 20H11C11.6 20 12 20.4 12 21C12 21.6 11.6 22 11 22H3C2.4 22 2 21.6 2 21V13C2 12.4 2.4 12 3 12C3.6 12 4 12.4 4 13V19Z"/></svg></button>
-                          </bslib-tooltip>
-                          <script data-bslib-card-init>bslib.Card.initializeAllCards();</script>
                         </div>
                       </div>
                       <div class="bslib-grid-item bslib-gap-spacing html-fill-container">
@@ -397,34 +483,154 @@
                           </ul>
                           <div class="tab-content" data-tabsetid="XXXX">
                             <div class="tab-pane active" data-value="AE" id="tab-XXXX-1">
-                              <div class="shiny-html-output gt_shiny" id="domain_details-AE-gt-table"></div>
+                              <div>
+                                <style>#domain_details-AE-card .bslib-full-screen-enter { bottom: unset !important; }</style>
+                                <div class="card bslib-card bslib-mb-spacing bslib-card-input html-fill-item html-fill-container" data-bslib-card-init data-full-screen="false" data-require-bs-caller="card()" data-require-bs-version="5" id="domain_details-AE-card">
+                                  <div class="card-body bslib-gap-spacing html-fill-item html-fill-container" style="margin-top:auto;margin-bottom:auto;flex:1 1 auto;">
+                                    <div class="shiny-html-output gt_shiny" id="domain_details-AE-gt-table"></div>
+                                  </div>
+                                  <bslib-tooltip placement="auto" bsOptions="[]" data-require-bs-version="5" data-require-bs-caller="tooltip()">
+                                    <template>Expand</template>
+                                    <button aria-expanded="false" aria-label="Expand card" class="bslib-full-screen-enter badge rounded-pill"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" style="height:1em;width:1em;fill:currentColor;" aria-hidden="true" role="img"><path d="M20 5C20 4.4 19.6 4 19 4H13C12.4 4 12 3.6 12 3C12 2.4 12.4 2 13 2H21C21.6 2 22 2.4 22 3V11C22 11.6 21.6 12 21 12C20.4 12 20 11.6 20 11V5ZM4 19C4 19.6 4.4 20 5 20H11C11.6 20 12 20.4 12 21C12 21.6 11.6 22 11 22H3C2.4 22 2 21.6 2 21V13C2 12.4 2.4 12 3 12C3.6 12 4 12.4 4 13V19Z"/></svg></button>
+                                  </bslib-tooltip>
+                                  <script data-bslib-card-init>bslib.Card.initializeAllCards();</script>
+                                </div>
+                              </div>
                             </div>
                             <div class="tab-pane" data-value="ENROLL" id="tab-XXXX-2">
-                              <div class="shiny-html-output gt_shiny" id="domain_details-ENROLL-gt-table"></div>
+                              <div>
+                                <style>#domain_details-ENROLL-card .bslib-full-screen-enter { bottom: unset !important; }</style>
+                                <div class="card bslib-card bslib-mb-spacing bslib-card-input html-fill-item html-fill-container" data-bslib-card-init data-full-screen="false" data-require-bs-caller="card()" data-require-bs-version="5" id="domain_details-ENROLL-card">
+                                  <div class="card-body bslib-gap-spacing html-fill-item html-fill-container" style="margin-top:auto;margin-bottom:auto;flex:1 1 auto;">
+                                    <div class="shiny-html-output gt_shiny" id="domain_details-ENROLL-gt-table"></div>
+                                  </div>
+                                  <bslib-tooltip placement="auto" bsOptions="[]" data-require-bs-version="5" data-require-bs-caller="tooltip()">
+                                    <template>Expand</template>
+                                    <button aria-expanded="false" aria-label="Expand card" class="bslib-full-screen-enter badge rounded-pill"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" style="height:1em;width:1em;fill:currentColor;" aria-hidden="true" role="img"><path d="M20 5C20 4.4 19.6 4 19 4H13C12.4 4 12 3.6 12 3C12 2.4 12.4 2 13 2H21C21.6 2 22 2.4 22 3V11C22 11.6 21.6 12 21 12C20.4 12 20 11.6 20 11V5ZM4 19C4 19.6 4.4 20 5 20H11C11.6 20 12 20.4 12 21C12 21.6 11.6 22 11 22H3C2.4 22 2 21.6 2 21V13C2 12.4 2.4 12 3 12C3.6 12 4 12.4 4 13V19Z"/></svg></button>
+                                  </bslib-tooltip>
+                                  <script data-bslib-card-init>bslib.Card.initializeAllCards();</script>
+                                </div>
+                              </div>
                             </div>
                             <div class="tab-pane" data-value="LB" id="tab-XXXX-3">
-                              <div class="shiny-html-output gt_shiny" id="domain_details-LB-gt-table"></div>
+                              <div>
+                                <style>#domain_details-LB-card .bslib-full-screen-enter { bottom: unset !important; }</style>
+                                <div class="card bslib-card bslib-mb-spacing bslib-card-input html-fill-item html-fill-container" data-bslib-card-init data-full-screen="false" data-require-bs-caller="card()" data-require-bs-version="5" id="domain_details-LB-card">
+                                  <div class="card-body bslib-gap-spacing html-fill-item html-fill-container" style="margin-top:auto;margin-bottom:auto;flex:1 1 auto;">
+                                    <div class="shiny-html-output gt_shiny" id="domain_details-LB-gt-table"></div>
+                                  </div>
+                                  <bslib-tooltip placement="auto" bsOptions="[]" data-require-bs-version="5" data-require-bs-caller="tooltip()">
+                                    <template>Expand</template>
+                                    <button aria-expanded="false" aria-label="Expand card" class="bslib-full-screen-enter badge rounded-pill"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" style="height:1em;width:1em;fill:currentColor;" aria-hidden="true" role="img"><path d="M20 5C20 4.4 19.6 4 19 4H13C12.4 4 12 3.6 12 3C12 2.4 12.4 2 13 2H21C21.6 2 22 2.4 22 3V11C22 11.6 21.6 12 21 12C20.4 12 20 11.6 20 11V5ZM4 19C4 19.6 4.4 20 5 20H11C11.6 20 12 20.4 12 21C12 21.6 11.6 22 11 22H3C2.4 22 2 21.6 2 21V13C2 12.4 2.4 12 3 12C3.6 12 4 12.4 4 13V19Z"/></svg></button>
+                                  </bslib-tooltip>
+                                  <script data-bslib-card-init>bslib.Card.initializeAllCards();</script>
+                                </div>
+                              </div>
                             </div>
                             <div class="tab-pane" data-value="PD" id="tab-XXXX-4">
-                              <div class="shiny-html-output gt_shiny" id="domain_details-PD-gt-table"></div>
+                              <div>
+                                <style>#domain_details-PD-card .bslib-full-screen-enter { bottom: unset !important; }</style>
+                                <div class="card bslib-card bslib-mb-spacing bslib-card-input html-fill-item html-fill-container" data-bslib-card-init data-full-screen="false" data-require-bs-caller="card()" data-require-bs-version="5" id="domain_details-PD-card">
+                                  <div class="card-body bslib-gap-spacing html-fill-item html-fill-container" style="margin-top:auto;margin-bottom:auto;flex:1 1 auto;">
+                                    <div class="shiny-html-output gt_shiny" id="domain_details-PD-gt-table"></div>
+                                  </div>
+                                  <bslib-tooltip placement="auto" bsOptions="[]" data-require-bs-version="5" data-require-bs-caller="tooltip()">
+                                    <template>Expand</template>
+                                    <button aria-expanded="false" aria-label="Expand card" class="bslib-full-screen-enter badge rounded-pill"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" style="height:1em;width:1em;fill:currentColor;" aria-hidden="true" role="img"><path d="M20 5C20 4.4 19.6 4 19 4H13C12.4 4 12 3.6 12 3C12 2.4 12.4 2 13 2H21C21.6 2 22 2.4 22 3V11C22 11.6 21.6 12 21 12C20.4 12 20 11.6 20 11V5ZM4 19C4 19.6 4.4 20 5 20H11C11.6 20 12 20.4 12 21C12 21.6 11.6 22 11 22H3C2.4 22 2 21.6 2 21V13C2 12.4 2.4 12 3 12C3.6 12 4 12.4 4 13V19Z"/></svg></button>
+                                  </bslib-tooltip>
+                                  <script data-bslib-card-init>bslib.Card.initializeAllCards();</script>
+                                </div>
+                              </div>
                             </div>
                             <div class="tab-pane" data-value="SDRGCOMP" id="tab-XXXX-5">
-                              <div class="shiny-html-output gt_shiny" id="domain_details-SDRGCOMP-gt-table"></div>
+                              <div>
+                                <style>#domain_details-SDRGCOMP-card .bslib-full-screen-enter { bottom: unset !important; }</style>
+                                <div class="card bslib-card bslib-mb-spacing bslib-card-input html-fill-item html-fill-container" data-bslib-card-init data-full-screen="false" data-require-bs-caller="card()" data-require-bs-version="5" id="domain_details-SDRGCOMP-card">
+                                  <div class="card-body bslib-gap-spacing html-fill-item html-fill-container" style="margin-top:auto;margin-bottom:auto;flex:1 1 auto;">
+                                    <div class="shiny-html-output gt_shiny" id="domain_details-SDRGCOMP-gt-table"></div>
+                                  </div>
+                                  <bslib-tooltip placement="auto" bsOptions="[]" data-require-bs-version="5" data-require-bs-caller="tooltip()">
+                                    <template>Expand</template>
+                                    <button aria-expanded="false" aria-label="Expand card" class="bslib-full-screen-enter badge rounded-pill"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" style="height:1em;width:1em;fill:currentColor;" aria-hidden="true" role="img"><path d="M20 5C20 4.4 19.6 4 19 4H13C12.4 4 12 3.6 12 3C12 2.4 12.4 2 13 2H21C21.6 2 22 2.4 22 3V11C22 11.6 21.6 12 21 12C20.4 12 20 11.6 20 11V5ZM4 19C4 19.6 4.4 20 5 20H11C11.6 20 12 20.4 12 21C12 21.6 11.6 22 11 22H3C2.4 22 2 21.6 2 21V13C2 12.4 2.4 12 3 12C3.6 12 4 12.4 4 13V19Z"/></svg></button>
+                                  </bslib-tooltip>
+                                  <script data-bslib-card-init>bslib.Card.initializeAllCards();</script>
+                                </div>
+                              </div>
                             </div>
                             <div class="tab-pane" data-value="STUDCOMP" id="tab-XXXX-6">
-                              <div class="shiny-html-output gt_shiny" id="domain_details-STUDCOMP-gt-table"></div>
+                              <div>
+                                <style>#domain_details-STUDCOMP-card .bslib-full-screen-enter { bottom: unset !important; }</style>
+                                <div class="card bslib-card bslib-mb-spacing bslib-card-input html-fill-item html-fill-container" data-bslib-card-init data-full-screen="false" data-require-bs-caller="card()" data-require-bs-version="5" id="domain_details-STUDCOMP-card">
+                                  <div class="card-body bslib-gap-spacing html-fill-item html-fill-container" style="margin-top:auto;margin-bottom:auto;flex:1 1 auto;">
+                                    <div class="shiny-html-output gt_shiny" id="domain_details-STUDCOMP-gt-table"></div>
+                                  </div>
+                                  <bslib-tooltip placement="auto" bsOptions="[]" data-require-bs-version="5" data-require-bs-caller="tooltip()">
+                                    <template>Expand</template>
+                                    <button aria-expanded="false" aria-label="Expand card" class="bslib-full-screen-enter badge rounded-pill"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" style="height:1em;width:1em;fill:currentColor;" aria-hidden="true" role="img"><path d="M20 5C20 4.4 19.6 4 19 4H13C12.4 4 12 3.6 12 3C12 2.4 12.4 2 13 2H21C21.6 2 22 2.4 22 3V11C22 11.6 21.6 12 21 12C20.4 12 20 11.6 20 11V5ZM4 19C4 19.6 4.4 20 5 20H11C11.6 20 12 20.4 12 21C12 21.6 11.6 22 11 22H3C2.4 22 2 21.6 2 21V13C2 12.4 2.4 12 3 12C3.6 12 4 12.4 4 13V19Z"/></svg></button>
+                                  </bslib-tooltip>
+                                  <script data-bslib-card-init>bslib.Card.initializeAllCards();</script>
+                                </div>
+                              </div>
                             </div>
                             <div class="tab-pane" data-value="SUBJ" id="tab-XXXX-7">
-                              <div class="shiny-html-output gt_shiny" id="domain_details-SUBJ-gt-table"></div>
+                              <div>
+                                <style>#domain_details-SUBJ-card .bslib-full-screen-enter { bottom: unset !important; }</style>
+                                <div class="card bslib-card bslib-mb-spacing bslib-card-input html-fill-item html-fill-container" data-bslib-card-init data-full-screen="false" data-require-bs-caller="card()" data-require-bs-version="5" id="domain_details-SUBJ-card">
+                                  <div class="card-body bslib-gap-spacing html-fill-item html-fill-container" style="margin-top:auto;margin-bottom:auto;flex:1 1 auto;">
+                                    <div class="shiny-html-output gt_shiny" id="domain_details-SUBJ-gt-table"></div>
+                                  </div>
+                                  <bslib-tooltip placement="auto" bsOptions="[]" data-require-bs-version="5" data-require-bs-caller="tooltip()">
+                                    <template>Expand</template>
+                                    <button aria-expanded="false" aria-label="Expand card" class="bslib-full-screen-enter badge rounded-pill"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" style="height:1em;width:1em;fill:currentColor;" aria-hidden="true" role="img"><path d="M20 5C20 4.4 19.6 4 19 4H13C12.4 4 12 3.6 12 3C12 2.4 12.4 2 13 2H21C21.6 2 22 2.4 22 3V11C22 11.6 21.6 12 21 12C20.4 12 20 11.6 20 11V5ZM4 19C4 19.6 4.4 20 5 20H11C11.6 20 12 20.4 12 21C12 21.6 11.6 22 11 22H3C2.4 22 2 21.6 2 21V13C2 12.4 2.4 12 3 12C3.6 12 4 12.4 4 13V19Z"/></svg></button>
+                                  </bslib-tooltip>
+                                  <script data-bslib-card-init>bslib.Card.initializeAllCards();</script>
+                                </div>
+                              </div>
                             </div>
                             <div class="tab-pane" data-value="DATACHG" id="tab-XXXX-8">
-                              <div class="shiny-html-output gt_shiny" id="domain_details-DATACHG-gt-table"></div>
+                              <div>
+                                <style>#domain_details-DATACHG-card .bslib-full-screen-enter { bottom: unset !important; }</style>
+                                <div class="card bslib-card bslib-mb-spacing bslib-card-input html-fill-item html-fill-container" data-bslib-card-init data-full-screen="false" data-require-bs-caller="card()" data-require-bs-version="5" id="domain_details-DATACHG-card">
+                                  <div class="card-body bslib-gap-spacing html-fill-item html-fill-container" style="margin-top:auto;margin-bottom:auto;flex:1 1 auto;">
+                                    <div class="shiny-html-output gt_shiny" id="domain_details-DATACHG-gt-table"></div>
+                                  </div>
+                                  <bslib-tooltip placement="auto" bsOptions="[]" data-require-bs-version="5" data-require-bs-caller="tooltip()">
+                                    <template>Expand</template>
+                                    <button aria-expanded="false" aria-label="Expand card" class="bslib-full-screen-enter badge rounded-pill"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" style="height:1em;width:1em;fill:currentColor;" aria-hidden="true" role="img"><path d="M20 5C20 4.4 19.6 4 19 4H13C12.4 4 12 3.6 12 3C12 2.4 12.4 2 13 2H21C21.6 2 22 2.4 22 3V11C22 11.6 21.6 12 21 12C20.4 12 20 11.6 20 11V5ZM4 19C4 19.6 4.4 20 5 20H11C11.6 20 12 20.4 12 21C12 21.6 11.6 22 11 22H3C2.4 22 2 21.6 2 21V13C2 12.4 2.4 12 3 12C3.6 12 4 12.4 4 13V19Z"/></svg></button>
+                                  </bslib-tooltip>
+                                  <script data-bslib-card-init>bslib.Card.initializeAllCards();</script>
+                                </div>
+                              </div>
                             </div>
                             <div class="tab-pane" data-value="DATAENT" id="tab-XXXX-9">
-                              <div class="shiny-html-output gt_shiny" id="domain_details-DATAENT-gt-table"></div>
+                              <div>
+                                <style>#domain_details-DATAENT-card .bslib-full-screen-enter { bottom: unset !important; }</style>
+                                <div class="card bslib-card bslib-mb-spacing bslib-card-input html-fill-item html-fill-container" data-bslib-card-init data-full-screen="false" data-require-bs-caller="card()" data-require-bs-version="5" id="domain_details-DATAENT-card">
+                                  <div class="card-body bslib-gap-spacing html-fill-item html-fill-container" style="margin-top:auto;margin-bottom:auto;flex:1 1 auto;">
+                                    <div class="shiny-html-output gt_shiny" id="domain_details-DATAENT-gt-table"></div>
+                                  </div>
+                                  <bslib-tooltip placement="auto" bsOptions="[]" data-require-bs-version="5" data-require-bs-caller="tooltip()">
+                                    <template>Expand</template>
+                                    <button aria-expanded="false" aria-label="Expand card" class="bslib-full-screen-enter badge rounded-pill"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" style="height:1em;width:1em;fill:currentColor;" aria-hidden="true" role="img"><path d="M20 5C20 4.4 19.6 4 19 4H13C12.4 4 12 3.6 12 3C12 2.4 12.4 2 13 2H21C21.6 2 22 2.4 22 3V11C22 11.6 21.6 12 21 12C20.4 12 20 11.6 20 11V5ZM4 19C4 19.6 4.4 20 5 20H11C11.6 20 12 20.4 12 21C12 21.6 11.6 22 11 22H3C2.4 22 2 21.6 2 21V13C2 12.4 2.4 12 3 12C3.6 12 4 12.4 4 13V19Z"/></svg></button>
+                                  </bslib-tooltip>
+                                  <script data-bslib-card-init>bslib.Card.initializeAllCards();</script>
+                                </div>
+                              </div>
                             </div>
                             <div class="tab-pane" data-value="QUERY" id="tab-XXXX-10">
-                              <div class="shiny-html-output gt_shiny" id="domain_details-QUERY-gt-table"></div>
+                              <div>
+                                <style>#domain_details-QUERY-card .bslib-full-screen-enter { bottom: unset !important; }</style>
+                                <div class="card bslib-card bslib-mb-spacing bslib-card-input html-fill-item html-fill-container" data-bslib-card-init data-full-screen="false" data-require-bs-caller="card()" data-require-bs-version="5" id="domain_details-QUERY-card">
+                                  <div class="card-body bslib-gap-spacing html-fill-item html-fill-container" style="margin-top:auto;margin-bottom:auto;flex:1 1 auto;">
+                                    <div class="shiny-html-output gt_shiny" id="domain_details-QUERY-gt-table"></div>
+                                  </div>
+                                  <bslib-tooltip placement="auto" bsOptions="[]" data-require-bs-version="5" data-require-bs-caller="tooltip()">
+                                    <template>Expand</template>
+                                    <button aria-expanded="false" aria-label="Expand card" class="bslib-full-screen-enter badge rounded-pill"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" style="height:1em;width:1em;fill:currentColor;" aria-hidden="true" role="img"><path d="M20 5C20 4.4 19.6 4 19 4H13C12.4 4 12 3.6 12 3C12 2.4 12.4 2 13 2H21C21.6 2 22 2.4 22 3V11C22 11.6 21.6 12 21 12C20.4 12 20 11.6 20 11V5ZM4 19C4 19.6 4.4 20 5 20H11C11.6 20 12 20.4 12 21C12 21.6 11.6 22 11 22H3C2.4 22 2 21.6 2 21V13C2 12.4 2.4 12 3 12C3.6 12 4 12.4 4 13V19Z"/></svg></button>
+                                  </bslib-tooltip>
+                                  <script data-bslib-card-init>bslib.Card.initializeAllCards();</script>
+                                </div>
+                              </div>
                             </div>
                           </div>
                         </div>
@@ -1437,64 +1643,10 @@
       <option value="Analysis_kri0006">Study Discontinuation Rate</option>
       <option value="Analysis_kri0007">Treatment Discontinuation Rate</option>
       <option value="Analysis_kri0008">Query Rate</option>
-      <option value="Analysis_kri0009">Outstanding Query Rate</option>
-      <option value="Analysis_kri0010">Outstanding Data Entry Rate</option>
+      <option value="Analysis_kri0009">Delayed Query Resolution Rate</option>
+      <option value="Analysis_kri0010">Delayed Data Entry Rate</option>
       <option value="Analysis_kri0011">Data Change Rate</option></select>
                         <script type="application/json" data-for="metric" data-nonempty="">{"plugins":["selectize-plugin-a11y"]}</script>
-                      </div>
-                    </div>
-                    <div class="form-group shiny-input-container" style="width:100%;">
-                      <label class="control-label" id="site-label" for="site">
-                        <strong>Site</strong>
-                      </label>
-                      <div>
-                        <select id="site" class="shiny-input-select"><option value="None" selected>None</option>
-      <option value="0X001">0X001</option>
-      <option value="0X002">0X002</option>
-      <option value="0X003">0X003</option>
-      <option value="0X004">0X004</option>
-      <option value="0X005">0X005</option>
-      <option value="0X006">0X006</option>
-      <option value="0X007">0X007</option>
-      <option value="0X008">0X008</option>
-      <option value="0X010">0X010</option>
-      <option value="0X011">0X011</option>
-      <option value="0X012">0X012</option>
-      <option value="0X013">0X013</option>
-      <option value="0X014">0X014</option>
-      <option value="0X015">0X015</option>
-      <option value="0X016">0X016</option>
-      <option value="0X018">0X018</option>
-      <option value="0X021">0X021</option>
-      <option value="0X022">0X022</option>
-      <option value="0X024">0X024</option>
-      <option value="0X026">0X026</option>
-      <option value="0X027">0X027</option>
-      <option value="0X028">0X028</option>
-      <option value="0X029">0X029</option>
-      <option value="0X037">0X037</option>
-      <option value="0X041">0X041</option>
-      <option value="0X064">0X064</option>
-      <option value="0X079">0X079</option>
-      <option value="0X103">0X103</option>
-      <option value="0X109">0X109</option>
-      <option value="0X124">0X124</option>
-      <option value="0X155">0X155</option>
-      <option value="0X159">0X159</option>
-      <option value="0X170">0X170</option>
-      <option value="0X173">0X173</option>
-      <option value="0X180">0X180</option>
-      <option value="X185X">X185X</option></select>
-                        <script type="application/json" data-for="site" data-nonempty="">{"plugins":["selectize-plugin-a11y"]}</script>
-                      </div>
-                    </div>
-                    <div class="form-group shiny-input-container" style="width:100%;">
-                      <label class="control-label" id="participant-label" for="participant">
-                        <strong>Participant</strong>
-                      </label>
-                      <div>
-                        <select class="shiny-input-select form-control" id="participant"></select>
-                        <script type="application/json" data-for="participant">{"maxOptions":10,"plugins":["selectize-plugin-a11y"]}</script>
                       </div>
                     </div>
                     <div class="form-group shiny-input-container" style="width:100%;">
@@ -1522,7 +1674,7 @@
                 </div>
               </div>
             </aside>
-            <button class="collapse-toggle" type="button" title="Toggle sidebar" aria-expanded="true" aria-controls="sidebar"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" class="bi bi-chevron-left collapse-icon" style="fill:currentColor;" aria-hidden="true" role="img" ><path fill-rule="evenodd" d="M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z"></path></svg></button>
+            <button class="collapse-toggle" type="button" title="Toggle sidebar" aria-expanded="false" aria-controls="sidebar"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" class="bi bi-chevron-left collapse-icon" style="fill:currentColor;" aria-hidden="true" role="img" ><path fill-rule="evenodd" d="M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z"></path></svg></button>
             <script data-bslib-sidebar-init>bslib.Sidebar.initCollapsibleAll()</script>
           </div>
         </div>

@@ -10,7 +10,7 @@ out_gtInteractive <- function(gt_object, selection_mode = "single") {
       use_resizers = TRUE,
       use_highlight = TRUE,
       use_compact_mode = TRUE,
-      use_text_wrapping = FALSE,
+      use_text_wrapping = TRUE,
       use_page_size_select = TRUE,
       selection_mode = selection_mode
     ) %>%

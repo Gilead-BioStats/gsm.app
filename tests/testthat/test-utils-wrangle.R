@@ -9,13 +9,13 @@ test_that("FilterbyGroupID filters by GroupID", {
   )
 })
 
-test_that("FilterbyGroupID deals with None", {
+test_that("FilterbyGroupID deals with All", {
   given <- dplyr::tibble(
     GroupID = 1:5,
     value = letters[1:5]
   )
   expect_identical(
-    FilterbyGroupID(given, "None"),
+    FilterbyGroupID(given, "All"),
     given
   )
 })

@@ -1,3 +1,18 @@
+# gsm.app 2.4.0
+
+We continue to evolve the app layout toward better usability!
+
+## New Features
+- The "Site" and "Participant" inputs are now displayed in the top bar of the app, since they are used throughout the app. Tab-specific filters remain in the sidebar, which is collapsed by default (#400, #418). We will continue to evolve this layout through user feedback.
+- The package has been updated to use [{gsm.core}](https://gilead-biostats.github.io/gsm.core) and [{gsm.kri}](https://gilead-biostats.github.io/gsm.kri), rather than the monolithic {gsm} (#412).
+- The {gsm.ae} plugin has been split off into its own package ([site](https://openrbqm.github.io/gsm.ae/) | [demo app](https://openrbqm.shinyapps.io/gsm-ae/)). This split helps us identify tools that will help with future plugin development, and makes it easier to evolve the main app and the AE plugin independently (#325).
+- We show the title of the study in the top bar by default, as well as in the name of the browser tab (#382).
+
+## Other improvements
+- Users can zoom tables on "Domain Details" to fill their screen (#399), and text fields now wrap to make the text easier to read (#404).
+- Some internal UI functions are now available for use in plugins (#402), and the plugin-definition process has been streamlined with the new `plugin_Define()` function (#407), and better documentation of `plugin_Read()` (#406).
+- Users have more flexibility about which domains to include in the app, and how to refer to them (#415). This interface will continue to evolve to better support plugins.
+
 # gsm.app 2.3.0
 
 Apps now feature site-level domain details!

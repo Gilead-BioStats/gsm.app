@@ -50,7 +50,7 @@ packages:
 
 ## meta
 
-The `meta` section must contain `Type: Plugin`, and `ID` that matches the name of the file, and a `Name:`. The `Name:` appears in the resulting app as the label for the tab containing the plugin.
+The `meta` section must contain a `Name:`. The `Name:` appears in the resulting app as the label for the tab containing the plugin.
 
 ## shiny
 
@@ -58,17 +58,7 @@ The `shiny` section specifies the names of the plugin module's UI and server fun
 
 ## domains
 
-The `domains` section specifies the data domains that are used by the plugin. These domains will be loaded by the app, in addition to any domains specified in the `chrDomains` argument to `run_gsm_app()`. The domains can be any of the following:
-- `AE` (Adverse Events)
-- `DATACHG` (Data Changes)
-- `DATAENT` (Data Entry)
-- `ENROLL` (Enrollment)
-- `LB` (Lab)
-- `PD` (Protocol Deviations)
-- `QUERY` (Queries)
-- `STUDCOMP` (Study Completion)
-- `SUBJ` (Subject Metadata)
-- `SDRGCOMP` (Treatment Completion)
+The `domains` section specifies the data domains that are used by the plugin. These domains must be loaded into the app via the `chrDomains` argument to `run_gsm_app()`. The domains specified here should be the ID (the name of named arguments to `chrDomains`), not the label
 
 ## required_inputs
 
@@ -86,7 +76,7 @@ If plugins have any of these arguments, the corresponding reactive will be passe
 - `rctv_strSiteID` (a `shiny::reactiveVal()` connected to the "Site" input)
 - `rctv_strSubjectID` (a `shiny::reactiveVal()` connected to the "Participant" input)
 - `rctv_strDomainID` (a `shiny::reactiveVal()` connected to the "Domain" input)
-- `rctv_dfDOMAIN` (eg rctv_dfAE, one for each `domain` as defined above)
+- `rctv_dfDOMAIN` (eg `rctv_dfAE`, one for each `domain` as defined above)
 
 For the input-connected `reactiveVal()`s, setting a value will pass the value back up to the main app. For example, to set the `Participant` drop-down menu to subject "0008", call `rctv_strSubjectID("0008")` inside your plugin.
 
@@ -96,10 +86,12 @@ We recommend avoiding setting values to `NULL` from inside your app, to avoid is
 
 Use `plugin_Read(strPath)` to read a plugin definition and prepare it for use in an app. Supply a list of one or more plugin definitions to the `run_gsm_app()` function through the `lPlugins` argument.
 
-For example, this code launches an app with our sample AE plugin:
+For example, this code launches an app with our sample Participant Profile plugin:
 
 ```{r launch, eval = FALSE}
-aePlugin <- plugin_Read(system.file("plugins", "AE", package = "gsm.app"))
+subjPlugin <- plugin_Read(
+  system.file("plugins", "ParticipantProfile", package = "gsm.app")
+)
 run_gsm_app(
   dfAnalyticsInput = gsm.app::sample_dfAnalyticsInput,
   dfBounds = gsm.app::sample_dfBounds,
@@ -107,18 +99,18 @@ run_gsm_app(
   dfMetrics = gsm.app::sample_dfMetrics,
   dfResults = gsm.app::sample_dfResults,
   fnFetchData = sample_fnFetchData,
-  lPlugins = list(aePlugin)
+  lPlugins = list(subjPlugin)
 )
 ```
 
-Note that `aePlugin` must be supplied inside an enclosing `list()`, to allow for multiple plugin definitions.
+Note that `subjPlugin` must be supplied inside an enclosing `list()`, to allow for multiple plugin definitions.
 
 # Deploying an App with a Plugin
 
 If you wish to deploy an app that uses one or more plugins using {renv} and/or {rsconnect}, you need to let the system know about the plugins used by your app. The `plugin_LoadDependencies()` function serves to alert such systems of your requirements.
 
 ```{r load-dependencies, eval = FALSE}
-plugin_LoadDependencies(aePlugin)
+plugin_LoadDependencies(subjPlugin)
 ```
 
 # Plugins in CI/CD
@@ -126,7 +118,7 @@ plugin_LoadDependencies(aePlugin)
 To integrate plugins into a CI/CD pipeline, use the `plugin_InstallDependencySources()` function to install plugin dependencies. This function requires the {pak} package.
 
 ```{r install-sources, eval = FALSE}
-plugin_InstallDependencySources(aePlugin)
+plugin_InstallDependencySources(subjPlugin)
 ```
 
 See the [`shinyapps-deploy.yaml` file used by this package](https://github.com/Gilead-BioStats/gsm.app/blob/dev/.github/workflows/shinyapps-deploy.yaml) for an example use of this function.

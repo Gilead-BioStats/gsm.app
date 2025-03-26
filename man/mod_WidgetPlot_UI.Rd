@@ -9,12 +9,18 @@ mod_WidgetPlot_UI(id, fnHtmlDependency, fnWidgetOutput, strPlotTitle = NULL)
 \arguments{
 \item{id}{\code{character} The id for this element.}
 
+\item{fnHtmlDependency}{\code{function} A function that returns an
+\code{\link[htmltools:htmlDependency]{htmltools::htmlDependency()}} or multiple wrapped in \code{\link[shiny:reexports]{shiny::tagList()}}.}
+
+\item{fnWidgetOutput}{\code{function} An \code{\link[htmlwidgets:htmlwidgets-shiny]{htmlwidgets::shinyWidgetOutput()}}
+function.}
+
 \item{strPlotTitle}{\code{character} A title for a plot, usually the name of a
 metric.}
 }
 \value{
-A \code{\link[bslib:card]{bslib::card()}} with an optional title and a
-\code{\link[=Widget_BarChartOutput]{Widget_BarChartOutput()}}.
+A \code{\link[bslib:card]{bslib::card()}} with an optional title and the corresponding
+\code{fnWidgetOutput} and dependencies to load it.
 }
 \description{
 Widget Plot Module UI

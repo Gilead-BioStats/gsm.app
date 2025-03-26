@@ -4,14 +4,7 @@
 \alias{out_Sidebar}
 \title{Study Information Sidebar}
 \usage{
-out_Sidebar(
-  dfGroups,
-  dfResults,
-  chrDomains,
-  chrMetrics,
-  intNParticipants,
-  tagListSidebar = NULL
-)
+out_Sidebar(dfGroups, dfResults, chrDomains, chrMetrics, tagListSidebar = NULL)
 }
 \arguments{
 \item{dfGroups}{\code{data.frame} Group-level metadata dictionary.}
@@ -19,14 +12,13 @@ out_Sidebar(
 \item{dfResults}{\code{data.frame} A stacked summary of analysis pipeline output.
 This will be filtered to cases where \code{GroupLevel == "Site"}.}
 
-\item{chrDomains}{\code{character} A vector of names of domain data.frames to show
-in the app. Supported domains are shown in the default value.}
+\item{chrDomains}{\code{character} A (named) vector of domains to include in the
+app. The values of the vector will be used as labels, and the names will be
+used as IDs. The IDs will be passed to \code{fnFetchData()} to fetch data about
+that domain.}
 
 \item{chrMetrics}{\code{character} A named vector of MetricIDs, where the names
 are the full Metric.}
-
-\item{intNParticipants}{\code{integer} The number of unique participants
-(subjects) in the study.}
 
 \item{tagListSidebar}{\code{taglist} An optional \code{\link[htmltools:tagList]{htmltools::tagList()}} of
 additional elements to add to the top of the app sidebar.}

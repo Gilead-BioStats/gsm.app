@@ -1,8 +1,8 @@
 #' Widget Plot Module UI
 #'
 #' @inheritParams shared-params
-#' @returns A [bslib::card()] with an optional title and a
-#'   [Widget_BarChartOutput()].
+#' @returns A [bslib::card()] with an optional title and the corresponding
+#'   `fnWidgetOutput` and dependencies to load it.
 #' @keywords internal
 mod_WidgetPlot_UI <- function(
   id,
@@ -11,14 +11,10 @@ mod_WidgetPlot_UI <- function(
   strPlotTitle = NULL
 ) {
   ns <- NS(id)
-  card_header <- if (!is.null(strPlotTitle)) {
-    bslib::card_header(strPlotTitle)
-  }
-  bslib::card(
+  out_Card(
+    tagTitle = strPlotTitle,
     id = id,
-    full_screen = TRUE,
     class = "chart",
-    card_header,
     fnHtmlDependency(),
     fnWidgetOutput(ns("plot"))
   )
@@ -30,7 +26,7 @@ mod_WidgetPlot_UI <- function(
 #'
 #' @returns An [htmltools::tagList()] of `html_dependency` objects (see
 #'   [htmltools::htmlDependency()]), so that each will be attached to the Shiny
-#'   app exactly once, regardless how many times they are added.
+#'   app exactly once, regardless of how many times they are added.
 #' @keywords internal
 htmlDependency_WidgetPlotInput <- function(strWidgetName) {
   strBaseName <- sub("Widget_", "", strWidgetName)
@@ -52,8 +48,8 @@ htmlDependency_WidgetPlotInput <- function(strWidgetName) {
 #' Attach `widgetInputHelpers.js` to an app or other HTML exactly once.
 #'
 #' @returns An `html_dependency` object (see [htmltools::htmlDependency()]),
-#'   which is attached to the Shiny app exactly once, regardless how many times
-#'   it is added.
+#'   which is attached to the Shiny app exactly once, regardless of how many
+#'   times it is added.
 #' @keywords internal
 htmlDependency_WidgetInputHelpers <- function() {
   htmltools::htmlDependency(

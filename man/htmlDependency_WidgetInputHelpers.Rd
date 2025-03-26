@@ -8,8 +8,8 @@ htmlDependency_WidgetInputHelpers()
 }
 \value{
 An \code{html_dependency} object (see \code{\link[htmltools:htmlDependency]{htmltools::htmlDependency()}}),
-which is attached to the Shiny app exactly once, regardless how many times
-it is added.
+which is attached to the Shiny app exactly once, regardless of how many
+times it is added.
 }
 \description{
 Attach \code{widgetInputHelpers.js} to an app or other HTML exactly once.

@@ -1,15 +1,27 @@
-# Sample datasets generated from {clindata} filtered then passed through {gsm}.
+# Sample datasets generated from {clindata} filtered then passed through
+# {gsm.mapping}.
 
 # Used libraries ----
 
 # clindata is needed to generate this data, but is not a requirement for using
-# or testing the package, so it is not listed in the DESCRIPTION.
+# or testing the package, so it is not listed in the DESCRIPTION. Likewise for
+# gsm.mapping and gsm.reporting.
+# pak::pak("Gilead-BioStats/clindata")
+# pak::pak("Gilead-BioStats/gsm.mapping@dev")
+# pak::pak("Gilead-BioStats/gsm.reporting@dev")
 
-library(gsm)
-pkgload::load_all(".", helpers = FALSE, attach_testthat = FALSE)
+library(gsm.core)
+library(gsm.mapping)
+library(gsm.kri)
+library(gsm.reporting)
 library(clindata)
+library(dplyr)
+library(purrr)
 
 # Set up inputs ----
+
+core_mappings <- c("AE", "DATACHG", "DATAENT", "ENROLL", "LB",
+                   "PD", "QUERY", "STUDY", "STUDCOMP", "SDRGCOMP", "SITE", "SUBJ")
 
 lSource <- list(
   Source_STUDY = clindata::ctms_study,
@@ -28,29 +40,35 @@ lSource <- list(
 
 # Create Mapped Data ----
 
-lMappings <- MakeWorkflowList(
-  strPath = system.file("workflow/1_mappings", package = "gsm.app"),
+lMappings <- gsm.core::MakeWorkflowList(
+  strPath = system.file("workflow/1_mappings", package = "gsm.mapping"),
+  strNames = core_mappings,
   strPackage = NULL
 )
-raw_spec <- CombineSpecs(lMappings)
-lRaw <- Ingest(lSource, raw_spec)
+# We don't use COUNTRY yet.
+raw_spec <- gsm.mapping::CombineSpecs(lMappings)
+lRaw <- gsm.mapping::Ingest(lSource, raw_spec)
 lRaw <- lRaw %>%
   purrr::map(dplyr::as_tibble)
 
-lMapped <- RunWorkflows(lMappings, lRaw)
+lMapped <- gsm.core::RunWorkflows(lMappings, lRaw)
 lMapped <- lMapped %>%
   purrr::map(dplyr::as_tibble)
 
 # Create Analysis Data - Generate KRIs ----
 
-lWorkflows <- MakeWorkflowList("^kri", strPath = "workflow/2_metrics")
+lWorkflows <- gsm.core::MakeWorkflowList(
+  "^kri",
+  strPath = "workflow/2_metrics",
+  strPackage = "gsm.kri"
+)
 ## Don't use kri0012 yet.
 lWorkflows$kri0012 <- NULL
-lAnalysis <- RunWorkflows(lWorkflows, lMapped)
+lAnalysis <- gsm.core::RunWorkflows(lWorkflows, lMapped)
 
 # Choose a subset ----
 
-dfResults <- BindResults(
+dfResults <- gsm.reporting::BindResults(
   lAnalysis = lAnalysis,
   strName = "Analysis_Summary",
   dSnapshotDate = as.Date("2019-11-01"),
@@ -97,11 +115,11 @@ sample_dfGroups <- dplyr::bind_rows(
   lMapped$Mapped_SITE %>% dplyr::semi_join(site_subset),
   lMapped$Mapped_STUDY
 )
-sample_dfMetrics <- MakeMetric(lWorkflows = lWorkflows)
+sample_dfMetrics <- gsm.reporting::MakeMetric(lWorkflows = lWorkflows)
 sample_dfResults <- dfResults %>%
   dplyr::semi_join(site_subset)
-sample_dfBounds <- MakeBounds(
-  dfResults = sample_dfResults,
+sample_dfBounds <- gsm.reporting::MakeBounds(
+  dfResults = dfResults,
   dfMetrics = sample_dfMetrics
 )
 sample_dfAnalyticsInput <- purrr::map(lAnalysis, "Analysis_Input") %>%
@@ -135,18 +153,18 @@ sample_lMapped <- purrr::map(lMapped, function(thisDomain) {
 
 # Ideally this should all be defined in gsm.mapping.
 
-chrDomainLabels <- c(
-  AE = "Adverse Events",
-  DATACHG = "Data Changes",
-  DATAENT = "Data Entry",
-  ENROLL = "Enrollment",
-  LB = "Lab",
-  PD = "Protocol Deviations",
-  QUERY = "Queries",
-  STUDCOMP = "Study Completion",
-  SUBJ = "Subject Metadata",
-  SDRGCOMP = "Treatment Completion"
-)
+# chrDomainLabels <- c(
+#   AE = "Adverse Events",
+#   DATACHG = "Data Changes",
+#   DATAENT = "Data Entry",
+#   ENROLL = "Enrollment",
+#   LB = "Lab",
+#   PD = "Protocol Deviations",
+#   QUERY = "Queries",
+#   STUDCOMP = "Study Completion",
+#   SUBJ = "Subject Metadata",
+#   SDRGCOMP = "Treatment Completion"
+# )
 
 chrFieldNames <- c(
   aeen_dt = "End Date",
@@ -191,7 +209,7 @@ chrFieldNames <- c(
 # directly.
 usethis::use_data(
   sample_lMapped,
-  chrDomainLabels,
+  # chrDomainLabels,
   chrFieldNames,
   overwrite = TRUE,
   internal = TRUE,

@@ -6,8 +6,8 @@
 #' @keywords internal
 mod_GroupOverview_UI <- function(id, dfResults) {
   ns <- NS(id)
-  bslib::card(
-    full_screen = TRUE,
+  out_Card(
+    tagTitle = NULL,
     bslib::card_body(
       mod_RAGPillSet_UI(
         ns("kri_counts"),
@@ -33,7 +33,7 @@ mod_GroupOverview_Server <- function(
     rctv_strSiteID
 ) {
   moduleServer(id, function(input, output, session) {
-    dfResults <- gsm::FilterByLatestSnapshotDate(dfResults)
+    dfResults <- gsm.kri::FilterByLatestSnapshotDate(dfResults)
     rctv_strGroupSubset <- reactiveVal("red")
 
     rctv_strGroupSubset_Pills <- mod_RAGPillSet_Server(
@@ -175,12 +175,11 @@ renderWidget_GroupOverview <- function(expr, env = parent.frame(), quoted = FALS
 #'
 #' @returns An [htmltools::tagList()] of `html_dependency` objects (see
 #'   [htmltools::htmlDependency()]), so that each will be attached to the Shiny
-#'   app exactly once, regardless how many times they are added.
+#'   app exactly once, regardless of how many times they are added.
 #' @keywords internal
 htmlDependency_GroupOverview <- function() {
   tagList(
     htmlDependency_Stylesheet("groupOverview.css"),
-    htmlDependency_WidgetInputHelpers(),
     htmlDependency_GroupOverviewInput()
   )
 }
@@ -189,7 +188,7 @@ htmlDependency_GroupOverview <- function() {
 #'
 #' @returns An [htmltools::tagList()] of `html_dependency` objects (see
 #'   [htmltools::htmlDependency()]), so that each will be attached to the Shiny
-#'   app exactly once, regardless how many times they are added.
+#'   app exactly once, regardless of how many times they are added.
 #' @keywords internal
 htmlDependency_GroupOverviewInput <- function() {
   tagList(

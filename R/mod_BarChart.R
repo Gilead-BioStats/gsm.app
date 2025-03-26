@@ -19,7 +19,7 @@ mod_BarChart_UI <- function(id, strPlotTitle = NULL) {
 #'
 #' @returns An [htmltools::tagList()] of `html_dependency` objects (see
 #'   [htmltools::htmlDependency()]), so that each will be attached to the Shiny
-#'   app exactly once, regardless how many times they are added.
+#'   app exactly once, regardless of how many times they are added.
 #' @keywords internal
 htmlDependency_BarChartInput <- function() {
   htmlDependency_WidgetPlotInput("Widget_BarChart")
@@ -72,10 +72,10 @@ Widget_BarChart <- function(
     "dfBounds is not a data.frame" = is.null(dfBounds) || is.data.frame(dfBounds)
   )
   if (length(dfResults)) {
-    dfResults <- gsm::FilterByLatestSnapshotDate(dfResults)
+    dfResults <- gsm.kri::FilterByLatestSnapshotDate(dfResults)
   }
   if (length(dfBounds)) {
-    dfBounds <- gsm::FilterByLatestSnapshotDate(dfBounds)
+    dfBounds <- gsm.kri::FilterByLatestSnapshotDate(dfBounds)
   }
   vThreshold <- NULL
   if (

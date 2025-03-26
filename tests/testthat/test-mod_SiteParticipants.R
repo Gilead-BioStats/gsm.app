@@ -13,7 +13,7 @@ test_that("mod_SiteParticipants_Server starts as expected", {
     sample_dfAnalyticsInput,
     "Analysis_kri0001"
   )
-  rctv_strGroupID <- reactiveVal("None")
+  rctv_strGroupID <- reactiveVal("All")
 
   testServer(
     mod_SiteParticipants_Server,
@@ -65,7 +65,7 @@ test_that("mod_SiteParticipants_Server returns selected participant", {
     mod_SiteParticipants_Server,
     args = list(
       id = "testingModSiteParticipants",
-      rctv_strGroupID = reactive("None"),
+      rctv_strGroupID = reactive("All"),
       rctv_strSubjectID = reactive("All"),
       rctv_dfAnalyticsInput = reactive(dfAnalyticsInput),
       rctv_lColumnNames = reactive({

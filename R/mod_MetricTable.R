@@ -2,13 +2,13 @@
 #'
 #' @inheritParams shared-params
 #' @returns A [bslib::card()] with an optional title and a
-#'   [gsm::Report_MetricTable()].
+#'   [gsm.kri::Report_MetricTable()].
 #' @keywords internal
 mod_MetricTable_UI <- function(id) {
   ns <- NS(id)
-  bslib::card(
+  out_Card(
+    tagTitle = NULL,
     id = id,
-    full_screen = TRUE,
     class = "MetricTable",
     mod_gtBidirectional_UI(ns("gt"))
   )
@@ -29,7 +29,7 @@ mod_MetricTable_Server <- function(
     # Update the widget when the source data changes.
     rctv_tbl <- reactive({
       req(rctv_dfResults())
-      rmt <- gsm::Report_MetricTable(
+      rmt <- gsm.kri::Report_MetricTable(
         rctv_dfResults(),
         dfGroups = dfGroups,
         strGroupLevel = "Site"

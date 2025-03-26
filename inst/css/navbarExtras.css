@@ -1,0 +1,18 @@
+.navbar-extras .form-group {
+  margin-bottom: 0;
+  display: inline-flex; /* Ensure it grows to fit its contents */
+  align-items: center;  /* Keep label and input aligned */
+  gap: 0.5rem; /* Space between label and input */
+}
+
+.navbar-extras .vscomp-dropbox-container {
+  z-index: 100 !important;
+}
+
+.navbar-extras .control-label {
+  margin-bottom: 0 !important;
+}
+
+.navbar-extras .virtual-select {
+  min-width: 150px;
+}

@@ -8,12 +8,16 @@ mod_SiteDetails_UI <- function(id) {
   bslib::layout_columns(
     col_widths = c(5, 7),
     tagList(
-      # TODO: Replace with a single module.
+      # TODO: Replace with a single module. Extra div is temporary to make the
+      # hide/show cleaner.
       shinyjs::hidden(
-        out_Card(
-          "Site Metadata",
-          uiOutput(ns("site_metadata_list")),
-          id = ns("card_site_metadata_list")
+        div(
+          id = ns("card_site_metadata_list"),
+          out_Card(
+            "Site Metadata",
+            uiOutput(ns("site_metadata_list")),
+            id = ns("card_site_metadata_list-contents")
+          )
         )
       ),
       out_Card(
@@ -76,9 +80,9 @@ mod_SiteDetails_Server <- function(
       target_rows <- dfSitesAll$GroupID == rctv_strSiteID()
       rlang::set_names(
         dfSitesAll$Value[target_rows],
-        unlist(unname(gsm::MakeParamLabelsList(
+        MakeParamLabelsChr(
           dfSitesAll$Param[target_rows]
-        )))
+        )
       )
     }) %>%
       bindCache(rctv_strSiteID())
@@ -88,7 +92,7 @@ mod_SiteDetails_Server <- function(
     #
     # nocov start
     observe({
-      if (rctv_strSiteID() == "None") {
+      if (rctv_strSiteID() == "All") {
         ## Show placeholders
         shinyjs::hide("card_site_metadata_list")
         shinyjs::show("card_placeholder_site_metadata_list")

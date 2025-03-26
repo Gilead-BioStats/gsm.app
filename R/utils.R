@@ -31,12 +31,17 @@ NullifyEmpty <- function(strValue) {
 
 #' gsm Color Scheme
 #'
-#' Eventually this should have a single home, but it doesn't make sense yet for
-#' anything to export it, so it exists in both gsm and gsm.app.
+#' Choose a color from the "official" colors of the gsm family of packages.
 #'
 #' @inheritParams shared-params
 #' @returns The hex code of a color.
-#' @keywords internal
+#' @export
+#' @examples
+#' ColorScheme("gray")
+#' ColorScheme("gray", "light")
+#' ColorScheme("green")
+#' ColorScheme("amber")
+#' ColorScheme("red")
 ColorScheme <- function(
   strColorName = c("gray", "green", "amber", "red"),
   strColorFamily = c("dark", "light")
@@ -79,7 +84,46 @@ AsFunction.default <- function(strFunction) {
 
 #' @export
 AsFunction.character <- function(strFunction) {
-  fnFunction <- gsm::GetStrFunctionIfNamespaced(strFunction)
+  fnFunction <- gsm.core::GetStrFunctionIfNamespaced(strFunction)
   # Extra step to work around things that are still character.
   rlang::as_function(fnFunction)
+}
+
+MakeParamLabelsChr <- function(chrParams, lParamLabels = NULL) {
+  unlist(unname(gsm.kri::MakeParamLabelsList(chrParams, lParamLabels)))
+}
+
+#' Extract an App Title from dfGroups
+#'
+#' Extract the "nickname", "protocol_title", or "studyid" of the study from
+#' `dfGroup` to use as a title for the app.
+#'
+#' @inheritParams shared-params
+#'
+#' @returns A length-1 character vector with the first available of "nickname",
+#'   "protocol_title", or "studyid", if any are available as a `Param` in
+#'   `dfGroups` with `GroupLevel == "Study"`, truncated to at most 30
+#'   characters. If none of those are available, `"GSM Deep Dive"`.
+#' @export
+#'
+#' @examples
+#' ExtractAppTitle(sample_dfGroups)
+#' ExtractAppTitle(
+#'   data.frame(
+#'     GroupLevel = "Study",
+#'     Param = "nickname",
+#'     Value = "This is a very long nickname which will be truncated"
+#'   )
+#' )
+ExtractAppTitle <- function(dfGroups) {
+  dfStudy <- dfGroups[dfGroups$GroupLevel == "Study", ]
+  appTitle <- dfStudy$Value[tolower(dfStudy$Param) == "nickname"] %||%
+    dfStudy$Value[tolower(dfStudy$Param) == "protocol_title"] %||%
+    dfStudy$Value[tolower(dfStudy$Param) == "studyid"] %||%
+    "GSM Deep Dive"
+  if (rlang::is_installed("stringr")) {
+    # Truncate to avoid overrun.
+    return(stringr::str_trunc(appTitle, 30))
+  }
+  return(strtrim(appTitle, 30)) # nocov
 }

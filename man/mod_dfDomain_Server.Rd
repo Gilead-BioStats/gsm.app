@@ -6,7 +6,7 @@
 \usage{
 mod_dfDomain_Server(
   id,
-  strDomain,
+  strDomainID,
   fnFetchData,
   rctv_strSiteID,
   rctv_strSubjectID
@@ -15,10 +15,9 @@ mod_dfDomain_Server(
 \arguments{
 \item{id}{\code{character} The id for this element.}
 
-\item{strDomain}{\code{character} The domain data.frame to load. Supported domains
-are shown in the default value.}
+\item{strDomainID}{\code{character} The domain data.frame to load.}
 
-\item{fnFetchData}{\code{function} A function that takes a \code{strDomain} argument
+\item{fnFetchData}{\code{function} A function that takes a \code{strDomainID} argument
 and optional \code{strSiteID} and \code{strSubjectID} and returns a data.frame. See
 \code{\link[=sample_fnFetchData]{sample_fnFetchData()}} for an example. The returned data.frame contains
 information about the named domain. If the function throws an error, the

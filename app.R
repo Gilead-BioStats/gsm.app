@@ -1,13 +1,14 @@
 # Launch the ShinyApp (Do not remove this comment)
-pkgload::load_all(".", helpers = FALSE, attach_testthat = FALSE)
+if (grepl("gsm\\.app", getwd()) ||
+    !("gsm.app" %in% list.files(.libPaths()))) {
+  pkgload::load_all(".", export_all = FALSE, attach_testthat = FALSE)
+} else {
+  library(gsm.app)
+}
 
-aePlugin <- plugin_Read(
-  system.file("plugins", "AE", package = "gsm.app")
-)
 ParticipantProfilePlugin <- plugin_Read(
   system.file("plugins", "ParticipantProfile", package = "gsm.app")
 )
-plugin_LoadDependencies(aePlugin)
 plugin_LoadDependencies(ParticipantProfilePlugin)
 
 sample_dfBounds2 <- dplyr::mutate(
@@ -28,7 +29,8 @@ run_gsm_app(
   # dfResults = gsm.app::sample_dfResults,
   dfResults = dplyr::bind_rows(gsm.app::sample_dfResults, sample_dfResults2),
   fnFetchData = sample_fnFetchData,
-  lPlugins = list(aePlugin, ParticipantProfilePlugin),
+  lPlugins = list(ParticipantProfilePlugin),
   strFavicon = Sys.getenv("GSMAPP_FAVICON", "angles-up"),
-  strFaviconColor = Sys.getenv("GSMAPP_FAVICONCOLOR", ColorScheme("red"))
+  strFaviconColor = Sys.getenv("GSMAPP_FAVICONCOLOR", ColorScheme("red")),
+  strTitle = Sys.getenv("GSMAPP_TITLE", "Sample Deep Dive App")
 )

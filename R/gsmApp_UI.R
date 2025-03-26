@@ -7,18 +7,16 @@
 #' @keywords internal
 gsmApp_UI <- function(
   chrDomains,
-  dfAnalyticsInput,
   dfGroups,
   dfMetrics,
   dfResults,
   lPlugins = NULL,
-  strTitle = "GSM Deep Dive",
+  strTitle = ExtractAppTitle(dfGroups),
   strFavicon = "angles-up",
   strFaviconColor = ColorScheme("red"),
   tagListSidebar = NULL
 ) {
   # Transform data for use in lower-level functions. ----
-  intNParticipants <- length(unique(dfAnalyticsInput$SubjectID))
   chrMetrics <- rlang::set_names(dfMetrics$MetricID, dfMetrics$Metric)
 
   bslib::page_navbar(
@@ -32,12 +30,15 @@ gsmApp_UI <- function(
       chrMetrics = chrMetrics,
       lPlugins = lPlugins
     ),
+    bslib::nav_spacer(),
+    !!!out_NavbarExtras(
+      sort(unique(dfGroups$GroupID[dfGroups$GroupLevel == "Site"]))
+    ),
     sidebar = out_Sidebar(
       dfGroups,
       dfResults,
       chrDomains,
       chrMetrics,
-      intNParticipants,
       tagListSidebar
     ),
     header = tagList(

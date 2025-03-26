@@ -10,11 +10,11 @@ test_that("mod_ScatterPlot_UI creates the expected UI", {
 test_that("mod_ScatterPlot_UI uses title when it's supplied", {
   test_result <- mod_ScatterPlot_UI("myID", strPlotTitle = "myTitle")
   expect_identical(
-    test_result$children[[1]]$attribs$class,
-    "card-header"
+    test_result$children[[2]]$children[[1]]$children[[1]][[1]]$name,
+    "h5"
   )
   expect_identical(
-    test_result$children[[1]]$children[[1]],
+    test_result$children[[2]]$children[[1]]$children[[1]][[1]]$children[[1]],
     "myTitle"
   )
   expect_s3_class(test_result, c("bslib_fragment", "shiny.tag"))
@@ -73,7 +73,7 @@ test_that("mod_ScatterPlot_Server sets selected site", {
       rctv_lMetric = reactive(lMetric),
       dfGroups = dfGroups,
       rctv_dfBounds = reactive(dfBounds),
-      rctv_strSiteID = reactiveVal("None")
+      rctv_strSiteID = reactiveVal("All")
     ),
     {
       expect_null(input$plot)

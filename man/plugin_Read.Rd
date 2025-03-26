@@ -10,18 +10,22 @@ plugin_Read(strPath)
 \item{strPath}{The directory that contains the plugin.}
 }
 \value{
-A \code{list} with elements \code{strTitle}, \code{fnUi}, \code{fnServer}, and
-(optionally) \code{lConfig}, read from the YAML file in \code{strPath}. As a side
-effect, any \code{R} files in \code{strPath} are also loaded using \code{source()}.
+A \code{list} with elements \code{meta}, \code{shiny}, \code{domains}, and (optionally)
+\code{required_inputs} and/or \code{packages}, read from the YAML file in \code{strPath}.
+As a side effect, any \code{R} files in \code{strPath} are also loaded using
+\code{source()}.
 }
 \description{
-Plugins are defined by a named \code{list} with elements \code{strTitle} (a title to
-show in the plugin menu), \code{fnUI} (a function or the name of a function to use
-as the plugin's module UI), and \code{fnServer} (a function or the name of a
-function to use as the plugin's module server). Use \code{plugin_Read()} to read
+Plugins are defined by a named \code{list} with elements \code{meta} (containing at
+least a \code{Name} to show in the plugin menu), \code{shiny} (containing \code{UI} and
+\code{Server} fields to define the Shiny UI and Server functions for the plugin),
+and \code{domains} (to specify the data domains that the plugin uses), plus
+optional fields \code{required_inputs} and \code{packages}. Use \code{plugin_Read()} to read
 these element definitions and any R files in the same directory.
 }
 \examples{
-aePlugin <- plugin_Read(system.file("plugins", "AE", package = "gsm.app"))
-aePlugin
+subjPlugin <- plugin_Read(
+  system.file("plugins", "ParticipantProfile", package = "gsm.app")
+)
+subjPlugin
 }

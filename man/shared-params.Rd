@@ -9,8 +9,13 @@ object.}
 
 \item{chrAllowedValues}{\code{character} A vector of allowed values for a vector.}
 
-\item{chrDomains}{\code{character} A vector of names of domain data.frames to show
-in the app. Supported domains are shown in the default value.}
+\item{chrChoices}{\code{character} A (named, optionally) vector of choices for a
+\code{\link[shiny:selectInput]{shiny::selectInput()}} or similar input function.}
+
+\item{chrDomains}{\code{character} A (named) vector of domains to include in the
+app. The values of the vector will be used as labels, and the names will be
+used as IDs. The IDs will be passed to \code{fnFetchData()} to fetch data about
+that domain.}
 
 \item{chrFromTabs}{\code{character} A vector of tab names. Syncing is only
 triggered if the user is currently on one of these tabs.}
@@ -63,26 +68,29 @@ as the default, or passed from the calling function if the calling function
 also has an \code{envCall} argument.}
 
 \item{envEvaluate}{\code{environment} The environment in which any variables used
-in the message are defined. You almost definitely want to leave this as the
-default value.}
+in the message or widget are defined. You almost definitely want to leave
+this as the default value.}
 
-\item{fnFetchData}{\code{function} A function that takes a \code{strDomain} argument
+\item{fnFetchData}{\code{function} A function that takes a \code{strDomainID} argument
 and optional \code{strSiteID} and \code{strSubjectID} and returns a data.frame. See
 \code{\link[=sample_fnFetchData]{sample_fnFetchData()}} for an example. The returned data.frame contains
 information about the named domain. If the function throws an error, the
 error is elevated to the user, so you can use errors to pass requirements
 through to the user.}
 
+\item{fnHtmlDependency}{\code{function} A function that returns an
+\code{\link[htmltools:htmlDependency]{htmltools::htmlDependency()}} or multiple wrapped in \code{\link[shiny:reexports]{shiny::tagList()}}.}
+
 \item{fnServer}{\code{function} A Shiny server function that takes arguments
 \code{input}, \code{output}, and \code{session}. This function will be called at the start
 of the main app server function.}
 
+\item{fnWidgetOutput}{\code{function} An \code{\link[htmlwidgets:htmlwidgets-shiny]{htmlwidgets::shinyWidgetOutput()}}
+function.}
+
 \item{id}{\code{character} The id for this element.}
 
 \item{intKRIColorCount}{\code{integer} A named vector of counts by color.}
-
-\item{intNParticipants}{\code{integer} The number of unique participants
-(subjects) in the study.}
 
 \item{intRed}{\code{integer} The number of sites with at least one red flag.}
 
@@ -178,8 +186,10 @@ color.}
 \item{strContainerID}{\code{character} The (namespaced) ID of the target container
 (usually a div).}
 
-\item{strDomain}{\code{character} The domain data.frame to load. Supported domains
-are shown in the default value.}
+\item{strDomainID}{\code{character} The domain data.frame to load.}
+
+\item{strDomainLabel}{\code{character} The domain name to display. For example,
+for ID \code{"AE"}, the label is \code{"Adverse Events"}.}
 
 \item{strEmpty}{\code{character} The value to return when everything is
 deselected.}
