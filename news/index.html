@@ -7,7 +7,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">gsm.app</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">2.3.0</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">2.4.0</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -36,6 +36,23 @@
       <small>Source: <a href="https://github.com/Gilead-BioStats/gsm.app/blob/main/NEWS.md" class="external-link"><code>NEWS.md</code></a></small>
     </div>
 
+    <div class="section level2">
+<h2 class="pkg-version" data-toc-text="2.4.0" id="gsmapp-240">gsm.app 2.4.0<a class="anchor" aria-label="anchor" href="#gsmapp-240"></a></h2>
+<p>We continue to evolve the app layout toward better usability!</p>
+<div class="section level3">
+<h3 id="new-features-2-4-0">New Features<a class="anchor" aria-label="anchor" href="#new-features-2-4-0"></a></h3>
+<ul><li>The “Site” and “Participant” inputs are now displayed in the top bar of the app, since they are used throughout the app. Tab-specific filters remain in the sidebar, which is collapsed by default (<a href="https://github.com/Gilead-BioStats/gsm.app/issues/400" class="external-link">#400</a>, <a href="https://github.com/Gilead-BioStats/gsm.app/issues/418" class="external-link">#418</a>). We will continue to evolve this layout through user feedback.</li>
+<li>The package has been updated to use <a href="https://gilead-biostats.github.io/gsm.core" class="external-link">{gsm.core}</a> and <a href="https://gilead-biostats.github.io/gsm.kri" class="external-link">{gsm.kri}</a>, rather than the monolithic {gsm} (<a href="https://github.com/Gilead-BioStats/gsm.app/issues/412" class="external-link">#412</a>).</li>
+<li>The {gsm.ae} plugin has been split off into its own package (<a href="https://openrbqm.github.io/gsm.ae/" class="external-link">site</a> | <a href="https://openrbqm.shinyapps.io/gsm-ae/" class="external-link">demo app</a>). This split helps us identify tools that will help with future plugin development, and makes it easier to evolve the main app and the AE plugin independently (<a href="https://github.com/Gilead-BioStats/gsm.app/issues/325" class="external-link">#325</a>).</li>
+<li>We show the title of the study in the top bar by default, as well as in the name of the browser tab (<a href="https://github.com/Gilead-BioStats/gsm.app/issues/382" class="external-link">#382</a>).</li>
+</ul></div>
+<div class="section level3">
+<h3 id="other-improvements-2-4-0">Other improvements<a class="anchor" aria-label="anchor" href="#other-improvements-2-4-0"></a></h3>
+<ul><li>Users can zoom tables on “Domain Details” to fill their screen (<a href="https://github.com/Gilead-BioStats/gsm.app/issues/399" class="external-link">#399</a>), and text fields now wrap to make the text easier to read (<a href="https://github.com/Gilead-BioStats/gsm.app/issues/404" class="external-link">#404</a>).</li>
+<li>Some internal UI functions are now available for use in plugins (<a href="https://github.com/Gilead-BioStats/gsm.app/issues/402" class="external-link">#402</a>), and the plugin-definition process has been streamlined with the new <code><a href="../reference/plugin_Define.html">plugin_Define()</a></code> function (<a href="https://github.com/Gilead-BioStats/gsm.app/issues/407" class="external-link">#407</a>), and better documentation of <code><a href="../reference/plugin_Read.html">plugin_Read()</a></code> (<a href="https://github.com/Gilead-BioStats/gsm.app/issues/406" class="external-link">#406</a>).</li>
+<li>Users have more flexibility about which domains to include in the app, and how to refer to them (<a href="https://github.com/Gilead-BioStats/gsm.app/issues/415" class="external-link">#415</a>). This interface will continue to evolve to better support plugins.</li>
+</ul></div>
+</div>
     <div class="section level2">
 <h2 class="pkg-version" data-toc-text="2.3.0" id="gsmapp-230">gsm.app 2.3.0<a class="anchor" aria-label="anchor" href="#gsmapp-230"></a></h2>
 <p>Apps now feature site-level domain details!</p>
@@ -72,7 +89,7 @@
 </div>
     <div class="section level2">
 <h2 class="pkg-version" data-toc-text="2.1.0" id="gsmapp-210">gsm.app 2.1.0<a class="anchor" aria-label="anchor" href="#gsmapp-210"></a></h2>
-<p>This version focuses on stability, as well as integration with <a href="https://github.com/Gilead-BioStats/gsm" class="external-link">gsm</a> 2.1.2:</p>
+<p>This version focuses on stability, as well as integration with <code>{gsm}</code> 2.1.2:</p>
 <div class="section level3">
 <h3 id="new-features-2-1-0">New Features<a class="anchor" aria-label="anchor" href="#new-features-2-1-0"></a></h3>
 <ul><li>Add optional arguments to allow users to customize the UI and/or server of the resulting Shiny app. This will allow users to add logging functionality, for example (<a href="https://github.com/Gilead-BioStats/gsm.app/issues/283" class="external-link">#283</a>).</li>
@@ -88,7 +105,7 @@
 </div>
     <div class="section level2">
 <h2 class="pkg-version" data-toc-text="2.0.0" id="gsmapp-200">gsm.app 2.0.0<a class="anchor" aria-label="anchor" href="#gsmapp-200"></a></h2>
-<p>This is a complete rewrite of the package for use with <a href="https://github.com/Gilead-BioStats/gsm" class="external-link">gsm</a> 2.0+.</p>
+<p>This is a complete rewrite of the package for use with <code>{gsm}</code> 2.0+.</p>
 <div class="section level3">
 <h3 id="new-features-2-0-0">New Features<a class="anchor" aria-label="anchor" href="#new-features-2-0-0"></a></h3>
 <ul><li>The sidebar (with overall study information and drop-down menus) can be collapsed to focus on the drill-down modules.</li>

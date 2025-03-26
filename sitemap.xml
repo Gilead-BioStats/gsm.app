@@ -17,8 +17,10 @@
 <url><loc>https://gilead-biostats.github.io/gsm.app/reference/CheckInputUnset.html</loc></url>
 <url><loc>https://gilead-biostats.github.io/gsm.app/reference/CheckIsDF.html</loc></url>
 <url><loc>https://gilead-biostats.github.io/gsm.app/reference/CheckIsIn.html</loc></url>
+<url><loc>https://gilead-biostats.github.io/gsm.app/reference/CheckIsString.html</loc></url>
 <url><loc>https://gilead-biostats.github.io/gsm.app/reference/ColorScheme.html</loc></url>
 <url><loc>https://gilead-biostats.github.io/gsm.app/reference/CompileUnsetInputs.html</loc></url>
+<url><loc>https://gilead-biostats.github.io/gsm.app/reference/ExtractAppTitle.html</loc></url>
 <url><loc>https://gilead-biostats.github.io/gsm.app/reference/ExtractFieldName.html</loc></url>
 <url><loc>https://gilead-biostats.github.io/gsm.app/reference/FilterBy.html</loc></url>
 <url><loc>https://gilead-biostats.github.io/gsm.app/reference/FilterbyGroupID.html</loc></url>
@@ -55,6 +57,7 @@
 <url><loc>https://gilead-biostats.github.io/gsm.app/reference/htmlDependency_WidgetPlotInput.html</loc></url>
 <url><loc>https://gilead-biostats.github.io/gsm.app/reference/htmlDependency_updateStyleJS.html</loc></url>
 <url><loc>https://gilead-biostats.github.io/gsm.app/reference/index.html</loc></url>
+<url><loc>https://gilead-biostats.github.io/gsm.app/reference/input_NavbarExtra.html</loc></url>
 <url><loc>https://gilead-biostats.github.io/gsm.app/reference/mod_ActionList_Server.html</loc></url>
 <url><loc>https://gilead-biostats.github.io/gsm.app/reference/mod_ActionList_UI.html</loc></url>
 <url><loc>https://gilead-biostats.github.io/gsm.app/reference/mod_BarChart_Server.html</loc></url>
@@ -102,6 +105,7 @@
 <url><loc>https://gilead-biostats.github.io/gsm.app/reference/out_MainTabs.html</loc></url>
 <url><loc>https://gilead-biostats.github.io/gsm.app/reference/out_MetadataItem.html</loc></url>
 <url><loc>https://gilead-biostats.github.io/gsm.app/reference/out_MetadataList.html</loc></url>
+<url><loc>https://gilead-biostats.github.io/gsm.app/reference/out_NavbarExtras.html</loc></url>
 <url><loc>https://gilead-biostats.github.io/gsm.app/reference/out_Placeholder.html</loc></url>
 <url><loc>https://gilead-biostats.github.io/gsm.app/reference/out_Sidebar.html</loc></url>
 <url><loc>https://gilead-biostats.github.io/gsm.app/reference/out_StudyInformation.html</loc></url>
@@ -109,6 +113,7 @@
 <url><loc>https://gilead-biostats.github.io/gsm.app/reference/out_gtPlaceholder.html</loc></url>
 <url><loc>https://gilead-biostats.github.io/gsm.app/reference/out_gtSmartFmtNumbers.html</loc></url>
 <url><loc>https://gilead-biostats.github.io/gsm.app/reference/pipe.html</loc></url>
+<url><loc>https://gilead-biostats.github.io/gsm.app/reference/plugin_Define.html</loc></url>
 <url><loc>https://gilead-biostats.github.io/gsm.app/reference/plugin_GetDependencySources.html</loc></url>
 <url><loc>https://gilead-biostats.github.io/gsm.app/reference/plugin_InstallDependencySources.html</loc></url>
 <url><loc>https://gilead-biostats.github.io/gsm.app/reference/plugin_LoadDependencies.html</loc></url>

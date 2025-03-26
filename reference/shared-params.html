@@ -13,7 +13,7 @@ argument in module server functions."></head><body>
 
     <a class="navbar-brand me-2" href="../index.html">gsm.app</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">2.3.0</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">2.4.0</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -64,9 +64,16 @@ object.</p></dd>
 <dd><p><code>character</code> A vector of allowed values for a vector.</p></dd>
 
 
+<dt id="arg-chrchoices">chrChoices<a class="anchor" aria-label="anchor" href="#arg-chrchoices"></a></dt>
+<dd><p><code>character</code> A (named, optionally) vector of choices for a
+<code><a href="https://rdrr.io/pkg/shiny/man/selectInput.html" class="external-link">shiny::selectInput()</a></code> or similar input function.</p></dd>
+
+
 <dt id="arg-chrdomains">chrDomains<a class="anchor" aria-label="anchor" href="#arg-chrdomains"></a></dt>
-<dd><p><code>character</code> A vector of names of domain data.frames to show
-in the app. Supported domains are shown in the default value.</p></dd>
+<dd><p><code>character</code> A (named) vector of domains to include in the
+app. The values of the vector will be used as labels, and the names will be
+used as IDs. The IDs will be passed to <code>fnFetchData()</code> to fetch data about
+that domain.</p></dd>
 
 
 <dt id="arg-chrfromtabs">chrFromTabs<a class="anchor" aria-label="anchor" href="#arg-chrfromtabs"></a></dt>
@@ -157,17 +164,22 @@ also has an <code>envCall</code> argument.</p></dd>
 
 <dt id="arg-envevaluate">envEvaluate<a class="anchor" aria-label="anchor" href="#arg-envevaluate"></a></dt>
 <dd><p><code>environment</code> The environment in which any variables used
-in the message are defined. You almost definitely want to leave this as the
-default value.</p></dd>
+in the message or widget are defined. You almost definitely want to leave
+this as the default value.</p></dd>
 
 
 <dt id="arg-fnfetchdata">fnFetchData<a class="anchor" aria-label="anchor" href="#arg-fnfetchdata"></a></dt>
-<dd><p><code>function</code> A function that takes a <code>strDomain</code> argument
+<dd><p><code>function</code> A function that takes a <code>strDomainID</code> argument
 and optional <code>strSiteID</code> and <code>strSubjectID</code> and returns a data.frame. See
 <code><a href="sample_fnFetchData.html">sample_fnFetchData()</a></code> for an example. The returned data.frame contains
 information about the named domain. If the function throws an error, the
 error is elevated to the user, so you can use errors to pass requirements
 through to the user.</p></dd>
+
+
+<dt id="arg-fnhtmldependency">fnHtmlDependency<a class="anchor" aria-label="anchor" href="#arg-fnhtmldependency"></a></dt>
+<dd><p><code>function</code> A function that returns an
+<code><a href="https://rstudio.github.io/htmltools/reference/htmlDependency.html" class="external-link">htmltools::htmlDependency()</a></code> or multiple wrapped in <code><a href="https://rdrr.io/pkg/shiny/man/reexports.html" class="external-link">shiny::tagList()</a></code>.</p></dd>
 
 
 <dt id="arg-fnserver">fnServer<a class="anchor" aria-label="anchor" href="#arg-fnserver"></a></dt>
@@ -176,17 +188,17 @@ through to the user.</p></dd>
 of the main app server function.</p></dd>
 
 
+<dt id="arg-fnwidgetoutput">fnWidgetOutput<a class="anchor" aria-label="anchor" href="#arg-fnwidgetoutput"></a></dt>
+<dd><p><code>function</code> An <code><a href="https://rdrr.io/pkg/htmlwidgets/man/htmlwidgets-shiny.html" class="external-link">htmlwidgets::shinyWidgetOutput()</a></code>
+function.</p></dd>
+
+
 <dt id="arg-id">id<a class="anchor" aria-label="anchor" href="#arg-id"></a></dt>
 <dd><p><code>character</code> The id for this element.</p></dd>
 
 
 <dt id="arg-intkricolorcount">intKRIColorCount<a class="anchor" aria-label="anchor" href="#arg-intkricolorcount"></a></dt>
 <dd><p><code>integer</code> A named vector of counts by color.</p></dd>
-
-
-<dt id="arg-intnparticipants">intNParticipants<a class="anchor" aria-label="anchor" href="#arg-intnparticipants"></a></dt>
-<dd><p><code>integer</code> The number of unique participants
-(subjects) in the study.</p></dd>
 
 
 <dt id="arg-intred">intRed<a class="anchor" aria-label="anchor" href="#arg-intred"></a></dt>
@@ -343,9 +355,13 @@ color.</p></dd>
 (usually a div).</p></dd>
 
 
-<dt id="arg-strdomain">strDomain<a class="anchor" aria-label="anchor" href="#arg-strdomain"></a></dt>
-<dd><p><code>character</code> The domain data.frame to load. Supported domains
-are shown in the default value.</p></dd>
+<dt id="arg-strdomainid">strDomainID<a class="anchor" aria-label="anchor" href="#arg-strdomainid"></a></dt>
+<dd><p><code>character</code> The domain data.frame to load.</p></dd>
+
+
+<dt id="arg-strdomainlabel">strDomainLabel<a class="anchor" aria-label="anchor" href="#arg-strdomainlabel"></a></dt>
+<dd><p><code>character</code> The domain name to display. For example,
+for ID <code>"AE"</code>, the label is <code>"Adverse Events"</code>.</p></dd>
 
 
 <dt id="arg-strempty">strEmpty<a class="anchor" aria-label="anchor" href="#arg-strempty"></a></dt>
