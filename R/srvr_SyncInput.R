@@ -1,26 +1,9 @@
-#' Synchronize selectInput with reactive
+#' Synchronize virtualSelectInput with reactive
 #'
 #' @inheritParams shared-params
-#' @returns A [shiny::observe()] that triggers [shiny::updateSelectInput()] when
-#'   the connected reactive changes.
+#' @returns A [shiny::observe()] that triggers
+#'   [shinyWidgets::updateVirtualSelect()] when the connected reactive changes.
 #' @keywords internal
-srvr_SyncSelectInput <- function(
-  id,
-  rctv_strValue,
-  session = getDefaultReactiveDomain()
-) {
-  bindEvent(
-    observe({
-      updateSelectInput(
-        inputId = id,
-        selected = rctv_strValue(),
-        session = session
-      )
-    }),
-    rctv_strValue()
-  )
-}
-
 srvr_SyncVirtualSelectInput <- function(
   id,
   rctv_strValue,

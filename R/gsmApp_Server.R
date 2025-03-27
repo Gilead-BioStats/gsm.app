@@ -37,6 +37,7 @@ gsmApp_Server <- function(
   force(fnFetchData)
   force(fnServer)
   function(input, output, session) {
+    # Extras ----
     if (!is.null(fnServer)) {
       fnServer(input, output, session)
     }
@@ -46,18 +47,19 @@ gsmApp_Server <- function(
 
     # Shared Reactives ----
 
-    ## Inputs ----
-    ##
-    ## Inputs pass to modules (etc) as reactiveVals.
-    rctv_strMetricID <- reactiveVal()
-    observe({rctv_strMetricID(input$metric)})
-    srvr_SyncSelectInput("metric", rctv_strMetricID, session)
-
+    ## reactiveVals ----
+    rctv_strPrimaryNavBar <- reactiveVal()
     rctv_strSiteID <- reactiveVal()
+    rctv_strSubjectID <- reactiveVal("All")
+    rctv_strMetricID <- reactiveVal(dfMetrics$MetricID[[1]])
+    rctv_strDomainID <- reactiveVal(names(chrDomains)[[1]])
+
+    ## Primary Inputs ----
+    ##
+    ## Inputs update via reactiveVals.
     observe({rctv_strSiteID(input$site)})
     srvr_SyncVirtualSelectInput("site", rctv_strSiteID, session)
 
-    rctv_strPrimaryNavBar <- reactiveVal()
     observe({rctv_strPrimaryNavBar(input$primary_nav_bar)})
     # TODO: Sync tab in response to this reactive.
 
@@ -67,7 +69,6 @@ gsmApp_Server <- function(
       rctv_strSiteID
     )
 
-    rctv_strSubjectID <- reactiveVal("All")
     observe({
       if (input$participant != "" && input$participant != rctv_strSubjectID()) {
         rctv_strSubjectID(input$participant)           # Tested via UI.
@@ -86,11 +87,9 @@ gsmApp_Server <- function(
     }) %>%
       bindEvent(rctv_strSubjectID())
 
-    ### Domains ----
-    rctv_strDomainID <- reactiveVal()
-    observe({rctv_strDomainID(input$domain)})
-    srvr_SyncSelectInput("domain", rctv_strDomainID, session)
-
+    ## Domain Data ----
+    ##
+    ## This needs to be defined at the top so it's available to plugins.
     l_rctvDomains <- mod_dfDomains_Server(
       "l_rctv_dfDomains",
       fnFetchData,
@@ -99,7 +98,7 @@ gsmApp_Server <- function(
       rctv_strSubjectID
     )
 
-    # Tab Contents ----
+    # Tabs ----
 
     ## Study Overview ----
     mod_StudyOverview_Server(

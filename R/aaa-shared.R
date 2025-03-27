@@ -172,8 +172,8 @@
 #' @param strWhat `character` A sentence-case description of the object being
 #'   inspected.
 #' @param strWidgetName `character` The name of a widget in the gsm package.
-#' @param tagListSidebar `taglist` An optional [htmltools::tagList()] of
-#'   additional elements to add to the top of the app sidebar.
+#' @param tagListExtra `taglist` An optional [htmltools::tagList()] of
+#'   additional elements to add to the top of the app.
 #' @param x An object to validate.
 #'
 #' @name shared-params

@@ -49,6 +49,7 @@ mod_SiteDetails_Server <- function(
 
     # Cache different filterings of dfAnalyticsInput & related transformations.
     rctv_dfAnalyticsInput_byMetric <- reactive({
+      req(rctv_strMetricID())
       dplyr::filter(
         dfAnalyticsInput,
         .data$MetricID == rctv_strMetricID()
@@ -57,6 +58,8 @@ mod_SiteDetails_Server <- function(
       bindCache(rctv_strMetricID())
 
     rctv_dfAnalyticsInput_byMetric_bySite <- reactive({
+      req(rctv_strMetricID())
+      req(rctv_strSiteID())
       rctv_dfAnalyticsInput_byMetric() %>%
         dplyr::filter(
           .data$GroupLevel == "Site",
@@ -68,6 +71,7 @@ mod_SiteDetails_Server <- function(
       bindCache(rctv_strMetricID(), rctv_strSiteID())
 
     rctv_lColumnNames <- reactive({
+      req(rctv_strMetricID())
       metric_names <- rctv_lMetric()[c("Numerator", "Denominator", "Metric")]
       new_colnames <- rlang::set_names(chrTargetColumns, chrTargetColumns)
       new_colnames[names(metric_names)] <- metric_names
@@ -77,6 +81,7 @@ mod_SiteDetails_Server <- function(
 
     dfSitesAll <- dfGroups[dfGroups$GroupLevel == "Site", ]
     rctv_lSite <- reactive({
+      req(rctv_strSiteID())
       target_rows <- dfSitesAll$GroupID == rctv_strSiteID()
       rlang::set_names(
         dfSitesAll$Value[target_rows],

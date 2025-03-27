@@ -72,7 +72,7 @@ CheckIsIn <- function(
       envCall = envCall
     )
   }
-  return(x)
+  return(x) # nocov
 }
 
 #' Confirm that an object is the expected df

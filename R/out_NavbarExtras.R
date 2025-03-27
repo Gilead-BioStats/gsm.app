@@ -7,7 +7,16 @@
 out_NavbarExtras <- function(chrSites) {
   list(
     input_NavbarExtra("site", c("All", chrSites)),
-    input_NavbarExtra("participant")
+    input_NavbarExtra("participant"),
+    bslib::nav_item(
+      class = "navbar-extras",
+      actionButton(
+        "reset",
+        label = NULL,
+        icon = icon("rotate", title = "Reset all inputs"),
+        class = "btn-primary"
+      )
+    )
   )
 }
 

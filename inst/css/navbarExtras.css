@@ -16,3 +16,10 @@
 .navbar-extras .virtual-select {
   min-width: 150px;
 }
+
+.navbar-extras button {
+  padding-left: 8px;
+  padding-right: 8px;
+  padding-block-end: 4px;
+  padding-block-start: 4px;
+}

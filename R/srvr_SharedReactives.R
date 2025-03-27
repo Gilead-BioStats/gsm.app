@@ -9,6 +9,7 @@ srvr_rctv_lMetric_base <- function(
   session = getDefaultReactiveDomain()
 ) {
   reactive({
+    req(rctv_strMetricID())
     as.list(
       FilterbyMetricID(dfMetrics, rctv_strMetricID())
     )
@@ -34,6 +35,7 @@ srvr_rctv_lMetric <- function(
     session
   )
   reactive({
+    req(rctv_strMetricID())
     lMetric <- rctv_lMetric_base()
     site <- rctv_strSiteID()
     if (site != "All") {

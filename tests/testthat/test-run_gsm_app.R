@@ -25,7 +25,7 @@ test_that("run_gsm_app populates Study Overview", {
   app$expect_values(
     export = TRUE,
     name = "init",
-    screenshot_args = list(selector = ".main")
+    screenshot_args = list(selector = "div[data-value='Study Overview'")
   )
 
   # Scatter Plots subtab.
@@ -43,7 +43,9 @@ test_that("run_gsm_app populates Study Overview", {
   app$expect_values(
     export = TRUE,
     name = "plots",
-    screenshot_args = list(selector = ".main")
+    screenshot_args = list(
+      selector = list(selector = "div[data-value='Study Overview'] .tabbable")
+    )
   )
 
   # Click on AE plot.
@@ -119,7 +121,7 @@ test_that("run_gsm_app populates Metric Details", {
   app$expect_values(
     export = TRUE,
     name = "scatter",
-    screenshot_args = list(selector = ".main")
+    screenshot_args = list(selector = "div[data-value='Metric Details'")
   )
 
   # Click through to each tab.
@@ -132,7 +134,7 @@ test_that("run_gsm_app populates Metric Details", {
   app$expect_values(
     export = TRUE,
     name = "bar_value",
-    screenshot_args = list(selector = ".main")
+    screenshot_args = list(selector = "div[data-value='Metric Details'")
   )
 
   app$set_inputs(`metric_details-selected_tab` = "Bar Chart (KRI Score)")
@@ -144,7 +146,7 @@ test_that("run_gsm_app populates Metric Details", {
   app$expect_values(
     export = TRUE,
     name = "bar_score",
-    screenshot_args = list(selector = ".main")
+    screenshot_args = list(selector = "div[data-value='Metric Details'")
   )
 
   app$set_inputs(`metric_details-selected_tab` = "Time Series")
@@ -156,7 +158,7 @@ test_that("run_gsm_app populates Metric Details", {
   app$expect_values(
     export = TRUE,
     name = "time",
-    screenshot_args = list(selector = ".main")
+    screenshot_args = list(selector = "div[data-value='Metric Details'")
   )
 
   app$set_inputs(`metric_details-selected_tab` = "Analysis Output")
@@ -164,7 +166,7 @@ test_that("run_gsm_app populates Metric Details", {
   app$expect_values(
     export = TRUE,
     name = "analysis",
-    screenshot_args = list(selector = ".main")
+    screenshot_args = list(selector = "div[data-value='Metric Details'")
   )
 
   # Choose a site in the drop-down.
@@ -289,7 +291,7 @@ test_that("run_gsm_app populates Domain Details", {
   app$expect_values(
     export = TRUE,
     name = "no-participant",
-    screenshot_args = list(selector = ".main")
+    screenshot_args = list(selector = "div[data-value='Domain Details'")
   )
 
   # Select a participant via the drop-down.
@@ -298,7 +300,7 @@ test_that("run_gsm_app populates Domain Details", {
   app$expect_values(
     export = TRUE,
     name = "participant",
-    screenshot_args = list(selector = ".main")
+    screenshot_args = list(selector = "div[data-value='Domain Details'")
   )
 
   # Select another domain.
@@ -307,7 +309,16 @@ test_that("run_gsm_app populates Domain Details", {
   app$expect_values(
     export = TRUE,
     name = "sd",
-    screenshot_args = list(selector = ".main")
+    screenshot_args = list(selector = "div[data-value='Domain Details'")
+  )
+
+  # Select a domain via the Domain Summary.
+  app$set_inputs(`domain_details-counts-domain_list_choices-ENROLL` = "click")
+  app$wait_for_idle()
+  app$expect_values(
+    export = TRUE,
+    name = "domain_summary_click",
+    screenshot_args = list(selector = "div[data-value='Domain Details'")
   )
 
   app$stop()
@@ -329,7 +340,7 @@ test_that("run_gsm_app display Domain error", {
   app$wait_for_idle()
   app$set_inputs(primary_nav_bar = "Domain Details")
   app$wait_for_idle()
-  app$set_inputs(`domain` = "LB")
+  app$set_inputs(`domain_details-selected_tab` = "LB")
   app$wait_for_idle()
   app$expect_values(
     export = TRUE,

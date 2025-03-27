@@ -40,7 +40,7 @@ run_gsm_app <- function(
   strTitle = ExtractAppTitle(dfGroups),
   strFavicon = "angles-up",
   strFaviconColor = "#FF5859",
-  tagListSidebar = NULL,
+  tagListExtra = NULL,
   fnServer = NULL
 ) {
   # There's no point launching the app if the data won't work.
@@ -65,7 +65,7 @@ run_gsm_app <- function(
       strTitle = strTitle,
       strFavicon = strFavicon,
       strFaviconColor = strFaviconColor,
-      tagListSidebar = tagListSidebar
+      tagListExtra = tagListExtra
     ),
     server = gsmApp_Server(
       dfAnalyticsInput = dfAnalyticsInput,

@@ -20,7 +20,7 @@ run_gsm_app(
   strTitle = ExtractAppTitle(dfGroups),
   strFavicon = "angles-up",
   strFaviconColor = "#FF5859",
-  tagListSidebar = NULL,
+  tagListExtra = NULL,
   fnServer = NULL
 )
 
@@ -63,8 +63,8 @@ via \code{\link[favawesome:fav]{favawesome::fav()}}.}
 \item{strFaviconColor}{\code{character} The hexcode or name of a color to use as
 the icon fill for \code{\link[favawesome:fav]{favawesome::fav()}}.}
 
-\item{tagListSidebar}{\code{taglist} An optional \code{\link[htmltools:tagList]{htmltools::tagList()}} of
-additional elements to add to the top of the app sidebar.}
+\item{tagListExtra}{\code{taglist} An optional \code{\link[htmltools:tagList]{htmltools::tagList()}} of
+additional elements to add to the top of the app.}
 
 \item{fnServer}{\code{function} A Shiny server function that takes arguments
 \code{input}, \code{output}, and \code{session}. This function will be called at the start

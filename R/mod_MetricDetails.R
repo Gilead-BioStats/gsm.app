@@ -2,10 +2,22 @@
 #'
 #' @inheritParams shared-params
 #' @keywords internal
-mod_MetricDetails_UI <- function(id) {
+mod_MetricDetails_UI <- function(id, chrMetrics) {
   ns <- NS(id)
   bslib::navset_underline(
     id = ns("selected_tab"),
+    bslib::nav_item(
+      class = "navbar-extras",
+      htmlDependency_Stylesheet("navbarExtras.css"),
+      shinyWidgets::virtualSelectInput(
+        inputId = ns("metric"),
+        # label = strong("Metric"),
+        label = NULL,
+        choices = chrMetrics,
+        inline = TRUE
+      )
+    ),
+    bslib::nav_spacer(),
     bslib::nav_panel(
       "Scatter Plot",
       mod_ScatterPlot_UI(ns("scatter_plot"))
@@ -45,24 +57,32 @@ mod_MetricDetails_Server <- function(
   moduleServer(id, function(input, output, session) {
     # Shared reactives ----
     rctv_dfResults_byMetricID <- reactive({
+      req(rctv_strMetricID())
       FilterbyMetricID(dfResults, rctv_strMetricID())
     }) %>%
       bindCache(rctv_strMetricID())
 
     rctv_dfBounds_byMetricID <- reactive({
+      req(rctv_strMetricID())
       FilterbyMetricID(dfBounds, rctv_strMetricID())
     }) %>%
       bindCache(rctv_strMetricID())
 
     rctv_dfResults_Latest <- reactive({
+      req(rctv_strMetricID())
       gsm.kri::FilterByLatestSnapshotDate(rctv_dfResults_byMetricID())
     }) %>%
       bindCache(rctv_strMetricID())
 
     rctv_dfBounds_Latest <- reactive({
+      req(rctv_strMetricID())
       gsm.kri::FilterByLatestSnapshotDate(rctv_dfBounds_byMetricID())
     }) %>%
       bindCache(rctv_strMetricID())
+
+    observe({rctv_strMetricID(input$metric)})
+
+    srvr_SyncVirtualSelectInput("metric", rctv_strMetricID, session)
 
     # Selections from tabs ----
 

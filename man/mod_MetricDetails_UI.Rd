@@ -4,10 +4,13 @@
 \alias{mod_MetricDetails_UI}
 \title{Metric Details UI}
 \usage{
-mod_MetricDetails_UI(id)
+mod_MetricDetails_UI(id, chrMetrics)
 }
 \arguments{
 \item{id}{\code{character} The id for this element.}
+
+\item{chrMetrics}{\code{character} A named vector of MetricIDs, where the names
+are the full Metric.}
 }
 \description{
 Metric Details UI

@@ -12,12 +12,11 @@ test_that("gsmApp_Server initializes correctly", {
     {
       # Simulate initialization.
       session$setInputs(
-        primary_nav_bar = "Study Overview",
-        metric = "Analysis_kri0001",
         site = "All",
-        participant = "All"
+        participant = "All",
+        primary_nav_bar = "Study Overview"
       )
-      expect_equal(input$metric, "Analysis_kri0001")
+      expect_equal(input$site, "All")
 
       session$setInputs(
         site = "0X001"
