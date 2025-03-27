@@ -74,6 +74,7 @@ mod_DomainDetails_Server <- function(
         input$selected_tab,
         ignoreInit = TRUE
       )
+    # tested in shinytest2
     observe({
       req(rctv_strDomainID())
       req(input$selected_tab)
@@ -82,5 +83,6 @@ mod_DomainDetails_Server <- function(
         bslib::nav_select("selected_tab", input_val, session = session)
       }
     })
+    # end of "untested"
   })
 }

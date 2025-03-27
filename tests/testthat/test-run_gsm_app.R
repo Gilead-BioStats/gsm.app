@@ -312,6 +312,15 @@ test_that("run_gsm_app populates Domain Details", {
     screenshot_args = list(selector = "div[data-value='Domain Details'")
   )
 
+  # Select a domain via the Domain Summary.
+  app$set_inputs(`domain_details-counts-domain_list_choices-ENROLL` = "click")
+  app$wait_for_idle()
+  app$expect_values(
+    export = TRUE,
+    name = "domain_summary_click",
+    screenshot_args = list(selector = "div[data-value='Domain Details'")
+  )
+
   app$stop()
 })
 

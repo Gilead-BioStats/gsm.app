@@ -13,7 +13,7 @@ FilterBy <- function(
   if (length(Value)) {
     return(df[df[[strField]] == Value, ])
   }
-  return(df)
+  return(df) # nocov
 }
 
 #' Get a field name from a variable name
