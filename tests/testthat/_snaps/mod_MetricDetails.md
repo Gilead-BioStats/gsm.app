@@ -5,24 +5,33 @@
     Output
       <div class="tabbable">
         <ul class="nav nav-underline shiny-tab-input" id="testID-selected_tab" data-tabsetid="XXXX">
+          <li class="bslib-nav-item nav-item form-inline navbar-extras">
+            <div class="form-group shiny-input-container shiny-input-container-inline">
+              <label class="control-label shiny-label-null" for="testID-metric" id="testID-metric-label"></label>
+              <div id="testID-metric" class="virtual-select" style="display:inline-block;" data-update="change">
+                <script type="application/json" data-for="testID-metric">{"stateInput":true,"options":{"type":["transpose"],"choices":{"label":["Adverse Event Rate","Serious Adverse Event Rate","Non-Important Protocol Deviation Rate","Important Protocol Deviation Rate","Grade 3+ Lab Abnormality Rate","Study Discontinuation Rate","Treatment Discontinuation Rate","Query Rate","Delayed Query Resolution Rate","Delayed Data Entry Rate","Data Change Rate"],"value":["Analysis_kri0001","Analysis_kri0002","Analysis_kri0003","Analysis_kri0004","Analysis_kri0005","Analysis_kri0006","Analysis_kri0007","Analysis_kri0008","Analysis_kri0009","Analysis_kri0010","Analysis_kri0011"]}},"config":{"multiple":false,"search":false,"hideClearButton":true,"autoSelectFirstOption":true,"showSelectedOptionsFirst":false,"showValueAsTags":false,"optionsCount":10,"noOfDisplayValues":50,"allowNewOption":false,"disableSelectAll":true,"disableOptionGroupCheckbox":true,"disabled":false}}</script>
+              </div>
+            </div>
+          </li>
+          <div class="bslib-nav-spacer"></div>
           <li class="active">
-            <a href="#tab-XXXX-1" data-toggle="tab" data-bs-toggle="tab" data-value="Scatter Plot">Scatter Plot</a>
+            <a href="#tab-XXXX-3" data-toggle="tab" data-bs-toggle="tab" data-value="Scatter Plot">Scatter Plot</a>
           </li>
           <li>
-            <a href="#tab-XXXX-2" data-toggle="tab" data-bs-toggle="tab" data-value="Bar Chart (KRI Value)">Bar Chart (KRI Value)</a>
+            <a href="#tab-XXXX-4" data-toggle="tab" data-bs-toggle="tab" data-value="Bar Chart (KRI Value)">Bar Chart (KRI Value)</a>
           </li>
           <li>
-            <a href="#tab-XXXX-3" data-toggle="tab" data-bs-toggle="tab" data-value="Bar Chart (KRI Score)">Bar Chart (KRI Score)</a>
+            <a href="#tab-XXXX-5" data-toggle="tab" data-bs-toggle="tab" data-value="Bar Chart (KRI Score)">Bar Chart (KRI Score)</a>
           </li>
           <li>
-            <a href="#tab-XXXX-4" data-toggle="tab" data-bs-toggle="tab" data-value="Time Series">Time Series</a>
+            <a href="#tab-XXXX-6" data-toggle="tab" data-bs-toggle="tab" data-value="Time Series">Time Series</a>
           </li>
           <li>
-            <a href="#tab-XXXX-5" data-toggle="tab" data-bs-toggle="tab" data-value="Analysis Output">Analysis Output</a>
+            <a href="#tab-XXXX-7" data-toggle="tab" data-bs-toggle="tab" data-value="Analysis Output">Analysis Output</a>
           </li>
         </ul>
         <div class="tab-content" data-tabsetid="XXXX">
-          <div class="tab-pane active" data-value="Scatter Plot" id="tab-XXXX-1">
+          <div class="tab-pane active" data-value="Scatter Plot" id="tab-XXXX-3">
             <div>
               <style>#testID-scatter_plot .bslib-full-screen-enter { bottom: unset !important; }</style>
               <div class="card bslib-card bslib-mb-spacing bslib-card-input html-fill-item html-fill-container chart" data-bslib-card-init data-full-screen="false" data-require-bs-caller="card()" data-require-bs-version="5" id="testID-scatter_plot">
@@ -37,7 +46,7 @@
               </div>
             </div>
           </div>
-          <div class="tab-pane" data-value="Bar Chart (KRI Value)" id="tab-XXXX-2">
+          <div class="tab-pane" data-value="Bar Chart (KRI Value)" id="tab-XXXX-4">
             <div>
               <style>#testID-bar_chart_metric .bslib-full-screen-enter { bottom: unset !important; }</style>
               <div class="card bslib-card bslib-mb-spacing bslib-card-input html-fill-item html-fill-container chart" data-bslib-card-init data-full-screen="false" data-require-bs-caller="card()" data-require-bs-version="5" id="testID-bar_chart_metric">
@@ -52,7 +61,7 @@
               </div>
             </div>
           </div>
-          <div class="tab-pane" data-value="Bar Chart (KRI Score)" id="tab-XXXX-3">
+          <div class="tab-pane" data-value="Bar Chart (KRI Score)" id="tab-XXXX-5">
             <div>
               <style>#testID-bar_chart_score .bslib-full-screen-enter { bottom: unset !important; }</style>
               <div class="card bslib-card bslib-mb-spacing bslib-card-input html-fill-item html-fill-container chart" data-bslib-card-init data-full-screen="false" data-require-bs-caller="card()" data-require-bs-version="5" id="testID-bar_chart_score">
@@ -67,7 +76,7 @@
               </div>
             </div>
           </div>
-          <div class="tab-pane" data-value="Time Series" id="tab-XXXX-4">
+          <div class="tab-pane" data-value="Time Series" id="tab-XXXX-6">
             <div>
               <style>#testID-time_series .bslib-full-screen-enter { bottom: unset !important; }</style>
               <div class="card bslib-card bslib-mb-spacing bslib-card-input html-fill-item html-fill-container chart" data-bslib-card-init data-full-screen="false" data-require-bs-caller="card()" data-require-bs-version="5" id="testID-time_series">
@@ -82,7 +91,7 @@
               </div>
             </div>
           </div>
-          <div class="tab-pane" data-value="Analysis Output" id="tab-XXXX-5">
+          <div class="tab-pane" data-value="Analysis Output" id="tab-XXXX-7">
             <div>
               <style>#testID-analysis_output .bslib-full-screen-enter { bottom: unset !important; }</style>
               <div class="card bslib-card bslib-mb-spacing bslib-card-input html-fill-item html-fill-container MetricTable" data-bslib-card-init data-full-screen="false" data-require-bs-caller="card()" data-require-bs-version="5" id="testID-analysis_output">

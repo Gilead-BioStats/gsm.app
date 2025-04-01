@@ -1,5 +1,8 @@
 test_that("mod_MetricDetails_UI creates the expected UI", {
-  test_result <- mod_MetricDetails_UI("testID")
+  test_result <- mod_MetricDetails_UI(
+    "testID",
+    rlang::set_names(sample_dfMetrics$MetricID, sample_dfMetrics$Metric)
+  )
   expect_s3_class(test_result, c("bslib_fragment", "shiny.tag"))
   class(test_result) <- "shiny.tag"
   expect_cleaned_html({
@@ -31,6 +34,8 @@ test_that("mod_MetricDetails_Server initializes and renders scatter plot", {
       rctv_strMetricID = rctv_strMetricID
     ),
     {
+      # Manually set metric input (happens automatically via UI).
+      session$setInputs(metric = rctv_strMetricID())
       # Manually set tab (happens automatically via UI).
       session$setInputs(selected_tab = "Scatter Plot")
 
@@ -66,6 +71,8 @@ test_that("mod_MetricDetails_Server renders tab outputs", {
       rctv_strMetricID = rctv_strMetricID
     ),
     {
+      # Manually set metric input (happens automatically via UI).
+      session$setInputs(metric = rctv_strMetricID())
       # Manually set tab (happens automatically via UI). Make sure the selected
       # site doesn't instantly change.
       session$setInputs(selected_tab = "Scatter Plot")

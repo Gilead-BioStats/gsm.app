@@ -10,7 +10,10 @@ FilterBy <- function(
   df,
   Value,
   strField = ExtractFieldName(rlang::caller_arg(Value))) {
-  df[df[[strField]] == Value, ]
+  if (length(Value)) {
+    return(df[df[[strField]] == Value, ])
+  }
+  return(df) # nocov
 }
 
 #' Get a field name from a variable name

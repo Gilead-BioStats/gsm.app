@@ -2,19 +2,23 @@
 #'
 #' @inheritParams shared-params
 #' @keywords internal
-mod_StudyOverview_UI <- function(id, dfResults, chrMetrics) {
+mod_StudyOverview_UI <- function(id, dfGroups, dfResults, chrMetrics) {
   ns <- NS(id)
   dfResults <- gsm.kri::FilterByLatestSnapshotDate(dfResults)
 
-  bslib::navset_underline(
-    id = ns("nav_bar"),
-    bslib::nav_panel(
-      title = "Overview Table",
-      mod_GroupOverview_UI(ns("table"), dfResults)
-    ),
-    bslib::nav_panel(
-      title = "Scatter Plots",
-      mod_ScatterPlotSet_UI(ns("scatter"), chrMetrics)
+  bslib::layout_columns(
+    col_widths = c(2, 10),
+    out_StudyInformation(dfGroups, dfResults),
+    bslib::navset_underline(
+      id = ns("nav_bar"),
+      bslib::nav_panel(
+        title = "Overview Table",
+        mod_GroupOverview_UI(ns("table"), dfResults)
+      ),
+      bslib::nav_panel(
+        title = "Scatter Plots",
+        mod_ScatterPlotSet_UI(ns("scatter"), chrMetrics)
+      )
     )
   )
 }
