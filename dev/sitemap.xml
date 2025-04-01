@@ -100,13 +100,11 @@
 <url><loc>https://gilead-biostats.github.io/gsm.app/dev/reference/out_Card.html</loc></url>
 <url><loc>https://gilead-biostats.github.io/gsm.app/dev/reference/out_CardSubtitle.html</loc></url>
 <url><loc>https://gilead-biostats.github.io/gsm.app/dev/reference/out_DetectCardClicks.html</loc></url>
-<url><loc>https://gilead-biostats.github.io/gsm.app/dev/reference/out_Inputs.html</loc></url>
 <url><loc>https://gilead-biostats.github.io/gsm.app/dev/reference/out_MainTabs.html</loc></url>
 <url><loc>https://gilead-biostats.github.io/gsm.app/dev/reference/out_MetadataItem.html</loc></url>
 <url><loc>https://gilead-biostats.github.io/gsm.app/dev/reference/out_MetadataList.html</loc></url>
 <url><loc>https://gilead-biostats.github.io/gsm.app/dev/reference/out_NavbarExtras.html</loc></url>
 <url><loc>https://gilead-biostats.github.io/gsm.app/dev/reference/out_Placeholder.html</loc></url>
-<url><loc>https://gilead-biostats.github.io/gsm.app/dev/reference/out_Sidebar.html</loc></url>
 <url><loc>https://gilead-biostats.github.io/gsm.app/dev/reference/out_StudyInformation.html</loc></url>
 <url><loc>https://gilead-biostats.github.io/gsm.app/dev/reference/out_gtInteractive.html</loc></url>
 <url><loc>https://gilead-biostats.github.io/gsm.app/dev/reference/out_gtPlaceholder.html</loc></url>
@@ -131,8 +129,8 @@
 <url><loc>https://gilead-biostats.github.io/gsm.app/dev/reference/srvr_MetricDetails.html</loc></url>
 <url><loc>https://gilead-biostats.github.io/gsm.app/dev/reference/srvr_Reset.html</loc></url>
 <url><loc>https://gilead-biostats.github.io/gsm.app/dev/reference/srvr_ShowConditionMessage.html</loc></url>
-<url><loc>https://gilead-biostats.github.io/gsm.app/dev/reference/srvr_SyncSelectInput.html</loc></url>
 <url><loc>https://gilead-biostats.github.io/gsm.app/dev/reference/srvr_SyncTab.html</loc></url>
+<url><loc>https://gilead-biostats.github.io/gsm.app/dev/reference/srvr_SyncVirtualSelectInput.html</loc></url>
 <url><loc>https://gilead-biostats.github.io/gsm.app/dev/reference/srvr_rctv_chrParticipantIDs.html</loc></url>
 <url><loc>https://gilead-biostats.github.io/gsm.app/dev/reference/srvr_rctv_lMetric.html</loc></url>
 <url><loc>https://gilead-biostats.github.io/gsm.app/dev/reference/srvr_rctv_lMetric_base.html</loc></url>
