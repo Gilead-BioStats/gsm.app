@@ -112,8 +112,7 @@ mod_SiteDetails_Server <- function(
     ### Site Metadata
     output$site_metadata_list <- renderUI({
       out_MetadataList(
-        chrLabels = names(rctv_lSite()),
-        chrValues = unname(rctv_lSite())
+        chrValues = rctv_lSite()
       )
     })
 
