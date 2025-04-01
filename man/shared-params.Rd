@@ -110,6 +110,9 @@ of which returns a domain dataframe.}
 
 \item{lStudy}{\code{list} Named list of data describing the overall study.}
 
+\item{rctv_dateSnapshot}{\verb{reactive Date} A \code{\link[shiny:reactive]{shiny::reactive()}} object that
+returns the date of a data snapshot.}
+
 \item{rctv_dfBounds}{\verb{reactive dataframe} A \code{\link[shiny:reactive]{shiny::reactive()}} object that
 returns a set of predicted percentages/rates and upper- and lower-bounds
 across the full range of sample sizes/total exposure values for reporting.}

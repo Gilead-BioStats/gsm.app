@@ -53,6 +53,8 @@ gsmApp_Server <- function(
     rctv_strSubjectID <- reactiveVal("All")
     rctv_strMetricID <- reactiveVal(dfMetrics$MetricID[[1]])
     rctv_strDomainID <- reactiveVal(names(chrDomains)[[1]])
+    # Future-proof by making SnapshotDate available to pass around.
+    rctv_dateSnapshot <- reactiveVal(max(dfResults$SnapshotDate))
 
     ## Primary Inputs ----
     ##
@@ -191,7 +193,13 @@ gsmApp_Server <- function(
     mod_Plugins_Server(
       "plugins",
       lPlugins = lPlugins,
+      dfAnalyticsInput = dfAnalyticsInput,
+      dfBounds = dfBounds,
+      dfGroups = dfGroups,
+      dfMetrics = dfMetrics,
+      dfResults = dfResults,
       l_rctvDomains = l_rctvDomains,
+      rctv_dateSnapshot = rctv_dateSnapshot,
       rctv_strMetricID = rctv_strMetricID,
       rctv_strSiteID = rctv_strSiteID,
       rctv_strSubjectID = rctv_strSubjectID,

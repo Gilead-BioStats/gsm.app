@@ -37,13 +37,19 @@ mod_Plugins_UI <- function(id, lPlugins = NULL) {
 #' @inheritParams shared-params
 #' @keywords internal
 mod_Plugins_Server <- function(
-    id,
-    lPlugins,
-    l_rctvDomains,
-    rctv_strMetricID,
-    rctv_strSiteID,
-    rctv_strSubjectID,
-    rctv_strDomainID
+  id,
+  lPlugins,
+  dfAnalyticsInput,
+  dfBounds,
+  dfGroups,
+  dfMetrics,
+  dfResults,
+  l_rctvDomains,
+  rctv_dateSnapshot,
+  rctv_strMetricID,
+  rctv_strSiteID,
+  rctv_strSubjectID,
+  rctv_strDomainID
 ) {
   moduleServer(id, function(input, output, session) {
     if (!is.null(lPlugins)) {
@@ -75,7 +81,13 @@ mod_Plugins_Server <- function(
           fnServer <- AsFunction(lPlugin$shiny$Server)
           names(l_rctvDomains) <- glue::glue("rctv_df{names(l_rctvDomains)}")
           args_available <- c(
+            dfAnalyticsInput = dfAnalyticsInput,
+            dfBounds = dfBounds,
+            dfGroups = dfGroups,
+            dfMetrics = dfMetrics,
+            dfResults = dfResults,
             l_rctvDomains,
+            rctv_dateSnapshot = rctv_dateSnapshot,
             rctv_strMetricID = rctv_strMetricID,
             rctv_strSiteID = rctv_strSiteID,
             rctv_strSubjectID = rctv_strSubjectID,

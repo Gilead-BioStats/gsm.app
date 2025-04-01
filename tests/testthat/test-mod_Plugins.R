@@ -71,7 +71,13 @@ test_that("mod_Plugins_Server outputs the expected result", {
           })
         )
       ),
+      dfAnalyticsInput = sample_dfAnalyticsInput,
+      dfBounds = sample_dfBounds,
+      dfGroups = sample_dfGroups,
+      dfMetrics = sample_dfMetrics,
+      dfResults = sample_dfResults,
       l_rctvDomains = list(),
+      rctv_dateSnapshot = reactive("2019-11-01"),
       rctv_strMetricID = reactive(NULL),
       rctv_strSiteID = reactive(NULL),
       rctv_strSubjectID = reactiveVal("0008"),
@@ -110,7 +116,13 @@ test_that("mod_Plugins_Server outputs the expected result with required inputs",
           required_inputs = c("Site", "Participant")
         )
       ),
+      dfAnalyticsInput = sample_dfAnalyticsInput,
+      dfBounds = sample_dfBounds,
+      dfGroups = sample_dfGroups,
+      dfMetrics = sample_dfMetrics,
+      dfResults = sample_dfResults,
       l_rctvDomains = list(),
+      rctv_dateSnapshot = reactive("2019-11-01"),
       rctv_strMetricID = reactive(NULL),
       rctv_strSiteID = reactiveVal("All"),
       rctv_strSubjectID = reactiveVal("All"),
