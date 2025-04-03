@@ -5,16 +5,18 @@ meta:
 shiny:
   UI: mod_ParticipantProfile_UI
   Server: mod_ParticipantProfile_Server
-domains:
-  - AE
-  - DATACHG
-  - DATAENT
-  - ENROLL
-  - LB
-  - PD
-  - QUERY
-  - STUDCOMP
-  - SUBJ
-  - SDRGCOMP
+spec:
+  SUBJ:
+    _all:
+      required: true
+  AE:
+    _all:
+      required: true
+  ENROLL:
+    _all:
+      required: true
+  STUDCOMP:
+    _all:
+      required: true
 required_inputs:
   - Participant

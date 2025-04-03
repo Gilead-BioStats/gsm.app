@@ -5,8 +5,7 @@
 #' @keywords internal
 srvr_rctv_lMetric_base <- function(
   dfMetrics,
-  rctv_strMetricID,
-  session = getDefaultReactiveDomain()
+  rctv_strMetricID
 ) {
   reactive({
     req(rctv_strMetricID())
@@ -29,11 +28,7 @@ srvr_rctv_lMetric <- function(
   rctv_strSiteID,
   session = getDefaultReactiveDomain()
 ) {
-  rctv_lMetric_base <- srvr_rctv_lMetric_base(
-    dfMetrics,
-    rctv_strMetricID,
-    session
-  )
+  rctv_lMetric_base <- srvr_rctv_lMetric_base(dfMetrics, rctv_strMetricID)
   reactive({
     req(rctv_strMetricID())
     lMetric <- rctv_lMetric_base()

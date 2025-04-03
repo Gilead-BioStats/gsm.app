@@ -1,0 +1,22 @@
+meta:
+  Type: Mapped
+  ID: SUBJ
+  Description: Participant Profile Mapping
+  Priority: 1
+spec:
+ SUBJ:
+   _all:
+     required: true
+   enrollyn:
+     type: character
+steps:
+  - output: Temp_SUBJ
+    name: cleanColumn
+    params:
+      df: SUBJ
+      chrColumn: enrollyn
+      fnCleaner: ynToLogical
+  - output: Mapped_SUBJ
+    name: dplyr::rename
+    params:
+      Enrolled: enrollyn

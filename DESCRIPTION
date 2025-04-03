@@ -18,6 +18,7 @@ Depends:
     R (>= 4.0)
 Imports:
     bslib,
+    chromote (>= 0.5.0),
     cli,
     dplyr,
     favawesome,
@@ -34,24 +35,23 @@ Imports:
     shiny (>= 1.6.0),
     shinyjs,
     shinyWidgets,
+    stringr,
     yaml
 Suggests: 
-    chromote (>= 0.4.0),
     devtools,
+    gsm.mapping (>= 1.0.0.9000),
     here,
     knitr,
     pak,
     rmarkdown,
-    shinytest2,
-    stringr,
+    shinytest2 (>= 0.3.2.9000),
     testthat (>= 3.0.0),
     usethis,
     withr
-Remotes:
+Remotes:  
     gsm.core=gilead-biostats/gsm.core@v1.0.0,
+    gsm.mapping=Gilead-BioStats/gsm.mapping@dev,
     gsm.kri=gilead-biostats/gsm.kri@v1.0.0,
-    gt=rstudio/gt,
-    chromote=rstudio/chromote,
     shinytest2=rstudio/shinytest2
 Config/testthat/edition: 3
 Encoding: UTF-8

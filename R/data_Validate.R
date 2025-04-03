@@ -1,3 +1,14 @@
+validate_lPlugins <- function(lPlugins, envCall = rlang::caller_env()) {
+  if (length(lPlugins)) {
+    names(lPlugins)[!rlang::have_name(lPlugins)] <- stringr::str_pad(
+      which(!rlang::have_name(lPlugins)),
+      width = 3,
+      pad = "0"
+    )
+  }
+  return(lPlugins)
+}
+
 #' Confirm that an object is valid chrDomains
 #'
 #' @inheritParams shared-params
@@ -17,9 +28,17 @@ validate_chrDomains <- function(
   )
 
   if (length(lPlugins)) {
-    chrPluginDomains <- purrr::map(lPlugins, "domains") %>%
-      unlist() %>%
-      toupper()
+    chrPluginDomains <- purrr::map(lPlugins, function(lPlugin) {
+      if (length(lPlugin$workflows)) {
+        rlang::check_installed("gsm.mapping", "to process data for plugins.")
+        return(gsm.mapping::CombineSpecs(lPlugin$workflows))
+      }
+      return(lPlugin$spec)
+    }) %>%
+      purrr::list_c() %>%
+      names() %>%
+      toupper() %>%
+      unique()
     pluginDomainIsKnown <- chrPluginDomains %in% c(
       names(chrDomains),
       toupper(chrDomains)

@@ -4,11 +4,9 @@
 #' @inheritParams rlang::args_dots_empty
 #' @param strName `length-1 character` The name of the plugin, as it will
 #'   display to the user in the menu of tabs and plugins.
-#' @param chrDomains `character` Names of the data domains that are used by the
-#'   plugin. Supported values: "AE" (Adverse Events), "DATACHG" (Data Changes),
-#'   "DATAENT" (Data Entry), "ENROLL" (Enrollment), "LB" (Lab), "PD" (Protocol
-#'   Deviations), "QUERY" (Queries), "STUDCOMP" (Study Completion), "SUBJ"
-#'   (Subject Metadata), "SDRGCOMP" (Treatment Completion).
+#' @param lSpec `list` A named list defining the data domains required by the
+#'   plugin, where the names are the names of the domains and the elements are
+#'   column definitions.
 #' @param fnShinyUI `function or character` A shiny module UI function for the
 #'   plugin, or the name of such a function in the current session.
 #' @param fnShinyServer `function or character` A shiny module server function
@@ -18,8 +16,6 @@
 #'   value before the plugin can load. "None" and "All" count as "empty" for
 #'   this check. If the user has not set a value for that input, the app will
 #'   display a placeholder instructing the user to make a selection.
-#' @param lConfig `list` Optional additional arguments to pass to `fnShinyUI`
-#'   and `fnShinyServer`.
 #'
 #' @returns A `list` with elements `meta`, `shiny`, `domains`, and (optionally)
 #'   `required_inputs`.
@@ -28,19 +24,18 @@
 #' @examples
 #' aePlugin <- plugin_Define(
 #'   strName = "Adverse Events",
-#'   chrDomains = c("AE", "SUBJ"),
+#'   lSpec = list("AE" = list(), "SUBJ" = list()),
 #'   fnShinyUI = "mod_AE_UI",
 #'   fnShinyServer = "mod_AE_Server"
 #' )
 #' aePlugin
 plugin_Define <- function(
   strName,
-  chrDomains,
+  lSpec,
   fnShinyUI,
   fnShinyServer,
   ...,
   chrRequiredInputs = character(),
-  lConfig = list(),
   envCall = rlang::caller_env()
 ) {
   rlang::check_dots_empty()
@@ -60,8 +55,7 @@ plugin_Define <- function(
       UI = fnShinyUI,
       Server = fnShinyServer
     ),
-    domains = chrDomains,
-    lConfig = lConfig,
+    spec = lSpec,
     required_inputs = chrRequiredInputs
   )
   return(purrr::keep(lPluginDefinition, rlang::has_length))
