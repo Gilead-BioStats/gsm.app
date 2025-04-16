@@ -9,6 +9,9 @@
 #' and `spec` (a specification of the data domains that the plugin uses), plus
 #' optional fields `packages`, and `required_inputs`. Use `plugin_Read()` to
 #' read these element definitions and any R files in the same directory.
+#' and `spec` (a specification of the data domains that the plugin uses), plus
+#' optional fields `packages`, and `required_inputs`. Use `plugin_Read()` to
+#' read these element definitions and any R files in the same directory.
 #'
 #' @param strPath The directory that contains the plugin.
 #' @param lWorkflows `list` An optional named list of workflows to run in order

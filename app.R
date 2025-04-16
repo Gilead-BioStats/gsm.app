@@ -7,7 +7,10 @@ if (grepl("gsm\\.app", getwd()) ||
 }
 
 ParticipantProfilePlugin <- plugin_Read(
-  system.file("plugins", "ParticipantProfile", package = "gsm.app")
+  system.file("plugins", "ParticipantProfile", package = "gsm.app"),
+  lWorkflows = yaml::read_yaml(
+    system.file("plugins", "ParticipantProfile", "workflow", "PROFILE.yml", package = "gsm.app")
+  )
 )
 
 # Alternative version with a workflow.

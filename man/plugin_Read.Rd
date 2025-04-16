@@ -31,6 +31,9 @@ least a \code{Name} to show in the plugin menu), \code{shiny} (containing \code{
 and \code{spec} (a specification of the data domains that the plugin uses), plus
 optional fields \code{packages}, and \code{required_inputs}. Use \code{plugin_Read()} to
 read these element definitions and any R files in the same directory.
+and \code{spec} (a specification of the data domains that the plugin uses), plus
+optional fields \code{packages}, and \code{required_inputs}. Use \code{plugin_Read()} to
+read these element definitions and any R files in the same directory.
 }
 \examples{
 subjPlugin <- plugin_Read(
