@@ -13,7 +13,8 @@ mod_Plugins_Server(
   dfMetrics,
   dfResults,
   l_rctvDomains,
-  rctv_dateSnapshot,
+  l_rctvDomainHashes,
+  rctv_dSnapshotDate,
   rctv_strMetricID,
   rctv_strSiteID,
   rctv_strSubjectID,
@@ -42,7 +43,10 @@ This will be filtered to cases where \code{GroupLevel == "Site"}.}
 \item{l_rctvDomains}{\code{list} A named list of \code{\link[shiny:reactive]{shiny::reactive()}} objects, each
 of which returns a domain dataframe.}
 
-\item{rctv_dateSnapshot}{\verb{reactive Date} A \code{\link[shiny:reactive]{shiny::reactive()}} object that
+\item{l_rctvDomainHashes}{\code{list} A named list of \code{\link[shiny:reactive]{shiny::reactive()}} objects,
+each of which returns the \code{\link[rlang:hash]{rlang::hash()}} of a domain dataframe.}
+
+\item{rctv_dSnapshotDate}{\verb{reactive Date} A \code{\link[shiny:reactive]{shiny::reactive()}} object that
 returns the date of a data snapshot.}
 
 \item{rctv_strMetricID}{\verb{reactive character} A \code{\link[shiny:reactive]{shiny::reactive()}} object

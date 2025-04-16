@@ -5,7 +5,7 @@ meta:
 shiny:
   UI: mod_UI
   Server: mod_Server
-domains:
+spec:
   - AE
   - SUBJ
 packages:

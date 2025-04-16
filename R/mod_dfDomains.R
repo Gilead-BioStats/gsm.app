@@ -11,13 +11,12 @@ mod_dfDomains_Server <- function(
   rctv_strSubjectID
 ) {
   moduleServer(id, function(input, output, session) {
-    chrDomainIDs <- names(chrDomains)
+    chrDomainIDs <- rlang::set_names(names(chrDomains), names(chrDomains))
     l_rctvDomains <- purrr::map(chrDomainIDs, function(this_domain) {
-      mod_dfDomain_Server(
-        this_domain, this_domain, fnFetchData, rctv_strSiteID, rctv_strSubjectID
+      srvr_dfDomain(
+        this_domain, fnFetchData, rctv_strSiteID, rctv_strSubjectID
       )
     })
-    names(l_rctvDomains) <- chrDomainIDs
     return(l_rctvDomains)
   })
 }
@@ -29,8 +28,7 @@ mod_dfDomains_Server <- function(
 #'   `fnFetchData()` throws an error, that error is passed to the user via
 #'   [srvr_ShowConditionMessage()].
 #' @keywords internal
-mod_dfDomain_Server <- function(
-  id,
+srvr_dfDomain <- function(
   strDomainID,
   fnFetchData,
   rctv_strSiteID,
@@ -69,6 +67,50 @@ mod_dfDomain_Server <- function(
       rctv_strSubjectID(),
       cache = "session"
     )
+}
+
+#' List of Reactive Domain df Hashes
+#'
+#' @inheritParams shared-params
+#' @returns A list of [shiny::reactive()]s with hashes of domain dfs.
+#' @keywords internal
+mod_DomainHashes_Server <- function(
+  id,
+  l_rctvDomains,
+  rctv_strSiteID,
+  rctv_strSubjectID
+) {
+  moduleServer(id, function(input, output, session) {
+    l_rctvDomainHashes <- purrr::imap(
+      l_rctvDomains,
+      function(rctvDomain, strDomainID) {
+        srvr_DomainHash(
+          rctvDomain,
+          strDomainID,
+          rctv_strSiteID,
+          rctv_strSubjectID
+        )
+      }
+    )
+    return(l_rctvDomainHashes)
+  })
+}
+
+#' Reactive domain df
+#'
+#' @inheritParams shared-params
+#' @returns A [shiny::reactive()] that generates a hash of a domain df.
+#' @keywords internal
+srvr_DomainHash <- function(
+  rctvDomain,
+  strDomainID,
+  rctv_strSiteID,
+  rctv_strSubjectID
+) {
+  reactive({
+    rlang::hash(rctvDomain())
+  }) %>%
+    bindCache(strDomainID, rctv_strSiteID(), rctv_strSubjectID())
 }
 
 #' Modal dialog for errors etc

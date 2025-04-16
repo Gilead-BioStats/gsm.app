@@ -159,6 +159,9 @@ sample_fnFetchData <- function(
   df$studyid <- NULL
   df$invid <- NULL
   df <- dplyr::rename(df, SubjectID = "subjid")
+  if ("subjectid" %in% colnames(df)) {
+    df <- dplyr::rename(df, IntakeID = "subjectid")
+  }
   if (length(strSiteID)) {
     df <- dplyr::filter(df, .data$GroupID == strSiteID)
   }
