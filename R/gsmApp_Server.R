@@ -53,6 +53,8 @@ gsmApp_Server <- function(
     rctv_strSubjectID <- reactiveVal("All")
     rctv_strMetricID <- reactiveVal(dfMetrics$MetricID[[1]])
     rctv_strDomainID <- reactiveVal(names(chrDomains)[[1]])
+    # Future-proof by making SnapshotDate available to pass around.
+    rctv_dSnapshotDate <- reactiveVal(max(dfResults$SnapshotDate))
 
     ## Primary Inputs ----
     ##
@@ -77,11 +79,11 @@ gsmApp_Server <- function(
       bindEvent(input$participant)
     observe({
       if (input$participant != rctv_strSubjectID()) {
-        shinyWidgets::updateVirtualSelect(
-          inputId = "participant",
-          choices = rctv_chrParticipantIDs(),
-          selected = rctv_strSubjectID(),
-          session = session
+        shinyWidgets::updateVirtualSelect(             # Tested via UI.
+          inputId = "participant",                     # Tested via UI.
+          choices = rctv_chrParticipantIDs(),          # Tested via UI.
+          selected = rctv_strSubjectID(),              # Tested via UI.
+          session = session                            # Tested via UI.
         )
       }
     }) %>%
@@ -94,6 +96,13 @@ gsmApp_Server <- function(
       "l_rctv_dfDomains",
       fnFetchData,
       chrDomains,
+      rctv_strSiteID,
+      rctv_strSubjectID
+    )
+    ## Also produce a reusable hash of each domain, for cleaner caching.
+    l_rctvDomainHashes <- mod_DomainHashes_Server(
+      "l_rctv_strDomainHashes",
+      l_rctvDomains,
       rctv_strSiteID,
       rctv_strSubjectID
     )
@@ -191,7 +200,14 @@ gsmApp_Server <- function(
     mod_Plugins_Server(
       "plugins",
       lPlugins = lPlugins,
+      dfAnalyticsInput = dfAnalyticsInput,
+      dfBounds = dfBounds,
+      dfGroups = dfGroups,
+      dfMetrics = dfMetrics,
+      dfResults = dfResults,
       l_rctvDomains = l_rctvDomains,
+      l_rctvDomainHashes = l_rctvDomainHashes,
+      rctv_dSnapshotDate = rctv_dSnapshotDate,
       rctv_strMetricID = rctv_strMetricID,
       rctv_strSiteID = rctv_strSiteID,
       rctv_strSubjectID = rctv_strSubjectID,

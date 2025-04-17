@@ -8,7 +8,7 @@ test_that("plugin_Define errors informatively", {
     {
       plugin_Define(
         strName = "Name",
-        chrDomains = "AE",
+        lSpec = list("AE" = list()),
         chrRequiredInputs = "bad-input"
       )
     },
@@ -20,14 +20,14 @@ test_that("plugin_Define works for valid definitions", {
   expect_identical(
     plugin_Define(
       strName = "Name",
-      chrDomains = "AE",
+      lSpec = list("AE" = list()),
       fnShinyUI = "ui",
       fnShinyServer = "server"
     ),
     list(
       meta = list(Name = "Name"),
       shiny = list(UI = "ui", Server = "server"),
-      domains = "AE"
+      spec = list(AE = list())
     )
   )
 })

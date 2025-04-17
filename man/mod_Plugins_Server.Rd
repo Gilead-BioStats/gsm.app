@@ -7,7 +7,14 @@
 mod_Plugins_Server(
   id,
   lPlugins,
+  dfAnalyticsInput,
+  dfBounds,
+  dfGroups,
+  dfMetrics,
+  dfResults,
   l_rctvDomains,
+  l_rctvDomainHashes,
+  rctv_dSnapshotDate,
   rctv_strMetricID,
   rctv_strSiteID,
   rctv_strSubjectID,
@@ -19,8 +26,28 @@ mod_Plugins_Server(
 
 \item{lPlugins}{\code{list} Optional list of plugins to include in the app.}
 
+\item{dfAnalyticsInput}{\code{data.frame} Participant-level metric data.}
+
+\item{dfBounds}{\code{data.frame} Set of predicted percentages/rates and upper-
+and lower-bounds across the full range of sample sizes/total exposure
+values for reporting.}
+
+\item{dfGroups}{\code{data.frame} Group-level metadata dictionary.}
+
+\item{dfMetrics}{\code{data.frame} Metric-specific metadata for use in charts and
+reporting.}
+
+\item{dfResults}{\code{data.frame} A stacked summary of analysis pipeline output.
+This will be filtered to cases where \code{GroupLevel == "Site"}.}
+
 \item{l_rctvDomains}{\code{list} A named list of \code{\link[shiny:reactive]{shiny::reactive()}} objects, each
 of which returns a domain dataframe.}
+
+\item{l_rctvDomainHashes}{\code{list} A named list of \code{\link[shiny:reactive]{shiny::reactive()}} objects,
+each of which returns the \code{\link[rlang:hash]{rlang::hash()}} of a domain dataframe.}
+
+\item{rctv_dSnapshotDate}{\verb{reactive Date} A \code{\link[shiny:reactive]{shiny::reactive()}} object that
+returns the date of a data snapshot.}
 
 \item{rctv_strMetricID}{\verb{reactive character} A \code{\link[shiny:reactive]{shiny::reactive()}} object
 that returns the selected \code{MetricID}.}

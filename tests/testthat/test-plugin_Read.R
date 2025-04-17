@@ -73,7 +73,9 @@ test_that("plugin_Read returns the expected object", {
     list(
       meta = list(Type = "Plugin", ID = "ID", Name = "Title"),
       shiny = list(UI = "mod_UI", Server = "mod_Server"),
-      domains = c("AE", "SUBJ")
+      spec = c("AE", "SUBJ"),
+      workflows = list(),
+      config = list()
     )
   )
 })

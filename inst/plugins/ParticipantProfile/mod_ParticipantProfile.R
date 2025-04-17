@@ -10,32 +10,20 @@ mod_ParticipantProfile_UI <- function(id) {
 mod_ParticipantProfile_Server <- function(
   id,
   rctv_strDomainID,
-  rctv_dfAE,
-  rctv_dfDATACHG,
-  rctv_dfDATAENT,
-  rctv_dfENROLL,
-  rctv_dfLB,
-  rctv_dfPD,
-  rctv_dfQUERY,
-  rctv_dfSTUDCOMP,
-  rctv_dfSUBJ,
-  rctv_dfSDRGCOMP
+  SUBJ,
+  AE,
+  ENROLL,
+  STUDCOMP
 ) {
   moduleServer(id, function(input, output, session) {
-    mod_ParticipantMetadata_Server("metadata", rctv_dfSUBJ)
+    mod_ParticipantMetadata_Server("metadata", SUBJ)
     mod_ParticipantDomainSummary_Server(
       "domains",
       rctv_strDomainID,
       list(
-        AE = rctv_dfAE,
-        DATACHG = rctv_dfDATACHG,
-        DATAENT = rctv_dfDATAENT,
-        ENROLL = rctv_dfENROLL,
-        LB = rctv_dfLB,
-        PD = rctv_dfPD,
-        QUERY = rctv_dfQUERY,
-        STUDCOMP = rctv_dfSTUDCOMP,
-        SDRGCOMP = rctv_dfSDRGCOMP
+        AE = AE,
+        ENROLL = ENROLL,
+        STUDCOMP = STUDCOMP
       )
     )
   })

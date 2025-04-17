@@ -6,25 +6,37 @@
 #' Plugins are defined by a named `list` with elements `meta` (containing at
 #' least a `Name` to show in the plugin menu), `shiny` (containing `UI` and
 #' `Server` fields to define the Shiny UI and Server functions for the plugin),
-#' and `domains` (to specify the data domains that the plugin uses), plus
-#' optional fields `required_inputs` and `packages`. Use `plugin_Read()` to read
-#' these element definitions and any R files in the same directory.
+#' and `spec` (a specification of the data domains that the plugin uses), plus
+#' optional fields `packages`, and `required_inputs`. Use `plugin_Read()` to
+#' read these element definitions and any R files in the same directory.
+#' and `spec` (a specification of the data domains that the plugin uses), plus
+#' optional fields `packages`, and `required_inputs`. Use `plugin_Read()` to
+#' read these element definitions and any R files in the same directory.
 #'
 #' @param strPath The directory that contains the plugin.
+#' @param lWorkflows `list` An optional named list of workflows to run in order
+#'   to translate app domain data into the format required by the plugin (as
+#'   defined in the plugin `spec`). These workflows are ran before the plugin's
+#'   `spec` is applied, and are meant to serve as a bridge between your domain
+#'   data and the plugin's expected domains.
+#' @param lConfig `list` Optional additional arguments to pass by name to
+#'   `fnShinyUI` and/or `fnShinyServer`.
 #'
-#' @returns A `list` with elements `meta`, `shiny`, `domains`, and (optionally)
-#'   `required_inputs` and/or `packages`, read from the YAML file in `strPath`.
-#'   As a side effect, any `R` files in `strPath` are also loaded using
-#'   `source()`.
+#' @returns A `list` with elements `meta`, `shiny`, `spec`, `workflows`, and
+#'   `config`, and (optionally) `required_inputs`, and/or `packages`, read from
+#'   the YAML file in `strPath`. As a side effect, any `R` files in `strPath`
+#'   are also loaded using `source()`.
 #' @export
 #' @examples
 #' subjPlugin <- plugin_Read(
 #'   system.file("plugins", "ParticipantProfile", package = "gsm.app")
 #' )
 #' subjPlugin
-plugin_Read <- function(strPath) {
+plugin_Read <- function(strPath, lWorkflows = list(), lConfig = list()) {
   chrPluginFiles <- list.files(strPath, full.names = TRUE)
   lPluginDefinition <- plugin_ReadYaml(chrPluginFiles)
+  lPluginDefinition$workflows <- lWorkflows
+  lPluginDefinition$config <- lConfig
 
   # Source any R files included in the definition. Covr doesn't see most of the
   # code below here as covered when I check this single file, but it's covered
@@ -75,15 +87,15 @@ plugin_ReadYamlFile <- function(chrPluginFiles, envCall = rlang::caller_env()) {
 #' @returns The validated `lPluginDefinition`.
 #' @keywords internal
 plugin_ValidateDefinition <- function(
-    lPluginDefinition,
-    envCall = rlang::caller_env()
+  lPluginDefinition,
+  envCall = rlang::caller_env()
 ) {
   lPluginDefinition <- purrr::keep(lPluginDefinition, rlang::has_length)
-  chrRequiredFields <- c("meta", "shiny", "domains")
-  chrOptionalFields <- c("lConfig", "packages", "required_inputs")
+  chrRequiredFields <- c("meta", "shiny")
+  chrOptionalFields <- c("spec", "packages", "required_inputs")
   CheckHasAllFields(
     lPluginDefinition,
-    c("meta", "shiny", "domains"),
+    chrRequiredFields,
     "Plugin definitions",
     envCall
   )

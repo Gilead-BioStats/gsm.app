@@ -4,13 +4,13 @@
 \alias{out_MetadataList}
 \title{Metadata list card}
 \usage{
-out_MetadataList(chrLabels, chrValues)
+out_MetadataList(chrValues, chrLabels = names(chrValues))
 }
 \arguments{
-\item{chrLabels}{\code{character} A vector of labels for display to the user.}
-
 \item{chrValues}{\code{character} A vector of values to associate with a vector of
 labels.}
+
+\item{chrLabels}{\code{character} A vector of labels for display to the user.}
 }
 \value{
 A \code{\link[htmltools:tagList]{htmltools::tagList()}} of label-value pairs, including the CSS
@@ -22,7 +22,7 @@ between the label and value.
 }
 \examples{
 out_MetadataList(
-  c("Thing 1", "Thing 2", "Thing 3"),
-  c("value 1", "value 2", "value 3")
+  c("value 1", "value 2", "value 3"),
+  c("Thing 1", "Thing 2", "Thing 3")
 )
 }

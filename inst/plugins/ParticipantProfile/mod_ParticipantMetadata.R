@@ -50,8 +50,8 @@ mod_ParticipantMetadata_Server <- function(id, rctv_dfSUBJ) {
       req(rctv_dfSUBJ())
       lParticipantMetadata <- as.list(rctv_dfSUBJ())
       out_MetadataList(
-        gsm.kri::MakeParamLabelsList(names(lParticipantMetadata), chrFieldNames),
-        unname(lParticipantMetadata)
+        lParticipantMetadata,
+        gsm.kri::MakeParamLabelsList(names(lParticipantMetadata), chrFieldNames)
       )
     })
   })

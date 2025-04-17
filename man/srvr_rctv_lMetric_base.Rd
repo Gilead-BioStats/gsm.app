@@ -4,11 +4,7 @@
 \alias{srvr_rctv_lMetric_base}
 \title{Reactive lMetric by metric}
 \usage{
-srvr_rctv_lMetric_base(
-  dfMetrics,
-  rctv_strMetricID,
-  session = getDefaultReactiveDomain()
-)
+srvr_rctv_lMetric_base(dfMetrics, rctv_strMetricID)
 }
 \arguments{
 \item{dfMetrics}{\code{data.frame} Metric-specific metadata for use in charts and
@@ -16,9 +12,6 @@ reporting.}
 
 \item{rctv_strMetricID}{\verb{reactive character} A \code{\link[shiny:reactive]{shiny::reactive()}} object
 that returns the selected \code{MetricID}.}
-
-\item{session}{\code{environment} Session from which to make a child scope (the
-default should almost always be used).}
 }
 \value{
 A \code{\link[shiny:reactive]{shiny::reactive()}} of dfMetrics as a list, filtered by metric.

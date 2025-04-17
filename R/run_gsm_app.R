@@ -43,12 +43,21 @@ run_gsm_app <- function(
   tagListExtra = NULL,
   fnServer = NULL
 ) {
+  # stop("
+  #      TODO:
+  #      3. Sort out the plugin spec vs semi-optional domain mapping. If domain
+  #         mapping isn't given, use plugin spec to define it (as A = A, basically).
+  #      4. Update `validate_chrDomains()` to extract domains from the *mapping*
+  #         spec.
+  #      ")
+
   # There's no point launching the app if the data won't work.
   dfAnalyticsInput <- validate_dfAnalyticsInput(dfAnalyticsInput)
   dfBounds <- validate_dfBounds(dfBounds)
   dfGroups <- validate_dfGroups(dfGroups)
   dfMetrics <- validate_dfMetrics(dfMetrics)
   dfResults <- validate_dfResults(dfResults)
+  lPlugins <- validate_lPlugins(lPlugins)
   chrDomains <- validate_chrDomains(chrDomains, lPlugins)
 
   # We currently only use site-level data in this app.

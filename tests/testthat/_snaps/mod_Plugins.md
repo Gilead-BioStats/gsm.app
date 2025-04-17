@@ -3,7 +3,9 @@
     Code
       test_result
     Output
-      <div class="tab-pane" title="Plugin Test" data-value="Plugin Test">TestUI</div>
+      <div class="tab-pane" title="Plugin Test" data-value="Plugin Test">
+        <div id="testID--plugin" class="shiny-html-output"></div>
+      </div>
 
 # mod_Plugins_UI creates the expected UI with multiple plugins
 
@@ -18,10 +20,14 @@
       
       $tabs
       $tabs[[1]]
-      <div class="tab-pane" title="Plugin Test" data-value="Plugin Test">TestUI</div>
+      <div class="tab-pane" title="Plugin Test" data-value="Plugin Test">
+        <div id="testID-001-plugin" class="shiny-html-output"></div>
+      </div>
       
       $tabs[[2]]
-      <div class="tab-pane" title="Plugin Test 2" data-value="Plugin Test 2">TestUI 2</div>
+      <div class="tab-pane" title="Plugin Test 2" data-value="Plugin Test 2">
+        <div id="testID-002-plugin" class="shiny-html-output"></div>
+      </div>
       
       
       $iconClass
@@ -42,33 +48,6 @@
       test_result
     Output
       <div class="tab-pane" title="Plugin Test" data-value="Plugin Test">
-        <div id="testID-1" class="shiny-html-output"></div>
+        <div id="testID--plugin" class="shiny-html-output"></div>
       </div>
-
-# mod_Plugins_Server outputs the expected result with required inputs
-
-    Code
-      output$`1`$html
-    Output
-      <div class="card bslib-card bslib-mb-spacing html-fill-item html-fill-container placeholder" data-bslib-card-init data-require-bs-caller="card()" data-require-bs-version="5">
-        <div class="card-body bslib-gap-spacing html-fill-item html-fill-container" style="margin-top:auto;margin-bottom:auto;flex:1 1 auto;">Please select a site and a participant.</div>
-        <script data-bslib-card-init>bslib.Card.initializeAllCards();</script>
-      </div>
-
----
-
-    Code
-      output$`1`$html
-    Output
-      <div class="card bslib-card bslib-mb-spacing html-fill-item html-fill-container placeholder" data-bslib-card-init data-require-bs-caller="card()" data-require-bs-version="5">
-        <div class="card-body bslib-gap-spacing html-fill-item html-fill-container" style="margin-top:auto;margin-bottom:auto;flex:1 1 auto;">Please select a participant.</div>
-        <script data-bslib-card-init>bslib.Card.initializeAllCards();</script>
-      </div>
-
----
-
-    Code
-      output$`1`$html
-    Output
-      This is a UI
 
