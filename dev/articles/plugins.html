@@ -21,7 +21,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">gsm.app</a>
 
-    <small class="nav-text text-danger me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="In-development version">2.4.0.9000</small>
+    <small class="nav-text text-danger me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="In-development version">2.4.0.9001</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -84,22 +84,30 @@ dependencies.</p>
 <li>Optional R scripts that define the necessary UI and server functions
 for the plugin.</li>
 </ul>
-<p>For example, this is the<code>AE.yml</code> file for our sample
-Adverse Events plugin:</p>
+<p>For example, this is the<code>ParticipantProfile.yml</code> file for
+our sample Participant Profile plugin:</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode yaml"><code class="sourceCode yaml"><span id="cb2-1"><a href="#cb2-1" tabindex="-1"></a><span class="fu">meta</span><span class="kw">:</span></span>
 <span id="cb2-2"><a href="#cb2-2" tabindex="-1"></a><span class="at">  </span><span class="fu">Type</span><span class="kw">:</span><span class="at"> Plugin</span></span>
-<span id="cb2-3"><a href="#cb2-3" tabindex="-1"></a><span class="at">  </span><span class="fu">ID</span><span class="kw">:</span><span class="at"> AE</span></span>
-<span id="cb2-4"><a href="#cb2-4" tabindex="-1"></a><span class="at">  </span><span class="fu">Name</span><span class="kw">:</span><span class="at"> Adverse Events</span></span>
+<span id="cb2-3"><a href="#cb2-3" tabindex="-1"></a><span class="at">  </span><span class="fu">ID</span><span class="kw">:</span><span class="at"> ParticipantProfile</span></span>
+<span id="cb2-4"><a href="#cb2-4" tabindex="-1"></a><span class="at">  </span><span class="fu">Name</span><span class="kw">:</span><span class="at"> Participant Profile</span></span>
 <span id="cb2-5"><a href="#cb2-5" tabindex="-1"></a><span class="fu">shiny</span><span class="kw">:</span></span>
-<span id="cb2-6"><a href="#cb2-6" tabindex="-1"></a><span class="at">  </span><span class="fu">UI</span><span class="kw">:</span><span class="at"> mod_AE_UI</span></span>
-<span id="cb2-7"><a href="#cb2-7" tabindex="-1"></a><span class="at">  </span><span class="fu">Server</span><span class="kw">:</span><span class="at"> mod_AE_Server</span></span>
-<span id="cb2-8"><a href="#cb2-8" tabindex="-1"></a><span class="fu">domains</span><span class="kw">:</span></span>
-<span id="cb2-9"><a href="#cb2-9" tabindex="-1"></a><span class="at">  </span><span class="kw">-</span><span class="at"> AE</span></span>
-<span id="cb2-10"><a href="#cb2-10" tabindex="-1"></a><span class="at">  </span><span class="kw">-</span><span class="at"> SUBJ</span></span>
-<span id="cb2-11"><a href="#cb2-11" tabindex="-1"></a><span class="fu">packages</span><span class="kw">:</span></span>
-<span id="cb2-12"><a href="#cb2-12" tabindex="-1"></a><span class="at">  </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> ggplot2</span></span>
-<span id="cb2-13"><a href="#cb2-13" tabindex="-1"></a><span class="at">  </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> safetyCharts</span></span>
-<span id="cb2-14"><a href="#cb2-14" tabindex="-1"></a><span class="at">    </span><span class="fu">remote</span><span class="kw">:</span><span class="at"> url::https://safetygraphics.r-universe.dev/src/contrib/safetyCharts_0.4.0.tar.gz</span></span></code></pre></div>
+<span id="cb2-6"><a href="#cb2-6" tabindex="-1"></a><span class="at">  </span><span class="fu">UI</span><span class="kw">:</span><span class="at"> mod_ParticipantProfile_UI</span></span>
+<span id="cb2-7"><a href="#cb2-7" tabindex="-1"></a><span class="at">  </span><span class="fu">Server</span><span class="kw">:</span><span class="at"> mod_ParticipantProfile_Server</span></span>
+<span id="cb2-8"><a href="#cb2-8" tabindex="-1"></a><span class="fu">spec</span><span class="kw">:</span></span>
+<span id="cb2-9"><a href="#cb2-9" tabindex="-1"></a><span class="at">  </span><span class="fu">SUBJ</span><span class="kw">:</span></span>
+<span id="cb2-10"><a href="#cb2-10" tabindex="-1"></a><span class="at">    </span><span class="fu">_all</span><span class="kw">:</span></span>
+<span id="cb2-11"><a href="#cb2-11" tabindex="-1"></a><span class="at">      </span><span class="fu">required</span><span class="kw">:</span><span class="at"> </span><span class="ch">true</span></span>
+<span id="cb2-12"><a href="#cb2-12" tabindex="-1"></a><span class="at">  </span><span class="fu">AE</span><span class="kw">:</span></span>
+<span id="cb2-13"><a href="#cb2-13" tabindex="-1"></a><span class="at">    </span><span class="fu">_all</span><span class="kw">:</span></span>
+<span id="cb2-14"><a href="#cb2-14" tabindex="-1"></a><span class="at">      </span><span class="fu">required</span><span class="kw">:</span><span class="at"> </span><span class="ch">true</span></span>
+<span id="cb2-15"><a href="#cb2-15" tabindex="-1"></a><span class="at">  </span><span class="fu">ENROLL</span><span class="kw">:</span></span>
+<span id="cb2-16"><a href="#cb2-16" tabindex="-1"></a><span class="at">    </span><span class="fu">_all</span><span class="kw">:</span></span>
+<span id="cb2-17"><a href="#cb2-17" tabindex="-1"></a><span class="at">      </span><span class="fu">required</span><span class="kw">:</span><span class="at"> </span><span class="ch">true</span></span>
+<span id="cb2-18"><a href="#cb2-18" tabindex="-1"></a><span class="at">  </span><span class="fu">STUDCOMP</span><span class="kw">:</span></span>
+<span id="cb2-19"><a href="#cb2-19" tabindex="-1"></a><span class="at">    </span><span class="fu">_all</span><span class="kw">:</span></span>
+<span id="cb2-20"><a href="#cb2-20" tabindex="-1"></a><span class="at">      </span><span class="fu">required</span><span class="kw">:</span><span class="at"> </span><span class="ch">true</span></span>
+<span id="cb2-21"><a href="#cb2-21" tabindex="-1"></a><span class="fu">required_inputs</span><span class="kw">:</span></span>
+<span id="cb2-22"><a href="#cb2-22" tabindex="-1"></a><span class="at">  </span><span class="kw">-</span><span class="at"> Participant</span></span></code></pre></div>
 <div class="section level3">
 <h3 id="meta">meta<a class="anchor" aria-label="anchor" href="#meta"></a>
 </h3>
@@ -116,28 +124,31 @@ package (included in <code>packages</code>, see below), or be defined in
 one or more R scripts in the plugin folder.</p>
 </div>
 <div class="section level3">
-<h3 id="domains">domains<a class="anchor" aria-label="anchor" href="#domains"></a>
+<h3 id="spec">spec<a class="anchor" aria-label="anchor" href="#spec"></a>
 </h3>
-<p>The <code>domains</code> section specifies the data domains that are
+<p>The <code>spec</code> section specifies the data domains that are
 used by the plugin. These domains must be loaded into the app via the
-<code>chrDomains</code> argument to <code><a href="../reference/run_gsm_app.html">run_gsm_app()</a></code>. The
-domains specified here should be the ID (the name of named arguments to
-<code>chrDomains</code>), not the label</p>
+<code>chrDomains</code> argument to <code><a href="../reference/run_gsm_app.html">run_gsm_app()</a></code>, or
+generated from those domains with via workflows supplied to the
+<code>lWorkflows</code> argument of <code><a href="../reference/plugin_Read.html">plugin_Read()</a></code>. See
+<code><a href="https://gilead-biostats.github.io/gsm.core/articles/DataAnalysis.html" class="external-link">vignette("DataAnalysis", "gsm.core")</a></code> for more information
+about workflows.</p>
 </div>
 <div class="section level3">
 <h3 id="required_inputs">required_inputs<a class="anchor" aria-label="anchor" href="#required_inputs"></a>
 </h3>
-<p>The <code>required_inputs</code> section lists any inputs (“Metric”,
-“Site”, “Participant”, or “Domain”) that must have a non-empty value
-before the plugin can load. “None” and “All” count as “empty” for this
-check. If the user has not set a value for that input, the app will
-display a placeholder instructing the user to make a selection.</p>
+<p>The <code>required_inputs</code> section lists any inputs (“Domain”,
+“Metric”, “Participant”, “Site” or “Snapshot Date”) that must have a
+non-empty value before the plugin can load. “None” and “All” count as
+“empty” for this check. If the user has not set a value for that input,
+the app will display a placeholder instructing the user to make a
+selection.</p>
 </div>
 <div class="section level3">
 <h3 id="packages">packages<a class="anchor" aria-label="anchor" href="#packages"></a>
 </h3>
 <p>The <code>packages</code> section specifies packages used by the
-plugin. This field is particulaly important for deploying the app or
+plugin. This field is particularly important for deploying the app or
 using the app with a CI/CD system.</p>
 </div>
 </div>
@@ -148,6 +159,12 @@ using the app with a CI/CD system.</p>
 will be passed to the plugin:</p>
 <ul>
 <li>
+<code>rctv_dSnapshotDate</code> (a <code><a href="https://rdrr.io/pkg/shiny/man/reactiveVal.html" class="external-link">shiny::reactiveVal()</a></code>
+which will be connected to the “Snapshot Date” input)</li>
+<li>
+<code>rctv_strDomainID</code> (a <code><a href="https://rdrr.io/pkg/shiny/man/reactiveVal.html" class="external-link">shiny::reactiveVal()</a></code>
+connected to the “Domain” input)</li>
+<li>
 <code>rctv_strMetricID</code> (a <code><a href="https://rdrr.io/pkg/shiny/man/reactiveVal.html" class="external-link">shiny::reactiveVal()</a></code>
 connected to the “Metric” input)</li>
 <li>
@@ -156,12 +173,6 @@ connected to the “Site” input)</li>
 <li>
 <code>rctv_strSubjectID</code> (a <code><a href="https://rdrr.io/pkg/shiny/man/reactiveVal.html" class="external-link">shiny::reactiveVal()</a></code>
 connected to the “Participant” input)</li>
-<li>
-<code>rctv_strDomainID</code> (a <code><a href="https://rdrr.io/pkg/shiny/man/reactiveVal.html" class="external-link">shiny::reactiveVal()</a></code>
-connected to the “Domain” input)</li>
-<li>
-<code>rctv_dfDOMAIN</code> (eg <code>rctv_dfAE</code>, one for each
-<code>domain</code> as defined above)</li>
 </ul>
 <p>For the input-connected <code>reactiveVal()</code>s, setting a value
 will pass the value back up to the main app. For example, to set the
