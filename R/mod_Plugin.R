@@ -124,7 +124,7 @@ mod_Plugin_Server <- function(
     rlang::inject(
       fnServer(
         "plugin",
-        !!!l_rctvPluginData,
+        !!!l_rctvPluginData[intersect(names(l_rctvPluginData), chrServerArgs)],
         !!!lOtherArgs[intersect(names(lOtherArgs), chrServerArgs)]
       )
     )
