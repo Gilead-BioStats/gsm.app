@@ -9,6 +9,10 @@ srvr_CombineHashes(l_rctvDomainHashes, lSpec)
 \arguments{
 \item{l_rctvDomainHashes}{\code{list} A named list of \code{\link[shiny:reactive]{shiny::reactive()}} objects,
 each of which returns the \code{\link[rlang:hash]{rlang::hash()}} of a domain dataframe.}
+
+\item{lSpec}{\code{list} A named list defining the data domains required by the
+plugin, where the names are the names of the domains and the elements are
+column definitions.}
 }
 \value{
 A \code{\link[shiny:reactive]{shiny::reactive()}} that returns a string with the hashes of the

@@ -15,8 +15,18 @@ srvr_RunReactiveWorkflows(
 \item{l_rctvDomains}{\code{list} A named list of \code{\link[shiny:reactive]{shiny::reactive()}} objects, each
 of which returns a domain dataframe.}
 
+\item{lWorkflows}{\code{list} An optional named list of workflows to run in order
+to translate app domain data into the format required by the plugin (as
+defined in the plugin \code{spec}). These workflows are ran before the plugin's
+\code{spec} is applied, and are meant to serve as a bridge between your domain
+data and the plugin's expected domains.}
+
 \item{l_rctvDomainHashes}{\code{list} A named list of \code{\link[shiny:reactive]{shiny::reactive()}} objects,
 each of which returns the \code{\link[rlang:hash]{rlang::hash()}} of a domain dataframe.}
+
+\item{rctv_bPluginReady}{\verb{reactive Boolean} A \code{\link[shiny:reactive]{shiny::reactive()}} object that
+returns \code{TRUE} if all inputs required by the plugin are non-empty, and
+\code{FALSE} if one or more inputs are not ready.}
 }
 \value{
 A named list of the final output from \code{lWorkflows}, where the names
