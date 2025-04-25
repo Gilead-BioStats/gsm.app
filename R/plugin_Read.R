@@ -13,6 +13,7 @@
 #' optional fields `packages`, and `required_inputs`. Use `plugin_Read()` to
 #' read these element definitions and any R files in the same directory.
 #'
+#' @inheritParams shared-params
 #' @param strPath The directory that contains the plugin.
 #' @param ... Additional named arguments passed on to `fnShinyUI` and/or
 #'   `fnShinyServer` by name.
