@@ -56,18 +56,18 @@ test_that("FindNonZeroDecimals finds the 10s place to round to", {
 })
 
 test_that("FilterBefore filters before a date", {
-  given <- dplyr::tibble(x = 1:5, dt = as.Date(1:5))
+  given <- dplyr::tibble(x = 1:5, dt = as.Date(1:5, origin = "1970-01-01"))
   expect_equal(
     FilterBefore(given, "dt", "1970-01-04"),
-    dplyr::tibble(x = 1:2, dt = as.Date(1:2))
+    dplyr::tibble(x = 1:2, dt = as.Date(1:2, origin = "1970-01-01"))
   )
 })
 
 test_that("FilterByLatestIfPresent filters if SnapshotDate exists", {
-  given <- dplyr::tibble(x = 1:5, SnapshotDate = as.Date(1:5))
+  given <- dplyr::tibble(x = 1:5, SnapshotDate = as.Date(1:5, origin = "1970-01-01"))
   expect_equal(
     FilterByLatestIfPresent(given),
-    dplyr::tibble(x = 5L, SnapshotDate = as.Date(5L))
+    dplyr::tibble(x = 5L, SnapshotDate = as.Date(5L, origin = "1970-01-01"))
   )
 })
 
