@@ -80,7 +80,7 @@ test_that("mod_SiteParticipants_Server returns selected participant", {
       # Without this I don't think the gt data registers properly.
       session$flushReact()
       session$setInputs(`gt-table` = 3L)
-      expect_equal(session$returned(), "0010")
+      expect_equal(session$returned(), "0351")
       session$setInputs(`gt-table` = 0L)
       expect_equal(session$returned(), "All")
       session$setInputs(`gt-table` = NULL)

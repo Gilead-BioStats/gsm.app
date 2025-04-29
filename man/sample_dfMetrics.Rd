@@ -6,7 +6,7 @@
 \title{Metric Metadata Dataset}
 \format{
 A tibble with 11 rows and
-14 columns:
+15 columns:
 \describe{
 \item{MetricID}{unique metric identifier}
 \item{File}{yaml file for workflow}

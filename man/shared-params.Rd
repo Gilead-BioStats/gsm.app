@@ -69,6 +69,8 @@ combos from \code{dfAnalyticsInput}.}
 \item{dfResults}{\code{data.frame} A stacked summary of analysis pipeline output.
 This will be filtered to cases where \code{GroupLevel == "Site"}.}
 
+\item{dSnapshotDate}{\code{Date} The date of a data snapshot.}
+
 \item{envCall}{\code{environment} The environment from which this function was
 called, for use in better error messages. This value should usually be left
 as the default, or passed from the calling function if the calling function
@@ -79,11 +81,11 @@ in the message or widget are defined. You almost definitely want to leave
 this as the default value.}
 
 \item{fnFetchData}{\code{function} A function that takes a \code{strDomainID} argument
-and optional \code{strSiteID} and \code{strSubjectID} and returns a data.frame. See
-\code{\link[=sample_fnFetchData]{sample_fnFetchData()}} for an example. The returned data.frame contains
-information about the named domain. If the function throws an error, the
-error is elevated to the user, so you can use errors to pass requirements
-through to the user.}
+and optional \code{strSiteID}, \code{strSubjectID}, and/or \code{dSnapshotDate}, and
+returns a data.frame. See \code{\link[=sample_fnFetchData]{sample_fnFetchData()}} for an example. The
+returned data.frame contains information about the named domain. If the
+function throws an error, the error is elevated to the user, so you can use
+errors to pass requirements through to the user.}
 
 \item{fnHtmlDependency}{\code{function} A function that returns an
 \code{\link[htmltools:htmlDependency]{htmltools::htmlDependency()}} or multiple wrapped in \code{\link[shiny:reexports]{shiny::tagList()}}.}

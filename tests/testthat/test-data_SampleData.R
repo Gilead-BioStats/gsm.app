@@ -18,10 +18,11 @@ test_that("sample_fnFetchData returns expected data", {
       "timeontreatment",
       "agerep",
       "sex",
-      "race"
+      "race",
+      "mincreated_dts"
     )
   )
-  expect_equal(nrow(test_result), 243)
+  expect_equal(nrow(test_result), 227)
 })
 
 test_that("sample_fnFetchData returns expected data by Site", {
@@ -44,7 +45,8 @@ test_that("sample_fnFetchData returns expected data by Site", {
       "timeontreatment",
       "agerep",
       "sex",
-      "race"
+      "race",
+      "mincreated_dts"
     )
   )
   expect_equal(nrow(test_result), 5)
@@ -70,7 +72,8 @@ test_that("sample_fnFetchData returns expected data by Subject", {
       "timeontreatment",
       "agerep",
       "sex",
-      "race"
+      "race",
+      "mincreated_dts"
     )
   )
   expect_equal(nrow(test_result), 1)
@@ -81,4 +84,19 @@ test_that("sample_fnFetchData throws an error in one situation", {
     sample_fnFetchData("LB", "0X013"),
     class = "gsm.app-error-sample_data-demo"
   )
+})
+
+test_that("sample_fnFetchData can filter by date", {
+  expect_no_error({
+    test_result <- sample_fnFetchData("AE", dSnapshotDate = "2018-01-01")
+  })
+  expect_equal(nrow(test_result), 1062)
+  expect_no_error({
+    test_result <- sample_fnFetchData("AE", dSnapshotDate = "2019-01-01")
+  })
+  expect_equal(nrow(test_result), 1150)
+  expect_no_error({
+    test_result <- sample_fnFetchData("AE", dSnapshotDate = "2020-01-01")
+  })
+  expect_equal(nrow(test_result), 1168)
 })

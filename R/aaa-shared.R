@@ -48,6 +48,7 @@
 #'   combos from `dfAnalyticsInput`.
 #' @param dfResults `data.frame` A stacked summary of analysis pipeline output.
 #'   This will be filtered to cases where `GroupLevel == "Site"`.
+#' @param dSnapshotDate `Date` The date of a data snapshot.
 #' @param envCall `environment` The environment from which this function was
 #'   called, for use in better error messages. This value should usually be left
 #'   as the default, or passed from the calling function if the calling function
@@ -56,11 +57,11 @@
 #'   in the message or widget are defined. You almost definitely want to leave
 #'   this as the default value.
 #' @param fnFetchData `function` A function that takes a `strDomainID` argument
-#'   and optional `strSiteID` and `strSubjectID` and returns a data.frame. See
-#'   [sample_fnFetchData()] for an example. The returned data.frame contains
-#'   information about the named domain. If the function throws an error, the
-#'   error is elevated to the user, so you can use errors to pass requirements
-#'   through to the user.
+#'   and optional `strSiteID`, `strSubjectID`, and/or `dSnapshotDate`, and
+#'   returns a data.frame. See [sample_fnFetchData()] for an example. The
+#'   returned data.frame contains information about the named domain. If the
+#'   function throws an error, the error is elevated to the user, so you can use
+#'   errors to pass requirements through to the user.
 #' @param fnHtmlDependency `function` A function that returns an
 #'   [htmltools::htmlDependency()] or multiple wrapped in [shiny::tagList()].
 #' @param fnServer `function` A Shiny server function that takes arguments

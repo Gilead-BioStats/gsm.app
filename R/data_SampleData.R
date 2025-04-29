@@ -13,6 +13,7 @@
 #'   \item{Numerator}{numerator for this individual}
 #'   \item{Denominator}{denominator for this individual}
 #'   \item{Metric}{calculated rate/metric value}
+#'   \item{SnapshotDate}{The snapshot with which this data is associated. We currently only use the most recent SnapshotDate}
 #' }
 #' @source Generated from data in the `clindata` package, using the
 #'   `gsm.mapping` package.
@@ -134,7 +135,8 @@ sample_fnFetchData <- function(
     "QUERY"
   ),
   strSiteID = NULL,
-  strSubjectID = NULL
+  strSubjectID = NULL,
+  dSnapshotDate = NULL
 ) {
   strDomainID <- toupper(strDomainID)
   strDomainID <- rlang::arg_match(strDomainID)
@@ -155,7 +157,8 @@ sample_fnFetchData <- function(
     )
   }
 
-  df <- sample_lMapped[[paste0("Mapped_", strDomainID)]]
+  strTableName <- paste0("Mapped_", strDomainID)
+  df <- sample_lMapped[[strTableName]]
   df$studyid <- NULL
   df$invid <- NULL
   df <- dplyr::rename(df, SubjectID = "subjid")
@@ -167,6 +170,21 @@ sample_fnFetchData <- function(
   }
   if (length(strSubjectID)) {
     df <- dplyr::filter(df, .data$SubjectID == strSubjectID)
+  }
+  chrDateFields <- c(
+    Mapped_AE = "mincreated_dts",
+    Mapped_ENROLL = "enroll_dt",
+    Mapped_LB = "lb_dt",
+    Mapped_PD = "deviationdate",
+    Mapped_SDRGCOMP = "mincreated_dts",
+    Mapped_STUDCOMP = "mincreated_dts",
+    Mapped_Visit = "visit_dt",
+    Mapped_DATACHG = "visit_date",
+    Mapped_DATAENT = "visit_date",
+    Mapped_QUERY = "created"
+  )
+  if (length(dSnapshotDate) && strTableName %in% names(chrDateFields)) {
+    df <- FilterBefore(df, chrDateFields[[strTableName]], dSnapshotDate)
   }
   return(dplyr::select(df, "SubjectID", "GroupID", dplyr::everything()))
 }

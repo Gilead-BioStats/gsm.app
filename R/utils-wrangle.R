@@ -73,3 +73,28 @@ FindNonZeroDecimals <- function(dblX, intMaxDecimals = 5L) {
   # No interesting decimals.
   return(0L)
 }
+
+#' Filter to only values before a date
+#'
+#' @param df A data.frame to filter.
+#' @param strField The name of the field.
+#' @param dMaxDate The date that values should be before.
+#'
+#' @returns The filtered df.
+#' @keywords internal
+FilterBefore <- function(df, strField, dMaxDate) {
+  df[df[[strField]] < dMaxDate, ]
+}
+
+#' Filter to latest snapshot if field exists
+#'
+#' @param df A data.frame to filter.
+#'
+#' @returns The filtered df.
+#' @keywords internal
+FilterByLatestIfPresent <- function(df) {
+  if ("SnapshotDate" %in% colnames(df)) {
+    return(gsm.kri::FilterByLatestSnapshotDate(df))
+  }
+  return(df)
+}
