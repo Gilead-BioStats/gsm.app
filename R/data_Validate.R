@@ -124,7 +124,7 @@ validate_dfBounds <- function(x) {
 #' @inherit CheckDF return
 #' @keywords internal
 validate_dfAnalyticsInput <- function(x) {
-  CheckDF(
+  x <- CheckDF(
     x,
     chrRequiredColumns = c(
       "GroupLevel",
@@ -136,4 +136,5 @@ validate_dfAnalyticsInput <- function(x) {
       "Denominator"
     )
   )
+  return(FilterByLatestIfPresent(x))
 }

@@ -56,7 +56,7 @@ mod_MetricTable_Server <- function(
         GroupID = character(),
         MetricID = character(),
         Group = character(),
-        SnapshotDate = as.Date(1)[0],
+        SnapshotDate = as.Date(1, origin = "1970-01-01")[0],
         Enrolled = integer(),
         Numerator = numeric(),
         Denominator = numeric(),

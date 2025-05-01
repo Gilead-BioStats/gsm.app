@@ -8,35 +8,30 @@
 #' `Server` fields to define the Shiny UI and Server functions for the plugin),
 #' and `spec` (a specification of the data domains that the plugin uses), plus
 #' optional fields `packages`, and `required_inputs`. Use `plugin_Read()` to
-#' read these element definitions and any R files in the same directory.
-#' and `spec` (a specification of the data domains that the plugin uses), plus
+#' read these element definitions and any R files in the same directory. and
+#' `spec` (a specification of the data domains that the plugin uses), plus
 #' optional fields `packages`, and `required_inputs`. Use `plugin_Read()` to
 #' read these element definitions and any R files in the same directory.
 #'
+#' @inheritParams shared-params
 #' @param strPath The directory that contains the plugin.
-#' @param lWorkflows `list` An optional named list of workflows to run in order
-#'   to translate app domain data into the format required by the plugin (as
-#'   defined in the plugin `spec`). These workflows are ran before the plugin's
-#'   `spec` is applied, and are meant to serve as a bridge between your domain
-#'   data and the plugin's expected domains.
-#' @param lConfig `list` Optional additional arguments to pass by name to
-#'   `fnShinyUI` and/or `fnShinyServer`.
+#' @param ... Additional named arguments passed on to `fnShinyUI` and/or
+#'   `fnShinyServer` by name.
 #'
-#' @returns A `list` with elements `meta`, `shiny`, `spec`, `workflows`, and
-#'   `config`, and (optionally) `required_inputs`, and/or `packages`, read from
-#'   the YAML file in `strPath`. As a side effect, any `R` files in `strPath`
-#'   are also loaded using `source()`.
+#' @returns A `list` with elements `meta`, `shiny`, `spec`, `workflows`,
+#'   `config`, `required_inputs`, and `packages`, read from the YAML file in
+#'   `strPath`. As a side effect, any `R` files in `strPath` are also loaded
+#'   using `source()`.
 #' @export
 #' @examples
 #' subjPlugin <- plugin_Read(
 #'   system.file("plugins", "ParticipantProfile", package = "gsm.app")
 #' )
 #' subjPlugin
-plugin_Read <- function(strPath, lWorkflows = list(), lConfig = list()) {
+plugin_Read <- function(strPath, lWorkflows = list(), ...) {
   chrPluginFiles <- list.files(strPath, full.names = TRUE)
-  lPluginDefinition <- plugin_ReadYaml(chrPluginFiles)
-  lPluginDefinition$workflows <- lWorkflows
-  lPluginDefinition$config <- lConfig
+  lPlugin <- plugin_ReadYamlFile(chrPluginFiles)
+  lPlugin <- plugin_Prepare(lPlugin, lWorkflows = lWorkflows, ...)
 
   # Source any R files included in the definition. Covr doesn't see most of the
   # code below here as covered when I check this single file, but it's covered
@@ -47,17 +42,7 @@ plugin_Read <- function(strPath, lWorkflows = list(), lConfig = list()) {
       source(r_file)
     }
   }
-  return(lPluginDefinition)
-}
-
-#' Process a Plugin YAML
-#'
-#' @inheritParams shared-params
-#' @returns A list with the validated plugin definition.
-#' @keywords internal
-plugin_ReadYaml <- function(chrPluginFiles, envCall = rlang::caller_env()) {
-  lPluginDefinition <- plugin_ReadYamlFile(chrPluginFiles, envCall)
-  return(plugin_ValidateDefinition(lPluginDefinition, envCall))
+  return(lPlugin)
 }
 
 #' Read a Plugin YAML
@@ -81,67 +66,6 @@ plugin_ReadYamlFile <- function(chrPluginFiles, envCall = rlang::caller_env()) {
   return(yaml::read_yaml(chrPluginFiles[file_is_yaml]))
 }
 
-#' Validate Plugin Definition
-#'
-#' @inheritParams shared-params
-#' @returns The validated `lPluginDefinition`.
-#' @keywords internal
-plugin_ValidateDefinition <- function(
-  lPluginDefinition,
-  envCall = rlang::caller_env()
-) {
-  lPluginDefinition <- purrr::keep(lPluginDefinition, rlang::has_length)
-  chrRequiredFields <- c("meta", "shiny")
-  chrOptionalFields <- c("spec", "packages", "required_inputs")
-  CheckHasAllFields(
-    lPluginDefinition,
-    chrRequiredFields,
-    "Plugin definitions",
-    envCall
-  )
-  CheckHasOnlyFields(
-    lPluginDefinition,
-    c(chrRequiredFields, chrOptionalFields),
-    "Plugin definitions",
-    envCall
-  )
-  CheckHasAllFields(
-    lPluginDefinition$meta,
-    "Name",
-    "Plugin definitions",
-    envCall
-  )
-  CheckHasAllFields(
-    lPluginDefinition$shiny,
-    c("UI", "Server"),
-    "Plugin definition shiny sections",
-    envCall
-  )
-  CheckHasOnlyFields(
-    lPluginDefinition$shiny,
-    c("UI", "Server"),
-    "Plugin definition shiny sections",
-    envCall
-  )
-  if (length(lPluginDefinition$packages)) {
-    for (pkg in lPluginDefinition$packages) {
-      CheckHasAllFields(
-        pkg,
-        "name",
-        "Plugin definition package requirements",
-        envCall
-      )
-      CheckHasOnlyFields(
-        pkg,
-        c("name", "remote"),
-        "Plugin definition package requirements",
-        envCall
-      )
-    }
-  }
-  return(lPluginDefinition)
-}
-
 #' Load Plugin Dependencies
 #'
 #' Load the package dependencies of a plugin. This is designed to be used in an
@@ -150,17 +74,16 @@ plugin_ValidateDefinition <- function(
 #'
 #' @inheritParams shared-params
 #'
-#' @returns `lPluginDefinition`, invisibly. This function is called for its side
-#'   effects.
+#' @returns `lPlugin`, invisibly. This function is called for its side effects.
 #' @export
 #'
 #' @examplesIf interactive()
 #' plugin_LoadDependencies(list(packages = list(list(name = "gsm.app"))))
-plugin_LoadDependencies <- function(lPluginDefinition) {
-  for (pkg in lPluginDefinition$packages) {
+plugin_LoadDependencies <- function(lPlugin) {
+  for (pkg in lPlugin$packages) {
     suppressPackageStartupMessages(library(pkg$name, character.only = TRUE))
   }
-  return(invisible(lPluginDefinition))
+  return(invisible(lPlugin))
 }
 
 #' Get Plugin Package Dependency Sources
@@ -183,8 +106,8 @@ plugin_LoadDependencies <- function(lPluginDefinition) {
 #'     list(name = "gsm.core", remote = "Gilead-BioStats/gsm.core")
 #'   ))
 #' )
-plugin_GetDependencySources <- function(lPluginDefinition) {
-  purrr::map_chr(lPluginDefinition$packages, function(pkg) {
+plugin_GetDependencySources <- function(lPlugin) {
+  purrr::map_chr(lPlugin$packages, function(pkg) {
     if (length(pkg$remote)) {
       return(pkg$remote)
     }
@@ -200,16 +123,15 @@ plugin_GetDependencySources <- function(lPluginDefinition) {
 #'
 #' @inheritParams shared-params
 #'
-#' @returns `lPluginDefinition`, invisibly. This function is called for its side
-#'   effects.
+#' @returns `lPlugin`, invisibly. This function is called for its side effects.
 #' @export
-plugin_InstallDependencySources <- function(lPluginDefinition) {
+plugin_InstallDependencySources <- function(lPlugin) {
   # nocov start
   rlang::check_installed("pak", "to install plugin dependencies")
-  chrSources <- plugin_GetDependencySources(lPluginDefinition)
+  chrSources <- plugin_GetDependencySources(lPlugin)
   for (pkg in chrSources) {
     pak::pak(pkg)
   }
-  return(invisible(lPluginDefinition))
+  return(invisible(lPlugin))
   # nocov end
 }

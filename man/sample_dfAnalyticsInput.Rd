@@ -5,8 +5,8 @@
 \alias{sample_dfAnalyticsInput}
 \title{Analytics Input Dataset}
 \format{
-A tibble with 2673 rows and
-7 columns:
+A tibble with 7491 rows and
+8 columns:
 \describe{
 \item{MetricID}{metric identifier}
 \item{SubjectID}{unique subject identifier}
@@ -15,6 +15,7 @@ A tibble with 2673 rows and
 \item{Numerator}{numerator for this individual}
 \item{Denominator}{denominator for this individual}
 \item{Metric}{calculated rate/metric value}
+\item{SnapshotDate}{The snapshot with which this data is associated. We currently only use the most recent SnapshotDate}
 }
 }
 \source{

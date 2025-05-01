@@ -10,7 +10,7 @@
             <div class="card bslib-card bslib-mb-spacing html-fill-item html-fill-container" data-bslib-card-init data-require-bs-caller="card()" data-require-bs-version="5">
               <div class="card-header">
                 <h5>Study Information</h5>
-                <h6 class="card-subtitle mb-2 text-muted">Snapshot Date: 2019-11-01</h6>
+                <h6 class="card-subtitle mb-2 text-muted">Snapshot Date: 2018-01-01</h6>
               </div>
               <div class="card-body bslib-gap-spacing html-fill-item html-fill-container" style="margin-top:auto;margin-bottom:auto;flex:1 1 auto;">
                 <label class="toggle">
@@ -479,9 +479,9 @@
           <tr><td headers="Description" class="gt_row gt_left">Status</td>
       <td headers="Value" class="gt_row gt_right">Active</td></tr>
           <tr><td headers="Description" class="gt_row gt_left">Site Activation</td>
-      <td headers="Value" class="gt_row gt_right">176 / 190 (92.6%)</td></tr>
+      <td headers="Value" class="gt_row gt_right">35 / 190 (18.4%)</td></tr>
           <tr><td headers="Description" class="gt_row gt_left">Participant Enrollment</td>
-      <td headers="Value" class="gt_row gt_right">1301 / 1300 (100.1%)</td></tr>
+      <td headers="Value" class="gt_row gt_right">227 / 1300 (17.5%)</td></tr>
         </tbody>
         
         
@@ -973,17 +973,17 @@
           <tr><td headers="Description" class="gt_row gt_left">Participant Target</td>
       <td headers="Value" class="gt_row gt_right">1300</td></tr>
           <tr><td headers="Description" class="gt_row gt_left">Participants Enrolled</td>
-      <td headers="Value" class="gt_row gt_right">1301</td></tr>
+      <td headers="Value" class="gt_row gt_right">227</td></tr>
           <tr><td headers="Description" class="gt_row gt_left">Sites Enrolled</td>
-      <td headers="Value" class="gt_row gt_right">176</td></tr>
+      <td headers="Value" class="gt_row gt_right">35</td></tr>
           <tr><td headers="Description" class="gt_row gt_left">Percent Sites Activated</td>
-      <td headers="Value" class="gt_row gt_right">92.6</td></tr>
+      <td headers="Value" class="gt_row gt_right">18.4</td></tr>
           <tr><td headers="Description" class="gt_row gt_left">Site Activation</td>
-      <td headers="Value" class="gt_row gt_right">176 / 190 (92.6%)</td></tr>
+      <td headers="Value" class="gt_row gt_right">35 / 190 (18.4%)</td></tr>
           <tr><td headers="Description" class="gt_row gt_left">Percent Participants Enrolled</td>
-      <td headers="Value" class="gt_row gt_right">100.1</td></tr>
+      <td headers="Value" class="gt_row gt_right">17.5</td></tr>
           <tr><td headers="Description" class="gt_row gt_left">Participant Enrollment</td>
-      <td headers="Value" class="gt_row gt_right">1301 / 1300 (100.1%)</td></tr>
+      <td headers="Value" class="gt_row gt_right">227 / 1300 (17.5%)</td></tr>
         </tbody>
         
         
@@ -1011,8 +1011,8 @@
                     <div class="card bslib-card bslib-mb-spacing bslib-card-input html-fill-item html-fill-container" data-bslib-card-init data-full-screen="false" data-require-bs-caller="card()" data-require-bs-version="5" id="study_overview-table">
                       <div class="card-body bslib-gap-spacing html-fill-item html-fill-container" style="margin-top:auto;margin-bottom:auto;flex:1 1 auto;">
                         <div id="study_overview-table-kri_counts">
-                          <a class="action-button badge rounded-pill toggle-pill text-dark fs-6 p-2" href="#" id="study_overview-table-kri_counts-red-toggle_pill" style="background-color: #FF5859; opacity: 0.5;">3 Red KRIs</a>
-                          <a class="action-button badge rounded-pill toggle-pill text-dark fs-6 p-2" href="#" id="study_overview-table-kri_counts-amber-toggle_pill" style="background-color: #FEAA02; opacity: 0.5;">3 Amber KRIs</a>
+                          <a class="action-button badge rounded-pill toggle-pill text-dark fs-6 p-2" href="#" id="study_overview-table-kri_counts-red-toggle_pill" style="background-color: #FF5859; opacity: 0.5;">1 Red KRIs</a>
+                          <a class="action-button badge rounded-pill toggle-pill text-dark fs-6 p-2" href="#" id="study_overview-table-kri_counts-amber-toggle_pill" style="background-color: #FEAA02; opacity: 0.5;">4 Amber KRIs</a>
                         </div>
                         <div class="row gy-2">
                           <div class="Widget_GroupOverview html-widget html-widget-output shiny-report-size html-fill-item" id="study_overview-table-group_overview" style="width:100%;height:100%;"></div>

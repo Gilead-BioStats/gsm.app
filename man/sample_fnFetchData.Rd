@@ -8,7 +8,8 @@ sample_fnFetchData(
   strDomainID = c("AE", "ENROLL", "LB", "PD", "SDRGCOMP", "STUDCOMP", "SUBJ", "DATACHG",
     "DATAENT", "QUERY"),
   strSiteID = NULL,
-  strSubjectID = NULL
+  strSubjectID = NULL,
+  dSnapshotDate = NULL
 )
 }
 \arguments{
@@ -18,6 +19,8 @@ sample_fnFetchData(
 study.}
 
 \item{strSubjectID}{\code{character} A \code{SubjectID} of an individual participant.}
+
+\item{dSnapshotDate}{\code{Date} The date of a data snapshot.}
 }
 \value{
 A data.frame with information about the specified domain.

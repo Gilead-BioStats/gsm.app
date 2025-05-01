@@ -15,8 +15,16 @@ srvr_IngestReactive(
 \item{l_rctvDomains}{\code{list} A named list of \code{\link[shiny:reactive]{shiny::reactive()}} objects, each
 of which returns a domain dataframe.}
 
+\item{lSpec}{\code{list} A named list defining the data domains required by the
+plugin, where the names are the names of the domains and the elements are
+column definitions.}
+
 \item{l_rctvDomainHashes}{\code{list} A named list of \code{\link[shiny:reactive]{shiny::reactive()}} objects,
 each of which returns the \code{\link[rlang:hash]{rlang::hash()}} of a domain dataframe.}
+
+\item{rctv_bPluginReady}{\verb{reactive Boolean} A \code{\link[shiny:reactive]{shiny::reactive()}} object that
+returns \code{TRUE} if all inputs required by the plugin are non-empty, and
+\code{FALSE} if one or more inputs are not ready.}
 }
 \value{
 A named list of ingested data.

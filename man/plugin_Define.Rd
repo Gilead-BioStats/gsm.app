@@ -10,6 +10,7 @@ plugin_Define(
   fnShinyUI,
   fnShinyServer,
   ...,
+  lWorkflows = list(),
   chrRequiredInputs = character(),
   envCall = rlang::caller_env()
 )
@@ -28,10 +29,17 @@ plugin, or the name of such a function in the current session.}
 \item{fnShinyServer}{\verb{function or character} A shiny module server function
 for the plugin, or the name of such a function in the current session.}
 
-\item{...}{These dots are for future extensions and must be empty.}
+\item{...}{Additional named arguments passed on to \code{fnShinyUI} and/or
+\code{fnShinyServer} by name.}
+
+\item{lWorkflows}{\code{list} An optional named list of workflows to run in order
+to translate app domain data into the format required by the plugin (as
+defined in the plugin \code{spec}). These workflows are ran before the plugin's
+\code{spec} is applied, and are meant to serve as a bridge between your domain
+data and the plugin's expected domains.}
 
 \item{chrRequiredInputs}{\code{character} An optional vector of any inputs
-("Metric", "Site", "Participant", or "Domain") that must have a non-empty
+("metric", "site", "participant", or "domain") that must have a non-empty
 value before the plugin can load. "None" and "All" count as "empty" for
 this check. If the user has not set a value for that input, the app will
 display a placeholder instructing the user to make a selection.}
@@ -42,8 +50,8 @@ as the default, or passed from the calling function if the calling function
 also has an \code{envCall} argument.}
 }
 \value{
-A \code{list} with elements \code{meta}, \code{shiny}, \code{domains}, and (optionally)
-\code{required_inputs}.
+A \code{list} with elements \code{meta}, \code{shiny}, \code{spec}, \code{workflows},
+\code{config}, \code{required_inputs}, and \code{packages}.
 }
 \description{
 Define a plugin

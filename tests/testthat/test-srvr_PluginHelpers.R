@@ -21,7 +21,7 @@ test_that("srvr_CompileUnsetInputs compiles unset inputs", {
   )
   expect_equal(isolate(rctv_chrMissing()), "site")
 
-  l_rctvInputs$rctv_dSnapshotDate("2019-11-01")
+  l_rctvInputs$rctv_dSnapshotDate("2020-01-01")
   expect_equal(isolate(rctv_chrMissing()), "site")
 
   l_rctvInputs$rctv_strSiteID("1234")

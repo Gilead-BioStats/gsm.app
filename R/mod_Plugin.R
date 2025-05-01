@@ -95,6 +95,16 @@ mod_Plugin_Server <- function(
       )
     )
 
+    # Allow for our formal naming convention in addition to the "base" domain
+    # names.
+    l_rctvPluginData <- c(
+      l_rctvPluginData,
+      rlang::set_names(
+        l_rctvPluginData,
+        paste0("rctv_df", names(l_rctvPluginData))
+      )
+    )
+
     # Other args ----
 
     lOtherArgs <- c(
@@ -114,7 +124,7 @@ mod_Plugin_Server <- function(
     rlang::inject(
       fnServer(
         "plugin",
-        !!!l_rctvPluginData,
+        !!!l_rctvPluginData[intersect(names(l_rctvPluginData), chrServerArgs)],
         !!!lOtherArgs[intersect(names(lOtherArgs), chrServerArgs)]
       )
     )

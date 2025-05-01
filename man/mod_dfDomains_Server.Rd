@@ -16,11 +16,11 @@ mod_dfDomains_Server(
 \item{id}{\code{character} The id for this element.}
 
 \item{fnFetchData}{\code{function} A function that takes a \code{strDomainID} argument
-and optional \code{strSiteID} and \code{strSubjectID} and returns a data.frame. See
-\code{\link[=sample_fnFetchData]{sample_fnFetchData()}} for an example. The returned data.frame contains
-information about the named domain. If the function throws an error, the
-error is elevated to the user, so you can use errors to pass requirements
-through to the user.}
+and optional \code{strSiteID}, \code{strSubjectID}, and/or \code{dSnapshotDate}, and
+returns a data.frame. See \code{\link[=sample_fnFetchData]{sample_fnFetchData()}} for an example. The
+returned data.frame contains information about the named domain. If the
+function throws an error, the error is elevated to the user, so you can use
+errors to pass requirements through to the user.}
 
 \item{chrDomains}{\code{character} A (named) vector of domains to include in the
 app. The values of the vector will be used as labels, and the names will be
