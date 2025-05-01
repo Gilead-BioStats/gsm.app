@@ -20,7 +20,9 @@
 <url><loc>https://gilead-biostats.github.io/gsm.app/dev/reference/ColorScheme.html</loc></url>
 <url><loc>https://gilead-biostats.github.io/gsm.app/dev/reference/ExtractAppTitle.html</loc></url>
 <url><loc>https://gilead-biostats.github.io/gsm.app/dev/reference/ExtractFieldName.html</loc></url>
+<url><loc>https://gilead-biostats.github.io/gsm.app/dev/reference/FilterBefore.html</loc></url>
 <url><loc>https://gilead-biostats.github.io/gsm.app/dev/reference/FilterBy.html</loc></url>
+<url><loc>https://gilead-biostats.github.io/gsm.app/dev/reference/FilterByLatestIfPresent.html</loc></url>
 <url><loc>https://gilead-biostats.github.io/gsm.app/dev/reference/FilterbyGroupID.html</loc></url>
 <url><loc>https://gilead-biostats.github.io/gsm.app/dev/reference/FilterbyMetricID.html</loc></url>
 <url><loc>https://gilead-biostats.github.io/gsm.app/dev/reference/FinalWorkflowOutputName.html</loc></url>
@@ -117,10 +119,14 @@
 <url><loc>https://gilead-biostats.github.io/gsm.app/dev/reference/plugin_GetDependencySources.html</loc></url>
 <url><loc>https://gilead-biostats.github.io/gsm.app/dev/reference/plugin_InstallDependencySources.html</loc></url>
 <url><loc>https://gilead-biostats.github.io/gsm.app/dev/reference/plugin_LoadDependencies.html</loc></url>
+<url><loc>https://gilead-biostats.github.io/gsm.app/dev/reference/plugin_Prepare.html</loc></url>
 <url><loc>https://gilead-biostats.github.io/gsm.app/dev/reference/plugin_Read.html</loc></url>
-<url><loc>https://gilead-biostats.github.io/gsm.app/dev/reference/plugin_ReadYaml.html</loc></url>
 <url><loc>https://gilead-biostats.github.io/gsm.app/dev/reference/plugin_ReadYamlFile.html</loc></url>
 <url><loc>https://gilead-biostats.github.io/gsm.app/dev/reference/plugin_ValidateDefinition.html</loc></url>
+<url><loc>https://gilead-biostats.github.io/gsm.app/dev/reference/plugin_ValidateMeta.html</loc></url>
+<url><loc>https://gilead-biostats.github.io/gsm.app/dev/reference/plugin_ValidatePackages.html</loc></url>
+<url><loc>https://gilead-biostats.github.io/gsm.app/dev/reference/plugin_ValidateReqs.html</loc></url>
+<url><loc>https://gilead-biostats.github.io/gsm.app/dev/reference/plugin_ValidateShiny.html</loc></url>
 <url><loc>https://gilead-biostats.github.io/gsm.app/dev/reference/run_PluginUI.html</loc></url>
 <url><loc>https://gilead-biostats.github.io/gsm.app/dev/reference/run_gsm_app.html</loc></url>
 <url><loc>https://gilead-biostats.github.io/gsm.app/dev/reference/sample_dfAnalyticsInput.html</loc></url>
