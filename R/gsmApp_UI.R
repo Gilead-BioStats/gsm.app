@@ -33,7 +33,7 @@ gsmApp_UI <- function(
     ),
     bslib::nav_spacer(),
     !!!out_NavbarExtras(
-      sort(unique(dfGroups$GroupID[dfGroups$GroupLevel == "Site"]))
+      dfGroups
     ),
     header = tagList(
       favawesome::fav(strFavicon, fill = strFaviconColor),

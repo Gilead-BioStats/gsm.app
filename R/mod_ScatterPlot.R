@@ -35,7 +35,7 @@ mod_ScatterPlot_Server <- function(
     rctv_lMetric,
     dfGroups,
     rctv_dfBounds,
-    rctv_strSiteID
+    rctv_strGroupID
 ) {
   mod_WidgetPlot_Server(
     id,
@@ -45,7 +45,7 @@ mod_ScatterPlot_Server <- function(
     rctv_lMetric = rctv_lMetric,
     dfGroups = dfGroups,
     rctv_dfBounds = rctv_dfBounds,
-    rctv_strSiteID = rctv_strSiteID
+    rctv_strGroupID = rctv_strGroupID
   )
 }
 

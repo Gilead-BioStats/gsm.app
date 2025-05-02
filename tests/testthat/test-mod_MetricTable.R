@@ -22,7 +22,7 @@ test_that("mod_MetricTable_Server starts as expected", {
       id = "testingModMetricTable",
       rctv_dfResults = reactive(dfResults),
       dfGroups = dfGroups,
-      rctv_strSiteID = reactive("All")
+      rctv_strGroupID = reactive("All")
     ),
     {
       test_result <- output$`gt-table`
@@ -55,7 +55,7 @@ test_that("mod_MetricTable_Server works with no flags", {
       id = "testingModMetricTable",
       rctv_dfResults = reactive(dfResults),
       dfGroups = dfGroups,
-      rctv_strSiteID = reactive("All")
+      rctv_strGroupID = reactive("All")
     ),
     {
       test_result <- output$`gt-table`

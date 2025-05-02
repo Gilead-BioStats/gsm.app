@@ -30,11 +30,11 @@
 #' @param chrRequiredFields `character` A vector of names of required fields in
 #'   an object.
 #' @param chrRequiredInputs `character` An optional vector of any inputs
-#'   ("metric", "site", "participant", or "domain") that must have a non-empty
+#'   ("metric", "group", "participant", or "domain") that must have a non-empty
 #'   value before the plugin can load. "None" and "All" count as "empty" for
 #'   this check. If the user has not set a value for that input, the app will
 #'   display a placeholder instructing the user to make a selection.
-#' @param chrSites `character` A vector of sites available in the study.
+#' @param chrGroups `character` A vector of groups available in the study.
 #' @param chrValues `character` A vector of values to associate with a vector of
 #'   labels.
 #' @param dfAnalyticsInput `data.frame` Participant-level metric data.
@@ -47,7 +47,6 @@
 #' @param dfParticipantGroups `data.frame` Unique `SubjectID` and `GroupID`
 #'   combos from `dfAnalyticsInput`.
 #' @param dfResults `data.frame` A stacked summary of analysis pipeline output.
-#'   This will be filtered to cases where `GroupLevel == "Site"`.
 #' @param dSnapshotDate `Date` The date of a data snapshot.
 #' @param envCall `environment` The environment from which this function was
 #'   called, for use in better error messages. This value should usually be left
@@ -57,7 +56,7 @@
 #'   in the message or widget are defined. You almost definitely want to leave
 #'   this as the default value.
 #' @param fnFetchData `function` A function that takes a `strDomainID` argument
-#'   and optional `strSiteID`, `strSubjectID`, and/or `dSnapshotDate`, and
+#'   and optional `strGroupID`, `strSubjectID`, and/or `dSnapshotDate`, and
 #'   returns a data.frame. See [sample_fnFetchData()] for an example. The
 #'   returned data.frame contains information about the named domain. If the
 #'   function throws an error, the error is elevated to the user, so you can use
@@ -75,8 +74,8 @@
 #'   function.
 #' @param id `character` The id for this element.
 #' @param intKRIColorCount `integer` A named vector of counts by color.
-#' @param intRed `integer` The number of sites with at least one red flag.
-#' @param intAmber `integer` The number of sites with at least one amber flag.
+#' @param intRed `integer` The number of groups with at least one red flag.
+#' @param intAmber `integer` The number of groups with at least one amber flag.
 #' @param lDataModel `list` Named list of the standard gsm dataframes
 #'   (`dfAnalyticsInput`, `dfBounds`, `dfGroups`, `dfMetrics`, and `dfResults`).
 #' @param lMetric `list` Named list of data describing a single metric, as well
@@ -137,9 +136,9 @@
 #' @param rctv_strName `reactive character` A [shiny::reactive()] object that
 #'   returns the name of an object, such as a particular dataframe in a named
 #'   list.
-#' @param rctv_strSiteID `reactive character` A [shiny::reactiveVal()] object
-#'   that returns the `GroupID` of the selected site, and can be used to update
-#'   the selected site.
+#' @param rctv_strGroupID `reactive character` A [shiny::reactiveVal()] object
+#'   that returns the `GroupID` of the selected group (usually site), and can be
+#'   used to update which group is selected.
 #' @param rctv_strSubjectID `reactive character` A [shiny::reactive()] object
 #'   that returns the `SubjectID` of the selected participant.
 #' @param rctv_strValue `reactive character` A [shiny::reactive()] object that
@@ -185,15 +184,15 @@
 #' - `"amber"`: Groups with 1+ amber flag.
 #' @param strInputID `character` An ID to use for the Shiny input created by
 #'   this module or used by this JavaScript.
-#' @param strInputName `character` The name of an input. One of `"site"`,
+#' @param strInputName `character` The name of an input. One of `"group"`,
 #'   `"participant"`, or `"domain"`.
 #' @param strLabel `character` The label of a field.
 #' @param strMetricID `character` A `MetricID` to focus on.
 #' @param strOutcome `character` Outcome variable. Default: `"Score"`.
 #' @param strPlotTitle `character` A title for a plot, usually the name of a
 #'   metric.
-#' @param strSiteID `character` A `GroupID` of an individual site within a
-#'   study.
+#' @param strGroupID `character` A `GroupID` of an individual site or other
+#'   group within a study.
 #' @param strSubjectID `character` A `SubjectID` of an individual participant.
 #' @param strTargetTab `character` The tab to switch to.
 #' @param strText `character` Text to display.

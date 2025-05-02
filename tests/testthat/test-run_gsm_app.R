@@ -57,12 +57,12 @@ test_that("run_gsm_app populates Study Overview", {
   app$wait_for_idle()
   app$expect_values(
     export = TRUE,
-    name = "plots-ae-site",
+    name = "plots-ae-group",
     screenshot_args = list(selector = "#metric_details-scatter_plot")
   )
 
-  # Set site via drop-down.
-  app$set_inputs(site = "0X001")
+  # Set group via drop-down.
+  app$set_inputs(`group-group` = "0X001")
   app$wait_for_idle()
   app$set_inputs(primary_nav_bar = "Study Overview")
   app$wait_for_js(
@@ -76,7 +76,7 @@ test_that("run_gsm_app populates Study Overview", {
   app$wait_for_idle()
   app$expect_values(
     export = TRUE,
-    name = "plots-ae-site-dropdown",
+    name = "plots-ae-group-dropdown",
     screenshot_args = list(selector = "#study_overview-scatter")
   )
 
@@ -169,16 +169,16 @@ test_that("run_gsm_app populates Metric Details", {
     screenshot_args = list(selector = "div[data-value='Metric Details'")
   )
 
-  # Choose a site in the drop-down.
-  app$set_inputs(site = "0X001")
+  # Choose a group in the drop-down.
+  app$set_inputs(`group-group` = "0X001")
   app$wait_for_idle()
   app$expect_values(
     export = TRUE,
-    name = "analysis-site",
+    name = "analysis-group",
     screenshot_args = list(selector = ".active .tabbable")
   )
 
-  # Click back through to make sure all have the site selected. Alternate
+  # Click back through to make sure all have the group selected. Alternate
   # between 0X001 and 0X159 as we go.
   app$set_inputs(`metric_details-selected_tab` = "Time Series")
   app$wait_for_js(
@@ -188,7 +188,7 @@ test_that("run_gsm_app populates Metric Details", {
   app$wait_for_idle()
   app$expect_values(
     export = TRUE,
-    name = "time-site",
+    name = "time-group",
     screenshot_args = list(selector = ".active .tabbable")
   )
   app$run_js("clickWidgetPlotGroup('metric_details-time_series', '0X001');")
@@ -199,7 +199,7 @@ test_that("run_gsm_app populates Metric Details", {
   app$wait_for_idle()
   app$expect_values(
     export = TRUE,
-    name = "time-site_click",
+    name = "time-group_click",
     screenshot_args = list(selector = ".active .tabbable")
   )
 
@@ -211,7 +211,7 @@ test_that("run_gsm_app populates Metric Details", {
   app$wait_for_idle()
   app$expect_values(
     export = TRUE,
-    name = "bar_score-site",
+    name = "bar_score-group",
     screenshot_args = list(selector = ".active .tabbable")
   )
   app$run_js("clickWidgetPlotGroup('metric_details-bar_chart_score', '0X159');")
@@ -222,7 +222,7 @@ test_that("run_gsm_app populates Metric Details", {
   app$wait_for_idle()
   app$expect_values(
     export = TRUE,
-    name = "bar_score-site_click",
+    name = "bar_score-group_click",
     screenshot_args = list(selector = ".active .tabbable")
   )
 
@@ -234,7 +234,7 @@ test_that("run_gsm_app populates Metric Details", {
   app$wait_for_idle()
   app$expect_values(
     export = TRUE,
-    name = "bar_value-site",
+    name = "bar_value-group",
     screenshot_args = list(selector = ".active .tabbable")
   )
   app$run_js("clickWidgetPlotGroup('metric_details-bar_chart_metric', '0X001');")
@@ -245,7 +245,7 @@ test_that("run_gsm_app populates Metric Details", {
   app$wait_for_idle()
   app$expect_values(
     export = TRUE,
-    name = "bar_value-site_click",
+    name = "bar_value-group_click",
     screenshot_args = list(selector = ".active .tabbable")
   )
 
@@ -257,7 +257,7 @@ test_that("run_gsm_app populates Metric Details", {
   app$wait_for_idle()
   app$expect_values(
     export = TRUE,
-    name = "scatter-site",
+    name = "scatter-group",
     screenshot_args = list(selector = ".active .tabbable")
   )
   app$run_js("clickWidgetPlotGroup('metric_details-scatter_plot', '0X159');")
@@ -268,7 +268,7 @@ test_that("run_gsm_app populates Metric Details", {
   app$wait_for_idle()
   app$expect_values(
     export = TRUE,
-    name = "scatter-site_circle",
+    name = "scatter-group_circle",
     screenshot_args = list(selector = ".active .tabbable")
   )
   app$stop()
@@ -336,7 +336,7 @@ test_that("run_gsm_app display Domain error", {
   app$wait_for_value(input = "participant", timeout = 2000)
 
   # Trigger the error.
-  app$set_inputs(site = "0X013")
+  app$set_inputs(`group-group` = "0X013")
   app$wait_for_idle()
   app$set_inputs(primary_nav_bar = "Domain Details")
   app$wait_for_idle()

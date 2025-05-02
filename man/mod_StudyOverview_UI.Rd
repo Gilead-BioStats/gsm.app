@@ -11,8 +11,7 @@ mod_StudyOverview_UI(id, dfGroups, dfResults, chrMetrics)
 
 \item{dfGroups}{\code{data.frame} Group-level metadata dictionary.}
 
-\item{dfResults}{\code{data.frame} A stacked summary of analysis pipeline output.
-This will be filtered to cases where \code{GroupLevel == "Site"}.}
+\item{dfResults}{\code{data.frame} A stacked summary of analysis pipeline output.}
 
 \item{chrMetrics}{\code{character} A named vector of MetricIDs, where the names
 are the full Metric.}

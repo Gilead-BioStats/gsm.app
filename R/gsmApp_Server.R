@@ -49,7 +49,8 @@ gsmApp_Server <- function(
 
     ## reactiveVals ----
     rctv_strPrimaryNavBar <- reactiveVal()
-    rctv_strSiteID <- reactiveVal()
+    rctv_strGroupLevel <- reactiveVal()
+    rctv_strGroupID <- reactiveVal()
     rctv_strSubjectID <- reactiveVal("All")
     rctv_strMetricID <- reactiveVal(dfMetrics$MetricID[[1]])
     rctv_strDomainID <- reactiveVal(names(chrDomains)[[1]])
@@ -59,16 +60,23 @@ gsmApp_Server <- function(
     ## Primary Inputs ----
     ##
     ## Inputs update via reactiveVals.
-    observe({rctv_strSiteID(input$site)})
-    srvr_SyncVirtualSelectInput("site", rctv_strSiteID, session)
 
+    ### Groups ----
+    mod_GroupInput_Server(
+      "group",
+      dfGroups,
+      rctv_strGroupID,
+      rctv_strGroupLevel
+    )
+
+    ### Tabs ----
     observe({rctv_strPrimaryNavBar(input$primary_nav_bar)})
     # TODO: Sync tab in response to this reactive.
 
     ### Participants ----
     rctv_chrParticipantIDs <- srvr_rctv_chrParticipantIDs(
       dfAnalyticsInput,
-      rctv_strSiteID
+      rctv_strGroupID
     )
 
     observe({
@@ -96,14 +104,15 @@ gsmApp_Server <- function(
       "l_rctv_dfDomains",
       fnFetchData,
       chrDomains,
-      rctv_strSiteID,
+      rctv_strGroupID,
+      rctv_strGroupLevel,
       rctv_strSubjectID
     )
     ## Also produce a reusable hash of each domain, for cleaner caching.
     l_rctvDomainHashes <- mod_DomainHashes_Server(
       "l_rctv_strDomainHashes",
       l_rctvDomains,
-      rctv_strSiteID,
+      rctv_strGroupID,
       rctv_strSubjectID
     )
 
@@ -116,8 +125,8 @@ gsmApp_Server <- function(
       dfGroups = dfGroups,
       dfMetrics = dfMetrics,
       dfBounds = dfBounds,
-      rctv_strSiteID = rctv_strSiteID,
-      rctv_strMetricID
+      rctv_strGroupID = rctv_strGroupID,
+      rctv_strMetricID = rctv_strMetricID
     )
 
     ## Metric Details ----
@@ -129,7 +138,8 @@ gsmApp_Server <- function(
       dfResults = dfResults,
       rctv_strMetricID = rctv_strMetricID,
       rctv_strPrimaryNavBar = rctv_strPrimaryNavBar,
-      rctv_strSiteID = rctv_strSiteID,
+      rctv_strGroupID = rctv_strGroupID,
+      rctv_strGroupLevel = rctv_strGroupLevel,
       rctv_strSubjectID = rctv_strSubjectID,
       input = input,
       output = output,
@@ -139,20 +149,20 @@ gsmApp_Server <- function(
     ## Sync participant dropdown filter ----
     ##
     ## Revisit as app becomes fully modularized.
-    rctv_LastSiteFilter <- reactiveVal("unfiltered")
+    rctv_LastGroupFilter <- reactiveVal("unfiltered")
     observe({
       req(rctv_strSubjectID())
       req(rctv_chrParticipantIDs())
-      req(rctv_LastSiteFilter())
+      req(rctv_LastGroupFilter())
       selected <- "All"
       if (rctv_strSubjectID() %in% rctv_chrParticipantIDs()) {
         selected <- rctv_strSubjectID()
       }
       if (
         selected != input$participant ||
-          rctv_LastSiteFilter() != input$site
+          rctv_LastGroupFilter() != rctv_strGroupID()
       ) {
-        rctv_LastSiteFilter(input$site)
+        rctv_LastGroupFilter(rctv_strGroupID())
         if (selected == "All") {
           # This double-update prevents the old option from showing in the list
           # erroneously.
@@ -170,7 +180,7 @@ gsmApp_Server <- function(
         )
       }
     }) %>%
-      bindEvent(rctv_strSubjectID(), input$site)
+      bindEvent(rctv_strSubjectID(), rctv_strGroupID())
 
     ## Domain Details ----
     srvr_SyncTab(
@@ -209,7 +219,7 @@ gsmApp_Server <- function(
       l_rctvDomainHashes = l_rctvDomainHashes,
       rctv_dSnapshotDate = rctv_dSnapshotDate,
       rctv_strMetricID = rctv_strMetricID,
-      rctv_strSiteID = rctv_strSiteID,
+      rctv_strGroupID = rctv_strGroupID,
       rctv_strSubjectID = rctv_strSubjectID,
       rctv_strDomainID = rctv_strDomainID
     )

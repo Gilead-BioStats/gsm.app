@@ -51,7 +51,7 @@ mod_MetricDetails_Server <- function(
     dfGroups,
     dfBounds,
     rctv_lMetric,
-    rctv_strSiteID,
+    rctv_strGroupID,
     rctv_strMetricID
 ) {
   moduleServer(id, function(input, output, session) {
@@ -92,7 +92,7 @@ mod_MetricDetails_Server <- function(
       rctv_lMetric = rctv_lMetric,
       dfGroups = dfGroups,
       rctv_dfBounds = rctv_dfBounds_Latest,
-      rctv_strSiteID = rctv_strSiteID
+      rctv_strGroupID = rctv_strGroupID
     )
 
     mod_BarChart_Server(
@@ -101,7 +101,7 @@ mod_MetricDetails_Server <- function(
       rctv_lMetric = rctv_lMetric,
       dfGroups = dfGroups,
       strOutcome = "Metric",
-      rctv_strSiteID = rctv_strSiteID
+      rctv_strGroupID = rctv_strGroupID
     )
 
     mod_BarChart_Server(
@@ -111,7 +111,7 @@ mod_MetricDetails_Server <- function(
       dfGroups = dfGroups,
       strOutcome = "Score",
       rctv_dfBounds = rctv_dfBounds_Latest,
-      rctv_strSiteID = rctv_strSiteID
+      rctv_strGroupID = rctv_strGroupID
     )
 
     mod_TimeSeries_Server(
@@ -121,14 +121,14 @@ mod_MetricDetails_Server <- function(
       dfGroups = dfGroups,
       strOutcome = "Score",
       rctv_dfBounds = rctv_dfBounds_byMetricID,
-      rctv_strSiteID = rctv_strSiteID
+      rctv_strGroupID = rctv_strGroupID
     )
 
     mod_MetricTable_Server(
       "analysis_output",
       rctv_dfResults = rctv_dfResults_Latest,
       dfGroups = dfGroups,
-      rctv_strSiteID = rctv_strSiteID
+      rctv_strGroupID = rctv_strGroupID
     )
   })
 }

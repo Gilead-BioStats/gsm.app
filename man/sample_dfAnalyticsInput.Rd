@@ -26,7 +26,7 @@ Generated from data in the \code{clindata} package, using the
 sample_dfAnalyticsInput
 }
 \description{
-Summary metric data for the "Site Subjects" module on the "Metric Details"
+Summary metric data for the "Group Subjects" module on the "Metric Details"
 tab.
 }
 \seealso{

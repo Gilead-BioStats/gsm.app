@@ -27,8 +27,7 @@ that domain.}
 \item{dfMetrics}{\code{data.frame} Metric-specific metadata for use in charts and
 reporting.}
 
-\item{dfResults}{\code{data.frame} A stacked summary of analysis pipeline output.
-This will be filtered to cases where \code{GroupLevel == "Site"}.}
+\item{dfResults}{\code{data.frame} A stacked summary of analysis pipeline output.}
 
 \item{lPlugins}{\code{list} Optional list of plugins to include in the app.}
 

@@ -78,7 +78,7 @@ mod_WidgetPlot_Server <- function(
     rctv_lMetric,
     dfGroups,
     rctv_dfBounds,
-    rctv_strSiteID,
+    rctv_strGroupID,
     ...
 ) {
   moduleServer(id, function(input, output, session) {
@@ -105,7 +105,7 @@ mod_WidgetPlot_Server <- function(
     observe({
       input_val <- input$plot
       if (!is.null(input_val) && input_val != "") {
-        rctv_strSiteID(input_val)
+        rctv_strGroupID(input_val)
       }
     })
   })

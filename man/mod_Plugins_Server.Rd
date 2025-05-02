@@ -16,7 +16,7 @@ mod_Plugins_Server(
   l_rctvDomainHashes,
   rctv_dSnapshotDate,
   rctv_strMetricID,
-  rctv_strSiteID,
+  rctv_strGroupID,
   rctv_strSubjectID,
   rctv_strDomainID
 )
@@ -37,8 +37,7 @@ values for reporting.}
 \item{dfMetrics}{\code{data.frame} Metric-specific metadata for use in charts and
 reporting.}
 
-\item{dfResults}{\code{data.frame} A stacked summary of analysis pipeline output.
-This will be filtered to cases where \code{GroupLevel == "Site"}.}
+\item{dfResults}{\code{data.frame} A stacked summary of analysis pipeline output.}
 
 \item{l_rctvDomains}{\code{list} A named list of \code{\link[shiny:reactive]{shiny::reactive()}} objects, each
 of which returns a domain dataframe.}
@@ -52,9 +51,9 @@ returns the date of a data snapshot.}
 \item{rctv_strMetricID}{\verb{reactive character} A \code{\link[shiny:reactive]{shiny::reactive()}} object
 that returns the selected \code{MetricID}.}
 
-\item{rctv_strSiteID}{\verb{reactive character} A \code{\link[shiny:reactiveVal]{shiny::reactiveVal()}} object
-that returns the \code{GroupID} of the selected site, and can be used to update
-the selected site.}
+\item{rctv_strGroupID}{\verb{reactive character} A \code{\link[shiny:reactiveVal]{shiny::reactiveVal()}} object
+that returns the \code{GroupID} of the selected group (usually site), and can be
+used to update which group is selected.}
 
 \item{rctv_strSubjectID}{\verb{reactive character} A \code{\link[shiny:reactive]{shiny::reactive()}} object
 that returns the \code{SubjectID} of the selected participant.}

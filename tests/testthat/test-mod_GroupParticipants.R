@@ -1,5 +1,5 @@
-test_that("mod_SiteParticipants_UI() creates the expected object", {
-  test_result <- mod_SiteParticipants_UI("myUI")
+test_that("mod_GroupParticipants_UI() creates the expected object", {
+  test_result <- mod_GroupParticipants_UI("myUI")
   expect_s3_class(test_result, c("bslib_fragment", "shiny.tag"))
   class(test_result) <- "shiny.tag"
   expect_cleaned_html({
@@ -7,7 +7,7 @@ test_that("mod_SiteParticipants_UI() creates the expected object", {
   })
 })
 
-test_that("mod_SiteParticipants_Server starts as expected", {
+test_that("mod_GroupParticipants_Server starts as expected", {
   call <- rlang::current_env()
   dfAnalyticsInput <- FilterbyMetricID(
     sample_dfAnalyticsInput,
@@ -16,9 +16,9 @@ test_that("mod_SiteParticipants_Server starts as expected", {
   rctv_strGroupID <- reactiveVal("All")
 
   testServer(
-    mod_SiteParticipants_Server,
+    mod_GroupParticipants_Server,
     args = list(
-      id = "testingModSiteParticipants",
+      id = "testingModGroupParticipants",
       rctv_strGroupID = rctv_strGroupID,
       rctv_strSubjectID = reactive("All"),
       rctv_dfAnalyticsInput = reactive(dfAnalyticsInput),
@@ -55,16 +55,16 @@ test_that("mod_SiteParticipants_Server starts as expected", {
   )
 })
 
-test_that("mod_SiteParticipants_Server returns selected participant", {
+test_that("mod_GroupParticipants_Server returns selected participant", {
   dfAnalyticsInput <- FilterbyMetricID(
     sample_dfAnalyticsInput,
     "Analysis_kri0001"
   )
 
   testServer(
-    mod_SiteParticipants_Server,
+    mod_GroupParticipants_Server,
     args = list(
-      id = "testingModSiteParticipants",
+      id = "testingModGroupParticipants",
       rctv_strGroupID = reactive("All"),
       rctv_strSubjectID = reactive("All"),
       rctv_dfAnalyticsInput = reactive(dfAnalyticsInput),

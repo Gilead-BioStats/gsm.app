@@ -4,7 +4,11 @@
 \alias{input_NavbarExtra}
 \title{Individual input within the right navbar}
 \usage{
-input_NavbarExtra(strInputID, chrChoices = NULL)
+input_NavbarExtra(
+  strInputID,
+  chrChoices = NULL,
+  label = MakeParamLabelsChr(strInputID)
+)
 }
 \arguments{
 \item{strInputID}{\code{character} An ID to use for the Shiny input created by

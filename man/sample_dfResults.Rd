@@ -28,7 +28,7 @@ Generated from data in the \code{clindata} package, using the
 sample_dfResults
 }
 \description{
-Information about the status of each site in the sample data.
+Information about the status of each group in the sample data.
 }
 \seealso{
 Other sample data: 

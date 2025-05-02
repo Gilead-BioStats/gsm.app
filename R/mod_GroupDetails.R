@@ -1,9 +1,9 @@
-#' Site Details UI
+#' Group Details UI
 #'
 #' @inheritParams shared-params
-#' @returns A [bslib::layout_columns()] with site metadata and site participants.
+#' @returns A [bslib::layout_columns()] with group metadata and group participants.
 #' @keywords internal
-mod_SiteDetails_UI <- function(id) {
+mod_GroupDetails_UI <- function(id) {
   ns <- NS(id)
   bslib::layout_columns(
     col_widths = c(5, 7),
@@ -12,35 +12,36 @@ mod_SiteDetails_UI <- function(id) {
       # hide/show cleaner.
       shinyjs::hidden(
         div(
-          id = ns("card_site_metadata_list"),
+          id = ns("card_group_metadata_list"),
           out_Card(
-            "Site Metadata",
-            uiOutput(ns("site_metadata_list")),
-            id = ns("card_site_metadata_list-contents")
+            "Group Metadata",
+            uiOutput(ns("group_metadata_list")),
+            id = ns("card_group_metadata_list-contents")
           )
         )
       ),
       out_Card(
-        "Site Metadata",
-        out_Placeholder("site"),
-        id = ns("card_placeholder_site_metadata_list")
+        "Group Metadata",
+        out_Placeholder("group"),
+        id = ns("card_placeholder_group_metadata_list")
       )
     ),
-    mod_SiteParticipants_UI(ns("participants"))
+    mod_GroupParticipants_UI(ns("participants"))
   )
 }
 
-#' Site Details Server
+#' Group Details Server
 #'
 #' @inheritParams shared-params
 #' @returns A [shiny::reactive()] with the id of the most recently selected
 #'   participant.
 #' @keywords internal
-mod_SiteDetails_Server <- function(
+mod_GroupDetails_Server <- function(
     id,
     dfGroups,
     dfAnalyticsInput,
-    rctv_strSiteID,
+    rctv_strGroupID,
+    rctv_strGroupLevel,
     rctv_strSubjectID,
     rctv_strMetricID,
     rctv_lMetric) {
@@ -57,18 +58,19 @@ mod_SiteDetails_Server <- function(
     }) %>%
       bindCache(rctv_strMetricID())
 
-    rctv_dfAnalyticsInput_byMetric_bySite <- reactive({
+    rctv_dfAnalyticsInput_byMetric_byGroup <- reactive({
       req(rctv_strMetricID())
-      req(rctv_strSiteID())
+      req(rctv_strGroupLevel())
+      req(rctv_strGroupID())
       rctv_dfAnalyticsInput_byMetric() %>%
         dplyr::filter(
-          .data$GroupLevel == "Site",
-          .data$GroupID == rctv_strSiteID()
+          .data$GroupLevel == rctv_strGroupLevel(),
+          .data$GroupID == rctv_strGroupID()
         ) %>%
         dplyr::arrange(dplyr::desc(.data$Metric)) %>%
         dplyr::select(!!!chrTargetColumns)
     }) %>%
-      bindCache(rctv_strMetricID(), rctv_strSiteID())
+      bindCache(rctv_strMetricID(), rctv_strGroupLevel(), rctv_strGroupID())
 
     rctv_lColumnNames <- reactive({
       req(rctv_strMetricID())
@@ -79,49 +81,53 @@ mod_SiteDetails_Server <- function(
     }) %>%
       bindCache(rctv_strMetricID())
 
-    dfSitesAll <- dfGroups[dfGroups$GroupLevel == "Site", ]
-    rctv_lSite <- reactive({
-      req(rctv_strSiteID())
-      target_rows <- dfSitesAll$GroupID == rctv_strSiteID()
+    rctv_dfGroups_byGroupLevel <- reactive({
+      req(rctv_strGroupLevel())
+      dfGroups[dfGroups$GroupLevel == rctv_strGroupLevel(), ]
+    }) %>%
+      bindCache(rctv_strGroupLevel())
+    rctv_lGroup <- reactive({
+      dfGroups <- rctv_dfGroups_byGroupLevel()
+      req(rctv_strGroupID())
+      target_rows <- dfGroups$GroupID == rctv_strGroupID()
       rlang::set_names(
-        dfSitesAll$Value[target_rows],
-        MakeParamLabelsChr(
-          dfSitesAll$Param[target_rows]
-        )
+        dfGroups$Value[target_rows],
+        MakeParamLabelsChr(dfGroups$Param[target_rows])
       )
     }) %>%
-      bindCache(rctv_strSiteID())
+      bindCache(rctv_strGroupID())
 
     # This code will be removed in an upcoming update (when these are treated as
     # proper modules).
     #
     # nocov start
     observe({
-      if (rctv_strSiteID() == "All") {
+      if (rctv_strGroupID() == "All") {
         ## Show placeholders
-        shinyjs::hide("card_site_metadata_list")
-        shinyjs::show("card_placeholder_site_metadata_list")
+        shinyjs::hide("card_group_metadata_list")
+        shinyjs::show("card_placeholder_group_metadata_list")
       } else {
         ## Hide placeholders
-        shinyjs::hide("card_placeholder_site_metadata_list")
-        shinyjs::show("card_site_metadata_list")
+        shinyjs::hide("card_placeholder_group_metadata_list")
+        shinyjs::show("card_group_metadata_list")
       }
     })
     # nocov end
 
-    ### Site Metadata
-    output$site_metadata_list <- renderUI({
+    ### Group Metadata
+    output$group_metadata_list <- renderUI({
       out_MetadataList(
-        chrValues = rctv_lSite()
+        chrValues = rctv_lGroup()
       )
     })
 
-    ### Site Participants Table Across Site Selected
-    mod_SiteParticipants_Server(
+    ### Group Participants Table Across Group Selected
+    mod_GroupParticipants_Server(
       "participants",
-      rctv_strSiteID,
+      rctv_strGroupID,
+      rctv_strGroupLevel,
       rctv_strSubjectID,
-      rctv_dfAnalyticsInput_byMetric_bySite,
+      rctv_dfAnalyticsInput_byMetric_byGroup,
       rctv_lColumnNames
     )
   })

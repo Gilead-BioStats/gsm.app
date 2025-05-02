@@ -8,7 +8,7 @@ srvr_CompileUnsetInputs(chrRequiredInputs, l_rctvInputs, chrInputNamesPretty)
 }
 \arguments{
 \item{chrRequiredInputs}{\code{character} An optional vector of any inputs
-("metric", "site", "participant", or "domain") that must have a non-empty
+("metric", "group", "participant", or "domain") that must have a non-empty
 value before the plugin can load. "None" and "All" count as "empty" for
 this check. If the user has not set a value for that input, the app will
 display a placeholder instructing the user to make a selection.}

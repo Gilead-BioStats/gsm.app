@@ -1,17 +1,17 @@
-# mod_SiteDetails_UI() returns the expected UI
+# mod_GroupDetails_UI() returns the expected UI
 
     Code
       test_result
     Output
       <bslib-layout-columns class="bslib-grid grid bslib-mb-spacing html-fill-item" col-widths-sm="5,7" data-require-bs-caller="layout_columns()" data-require-bs-version="5">
         <div class="bslib-grid-item bslib-gap-spacing html-fill-container">
-          <div id="site_details-card_site_metadata_list" class="shinyjs-hide">
+          <div id="group_details-card_group_metadata_list" class="shinyjs-hide">
             <div>
-              <style>#site_details-card_site_metadata_list-contents .bslib-full-screen-enter { bottom: unset !important; }</style>
-              <div class="card bslib-card bslib-mb-spacing bslib-card-input html-fill-item html-fill-container" data-bslib-card-init data-full-screen="false" data-require-bs-caller="card()" data-require-bs-version="5" id="site_details-card_site_metadata_list-contents">
+              <style>#group_details-card_group_metadata_list-contents .bslib-full-screen-enter { bottom: unset !important; }</style>
+              <div class="card bslib-card bslib-mb-spacing bslib-card-input html-fill-item html-fill-container" data-bslib-card-init data-full-screen="false" data-require-bs-caller="card()" data-require-bs-version="5" id="group_details-card_group_metadata_list-contents">
                 <div class="card-body bslib-gap-spacing html-fill-item html-fill-container" style="margin-top:auto;margin-bottom:auto;flex:1 1 auto;">
-                  <h5>Site Metadata</h5>
-                  <div id="site_details-site_metadata_list" class="shiny-html-output"></div>
+                  <h5>Group Metadata</h5>
+                  <div id="group_details-group_metadata_list" class="shiny-html-output"></div>
                 </div>
                 <bslib-tooltip placement="auto" bsOptions="[]" data-require-bs-version="5" data-require-bs-caller="tooltip()">
                   <template>Expand</template>
@@ -22,12 +22,12 @@
             </div>
           </div>
           <div>
-            <style>#site_details-card_placeholder_site_metadata_list .bslib-full-screen-enter { bottom: unset !important; }</style>
-            <div class="card bslib-card bslib-mb-spacing bslib-card-input html-fill-item html-fill-container" data-bslib-card-init data-full-screen="false" data-require-bs-caller="card()" data-require-bs-version="5" id="site_details-card_placeholder_site_metadata_list">
+            <style>#group_details-card_placeholder_group_metadata_list .bslib-full-screen-enter { bottom: unset !important; }</style>
+            <div class="card bslib-card bslib-mb-spacing bslib-card-input html-fill-item html-fill-container" data-bslib-card-init data-full-screen="false" data-require-bs-caller="card()" data-require-bs-version="5" id="group_details-card_placeholder_group_metadata_list">
               <div class="card-body bslib-gap-spacing html-fill-item html-fill-container" style="margin-top:auto;margin-bottom:auto;flex:1 1 auto;">
-                <h5>Site Metadata</h5>
+                <h5>Group Metadata</h5>
                 <div class="card bslib-card bslib-mb-spacing html-fill-item html-fill-container placeholder" data-bslib-card-init data-require-bs-caller="card()" data-require-bs-version="5">
-                  <div class="card-body bslib-gap-spacing html-fill-item html-fill-container" style="margin-top:auto;margin-bottom:auto;flex:1 1 auto;">Please select a site.</div>
+                  <div class="card-body bslib-gap-spacing html-fill-item html-fill-container" style="margin-top:auto;margin-bottom:auto;flex:1 1 auto;">Please select a group.</div>
                   <script data-bslib-card-init>bslib.Card.initializeAllCards();</script>
                 </div>
               </div>
@@ -41,16 +41,16 @@
         </div>
         <div class="bslib-grid-item bslib-gap-spacing html-fill-container">
           <div>
-            <style>#site_details-participants-gt_card .bslib-full-screen-enter { bottom: unset !important; }</style>
-            <div class="card bslib-card bslib-mb-spacing bslib-card-input html-fill-item html-fill-container" data-bslib-card-init data-full-screen="false" data-require-bs-caller="card()" data-require-bs-version="5" id="site_details-participants-gt_card">
+            <style>#group_details-participants-gt_card .bslib-full-screen-enter { bottom: unset !important; }</style>
+            <div class="card bslib-card bslib-mb-spacing bslib-card-input html-fill-item html-fill-container" data-bslib-card-init data-full-screen="false" data-require-bs-caller="card()" data-require-bs-version="5" id="group_details-participants-gt_card">
               <div class="card-header">
                 <h5>
-                  <span id="site_details-participants-title" class="shiny-text-output"></span>
+                  <span id="group_details-participants-title" class="shiny-text-output"></span>
                 </h5>
-                <div id="site_details-participants-subtitle" class="shiny-html-output"></div>
+                <div id="group_details-participants-subtitle" class="shiny-html-output"></div>
               </div>
               <div class="card-body bslib-gap-spacing html-fill-item html-fill-container" style="margin-top:auto;margin-bottom:auto;flex:1 1 auto;">
-                <div class="shiny-html-output gt_shiny" id="site_details-participants-gt-table"></div>
+                <div class="shiny-html-output gt_shiny" id="group_details-participants-gt-table"></div>
               </div>
               <bslib-tooltip placement="auto" bsOptions="[]" data-require-bs-version="5" data-require-bs-caller="tooltip()">
                 <template>Expand</template>

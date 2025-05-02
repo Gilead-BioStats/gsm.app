@@ -33,7 +33,7 @@ mod_StudyOverview_Server <- function(
     dfMetrics,
     dfGroups,
     dfBounds,
-    rctv_strSiteID,
+    rctv_strGroupID,
     rctv_strMetricID
 ) {
   moduleServer(id, function(input, output, session) {
@@ -45,8 +45,8 @@ mod_StudyOverview_Server <- function(
       dfResults,
       dfMetrics,
       dfGroups,
-      rctv_strMetricID,
-      rctv_strSiteID
+      rctv_strGroupID,
+      rctv_strMetricID
     )
 
     # Update things when the user clicks a plot.
@@ -56,8 +56,8 @@ mod_StudyOverview_Server <- function(
       dfMetrics = dfMetrics,
       dfGroups = dfGroups,
       dfBounds = dfBounds,
-      rctv_strMetricID = rctv_strMetricID,
-      rctv_strSiteID = rctv_strSiteID
+      rctv_strGroupID = rctv_strGroupID,
+      rctv_strMetricID = rctv_strMetricID
     )
   })
 }

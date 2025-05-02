@@ -4,21 +4,27 @@
 \alias{srvr_dfDomain}
 \title{Reactive domain df}
 \usage{
-srvr_dfDomain(strDomainID, fnFetchData, rctv_strSiteID, rctv_strSubjectID)
+srvr_dfDomain(
+  strDomainID,
+  fnFetchData,
+  rctv_strGroupID,
+  rctv_strGroupLevel,
+  rctv_strSubjectID
+)
 }
 \arguments{
 \item{strDomainID}{\code{character} The domain data.frame to load.}
 
 \item{fnFetchData}{\code{function} A function that takes a \code{strDomainID} argument
-and optional \code{strSiteID}, \code{strSubjectID}, and/or \code{dSnapshotDate}, and
+and optional \code{strGroupID}, \code{strSubjectID}, and/or \code{dSnapshotDate}, and
 returns a data.frame. See \code{\link[=sample_fnFetchData]{sample_fnFetchData()}} for an example. The
 returned data.frame contains information about the named domain. If the
 function throws an error, the error is elevated to the user, so you can use
 errors to pass requirements through to the user.}
 
-\item{rctv_strSiteID}{\verb{reactive character} A \code{\link[shiny:reactiveVal]{shiny::reactiveVal()}} object
-that returns the \code{GroupID} of the selected site, and can be used to update
-the selected site.}
+\item{rctv_strGroupID}{\verb{reactive character} A \code{\link[shiny:reactiveVal]{shiny::reactiveVal()}} object
+that returns the \code{GroupID} of the selected group (usually site), and can be
+used to update which group is selected.}
 
 \item{rctv_strSubjectID}{\verb{reactive character} A \code{\link[shiny:reactive]{shiny::reactive()}} object
 that returns the \code{SubjectID} of the selected participant.}

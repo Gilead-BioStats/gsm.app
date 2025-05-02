@@ -16,7 +16,7 @@ test_that("mod_GroupOverview_Server sets the expected reactives", {
       dfMetrics = sample_dfMetrics,
       dfGroups = sample_dfGroups,
       rctv_strMetricID = reactiveVal("xxxx"),
-      rctv_strSiteID = reactiveVal("xxxx")
+      rctv_strGroupID = reactiveVal("xxxx")
     ),
     {
       session$setInputs(
@@ -27,7 +27,7 @@ test_that("mod_GroupOverview_Server sets the expected reactives", {
         )
       )
       expect_equal(rctv_strMetricID(), "bbbb")
-      expect_equal(rctv_strSiteID(), "aaaa")
+      expect_equal(rctv_strGroupID(), "aaaa")
       expect_equal(rctv_strGroupSubset(), "red")
     }
   )
