@@ -7,6 +7,7 @@ mod_dfDomains_Server <- function(
   id,
   fnFetchData,
   chrDomains,
+  rctv_dSnapshotDate,
   rctv_strGroupID,
   rctv_strGroupLevel,
   rctv_strSubjectID
@@ -16,10 +17,11 @@ mod_dfDomains_Server <- function(
     l_rctvDomains <- purrr::map(chrDomainIDs, function(this_domain) {
       srvr_dfDomain(
         this_domain,
-        fnFetchData,
-        rctv_strGroupID,
-        rctv_strGroupLevel,
-        rctv_strSubjectID
+        fnFetchData = fnFetchData,
+        rctv_dSnapshotDate = rctv_dSnapshotDate,
+        rctv_strGroupID = rctv_strGroupID,
+        rctv_strGroupLevel = rctv_strGroupLevel,
+        rctv_strSubjectID = rctv_strSubjectID
       )
     })
     return(l_rctvDomains)
@@ -36,6 +38,7 @@ mod_dfDomains_Server <- function(
 srvr_dfDomain <- function(
   strDomainID,
   fnFetchData,
+  rctv_dSnapshotDate,
   rctv_strGroupID,
   rctv_strGroupLevel,
   rctv_strSubjectID
@@ -52,7 +55,8 @@ srvr_dfDomain <- function(
               strDomainID,
               strGroupID = NullifyEmpty(rctv_strGroupID()),
               strGroupLevel = rctv_strGroupLevel(),
-              strSubjectID = NullifyEmpty(rctv_strSubjectID())
+              strSubjectID = NullifyEmpty(rctv_strSubjectID()),
+              dSnapshotDate = rctv_dSnapshotDate()
             )
           },
           error = function(cnd) {
@@ -70,6 +74,7 @@ srvr_dfDomain <- function(
   }) %>%
     bindCache(
       strDomainID,
+      rctv_dSnapshotDate(),
       rctv_strGroupID(),
       rctv_strGroupLevel(),
       rctv_strSubjectID(),
@@ -85,6 +90,7 @@ srvr_dfDomain <- function(
 mod_DomainHashes_Server <- function(
   id,
   l_rctvDomains,
+  rctv_dSnapshotDate,
   rctv_strGroupID,
   rctv_strGroupLevel,
   rctv_strSubjectID
@@ -94,11 +100,12 @@ mod_DomainHashes_Server <- function(
       l_rctvDomains,
       function(rctvDomain, strDomainID) {
         srvr_DomainHash(
-          rctvDomain,
-          strDomainID,
-          rctv_strGroupID,
-          rctv_strGroupLevel,
-          rctv_strSubjectID
+          rctvDomain = rctvDomain,
+          strDomainID = strDomainID,
+          rctv_dSnapshotDate = rctv_dSnapshotDate,
+          rctv_strGroupID = rctv_strGroupID,
+          rctv_strGroupLevel = rctv_strGroupLevel,
+          rctv_strSubjectID = rctv_strSubjectID
         )
       }
     )
@@ -114,6 +121,7 @@ mod_DomainHashes_Server <- function(
 srvr_DomainHash <- function(
   rctvDomain,
   strDomainID,
+  rctv_dSnapshotDate,
   rctv_strGroupID,
   rctv_strGroupLevel,
   rctv_strSubjectID
@@ -123,9 +131,43 @@ srvr_DomainHash <- function(
   }) %>%
     bindCache(
       strDomainID,
+      rctv_dSnapshotDate(),
       rctv_strGroupID(),
       rctv_strGroupLevel(),
       rctv_strSubjectID()
+    )
+}
+
+mod_DomainCountsServer <- function(
+  id,
+  fnCountData,
+  chrDomains,
+  rctv_dSnapshotDate,
+  rctv_strGroupID,
+  rctv_strGroupLevel,
+  rctv_strSubjectID
+) {
+  reactive({
+    chrDomainIDs <- rlang::set_names(names(chrDomains), names(chrDomains))
+    purrr::map_int(
+      chrDomainIDs,
+      function(this_domain) {
+        fnCountData(
+          strDomainID = this_domain,
+          strGroupID = rctv_strGroupID(),
+          strGroupLevel = rctv_strGroupLevel(),
+          strSubjectID = rctv_strSubjectID(),
+          dSnapshotDate = rctv_dSnapshotDate()
+        )
+      }
+    )
+  }) %>%
+    bindCache(
+      rctv_dSnapshotDate(),
+      rctv_strGroupID(),
+      rctv_strGroupLevel(),
+      rctv_strSubjectID(),
+      cache = "session"
     )
 }
 

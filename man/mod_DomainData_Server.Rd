@@ -4,7 +4,12 @@
 \alias{mod_DomainData_Server}
 \title{Domain Data Server}
 \usage{
-mod_DomainData_Server(id, rctv_dfDomain)
+mod_DomainData_Server(
+  id,
+  rctv_dfDomain,
+  rctv_strDomainHash,
+  rctv_strGroupLevel
+)
 }
 \arguments{
 \item{id}{\code{character} The id for this element.}

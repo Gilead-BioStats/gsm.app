@@ -130,10 +130,10 @@ CheckIsDF <- function(
 #' @returns `df`, if it is has columns with the required names.
 #' @keywords internal
 CheckHasColumns <- function(
-    df,
-    chrRequiredColumns = character(),
-    strArg = rlang::caller_arg(df),
-    envCall = rlang::caller_env()
+  df,
+  chrRequiredColumns = character(),
+  strArg = rlang::caller_arg(df),
+  envCall = rlang::caller_env()
 ) {
   missing_cols <- setdiff(chrRequiredColumns, colnames(df))
   if (length(missing_cols)) {

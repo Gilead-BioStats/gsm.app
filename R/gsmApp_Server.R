@@ -10,6 +10,7 @@ gsmApp_Server <- function(
   dfMetrics,
   dfResults,
   fnFetchData,
+  fnCountData = ConstructDataCounter(fnFetchData),
   chrDomains = c(
     AE = "Adverse Events",
     DATACHG = "Data Changes",
@@ -102,18 +103,31 @@ gsmApp_Server <- function(
     ## This needs to be defined at the top so it's available to plugins.
     l_rctvDomains <- mod_dfDomains_Server(
       "l_rctv_dfDomains",
-      fnFetchData,
-      chrDomains,
-      rctv_strGroupID,
-      rctv_strGroupLevel,
-      rctv_strSubjectID
+      fnFetchData = fnFetchData,
+      chrDomains = chrDomains,
+      rctv_dSnapshotDate = rctv_dSnapshotDate,
+      rctv_strGroupID = rctv_strGroupID,
+      rctv_strGroupLevel = rctv_strGroupLevel,
+      rctv_strSubjectID = rctv_strSubjectID
     )
     ## Also produce a reusable hash of each domain, for cleaner caching.
     l_rctvDomainHashes <- mod_DomainHashes_Server(
       "l_rctv_strDomainHashes",
       l_rctvDomains,
-      rctv_strGroupID,
-      rctv_strSubjectID
+      rctv_dSnapshotDate = rctv_dSnapshotDate,
+      rctv_strGroupID = rctv_strGroupID,
+      rctv_strGroupLevel = rctv_strGroupLevel,
+      rctv_strSubjectID = rctv_strSubjectID
+    )
+    ## Also fetch the counts.
+    rctv_intDomainCounts <- mod_DomainCountsServer(
+      "domain_counts",
+      fnCountData = fnCountData,
+      chrDomains = chrDomains,
+      rctv_dSnapshotDate = rctv_dSnapshotDate,
+      rctv_strGroupID = rctv_strGroupID,
+      rctv_strGroupLevel = rctv_strGroupLevel,
+      rctv_strSubjectID = rctv_strSubjectID
     )
 
     # Tabs ----
@@ -202,7 +216,10 @@ gsmApp_Server <- function(
     mod_DomainDetails_Server(
       "domain_details",
       l_rctvDomains = l_rctvDomains,
+      l_rctvDomainHashes = l_rctvDomainHashes,
       rctv_strDomainID = rctv_strDomainID,
+      rctv_intDomainCounts = rctv_intDomainCounts,
+      rctv_strGroupLevel = rctv_strGroupLevel,
       chrDomains = chrDomains
     )
 

@@ -14,10 +14,7 @@ test_that("mod_DomainSummary_Server outputs the expected result", {
     args = list(
       id = "counts",
       rctv_strDomainID = reactiveVal("None"),
-      l_rctvDomains = list(
-        AE = reactiveVal(sample_fnFetchData("AE", strGroupID = "0X001")),
-        ENROLL = reactiveVal(sample_fnFetchData("ENROLL", strGroupID = "0X001"))
-      ),
+      rctv_intDomainCounts = reactiveVal(c(AE = 14L, ENROLL = 3L)),
       chrDomains = c(AE = "Adverse Events", ENROLL = "Enrollment")
     ),
     {

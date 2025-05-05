@@ -80,12 +80,18 @@ also has an \code{envCall} argument.}
 in the message or widget are defined. You almost definitely want to leave
 this as the default value.}
 
+\item{fnCountData}{\code{function} A function that takes a \code{strDomainID} argument
+and optional \code{strGroupID}, \code{strGroupLevel}, \code{strSubjectID}, and/or
+\code{dSnapshotDate}, and returns an integer count of the number of rows in that
+filtered domain. By default, this function is constucted using
+\code{fnFetchData()} and \code{\link[=ConstructDataCounter]{ConstructDataCounter()}}.}
+
 \item{fnFetchData}{\code{function} A function that takes a \code{strDomainID} argument
-and optional \code{strGroupID}, \code{strSubjectID}, and/or \code{dSnapshotDate}, and
-returns a data.frame. See \code{\link[=sample_fnFetchData]{sample_fnFetchData()}} for an example. The
-returned data.frame contains information about the named domain. If the
-function throws an error, the error is elevated to the user, so you can use
-errors to pass requirements through to the user.}
+and optional \code{strGroupID}, \code{strGroupLevel}, \code{strSubjectID}, and/or
+\code{dSnapshotDate}, and returns a data.frame. See \code{\link[=sample_fnFetchData]{sample_fnFetchData()}} for
+an example. The returned data.frame contains information about the named
+domain. If the function throws an error, the error is elevated to the user,
+so you can use errors to pass requirements through to the user.}
 
 \item{fnHtmlDependency}{\code{function} A function that returns an
 \code{\link[htmltools:htmlDependency]{htmltools::htmlDependency()}} or multiple wrapped in \code{\link[shiny:reexports]{shiny::tagList()}}.}

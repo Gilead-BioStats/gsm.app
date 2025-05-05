@@ -20,11 +20,11 @@ mod_DomainSummary_UI <- function(id) {
 mod_DomainSummary_Server <- function(
   id,
   rctv_strDomainID,
-  l_rctvDomains,
+  rctv_intDomainCounts,
   chrDomains
 ) {
   moduleServer(id, function(input, output, session) {
-    chrDomainIDs <- names(l_rctvDomains)
+    chrDomainIDs <- names(rctv_intDomainCounts())
     chrDomainLabels <- unname(unlist(
       gsm.kri::MakeParamLabelsList(chrDomainIDs, chrDomains)
     ))
@@ -33,9 +33,7 @@ mod_DomainSummary_Server <- function(
         session$ns("domain_list_choices"),
         chrDomainIDs,
         chrDomainLabels,
-        purrr::map_int(l_rctvDomains, function(rctv_dfDomain) {
-          NROW(rctv_dfDomain())
-        })
+        rctv_intDomainCounts()
       )
     })
     rctv_strSelectedDomain <- mod_ActionList_Server(

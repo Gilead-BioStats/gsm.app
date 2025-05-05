@@ -227,12 +227,19 @@ ConstructDataCounter <- function(fnFetchData) {
     strSubjectID = NULL,
     dSnapshotDate = NULL
   ) {
-    NROW(fnFetchData(
-      strDomainID = strDomainID,
-      strGroupID = strGroupID,
-      strGroupLevel = strGroupLevel,
-      strSubjectID = strSubjectID,
-      dSnapshotDate = dSnapshotDate
-    ))
+    tryCatch(
+      {
+        NROW(fnFetchData(
+          strDomainID = strDomainID,
+          strGroupID = strGroupID,
+          strGroupLevel = strGroupLevel,
+          strSubjectID = strSubjectID,
+          dSnapshotDate = dSnapshotDate
+        ))
+      },
+      error = function(cnd) {
+        return(NA_integer_)
+      }
+    )
   }
 }

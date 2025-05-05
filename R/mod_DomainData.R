@@ -11,7 +11,13 @@ mod_DomainData_UI <- function(id, strDomainLabel, strDomainID) {
     value = strDomainID,
     out_Card(
       tagTitle = NULL,
-      mod_gtBidirectional_UI(ns("gt")),
+      shinycssloaders::withSpinner(
+        mod_gtBidirectional_UI(ns("gt")),
+        type = 7,
+        id = ns("spinner"),
+        caption = "loading data...",
+        proxy.height = "200px"
+      ),
       id = ns("card")
     )
   )
@@ -28,15 +34,30 @@ mod_DomainData_UI <- function(id, strDomainLabel, strDomainID) {
 #' @keywords internal
 mod_DomainData_Server <- function(
   id,
-  rctv_dfDomain
+  rctv_dfDomain,
+  rctv_strDomainHash,
+  rctv_strGroupLevel
 ) {
   moduleServer(id, function(input, output, session) {
     rctv_tblData <- reactive({
       if (NROW(rctv_dfDomain())) {
-        return(rctv_dfDomain())
+        return({
+          # gt is surprisingly slow with dates and times. Format them as
+          # character ahead of time.
+          dplyr::mutate(
+            rctv_dfDomain(),
+            dplyr::across(
+              dplyr::where(function(x) {
+                inherits(x, "POSIXct") | inherits(x, "Date")
+              }),
+              as.character
+            )
+          )
+        })
       }
       dplyr::tibble(SubjectID = character()) # nocov
-    })
+    }) %>%
+      bindCache(rctv_strDomainHash())
 
     rctv_gtObject <- reactive({
       if (!is.null(rctv_dfDomain())) {
@@ -53,7 +74,11 @@ mod_DomainData_Server <- function(
         }
         return(gtObj)                                                     # Tested via UI
       }
-      return(out_gtPlaceholder("group or participant"))
+      return(
+        out_gtPlaceholder(
+          glue::glue("{tolower(rctv_strGroupLevel())} or participant")
+        )
+      )
     })
 
     selected_rows <- mod_gtBidirectional_Server(

@@ -90,11 +90,17 @@ validate_dfResults <- function(x) {
 #' @inheritParams CheckDF
 #' @inherit CheckDF return
 #' @keywords internal
-validate_dfGroups <- function(x) {
-  CheckDF(
+validate_dfGroups <- function(x, dfResults) {
+  x <- CheckDF(
     x,
     chrRequiredColumns = c("GroupLevel", "Param", "Value", "GroupID")
   )
+  if (is.data.frame(dfResults) && "GroupLevel" %in% colnames(dfResults)) {
+    x <- dplyr::filter(
+      x,
+      .data$GroupLevel %in% c(unique(dfResults$GroupLevel), "Study")
+    )
+  }
 }
 
 #' Confirm that an object is a dfMetrics
