@@ -1,3 +1,9 @@
+#' Group and GroupLevel Dropdown Menu UI
+#'
+#' @inheritParams shared-params
+#' @returns A `list` with one or two [shinyWidgets::virtualSelectInput()]
+#'   elements.
+#' @keywords internal
 mod_GroupInput_UI <- function(id, dfGroups) {
   ns <- NS(id)
   chrGroupLevels <- setdiff(sort(unique(dfGroups$GroupLevel)), "Study")
@@ -17,6 +23,12 @@ mod_GroupInput_UI <- function(id, dfGroups) {
   ))
 }
 
+#' Group and GroupLevel Dropdown Menu Server
+#'
+#' @inheritParams shared-params
+#' @returns [shiny::observe()] objects to keep `GroupLevel` and `Group` inputs
+#'   and reactives up-to-date.
+#' @keywords internal
 mod_GroupInput_Server <- function(
   id,
   dfGroups,
