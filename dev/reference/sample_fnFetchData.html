@@ -49,7 +49,8 @@ supply to find additional data about a given domain.</p>
     <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">sample_fnFetchData</span><span class="op">(</span></span>
 <span>  strDomainID <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"AE"</span>, <span class="st">"ENROLL"</span>, <span class="st">"LB"</span>, <span class="st">"PD"</span>, <span class="st">"SDRGCOMP"</span>, <span class="st">"STUDCOMP"</span>, <span class="st">"SUBJ"</span>, <span class="st">"DATACHG"</span>,</span>
 <span>    <span class="st">"DATAENT"</span>, <span class="st">"QUERY"</span><span class="op">)</span>,</span>
-<span>  strSiteID <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  strGroupID <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  strGroupLevel <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  strSubjectID <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  dSnapshotDate <span class="op">=</span> <span class="cn">NULL</span></span>
 <span><span class="op">)</span></span></code></pre></div>
@@ -63,9 +64,14 @@ supply to find additional data about a given domain.</p>
 <dd><p><code>character</code> The domain data.frame to load.</p></dd>
 
 
-<dt id="arg-strsiteid">strSiteID<a class="anchor" aria-label="anchor" href="#arg-strsiteid"></a></dt>
-<dd><p><code>character</code> A <code>GroupID</code> of an individual site within a
-study.</p></dd>
+<dt id="arg-strgroupid">strGroupID<a class="anchor" aria-label="anchor" href="#arg-strgroupid"></a></dt>
+<dd><p><code>character</code> A <code>GroupID</code> of an individual site or other
+group within a study.</p></dd>
+
+
+<dt id="arg-strgrouplevel">strGroupLevel<a class="anchor" aria-label="anchor" href="#arg-strgrouplevel"></a></dt>
+<dd><p><code>character</code> Value for the group level. Default: <code>NULL</code>
+and taken from <code>dfMetrics$GroupLevel</code> if available.</p></dd>
 
 
 <dt id="arg-strsubjectid">strSubjectID<a class="anchor" aria-label="anchor" href="#arg-strsubjectid"></a></dt>
@@ -103,7 +109,7 @@ study.</p></dd>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">5</span> 1350      0X002   N     2018-03-11 2018-08-31 Cough       Respiratory, thorac…</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">6</span> 1350      0X002   N     2018-02-23 2018-02-24 Dizziness   Nervous system diso…</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 2 more variables: mincreated_dts &lt;dttm&gt;, aetoxgr &lt;chr&gt;</span></span>
-<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="fu">sample_fnFetchData</span><span class="op">(</span><span class="st">"AE"</span>, strSiteID <span class="op">=</span> <span class="st">"0X103"</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="fu">sample_fnFetchData</span><span class="op">(</span><span class="st">"AE"</span>, strGroupID <span class="op">=</span> <span class="st">"0X103"</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 6 × 9</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   SubjectID GroupID aeser aest_dt    aeen_dt    mdrpt_nsv            mdrsoc_nsv </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;date&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;date&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      </span>

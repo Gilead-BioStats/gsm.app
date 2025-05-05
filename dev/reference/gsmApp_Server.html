@@ -83,13 +83,12 @@ reporting.</p></dd>
 
 
 <dt id="arg-dfresults">dfResults<a class="anchor" aria-label="anchor" href="#arg-dfresults"></a></dt>
-<dd><p><code>data.frame</code> A stacked summary of analysis pipeline output.
-This will be filtered to cases where <code>GroupLevel == "Site"</code>.</p></dd>
+<dd><p><code>data.frame</code> A stacked summary of analysis pipeline output.</p></dd>
 
 
 <dt id="arg-fnfetchdata">fnFetchData<a class="anchor" aria-label="anchor" href="#arg-fnfetchdata"></a></dt>
 <dd><p><code>function</code> A function that takes a <code>strDomainID</code> argument
-and optional <code>strSiteID</code>, <code>strSubjectID</code>, and/or <code>dSnapshotDate</code>, and
+and optional <code>strGroupID</code>, <code>strSubjectID</code>, and/or <code>dSnapshotDate</code>, and
 returns a data.frame. See <code><a href="sample_fnFetchData.html">sample_fnFetchData()</a></code> for an example. The
 returned data.frame contains information about the named domain. If the
 function throws an error, the error is elevated to the user, so you can use

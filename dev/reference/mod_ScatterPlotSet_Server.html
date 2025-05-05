@@ -49,8 +49,8 @@
 <span>  <span class="va">dfMetrics</span>,</span>
 <span>  <span class="va">dfGroups</span>,</span>
 <span>  <span class="va">dfBounds</span>,</span>
-<span>  <span class="va">rctv_strMetricID</span>,</span>
-<span>  <span class="va">rctv_strSiteID</span></span>
+<span>  <span class="va">rctv_strGroupID</span>,</span>
+<span>  <span class="va">rctv_strMetricID</span></span>
 <span><span class="op">)</span></span></code></pre></div>
     </div>
 
@@ -63,8 +63,7 @@
 
 
 <dt id="arg-dfresults">dfResults<a class="anchor" aria-label="anchor" href="#arg-dfresults"></a></dt>
-<dd><p><code>data.frame</code> A stacked summary of analysis pipeline output.
-This will be filtered to cases where <code>GroupLevel == "Site"</code>.</p></dd>
+<dd><p><code>data.frame</code> A stacked summary of analysis pipeline output.</p></dd>
 
 
 <dt id="arg-dfmetrics">dfMetrics<a class="anchor" aria-label="anchor" href="#arg-dfmetrics"></a></dt>
@@ -82,15 +81,15 @@ and lower-bounds across the full range of sample sizes/total exposure
 values for reporting.</p></dd>
 
 
+<dt id="arg-rctv-strgroupid">rctv_strGroupID<a class="anchor" aria-label="anchor" href="#arg-rctv-strgroupid"></a></dt>
+<dd><p><code>reactive character</code> A <code><a href="https://rdrr.io/pkg/shiny/man/reactiveVal.html" class="external-link">shiny::reactiveVal()</a></code> object
+that returns the <code>GroupID</code> of the selected group (usually site), and can be
+used to update which group is selected.</p></dd>
+
+
 <dt id="arg-rctv-strmetricid">rctv_strMetricID<a class="anchor" aria-label="anchor" href="#arg-rctv-strmetricid"></a></dt>
 <dd><p><code>reactive character</code> A <code><a href="https://rdrr.io/pkg/shiny/man/reactive.html" class="external-link">shiny::reactive()</a></code> object
 that returns the selected <code>MetricID</code>.</p></dd>
-
-
-<dt id="arg-rctv-strsiteid">rctv_strSiteID<a class="anchor" aria-label="anchor" href="#arg-rctv-strsiteid"></a></dt>
-<dd><p><code>reactive character</code> A <code><a href="https://rdrr.io/pkg/shiny/man/reactiveVal.html" class="external-link">shiny::reactiveVal()</a></code> object
-that returns the <code>GroupID</code> of the selected site, and can be used to update
-the selected site.</p></dd>
 
 </dl></div>
 

@@ -120,14 +120,15 @@ an object.</p></dd>
 
 <dt id="arg-chrrequiredinputs">chrRequiredInputs<a class="anchor" aria-label="anchor" href="#arg-chrrequiredinputs"></a></dt>
 <dd><p><code>character</code> An optional vector of any inputs
-("metric", "site", "participant", or "domain") that must have a non-empty
-value before the plugin can load. "None" and "All" count as "empty" for
-this check. If the user has not set a value for that input, the app will
-display a placeholder instructing the user to make a selection.</p></dd>
+("metric", "group", "group level", "participant", or "domain") that must
+have a non-empty value before the plugin can load. "None" and "All" count
+as "empty" for this check. If the user has not set a value for that input,
+the app will display a placeholder instructing the user to make a
+selection.</p></dd>
 
 
-<dt id="arg-chrsites">chrSites<a class="anchor" aria-label="anchor" href="#arg-chrsites"></a></dt>
-<dd><p><code>character</code> A vector of sites available in the study.</p></dd>
+<dt id="arg-chrgroups">chrGroups<a class="anchor" aria-label="anchor" href="#arg-chrgroups"></a></dt>
+<dd><p><code>character</code> A vector of groups available in the study.</p></dd>
 
 
 <dt id="arg-chrvalues">chrValues<a class="anchor" aria-label="anchor" href="#arg-chrvalues"></a></dt>
@@ -160,8 +161,7 @@ combos from <code>dfAnalyticsInput</code>.</p></dd>
 
 
 <dt id="arg-dfresults">dfResults<a class="anchor" aria-label="anchor" href="#arg-dfresults"></a></dt>
-<dd><p><code>data.frame</code> A stacked summary of analysis pipeline output.
-This will be filtered to cases where <code>GroupLevel == "Site"</code>.</p></dd>
+<dd><p><code>data.frame</code> A stacked summary of analysis pipeline output.</p></dd>
 
 
 <dt id="arg-dsnapshotdate">dSnapshotDate<a class="anchor" aria-label="anchor" href="#arg-dsnapshotdate"></a></dt>
@@ -183,7 +183,7 @@ this as the default value.</p></dd>
 
 <dt id="arg-fnfetchdata">fnFetchData<a class="anchor" aria-label="anchor" href="#arg-fnfetchdata"></a></dt>
 <dd><p><code>function</code> A function that takes a <code>strDomainID</code> argument
-and optional <code>strSiteID</code>, <code>strSubjectID</code>, and/or <code>dSnapshotDate</code>, and
+and optional <code>strGroupID</code>, <code>strSubjectID</code>, and/or <code>dSnapshotDate</code>, and
 returns a data.frame. See <code><a href="sample_fnFetchData.html">sample_fnFetchData()</a></code> for an example. The
 returned data.frame contains information about the named domain. If the
 function throws an error, the error is elevated to the user, so you can use
@@ -225,11 +225,11 @@ function.</p></dd>
 
 
 <dt id="arg-intred">intRed<a class="anchor" aria-label="anchor" href="#arg-intred"></a></dt>
-<dd><p><code>integer</code> The number of sites with at least one red flag.</p></dd>
+<dd><p><code>integer</code> The number of groups with at least one red flag.</p></dd>
 
 
 <dt id="arg-intamber">intAmber<a class="anchor" aria-label="anchor" href="#arg-intamber"></a></dt>
-<dd><p><code>integer</code> The number of sites with at least one amber flag.</p></dd>
+<dd><p><code>integer</code> The number of groups with at least one amber flag.</p></dd>
 
 
 <dt id="arg-ldatamodel">lDataModel<a class="anchor" aria-label="anchor" href="#arg-ldatamodel"></a></dt>
@@ -367,10 +367,10 @@ returns the name of an object, such as a particular dataframe in a named
 list.</p></dd>
 
 
-<dt id="arg-rctv-strsiteid">rctv_strSiteID<a class="anchor" aria-label="anchor" href="#arg-rctv-strsiteid"></a></dt>
+<dt id="arg-rctv-strgroupid">rctv_strGroupID<a class="anchor" aria-label="anchor" href="#arg-rctv-strgroupid"></a></dt>
 <dd><p><code>reactive character</code> A <code><a href="https://rdrr.io/pkg/shiny/man/reactiveVal.html" class="external-link">shiny::reactiveVal()</a></code> object
-that returns the <code>GroupID</code> of the selected site, and can be used to update
-the selected site.</p></dd>
+that returns the <code>GroupID</code> of the selected group (usually site), and can be
+used to update which group is selected.</p></dd>
 
 
 <dt id="arg-rctv-strsubjectid">rctv_strSubjectID<a class="anchor" aria-label="anchor" href="#arg-rctv-strsubjectid"></a></dt>
@@ -450,10 +450,6 @@ be supplied as a function or a purrr-style formula. See
 <code><a href="https://rlang.r-lib.org/reference/as_function.html" class="external-link">rlang::as_function()</a></code> (the <code>x</code> argument) for more details.</p></dd>
 
 
-<dt id="arg-strgroupid">strGroupID<a class="anchor" aria-label="anchor" href="#arg-strgroupid"></a></dt>
-<dd><p><code>character</code> A <code>GroupID</code> to focus on.</p></dd>
-
-
 <dt id="arg-strgrouplabelkey">strGroupLabelKey<a class="anchor" aria-label="anchor" href="#arg-strgrouplabelkey"></a></dt>
 <dd><p><code>character</code> Value for the group label key. Default:
 <code>"InvestigatorLastName"</code>.</p></dd>
@@ -479,8 +475,8 @@ this module or used by this JavaScript.</p></dd>
 
 
 <dt id="arg-strinputname">strInputName<a class="anchor" aria-label="anchor" href="#arg-strinputname"></a></dt>
-<dd><p><code>character</code> The name of an input. One of <code>"site"</code>,
-<code>"participant"</code>, or <code>"domain"</code>.</p></dd>
+<dd><p><code>character</code> The name of an input. One of <code>"group"</code>,
+<code>"level"</code>, <code>"participant"</code>, or <code>"domain"</code>.</p></dd>
 
 
 <dt id="arg-strlabel">strLabel<a class="anchor" aria-label="anchor" href="#arg-strlabel"></a></dt>
@@ -500,9 +496,9 @@ this module or used by this JavaScript.</p></dd>
 metric.</p></dd>
 
 
-<dt id="arg-strsiteid">strSiteID<a class="anchor" aria-label="anchor" href="#arg-strsiteid"></a></dt>
-<dd><p><code>character</code> A <code>GroupID</code> of an individual site within a
-study.</p></dd>
+<dt id="arg-strgroupid">strGroupID<a class="anchor" aria-label="anchor" href="#arg-strgroupid"></a></dt>
+<dd><p><code>character</code> A <code>GroupID</code> of an individual site or other
+group within a study.</p></dd>
 
 
 <dt id="arg-strsubjectid">strSubjectID<a class="anchor" aria-label="anchor" href="#arg-strsubjectid"></a></dt>

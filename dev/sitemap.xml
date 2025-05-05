@@ -71,8 +71,14 @@
 <url><loc>https://gilead-biostats.github.io/gsm.app/dev/reference/mod_DomainHashes_Server.html</loc></url>
 <url><loc>https://gilead-biostats.github.io/gsm.app/dev/reference/mod_DomainSummary_Server.html</loc></url>
 <url><loc>https://gilead-biostats.github.io/gsm.app/dev/reference/mod_DomainSummary_UI.html</loc></url>
+<url><loc>https://gilead-biostats.github.io/gsm.app/dev/reference/mod_GroupDetails_Server.html</loc></url>
+<url><loc>https://gilead-biostats.github.io/gsm.app/dev/reference/mod_GroupDetails_UI.html</loc></url>
+<url><loc>https://gilead-biostats.github.io/gsm.app/dev/reference/mod_GroupInput_Server.html</loc></url>
+<url><loc>https://gilead-biostats.github.io/gsm.app/dev/reference/mod_GroupInput_UI.html</loc></url>
 <url><loc>https://gilead-biostats.github.io/gsm.app/dev/reference/mod_GroupOverview_Server.html</loc></url>
 <url><loc>https://gilead-biostats.github.io/gsm.app/dev/reference/mod_GroupOverview_UI.html</loc></url>
+<url><loc>https://gilead-biostats.github.io/gsm.app/dev/reference/mod_GroupParticipants_Server.html</loc></url>
+<url><loc>https://gilead-biostats.github.io/gsm.app/dev/reference/mod_GroupParticipants_UI.html</loc></url>
 <url><loc>https://gilead-biostats.github.io/gsm.app/dev/reference/mod_MetricDetails_Server.html</loc></url>
 <url><loc>https://gilead-biostats.github.io/gsm.app/dev/reference/mod_MetricDetails_UI.html</loc></url>
 <url><loc>https://gilead-biostats.github.io/gsm.app/dev/reference/mod_MetricTable_Server.html</loc></url>
@@ -87,10 +93,6 @@
 <url><loc>https://gilead-biostats.github.io/gsm.app/dev/reference/mod_ScatterPlotSet_UI.html</loc></url>
 <url><loc>https://gilead-biostats.github.io/gsm.app/dev/reference/mod_ScatterPlot_Server.html</loc></url>
 <url><loc>https://gilead-biostats.github.io/gsm.app/dev/reference/mod_ScatterPlot_UI.html</loc></url>
-<url><loc>https://gilead-biostats.github.io/gsm.app/dev/reference/mod_SiteDetails_Server.html</loc></url>
-<url><loc>https://gilead-biostats.github.io/gsm.app/dev/reference/mod_SiteDetails_UI.html</loc></url>
-<url><loc>https://gilead-biostats.github.io/gsm.app/dev/reference/mod_SiteParticipants_Server.html</loc></url>
-<url><loc>https://gilead-biostats.github.io/gsm.app/dev/reference/mod_SiteParticipants_UI.html</loc></url>
 <url><loc>https://gilead-biostats.github.io/gsm.app/dev/reference/mod_StudyOverview_Server.html</loc></url>
 <url><loc>https://gilead-biostats.github.io/gsm.app/dev/reference/mod_StudyOverview_UI.html</loc></url>
 <url><loc>https://gilead-biostats.github.io/gsm.app/dev/reference/mod_TimeSeries_Server.html</loc></url>
