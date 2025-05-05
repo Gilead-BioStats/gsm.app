@@ -16,8 +16,7 @@ Widget_BarChart(
 \arguments{
 \item{id}{\code{character} The id for this element.}
 
-\item{dfResults}{\code{data.frame} A stacked summary of analysis pipeline output.
-This will be filtered to cases where \code{GroupLevel == "Site"}.}
+\item{dfResults}{\code{data.frame} A stacked summary of analysis pipeline output.}
 
 \item{strOutcome}{\code{character} Outcome variable. Default: \code{"Score"}.}
 

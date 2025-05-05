@@ -29,11 +29,11 @@
                 <div class="bslib-nav-spacer"></div>
                 <li class="bslib-nav-item nav-item form-inline navbar-extras">
                   <div class="form-group shiny-input-container shiny-input-container-inline">
-                    <label class="control-label" id="site-label" for="site">
+                    <label class="control-label" id="group-group-label" for="group-group">
                       <strong>Site</strong>
                     </label>
-                    <div id="site" class="virtual-select" style="display:inline-block;" data-update="change">
-                      <script type="application/json" data-for="site">{"stateInput":true,"options":{"type":["vector"],"choices":["All","0X001","0X002","0X003","0X004","0X005","0X006","0X007","0X008","0X010","0X011","0X012","0X013","0X014","0X015","0X016","0X021","0X022","0X024","0X026","0X027","0X028","0X029","0X037","0X041","0X043","0X064","0X079","0X103","0X109","0X124","0X155","0X159","0X170","0X173","X185X"]},"config":{"multiple":false,"search":false,"hideClearButton":true,"autoSelectFirstOption":true,"showSelectedOptionsFirst":false,"showValueAsTags":false,"optionsCount":10,"noOfDisplayValues":50,"allowNewOption":false,"disableSelectAll":true,"disableOptionGroupCheckbox":true,"disabled":false}}</script>
+                    <div id="group-group" class="virtual-select" style="display:inline-block;" data-update="change">
+                      <script type="application/json" data-for="group-group">{"stateInput":true,"options":{"type":["vector"],"choices":["All","0X001","0X002","0X003","0X004","0X005","0X006","0X007","0X008","0X010","0X011","0X012","0X013","0X014","0X015","0X016","0X021","0X022","0X024","0X026","0X027","0X028","0X029","0X037","0X041","0X043","0X064","0X079","0X103","0X109","0X124","0X155","0X159","0X170","0X173","X185X"]},"config":{"multiple":false,"search":false,"hideClearButton":true,"autoSelectFirstOption":true,"showSelectedOptionsFirst":false,"showValueAsTags":false,"optionsCount":10,"noOfDisplayValues":50,"allowNewOption":false,"disableSelectAll":true,"disableOptionGroupCheckbox":true,"disabled":false}}</script>
                     </div>
                   </div>
                 </li>
@@ -1375,13 +1375,13 @@
               </div>
               <bslib-layout-columns class="bslib-grid grid bslib-mb-spacing html-fill-item" col-widths-sm="5,7" data-require-bs-caller="layout_columns()" data-require-bs-version="5">
                 <div class="bslib-grid-item bslib-gap-spacing html-fill-container">
-                  <div id="site_details-card_site_metadata_list" class="shinyjs-hide">
+                  <div id="group_details-card_group_metadata_list" class="shinyjs-hide">
                     <div>
-                      <style>#site_details-card_site_metadata_list-contents .bslib-full-screen-enter { bottom: unset !important; }</style>
-                      <div class="card bslib-card bslib-mb-spacing bslib-card-input html-fill-item html-fill-container" data-bslib-card-init data-full-screen="false" data-require-bs-caller="card()" data-require-bs-version="5" id="site_details-card_site_metadata_list-contents">
+                      <style>#group_details-card_group_metadata_list-contents .bslib-full-screen-enter { bottom: unset !important; }</style>
+                      <div class="card bslib-card bslib-mb-spacing bslib-card-input html-fill-item html-fill-container" data-bslib-card-init data-full-screen="false" data-require-bs-caller="card()" data-require-bs-version="5" id="group_details-card_group_metadata_list-contents">
                         <div class="card-body bslib-gap-spacing html-fill-item html-fill-container" style="margin-top:auto;margin-bottom:auto;flex:1 1 auto;">
                           <h5>Site Metadata</h5>
-                          <div id="site_details-site_metadata_list" class="shiny-html-output"></div>
+                          <div id="group_details-group_metadata_list" class="shiny-html-output"></div>
                         </div>
                         <bslib-tooltip placement="auto" bsOptions="[]" data-require-bs-version="5" data-require-bs-caller="tooltip()">
                           <template>Expand</template>
@@ -1392,8 +1392,8 @@
                     </div>
                   </div>
                   <div>
-                    <style>#site_details-card_placeholder_site_metadata_list .bslib-full-screen-enter { bottom: unset !important; }</style>
-                    <div class="card bslib-card bslib-mb-spacing bslib-card-input html-fill-item html-fill-container" data-bslib-card-init data-full-screen="false" data-require-bs-caller="card()" data-require-bs-version="5" id="site_details-card_placeholder_site_metadata_list">
+                    <style>#group_details-card_placeholder_group_metadata_list .bslib-full-screen-enter { bottom: unset !important; }</style>
+                    <div class="card bslib-card bslib-mb-spacing bslib-card-input html-fill-item html-fill-container" data-bslib-card-init data-full-screen="false" data-require-bs-caller="card()" data-require-bs-version="5" id="group_details-card_placeholder_group_metadata_list">
                       <div class="card-body bslib-gap-spacing html-fill-item html-fill-container" style="margin-top:auto;margin-bottom:auto;flex:1 1 auto;">
                         <h5>Site Metadata</h5>
                         <div class="card bslib-card bslib-mb-spacing html-fill-item html-fill-container placeholder" data-bslib-card-init data-require-bs-caller="card()" data-require-bs-version="5">
@@ -1411,16 +1411,16 @@
                 </div>
                 <div class="bslib-grid-item bslib-gap-spacing html-fill-container">
                   <div>
-                    <style>#site_details-participants-gt_card .bslib-full-screen-enter { bottom: unset !important; }</style>
-                    <div class="card bslib-card bslib-mb-spacing bslib-card-input html-fill-item html-fill-container" data-bslib-card-init data-full-screen="false" data-require-bs-caller="card()" data-require-bs-version="5" id="site_details-participants-gt_card">
+                    <style>#group_details-participants-gt_card .bslib-full-screen-enter { bottom: unset !important; }</style>
+                    <div class="card bslib-card bslib-mb-spacing bslib-card-input html-fill-item html-fill-container" data-bslib-card-init data-full-screen="false" data-require-bs-caller="card()" data-require-bs-version="5" id="group_details-participants-gt_card">
                       <div class="card-header">
                         <h5>
-                          <span id="site_details-participants-title" class="shiny-text-output"></span>
+                          <span id="group_details-participants-title" class="shiny-text-output"></span>
                         </h5>
-                        <div id="site_details-participants-subtitle" class="shiny-html-output"></div>
+                        <div id="group_details-participants-subtitle" class="shiny-html-output"></div>
                       </div>
                       <div class="card-body bslib-gap-spacing html-fill-item html-fill-container" style="margin-top:auto;margin-bottom:auto;flex:1 1 auto;">
-                        <div class="shiny-html-output gt_shiny" id="site_details-participants-gt-table"></div>
+                        <div class="shiny-html-output gt_shiny" id="group_details-participants-gt-table"></div>
                       </div>
                       <bslib-tooltip placement="auto" bsOptions="[]" data-require-bs-version="5" data-require-bs-caller="tooltip()">
                         <template>Expand</template>

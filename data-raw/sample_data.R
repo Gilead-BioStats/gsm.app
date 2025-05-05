@@ -29,7 +29,7 @@ chrDomainsUsed <- c(
 )
 
 # I chose these sites via code in a previous iteration of this file.
-chrSitesUsed <- c(
+chrGroupsUsed <- c(
   "0X001", "0X002", "0X003", "0X004", "0X005", "0X006", "0X007",
   "0X008", "0X010", "0X011", "0X012", "0X013", "0X014", "0X015",
   "0X016", "0X021", "0X022", "0X024", "0X026", "0X027", "0X028",
@@ -69,9 +69,9 @@ lRaw <- lRaw %>%
   purrr::map(dplyr::as_tibble)
 
 # Filter to our sites of interest.
-lRaw$Raw_SUBJ <- dplyr::filter(lRaw$Raw_SUBJ, invid %in% chrSitesUsed)
+lRaw$Raw_SUBJ <- dplyr::filter(lRaw$Raw_SUBJ, invid %in% chrGroupsUsed)
 lRaw$Raw_AE <- dplyr::filter(lRaw$Raw_AE, subjid %in% lRaw$Raw_SUBJ$subjid)
-lRaw$Raw_ENROLL <- dplyr::filter(lRaw$Raw_ENROLL, invid %in% chrSitesUsed)
+lRaw$Raw_ENROLL <- dplyr::filter(lRaw$Raw_ENROLL, invid %in% chrGroupsUsed)
 lRaw$Raw_LB <- dplyr::filter(lRaw$Raw_LB, subjid %in% lRaw$Raw_SUBJ$subjid)
 lRaw$Raw_PD <- dplyr::filter(lRaw$Raw_PD, subjid %in% lRaw$Raw_SUBJ$subjid)
 lRaw$Raw_SDRGCOMP <- dplyr::filter(lRaw$Raw_SDRGCOMP, subjid %in% lRaw$Raw_SUBJ$subjid)
@@ -80,7 +80,7 @@ lRaw$Raw_VISIT <- dplyr::filter(lRaw$Raw_VISIT, subjid %in% lRaw$Raw_SUBJ$subjid
 lRaw$Raw_DATACHG <- dplyr::filter(lRaw$Raw_DATACHG, subject_nsv %in% lRaw$Raw_SUBJ$subject_nsv)
 lRaw$Raw_DATAENT <- dplyr::filter(lRaw$Raw_DATAENT, subject_nsv %in% lRaw$Raw_SUBJ$subject_nsv)
 lRaw$Raw_QUERY <- dplyr::filter(lRaw$Raw_QUERY, subject_nsv %in% lRaw$Raw_SUBJ$subject_nsv)
-lRaw$Raw_SITE <- dplyr::filter(lRaw$Raw_SITE, invid %in% chrSitesUsed)
+lRaw$Raw_SITE <- dplyr::filter(lRaw$Raw_SITE, invid %in% chrGroupsUsed)
 
 lMapped <- gsm.core::RunWorkflows(lMappings, lRaw)
 lMapped <- lMapped %>%
@@ -277,7 +277,7 @@ usethis::use_data(
 rm(
   chrDateFields,
   chrFieldNames,
-  chrSitesUsed,
+  chrGroupsUsed,
   chrDomainsUsed,
   dSnapshotDate,
   dfSubjectGroups,

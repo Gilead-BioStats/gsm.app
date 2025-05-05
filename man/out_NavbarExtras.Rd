@@ -4,10 +4,10 @@
 \alias{out_NavbarExtras}
 \title{Things on the right side of navbar}
 \usage{
-out_NavbarExtras(chrSites)
+out_NavbarExtras(dfGroups)
 }
 \arguments{
-\item{chrSites}{\code{character} A vector of sites available in the study.}
+\item{dfGroups}{\code{data.frame} Group-level metadata dictionary.}
 }
 \value{
 A list of \code{\link[bslib:nav-items]{bslib::nav_item()}} with

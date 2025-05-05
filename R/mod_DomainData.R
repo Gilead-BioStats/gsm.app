@@ -53,7 +53,7 @@ mod_DomainData_Server <- function(
         }
         return(gtObj)                                                     # Tested via UI
       }
-      return(out_gtPlaceholder("site or participant"))
+      return(out_gtPlaceholder("group or participant"))
     })
 
     selected_rows <- mod_gtBidirectional_Server(

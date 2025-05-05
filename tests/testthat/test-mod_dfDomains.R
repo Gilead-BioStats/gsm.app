@@ -3,7 +3,7 @@
 test_that("srvr_DomainHash generates hashes", {
   rctvDomain <- shiny::reactiveVal()
   strDomainID <- "mtcars"
-  rctv_strSiteID <- shiny::reactiveVal("a")
+  rctv_strGroupID <- shiny::reactiveVal("a")
   rctv_strSubjectID <- shiny::reactiveVal("a")
 
   # Can't bind cache without full reactive domain.
@@ -14,7 +14,7 @@ test_that("srvr_DomainHash generates hashes", {
   test_result <- srvr_DomainHash(
     rctvDomain,
     strDomainID,
-    rctv_strSiteID,
+    rctv_strGroupID,
     rctv_strSubjectID
   )
   val1 <- isolate(test_result())

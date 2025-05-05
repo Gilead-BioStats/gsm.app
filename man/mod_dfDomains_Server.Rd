@@ -8,7 +8,8 @@ mod_dfDomains_Server(
   id,
   fnFetchData,
   chrDomains,
-  rctv_strSiteID,
+  rctv_strGroupID,
+  rctv_strGroupLevel,
   rctv_strSubjectID
 )
 }
@@ -16,7 +17,7 @@ mod_dfDomains_Server(
 \item{id}{\code{character} The id for this element.}
 
 \item{fnFetchData}{\code{function} A function that takes a \code{strDomainID} argument
-and optional \code{strSiteID}, \code{strSubjectID}, and/or \code{dSnapshotDate}, and
+and optional \code{strGroupID}, \code{strSubjectID}, and/or \code{dSnapshotDate}, and
 returns a data.frame. See \code{\link[=sample_fnFetchData]{sample_fnFetchData()}} for an example. The
 returned data.frame contains information about the named domain. If the
 function throws an error, the error is elevated to the user, so you can use
@@ -27,9 +28,9 @@ app. The values of the vector will be used as labels, and the names will be
 used as IDs. The IDs will be passed to \code{fnFetchData()} to fetch data about
 that domain.}
 
-\item{rctv_strSiteID}{\verb{reactive character} A \code{\link[shiny:reactiveVal]{shiny::reactiveVal()}} object
-that returns the \code{GroupID} of the selected site, and can be used to update
-the selected site.}
+\item{rctv_strGroupID}{\verb{reactive character} A \code{\link[shiny:reactiveVal]{shiny::reactiveVal()}} object
+that returns the \code{GroupID} of the selected group (usually site), and can be
+used to update which group is selected.}
 
 \item{rctv_strSubjectID}{\verb{reactive character} A \code{\link[shiny:reactive]{shiny::reactive()}} object
 that returns the \code{SubjectID} of the selected participant.}

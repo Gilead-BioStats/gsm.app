@@ -9,7 +9,8 @@ FilterbyGroupID(df, strGroupID)
 \arguments{
 \item{df}{A data.frame to filter.}
 
-\item{strGroupID}{\code{character} A \code{GroupID} to focus on.}
+\item{strGroupID}{\code{character} A \code{GroupID} of an individual site or other
+group within a study.}
 }
 \value{
 The filtered data.frame.

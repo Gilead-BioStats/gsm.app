@@ -48,7 +48,7 @@ test_that("mod_Plugins_UI creates the expected UI with required input", {
     lPlugins <- list(list(
       meta = list(ID = "TEST", Name = "Plugin Test"),
       shiny = list(UI = function(id) "TestUI"),
-      required_inputs = "Site"
+      required_inputs = "Group"
     ))
   )
   expect_type(test_result, "list")
@@ -92,7 +92,7 @@ test_that("mod_Plugins_UI creates the expected UI with required input", {
 #       l_rctvDomainHashes = list(),
 #       rctv_dSnapshotDate = reactive("2020-01-01"),
 #       rctv_strMetricID = reactive(NULL),
-#       rctv_strSiteID = reactive(NULL),
+#       rctv_strGroupID = reactive(NULL),
 #       rctv_strSubjectID = reactiveVal("0008"),
 #       rctv_strDomainID = reactiveVal("None")
 #     ),
@@ -127,7 +127,7 @@ test_that("mod_Plugins_UI creates the expected UI with required input", {
 #               })
 #             }
 #           ),
-#           required_inputs = c("Site", "Participant")
+#           required_inputs = c("Group", "Participant")
 #         )
 #       ),
 #       dfAnalyticsInput = sample_dfAnalyticsInput,
@@ -138,13 +138,13 @@ test_that("mod_Plugins_UI creates the expected UI with required input", {
 #       l_rctvDomains = list(),
 #       rctv_dSnapshotDate = reactive("2020-01-01"),
 #       rctv_strMetricID = reactive(NULL),
-#       rctv_strSiteID = reactiveVal("All"),
+#       rctv_strGroupID = reactiveVal("All"),
 #       rctv_strSubjectID = reactiveVal("All"),
 #       rctv_strDomainID = reactiveVal("None")
 #     ),
 #     {
 #       expect_cleaned_html(output$`1`$html, call = call)
-#       rctv_strSiteID("0X001")
+#       rctv_strGroupID("0X001")
 #       session$flushReact()
 #       expect_cleaned_html(output$`1`$html, call = call)
 #       rctv_strSubjectID("0008")

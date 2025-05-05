@@ -3,28 +3,28 @@ test_that("srvr_CompileUnsetInputs compiles unset inputs", {
     rctv_dSnapshotDate = reactiveVal(),
     rctv_strDomainID = reactiveVal(),
     rctv_strMetricID = reactiveVal(),
-    rctv_strSiteID = reactiveVal(),
+    rctv_strGroupID = reactiveVal(),
     rctv_strSubjectID = reactiveVal()
   )
   chrInputNamesPretty <- c(
     "snapshot date",
     "domain",
     "metric",
-    "site",
+    "group",
     "participant"
   )
 
   rctv_chrMissing <- srvr_CompileUnsetInputs(
-    chrRequiredInputs = "Site",
+    chrRequiredInputs = "Group",
     l_rctvInputs = l_rctvInputs,
     chrInputNamesPretty = chrInputNamesPretty
   )
-  expect_equal(isolate(rctv_chrMissing()), "site")
+  expect_equal(isolate(rctv_chrMissing()), "group")
 
   l_rctvInputs$rctv_dSnapshotDate("2020-01-01")
-  expect_equal(isolate(rctv_chrMissing()), "site")
+  expect_equal(isolate(rctv_chrMissing()), "group")
 
-  l_rctvInputs$rctv_strSiteID("1234")
+  l_rctvInputs$rctv_strGroupID("1234")
   expect_length(isolate(rctv_chrMissing()), 0)
 })
 

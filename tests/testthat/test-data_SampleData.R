@@ -27,7 +27,7 @@ test_that("sample_fnFetchData returns expected data", {
 
 test_that("sample_fnFetchData returns expected data by Site", {
   expect_no_error({
-    test_result <- sample_fnFetchData("SUBJ", strSiteID = "0X103")
+    test_result <- sample_fnFetchData("SUBJ", strGroupID = "0X103")
   })
   expect_s3_class(test_result, c("tbl_df", "tbl", "data.frame"))
 

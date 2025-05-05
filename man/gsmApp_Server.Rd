@@ -31,11 +31,10 @@ values for reporting.}
 \item{dfMetrics}{\code{data.frame} Metric-specific metadata for use in charts and
 reporting.}
 
-\item{dfResults}{\code{data.frame} A stacked summary of analysis pipeline output.
-This will be filtered to cases where \code{GroupLevel == "Site"}.}
+\item{dfResults}{\code{data.frame} A stacked summary of analysis pipeline output.}
 
 \item{fnFetchData}{\code{function} A function that takes a \code{strDomainID} argument
-and optional \code{strSiteID}, \code{strSubjectID}, and/or \code{dSnapshotDate}, and
+and optional \code{strGroupID}, \code{strSubjectID}, and/or \code{dSnapshotDate}, and
 returns a data.frame. See \code{\link[=sample_fnFetchData]{sample_fnFetchData()}} for an example. The
 returned data.frame contains information about the named domain. If the
 function throws an error, the error is elevated to the user, so you can use

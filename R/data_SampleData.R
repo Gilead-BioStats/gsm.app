@@ -1,6 +1,6 @@
 #' Analytics Input Dataset
 #'
-#' Summary metric data for the "Site Subjects" module on the "Metric Details"
+#' Summary metric data for the "Group Subjects" module on the "Metric Details"
 #' tab.
 #'
 #' @format A tibble with `r nrow(gsm.app::sample_dfAnalyticsInput)` rows and
@@ -85,7 +85,7 @@
 
 #' KRI Results Dataset
 #'
-#' Information about the status of each site in the sample data.
+#' Information about the status of each group in the sample data.
 #'
 #' @format A tibble with `r nrow(gsm.app::sample_dfResults)` rows and
 #'   `r ncol(gsm.app::sample_dfResults)` columns:
@@ -119,7 +119,7 @@
 #'
 #' @examples
 #' head(sample_fnFetchData("AE"))
-#' head(sample_fnFetchData("AE", strSiteID = "0X103"))
+#' head(sample_fnFetchData("AE", strGroupID = "0X103"))
 #' head(sample_fnFetchData("AE", strSubjectID = "1350"))
 sample_fnFetchData <- function(
   strDomainID = c(
@@ -134,18 +134,19 @@ sample_fnFetchData <- function(
     "DATAENT",
     "QUERY"
   ),
-  strSiteID = NULL,
+  strGroupID = NULL,
+  strGroupLevel = NULL,
   strSubjectID = NULL,
   dSnapshotDate = NULL
 ) {
   strDomainID <- toupper(strDomainID)
   strDomainID <- rlang::arg_match(strDomainID)
 
-  strSiteID <- NullifyEmpty(strSiteID)
+  strGroupID <- NullifyEmpty(strGroupID)
   strSubjectID <- NullifyEmpty(strSubjectID)
 
   if (
-    !is.null(strSiteID) && strSiteID == "0X013" && strDomainID == "LB"
+    !is.null(strGroupID) && strGroupID == "0X013" && strDomainID == "LB"
   ) {
     gsmappAbort(
       c(
@@ -165,8 +166,11 @@ sample_fnFetchData <- function(
   if ("subjectid" %in% colnames(df)) {
     df <- dplyr::rename(df, IntakeID = "subjectid")
   }
-  if (length(strSiteID)) {
-    df <- dplyr::filter(df, .data$GroupID == strSiteID)
+  if (length(strGroupID)) {
+    if (length(strGroupLevel) && "GroupLevel" %in% colnames(df)) {
+      df <- dplyr::filter(df, .data$GroupLevel == strGroupLevel)
+    }
+    df <- dplyr::filter(df, .data$GroupID == strGroupID)
   }
   if (length(strSubjectID)) {
     df <- dplyr::filter(df, .data$SubjectID == strSubjectID)

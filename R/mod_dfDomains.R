@@ -7,14 +7,19 @@ mod_dfDomains_Server <- function(
   id,
   fnFetchData,
   chrDomains,
-  rctv_strSiteID,
+  rctv_strGroupID,
+  rctv_strGroupLevel,
   rctv_strSubjectID
 ) {
   moduleServer(id, function(input, output, session) {
     chrDomainIDs <- rlang::set_names(names(chrDomains), names(chrDomains))
     l_rctvDomains <- purrr::map(chrDomainIDs, function(this_domain) {
       srvr_dfDomain(
-        this_domain, fnFetchData, rctv_strSiteID, rctv_strSubjectID
+        this_domain,
+        fnFetchData,
+        rctv_strGroupID,
+        rctv_strGroupLevel,
+        rctv_strSubjectID
       )
     })
     return(l_rctvDomains)
@@ -31,7 +36,8 @@ mod_dfDomains_Server <- function(
 srvr_dfDomain <- function(
   strDomainID,
   fnFetchData,
-  rctv_strSiteID,
+  rctv_strGroupID,
+  rctv_strGroupLevel,
   rctv_strSubjectID
 ) {
   # This is an area that could use a lot of optimization; this is almost
@@ -44,7 +50,8 @@ srvr_dfDomain <- function(
           {
             fnFetchData(
               strDomainID,
-              strSiteID = NullifyEmpty(rctv_strSiteID()),
+              strGroupID = NullifyEmpty(rctv_strGroupID()),
+              strGroupLevel = rctv_strGroupLevel(),
               strSubjectID = NullifyEmpty(rctv_strSubjectID())
             )
           },
@@ -63,7 +70,8 @@ srvr_dfDomain <- function(
   }) %>%
     bindCache(
       strDomainID,
-      rctv_strSiteID(),
+      rctv_strGroupID(),
+      rctv_strGroupLevel(),
       rctv_strSubjectID(),
       cache = "session"
     )
@@ -77,7 +85,8 @@ srvr_dfDomain <- function(
 mod_DomainHashes_Server <- function(
   id,
   l_rctvDomains,
-  rctv_strSiteID,
+  rctv_strGroupID,
+  rctv_strGroupLevel,
   rctv_strSubjectID
 ) {
   moduleServer(id, function(input, output, session) {
@@ -87,7 +96,8 @@ mod_DomainHashes_Server <- function(
         srvr_DomainHash(
           rctvDomain,
           strDomainID,
-          rctv_strSiteID,
+          rctv_strGroupID,
+          rctv_strGroupLevel,
           rctv_strSubjectID
         )
       }
@@ -104,13 +114,19 @@ mod_DomainHashes_Server <- function(
 srvr_DomainHash <- function(
   rctvDomain,
   strDomainID,
-  rctv_strSiteID,
+  rctv_strGroupID,
+  rctv_strGroupLevel,
   rctv_strSubjectID
 ) {
   reactive({
     rlang::hash(rctvDomain())
   }) %>%
-    bindCache(strDomainID, rctv_strSiteID(), rctv_strSubjectID())
+    bindCache(
+      strDomainID,
+      rctv_strGroupID(),
+      rctv_strGroupLevel(),
+      rctv_strSubjectID()
+    )
 }
 
 #' Modal dialog for errors etc

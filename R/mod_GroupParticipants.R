@@ -1,10 +1,10 @@
-#' Site Participants UI
+#' Group Participants UI
 #'
 #' @inheritParams shared-params
-#' @returns A [bslib::card()] with a placeholder or a clickable table of site
+#' @returns A [bslib::card()] with a placeholder or a clickable table of group
 #'   participants.
 #' @keywords internal
-mod_SiteParticipants_UI <- function(id) {
+mod_GroupParticipants_UI <- function(id) {
   ns <- NS(id)
   out_Card(
     tagTitle = NULL,
@@ -17,15 +17,16 @@ mod_SiteParticipants_UI <- function(id) {
   )
 }
 
-#' Site Participants Server
+#' Group Participants Server
 #'
 #' @inheritParams shared-params
 #' @returns A [shiny::reactiveVal()] with the id of the participant selected in
 #'   the table.
 #' @keywords internal
-mod_SiteParticipants_Server <- function(
+mod_GroupParticipants_Server <- function(
     id,
     rctv_strGroupID,
+    rctv_strGroupLevel,
     rctv_strSubjectID,
     rctv_dfAnalyticsInput,
     rctv_lColumnNames
@@ -33,17 +34,18 @@ mod_SiteParticipants_Server <- function(
   moduleServer(id, function(input, output, session) {
     rctv_lglGroupIsNone <- reactive({
       strGroupID <- rctv_strGroupID()
-      is.null(strGroupID) || strGroupID == "All"
+      is.null(NullifyEmpty(rctv_strGroupID()))
     }) %>%
       bindCache(rctv_strGroupID())
 
     output$title <- renderText({
+      req(rctv_strGroupLevel())
       if (rctv_lglGroupIsNone()) {
-        return("Site Subjects")
+        return(paste(rctv_strGroupLevel(), "Subjects"))
       }
-      return(glue::glue("Site {rctv_strGroupID()}"))
+      return(glue::glue("{rctv_strGroupLevel()} {rctv_strGroupID()}"))
     }) %>%
-      bindCache(rctv_strGroupID())
+      bindCache(rctv_strGroupLevel(), rctv_strGroupID())
     output$subtitle <- renderUI({
       if (rctv_lglGroupIsNone()) {
         return(NULL)
@@ -57,7 +59,7 @@ mod_SiteParticipants_Server <- function(
     rctv_gtObject <- reactive({
       df <- rctv_dfAnalyticsInput()
       if (is.null(df) || !nrow(df)) {
-        return(out_gtPlaceholder("site"))
+        return(out_gtPlaceholder(tolower(rctv_strGroupLevel())))
       }
       gt::gt(df) %>%
         gt::cols_label(.list = rctv_lColumnNames()) %>%

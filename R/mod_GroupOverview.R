@@ -29,8 +29,8 @@ mod_GroupOverview_Server <- function(
     dfResults,
     dfMetrics,
     dfGroups,
-    rctv_strMetricID,
-    rctv_strSiteID
+    rctv_strGroupID,
+    rctv_strMetricID
 ) {
   moduleServer(id, function(input, output, session) {
     dfResults <- gsm.kri::FilterByLatestSnapshotDate(dfResults)
@@ -63,7 +63,7 @@ mod_GroupOverview_Server <- function(
     })
     observe({
       req(input$group_overview$selectedGroupID)
-      rctv_strSiteID(input$group_overview$selectedGroupID)
+      rctv_strGroupID(input$group_overview$selectedGroupID)
     })
     observe({
       req(input$group_overview$groupSubset)

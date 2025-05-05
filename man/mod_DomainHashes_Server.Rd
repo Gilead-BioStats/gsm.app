@@ -4,7 +4,13 @@
 \alias{mod_DomainHashes_Server}
 \title{List of Reactive Domain df Hashes}
 \usage{
-mod_DomainHashes_Server(id, l_rctvDomains, rctv_strSiteID, rctv_strSubjectID)
+mod_DomainHashes_Server(
+  id,
+  l_rctvDomains,
+  rctv_strGroupID,
+  rctv_strGroupLevel,
+  rctv_strSubjectID
+)
 }
 \arguments{
 \item{id}{\code{character} The id for this element.}
@@ -12,9 +18,9 @@ mod_DomainHashes_Server(id, l_rctvDomains, rctv_strSiteID, rctv_strSubjectID)
 \item{l_rctvDomains}{\code{list} A named list of \code{\link[shiny:reactive]{shiny::reactive()}} objects, each
 of which returns a domain dataframe.}
 
-\item{rctv_strSiteID}{\verb{reactive character} A \code{\link[shiny:reactiveVal]{shiny::reactiveVal()}} object
-that returns the \code{GroupID} of the selected site, and can be used to update
-the selected site.}
+\item{rctv_strGroupID}{\verb{reactive character} A \code{\link[shiny:reactiveVal]{shiny::reactiveVal()}} object
+that returns the \code{GroupID} of the selected group (usually site), and can be
+used to update which group is selected.}
 
 \item{rctv_strSubjectID}{\verb{reactive character} A \code{\link[shiny:reactive]{shiny::reactive()}} object
 that returns the \code{SubjectID} of the selected participant.}

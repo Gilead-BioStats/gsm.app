@@ -10,7 +10,8 @@ title: "Plugin: ProvideATitle"
 
 ### Core Inputs
 <!-- Which core inputs will be used by or manipulated within this plugin? -->
-- [ ] `rctv_strSiteID`
+- [ ] `rctv_strGroupID`
+- [ ] `rctv_strGroupLevel`
 - [ ] `rctv_strMetricID`
 - [ ] `rctv_strSubjectID`
 - [ ] `rctv_strPrimaryNavBar`
@@ -37,7 +38,8 @@ title: "Plugin: ProvideATitle"
 
 ### Core Inputs
 <!-- Which core inputs will users be able to select inside the app? These values should be returned by the server side of the app in a `list()` of `shiny::reactive()` or `shiny::reactiveVal()` objects, with names matching the names below. -->
-- [ ] `rctv_strSiteID`
+- [ ] `rctv_strGroupID`
+- [ ] `rctv_strGroupLevel`
 - [ ] `rctv_strMetricID`
 - [ ] `rctv_strSubjectID`
 - [ ] `rctv_strDomainID`

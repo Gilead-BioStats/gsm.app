@@ -21,7 +21,7 @@ test_that("mod_ScatterPlotSet_Server initializes and creates scatter plots", {
       dfGroups = sample_dfGroups,
       dfBounds = sample_dfBounds,
       rctv_strMetricID = reactiveVal("whatever"),
-      rctv_strSiteID = reactiveVal("whatever")
+      rctv_strGroupID = reactiveVal("whatever")
     ),
     {
       lMetricIDs <- unique(dfMetrics$MetricID)
@@ -42,13 +42,13 @@ test_that("mod_ScatterPlotSet_Server sets selected group correctly", {
       dfGroups = sample_dfGroups,
       dfBounds = sample_dfBounds,
       rctv_strMetricID = reactiveVal("whatever"),
-      rctv_strSiteID = reactiveVal("All")
+      rctv_strGroupID = reactiveVal("All")
     ),
     {
       # Initialize the value first.
       session$setInputs(`Analysis_kri0001-plot` = "All")
       session$setInputs(`Analysis_kri0001-plot` = "0X003")
-      expect_equal(rctv_strSiteID(), "0X003")
+      expect_equal(rctv_strGroupID(), "0X003")
     }
   )
 })
@@ -63,7 +63,7 @@ test_that("mod_ScatterPlotSet_Server selects plots based on outside selection", 
       dfGroups = sample_dfGroups,
       dfBounds = sample_dfBounds,
       rctv_strMetricID = reactiveVal("whatever"),
-      rctv_strSiteID = reactiveVal("0X003")
+      rctv_strGroupID = reactiveVal("0X003")
     ),
     {
       getSelectedGroupIDs <- function(strMetricID) {
@@ -83,7 +83,7 @@ test_that("mod_ScatterPlotSet_Server selects plots based on outside selection", 
       )
 
       # Update the simulated outside input.
-      rctv_strSiteID("0X005")
+      rctv_strGroupID("0X005")
       session$flushReact()
 
       # Confirm that the outputs update.
@@ -95,7 +95,7 @@ test_that("mod_ScatterPlotSet_Server selects plots based on outside selection", 
       )
 
       # Update the simulated outside input to "All" (deselect).
-      rctv_strSiteID("All")
+      rctv_strGroupID("All")
       session$flushReact()
 
       # Confirm that the outputs update.
@@ -122,7 +122,7 @@ test_that("mod_ScatterPlotSet_Server sets selected metric", {
       dfGroups = sample_dfGroups,
       dfBounds = sample_dfBounds,
       rctv_strMetricID = reactiveVal("whatever"),
-      rctv_strSiteID = reactiveVal("whatever")
+      rctv_strGroupID = reactiveVal("whatever")
     ),
     {
       # After clicking we get back just the metric.

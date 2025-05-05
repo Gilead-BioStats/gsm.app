@@ -9,7 +9,7 @@ mod_BarChart_Server(
   rctv_dfResults,
   rctv_lMetric,
   dfGroups,
-  rctv_strSiteID,
+  rctv_strGroupID,
   strOutcome = "Score",
   rctv_dfBounds = shiny::reactive(NULL)
 )
@@ -26,9 +26,9 @@ which group is selected.}
 
 \item{dfGroups}{\code{data.frame} Group-level metadata dictionary.}
 
-\item{rctv_strSiteID}{\verb{reactive character} A \code{\link[shiny:reactiveVal]{shiny::reactiveVal()}} object
-that returns the \code{GroupID} of the selected site, and can be used to update
-the selected site.}
+\item{rctv_strGroupID}{\verb{reactive character} A \code{\link[shiny:reactiveVal]{shiny::reactiveVal()}} object
+that returns the \code{GroupID} of the selected group (usually site), and can be
+used to update which group is selected.}
 
 \item{strOutcome}{\code{character} Outcome variable. Default: \code{"Score"}.}
 

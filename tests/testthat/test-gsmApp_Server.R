@@ -12,16 +12,17 @@ test_that("gsmApp_Server initializes correctly", {
     {
       # Simulate initialization.
       session$setInputs(
-        site = "All",
+        `group-level` = "Site",
+        `group-group` = "All",
         participant = "All",
         primary_nav_bar = "Study Overview"
       )
-      expect_equal(input$site, "All")
+      expect_equal(input$`group-group`, "All")
 
       session$setInputs(
-        site = "0X001"
+        `group-group` = "0X001"
       )
-      expect_equal(input$site, "0X001")
+      expect_equal(input$`group-group`, "0X001")
     }
   )
 })
@@ -44,14 +45,14 @@ test_that("gsmApp_Server triggers reset", {
       session$setInputs(
         primary_nav_bar = "Study Overview",
         metric = "Analysis_kri0001",
-        site = "All",
+        `group-group` = "All",
         participant = "All"
       )
-      expect_equal(input$site, "All")
+      expect_equal(input$`group-group`, "All")
 
       # Change something from default.
-      session$setInputs(site = "0X001")
-      expect_equal(input$site, "0X001")
+      session$setInputs(`group-group` = "0X001")
+      expect_equal(input$`group-group`, "0X001")
 
       session$setInputs(reset = 1L)
       # Ideally we'd check inputs here, but testServer doesn't see the change.
@@ -96,7 +97,8 @@ test_that("gsmApp_Server sets participant drop-down properly", {
       session$setInputs(
         primary_nav_bar = "Study Overview",
         metric = "Analysis_kri0001",
-        site = "All",
+        `group-level` = "Site",
+        `group-group` = "All",
         participant = "All"
       )
       expect_equal(input$participant, "All")

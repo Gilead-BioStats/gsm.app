@@ -34,7 +34,7 @@ mod_TimeSeries_Server <- function(
     rctv_dfResults,
     rctv_lMetric,
     dfGroups,
-    rctv_strSiteID,
+    rctv_strGroupID,
     strOutcome = "Score",
     rctv_dfBounds = shiny::reactive(NULL)
 ) {
@@ -46,7 +46,7 @@ mod_TimeSeries_Server <- function(
     rctv_lMetric = rctv_lMetric,
     dfGroups = dfGroups,
     rctv_dfBounds = rctv_dfBounds,
-    rctv_strSiteID = rctv_strSiteID,
+    rctv_strGroupID = rctv_strGroupID,
     strOutcome = strOutcome
   )
 }
@@ -87,7 +87,7 @@ Widget_TimeSeries <- function(
     dfGroups = dfGroups,
     strOutcome = strOutcome,
     vThreshold = vThreshold,
-    strFootnote = "Only data from the most recent snapshot is included in the Site Subjects table."
+    strFootnote = "Only data from the most recent snapshot is included in the Group Subjects table."
   )
 }
 

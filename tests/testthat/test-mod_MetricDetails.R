@@ -13,11 +13,11 @@ test_that("mod_MetricDetails_UI creates the expected UI", {
 test_that("mod_MetricDetails_Server initializes and renders scatter plot", {
   # Inputs to simulate things that happen in the main server function.
   rctv_strMetricID <- reactiveVal("Analysis_kri0001")
-  rctv_strSiteID <- reactiveVal("All")
+  rctv_strGroupID <- reactiveVal("All")
   rctv_lMetric <- reactive({
     lMetric <- as.list(FilterbyMetricID(sample_dfMetrics, rctv_strMetricID()))
-    if (rctv_strSiteID() != "All") {
-      lMetric$selectedGroupIDs <- rctv_strSiteID()
+    if (rctv_strGroupID() != "All") {
+      lMetric$selectedGroupIDs <- rctv_strGroupID()
     }
     lMetric
   })
@@ -30,7 +30,7 @@ test_that("mod_MetricDetails_Server initializes and renders scatter plot", {
       dfGroups = sample_dfGroups,
       dfBounds = sample_dfBounds,
       rctv_lMetric = rctv_lMetric,
-      rctv_strSiteID = rctv_strSiteID,
+      rctv_strGroupID = rctv_strGroupID,
       rctv_strMetricID = rctv_strMetricID
     ),
     {
@@ -41,7 +41,7 @@ test_that("mod_MetricDetails_Server initializes and renders scatter plot", {
 
       # Simulate selecting a group from the scatter plot
       session$setInputs(`scatter_plot-plot` = "0X005")
-      expect_equal(rctv_strSiteID(), "0X005")
+      expect_equal(rctv_strGroupID(), "0X005")
     }
   )
 })
@@ -50,11 +50,11 @@ test_that("mod_MetricDetails_Server renders tab outputs", {
   call <- rlang::current_env()
   # Inputs to simulate things that happen in the main server function.
   rctv_strMetricID <- reactiveVal("Analysis_kri0001")
-  rctv_strSiteID <- reactiveVal("All")
+  rctv_strGroupID <- reactiveVal("All")
   rctv_lMetric <- reactive({
     lMetric <- as.list(FilterbyMetricID(sample_dfMetrics, rctv_strMetricID()))
-    if (rctv_strSiteID() != "All") {
-      lMetric$selectedGroupIDs <- rctv_strSiteID()
+    if (rctv_strGroupID() != "All") {
+      lMetric$selectedGroupIDs <- rctv_strGroupID()
     }
     lMetric
   })
@@ -67,7 +67,7 @@ test_that("mod_MetricDetails_Server renders tab outputs", {
       dfGroups = sample_dfGroups,
       dfBounds = sample_dfBounds,
       rctv_lMetric = rctv_lMetric,
-      rctv_strSiteID = rctv_strSiteID,
+      rctv_strGroupID = rctv_strGroupID,
       rctv_strMetricID = rctv_strMetricID
     ),
     {
@@ -76,15 +76,15 @@ test_that("mod_MetricDetails_Server renders tab outputs", {
       # Manually set tab (happens automatically via UI). Make sure the selected
       # site doesn't instantly change.
       session$setInputs(selected_tab = "Scatter Plot")
-      expect_equal(rctv_strSiteID(), "All")
+      expect_equal(rctv_strGroupID(), "All")
       session$setInputs(selected_tab = "Bar Chart (KRI Value)")
-      expect_equal(rctv_strSiteID(), "All")
+      expect_equal(rctv_strGroupID(), "All")
       session$setInputs(selected_tab = "Bar Chart (KRI Score)")
-      expect_equal(rctv_strSiteID(), "All")
+      expect_equal(rctv_strGroupID(), "All")
       session$setInputs(selected_tab = "Time Series")
-      expect_equal(rctv_strSiteID(), "All")
+      expect_equal(rctv_strGroupID(), "All")
       session$setInputs(selected_tab = "Analysis Output")
-      expect_equal(rctv_strSiteID(), "All")
+      expect_equal(rctv_strGroupID(), "All")
     }
   )
 })

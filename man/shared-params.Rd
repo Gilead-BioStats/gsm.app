@@ -42,12 +42,13 @@ data.frame.}
 an object.}
 
 \item{chrRequiredInputs}{\code{character} An optional vector of any inputs
-("metric", "site", "participant", or "domain") that must have a non-empty
-value before the plugin can load. "None" and "All" count as "empty" for
-this check. If the user has not set a value for that input, the app will
-display a placeholder instructing the user to make a selection.}
+("metric", "group", "group level", "participant", or "domain") that must
+have a non-empty value before the plugin can load. "None" and "All" count
+as "empty" for this check. If the user has not set a value for that input,
+the app will display a placeholder instructing the user to make a
+selection.}
 
-\item{chrSites}{\code{character} A vector of sites available in the study.}
+\item{chrGroups}{\code{character} A vector of groups available in the study.}
 
 \item{chrValues}{\code{character} A vector of values to associate with a vector of
 labels.}
@@ -66,8 +67,7 @@ reporting.}
 \item{dfParticipantGroups}{\code{data.frame} Unique \code{SubjectID} and \code{GroupID}
 combos from \code{dfAnalyticsInput}.}
 
-\item{dfResults}{\code{data.frame} A stacked summary of analysis pipeline output.
-This will be filtered to cases where \code{GroupLevel == "Site"}.}
+\item{dfResults}{\code{data.frame} A stacked summary of analysis pipeline output.}
 
 \item{dSnapshotDate}{\code{Date} The date of a data snapshot.}
 
@@ -81,7 +81,7 @@ in the message or widget are defined. You almost definitely want to leave
 this as the default value.}
 
 \item{fnFetchData}{\code{function} A function that takes a \code{strDomainID} argument
-and optional \code{strSiteID}, \code{strSubjectID}, and/or \code{dSnapshotDate}, and
+and optional \code{strGroupID}, \code{strSubjectID}, and/or \code{dSnapshotDate}, and
 returns a data.frame. See \code{\link[=sample_fnFetchData]{sample_fnFetchData()}} for an example. The
 returned data.frame contains information about the named domain. If the
 function throws an error, the error is elevated to the user, so you can use
@@ -107,9 +107,9 @@ function.}
 
 \item{intKRIColorCount}{\code{integer} A named vector of counts by color.}
 
-\item{intRed}{\code{integer} The number of sites with at least one red flag.}
+\item{intRed}{\code{integer} The number of groups with at least one red flag.}
 
-\item{intAmber}{\code{integer} The number of sites with at least one amber flag.}
+\item{intAmber}{\code{integer} The number of groups with at least one amber flag.}
 
 \item{lDataModel}{\code{list} Named list of the standard gsm dataframes
 (\code{dfAnalyticsInput}, \code{dfBounds}, \code{dfGroups}, \code{dfMetrics}, and \code{dfResults}).}
@@ -196,9 +196,9 @@ that returns the selected \code{MetricID}.}
 returns the name of an object, such as a particular dataframe in a named
 list.}
 
-\item{rctv_strSiteID}{\verb{reactive character} A \code{\link[shiny:reactiveVal]{shiny::reactiveVal()}} object
-that returns the \code{GroupID} of the selected site, and can be used to update
-the selected site.}
+\item{rctv_strGroupID}{\verb{reactive character} A \code{\link[shiny:reactiveVal]{shiny::reactiveVal()}} object
+that returns the \code{GroupID} of the selected group (usually site), and can be
+used to update which group is selected.}
 
 \item{rctv_strSubjectID}{\verb{reactive character} A \code{\link[shiny:reactive]{shiny::reactive()}} object
 that returns the \code{SubjectID} of the selected participant.}
@@ -247,8 +247,6 @@ check that the package is installed, and attach it. The function can also
 be supplied as a function or a purrr-style formula. See
 \code{\link[rlang:as_function]{rlang::as_function()}} (the \code{x} argument) for more details.}
 
-\item{strGroupID}{\code{character} A \code{GroupID} to focus on.}
-
 \item{strGroupLabelKey}{\code{character} Value for the group label key. Default:
 \code{"InvestigatorLastName"}.}
 
@@ -267,8 +265,8 @@ Default: \code{"red"}. Options:
 \item{strInputID}{\code{character} An ID to use for the Shiny input created by
 this module or used by this JavaScript.}
 
-\item{strInputName}{\code{character} The name of an input. One of \code{"site"},
-\code{"participant"}, or \code{"domain"}.}
+\item{strInputName}{\code{character} The name of an input. One of \code{"group"},
+\code{"level"}, \code{"participant"}, or \code{"domain"}.}
 
 \item{strLabel}{\code{character} The label of a field.}
 
@@ -279,8 +277,8 @@ this module or used by this JavaScript.}
 \item{strPlotTitle}{\code{character} A title for a plot, usually the name of a
 metric.}
 
-\item{strSiteID}{\code{character} A \code{GroupID} of an individual site within a
-study.}
+\item{strGroupID}{\code{character} A \code{GroupID} of an individual site or other
+group within a study.}
 
 \item{strSubjectID}{\code{character} A \code{SubjectID} of an individual participant.}
 

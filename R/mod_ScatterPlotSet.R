@@ -29,8 +29,8 @@ mod_ScatterPlotSet_Server <- function(
     dfMetrics,
     dfGroups,
     dfBounds,
-    rctv_strMetricID,
-    rctv_strSiteID
+    rctv_strGroupID,
+    rctv_strMetricID
 ) {
   moduleServer(id, function(input, output, session) {
     lMetricGroups <- purrr::map(
@@ -40,9 +40,9 @@ mod_ScatterPlotSet_Server <- function(
         # need to create them for the module to get what it's expecting.
         rctv_lMetric <- reactive({
           lMetric <- as.list(FilterbyMetricID(dfMetrics, strMetricID))
-          strSiteID <- rctv_strSiteID()
-          if (strSiteID != "All") {
-            lMetric$selectedGroupIDs <- strSiteID
+          strGroupID <- rctv_strGroupID()
+          if (strGroupID != "All") {
+            lMetric$selectedGroupIDs <- strGroupID
           }
           lMetric
         })
@@ -59,7 +59,7 @@ mod_ScatterPlotSet_Server <- function(
           rctv_lMetric = rctv_lMetric,
           dfGroups = dfGroups,
           rctv_dfBounds = rctv_dfBounds_byMetricID,
-          rctv_strSiteID = rctv_strSiteID
+          rctv_strGroupID = rctv_strGroupID
         )
       }
     )

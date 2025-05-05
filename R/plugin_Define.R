@@ -179,7 +179,7 @@ plugin_ValidateReqs <- function(
     chrRequiredInputs <- tolower(chrRequiredInputs)
     CheckIsIn(
       chrRequiredInputs,
-      c("metric", "site", "participant", "domain"),
+      c("metric", "group", "group level", "participant", "domain"),
       "Requird inputs",
       envCall
     )

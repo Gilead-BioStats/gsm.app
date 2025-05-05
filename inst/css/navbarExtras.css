@@ -11,10 +11,11 @@
 
 .navbar-extras .control-label {
   margin-bottom: 0 !important;
+  white-space: nowrap;
 }
 
 .navbar-extras .virtual-select {
-  min-width: 150px;
+  min-width: 100px;
 }
 
 .navbar-extras button {

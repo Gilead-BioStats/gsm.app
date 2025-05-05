@@ -7,14 +7,15 @@
 CheckInputUnset(strInputName, chrRequiredInputs, strValue)
 }
 \arguments{
-\item{strInputName}{\code{character} The name of an input. One of \code{"site"},
-\code{"participant"}, or \code{"domain"}.}
+\item{strInputName}{\code{character} The name of an input. One of \code{"group"},
+\code{"level"}, \code{"participant"}, or \code{"domain"}.}
 
 \item{chrRequiredInputs}{\code{character} An optional vector of any inputs
-("metric", "site", "participant", or "domain") that must have a non-empty
-value before the plugin can load. "None" and "All" count as "empty" for
-this check. If the user has not set a value for that input, the app will
-display a placeholder instructing the user to make a selection.}
+("metric", "group", "group level", "participant", or "domain") that must
+have a non-empty value before the plugin can load. "None" and "All" count
+as "empty" for this check. If the user has not set a value for that input,
+the app will display a placeholder instructing the user to make a
+selection.}
 
 \item{strValue}{\code{character} The value of a field.}
 }

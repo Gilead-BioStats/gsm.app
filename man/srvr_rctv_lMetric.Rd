@@ -2,12 +2,12 @@
 % Please edit documentation in R/srvr_SharedReactives.R
 \name{srvr_rctv_lMetric}
 \alias{srvr_rctv_lMetric}
-\title{Reactive lMetric by metric and site}
+\title{Reactive lMetric by metric and group}
 \usage{
 srvr_rctv_lMetric(
   dfMetrics,
   rctv_strMetricID,
-  rctv_strSiteID,
+  rctv_strGroupID,
   session = getDefaultReactiveDomain()
 )
 }
@@ -18,18 +18,18 @@ reporting.}
 \item{rctv_strMetricID}{\verb{reactive character} A \code{\link[shiny:reactive]{shiny::reactive()}} object
 that returns the selected \code{MetricID}.}
 
-\item{rctv_strSiteID}{\verb{reactive character} A \code{\link[shiny:reactiveVal]{shiny::reactiveVal()}} object
-that returns the \code{GroupID} of the selected site, and can be used to update
-the selected site.}
+\item{rctv_strGroupID}{\verb{reactive character} A \code{\link[shiny:reactiveVal]{shiny::reactiveVal()}} object
+that returns the \code{GroupID} of the selected group (usually site), and can be
+used to update which group is selected.}
 
 \item{session}{\code{environment} Session from which to make a child scope (the
 default should almost always be used).}
 }
 \value{
 A \code{\link[shiny:reactive]{shiny::reactive()}} of dfMetrics as a list, with information about
-the selected site.
+the selected group.
 }
 \description{
-Reactive lMetric by metric and site
+Reactive lMetric by metric and group
 }
 \keyword{internal}

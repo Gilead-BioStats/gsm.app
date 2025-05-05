@@ -18,7 +18,7 @@ HTMLWidgets.widget({
         // Remove any existing group overview tables to avoid duplication
         removeChildElements(el, '.group-overview');
 
-        // Generate site overview table.
+        // Generate group overview table.
         let clickCounter = 0;
         const incrementer = () => ++clickCounter;
         const instance = gsmViz.default.groupOverview(

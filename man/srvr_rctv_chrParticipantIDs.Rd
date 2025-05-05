@@ -4,14 +4,14 @@
 \alias{srvr_rctv_chrParticipantIDs}
 \title{Reactive participant IDs}
 \usage{
-srvr_rctv_chrParticipantIDs(dfAnalyticsInput, rctv_strSiteID)
+srvr_rctv_chrParticipantIDs(dfAnalyticsInput, rctv_strGroupID)
 }
 \arguments{
 \item{dfAnalyticsInput}{\code{data.frame} Participant-level metric data.}
 
-\item{rctv_strSiteID}{\verb{reactive character} A \code{\link[shiny:reactiveVal]{shiny::reactiveVal()}} object
-that returns the \code{GroupID} of the selected site, and can be used to update
-the selected site.}
+\item{rctv_strGroupID}{\verb{reactive character} A \code{\link[shiny:reactiveVal]{shiny::reactiveVal()}} object
+that returns the \code{GroupID} of the selected group (usually site), and can be
+used to update which group is selected.}
 }
 \value{
 A \code{\link[shiny:reactive]{shiny::reactive()}} of dfMetrics as a list, filtered by metric.
