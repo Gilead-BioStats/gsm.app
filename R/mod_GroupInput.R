@@ -9,7 +9,11 @@ mod_GroupInput_UI <- function(id, dfGroups) {
     if (length(chrGroupLevels) > 1) {
       input_NavbarExtra(ns("level"), chrGroupLevels)
     },
-    input_NavbarExtra(ns("group"), c("All", chrGroups), label = chrGroupLevels[[1]])
+    input_NavbarExtra(
+      ns("group"),
+      c("All", chrGroups),
+      label = chrGroupLevels[[1]]
+    )
   ))
 }
 

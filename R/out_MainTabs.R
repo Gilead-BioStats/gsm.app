@@ -19,7 +19,7 @@ out_MainTabs <- function(
     bslib::nav_panel(
       title = "Metric Details",
       mod_MetricDetails_UI("metric_details", chrMetrics = chrMetrics),
-      mod_GroupDetails_UI("group_details")
+      mod_GroupDetails_UI("group_details", dfGroups)
     ),
     bslib::nav_panel(
       title = "Domain Details",
