@@ -192,3 +192,47 @@ sample_fnFetchData <- function(
   }
   return(dplyr::select(df, "SubjectID", "GroupID", dplyr::everything()))
 }
+
+#' Construct a Data Count Function
+#'
+#' It is often faster to fetch *counts* of data, rather than the entire dataset.
+#' If your `fnFetchData()` function is already fast, however, this function
+#' allows you to construct a simple data counter from your data fetcher.
+#'
+#' @inheritParams shared-params
+#'
+#' @returns A function that returns counts of rows in the specified domain data.
+#' @export
+#'
+#' @examples
+#' fnDataCounter <- ConstructDataCounter(sample_fnFetchData)
+#' fnDataCounter("AE") == nrow(sample_fnFetchData("AE"))
+ConstructDataCounter <- function(fnFetchData) {
+  force(fnFetchData)
+  function(
+    strDomainID = c(
+      "AE",
+      "ENROLL",
+      "LB",
+      "PD",
+      "SDRGCOMP",
+      "STUDCOMP",
+      "SUBJ",
+      "DATACHG",
+      "DATAENT",
+      "QUERY"
+    ),
+    strGroupID = NULL,
+    strGroupLevel = NULL,
+    strSubjectID = NULL,
+    dSnapshotDate = NULL
+  ) {
+    NROW(fnFetchData(
+      strDomainID = strDomainID,
+      strGroupID = strGroupID,
+      strGroupLevel = strGroupLevel,
+      strSubjectID = strSubjectID,
+      dSnapshotDate = dSnapshotDate
+    ))
+  }
+}

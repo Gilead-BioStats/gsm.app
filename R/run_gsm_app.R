@@ -24,6 +24,7 @@ run_gsm_app <- function(
   dfMetrics,
   dfResults,
   fnFetchData,
+  fnCountData = ConstructDataCounter(fnFetchData),
   chrDomains = c(
     AE = "Adverse Events",
     DATACHG = "Data Changes",
