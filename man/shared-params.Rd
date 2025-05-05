@@ -42,10 +42,11 @@ data.frame.}
 an object.}
 
 \item{chrRequiredInputs}{\code{character} An optional vector of any inputs
-("metric", "group", "participant", or "domain") that must have a non-empty
-value before the plugin can load. "None" and "All" count as "empty" for
-this check. If the user has not set a value for that input, the app will
-display a placeholder instructing the user to make a selection.}
+("metric", "group", "group level", "participant", or "domain") that must
+have a non-empty value before the plugin can load. "None" and "All" count
+as "empty" for this check. If the user has not set a value for that input,
+the app will display a placeholder instructing the user to make a
+selection.}
 
 \item{chrGroups}{\code{character} A vector of groups available in the study.}
 
@@ -265,7 +266,7 @@ Default: \code{"red"}. Options:
 this module or used by this JavaScript.}
 
 \item{strInputName}{\code{character} The name of an input. One of \code{"group"},
-\code{"participant"}, or \code{"domain"}.}
+\code{"level"}, \code{"participant"}, or \code{"domain"}.}
 
 \item{strLabel}{\code{character} The label of a field.}
 

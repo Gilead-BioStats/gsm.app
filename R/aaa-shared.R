@@ -30,10 +30,11 @@
 #' @param chrRequiredFields `character` A vector of names of required fields in
 #'   an object.
 #' @param chrRequiredInputs `character` An optional vector of any inputs
-#'   ("metric", "group", "participant", or "domain") that must have a non-empty
-#'   value before the plugin can load. "None" and "All" count as "empty" for
-#'   this check. If the user has not set a value for that input, the app will
-#'   display a placeholder instructing the user to make a selection.
+#'   ("metric", "group", "group level", "participant", or "domain") that must
+#'   have a non-empty value before the plugin can load. "None" and "All" count
+#'   as "empty" for this check. If the user has not set a value for that input,
+#'   the app will display a placeholder instructing the user to make a
+#'   selection.
 #' @param chrGroups `character` A vector of groups available in the study.
 #' @param chrValues `character` A vector of values to associate with a vector of
 #'   labels.
@@ -185,7 +186,7 @@
 #' @param strInputID `character` An ID to use for the Shiny input created by
 #'   this module or used by this JavaScript.
 #' @param strInputName `character` The name of an input. One of `"group"`,
-#'   `"participant"`, or `"domain"`.
+#'   `"level"`, `"participant"`, or `"domain"`.
 #' @param strLabel `character` The label of a field.
 #' @param strMetricID `character` A `MetricID` to focus on.
 #' @param strOutcome `character` Outcome variable. Default: `"Score"`.

@@ -4,7 +4,13 @@
 \alias{srvr_DomainHash}
 \title{Reactive domain df}
 \usage{
-srvr_DomainHash(rctvDomain, strDomainID, rctv_strGroupID, rctv_strSubjectID)
+srvr_DomainHash(
+  rctvDomain,
+  strDomainID,
+  rctv_strGroupID,
+  rctv_strGroupLevel,
+  rctv_strSubjectID
+)
 }
 \arguments{
 \item{strDomainID}{\code{character} The domain data.frame to load.}

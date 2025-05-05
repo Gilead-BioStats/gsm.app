@@ -17,6 +17,7 @@ mod_Plugins_Server(
   rctv_dSnapshotDate,
   rctv_strMetricID,
   rctv_strGroupID,
+  rctv_strGroupLevel,
   rctv_strSubjectID,
   rctv_strDomainID
 )

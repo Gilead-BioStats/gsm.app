@@ -4,7 +4,13 @@
 \alias{mod_DomainHashes_Server}
 \title{List of Reactive Domain df Hashes}
 \usage{
-mod_DomainHashes_Server(id, l_rctvDomains, rctv_strGroupID, rctv_strSubjectID)
+mod_DomainHashes_Server(
+  id,
+  l_rctvDomains,
+  rctv_strGroupID,
+  rctv_strGroupLevel,
+  rctv_strSubjectID
+)
 }
 \arguments{
 \item{id}{\code{character} The id for this element.}

@@ -220,6 +220,7 @@ gsmApp_Server <- function(
       rctv_dSnapshotDate = rctv_dSnapshotDate,
       rctv_strMetricID = rctv_strMetricID,
       rctv_strGroupID = rctv_strGroupID,
+      rctv_strGroupLevel = rctv_strGroupLevel,
       rctv_strSubjectID = rctv_strSubjectID,
       rctv_strDomainID = rctv_strDomainID
     )
