@@ -3,8 +3,11 @@
 #' @inheritParams shared-params
 #' @returns A [bslib::layout_columns()] with group metadata and group participants.
 #' @keywords internal
-mod_GroupDetails_UI <- function(id) {
+mod_GroupDetails_UI <- function(id, dfGroups) {
   ns <- NS(id)
+  chrGroupLevels <- setdiff(sort(unique(dfGroups$GroupLevel)), "Study")
+  strGroupWord <- ifelse(length(chrGroupLevels) == 1, chrGroupLevels, "Group")
+  strGroupTitle <- glue::glue("{strGroupWord} Metadata")
   bslib::layout_columns(
     col_widths = c(5, 7),
     tagList(
@@ -14,15 +17,15 @@ mod_GroupDetails_UI <- function(id) {
         div(
           id = ns("card_group_metadata_list"),
           out_Card(
-            "Group Metadata",
+            strGroupTitle,
             uiOutput(ns("group_metadata_list")),
             id = ns("card_group_metadata_list-contents")
           )
         )
       ),
       out_Card(
-        "Group Metadata",
-        out_Placeholder("group"),
+        strGroupTitle,
+        out_Placeholder(tolower(strGroupWord)),
         id = ns("card_placeholder_group_metadata_list")
       )
     ),

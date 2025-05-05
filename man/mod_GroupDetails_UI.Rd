@@ -4,10 +4,12 @@
 \alias{mod_GroupDetails_UI}
 \title{Group Details UI}
 \usage{
-mod_GroupDetails_UI(id)
+mod_GroupDetails_UI(id, dfGroups)
 }
 \arguments{
 \item{id}{\code{character} The id for this element.}
+
+\item{dfGroups}{\code{data.frame} Group-level metadata dictionary.}
 }
 \value{
 A \code{\link[bslib:layout_columns]{bslib::layout_columns()}} with group metadata and group participants.
