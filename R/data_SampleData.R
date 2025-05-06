@@ -170,7 +170,7 @@ sample_fnFetchData <- function(
     if (length(strGroupLevel)) {
       if (!("GroupLevel" %in% colnames(df))) {
         dfGroups <- dplyr::distinct(
-          sample_dfGroups,
+          gsm.app::sample_dfGroups,
           .data$GroupID,
           .data$GroupLevel
         )
