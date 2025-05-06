@@ -40,14 +40,14 @@ mod_GroupDetails_UI <- function(id, dfGroups) {
 #'   participant.
 #' @keywords internal
 mod_GroupDetails_Server <- function(
-    id,
-    dfGroups,
-    dfAnalyticsInput,
-    rctv_strGroupID,
-    rctv_strGroupLevel,
-    rctv_strSubjectID,
-    rctv_strMetricID,
-    rctv_lMetric) {
+  id,
+  dfGroups,
+  dfAnalyticsInput,
+  rctv_strGroupID,
+  rctv_strGroupLevel,
+  rctv_strSubjectID,
+  rctv_strMetricID,
+  rctv_lMetric) {
   moduleServer(id, function(input, output, session) {
     chrTargetColumns <- c("SubjectID", "Numerator", "Denominator", "Metric")
 

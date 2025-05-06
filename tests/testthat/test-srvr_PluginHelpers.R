@@ -1,5 +1,5 @@
 test_that("srvr_CompileUnsetInputs compiles unset inputs", {
-  l_rctvInputs = list(
+  l_rctvInputs <- list(
     rctv_dSnapshotDate = reactiveVal(),
     rctv_strDomainID = reactiveVal(),
     rctv_strMetricID = reactiveVal(),

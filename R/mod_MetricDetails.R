@@ -46,13 +46,13 @@ mod_MetricDetails_UI <- function(id, chrMetrics) {
 #' @inheritParams shared-params
 #' @keywords internal
 mod_MetricDetails_Server <- function(
-    id,
-    dfResults,
-    dfGroups,
-    dfBounds,
-    rctv_lMetric,
-    rctv_strGroupID,
-    rctv_strMetricID
+  id,
+  dfResults,
+  dfGroups,
+  dfBounds,
+  rctv_lMetric,
+  rctv_strGroupID,
+  rctv_strMetricID
 ) {
   moduleServer(id, function(input, output, session) {
     # Shared reactives ----
@@ -80,7 +80,9 @@ mod_MetricDetails_Server <- function(
     }) %>%
       bindCache(rctv_strMetricID())
 
-    observe({rctv_strMetricID(input$metric)})
+    observe({
+      rctv_strMetricID(input$metric)
+    })
 
     srvr_SyncVirtualSelectInput("metric", rctv_strMetricID, session)
 

@@ -185,11 +185,11 @@ mod_DomainCountsServer <- function(
 #'   [shiny::showModal()].
 #' @keywords internal
 srvr_ShowConditionMessage <- function(
-    cnd,
-    strTitle,
-    chrPreMessage = character(),
-    chrPostMessage = character(),
-    strDismiss = "Dismiss"
+  cnd,
+  strTitle,
+  chrPreMessage = character(),
+  chrPostMessage = character(),
+  strDismiss = "Dismiss"
 ) {
   cnd$use_cli_format <- FALSE
   showModal(

@@ -13,7 +13,9 @@ test_that("mod_DomainData_Server sets placeholder when no data is available", {
     mod_DomainData_Server,
     args = list(
       id = "myPD",
-      rctv_dfDomain = reactive({NULL}),
+      rctv_dfDomain = reactive({
+        NULL
+      }),
       rctv_strGroupLevel = reactiveVal("Site")
     ),
     {

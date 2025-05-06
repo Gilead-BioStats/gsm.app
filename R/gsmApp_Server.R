@@ -71,7 +71,9 @@ gsmApp_Server <- function(
     )
 
     ### Tabs ----
-    observe({rctv_strPrimaryNavBar(input$primary_nav_bar)})
+    observe({
+      rctv_strPrimaryNavBar(input$primary_nav_bar)
+    })
     # TODO: Sync tab in response to this reactive.
 
     ### Participants ----
@@ -82,17 +84,17 @@ gsmApp_Server <- function(
 
     observe({
       if (input$participant != "" && input$participant != rctv_strSubjectID()) {
-        rctv_strSubjectID(input$participant)           # Tested via UI.
+        rctv_strSubjectID(input$participant) # Tested via UI.
       }
     }) %>%
       bindEvent(input$participant)
     observe({
       if (input$participant != rctv_strSubjectID()) {
-        shinyWidgets::updateVirtualSelect(             # Tested via UI.
-          inputId = "participant",                     # Tested via UI.
-          choices = rctv_chrParticipantIDs(),          # Tested via UI.
-          selected = rctv_strSubjectID(),              # Tested via UI.
-          session = session                            # Tested via UI.
+        shinyWidgets::updateVirtualSelect( # Tested via UI.
+          inputId = "participant", # Tested via UI.
+          choices = rctv_chrParticipantIDs(), # Tested via UI.
+          selected = rctv_strSubjectID(), # Tested via UI.
+          session = session # Tested via UI.
         )
       }
     }) %>%

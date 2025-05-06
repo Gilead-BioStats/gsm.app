@@ -24,13 +24,13 @@ mod_ScatterPlotSet_UI <- function(id, chrMetrics) {
 #' @inheritParams shared-params
 #' @keywords internal
 mod_ScatterPlotSet_Server <- function(
-    id,
-    dfResults,
-    dfMetrics,
-    dfGroups,
-    dfBounds,
-    rctv_strGroupID,
-    rctv_strMetricID
+  id,
+  dfResults,
+  dfMetrics,
+  dfGroups,
+  dfBounds,
+  rctv_strGroupID,
+  rctv_strMetricID
 ) {
   moduleServer(id, function(input, output, session) {
     lMetricGroups <- purrr::map(

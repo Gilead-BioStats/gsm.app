@@ -20,9 +20,9 @@ UnNS <- function(id, ns) {
 NullifyEmpty <- function(strValue) {
   if (
     length(strValue) == 0 ||
-    identical(strValue, "None") ||
-    identical(strValue, "All") ||
-    identical(strValue, "")
+      identical(strValue, "None") ||
+      identical(strValue, "All") ||
+      identical(strValue, "")
   ) {
     return(NULL)
   }

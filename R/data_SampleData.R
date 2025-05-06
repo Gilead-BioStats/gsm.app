@@ -167,7 +167,15 @@ sample_fnFetchData <- function(
     df <- dplyr::rename(df, IntakeID = "subjectid")
   }
   if (length(strGroupID)) {
-    if (length(strGroupLevel) && "GroupLevel" %in% colnames(df)) {
+    if (length(strGroupLevel)) {
+      if (!("GroupLevel" %in% colnames(df))) {
+        dfGroups <- dplyr::distinct(
+          sample_dfGroups,
+          .data$GroupID,
+          .data$GroupLevel
+        )
+        df <- dplyr::left_join(df, dfGroups, by = "GroupID")
+      }
       df <- dplyr::filter(df, .data$GroupLevel == strGroupLevel)
     }
     df <- dplyr::filter(df, .data$GroupID == strGroupID)

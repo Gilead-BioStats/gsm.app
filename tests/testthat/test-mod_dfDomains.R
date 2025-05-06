@@ -18,13 +18,19 @@ test_that("srvr_DomainHash generates hashes", {
     rctv_strSubjectID
   )
   val1 <- isolate(test_result())
-  expect_snapshot({val1})
+  expect_snapshot({
+    val1
+  })
   rctvDomain(mtcars)
   val2 <- isolate(test_result())
-  expect_snapshot({val2})
+  expect_snapshot({
+    val2
+  })
   rctvDomain(dplyr::filter(mtcars, cyl == 6))
   val3 <- isolate(test_result())
-  expect_snapshot({val3})
+  expect_snapshot({
+    val3
+  })
 
   rctvDomain(mtcars)
   val4 <- isolate(test_result())

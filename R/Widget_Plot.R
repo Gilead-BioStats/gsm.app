@@ -54,10 +54,10 @@ Widget_Plot <- function(id, strWidgetName, ...) {
 #'
 #' @keywords internal
 Widget_PlotOutput <- function(
-    strWidgetName,
-    outputId,
-    width = "100%",
-    height = "400px"
+  strWidgetName,
+  outputId,
+  width = "100%",
+  height = "400px"
 ) {
   gsmWidgetOutput(
     strWidgetName,
@@ -132,12 +132,12 @@ gsmDependencies <- function(strWidgetName, excludes = character()) {
 #'   and its dependencies.
 #' @keywords internal
 gsmWidgetOutput <- function(
-    strWidgetName,
-    outputId,
-    width = "100%",
-    height = "400px",
-    excludes = character(),
-    ...
+  strWidgetName,
+  outputId,
+  width = "100%",
+  height = "400px",
+  excludes = character(),
+  ...
 ) {
   tagList(
     htmlwidgets::shinyWidgetOutput(
