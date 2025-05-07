@@ -98,3 +98,30 @@ FilterByLatestIfPresent <- function(df) {
   }
   return(df)
 }
+
+FilterByGroupAndLevel <- function(
+  df,
+  strGroupLevel = NULL,
+  strGroupID = NULL,
+  dfGroups = NULL
+) {
+  if (length(strGroupID)) {
+    if (length(strGroupLevel)) {
+      if (!("GroupLevel" %in% colnames(df)) && NROW(dfGroups)) {
+        dfGroups <- dplyr::distinct(
+          gsm.app::sample_dfGroups,
+          .data$GroupID,
+          .data$GroupLevel
+        )
+        df <- dplyr::left_join(df, dfGroups, by = "GroupID")
+      }
+      df <- dplyr::filter(df, .data$GroupLevel == strGroupLevel)
+    }
+    df <- dplyr::filter(df, .data$GroupID == strGroupID)
+  }
+  return(df)
+}
+
+FilterBySubjectID <- function(df, strSubjectID = NULL) {
+  FilterBy(df, strSubjectID)
+}

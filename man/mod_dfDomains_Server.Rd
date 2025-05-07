@@ -8,6 +8,7 @@ mod_dfDomains_Server(
   id,
   fnFetchData,
   chrDomains,
+  l_rctvDomainStudyLoaded,
   rctv_dSnapshotDate,
   rctv_strGroupID,
   rctv_strGroupLevel,

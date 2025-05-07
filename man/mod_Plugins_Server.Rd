@@ -40,8 +40,9 @@ reporting.}
 
 \item{dfResults}{\code{data.frame} A stacked summary of analysis pipeline output.}
 
-\item{l_rctvDomains}{\code{list} A named list of \code{\link[shiny:reactive]{shiny::reactive()}} objects, each
-of which returns a domain dataframe.}
+\item{l_rctvDomains}{\code{list} A named list of lists of \code{\link[shiny:reactive]{shiny::reactive()}}
+objects. Each list contains a "study" element and a "selection" element,
+each of which returns a domain dataframe.}
 
 \item{l_rctvDomainHashes}{\code{list} A named list of \code{\link[shiny:reactive]{shiny::reactive()}} objects,
 each of which returns the \code{\link[rlang:hash]{rlang::hash()}} of a domain dataframe.}

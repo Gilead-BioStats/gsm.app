@@ -6,7 +6,7 @@
 \usage{
 mod_DomainHashes_Server(
   id,
-  l_rctvDomains,
+  l_rctvDomainSelections,
   rctv_dSnapshotDate,
   rctv_strGroupID,
   rctv_strGroupLevel,
@@ -15,9 +15,6 @@ mod_DomainHashes_Server(
 }
 \arguments{
 \item{id}{\code{character} The id for this element.}
-
-\item{l_rctvDomains}{\code{list} A named list of \code{\link[shiny:reactive]{shiny::reactive()}} objects, each
-of which returns a domain dataframe.}
 
 \item{rctv_dSnapshotDate}{\verb{reactive Date} A \code{\link[shiny:reactive]{shiny::reactive()}} object that
 returns the date of a data snapshot.}

@@ -102,11 +102,23 @@ gsmApp_Server <- function(
 
     ## Domain Data ----
     ##
-    ## This needs to be defined at the top so it's available to plugins.
+    ## This stuff needs to be defined at the top so it's available to plugins.
+
+    ## Reactive watchers are used to check whether domains have been accessed.
+    ## That way, if study-level data for a given domain has been fetched
+    ## already, we can subset that rather than re-fetching.
+    l_rctvDomainStudyLoaded <- purrr::map(
+      chrDomains,
+      function(strDomain) {
+        reactiveVal(FALSE)
+      }
+    )
+
     l_rctvDomains <- mod_dfDomains_Server(
       "l_rctv_dfDomains",
       fnFetchData = fnFetchData,
       chrDomains = chrDomains,
+      l_rctvDomainStudyLoaded = l_rctvDomainStudyLoaded,
       rctv_dSnapshotDate = rctv_dSnapshotDate,
       rctv_strGroupID = rctv_strGroupID,
       rctv_strGroupLevel = rctv_strGroupLevel,
@@ -215,9 +227,25 @@ gsmApp_Server <- function(
       chrFromTabs = c("Study Overview", "Metric Details"),
       session = session
     )
+
+    l_rctvDomains_Selection <- purrr::map(
+      l_rctvDomains,
+      function(l_rctvDomain) {
+        reactive({
+          if (
+            !length(NullifyEmpty(rctv_strGroupID())) &&
+            !length(NullifyEmpty(rctv_strSubjectID()))
+          ) {
+            return(l_rctvDomain$study())
+          }
+          l_rctvDomain$selection()
+        })
+      }
+    )
+
     mod_DomainDetails_Server(
       "domain_details",
-      l_rctvDomains = l_rctvDomains,
+      l_rctvDomains_Selection = l_rctvDomains_Selection,
       l_rctvDomainHashes = l_rctvDomainHashes,
       rctv_strDomainID = rctv_strDomainID,
       rctv_intDomainCounts = rctv_intDomainCounts,

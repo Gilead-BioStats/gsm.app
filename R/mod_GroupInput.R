@@ -60,7 +60,7 @@ mod_GroupInput_Server <- function(
       }) %>%
         bindEvent(rctv_strGroupLevel())
     } else {
-      rctv_strGroupLevel(chrGroupLevels[])
+      rctv_strGroupLevel(chrGroupLevels[[1]])
     }
 
     observe({

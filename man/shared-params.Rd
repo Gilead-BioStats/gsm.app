@@ -123,8 +123,12 @@ function.}
 \item{lMetric}{\code{list} Named list of data describing a single metric, as well
 as things like which group is selected.}
 
-\item{l_rctvDomains}{\code{list} A named list of \code{\link[shiny:reactive]{shiny::reactive()}} objects, each
-of which returns a domain dataframe.}
+\item{l_rctvDomains}{\code{list} A named list of lists of \code{\link[shiny:reactive]{shiny::reactive()}}
+objects. Each list contains a "study" element and a "selection" element,
+each of which returns a domain dataframe.}
+
+\item{l_rctvDomains_Selection}{\code{list} A named list of \code{\link[shiny:reactive]{shiny::reactive()}}
+objects, each of which returns a domain dataframe for the current filter.}
 
 \item{l_rctvDomainHashes}{\code{list} A named list of \code{\link[shiny:reactive]{shiny::reactive()}} objects,
 each of which returns the \code{\link[rlang:hash]{rlang::hash()}} of a domain dataframe.}

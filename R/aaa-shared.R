@@ -86,8 +86,11 @@
 #'   (`dfAnalyticsInput`, `dfBounds`, `dfGroups`, `dfMetrics`, and `dfResults`).
 #' @param lMetric `list` Named list of data describing a single metric, as well
 #'   as things like which group is selected.
-#' @param l_rctvDomains `list` A named list of [shiny::reactive()] objects, each
-#'   of which returns a domain dataframe.
+#' @param l_rctvDomains `list` A named list of lists of [shiny::reactive()]
+#'   objects. Each list contains a "study" element and a "selection" element,
+#'   each of which returns a domain dataframe.
+#' @param l_rctvDomains_Selection `list` A named list of [shiny::reactive()]
+#'   objects, each of which returns a domain dataframe for the current filter.
 #' @param l_rctvDomainHashes `list` A named list of [shiny::reactive()] objects,
 #'   each of which returns the [rlang::hash()] of a domain dataframe.
 #' @param l_rctvInputs `list` A named list of [shiny::reactiveVal()] objects,

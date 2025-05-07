@@ -7,6 +7,7 @@
 srvr_dfDomain(
   strDomainID,
   fnFetchData,
+  rctv_bDomainStudyLoaded,
   rctv_dSnapshotDate,
   rctv_strGroupID,
   rctv_strGroupLevel,

@@ -6,7 +6,7 @@
 \usage{
 mod_DomainDetails_Server(
   id,
-  l_rctvDomains,
+  l_rctvDomains_Selection,
   l_rctvDomainHashes,
   rctv_strDomainID,
   rctv_intDomainCounts,
@@ -17,8 +17,8 @@ mod_DomainDetails_Server(
 \arguments{
 \item{id}{\code{character} The id for this element.}
 
-\item{l_rctvDomains}{\code{list} A named list of \code{\link[shiny:reactive]{shiny::reactive()}} objects, each
-of which returns a domain dataframe.}
+\item{l_rctvDomains_Selection}{\code{list} A named list of \code{\link[shiny:reactive]{shiny::reactive()}}
+objects, each of which returns a domain dataframe for the current filter.}
 
 \item{l_rctvDomainHashes}{\code{list} A named list of \code{\link[shiny:reactive]{shiny::reactive()}} objects,
 each of which returns the \code{\link[rlang:hash]{rlang::hash()}} of a domain dataframe.}
