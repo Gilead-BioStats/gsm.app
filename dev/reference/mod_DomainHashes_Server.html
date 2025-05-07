@@ -46,6 +46,7 @@
     <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">mod_DomainHashes_Server</span><span class="op">(</span></span>
 <span>  <span class="va">id</span>,</span>
 <span>  <span class="va">l_rctvDomains</span>,</span>
+<span>  <span class="va">rctv_dSnapshotDate</span>,</span>
 <span>  <span class="va">rctv_strGroupID</span>,</span>
 <span>  <span class="va">rctv_strGroupLevel</span>,</span>
 <span>  <span class="va">rctv_strSubjectID</span></span>
@@ -63,6 +64,11 @@
 <dt id="arg-l-rctvdomains">l_rctvDomains<a class="anchor" aria-label="anchor" href="#arg-l-rctvdomains"></a></dt>
 <dd><p><code>list</code> A named list of <code><a href="https://rdrr.io/pkg/shiny/man/reactive.html" class="external-link">shiny::reactive()</a></code> objects, each
 of which returns a domain dataframe.</p></dd>
+
+
+<dt id="arg-rctv-dsnapshotdate">rctv_dSnapshotDate<a class="anchor" aria-label="anchor" href="#arg-rctv-dsnapshotdate"></a></dt>
+<dd><p><code>reactive Date</code> A <code><a href="https://rdrr.io/pkg/shiny/man/reactive.html" class="external-link">shiny::reactive()</a></code> object that
+returns the date of a data snapshot.</p></dd>
 
 
 <dt id="arg-rctv-strgroupid">rctv_strGroupID<a class="anchor" aria-label="anchor" href="#arg-rctv-strgroupid"></a></dt>

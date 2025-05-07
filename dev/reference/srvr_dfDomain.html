@@ -46,6 +46,7 @@
     <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">srvr_dfDomain</span><span class="op">(</span></span>
 <span>  <span class="va">strDomainID</span>,</span>
 <span>  <span class="va">fnFetchData</span>,</span>
+<span>  <span class="va">rctv_dSnapshotDate</span>,</span>
 <span>  <span class="va">rctv_strGroupID</span>,</span>
 <span>  <span class="va">rctv_strGroupLevel</span>,</span>
 <span>  <span class="va">rctv_strSubjectID</span></span>
@@ -62,11 +63,16 @@
 
 <dt id="arg-fnfetchdata">fnFetchData<a class="anchor" aria-label="anchor" href="#arg-fnfetchdata"></a></dt>
 <dd><p><code>function</code> A function that takes a <code>strDomainID</code> argument
-and optional <code>strGroupID</code>, <code>strSubjectID</code>, and/or <code>dSnapshotDate</code>, and
-returns a data.frame. See <code><a href="sample_fnFetchData.html">sample_fnFetchData()</a></code> for an example. The
-returned data.frame contains information about the named domain. If the
-function throws an error, the error is elevated to the user, so you can use
-errors to pass requirements through to the user.</p></dd>
+and optional <code>strGroupID</code>, <code>strGroupLevel</code>, <code>strSubjectID</code>, and/or
+<code>dSnapshotDate</code>, and returns a data.frame. See <code><a href="sample_fnFetchData.html">sample_fnFetchData()</a></code> for
+an example. The returned data.frame contains information about the named
+domain. If the function throws an error, the error is elevated to the user,
+so you can use errors to pass requirements through to the user.</p></dd>
+
+
+<dt id="arg-rctv-dsnapshotdate">rctv_dSnapshotDate<a class="anchor" aria-label="anchor" href="#arg-rctv-dsnapshotdate"></a></dt>
+<dd><p><code>reactive Date</code> A <code><a href="https://rdrr.io/pkg/shiny/man/reactive.html" class="external-link">shiny::reactive()</a></code> object that
+returns the date of a data snapshot.</p></dd>
 
 
 <dt id="arg-rctv-strgroupid">rctv_strGroupID<a class="anchor" aria-label="anchor" href="#arg-rctv-strgroupid"></a></dt>

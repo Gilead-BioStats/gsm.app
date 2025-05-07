@@ -50,6 +50,7 @@
 <span>  <span class="va">dfMetrics</span>,</span>
 <span>  <span class="va">dfResults</span>,</span>
 <span>  <span class="va">fnFetchData</span>,</span>
+<span>  fnCountData <span class="op">=</span> <span class="fu"><a href="ConstructDataCounter.html">ConstructDataCounter</a></span><span class="op">(</span><span class="va">fnFetchData</span><span class="op">)</span>,</span>
 <span>  chrDomains <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span>AE <span class="op">=</span> <span class="st">"Adverse Events"</span>, DATACHG <span class="op">=</span> <span class="st">"Data Changes"</span>, DATAENT <span class="op">=</span> <span class="st">"Data Entry"</span>,</span>
 <span>    ENROLL <span class="op">=</span> <span class="st">"Enrollment"</span>, LB <span class="op">=</span> <span class="st">"Lab"</span>, PD <span class="op">=</span> <span class="st">"Protocol Deviations"</span>, QUERY <span class="op">=</span> <span class="st">"Queries"</span>,</span>
 <span>    STUDCOMP <span class="op">=</span> <span class="st">"Study Completion"</span>, SUBJ <span class="op">=</span> <span class="st">"Subject Metadata"</span>, SDRGCOMP <span class="op">=</span></span>
@@ -88,11 +89,19 @@ reporting.</p></dd>
 
 <dt id="arg-fnfetchdata">fnFetchData<a class="anchor" aria-label="anchor" href="#arg-fnfetchdata"></a></dt>
 <dd><p><code>function</code> A function that takes a <code>strDomainID</code> argument
-and optional <code>strGroupID</code>, <code>strSubjectID</code>, and/or <code>dSnapshotDate</code>, and
-returns a data.frame. See <code><a href="sample_fnFetchData.html">sample_fnFetchData()</a></code> for an example. The
-returned data.frame contains information about the named domain. If the
-function throws an error, the error is elevated to the user, so you can use
-errors to pass requirements through to the user.</p></dd>
+and optional <code>strGroupID</code>, <code>strGroupLevel</code>, <code>strSubjectID</code>, and/or
+<code>dSnapshotDate</code>, and returns a data.frame. See <code><a href="sample_fnFetchData.html">sample_fnFetchData()</a></code> for
+an example. The returned data.frame contains information about the named
+domain. If the function throws an error, the error is elevated to the user,
+so you can use errors to pass requirements through to the user.</p></dd>
+
+
+<dt id="arg-fncountdata">fnCountData<a class="anchor" aria-label="anchor" href="#arg-fncountdata"></a></dt>
+<dd><p><code>function</code> A function that takes a <code>strDomainID</code> argument
+and optional <code>strGroupID</code>, <code>strGroupLevel</code>, <code>strSubjectID</code>, and/or
+<code>dSnapshotDate</code>, and returns an integer count of the number of rows in that
+filtered domain. By default, this function is constucted using
+<code>fnFetchData()</code> and <code><a href="ConstructDataCounter.html">ConstructDataCounter()</a></code>.</p></dd>
 
 
 <dt id="arg-chrdomains">chrDomains<a class="anchor" aria-label="anchor" href="#arg-chrdomains"></a></dt>
