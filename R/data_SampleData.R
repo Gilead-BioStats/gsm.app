@@ -167,7 +167,15 @@ sample_fnFetchData <- function(
     df <- dplyr::rename(df, IntakeID = "subjectid")
   }
   if (length(strGroupID)) {
-    if (length(strGroupLevel) && "GroupLevel" %in% colnames(df)) {
+    if (length(strGroupLevel)) {
+      if (!("GroupLevel" %in% colnames(df))) {
+        dfGroups <- dplyr::distinct(
+          gsm.app::sample_dfGroups,
+          .data$GroupID,
+          .data$GroupLevel
+        )
+        df <- dplyr::left_join(df, dfGroups, by = "GroupID")
+      }
       df <- dplyr::filter(df, .data$GroupLevel == strGroupLevel)
     }
     df <- dplyr::filter(df, .data$GroupID == strGroupID)
@@ -191,4 +199,55 @@ sample_fnFetchData <- function(
     df <- FilterBefore(df, chrDateFields[[strTableName]], dSnapshotDate)
   }
   return(dplyr::select(df, "SubjectID", "GroupID", dplyr::everything()))
+}
+
+#' Construct a Data Count Function
+#'
+#' It is often faster to fetch *counts* of data, rather than the entire dataset.
+#' If your `fnFetchData()` function is already fast, however, this function
+#' allows you to construct a simple data counter from your data fetcher.
+#'
+#' @inheritParams shared-params
+#'
+#' @returns A function that returns counts of rows in the specified domain data.
+#' @export
+#'
+#' @examples
+#' fnDataCounter <- ConstructDataCounter(sample_fnFetchData)
+#' fnDataCounter("AE") == nrow(sample_fnFetchData("AE"))
+ConstructDataCounter <- function(fnFetchData) {
+  force(fnFetchData)
+  function(
+    strDomainID = c(
+      "AE",
+      "ENROLL",
+      "LB",
+      "PD",
+      "SDRGCOMP",
+      "STUDCOMP",
+      "SUBJ",
+      "DATACHG",
+      "DATAENT",
+      "QUERY"
+    ),
+    strGroupID = NULL,
+    strGroupLevel = NULL,
+    strSubjectID = NULL,
+    dSnapshotDate = NULL
+  ) {
+    tryCatch(
+      {
+        NROW(fnFetchData(
+          strDomainID = strDomainID,
+          strGroupID = strGroupID,
+          strGroupLevel = strGroupLevel,
+          strSubjectID = strSubjectID,
+          dSnapshotDate = dSnapshotDate
+        ))
+      },
+      error = function(cnd) {
+        return(NA_integer_)
+      }
+    )
+  }
 }

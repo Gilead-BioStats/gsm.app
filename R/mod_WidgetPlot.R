@@ -71,27 +71,30 @@ htmlDependency_WidgetInputHelpers <- function() {
 #' @param ... Additional parameters passed to `fn_Widget`.
 #' @keywords internal
 mod_WidgetPlot_Server <- function(
-    id,
-    fn_Widget,
-    fn_WidgetOutput,
-    rctv_dfResults,
-    rctv_lMetric,
-    dfGroups,
-    rctv_dfBounds,
-    rctv_strGroupID,
-    ...
+  id,
+  fn_Widget,
+  fn_WidgetOutput,
+  rctv_dfResults,
+  rctv_lMetric,
+  dfGroups,
+  rctv_dfBounds,
+  rctv_strGroupID,
+  ...
 ) {
   moduleServer(id, function(input, output, session) {
-    output$plot <- renderWidgetPlot({
-      fn_Widget(
-        session$ns("plot"),
-        rctv_dfResults(),
-        lMetric = rctv_lMetric(),
-        dfGroups = dfGroups,
-        dfBounds = rctv_dfBounds(),
-        ...
-      )
-    }, fn_WidgetOutput)
+    output$plot <- renderWidgetPlot(
+      {
+        fn_Widget(
+          session$ns("plot"),
+          rctv_dfResults(),
+          lMetric = rctv_lMetric(),
+          dfGroups = dfGroups,
+          dfBounds = rctv_dfBounds(),
+          ...
+        )
+      },
+      fn_WidgetOutput
+    )
     observe({
       lMetric <- rctv_lMetric()
       session$sendCustomMessage(

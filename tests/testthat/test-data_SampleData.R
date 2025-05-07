@@ -100,3 +100,10 @@ test_that("sample_fnFetchData can filter by date", {
   })
   expect_equal(nrow(test_result), 1168)
 })
+
+test_that("sample_fnFetchData accepts strGroupLevel arg", {
+  expect_no_error({
+    test_result <- sample_fnFetchData("AE", strGroupLevel = "whatever")
+  })
+  expect_equal(nrow(test_result), 1168)
+})

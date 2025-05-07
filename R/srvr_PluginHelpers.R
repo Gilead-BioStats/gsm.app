@@ -126,7 +126,8 @@ srvr_IngestReactive <- function(
         return(dfMapped)
       }) %>%
         bindCache(domain, rctv_strDomainHashCombined())
-    })
+    }
+  )
   names(l_rctvMappedData) <- spec_names
 
   return(l_rctvMappedData)

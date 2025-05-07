@@ -24,12 +24,12 @@ mod_GroupParticipants_UI <- function(id) {
 #'   the table.
 #' @keywords internal
 mod_GroupParticipants_Server <- function(
-    id,
-    rctv_strGroupID,
-    rctv_strGroupLevel,
-    rctv_strSubjectID,
-    rctv_dfAnalyticsInput,
-    rctv_lColumnNames
+  id,
+  rctv_strGroupID,
+  rctv_strGroupLevel,
+  rctv_strSubjectID,
+  rctv_dfAnalyticsInput,
+  rctv_lColumnNames
 ) {
   moduleServer(id, function(input, output, session) {
     rctv_lglGroupIsNone <- reactive({

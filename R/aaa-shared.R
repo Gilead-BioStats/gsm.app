@@ -56,12 +56,17 @@
 #' @param envEvaluate `environment` The environment in which any variables used
 #'   in the message or widget are defined. You almost definitely want to leave
 #'   this as the default value.
+#' @param fnCountData `function` A function that takes a `strDomainID` argument
+#'   and optional `strGroupID`, `strGroupLevel`, `strSubjectID`, and/or
+#'   `dSnapshotDate`, and returns an integer count of the number of rows in that
+#'   filtered domain. By default, this function is constucted using
+#'   `fnFetchData()` and [ConstructDataCounter()].
 #' @param fnFetchData `function` A function that takes a `strDomainID` argument
-#'   and optional `strGroupID`, `strSubjectID`, and/or `dSnapshotDate`, and
-#'   returns a data.frame. See [sample_fnFetchData()] for an example. The
-#'   returned data.frame contains information about the named domain. If the
-#'   function throws an error, the error is elevated to the user, so you can use
-#'   errors to pass requirements through to the user.
+#'   and optional `strGroupID`, `strGroupLevel`, `strSubjectID`, and/or
+#'   `dSnapshotDate`, and returns a data.frame. See [sample_fnFetchData()] for
+#'   an example. The returned data.frame contains information about the named
+#'   domain. If the function throws an error, the error is elevated to the user,
+#'   so you can use errors to pass requirements through to the user.
 #' @param fnHtmlDependency `function` A function that returns an
 #'   [htmltools::htmlDependency()] or multiple wrapped in [shiny::tagList()].
 #' @param fnServer `function` A Shiny server function that takes arguments

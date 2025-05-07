@@ -20,10 +20,10 @@ mod_MetricTable_UI <- function(id) {
 #' @returns A [shiny::reactive()] with the id of the selected group.
 #' @keywords internal
 mod_MetricTable_Server <- function(
-    id,
-    rctv_dfResults,
-    dfGroups,
-    rctv_strGroupID
+  id,
+  rctv_dfResults,
+  dfGroups,
+  rctv_strGroupID
 ) {
   moduleServer(id, function(input, output, session) {
     # Update the widget when the source data changes.

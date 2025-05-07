@@ -28,13 +28,13 @@ mod_StudyOverview_UI <- function(id, dfGroups, dfResults, chrMetrics) {
 #' @inheritParams shared-params
 #' @keywords internal
 mod_StudyOverview_Server <- function(
-    id,
-    dfResults,
-    dfMetrics,
-    dfGroups,
-    dfBounds,
-    rctv_strGroupID,
-    rctv_strMetricID
+  id,
+  dfResults,
+  dfMetrics,
+  dfGroups,
+  dfBounds,
+  rctv_strGroupID,
+  rctv_strMetricID
 ) {
   moduleServer(id, function(input, output, session) {
     rctv_intClickCounter <- reactiveVal()

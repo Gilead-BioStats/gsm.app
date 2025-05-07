@@ -7,7 +7,10 @@ test_that("Built-in dfResults passes validation", {
 
 test_that("Built-in dfGroups passes validation", {
   expect_no_error({
-    test_result <- validate_dfGroups(gsm.app::sample_dfGroups)
+    test_result <- validate_dfGroups(
+      gsm.app::sample_dfGroups,
+      gsm.app::sample_dfResults
+    )
   })
   expect_s3_class(test_result, "tbl_df")
 })

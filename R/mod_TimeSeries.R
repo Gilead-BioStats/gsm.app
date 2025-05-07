@@ -30,13 +30,13 @@ htmlDependency_TimeSeriesInput <- function() {
 #' @inheritParams shared-params
 #' @keywords internal
 mod_TimeSeries_Server <- function(
-    id,
-    rctv_dfResults,
-    rctv_lMetric,
-    dfGroups,
-    rctv_strGroupID,
-    strOutcome = "Score",
-    rctv_dfBounds = shiny::reactive(NULL)
+  id,
+  rctv_dfResults,
+  rctv_lMetric,
+  dfGroups,
+  rctv_strGroupID,
+  strOutcome = "Score",
+  rctv_dfBounds = shiny::reactive(NULL)
 ) {
   mod_WidgetPlot_Server(
     id,
@@ -56,12 +56,12 @@ mod_TimeSeries_Server <- function(
 #' @inheritParams shared-params
 #' @keywords internal
 Widget_TimeSeries <- function(
-    id,
-    dfResults,
-    strOutcome = "Score",
-    lMetric = list(),
-    dfGroups = NULL,
-    dfBounds = NULL
+  id,
+  dfResults,
+  strOutcome = "Score",
+  lMetric = list(),
+  dfGroups = NULL,
+  dfBounds = NULL
 ) {
   stopifnot(
     "dfResults is not a data.frame" = is.data.frame(dfResults),
@@ -74,8 +74,8 @@ Widget_TimeSeries <- function(
   vThreshold <- NULL
   if (
     strOutcome == "Score" &&
-    !is.null(dfBounds) &&
-    "Threshold" %in% colnames(dfBounds)
+      !is.null(dfBounds) &&
+      "Threshold" %in% colnames(dfBounds)
   ) {
     vThreshold <- dfBounds$Threshold
   }
@@ -96,9 +96,9 @@ Widget_TimeSeries <- function(
 #' @inheritParams Widget_PlotOutput
 #' @keywords internal
 Widget_TimeSeriesOutput <- function(
-    outputId,
-    width = "100%",
-    height = "400px"
+  outputId,
+  width = "100%",
+  height = "400px"
 ) {
   Widget_PlotOutput("Widget_TimeSeries", outputId, width, height)
 }

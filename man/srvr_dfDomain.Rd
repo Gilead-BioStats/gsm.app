@@ -7,6 +7,7 @@
 srvr_dfDomain(
   strDomainID,
   fnFetchData,
+  rctv_dSnapshotDate,
   rctv_strGroupID,
   rctv_strGroupLevel,
   rctv_strSubjectID
@@ -16,11 +17,14 @@ srvr_dfDomain(
 \item{strDomainID}{\code{character} The domain data.frame to load.}
 
 \item{fnFetchData}{\code{function} A function that takes a \code{strDomainID} argument
-and optional \code{strGroupID}, \code{strSubjectID}, and/or \code{dSnapshotDate}, and
-returns a data.frame. See \code{\link[=sample_fnFetchData]{sample_fnFetchData()}} for an example. The
-returned data.frame contains information about the named domain. If the
-function throws an error, the error is elevated to the user, so you can use
-errors to pass requirements through to the user.}
+and optional \code{strGroupID}, \code{strGroupLevel}, \code{strSubjectID}, and/or
+\code{dSnapshotDate}, and returns a data.frame. See \code{\link[=sample_fnFetchData]{sample_fnFetchData()}} for
+an example. The returned data.frame contains information about the named
+domain. If the function throws an error, the error is elevated to the user,
+so you can use errors to pass requirements through to the user.}
+
+\item{rctv_dSnapshotDate}{\verb{reactive Date} A \code{\link[shiny:reactive]{shiny::reactive()}} object that
+returns the date of a data snapshot.}
 
 \item{rctv_strGroupID}{\verb{reactive character} A \code{\link[shiny:reactiveVal]{shiny::reactiveVal()}} object
 that returns the \code{GroupID} of the selected group (usually site), and can be

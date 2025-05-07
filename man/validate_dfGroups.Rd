@@ -4,7 +4,7 @@
 \alias{validate_dfGroups}
 \title{Confirm that an object is a dfGroups}
 \usage{
-validate_dfGroups(x)
+validate_dfGroups(x, dfResults)
 }
 \arguments{
 \item{x}{An object to validate.}

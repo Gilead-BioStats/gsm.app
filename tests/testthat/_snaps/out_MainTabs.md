@@ -1440,7 +1440,14 @@
                     <style>#domain_details-AE-card .bslib-full-screen-enter { bottom: unset !important; }</style>
                     <div class="card bslib-card bslib-mb-spacing bslib-card-input html-fill-item html-fill-container" data-bslib-card-init data-full-screen="false" data-require-bs-caller="card()" data-require-bs-version="5" id="domain_details-AE-card">
                       <div class="card-body bslib-gap-spacing html-fill-item html-fill-container" style="margin-top:auto;margin-bottom:auto;flex:1 1 auto;">
-                        <div class="shiny-html-output gt_shiny" id="domain_details-AE-gt-table"></div>
+                        <div data-spinner-id="domain_details-AE-spinner" class="shiny-spinner-output-container shiny-spinner-hideui">
+                          <div class="load-container shiny-spinner-hidden load7">
+                            <div id="domain_details-AE-spinner" class="loader">Loading...</div>
+                            <div id="domain_details-AE-spinner__caption" class="shiny-spinner-caption">loading data...</div>
+                          </div>
+                          <div style="height:200px" class="shiny-spinner-placeholder"></div>
+                          <div class="shiny-html-output gt_shiny" id="domain_details-AE-gt-table"></div>
+                        </div>
                       </div>
                       <bslib-tooltip placement="auto" bsOptions="[]" data-require-bs-version="5" data-require-bs-caller="tooltip()">
                         <template>Expand</template>
@@ -1455,7 +1462,14 @@
                     <style>#domain_details-DATACHG-card .bslib-full-screen-enter { bottom: unset !important; }</style>
                     <div class="card bslib-card bslib-mb-spacing bslib-card-input html-fill-item html-fill-container" data-bslib-card-init data-full-screen="false" data-require-bs-caller="card()" data-require-bs-version="5" id="domain_details-DATACHG-card">
                       <div class="card-body bslib-gap-spacing html-fill-item html-fill-container" style="margin-top:auto;margin-bottom:auto;flex:1 1 auto;">
-                        <div class="shiny-html-output gt_shiny" id="domain_details-DATACHG-gt-table"></div>
+                        <div data-spinner-id="domain_details-DATACHG-spinner" class="shiny-spinner-output-container shiny-spinner-hideui">
+                          <div class="load-container shiny-spinner-hidden load7">
+                            <div id="domain_details-DATACHG-spinner" class="loader">Loading...</div>
+                            <div id="domain_details-DATACHG-spinner__caption" class="shiny-spinner-caption">loading data...</div>
+                          </div>
+                          <div style="height:200px" class="shiny-spinner-placeholder"></div>
+                          <div class="shiny-html-output gt_shiny" id="domain_details-DATACHG-gt-table"></div>
+                        </div>
                       </div>
                       <bslib-tooltip placement="auto" bsOptions="[]" data-require-bs-version="5" data-require-bs-caller="tooltip()">
                         <template>Expand</template>
@@ -1470,7 +1484,14 @@
                     <style>#domain_details-DATAENT-card .bslib-full-screen-enter { bottom: unset !important; }</style>
                     <div class="card bslib-card bslib-mb-spacing bslib-card-input html-fill-item html-fill-container" data-bslib-card-init data-full-screen="false" data-require-bs-caller="card()" data-require-bs-version="5" id="domain_details-DATAENT-card">
                       <div class="card-body bslib-gap-spacing html-fill-item html-fill-container" style="margin-top:auto;margin-bottom:auto;flex:1 1 auto;">
-                        <div class="shiny-html-output gt_shiny" id="domain_details-DATAENT-gt-table"></div>
+                        <div data-spinner-id="domain_details-DATAENT-spinner" class="shiny-spinner-output-container shiny-spinner-hideui">
+                          <div class="load-container shiny-spinner-hidden load7">
+                            <div id="domain_details-DATAENT-spinner" class="loader">Loading...</div>
+                            <div id="domain_details-DATAENT-spinner__caption" class="shiny-spinner-caption">loading data...</div>
+                          </div>
+                          <div style="height:200px" class="shiny-spinner-placeholder"></div>
+                          <div class="shiny-html-output gt_shiny" id="domain_details-DATAENT-gt-table"></div>
+                        </div>
                       </div>
                       <bslib-tooltip placement="auto" bsOptions="[]" data-require-bs-version="5" data-require-bs-caller="tooltip()">
                         <template>Expand</template>
@@ -1485,7 +1506,14 @@
                     <style>#domain_details-ENROLL-card .bslib-full-screen-enter { bottom: unset !important; }</style>
                     <div class="card bslib-card bslib-mb-spacing bslib-card-input html-fill-item html-fill-container" data-bslib-card-init data-full-screen="false" data-require-bs-caller="card()" data-require-bs-version="5" id="domain_details-ENROLL-card">
                       <div class="card-body bslib-gap-spacing html-fill-item html-fill-container" style="margin-top:auto;margin-bottom:auto;flex:1 1 auto;">
-                        <div class="shiny-html-output gt_shiny" id="domain_details-ENROLL-gt-table"></div>
+                        <div data-spinner-id="domain_details-ENROLL-spinner" class="shiny-spinner-output-container shiny-spinner-hideui">
+                          <div class="load-container shiny-spinner-hidden load7">
+                            <div id="domain_details-ENROLL-spinner" class="loader">Loading...</div>
+                            <div id="domain_details-ENROLL-spinner__caption" class="shiny-spinner-caption">loading data...</div>
+                          </div>
+                          <div style="height:200px" class="shiny-spinner-placeholder"></div>
+                          <div class="shiny-html-output gt_shiny" id="domain_details-ENROLL-gt-table"></div>
+                        </div>
                       </div>
                       <bslib-tooltip placement="auto" bsOptions="[]" data-require-bs-version="5" data-require-bs-caller="tooltip()">
                         <template>Expand</template>
@@ -1500,7 +1528,14 @@
                     <style>#domain_details-LB-card .bslib-full-screen-enter { bottom: unset !important; }</style>
                     <div class="card bslib-card bslib-mb-spacing bslib-card-input html-fill-item html-fill-container" data-bslib-card-init data-full-screen="false" data-require-bs-caller="card()" data-require-bs-version="5" id="domain_details-LB-card">
                       <div class="card-body bslib-gap-spacing html-fill-item html-fill-container" style="margin-top:auto;margin-bottom:auto;flex:1 1 auto;">
-                        <div class="shiny-html-output gt_shiny" id="domain_details-LB-gt-table"></div>
+                        <div data-spinner-id="domain_details-LB-spinner" class="shiny-spinner-output-container shiny-spinner-hideui">
+                          <div class="load-container shiny-spinner-hidden load7">
+                            <div id="domain_details-LB-spinner" class="loader">Loading...</div>
+                            <div id="domain_details-LB-spinner__caption" class="shiny-spinner-caption">loading data...</div>
+                          </div>
+                          <div style="height:200px" class="shiny-spinner-placeholder"></div>
+                          <div class="shiny-html-output gt_shiny" id="domain_details-LB-gt-table"></div>
+                        </div>
                       </div>
                       <bslib-tooltip placement="auto" bsOptions="[]" data-require-bs-version="5" data-require-bs-caller="tooltip()">
                         <template>Expand</template>
@@ -1515,7 +1550,14 @@
                     <style>#domain_details-PD-card .bslib-full-screen-enter { bottom: unset !important; }</style>
                     <div class="card bslib-card bslib-mb-spacing bslib-card-input html-fill-item html-fill-container" data-bslib-card-init data-full-screen="false" data-require-bs-caller="card()" data-require-bs-version="5" id="domain_details-PD-card">
                       <div class="card-body bslib-gap-spacing html-fill-item html-fill-container" style="margin-top:auto;margin-bottom:auto;flex:1 1 auto;">
-                        <div class="shiny-html-output gt_shiny" id="domain_details-PD-gt-table"></div>
+                        <div data-spinner-id="domain_details-PD-spinner" class="shiny-spinner-output-container shiny-spinner-hideui">
+                          <div class="load-container shiny-spinner-hidden load7">
+                            <div id="domain_details-PD-spinner" class="loader">Loading...</div>
+                            <div id="domain_details-PD-spinner__caption" class="shiny-spinner-caption">loading data...</div>
+                          </div>
+                          <div style="height:200px" class="shiny-spinner-placeholder"></div>
+                          <div class="shiny-html-output gt_shiny" id="domain_details-PD-gt-table"></div>
+                        </div>
                       </div>
                       <bslib-tooltip placement="auto" bsOptions="[]" data-require-bs-version="5" data-require-bs-caller="tooltip()">
                         <template>Expand</template>
@@ -1530,7 +1572,14 @@
                     <style>#domain_details-QUERY-card .bslib-full-screen-enter { bottom: unset !important; }</style>
                     <div class="card bslib-card bslib-mb-spacing bslib-card-input html-fill-item html-fill-container" data-bslib-card-init data-full-screen="false" data-require-bs-caller="card()" data-require-bs-version="5" id="domain_details-QUERY-card">
                       <div class="card-body bslib-gap-spacing html-fill-item html-fill-container" style="margin-top:auto;margin-bottom:auto;flex:1 1 auto;">
-                        <div class="shiny-html-output gt_shiny" id="domain_details-QUERY-gt-table"></div>
+                        <div data-spinner-id="domain_details-QUERY-spinner" class="shiny-spinner-output-container shiny-spinner-hideui">
+                          <div class="load-container shiny-spinner-hidden load7">
+                            <div id="domain_details-QUERY-spinner" class="loader">Loading...</div>
+                            <div id="domain_details-QUERY-spinner__caption" class="shiny-spinner-caption">loading data...</div>
+                          </div>
+                          <div style="height:200px" class="shiny-spinner-placeholder"></div>
+                          <div class="shiny-html-output gt_shiny" id="domain_details-QUERY-gt-table"></div>
+                        </div>
                       </div>
                       <bslib-tooltip placement="auto" bsOptions="[]" data-require-bs-version="5" data-require-bs-caller="tooltip()">
                         <template>Expand</template>
@@ -1545,7 +1594,14 @@
                     <style>#domain_details-STUDCOMP-card .bslib-full-screen-enter { bottom: unset !important; }</style>
                     <div class="card bslib-card bslib-mb-spacing bslib-card-input html-fill-item html-fill-container" data-bslib-card-init data-full-screen="false" data-require-bs-caller="card()" data-require-bs-version="5" id="domain_details-STUDCOMP-card">
                       <div class="card-body bslib-gap-spacing html-fill-item html-fill-container" style="margin-top:auto;margin-bottom:auto;flex:1 1 auto;">
-                        <div class="shiny-html-output gt_shiny" id="domain_details-STUDCOMP-gt-table"></div>
+                        <div data-spinner-id="domain_details-STUDCOMP-spinner" class="shiny-spinner-output-container shiny-spinner-hideui">
+                          <div class="load-container shiny-spinner-hidden load7">
+                            <div id="domain_details-STUDCOMP-spinner" class="loader">Loading...</div>
+                            <div id="domain_details-STUDCOMP-spinner__caption" class="shiny-spinner-caption">loading data...</div>
+                          </div>
+                          <div style="height:200px" class="shiny-spinner-placeholder"></div>
+                          <div class="shiny-html-output gt_shiny" id="domain_details-STUDCOMP-gt-table"></div>
+                        </div>
                       </div>
                       <bslib-tooltip placement="auto" bsOptions="[]" data-require-bs-version="5" data-require-bs-caller="tooltip()">
                         <template>Expand</template>
@@ -1560,7 +1616,14 @@
                     <style>#domain_details-SUBJ-card .bslib-full-screen-enter { bottom: unset !important; }</style>
                     <div class="card bslib-card bslib-mb-spacing bslib-card-input html-fill-item html-fill-container" data-bslib-card-init data-full-screen="false" data-require-bs-caller="card()" data-require-bs-version="5" id="domain_details-SUBJ-card">
                       <div class="card-body bslib-gap-spacing html-fill-item html-fill-container" style="margin-top:auto;margin-bottom:auto;flex:1 1 auto;">
-                        <div class="shiny-html-output gt_shiny" id="domain_details-SUBJ-gt-table"></div>
+                        <div data-spinner-id="domain_details-SUBJ-spinner" class="shiny-spinner-output-container shiny-spinner-hideui">
+                          <div class="load-container shiny-spinner-hidden load7">
+                            <div id="domain_details-SUBJ-spinner" class="loader">Loading...</div>
+                            <div id="domain_details-SUBJ-spinner__caption" class="shiny-spinner-caption">loading data...</div>
+                          </div>
+                          <div style="height:200px" class="shiny-spinner-placeholder"></div>
+                          <div class="shiny-html-output gt_shiny" id="domain_details-SUBJ-gt-table"></div>
+                        </div>
                       </div>
                       <bslib-tooltip placement="auto" bsOptions="[]" data-require-bs-version="5" data-require-bs-caller="tooltip()">
                         <template>Expand</template>
@@ -1575,7 +1638,14 @@
                     <style>#domain_details-SDRGCOMP-card .bslib-full-screen-enter { bottom: unset !important; }</style>
                     <div class="card bslib-card bslib-mb-spacing bslib-card-input html-fill-item html-fill-container" data-bslib-card-init data-full-screen="false" data-require-bs-caller="card()" data-require-bs-version="5" id="domain_details-SDRGCOMP-card">
                       <div class="card-body bslib-gap-spacing html-fill-item html-fill-container" style="margin-top:auto;margin-bottom:auto;flex:1 1 auto;">
-                        <div class="shiny-html-output gt_shiny" id="domain_details-SDRGCOMP-gt-table"></div>
+                        <div data-spinner-id="domain_details-SDRGCOMP-spinner" class="shiny-spinner-output-container shiny-spinner-hideui">
+                          <div class="load-container shiny-spinner-hidden load7">
+                            <div id="domain_details-SDRGCOMP-spinner" class="loader">Loading...</div>
+                            <div id="domain_details-SDRGCOMP-spinner__caption" class="shiny-spinner-caption">loading data...</div>
+                          </div>
+                          <div style="height:200px" class="shiny-spinner-placeholder"></div>
+                          <div class="shiny-html-output gt_shiny" id="domain_details-SDRGCOMP-gt-table"></div>
+                        </div>
                       </div>
                       <bslib-tooltip placement="auto" bsOptions="[]" data-require-bs-version="5" data-require-bs-caller="tooltip()">
                         <template>Expand</template>

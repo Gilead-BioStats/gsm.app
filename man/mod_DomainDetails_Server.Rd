@@ -4,13 +4,24 @@
 \alias{mod_DomainDetails_Server}
 \title{Domain Details server}
 \usage{
-mod_DomainDetails_Server(id, l_rctvDomains, rctv_strDomainID, chrDomains)
+mod_DomainDetails_Server(
+  id,
+  l_rctvDomains,
+  l_rctvDomainHashes,
+  rctv_strDomainID,
+  rctv_intDomainCounts,
+  rctv_strGroupLevel,
+  chrDomains
+)
 }
 \arguments{
 \item{id}{\code{character} The id for this element.}
 
 \item{l_rctvDomains}{\code{list} A named list of \code{\link[shiny:reactive]{shiny::reactive()}} objects, each
 of which returns a domain dataframe.}
+
+\item{l_rctvDomainHashes}{\code{list} A named list of \code{\link[shiny:reactive]{shiny::reactive()}} objects,
+each of which returns the \code{\link[rlang:hash]{rlang::hash()}} of a domain dataframe.}
 
 \item{rctv_strDomainID}{\verb{reactive character} A \code{\link[shiny:reactive]{shiny::reactive()}} object
 that returns the selected \code{DomainID} (such as "AE" or "SUBJ").}

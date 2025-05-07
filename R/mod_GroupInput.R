@@ -38,7 +38,9 @@ mod_GroupInput_Server <- function(
   moduleServer(id, function(input, output, session) {
     chrGroupLevels <- setdiff(sort(unique(dfGroups$GroupLevel)), "Study")
     if (length(chrGroupLevels) > 1) {
-      observe({rctv_strGroupLevel(input$level)})
+      observe({
+        rctv_strGroupLevel(input$level)
+      })
       srvr_SyncVirtualSelectInput("level", rctv_strGroupLevel, session)
 
       rctv_chrGroups <- reactive({
@@ -61,7 +63,9 @@ mod_GroupInput_Server <- function(
       rctv_strGroupLevel(chrGroupLevels[])
     }
 
-    observe({rctv_strGroupID(input$group)})
+    observe({
+      rctv_strGroupID(input$group)
+    })
     srvr_SyncVirtualSelectInput("group", rctv_strGroupID, session)
   })
 }
