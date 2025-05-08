@@ -48,6 +48,8 @@
 #' @param dfParticipantGroups `data.frame` Unique `SubjectID` and `GroupID`
 #'   combos from `dfAnalyticsInput`.
 #' @param dfResults `data.frame` A stacked summary of analysis pipeline output.
+#' @param dfSubjectGroups `data.frame` A subset of `dfGroups` with `GroupLevel`,
+#'   `GroupID`, and `SubjectID`.
 #' @param dSnapshotDate `Date` The date of a data snapshot.
 #' @param envCall `environment` The environment from which this function was
 #'   called, for use in better error messages. This value should usually be left
@@ -84,11 +86,21 @@
 #' @param intAmber `integer` The number of groups with at least one amber flag.
 #' @param lDataModel `list` Named list of the standard gsm dataframes
 #'   (`dfAnalyticsInput`, `dfBounds`, `dfGroups`, `dfMetrics`, and `dfResults`).
+#' @param lGroups `list` Named list of character vectors, in which the names are
+#'   the group levels and the vectors are the group IDs within that group level.
 #' @param lMetric `list` Named list of data describing a single metric, as well
 #'   as things like which group is selected.
 #' @param l_rctvDomains `list` A named list of lists of [shiny::reactive()]
-#'   objects. Each list contains a "study" element and a "selection" element,
-#'   each of which returns a domain dataframe.
+#'   objects. Each list contains a "Study" element, a "Group" element, and a
+#'   "Selection" element, each of which returns a domain dataframe.
+#' @param l_rctvDomainLoaded `list` A named list of [shiny::reactive()] objects.
+#'   The list contains a "Study" element and an element per group level, each
+#'   of which returns a `logical` (`FALSE` if the data has not been accessed,
+#'   `TRUE` if it has).
+#' @param l_rctvDomainsLoaded `list` A named list of lists of
+#'   [shiny::reactive()] objects. Each list contains a "Study" element and an
+#'   element per group level, each of which returns a `logical` (`FALSE` if the
+#'   data has not been accessed, `TRUE` if it has).
 #' @param l_rctvDomains_Selection `list` A named list of [shiny::reactive()]
 #'   objects, each of which returns a domain dataframe for the current filter.
 #' @param l_rctvDomainHashes `list` A named list of [shiny::reactive()] objects,
@@ -124,6 +136,10 @@
 #'   returns a stacked summary of analysis pipeline output.
 #' @param rctv_gtObject `reactive gt_table` A [shiny::reactive()] object that
 #'   returns a [gt::gt()] object.
+#' @param rctv_intDomainCounts `reactive integer` A [shiny::reactive()] object
+#'   that returns the count of rows for the current selection for all domains.
+#' @param rctv_lColumnNames `reactive list` A [shiny::reactive()] object that
+#'   returns a named list of column names to substitute into tables for display.
 #' @param rctv_lMetric `reactive list` A [shiny::reactive()] object that returns
 #'   a named list of data describing a single metric, as well as things like
 #'   which group is selected.
@@ -132,8 +148,15 @@
 #'   "on" (`TRUE`).
 #' @param rctv_strDomainID `reactive character` A [shiny::reactive()] object
 #'   that returns the selected `DomainID` (such as "AE" or "SUBJ").
+#' @param rctv_strDomainHash `reactive character` A [shiny::reactive()] object
+#'   that returns the the [rlang::hash()] of a domain dataframe.
 #' @param rctv_strCurrentTab `reactive character` A [shiny::reactive()] object
 #'   that returns the currently selected tab.
+#' @param rctv_strGroupID `reactive character` A [shiny::reactiveVal()] object
+#'   that returns the `GroupID` of the selected group (usually site), and can be
+#'   used to update which group is selected.
+#' @param rctv_strGroupLevel `reactive character` A [shiny::reactiveVal()]
+#'   object that returns the selected `GroupLevel`.
 #' @param rctv_strGroupSubset `reactive character` A [shiny::reactive()] object
 #'   that returns the selected subset of groups to include in the table.
 #' @param rctv_strInput `reactive character` A [shiny::reactive()] object that
@@ -145,9 +168,6 @@
 #' @param rctv_strName `reactive character` A [shiny::reactive()] object that
 #'   returns the name of an object, such as a particular dataframe in a named
 #'   list.
-#' @param rctv_strGroupID `reactive character` A [shiny::reactiveVal()] object
-#'   that returns the `GroupID` of the selected group (usually site), and can be
-#'   used to update which group is selected.
 #' @param rctv_strSubjectID `reactive character` A [shiny::reactive()] object
 #'   that returns the `SubjectID` of the selected participant.
 #' @param rctv_strValue `reactive character` A [shiny::reactive()] object that

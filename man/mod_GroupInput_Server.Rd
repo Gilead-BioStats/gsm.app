@@ -4,16 +4,20 @@
 \alias{mod_GroupInput_Server}
 \title{Group and GroupLevel Dropdown Menu Server}
 \usage{
-mod_GroupInput_Server(id, dfGroups, rctv_strGroupID, rctv_strGroupLevel)
+mod_GroupInput_Server(id, lGroups, rctv_strGroupID, rctv_strGroupLevel)
 }
 \arguments{
 \item{id}{\code{character} The id for this element.}
 
-\item{dfGroups}{\code{data.frame} Group-level metadata dictionary.}
+\item{lGroups}{\code{list} Named list of character vectors, in which the names are
+the group levels and the vectors are the group IDs within that group level.}
 
 \item{rctv_strGroupID}{\verb{reactive character} A \code{\link[shiny:reactiveVal]{shiny::reactiveVal()}} object
 that returns the \code{GroupID} of the selected group (usually site), and can be
 used to update which group is selected.}
+
+\item{rctv_strGroupLevel}{\verb{reactive character} A \code{\link[shiny:reactiveVal]{shiny::reactiveVal()}}
+object that returns the selected \code{GroupLevel}.}
 }
 \value{
 \code{\link[shiny:observe]{shiny::observe()}} objects to keep \code{GroupLevel} and \code{Group} inputs

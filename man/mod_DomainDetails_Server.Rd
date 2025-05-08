@@ -26,6 +26,12 @@ each of which returns the \code{\link[rlang:hash]{rlang::hash()}} of a domain da
 \item{rctv_strDomainID}{\verb{reactive character} A \code{\link[shiny:reactive]{shiny::reactive()}} object
 that returns the selected \code{DomainID} (such as "AE" or "SUBJ").}
 
+\item{rctv_intDomainCounts}{\verb{reactive integer} A \code{\link[shiny:reactive]{shiny::reactive()}} object
+that returns the count of rows for the current selection for all domains.}
+
+\item{rctv_strGroupLevel}{\verb{reactive character} A \code{\link[shiny:reactiveVal]{shiny::reactiveVal()}}
+object that returns the selected \code{GroupLevel}.}
+
 \item{chrDomains}{\code{character} A (named) vector of domains to include in the
 app. The values of the vector will be used as labels, and the names will be
 used as IDs. The IDs will be passed to \code{fnFetchData()} to fetch data about

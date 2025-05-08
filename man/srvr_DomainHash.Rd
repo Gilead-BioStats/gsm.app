@@ -5,7 +5,7 @@
 \title{Reactive domain df}
 \usage{
 srvr_DomainHash(
-  rctvDomain,
+  rctv_dfDomain,
   strDomainID,
   rctv_dSnapshotDate,
   rctv_strGroupID,
@@ -14,6 +14,9 @@ srvr_DomainHash(
 )
 }
 \arguments{
+\item{rctv_dfDomain}{\verb{reactive dataframe} A \code{\link[shiny:reactive]{shiny::reactive()}} object that
+returns a domain dataframe.}
+
 \item{strDomainID}{\code{character} The domain data.frame to load.}
 
 \item{rctv_dSnapshotDate}{\verb{reactive Date} A \code{\link[shiny:reactive]{shiny::reactive()}} object that
@@ -22,6 +25,9 @@ returns the date of a data snapshot.}
 \item{rctv_strGroupID}{\verb{reactive character} A \code{\link[shiny:reactiveVal]{shiny::reactiveVal()}} object
 that returns the \code{GroupID} of the selected group (usually site), and can be
 used to update which group is selected.}
+
+\item{rctv_strGroupLevel}{\verb{reactive character} A \code{\link[shiny:reactiveVal]{shiny::reactiveVal()}}
+object that returns the selected \code{GroupLevel}.}
 
 \item{rctv_strSubjectID}{\verb{reactive character} A \code{\link[shiny:reactive]{shiny::reactive()}} object
 that returns the \code{SubjectID} of the selected participant.}

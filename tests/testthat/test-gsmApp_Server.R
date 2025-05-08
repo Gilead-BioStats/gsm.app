@@ -68,8 +68,8 @@ test_that("gsmApp_Server executes optional server functions", {
     dfBounds = sample_dfBounds,
     dfAnalyticsInput = sample_dfAnalyticsInput,
     fnFetchData = sample_fnFetchData,
-    fnServer = function(input, output, session) {
-      rctv_testVal <<- reactiveVal("testing")
+    fnServer = function(input, output, session, env = rlang::caller_env()) {
+      assign("rctv_testVal", reactiveVal("testing"), envir = env)
     }
   )
   testServer(

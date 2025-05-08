@@ -13,8 +13,8 @@ srvr_IngestReactive(
 }
 \arguments{
 \item{l_rctvDomains}{\code{list} A named list of lists of \code{\link[shiny:reactive]{shiny::reactive()}}
-objects. Each list contains a "study" element and a "selection" element,
-each of which returns a domain dataframe.}
+objects. Each list contains a "Study" element, a "Group" element, and a
+"Selection" element, each of which returns a domain dataframe.}
 
 \item{lSpec}{\code{list} A named list defining the data domains required by the
 plugin, where the names are the names of the domains and the elements are

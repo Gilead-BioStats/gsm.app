@@ -8,7 +8,8 @@ mod_dfDomains_Server(
   id,
   fnFetchData,
   chrDomains,
-  l_rctvDomainStudyLoaded,
+  dfSubjectGroups,
+  l_rctvDomainsLoaded,
   rctv_dSnapshotDate,
   rctv_strGroupID,
   rctv_strGroupLevel,
@@ -30,12 +31,23 @@ app. The values of the vector will be used as labels, and the names will be
 used as IDs. The IDs will be passed to \code{fnFetchData()} to fetch data about
 that domain.}
 
+\item{dfSubjectGroups}{\code{data.frame} A subset of \code{dfGroups} with \code{GroupLevel},
+\code{GroupID}, and \code{SubjectID}.}
+
+\item{l_rctvDomainsLoaded}{\code{list} A named list of lists of
+\code{\link[shiny:reactive]{shiny::reactive()}} objects. Each list contains a "Study" element and an
+element per group level, each of which returns a \code{logical} (\code{FALSE} if the
+data has not been accessed, \code{TRUE} if it has).}
+
 \item{rctv_dSnapshotDate}{\verb{reactive Date} A \code{\link[shiny:reactive]{shiny::reactive()}} object that
 returns the date of a data snapshot.}
 
 \item{rctv_strGroupID}{\verb{reactive character} A \code{\link[shiny:reactiveVal]{shiny::reactiveVal()}} object
 that returns the \code{GroupID} of the selected group (usually site), and can be
 used to update which group is selected.}
+
+\item{rctv_strGroupLevel}{\verb{reactive character} A \code{\link[shiny:reactiveVal]{shiny::reactiveVal()}}
+object that returns the selected \code{GroupLevel}.}
 
 \item{rctv_strSubjectID}{\verb{reactive character} A \code{\link[shiny:reactive]{shiny::reactive()}} object
 that returns the \code{SubjectID} of the selected participant.}

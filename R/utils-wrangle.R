@@ -108,14 +108,12 @@ FilterByGroupAndLevel <- function(
   if (length(strGroupID)) {
     if (length(strGroupLevel)) {
       if (!("GroupLevel" %in% colnames(df)) && NROW(dfGroups)) {
-        dfGroups <- dplyr::distinct(
-          gsm.app::sample_dfGroups,
-          .data$GroupID,
-          .data$GroupLevel
-        )
+        dfGroups <- dplyr::distinct(dfGroups, .data$GroupID, .data$GroupLevel)
         df <- dplyr::left_join(df, dfGroups, by = "GroupID")
       }
-      df <- dplyr::filter(df, .data$GroupLevel == strGroupLevel)
+      if ("GroupLevel" %in% colnames(df)) {
+        df <- dplyr::filter(df, .data$GroupLevel == strGroupLevel)
+      }
     }
     df <- dplyr::filter(df, .data$GroupID == strGroupID)
   }

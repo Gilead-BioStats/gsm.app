@@ -16,9 +16,8 @@ test_that("mod_GroupInput_UI creates the expected UI with multiple levels", {
 })
 
 test_that("mod_GroupInput_Server initializes for single level", {
-  dfGroups <- dplyr::tibble(
-    GroupID = c(paste0("site", 1:5)),
-    GroupLevel = c(rep("Site", 5))
+  lGroups <- list(
+    Site = paste0("site", 1:5)
   )
   rctv_strGroupID <- reactiveVal()
   rctv_strGroupLevel <- reactiveVal()
@@ -26,7 +25,7 @@ test_that("mod_GroupInput_Server initializes for single level", {
     mod_GroupInput_Server,
     args = list(
       id = "testing",
-      dfGroups = dfGroups,
+      lGroups = lGroups,
       rctv_strGroupID = rctv_strGroupID,
       rctv_strGroupLevel = rctv_strGroupLevel
     ),
@@ -37,9 +36,9 @@ test_that("mod_GroupInput_Server initializes for single level", {
 })
 
 test_that("mod_GroupInput_Server updates when GroupLevel changes", {
-  dfGroups <- dplyr::tibble(
-    GroupID = c(paste0("site", 1:5), paste0("country", 1:5)),
-    GroupLevel = c(rep("Site", 5), rep("Country", 5))
+  lGroups <- list(
+    Site = paste0("site", 1:5),
+    Country = paste0("country", 1:5)
   )
   rctv_strGroupID <- reactiveVal()
   rctv_strGroupLevel <- reactiveVal()
@@ -47,7 +46,7 @@ test_that("mod_GroupInput_Server updates when GroupLevel changes", {
     mod_GroupInput_Server,
     args = list(
       id = "testing",
-      dfGroups = dfGroups,
+      lGroups = lGroups,
       rctv_strGroupID = rctv_strGroupID,
       rctv_strGroupLevel = rctv_strGroupLevel
     ),

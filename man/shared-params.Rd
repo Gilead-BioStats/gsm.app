@@ -69,6 +69,9 @@ combos from \code{dfAnalyticsInput}.}
 
 \item{dfResults}{\code{data.frame} A stacked summary of analysis pipeline output.}
 
+\item{dfSubjectGroups}{\code{data.frame} A subset of \code{dfGroups} with \code{GroupLevel},
+\code{GroupID}, and \code{SubjectID}.}
+
 \item{dSnapshotDate}{\code{Date} The date of a data snapshot.}
 
 \item{envCall}{\code{environment} The environment from which this function was
@@ -120,12 +123,25 @@ function.}
 \item{lDataModel}{\code{list} Named list of the standard gsm dataframes
 (\code{dfAnalyticsInput}, \code{dfBounds}, \code{dfGroups}, \code{dfMetrics}, and \code{dfResults}).}
 
+\item{lGroups}{\code{list} Named list of character vectors, in which the names are
+the group levels and the vectors are the group IDs within that group level.}
+
 \item{lMetric}{\code{list} Named list of data describing a single metric, as well
 as things like which group is selected.}
 
 \item{l_rctvDomains}{\code{list} A named list of lists of \code{\link[shiny:reactive]{shiny::reactive()}}
-objects. Each list contains a "study" element and a "selection" element,
-each of which returns a domain dataframe.}
+objects. Each list contains a "Study" element, a "Group" element, and a
+"Selection" element, each of which returns a domain dataframe.}
+
+\item{l_rctvDomainLoaded}{\code{list} A named list of \code{\link[shiny:reactive]{shiny::reactive()}} objects.
+The list contains a "Study" element and an element per group level, each
+of which returns a \code{logical} (\code{FALSE} if the data has not been accessed,
+\code{TRUE} if it has).}
+
+\item{l_rctvDomainsLoaded}{\code{list} A named list of lists of
+\code{\link[shiny:reactive]{shiny::reactive()}} objects. Each list contains a "Study" element and an
+element per group level, each of which returns a \code{logical} (\code{FALSE} if the
+data has not been accessed, \code{TRUE} if it has).}
 
 \item{l_rctvDomains_Selection}{\code{list} A named list of \code{\link[shiny:reactive]{shiny::reactive()}}
 objects, each of which returns a domain dataframe for the current filter.}
@@ -177,6 +193,12 @@ returns a stacked summary of analysis pipeline output.}
 \item{rctv_gtObject}{\verb{reactive gt_table} A \code{\link[shiny:reactive]{shiny::reactive()}} object that
 returns a \code{\link[gt:gt]{gt::gt()}} object.}
 
+\item{rctv_intDomainCounts}{\verb{reactive integer} A \code{\link[shiny:reactive]{shiny::reactive()}} object
+that returns the count of rows for the current selection for all domains.}
+
+\item{rctv_lColumnNames}{\verb{reactive list} A \code{\link[shiny:reactive]{shiny::reactive()}} object that
+returns a named list of column names to substitute into tables for display.}
+
 \item{rctv_lMetric}{\verb{reactive list} A \code{\link[shiny:reactive]{shiny::reactive()}} object that returns
 a named list of data describing a single metric, as well as things like
 which group is selected.}
@@ -188,8 +210,18 @@ returns a Boolean value indicating whether something is "off" (\code{FALSE}) or
 \item{rctv_strDomainID}{\verb{reactive character} A \code{\link[shiny:reactive]{shiny::reactive()}} object
 that returns the selected \code{DomainID} (such as "AE" or "SUBJ").}
 
+\item{rctv_strDomainHash}{\verb{reactive character} A \code{\link[shiny:reactive]{shiny::reactive()}} object
+that returns the the \code{\link[rlang:hash]{rlang::hash()}} of a domain dataframe.}
+
 \item{rctv_strCurrentTab}{\verb{reactive character} A \code{\link[shiny:reactive]{shiny::reactive()}} object
 that returns the currently selected tab.}
+
+\item{rctv_strGroupID}{\verb{reactive character} A \code{\link[shiny:reactiveVal]{shiny::reactiveVal()}} object
+that returns the \code{GroupID} of the selected group (usually site), and can be
+used to update which group is selected.}
+
+\item{rctv_strGroupLevel}{\verb{reactive character} A \code{\link[shiny:reactiveVal]{shiny::reactiveVal()}}
+object that returns the selected \code{GroupLevel}.}
 
 \item{rctv_strGroupSubset}{\verb{reactive character} A \code{\link[shiny:reactive]{shiny::reactive()}} object
 that returns the selected subset of groups to include in the table.}
@@ -205,10 +237,6 @@ that returns the selected \code{MetricID}.}
 \item{rctv_strName}{\verb{reactive character} A \code{\link[shiny:reactive]{shiny::reactive()}} object that
 returns the name of an object, such as a particular dataframe in a named
 list.}
-
-\item{rctv_strGroupID}{\verb{reactive character} A \code{\link[shiny:reactiveVal]{shiny::reactiveVal()}} object
-that returns the \code{GroupID} of the selected group (usually site), and can be
-used to update which group is selected.}
 
 \item{rctv_strSubjectID}{\verb{reactive character} A \code{\link[shiny:reactive]{shiny::reactive()}} object
 that returns the \code{SubjectID} of the selected participant.}

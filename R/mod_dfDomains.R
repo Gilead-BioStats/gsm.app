@@ -7,7 +7,8 @@ mod_dfDomains_Server <- function(
   id,
   fnFetchData,
   chrDomains,
-  l_rctvDomainStudyLoaded,
+  dfSubjectGroups,
+  l_rctvDomainsLoaded,
   rctv_dSnapshotDate,
   rctv_strGroupID,
   rctv_strGroupLevel,
@@ -15,13 +16,28 @@ mod_dfDomains_Server <- function(
 ) {
   moduleServer(id, function(input, output, session) {
     chrDomainIDs <- rlang::set_names(names(chrDomains), names(chrDomains))
+    rctv_strGroupID_Inferred <- reactive({
+      strGroupID <- NullifyEmpty(rctv_strGroupID())
+      strSubjectID <- NullifyEmpty(rctv_strSubjectID())
+      if (is.null(strGroupID) && !is.null(strSubjectID)) {
+        return(
+          dfSubjectGroups$GroupID[
+            dfSubjectGroups$GroupLevel == rctv_strGroupLevel() &
+              dfSubjectGroups$SubjectID == strSubjectID
+          ]
+        )
+      }
+      return(rctv_strGroupID())
+    }) %>%
+      bindCache(rctv_strGroupLevel(), rctv_strGroupID(), rctv_strSubjectID())
+
     l_rctvDomains <- purrr::map(chrDomainIDs, function(this_domain) {
       srvr_dfDomain(
         this_domain,
         fnFetchData = fnFetchData,
-        rctv_bDomainStudyLoaded = l_rctvDomainStudyLoaded[[this_domain]],
+        l_rctvDomainLoaded = l_rctvDomainsLoaded[[this_domain]],
         rctv_dSnapshotDate = rctv_dSnapshotDate,
-        rctv_strGroupID = rctv_strGroupID,
+        rctv_strGroupID = rctv_strGroupID_Inferred,
         rctv_strGroupLevel = rctv_strGroupLevel,
         rctv_strSubjectID = rctv_strSubjectID
       )
@@ -40,17 +56,17 @@ mod_dfDomains_Server <- function(
 srvr_dfDomain <- function(
   strDomainID,
   fnFetchData,
-  rctv_bDomainStudyLoaded,
+  l_rctvDomainLoaded,
   rctv_dSnapshotDate,
   rctv_strGroupID,
   rctv_strGroupLevel,
   rctv_strSubjectID
 ) {
   rctv_dfStudy <- reactive({
+    l_rctvDomainLoaded$Study(TRUE)
     withProgress(
       message = glue::glue("Loading {strDomainID} study-level data"),
       {
-        rctv_bDomainStudyLoaded(TRUE)
         tryCatch(
           {
             fnFetchData(
@@ -65,7 +81,7 @@ srvr_dfDomain <- function(
             srvr_ShowConditionMessage(
               cnd,
               chrPreMessage = glue::glue(
-                "Could not fetch data for the {strDomainID} domain."
+                "Could not fetch study-level {strDomainID} data."
               ),
               strTitle = glue::glue("Error loading {strDomainID} data")
             )
@@ -76,30 +92,105 @@ srvr_dfDomain <- function(
   }) %>%
     bindCache(strDomainID)
 
-  rctv_dfSelection <- reactive({
-    if (rctv_bDomainStudyLoaded() && NROW(rctv_dfStudy())) {
+  rctv_dfGroup <- reactive({
+    strGroupLevel <- NullifyEmpty(rctv_strGroupLevel())
+    strGroupID <- NullifyEmpty(rctv_strGroupID())
+    dSnapshotDate <- rctv_dSnapshotDate()
+
+    l_rctvDomainLoaded[[strGroupLevel]][[strGroupID]](TRUE)
+    if (l_rctvDomainLoaded$Study() && NROW(rctv_dfStudy())) {
       return(
         FilterDomainData(
           rctv_dfStudy(),
           strDomainID = strDomainID,
-          dSnapshotDate = rctv_dSnapshotDate(),
-          strGroupLevel = rctv_strGroupLevel(),
-          strGroupID = rctv_strGroupID(),
-          strSubjectID = rctv_strSubjectID()
+          dSnapshotDate = dSnapshotDate,
+          strGroupLevel = strGroupLevel,
+          strGroupID = strGroupID,
+          strSubjectID = NULL
         )
       )
     }
     withProgress(
-      message = glue::glue("Loading {strDomainID} data"),
+      message = glue::glue(
+        "Loading {strDomainID} data for {strGroupLevel} {strGroupID}."
+      ),
       {
         tryCatch(
           {
             fnFetchData(
               strDomainID,
-              strGroupID = NullifyEmpty(rctv_strGroupID()),
-              strGroupLevel = rctv_strGroupLevel(),
-              strSubjectID = NullifyEmpty(rctv_strSubjectID()),
+              strGroupID = strGroupID,
+              strGroupLevel = strGroupLevel,
+              strSubjectID = NULL,
               dSnapshotDate = rctv_dSnapshotDate()
+            )
+          },
+          error = function(cnd) {
+            srvr_ShowConditionMessage(
+              cnd,
+              chrPreMessage = glue::glue(
+                "Could not fetch {strDomainID} data for {strGroupLevel} {strGroupID}."
+              ),
+              strTitle = glue::glue("Error loading {strDomainID} data")
+            )
+          }
+        )
+      }
+    )
+  }) %>%
+    bindCache(strDomainID, rctv_strGroupLevel(), rctv_strGroupID())
+
+  rctv_dfSelection <- reactive({
+    strGroupLevel <- rctv_strGroupLevel()
+    strGroupID <- NullifyEmpty(rctv_strGroupID())
+    strSubjectID <- NullifyEmpty(rctv_strSubjectID())
+    dSnapshotDate <- rctv_dSnapshotDate()
+
+    if (!length(strGroupID) && !length(strSubjectID)) {
+      return(rctv_dfStudy())
+    }
+    if (!length(strSubjectID)) {
+      return(rctv_dfGroup())
+    }
+
+    if (
+      l_rctvDomainLoaded[[strGroupLevel]][[strGroupID]]() &&
+      NROW(rctv_dfGroup())
+    ) {
+      return(
+        FilterDomainData(
+          rctv_dfGroup(),
+          strDomainID = strDomainID,
+          dSnapshotDate = dSnapshotDate,
+          strGroupLevel = strGroupLevel,
+          strGroupID = strGroupID,
+          strSubjectID = strSubjectID
+        )
+      )
+    }
+    if (l_rctvDomainLoaded$Study() && NROW(rctv_dfStudy())) {
+      return(
+        FilterDomainData(
+          rctv_dfStudy(),
+          strDomainID = strDomainID,
+          dSnapshotDate = dSnapshotDate,
+          strGroupLevel = strGroupLevel,
+          strGroupID = strGroupID,
+          strSubjectID = strSubjectID
+        )
+      )
+    }
+    withProgress(
+      message = glue::glue("Loading {strDomainID} data for participant {strSubjectID}."),
+      {
+        tryCatch(
+          {
+            fnFetchData(
+              strDomainID,
+              strGroupID = strGroupID,
+              strGroupLevel = strGroupLevel,
+              strSubjectID = strSubjectID,
+              dSnapshotDate = dSnapshotDate
             )
           },
           error = function(cnd) {
@@ -125,8 +216,9 @@ srvr_dfDomain <- function(
 
   return(
     list(
-      study = rctv_dfStudy,
-      selection = rctv_dfSelection
+      Study = rctv_dfStudy,
+      Group = rctv_dfGroup,
+      Selection = rctv_dfSelection
     )
   )
 }
@@ -180,7 +272,7 @@ FilterDomainData <- function(
 #' @keywords internal
 mod_DomainHashes_Server <- function(
   id,
-  l_rctvDomainSelections,
+  l_rctvDomains,
   rctv_dSnapshotDate,
   rctv_strGroupID,
   rctv_strGroupLevel,
@@ -188,10 +280,10 @@ mod_DomainHashes_Server <- function(
 ) {
   moduleServer(id, function(input, output, session) {
     l_rctvDomainHashes <- purrr::imap(
-      l_rctvDomainSelections,
+      l_rctvDomains,
       function(l_rctvDomain, strDomainID) {
         srvr_DomainHash(
-          rctvDomain = l_rctvDomain$selection,
+          rctv_dfDomain = l_rctvDomain$Selection,
           strDomainID = strDomainID,
           rctv_dSnapshotDate = rctv_dSnapshotDate,
           rctv_strGroupID = rctv_strGroupID,
@@ -210,7 +302,7 @@ mod_DomainHashes_Server <- function(
 #' @returns A [shiny::reactive()] that generates a hash of a domain df.
 #' @keywords internal
 srvr_DomainHash <- function(
-  rctvDomain,
+  rctv_dfDomain,
   strDomainID,
   rctv_dSnapshotDate,
   rctv_strGroupID,
@@ -218,7 +310,7 @@ srvr_DomainHash <- function(
   rctv_strSubjectID
 ) {
   reactive({
-    rlang::hash(rctvDomain())
+    rlang::hash(rctv_dfDomain())
   }) %>%
     bindCache(
       strDomainID,
