@@ -49,8 +49,10 @@ mod_Plugin_Server <- function(
   chrInputNamesPretty
 ) {
   moduleServer(id, function(input, output, session) {
-    #  Required inputs ----
+    # Temporarily only use Selection. See #447.
+    l_rctvDomains <- purrr::map(l_rctvDomains, "Selection")
 
+    #  Required inputs ----
     rctv_chrMissingInputs <- srvr_CompileUnsetInputs(
       lPlugin$required_inputs,
       l_rctvInputs,
