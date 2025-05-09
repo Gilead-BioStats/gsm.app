@@ -98,6 +98,7 @@ srvr_dfDomain <- function(
     dSnapshotDate <- rctv_dSnapshotDate()
 
     l_rctvDomainLoaded[[strGroupLevel]][[strGroupID]](TRUE)
+    # nocov start (tested manually)
     if (l_rctvDomainLoaded$Study() && NROW(rctv_dfStudy())) {
       return(
         FilterDomainData(
@@ -110,6 +111,7 @@ srvr_dfDomain <- function(
         )
       )
     }
+    # nocov end
     withProgress(
       message = glue::glue(
         "Loading {strDomainID} data for {strGroupLevel} {strGroupID}."
@@ -152,7 +154,7 @@ srvr_dfDomain <- function(
     if (!length(strSubjectID)) {
       return(rctv_dfGroup())
     }
-
+    # nocov start (tested manually)
     if (
       l_rctvDomainLoaded[[strGroupLevel]][[strGroupID]]() &&
       NROW(rctv_dfGroup())
@@ -168,6 +170,7 @@ srvr_dfDomain <- function(
         )
       )
     }
+    # nocov end
     if (l_rctvDomainLoaded$Study() && NROW(rctv_dfStudy())) {
       return(
         FilterDomainData(
@@ -193,6 +196,7 @@ srvr_dfDomain <- function(
               dSnapshotDate = dSnapshotDate
             )
           },
+          # nocov start (tested via shinytest2)
           error = function(cnd) {
             srvr_ShowConditionMessage(
               cnd,
@@ -202,6 +206,7 @@ srvr_dfDomain <- function(
               strTitle = glue::glue("Error loading {strDomainID} data")
             )
           }
+          # nocov end
         )
       }
     )
@@ -223,6 +228,11 @@ srvr_dfDomain <- function(
   )
 }
 
+#' Filter Domain Data by Relevant Fields
+#'
+#' @inheritParams shared-params
+#' @returns The data.frame, with filters applied.
+#' @keywords internal
 FilterDomainData <- function(
   df,
   strDomainID,
@@ -321,7 +331,13 @@ srvr_DomainHash <- function(
     )
 }
 
-mod_DomainCountsServer <- function(
+#' Count Domain Data
+#'
+#' @inheritParams shared-params
+#' @returns A [shiny::reactive()], which returns a named integer with counts for
+#'   the current selection.
+#' @keywords internal
+srvr_DomainCounts <- function(
   id,
   fnCountData,
   chrDomains,

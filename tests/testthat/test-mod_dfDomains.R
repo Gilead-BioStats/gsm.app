@@ -39,3 +39,33 @@ test_that("srvr_DomainHash generates hashes", {
 
   expect_equal(val2, val4)
 })
+
+test_that("Server-level data errors informatively", {
+  local_mocked_bindings(
+    bindCache = function(x, ...) {
+      x
+    },
+    withProgress = function(message, x) {
+      x
+    },
+    srvr_ShowConditionMessage = function(cnd, ...) {
+      class(cnd)
+    }
+  )
+  fnFetchData <- function(...) {
+    rlang::abort(class = "test-error")
+  }
+  test_result <- srvr_dfDomain(
+    "AE",
+    fnFetchData,
+    l_rctvDomainLoaded = list(Study = reactiveVal(FALSE)),
+    rctv_dSnapshotDate = function() "2025-01-01",
+    rctv_strGroupID = NULL,
+    rctv_strGroupLevel = NULL,
+    rctv_strSubjectID = NULL
+  )
+  expect_setequal(
+    isolate(test_result$Study()),
+    c("test-error", "rlang_error", "error", "condition")
+  )
+})

@@ -53,6 +53,8 @@ selection.}
 \item{chrValues}{\code{character} A vector of values to associate with a vector of
 labels.}
 
+\item{df}{\code{data.frame} A data frame to wrangle.}
+
 \item{dfAnalyticsInput}{\code{data.frame} Participant-level metric data.}
 
 \item{dfBounds}{\code{data.frame} Set of predicted percentages/rates and upper-

@@ -177,7 +177,7 @@ gsmApp_Server <- function(
       rctv_strSubjectID = rctv_strSubjectID
     )
     ## Also fetch the counts.
-    rctv_intDomainCounts <- mod_DomainCountsServer(
+    rctv_intDomainCounts <- srvr_DomainCounts(
       "domain_counts",
       fnCountData = fnCountData,
       chrDomains = chrDomains,

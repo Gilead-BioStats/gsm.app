@@ -38,6 +38,7 @@
 #' @param chrGroups `character` A vector of groups available in the study.
 #' @param chrValues `character` A vector of values to associate with a vector of
 #'   labels.
+#' @param df `data.frame` A data frame to wrangle.
 #' @param dfAnalyticsInput `data.frame` Participant-level metric data.
 #' @param dfBounds `data.frame` Set of predicted percentages/rates and upper-
 #'   and lower-bounds across the full range of sample sizes/total exposure
