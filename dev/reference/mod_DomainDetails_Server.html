@@ -45,7 +45,7 @@
     <h2 id="ref-usage">Usage<a class="anchor" aria-label="anchor" href="#ref-usage"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">mod_DomainDetails_Server</span><span class="op">(</span></span>
 <span>  <span class="va">id</span>,</span>
-<span>  <span class="va">l_rctvDomains</span>,</span>
+<span>  <span class="va">l_rctvDomains_Selection</span>,</span>
 <span>  <span class="va">l_rctvDomainHashes</span>,</span>
 <span>  <span class="va">rctv_strDomainID</span>,</span>
 <span>  <span class="va">rctv_intDomainCounts</span>,</span>
@@ -62,9 +62,9 @@
 <dd><p><code>character</code> The id for this element.</p></dd>
 
 
-<dt id="arg-l-rctvdomains">l_rctvDomains<a class="anchor" aria-label="anchor" href="#arg-l-rctvdomains"></a></dt>
-<dd><p><code>list</code> A named list of <code><a href="https://rdrr.io/pkg/shiny/man/reactive.html" class="external-link">shiny::reactive()</a></code> objects, each
-of which returns a domain dataframe.</p></dd>
+<dt id="arg-l-rctvdomains-selection">l_rctvDomains_Selection<a class="anchor" aria-label="anchor" href="#arg-l-rctvdomains-selection"></a></dt>
+<dd><p><code>list</code> A named list of <code><a href="https://rdrr.io/pkg/shiny/man/reactive.html" class="external-link">shiny::reactive()</a></code>
+objects, each of which returns a domain dataframe for the current filter.</p></dd>
 
 
 <dt id="arg-l-rctvdomainhashes">l_rctvDomainHashes<a class="anchor" aria-label="anchor" href="#arg-l-rctvdomainhashes"></a></dt>
@@ -75,6 +75,16 @@ each of which returns the <code><a href="https://rlang.r-lib.org/reference/hash.
 <dt id="arg-rctv-strdomainid">rctv_strDomainID<a class="anchor" aria-label="anchor" href="#arg-rctv-strdomainid"></a></dt>
 <dd><p><code>reactive character</code> A <code><a href="https://rdrr.io/pkg/shiny/man/reactive.html" class="external-link">shiny::reactive()</a></code> object
 that returns the selected <code>DomainID</code> (such as "AE" or "SUBJ").</p></dd>
+
+
+<dt id="arg-rctv-intdomaincounts">rctv_intDomainCounts<a class="anchor" aria-label="anchor" href="#arg-rctv-intdomaincounts"></a></dt>
+<dd><p><code>reactive integer</code> A <code><a href="https://rdrr.io/pkg/shiny/man/reactive.html" class="external-link">shiny::reactive()</a></code> object
+that returns the count of rows for the current selection for all domains.</p></dd>
+
+
+<dt id="arg-rctv-strgrouplevel">rctv_strGroupLevel<a class="anchor" aria-label="anchor" href="#arg-rctv-strgrouplevel"></a></dt>
+<dd><p><code>reactive character</code> A <code><a href="https://rdrr.io/pkg/shiny/man/reactiveVal.html" class="external-link">shiny::reactiveVal()</a></code>
+object that returns the selected <code>GroupLevel</code>.</p></dd>
 
 
 <dt id="arg-chrdomains">chrDomains<a class="anchor" aria-label="anchor" href="#arg-chrdomains"></a></dt>

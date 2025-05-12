@@ -56,8 +56,9 @@
 
 
 <dl><dt id="arg-l-rctvdomains">l_rctvDomains<a class="anchor" aria-label="anchor" href="#arg-l-rctvdomains"></a></dt>
-<dd><p><code>list</code> A named list of <code><a href="https://rdrr.io/pkg/shiny/man/reactive.html" class="external-link">shiny::reactive()</a></code> objects, each
-of which returns a domain dataframe.</p></dd>
+<dd><p><code>list</code> A named list of lists of <code><a href="https://rdrr.io/pkg/shiny/man/reactive.html" class="external-link">shiny::reactive()</a></code>
+objects. Each list contains a "Study" element, a "Group" element, and a
+"Selection" element, each of which returns a domain dataframe.</p></dd>
 
 
 <dt id="arg-lspec">lSpec<a class="anchor" aria-label="anchor" href="#arg-lspec"></a></dt>

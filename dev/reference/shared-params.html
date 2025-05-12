@@ -136,6 +136,10 @@ selection.</p></dd>
 labels.</p></dd>
 
 
+<dt id="arg-df">df<a class="anchor" aria-label="anchor" href="#arg-df"></a></dt>
+<dd><p><code>data.frame</code> A data frame to wrangle.</p></dd>
+
+
 <dt id="arg-dfanalyticsinput">dfAnalyticsInput<a class="anchor" aria-label="anchor" href="#arg-dfanalyticsinput"></a></dt>
 <dd><p><code>data.frame</code> Participant-level metric data.</p></dd>
 
@@ -162,6 +166,11 @@ combos from <code>dfAnalyticsInput</code>.</p></dd>
 
 <dt id="arg-dfresults">dfResults<a class="anchor" aria-label="anchor" href="#arg-dfresults"></a></dt>
 <dd><p><code>data.frame</code> A stacked summary of analysis pipeline output.</p></dd>
+
+
+<dt id="arg-dfsubjectgroups">dfSubjectGroups<a class="anchor" aria-label="anchor" href="#arg-dfsubjectgroups"></a></dt>
+<dd><p><code>data.frame</code> A subset of <code>dfGroups</code> with <code>GroupLevel</code>,
+<code>GroupID</code>, and <code>SubjectID</code>.</p></dd>
 
 
 <dt id="arg-dsnapshotdate">dSnapshotDate<a class="anchor" aria-label="anchor" href="#arg-dsnapshotdate"></a></dt>
@@ -245,14 +254,39 @@ function.</p></dd>
 (<code>dfAnalyticsInput</code>, <code>dfBounds</code>, <code>dfGroups</code>, <code>dfMetrics</code>, and <code>dfResults</code>).</p></dd>
 
 
+<dt id="arg-lgroups">lGroups<a class="anchor" aria-label="anchor" href="#arg-lgroups"></a></dt>
+<dd><p><code>list</code> Named list of character vectors, in which the names are
+the group levels and the vectors are the group IDs within that group level.</p></dd>
+
+
 <dt id="arg-lmetric">lMetric<a class="anchor" aria-label="anchor" href="#arg-lmetric"></a></dt>
 <dd><p><code>list</code> Named list of data describing a single metric, as well
 as things like which group is selected.</p></dd>
 
 
 <dt id="arg-l-rctvdomains">l_rctvDomains<a class="anchor" aria-label="anchor" href="#arg-l-rctvdomains"></a></dt>
-<dd><p><code>list</code> A named list of <code><a href="https://rdrr.io/pkg/shiny/man/reactive.html" class="external-link">shiny::reactive()</a></code> objects, each
-of which returns a domain dataframe.</p></dd>
+<dd><p><code>list</code> A named list of lists of <code><a href="https://rdrr.io/pkg/shiny/man/reactive.html" class="external-link">shiny::reactive()</a></code>
+objects. Each list contains a "Study" element, a "Group" element, and a
+"Selection" element, each of which returns a domain dataframe.</p></dd>
+
+
+<dt id="arg-l-rctvdomainloaded">l_rctvDomainLoaded<a class="anchor" aria-label="anchor" href="#arg-l-rctvdomainloaded"></a></dt>
+<dd><p><code>list</code> A named list of <code><a href="https://rdrr.io/pkg/shiny/man/reactive.html" class="external-link">shiny::reactive()</a></code> objects.
+The list contains a "Study" element and an element per group level, each
+of which returns a <code>logical</code> (<code>FALSE</code> if the data has not been accessed,
+<code>TRUE</code> if it has).</p></dd>
+
+
+<dt id="arg-l-rctvdomainsloaded">l_rctvDomainsLoaded<a class="anchor" aria-label="anchor" href="#arg-l-rctvdomainsloaded"></a></dt>
+<dd><p><code>list</code> A named list of lists of
+<code><a href="https://rdrr.io/pkg/shiny/man/reactive.html" class="external-link">shiny::reactive()</a></code> objects. Each list contains a "Study" element and an
+element per group level, each of which returns a <code>logical</code> (<code>FALSE</code> if the
+data has not been accessed, <code>TRUE</code> if it has).</p></dd>
+
+
+<dt id="arg-l-rctvdomains-selection">l_rctvDomains_Selection<a class="anchor" aria-label="anchor" href="#arg-l-rctvdomains-selection"></a></dt>
+<dd><p><code>list</code> A named list of <code><a href="https://rdrr.io/pkg/shiny/man/reactive.html" class="external-link">shiny::reactive()</a></code>
+objects, each of which returns a domain dataframe for the current filter.</p></dd>
 
 
 <dt id="arg-l-rctvdomainhashes">l_rctvDomainHashes<a class="anchor" aria-label="anchor" href="#arg-l-rctvdomainhashes"></a></dt>
@@ -330,6 +364,16 @@ returns a stacked summary of analysis pipeline output.</p></dd>
 returns a <code><a href="https://gt.rstudio.com/reference/gt.html" class="external-link">gt::gt()</a></code> object.</p></dd>
 
 
+<dt id="arg-rctv-intdomaincounts">rctv_intDomainCounts<a class="anchor" aria-label="anchor" href="#arg-rctv-intdomaincounts"></a></dt>
+<dd><p><code>reactive integer</code> A <code><a href="https://rdrr.io/pkg/shiny/man/reactive.html" class="external-link">shiny::reactive()</a></code> object
+that returns the count of rows for the current selection for all domains.</p></dd>
+
+
+<dt id="arg-rctv-lcolumnnames">rctv_lColumnNames<a class="anchor" aria-label="anchor" href="#arg-rctv-lcolumnnames"></a></dt>
+<dd><p><code>reactive list</code> A <code><a href="https://rdrr.io/pkg/shiny/man/reactive.html" class="external-link">shiny::reactive()</a></code> object that
+returns a named list of column names to substitute into tables for display.</p></dd>
+
+
 <dt id="arg-rctv-lmetric">rctv_lMetric<a class="anchor" aria-label="anchor" href="#arg-rctv-lmetric"></a></dt>
 <dd><p><code>reactive list</code> A <code><a href="https://rdrr.io/pkg/shiny/man/reactive.html" class="external-link">shiny::reactive()</a></code> object that returns
 a named list of data describing a single metric, as well as things like
@@ -347,9 +391,25 @@ returns a Boolean value indicating whether something is "off" (<code>FALSE</code
 that returns the selected <code>DomainID</code> (such as "AE" or "SUBJ").</p></dd>
 
 
+<dt id="arg-rctv-strdomainhash">rctv_strDomainHash<a class="anchor" aria-label="anchor" href="#arg-rctv-strdomainhash"></a></dt>
+<dd><p><code>reactive character</code> A <code><a href="https://rdrr.io/pkg/shiny/man/reactive.html" class="external-link">shiny::reactive()</a></code> object
+that returns the the <code><a href="https://rlang.r-lib.org/reference/hash.html" class="external-link">rlang::hash()</a></code> of a domain dataframe.</p></dd>
+
+
 <dt id="arg-rctv-strcurrenttab">rctv_strCurrentTab<a class="anchor" aria-label="anchor" href="#arg-rctv-strcurrenttab"></a></dt>
 <dd><p><code>reactive character</code> A <code><a href="https://rdrr.io/pkg/shiny/man/reactive.html" class="external-link">shiny::reactive()</a></code> object
 that returns the currently selected tab.</p></dd>
+
+
+<dt id="arg-rctv-strgroupid">rctv_strGroupID<a class="anchor" aria-label="anchor" href="#arg-rctv-strgroupid"></a></dt>
+<dd><p><code>reactive character</code> A <code><a href="https://rdrr.io/pkg/shiny/man/reactiveVal.html" class="external-link">shiny::reactiveVal()</a></code> object
+that returns the <code>GroupID</code> of the selected group (usually site), and can be
+used to update which group is selected.</p></dd>
+
+
+<dt id="arg-rctv-strgrouplevel">rctv_strGroupLevel<a class="anchor" aria-label="anchor" href="#arg-rctv-strgrouplevel"></a></dt>
+<dd><p><code>reactive character</code> A <code><a href="https://rdrr.io/pkg/shiny/man/reactiveVal.html" class="external-link">shiny::reactiveVal()</a></code>
+object that returns the selected <code>GroupLevel</code>.</p></dd>
 
 
 <dt id="arg-rctv-strgroupsubset">rctv_strGroupSubset<a class="anchor" aria-label="anchor" href="#arg-rctv-strgroupsubset"></a></dt>
@@ -373,12 +433,6 @@ that returns the selected <code>MetricID</code>.</p></dd>
 <dd><p><code>reactive character</code> A <code><a href="https://rdrr.io/pkg/shiny/man/reactive.html" class="external-link">shiny::reactive()</a></code> object that
 returns the name of an object, such as a particular dataframe in a named
 list.</p></dd>
-
-
-<dt id="arg-rctv-strgroupid">rctv_strGroupID<a class="anchor" aria-label="anchor" href="#arg-rctv-strgroupid"></a></dt>
-<dd><p><code>reactive character</code> A <code><a href="https://rdrr.io/pkg/shiny/man/reactiveVal.html" class="external-link">shiny::reactiveVal()</a></code> object
-that returns the <code>GroupID</code> of the selected group (usually site), and can be
-used to update which group is selected.</p></dd>
 
 
 <dt id="arg-rctv-strsubjectid">rctv_strSubjectID<a class="anchor" aria-label="anchor" href="#arg-rctv-strsubjectid"></a></dt>

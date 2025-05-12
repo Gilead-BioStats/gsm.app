@@ -47,6 +47,8 @@
 <span>  <span class="va">id</span>,</span>
 <span>  <span class="va">fnFetchData</span>,</span>
 <span>  <span class="va">chrDomains</span>,</span>
+<span>  <span class="va">dfSubjectGroups</span>,</span>
+<span>  <span class="va">l_rctvDomainsLoaded</span>,</span>
 <span>  <span class="va">rctv_dSnapshotDate</span>,</span>
 <span>  <span class="va">rctv_strGroupID</span>,</span>
 <span>  <span class="va">rctv_strGroupLevel</span>,</span>
@@ -78,6 +80,18 @@ used as IDs. The IDs will be passed to <code>fnFetchData()</code> to fetch data 
 that domain.</p></dd>
 
 
+<dt id="arg-dfsubjectgroups">dfSubjectGroups<a class="anchor" aria-label="anchor" href="#arg-dfsubjectgroups"></a></dt>
+<dd><p><code>data.frame</code> A subset of <code>dfGroups</code> with <code>GroupLevel</code>,
+<code>GroupID</code>, and <code>SubjectID</code>.</p></dd>
+
+
+<dt id="arg-l-rctvdomainsloaded">l_rctvDomainsLoaded<a class="anchor" aria-label="anchor" href="#arg-l-rctvdomainsloaded"></a></dt>
+<dd><p><code>list</code> A named list of lists of
+<code><a href="https://rdrr.io/pkg/shiny/man/reactive.html" class="external-link">shiny::reactive()</a></code> objects. Each list contains a "Study" element and an
+element per group level, each of which returns a <code>logical</code> (<code>FALSE</code> if the
+data has not been accessed, <code>TRUE</code> if it has).</p></dd>
+
+
 <dt id="arg-rctv-dsnapshotdate">rctv_dSnapshotDate<a class="anchor" aria-label="anchor" href="#arg-rctv-dsnapshotdate"></a></dt>
 <dd><p><code>reactive Date</code> A <code><a href="https://rdrr.io/pkg/shiny/man/reactive.html" class="external-link">shiny::reactive()</a></code> object that
 returns the date of a data snapshot.</p></dd>
@@ -87,6 +101,11 @@ returns the date of a data snapshot.</p></dd>
 <dd><p><code>reactive character</code> A <code><a href="https://rdrr.io/pkg/shiny/man/reactiveVal.html" class="external-link">shiny::reactiveVal()</a></code> object
 that returns the <code>GroupID</code> of the selected group (usually site), and can be
 used to update which group is selected.</p></dd>
+
+
+<dt id="arg-rctv-strgrouplevel">rctv_strGroupLevel<a class="anchor" aria-label="anchor" href="#arg-rctv-strgrouplevel"></a></dt>
+<dd><p><code>reactive character</code> A <code><a href="https://rdrr.io/pkg/shiny/man/reactiveVal.html" class="external-link">shiny::reactiveVal()</a></code>
+object that returns the selected <code>GroupLevel</code>.</p></dd>
 
 
 <dt id="arg-rctv-strsubjectid">rctv_strSubjectID<a class="anchor" aria-label="anchor" href="#arg-rctv-strsubjectid"></a></dt>

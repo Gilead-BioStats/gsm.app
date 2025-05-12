@@ -44,7 +44,7 @@
     <div class="section level2">
     <h2 id="ref-usage">Usage<a class="anchor" aria-label="anchor" href="#ref-usage"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">srvr_DomainHash</span><span class="op">(</span></span>
-<span>  <span class="va">rctvDomain</span>,</span>
+<span>  <span class="va">rctv_dfDomain</span>,</span>
 <span>  <span class="va">strDomainID</span>,</span>
 <span>  <span class="va">rctv_dSnapshotDate</span>,</span>
 <span>  <span class="va">rctv_strGroupID</span>,</span>
@@ -57,7 +57,12 @@
     <h2 id="arguments">Arguments<a class="anchor" aria-label="anchor" href="#arguments"></a></h2>
 
 
-<dl><dt id="arg-strdomainid">strDomainID<a class="anchor" aria-label="anchor" href="#arg-strdomainid"></a></dt>
+<dl><dt id="arg-rctv-dfdomain">rctv_dfDomain<a class="anchor" aria-label="anchor" href="#arg-rctv-dfdomain"></a></dt>
+<dd><p><code>reactive dataframe</code> A <code><a href="https://rdrr.io/pkg/shiny/man/reactive.html" class="external-link">shiny::reactive()</a></code> object that
+returns a domain dataframe.</p></dd>
+
+
+<dt id="arg-strdomainid">strDomainID<a class="anchor" aria-label="anchor" href="#arg-strdomainid"></a></dt>
 <dd><p><code>character</code> The domain data.frame to load.</p></dd>
 
 
@@ -70,6 +75,11 @@ returns the date of a data snapshot.</p></dd>
 <dd><p><code>reactive character</code> A <code><a href="https://rdrr.io/pkg/shiny/man/reactiveVal.html" class="external-link">shiny::reactiveVal()</a></code> object
 that returns the <code>GroupID</code> of the selected group (usually site), and can be
 used to update which group is selected.</p></dd>
+
+
+<dt id="arg-rctv-strgrouplevel">rctv_strGroupLevel<a class="anchor" aria-label="anchor" href="#arg-rctv-strgrouplevel"></a></dt>
+<dd><p><code>reactive character</code> A <code><a href="https://rdrr.io/pkg/shiny/man/reactiveVal.html" class="external-link">shiny::reactiveVal()</a></code>
+object that returns the selected <code>GroupLevel</code>.</p></dd>
 
 
 <dt id="arg-rctv-strsubjectid">rctv_strSubjectID<a class="anchor" aria-label="anchor" href="#arg-rctv-strsubjectid"></a></dt>

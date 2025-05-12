@@ -43,7 +43,7 @@
 
     <div class="section level2">
     <h2 id="ref-usage">Usage<a class="anchor" aria-label="anchor" href="#ref-usage"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">mod_GroupInput_Server</span><span class="op">(</span><span class="va">id</span>, <span class="va">dfGroups</span>, <span class="va">rctv_strGroupID</span>, <span class="va">rctv_strGroupLevel</span><span class="op">)</span></span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">mod_GroupInput_Server</span><span class="op">(</span><span class="va">id</span>, <span class="va">lGroups</span>, <span class="va">rctv_strGroupID</span>, <span class="va">rctv_strGroupLevel</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div class="section level2">
@@ -54,14 +54,20 @@
 <dd><p><code>character</code> The id for this element.</p></dd>
 
 
-<dt id="arg-dfgroups">dfGroups<a class="anchor" aria-label="anchor" href="#arg-dfgroups"></a></dt>
-<dd><p><code>data.frame</code> Group-level metadata dictionary.</p></dd>
+<dt id="arg-lgroups">lGroups<a class="anchor" aria-label="anchor" href="#arg-lgroups"></a></dt>
+<dd><p><code>list</code> Named list of character vectors, in which the names are
+the group levels and the vectors are the group IDs within that group level.</p></dd>
 
 
 <dt id="arg-rctv-strgroupid">rctv_strGroupID<a class="anchor" aria-label="anchor" href="#arg-rctv-strgroupid"></a></dt>
 <dd><p><code>reactive character</code> A <code><a href="https://rdrr.io/pkg/shiny/man/reactiveVal.html" class="external-link">shiny::reactiveVal()</a></code> object
 that returns the <code>GroupID</code> of the selected group (usually site), and can be
 used to update which group is selected.</p></dd>
+
+
+<dt id="arg-rctv-strgrouplevel">rctv_strGroupLevel<a class="anchor" aria-label="anchor" href="#arg-rctv-strgrouplevel"></a></dt>
+<dd><p><code>reactive character</code> A <code><a href="https://rdrr.io/pkg/shiny/man/reactiveVal.html" class="external-link">shiny::reactiveVal()</a></code>
+object that returns the selected <code>GroupLevel</code>.</p></dd>
 
 </dl></div>
     <div class="section level2">

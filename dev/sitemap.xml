@@ -24,6 +24,7 @@
 <url><loc>https://gilead-biostats.github.io/gsm.app/dev/reference/FilterBefore.html</loc></url>
 <url><loc>https://gilead-biostats.github.io/gsm.app/dev/reference/FilterBy.html</loc></url>
 <url><loc>https://gilead-biostats.github.io/gsm.app/dev/reference/FilterByLatestIfPresent.html</loc></url>
+<url><loc>https://gilead-biostats.github.io/gsm.app/dev/reference/FilterDomainData.html</loc></url>
 <url><loc>https://gilead-biostats.github.io/gsm.app/dev/reference/FilterbyGroupID.html</loc></url>
 <url><loc>https://gilead-biostats.github.io/gsm.app/dev/reference/FilterbyMetricID.html</loc></url>
 <url><loc>https://gilead-biostats.github.io/gsm.app/dev/reference/FinalWorkflowOutputName.html</loc></url>
@@ -141,6 +142,7 @@
 <url><loc>https://gilead-biostats.github.io/gsm.app/dev/reference/shared-params.html</loc></url>
 <url><loc>https://gilead-biostats.github.io/gsm.app/dev/reference/srvr_CombineHashes.html</loc></url>
 <url><loc>https://gilead-biostats.github.io/gsm.app/dev/reference/srvr_CompileUnsetInputs.html</loc></url>
+<url><loc>https://gilead-biostats.github.io/gsm.app/dev/reference/srvr_DomainCounts.html</loc></url>
 <url><loc>https://gilead-biostats.github.io/gsm.app/dev/reference/srvr_DomainHash.html</loc></url>
 <url><loc>https://gilead-biostats.github.io/gsm.app/dev/reference/srvr_IngestReactive.html</loc></url>
 <url><loc>https://gilead-biostats.github.io/gsm.app/dev/reference/srvr_MetricDetails.html</loc></url>

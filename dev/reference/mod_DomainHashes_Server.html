@@ -62,8 +62,9 @@
 
 
 <dt id="arg-l-rctvdomains">l_rctvDomains<a class="anchor" aria-label="anchor" href="#arg-l-rctvdomains"></a></dt>
-<dd><p><code>list</code> A named list of <code><a href="https://rdrr.io/pkg/shiny/man/reactive.html" class="external-link">shiny::reactive()</a></code> objects, each
-of which returns a domain dataframe.</p></dd>
+<dd><p><code>list</code> A named list of lists of <code><a href="https://rdrr.io/pkg/shiny/man/reactive.html" class="external-link">shiny::reactive()</a></code>
+objects. Each list contains a "Study" element, a "Group" element, and a
+"Selection" element, each of which returns a domain dataframe.</p></dd>
 
 
 <dt id="arg-rctv-dsnapshotdate">rctv_dSnapshotDate<a class="anchor" aria-label="anchor" href="#arg-rctv-dsnapshotdate"></a></dt>
@@ -75,6 +76,11 @@ returns the date of a data snapshot.</p></dd>
 <dd><p><code>reactive character</code> A <code><a href="https://rdrr.io/pkg/shiny/man/reactiveVal.html" class="external-link">shiny::reactiveVal()</a></code> object
 that returns the <code>GroupID</code> of the selected group (usually site), and can be
 used to update which group is selected.</p></dd>
+
+
+<dt id="arg-rctv-strgrouplevel">rctv_strGroupLevel<a class="anchor" aria-label="anchor" href="#arg-rctv-strgrouplevel"></a></dt>
+<dd><p><code>reactive character</code> A <code><a href="https://rdrr.io/pkg/shiny/man/reactiveVal.html" class="external-link">shiny::reactiveVal()</a></code>
+object that returns the selected <code>GroupLevel</code>.</p></dd>
 
 
 <dt id="arg-rctv-strsubjectid">rctv_strSubjectID<a class="anchor" aria-label="anchor" href="#arg-rctv-strsubjectid"></a></dt>
