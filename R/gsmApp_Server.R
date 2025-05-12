@@ -34,8 +34,10 @@ gsmApp_Server <- function(
   force(dfGroups)
   force(dfMetrics)
   force(dfResults)
-  force(chrDomains)
   force(fnFetchData)
+  force(fnCountData)
+  force(chrDomains)
+  force(lPlugins)
   force(fnServer)
   function(input, output, session) {
     # Extras ----
@@ -63,9 +65,17 @@ gsmApp_Server <- function(
     ## Inputs update via reactiveVals.
 
     ### Groups ----
+    chrGroupLevels <- setdiff(sort(unique(dfGroups$GroupLevel)), "Study")
+    names(chrGroupLevels) <- chrGroupLevels
+    lGroups <- purrr::map(
+      chrGroupLevels,
+      function(strGroupLevel) {
+        sort(unique(dfGroups$GroupID[dfGroups$GroupLevel == strGroupLevel]))
+      }
+    )
     mod_GroupInput_Server(
       "group",
-      dfGroups,
+      lGroups,
       rctv_strGroupID,
       rctv_strGroupLevel
     )
@@ -77,6 +87,27 @@ gsmApp_Server <- function(
     # TODO: Sync tab in response to this reactive.
 
     ### Participants ----
+    dfSubjectGroups <- dplyr::distinct(
+      dfAnalyticsInput,
+      .data$GroupLevel,
+      .data$GroupID,
+      .data$SubjectID
+    ) %>%
+      dplyr::arrange(.data$SubjectID)
+    # lSubjectGroups <- purrr::imap(
+    #   lGroups,
+    #   function(chrGroupIDs, strGroupLevel) {
+    #     purrr::map(
+    #       rlang::set_names(chrGroupIDs, chrGroupIDs),
+    #       function(strGroupID) {
+    #         dfSubjectGroups$SubjectID[
+    #           dfSubjectGroups$GroupLevel == strGroupLevel &
+    #             dfSubjectGroups$GroupID == strGroupID
+    #         ]
+    #       }
+    #     )
+    #   }
+    # )
     rctv_chrParticipantIDs <- srvr_rctv_chrParticipantIDs(
       dfAnalyticsInput,
       rctv_strGroupID
@@ -102,11 +133,35 @@ gsmApp_Server <- function(
 
     ## Domain Data ----
     ##
-    ## This needs to be defined at the top so it's available to plugins.
+    ## This stuff needs to be defined at the top so it's available to plugins.
+
+    ## Reactive watchers are used to check whether domains have been accessed.
+    ## That way, if higher-level data for a given domain has been fetched
+    ## already, we can subset that rather than re-fetching.
+    l_rctvDomainsLoaded <- purrr::map(
+      chrDomains,
+      function(strDomain) {
+        c(
+          list(Study = reactiveVal(FALSE)),
+          purrr::map(
+            lGroups,
+            function(chrGroups) {
+              purrr::map(
+                rlang::set_names(chrGroups, chrGroups),
+                ~ reactiveVal(FALSE)
+              )
+            }
+          )
+        )
+      }
+    )
+
     l_rctvDomains <- mod_dfDomains_Server(
       "l_rctv_dfDomains",
       fnFetchData = fnFetchData,
       chrDomains = chrDomains,
+      dfSubjectGroups = dfSubjectGroups,
+      l_rctvDomainsLoaded = l_rctvDomainsLoaded,
       rctv_dSnapshotDate = rctv_dSnapshotDate,
       rctv_strGroupID = rctv_strGroupID,
       rctv_strGroupLevel = rctv_strGroupLevel,
@@ -122,7 +177,7 @@ gsmApp_Server <- function(
       rctv_strSubjectID = rctv_strSubjectID
     )
     ## Also fetch the counts.
-    rctv_intDomainCounts <- mod_DomainCountsServer(
+    rctv_intDomainCounts <- srvr_DomainCounts(
       "domain_counts",
       fnCountData = fnCountData,
       chrDomains = chrDomains,
@@ -215,9 +270,12 @@ gsmApp_Server <- function(
       chrFromTabs = c("Study Overview", "Metric Details"),
       session = session
     )
+
+    l_rctvDomains_Selection <- purrr::map(l_rctvDomains, "Selection")
+
     mod_DomainDetails_Server(
       "domain_details",
-      l_rctvDomains = l_rctvDomains,
+      l_rctvDomains_Selection = l_rctvDomains_Selection,
       l_rctvDomainHashes = l_rctvDomainHashes,
       rctv_strDomainID = rctv_strDomainID,
       rctv_intDomainCounts = rctv_intDomainCounts,

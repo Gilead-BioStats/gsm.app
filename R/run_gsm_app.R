@@ -53,10 +53,6 @@ run_gsm_app <- function(
   lPlugins <- validate_lPlugins(lPlugins)
   chrDomains <- validate_chrDomains(chrDomains, lPlugins)
 
-  # We currently only use site-level data in this app.
-  dfAnalyticsInput <- dfAnalyticsInput[dfAnalyticsInput$GroupLevel == "Site", ]
-  dfResults <- dfResults[dfResults$GroupLevel == "Site", ]
-
   shinyApp(
     ui = gsmApp_UI(
       chrDomains = chrDomains,

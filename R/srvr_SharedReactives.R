@@ -50,6 +50,7 @@ srvr_rctv_chrParticipantIDs <- function(
   dfAnalyticsInput,
   rctv_strGroupID
 ) {
+  # TODO: Add GroupLevel
   dfParticipantGroups <- dplyr::arrange(
     dplyr::distinct(dfAnalyticsInput, .data$SubjectID, .data$GroupID),
     .data$SubjectID

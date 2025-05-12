@@ -20,8 +20,14 @@ mod_GroupParticipants_Server(
 that returns the \code{GroupID} of the selected group (usually site), and can be
 used to update which group is selected.}
 
+\item{rctv_strGroupLevel}{\verb{reactive character} A \code{\link[shiny:reactiveVal]{shiny::reactiveVal()}}
+object that returns the selected \code{GroupLevel}.}
+
 \item{rctv_strSubjectID}{\verb{reactive character} A \code{\link[shiny:reactive]{shiny::reactive()}} object
 that returns the \code{SubjectID} of the selected participant.}
+
+\item{rctv_lColumnNames}{\verb{reactive list} A \code{\link[shiny:reactive]{shiny::reactive()}} object that
+returns a named list of column names to substitute into tables for display.}
 }
 \value{
 A \code{\link[shiny:reactiveVal]{shiny::reactiveVal()}} with the id of the participant selected in

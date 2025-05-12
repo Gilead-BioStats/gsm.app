@@ -7,6 +7,7 @@
 srvr_dfDomain(
   strDomainID,
   fnFetchData,
+  l_rctvDomainLoaded,
   rctv_dSnapshotDate,
   rctv_strGroupID,
   rctv_strGroupLevel,
@@ -23,12 +24,20 @@ an example. The returned data.frame contains information about the named
 domain. If the function throws an error, the error is elevated to the user,
 so you can use errors to pass requirements through to the user.}
 
+\item{l_rctvDomainLoaded}{\code{list} A named list of \code{\link[shiny:reactive]{shiny::reactive()}} objects.
+The list contains a "Study" element and an element per group level, each
+of which returns a \code{logical} (\code{FALSE} if the data has not been accessed,
+\code{TRUE} if it has).}
+
 \item{rctv_dSnapshotDate}{\verb{reactive Date} A \code{\link[shiny:reactive]{shiny::reactive()}} object that
 returns the date of a data snapshot.}
 
 \item{rctv_strGroupID}{\verb{reactive character} A \code{\link[shiny:reactiveVal]{shiny::reactiveVal()}} object
 that returns the \code{GroupID} of the selected group (usually site), and can be
 used to update which group is selected.}
+
+\item{rctv_strGroupLevel}{\verb{reactive character} A \code{\link[shiny:reactiveVal]{shiny::reactiveVal()}}
+object that returns the selected \code{GroupLevel}.}
 
 \item{rctv_strSubjectID}{\verb{reactive character} A \code{\link[shiny:reactive]{shiny::reactive()}} object
 that returns the \code{SubjectID} of the selected participant.}

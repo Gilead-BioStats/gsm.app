@@ -31,12 +31,12 @@ mod_GroupInput_UI <- function(id, dfGroups) {
 #' @keywords internal
 mod_GroupInput_Server <- function(
   id,
-  dfGroups,
+  lGroups,
   rctv_strGroupID,
   rctv_strGroupLevel
 ) {
   moduleServer(id, function(input, output, session) {
-    chrGroupLevels <- setdiff(sort(unique(dfGroups$GroupLevel)), "Study")
+    chrGroupLevels <- names(lGroups)
     if (length(chrGroupLevels) > 1) {
       observe({
         rctv_strGroupLevel(input$level)
@@ -45,9 +45,7 @@ mod_GroupInput_Server <- function(
 
       rctv_chrGroups <- reactive({
         req(rctv_strGroupLevel())
-        sort(unique(
-          dfGroups$GroupID[dfGroups$GroupLevel == rctv_strGroupLevel()]
-        ))
+        lGroups[[rctv_strGroupLevel()]]
       }) %>%
         bindCache(rctv_strGroupLevel())
       observe({
@@ -60,7 +58,7 @@ mod_GroupInput_Server <- function(
       }) %>%
         bindEvent(rctv_strGroupLevel())
     } else {
-      rctv_strGroupLevel(chrGroupLevels[])
+      rctv_strGroupLevel(chrGroupLevels[[1]])
     }
 
     observe({

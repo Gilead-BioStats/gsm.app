@@ -12,8 +12,9 @@ srvr_RunReactiveWorkflows(
 )
 }
 \arguments{
-\item{l_rctvDomains}{\code{list} A named list of \code{\link[shiny:reactive]{shiny::reactive()}} objects, each
-of which returns a domain dataframe.}
+\item{l_rctvDomains}{\code{list} A named list of lists of \code{\link[shiny:reactive]{shiny::reactive()}}
+objects. Each list contains a "Study" element, a "Group" element, and a
+"Selection" element, each of which returns a domain dataframe.}
 
 \item{lWorkflows}{\code{list} An optional named list of workflows to run in order
 to translate app domain data into the format required by the plugin (as

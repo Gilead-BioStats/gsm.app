@@ -158,47 +158,25 @@ sample_fnFetchData <- function(
     )
   }
 
-  strTableName <- paste0("Mapped_", strDomainID)
-  df <- sample_lMapped[[strTableName]]
+  df <- sample_lMapped[[paste0("Mapped_", strDomainID)]]
   df$studyid <- NULL
   df$invid <- NULL
   df <- dplyr::rename(df, SubjectID = "subjid")
   if ("subjectid" %in% colnames(df)) {
     df <- dplyr::rename(df, IntakeID = "subjectid")
   }
-  if (length(strGroupID)) {
-    if (length(strGroupLevel)) {
-      if (!("GroupLevel" %in% colnames(df))) {
-        dfGroups <- dplyr::distinct(
-          gsm.app::sample_dfGroups,
-          .data$GroupID,
-          .data$GroupLevel
-        )
-        df <- dplyr::left_join(df, dfGroups, by = "GroupID")
-      }
-      df <- dplyr::filter(df, .data$GroupLevel == strGroupLevel)
-    }
-    df <- dplyr::filter(df, .data$GroupID == strGroupID)
-  }
-  if (length(strSubjectID)) {
-    df <- dplyr::filter(df, .data$SubjectID == strSubjectID)
-  }
-  chrDateFields <- c(
-    Mapped_AE = "mincreated_dts",
-    Mapped_ENROLL = "enroll_dt",
-    Mapped_LB = "lb_dt",
-    Mapped_PD = "deviationdate",
-    Mapped_SDRGCOMP = "mincreated_dts",
-    Mapped_STUDCOMP = "mincreated_dts",
-    Mapped_Visit = "visit_dt",
-    Mapped_DATACHG = "visit_date",
-    Mapped_DATAENT = "visit_date",
-    Mapped_QUERY = "created"
+
+  return(
+    FilterDomainData(
+      df,
+      strDomainID = strDomainID,
+      dSnapshotDate = dSnapshotDate,
+      dfGroups = gsm.app::sample_dfGroups,
+      strGroupLevel = strGroupLevel,
+      strGroupID = strGroupID,
+      strSubjectID = strSubjectID
+    )
   )
-  if (length(dSnapshotDate) && strTableName %in% names(chrDateFields)) {
-    df <- FilterBefore(df, chrDateFields[[strTableName]], dSnapshotDate)
-  }
-  return(dplyr::select(df, "SubjectID", "GroupID", dplyr::everything()))
 }
 
 #' Construct a Data Count Function

@@ -41,7 +41,7 @@ mod_DomainDetails_UI <- function(
 #' @keywords internal
 mod_DomainDetails_Server <- function(
   id,
-  l_rctvDomains,
+  l_rctvDomains_Selection,
   l_rctvDomainHashes,
   rctv_strDomainID,
   rctv_intDomainCounts,
@@ -53,7 +53,7 @@ mod_DomainDetails_Server <- function(
       req(input$selected_tab)
       mod_DomainData_Server(
         id = input$selected_tab,
-        rctv_dfDomain = l_rctvDomains[[input$selected_tab]],
+        rctv_dfDomain = l_rctvDomains_Selection[[input$selected_tab]],
         rctv_strDomainHash = l_rctvDomainHashes[[input$selected_tab]],
         rctv_strGroupLevel = rctv_strGroupLevel
       )
