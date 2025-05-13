@@ -7,7 +7,7 @@
 mod_DomainDetails_Server(
   id,
   l_rctvDomains_Selection,
-  l_rctvDomainHashes,
+  l_rctvDomainHashes_Selection,
   rctv_strDomainID,
   rctv_intDomainCounts,
   rctv_strGroupLevel,
@@ -20,8 +20,9 @@ mod_DomainDetails_Server(
 \item{l_rctvDomains_Selection}{\code{list} A named list of \code{\link[shiny:reactive]{shiny::reactive()}}
 objects, each of which returns a domain dataframe for the current filter.}
 
-\item{l_rctvDomainHashes}{\code{list} A named list of \code{\link[shiny:reactive]{shiny::reactive()}} objects,
-each of which returns the \code{\link[rlang:hash]{rlang::hash()}} of a domain dataframe.}
+\item{l_rctvDomainHashes_Selection}{\code{list} A named list of
+\code{\link[shiny:reactive]{shiny::reactive()}} objects, each of which returns the \code{\link[rlang:hash]{rlang::hash()}} of a
+domain dataframe for the current filter.}
 
 \item{rctv_strDomainID}{\verb{reactive character} A \code{\link[shiny:reactive]{shiny::reactive()}} object
 that returns the selected \code{DomainID} (such as "AE" or "SUBJ").}

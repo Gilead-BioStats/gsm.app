@@ -40,7 +40,8 @@ srvr_RunReactiveWorkflows <- function(
   l_rctvDomains,
   lWorkflows,
   l_rctvDomainHashes,
-  rctv_bPluginReady
+  rctv_bPluginReady,
+  strCache = NULL
 ) {
   # nocov start
 
@@ -55,7 +56,8 @@ srvr_RunReactiveWorkflows <- function(
     l_rctvDomains,
     lSpec,
     l_rctvDomainHashes,
-    rctv_bPluginReady
+    rctv_bPluginReady,
+    strCache = strCache
   )
 
   rctv_strDomainHashCombined <- srvr_CombineHashes(l_rctvDomainHashes, lSpec)
@@ -82,7 +84,7 @@ srvr_RunReactiveWorkflows <- function(
           }
         )
       }) %>%
-        bindCache(rctv_strDomainHashCombined())
+        bindCache(rctv_strDomainHashCombined(), strCache)
     }
   )
   names(l_rctvWorkflowOutput) <- FinalWorkflowOutputNames(lWorkflows)
@@ -99,7 +101,8 @@ srvr_IngestReactive <- function(
   l_rctvDomains,
   lSpec,
   l_rctvDomainHashes,
-  rctv_bPluginReady
+  rctv_bPluginReady,
+  strCache = NULL
 ) {
   # nocov start
   if (!length(l_rctvDomains)) {
@@ -125,7 +128,7 @@ srvr_IngestReactive <- function(
         dfMapped <- gsm.mapping::ApplySpec(dfSource, columnSpecs, domain)
         return(dfMapped)
       }) %>%
-        bindCache(domain, rctv_strDomainHashCombined())
+        bindCache(domain, rctv_strDomainHashCombined(), strCache)
     }
   )
   names(l_rctvMappedData) <- spec_names

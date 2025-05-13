@@ -10,7 +10,8 @@ srvr_DomainHash(
   rctv_dSnapshotDate,
   rctv_strGroupID,
   rctv_strGroupLevel,
-  rctv_strSubjectID
+  rctv_strSubjectID,
+  strCache = NULL
 )
 }
 \arguments{
@@ -31,6 +32,9 @@ object that returns the selected \code{GroupLevel}.}
 
 \item{rctv_strSubjectID}{\verb{reactive character} A \code{\link[shiny:reactive]{shiny::reactive()}} object
 that returns the \code{SubjectID} of the selected participant.}
+
+\item{strCache}{\code{character} An additional string to ensure that a cache key
+is unique.}
 }
 \value{
 A \code{\link[shiny:reactive]{shiny::reactive()}} that generates a hash of a domain df.

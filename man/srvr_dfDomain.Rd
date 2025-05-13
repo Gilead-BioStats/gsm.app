@@ -25,8 +25,8 @@ domain. If the function throws an error, the error is elevated to the user,
 so you can use errors to pass requirements through to the user.}
 
 \item{l_rctvDomainLoaded}{\code{list} A named list of \code{\link[shiny:reactive]{shiny::reactive()}} objects.
-The list contains a "Study" element and an element per group level, each
-of which returns a \code{logical} (\code{FALSE} if the data has not been accessed,
+The list contains a "Study" element and an element per group level, each of
+which returns a \code{logical} (\code{FALSE} if the data has not been accessed,
 \code{TRUE} if it has).}
 
 \item{rctv_dSnapshotDate}{\verb{reactive Date} A \code{\link[shiny:reactive]{shiny::reactive()}} object that

@@ -136,8 +136,8 @@ objects. Each list contains a "Study" element, a "Group" element, and a
 "Selection" element, each of which returns a domain dataframe.}
 
 \item{l_rctvDomainLoaded}{\code{list} A named list of \code{\link[shiny:reactive]{shiny::reactive()}} objects.
-The list contains a "Study" element and an element per group level, each
-of which returns a \code{logical} (\code{FALSE} if the data has not been accessed,
+The list contains a "Study" element and an element per group level, each of
+which returns a \code{logical} (\code{FALSE} if the data has not been accessed,
 \code{TRUE} if it has).}
 
 \item{l_rctvDomainsLoaded}{\code{list} A named list of lists of
@@ -150,6 +150,10 @@ objects, each of which returns a domain dataframe for the current filter.}
 
 \item{l_rctvDomainHashes}{\code{list} A named list of \code{\link[shiny:reactive]{shiny::reactive()}} objects,
 each of which returns the \code{\link[rlang:hash]{rlang::hash()}} of a domain dataframe.}
+
+\item{l_rctvDomainHashes_Selection}{\code{list} A named list of
+\code{\link[shiny:reactive]{shiny::reactive()}} objects, each of which returns the \code{\link[rlang:hash]{rlang::hash()}} of a
+domain dataframe for the current filter.}
 
 \item{l_rctvInputs}{\code{list} A named list of \code{\link[shiny:reactiveVal]{shiny::reactiveVal()}} objects,
 each of which returns the current value of an input or input-like variable.}
@@ -252,6 +256,9 @@ default should almost always be used).}
 \item{strArg}{\code{character} The name of the argument in the calling function.
 In general, this value should either be left as the default, or passed from
 the calling function if the calling function also has a \code{strArg} argument.}
+
+\item{strCache}{\code{character} An additional string to ensure that a cache key
+is unique.}
 
 \item{strClass}{\code{character} A descriptive label for this type of error, in
 lower_snake_case.}

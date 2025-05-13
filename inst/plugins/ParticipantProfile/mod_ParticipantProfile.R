@@ -13,7 +13,10 @@ mod_ParticipantProfile_Server <- function(
   SUBJ,
   AE,
   ENROLL,
-  STUDCOMP
+  STUDCOMP,
+  AE_Study,
+  ENROLL_Study,
+  STUDCOMP_Study
 ) {
   moduleServer(id, function(input, output, session) {
     mod_ParticipantMetadata_Server("metadata", SUBJ)
@@ -24,6 +27,11 @@ mod_ParticipantProfile_Server <- function(
         AE = AE,
         ENROLL = ENROLL,
         STUDCOMP = STUDCOMP
+      ),
+      list(
+        AE = AE_Study,
+        ENROLL = ENROLL_Study,
+        STUDCOMP = STUDCOMP_Study
       )
     )
   })

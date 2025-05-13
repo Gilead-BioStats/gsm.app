@@ -13,7 +13,7 @@ test_that("mod_DomainDetails_Server sets domain", {
     args = list(
       id = "domainDetailsTest",
       l_rctvDomains_Selection = list(),
-      l_rctvDomainHashes = list(),
+      l_rctvDomainHashes_Selection = list(),
       rctv_strDomainID = reactiveVal("z"),
       rctv_intDomainCounts = reactiveVal(c(1L, 1L, 1L)),
       rctv_strGroupLevel = reactiveVal("Site"),
