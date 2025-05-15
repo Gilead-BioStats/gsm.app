@@ -7,7 +7,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">gsm.app</a>
 
-    <small class="nav-text text-danger me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="In-development version">2.4.0.9001</small>
+    <small class="nav-text text-danger me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="In-development version">2.4.0.9002</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -49,7 +49,8 @@
 <span>  <span class="va">rctv_dSnapshotDate</span>,</span>
 <span>  <span class="va">rctv_strGroupID</span>,</span>
 <span>  <span class="va">rctv_strGroupLevel</span>,</span>
-<span>  <span class="va">rctv_strSubjectID</span></span>
+<span>  <span class="va">rctv_strSubjectID</span>,</span>
+<span>  strCache <span class="op">=</span> <span class="cn">NULL</span></span>
 <span><span class="op">)</span></span></code></pre></div>
     </div>
 
@@ -85,6 +86,11 @@ object that returns the selected <code>GroupLevel</code>.</p></dd>
 <dt id="arg-rctv-strsubjectid">rctv_strSubjectID<a class="anchor" aria-label="anchor" href="#arg-rctv-strsubjectid"></a></dt>
 <dd><p><code>reactive character</code> A <code><a href="https://rdrr.io/pkg/shiny/man/reactive.html" class="external-link">shiny::reactive()</a></code> object
 that returns the <code>SubjectID</code> of the selected participant.</p></dd>
+
+
+<dt id="arg-strcache">strCache<a class="anchor" aria-label="anchor" href="#arg-strcache"></a></dt>
+<dd><p><code>character</code> An additional string to ensure that a cache key
+is unique.</p></dd>
 
 </dl></div>
     <div class="section level2">

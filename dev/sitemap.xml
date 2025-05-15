@@ -30,7 +30,10 @@
 <url><loc>https://gilead-biostats.github.io/gsm.app/dev/reference/FinalWorkflowOutputName.html</loc></url>
 <url><loc>https://gilead-biostats.github.io/gsm.app/dev/reference/FinalWorkflowOutputNames.html</loc></url>
 <url><loc>https://gilead-biostats.github.io/gsm.app/dev/reference/FindNonZeroDecimals.html</loc></url>
+<url><loc>https://gilead-biostats.github.io/gsm.app/dev/reference/FindUsedArgs.html</loc></url>
+<url><loc>https://gilead-biostats.github.io/gsm.app/dev/reference/MakePrefixRegex.html</loc></url>
 <url><loc>https://gilead-biostats.github.io/gsm.app/dev/reference/NullifyEmpty.html</loc></url>
+<url><loc>https://gilead-biostats.github.io/gsm.app/dev/reference/SimplifyArgs.html</loc></url>
 <url><loc>https://gilead-biostats.github.io/gsm.app/dev/reference/UnNS.html</loc></url>
 <url><loc>https://gilead-biostats.github.io/gsm.app/dev/reference/Widget_BarChart.html</loc></url>
 <url><loc>https://gilead-biostats.github.io/gsm.app/dev/reference/Widget_BarChartOutput.html</loc></url>
