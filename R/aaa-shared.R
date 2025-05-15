@@ -95,8 +95,8 @@
 #'   objects. Each list contains a "Study" element, a "Group" element, and a
 #'   "Selection" element, each of which returns a domain dataframe.
 #' @param l_rctvDomainLoaded `list` A named list of [shiny::reactive()] objects.
-#'   The list contains a "Study" element and an element per group level, each
-#'   of which returns a `logical` (`FALSE` if the data has not been accessed,
+#'   The list contains a "Study" element and an element per group level, each of
+#'   which returns a `logical` (`FALSE` if the data has not been accessed,
 #'   `TRUE` if it has).
 #' @param l_rctvDomainsLoaded `list` A named list of lists of
 #'   [shiny::reactive()] objects. Each list contains a "Study" element and an
@@ -106,6 +106,9 @@
 #'   objects, each of which returns a domain dataframe for the current filter.
 #' @param l_rctvDomainHashes `list` A named list of [shiny::reactive()] objects,
 #'   each of which returns the [rlang::hash()] of a domain dataframe.
+#' @param l_rctvDomainHashes_Selection `list` A named list of
+#'   [shiny::reactive()] objects, each of which returns the [rlang::hash()] of a
+#'   domain dataframe for the current filter.
 #' @param l_rctvInputs `list` A named list of [shiny::reactiveVal()] objects,
 #'   each of which returns the current value of an input or input-like variable.
 #' @param lPlugin `list` A named list with required elements `meta` and `shiny`,
@@ -178,6 +181,8 @@
 #' @param strArg `character` The name of the argument in the calling function.
 #'   In general, this value should either be left as the default, or passed from
 #'   the calling function if the calling function also has a `strArg` argument.
+#' @param strCache `character` An additional string to ensure that a cache key
+#'   is unique.
 #' @param strClass `character` A descriptive label for this type of error, in
 #'   lower_snake_case.
 #' @param strColorFamily `character` Whether to load the `"dark"` version of

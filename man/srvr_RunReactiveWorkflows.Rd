@@ -8,7 +8,8 @@ srvr_RunReactiveWorkflows(
   l_rctvDomains,
   lWorkflows,
   l_rctvDomainHashes,
-  rctv_bPluginReady
+  rctv_bPluginReady,
+  strCache = NULL
 )
 }
 \arguments{
@@ -28,6 +29,9 @@ each of which returns the \code{\link[rlang:hash]{rlang::hash()}} of a domain da
 \item{rctv_bPluginReady}{\verb{reactive Boolean} A \code{\link[shiny:reactive]{shiny::reactive()}} object that
 returns \code{TRUE} if all inputs required by the plugin are non-empty, and
 \code{FALSE} if one or more inputs are not ready.}
+
+\item{strCache}{\code{character} An additional string to ensure that a cache key
+is unique.}
 }
 \value{
 A named list of the final output from \code{lWorkflows}, where the names

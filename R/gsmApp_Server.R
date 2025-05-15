@@ -167,6 +167,7 @@ gsmApp_Server <- function(
       rctv_strGroupLevel = rctv_strGroupLevel,
       rctv_strSubjectID = rctv_strSubjectID
     )
+
     ## Also produce a reusable hash of each domain, for cleaner caching.
     l_rctvDomainHashes <- mod_DomainHashes_Server(
       "l_rctv_strDomainHashes",
@@ -176,6 +177,11 @@ gsmApp_Server <- function(
       rctv_strGroupLevel = rctv_strGroupLevel,
       rctv_strSubjectID = rctv_strSubjectID
     )
+
+    ## We actually USE l_rctvDomains transposed from what's easy to build.
+    l_rctvDomains <- purrr::list_transpose(l_rctvDomains, simplify = FALSE)
+    l_rctvDomainHashes <- purrr::list_transpose(l_rctvDomainHashes, simplify = FALSE)
+
     ## Also fetch the counts.
     rctv_intDomainCounts <- srvr_DomainCounts(
       "domain_counts",
@@ -271,12 +277,10 @@ gsmApp_Server <- function(
       session = session
     )
 
-    l_rctvDomains_Selection <- purrr::map(l_rctvDomains, "Selection")
-
     mod_DomainDetails_Server(
       "domain_details",
-      l_rctvDomains_Selection = l_rctvDomains_Selection,
-      l_rctvDomainHashes = l_rctvDomainHashes,
+      l_rctvDomains_Selection = l_rctvDomains$Selection,
+      l_rctvDomainHashes_Selection = l_rctvDomainHashes$Selection,
       rctv_strDomainID = rctv_strDomainID,
       rctv_intDomainCounts = rctv_intDomainCounts,
       rctv_strGroupLevel = rctv_strGroupLevel,

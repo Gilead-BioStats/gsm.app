@@ -157,7 +157,7 @@ srvr_dfDomain <- function(
     # nocov start (tested manually)
     if (
       l_rctvDomainLoaded[[strGroupLevel]][[strGroupID]]() &&
-      NROW(rctv_dfGroup())
+        NROW(rctv_dfGroup())
     ) {
       return(
         FilterDomainData(
@@ -267,8 +267,8 @@ FilterDomainData <- function(
   )
   if (
     length(dSnapshotDate) &&
-    strDomainID %in% names(chrDateFields) &&
-    chrDateFields[[strDomainID]] %in% colnames(df)
+      strDomainID %in% names(chrDateFields) &&
+      chrDateFields[[strDomainID]] %in% colnames(df)
   ) {
     df <- FilterBefore(df, chrDateFields[[strDomainID]], dSnapshotDate)
   }
@@ -292,13 +292,27 @@ mod_DomainHashes_Server <- function(
     l_rctvDomainHashes <- purrr::imap(
       l_rctvDomains,
       function(l_rctvDomain, strDomainID) {
-        srvr_DomainHash(
-          rctv_dfDomain = l_rctvDomain$Selection,
-          strDomainID = strDomainID,
-          rctv_dSnapshotDate = rctv_dSnapshotDate,
-          rctv_strGroupID = rctv_strGroupID,
-          rctv_strGroupLevel = rctv_strGroupLevel,
-          rctv_strSubjectID = rctv_strSubjectID
+        purrr::imap(
+          l_rctvDomain,
+          function(rctv_dfDomain, strGroupLevel) {
+            srvr_DomainHash(
+              rctv_dfDomain,
+              strDomainID = strDomainID,
+              rctv_dSnapshotDate = rctv_dSnapshotDate,
+              rctv_strGroupID = if (strGroupLevel != "Study") {
+                rctv_strGroupID
+              } else {
+                reactiveVal(NULL) # nocov (only impacts caching)
+              },
+              rctv_strGroupLevel = rctv_strGroupLevel,
+              rctv_strSubjectID = if (strGroupLevel == "Selection") {
+                rctv_strSubjectID
+              } else {
+                reactiveVal(NULL) # nocov (only impacts caching)
+              },
+              strCache = strGroupLevel
+            )
+          }
         )
       }
     )
@@ -317,7 +331,8 @@ srvr_DomainHash <- function(
   rctv_dSnapshotDate,
   rctv_strGroupID,
   rctv_strGroupLevel,
-  rctv_strSubjectID
+  rctv_strSubjectID,
+  strCache = NULL
 ) {
   reactive({
     rlang::hash(rctv_dfDomain())
@@ -327,7 +342,8 @@ srvr_DomainHash <- function(
       rctv_dSnapshotDate(),
       rctv_strGroupID(),
       rctv_strGroupLevel(),
-      rctv_strSubjectID()
+      rctv_strSubjectID(),
+      strCache
     )
 }
 
