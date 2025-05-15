@@ -40,10 +40,8 @@ mod_ScatterPlotSet_Server <- function(
         # need to create them for the module to get what it's expecting.
         rctv_lMetric <- reactive({
           lMetric <- as.list(FilterbyMetricID(dfMetrics, strMetricID))
-          strGroupID <- rctv_strGroupID()
-          if (strGroupID != "All") {
-            lMetric$selectedGroupIDs <- strGroupID
-          }
+          strGroupID <- NullifyEmpty(rctv_strGroupID())
+          lMetric$selectedGroupIDs <- strGroupID %||% lMetric$selectedGroupIDs
           lMetric
         })
         rctv_dfResults_byMetricID <- reactive({
