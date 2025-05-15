@@ -105,14 +105,14 @@ mod_GroupDetails_Server <- function(
     #
     # nocov start
     observe({
-      if (rctv_strGroupID() == "All") {
-        ## Show placeholders
-        shinyjs::hide("card_group_metadata_list")
-        shinyjs::show("card_placeholder_group_metadata_list")
-      } else {
+      if (length(NullifyEmpty(rctv_strGroupID()))) {
         ## Hide placeholders
         shinyjs::hide("card_placeholder_group_metadata_list")
         shinyjs::show("card_group_metadata_list")
+      } else {
+        ## Show placeholders
+        shinyjs::hide("card_group_metadata_list")
+        shinyjs::show("card_placeholder_group_metadata_list")
       }
     })
     # nocov end

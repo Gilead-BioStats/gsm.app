@@ -32,11 +32,9 @@ srvr_rctv_lMetric <- function(
   reactive({
     req(rctv_strMetricID())
     lMetric <- rctv_lMetric_base()
-    group <- rctv_strGroupID()
-    if (group != "All") {
-      lMetric$selectedGroupIDs <- group
-    }
-    lMetric
+    lMetric$selectedGroupIDs <- NullifyEmpty(rctv_strGroupID()) %||%
+      lMetric$selectedGroupIDs
+    return(lMetric)
   }) %>%
     bindCache(rctv_strMetricID(), rctv_strGroupID())
 }
@@ -56,8 +54,8 @@ srvr_rctv_chrParticipantIDs <- function(
     .data$SubjectID
   )
   reactive({
-    group <- rctv_strGroupID()
-    if (group == "All") {
+    group <- NullifyEmpty(rctv_strGroupID())
+    if (is.null(group)) {
       return(c("All", dfParticipantGroups$SubjectID))
     }
     c(
