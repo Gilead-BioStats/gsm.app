@@ -88,7 +88,7 @@ gsmApp_Server <- function(
 
     ### Participants ----
     dfSubjectGroups <- dplyr::distinct(
-      dfAnalyticsInput,
+      FilterByLatestIfPresent(dfAnalyticsInput),
       .data$GroupLevel,
       .data$GroupID,
       .data$SubjectID
@@ -109,7 +109,7 @@ gsmApp_Server <- function(
     #   }
     # )
     rctv_chrParticipantIDs <- srvr_rctv_chrParticipantIDs(
-      dfAnalyticsInput,
+      FilterByLatestIfPresent(dfAnalyticsInput),
       rctv_strGroupID
     )
 
@@ -208,7 +208,7 @@ gsmApp_Server <- function(
 
     ## Metric Details ----
     srvr_MetricDetails(
-      dfAnalyticsInput = dfAnalyticsInput,
+      dfAnalyticsInput = FilterByLatestIfPresent(dfAnalyticsInput),
       dfBounds = dfBounds,
       dfGroups = dfGroups,
       dfMetrics = dfMetrics,
