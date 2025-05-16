@@ -94,6 +94,8 @@ FilterBefore <- function(df, strField, dMaxDate) {
 #' @returns The filtered df.
 #' @keywords internal
 FilterByLatestIfPresent <- function(df) {
+  # TODO: Many places where this is used should use rctv_dSnapshotDate instead,
+  # once that is changeable.
   if ("SnapshotDate" %in% colnames(df)) {
     return(gsm.kri::FilterByLatestSnapshotDate(df))
   }

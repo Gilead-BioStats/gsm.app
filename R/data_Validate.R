@@ -142,5 +142,5 @@ validate_dfAnalyticsInput <- function(x) {
       "Denominator"
     )
   )
-  return(FilterByLatestIfPresent(x))
+  return(x)
 }
