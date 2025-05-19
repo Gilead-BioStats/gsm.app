@@ -1,4 +1,15 @@
-# gsm.app (development version)
+# gsm.app 2.5.0
+
+We now support multiple group levels! We also provided more options to allow app admins to optimize data fetches.
+
+## New Features
+- If `dfResults` included multiple `GroupLevel` values, apps now include a "Group Level" drop-down menu to choose between those levels ("Site" vs "Country", usually) (#203, #216).
+- We added a new argument, `fnCountData`. By default, we use `fnFetchData` to fetch data and then count it for the "Domain Details" tab, but this argument allows app admins to provide faster functions when we only need a count (so we don't have to load *all* data when the user navigates to that tab) (#441).
+- We overhauled the way data flows into plugins, allowing for greater flexibility in how plugins function. Importantly, plugins now have access to Subject-, Group-, *and* Study-level domain data. Plugins can also access the gsm Data Model data (`dfAnalyticsInput`, `dfBounds`, `dfGroups`, `dfMetrics`, and `dfResults`). As part of these changes, data fetching has been optimized to subset cached data when available. We hope this will speed up some slow operations (#430, #435, #438, #440, #447, #450).
+
+## Other improvements
+- Each tab now has more control over its own interface, rather than requiring a large sidebar on every tab. As a result, the "Metric Details" tab has a more streamlined (and hopefully easier to navigate) interface (#428).
+- `dfAnalyticsInput` can now provide information from multiple `SnapshotDate`s (#455).
 
 # gsm.app 2.4.0
 
