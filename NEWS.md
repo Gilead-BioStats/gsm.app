@@ -17,7 +17,7 @@ We continue to evolve the app layout toward better usability!
 
 ## New Features
 - The "Site" and "Participant" inputs are now displayed in the top bar of the app, since they are used throughout the app. Tab-specific filters remain in the sidebar, which is collapsed by default (#400, #418). We will continue to evolve this layout through user feedback.
-- The package has been updated to use [{gsm.core}](https://gilead-biostats.github.io/gsm.core) and [{gsm.kri}](https://gilead-biostats.github.io/gsm.kri), rather than the monolithic {gsm} (#412).
+- The package has been updated to use [{gsm.core}](https://gilead-biostats.github.io/gsm.core/) and [{gsm.kri}](https://gilead-biostats.github.io/gsm.kri/), rather than the monolithic {gsm} (#412).
 - The {gsm.ae} plugin has been split off into its own package ([site](https://openrbqm.github.io/gsm.ae/) | [demo app](https://openrbqm.shinyapps.io/gsm-ae/)). This split helps us identify tools that will help with future plugin development, and makes it easier to evolve the main app and the AE plugin independently (#325).
 - We show the title of the study in the top bar by default, as well as in the name of the browser tab (#382).
 
