@@ -24,7 +24,7 @@ Imports:
     glue,
     gsm.core (>= 1.1.0),
     gsm.kri (>= 1.1.0),
-    gt (>= 0.11.1.9000),
+    gt (>= 1.0.0),
     htmltools,
     htmlwidgets,
     jsonlite,
