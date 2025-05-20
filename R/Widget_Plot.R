@@ -4,7 +4,7 @@
 #' compatible here.
 #'
 #' @inheritParams shared-params
-#' @param ... Additional parameters passed on to the widgetas JSON.
+#' @param ... Additional parameters passed on to the widget as JSON.
 #' @returns An htmlwidget object as created by [htmlwidgets::createWidget()].
 #' @keywords internal
 Widget_Plot <- function(id, strWidgetName, ...) {

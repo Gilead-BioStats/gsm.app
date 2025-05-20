@@ -62,7 +62,7 @@
 #' @param fnCountData `function` A function that takes a `strDomainID` argument
 #'   and optional `strGroupID`, `strGroupLevel`, `strSubjectID`, and/or
 #'   `dSnapshotDate`, and returns an integer count of the number of rows in that
-#'   filtered domain. By default, this function is constucted using
+#'   filtered domain. By default, this function is constructed using
 #'   `fnFetchData()` and [ConstructDataCounter()].
 #' @param fnFetchData `function` A function that takes a `strDomainID` argument
 #'   and optional `strGroupID`, `strGroupLevel`, `strSubjectID`, and/or

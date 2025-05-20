@@ -88,7 +88,7 @@ this as the default value.}
 \item{fnCountData}{\code{function} A function that takes a \code{strDomainID} argument
 and optional \code{strGroupID}, \code{strGroupLevel}, \code{strSubjectID}, and/or
 \code{dSnapshotDate}, and returns an integer count of the number of rows in that
-filtered domain. By default, this function is constucted using
+filtered domain. By default, this function is constructed using
 \code{fnFetchData()} and \code{\link[=ConstructDataCounter]{ConstructDataCounter()}}.}
 
 \item{fnFetchData}{\code{function} A function that takes a \code{strDomainID} argument
