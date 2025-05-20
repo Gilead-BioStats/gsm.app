@@ -7,7 +7,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">gsm.app</a>
 
-    <small class="nav-text text-danger me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="In-development version">2.4.0.9004</small>
+    <small class="nav-text text-danger me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="In-development version">2.5.0</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -37,7 +37,20 @@
     </div>
 
     <div class="section level2">
-<h2 class="pkg-version" data-toc-text="development version" id="gsmapp-development-version">gsm.app (development version)<a class="anchor" aria-label="anchor" href="#gsmapp-development-version"></a></h2>
+<h2 class="pkg-version" data-toc-text="2.5.0" id="gsmapp-250">gsm.app 2.5.0<a class="anchor" aria-label="anchor" href="#gsmapp-250"></a></h2>
+<p>We now support multiple group levels! We also provided more options to allow app admins to optimize data fetches.</p>
+<div class="section level3">
+<h3 id="new-features-2-5-0">New Features<a class="anchor" aria-label="anchor" href="#new-features-2-5-0"></a></h3>
+<ul><li>If <code>dfResults</code> included multiple <code>GroupLevel</code> values, apps now include a “Group Level” drop-down menu to choose between those levels (“Site” vs “Country”, usually) (<a href="https://github.com/Gilead-BioStats/gsm.app/issues/203" class="external-link">#203</a>, <a href="https://github.com/Gilead-BioStats/gsm.app/issues/216" class="external-link">#216</a>).</li>
+<li>We added a new argument, <code>fnCountData</code>. By default, we use <code>fnFetchData</code> to fetch data and then count it for the “Domain Details” tab, but this argument allows app admins to provide faster functions when we only need a count (so we don’t have to load <em>all</em> data when the user navigates to that tab) (<a href="https://github.com/Gilead-BioStats/gsm.app/issues/441" class="external-link">#441</a>).</li>
+<li>We overhauled the way data flows into plugins, allowing for greater flexibility in how plugins function. Importantly, plugins now have access to Subject-, Group-, <em>and</em> Study-level domain data. Plugins can also access the gsm Data Model data (<code>dfAnalyticsInput</code>, <code>dfBounds</code>, <code>dfGroups</code>, <code>dfMetrics</code>, and <code>dfResults</code>). As part of these changes, data fetching has been optimized to subset cached data when available. We hope this will speed up some slow operations (<a href="https://github.com/Gilead-BioStats/gsm.app/issues/430" class="external-link">#430</a>, <a href="https://github.com/Gilead-BioStats/gsm.app/issues/435" class="external-link">#435</a>, <a href="https://github.com/Gilead-BioStats/gsm.app/issues/438" class="external-link">#438</a>, <a href="https://github.com/Gilead-BioStats/gsm.app/issues/440" class="external-link">#440</a>, <a href="https://github.com/Gilead-BioStats/gsm.app/issues/447" class="external-link">#447</a>, <a href="https://github.com/Gilead-BioStats/gsm.app/issues/450" class="external-link">#450</a>).</li>
+</ul></div>
+<div class="section level3">
+<h3 id="other-improvements-2-5-0">Other improvements<a class="anchor" aria-label="anchor" href="#other-improvements-2-5-0"></a></h3>
+<ul><li>Each tab now has more control over its own interface, rather than requiring a large sidebar on every tab. As a result, the “Metric Details” tab has a more streamlined (and hopefully easier to navigate) interface (<a href="https://github.com/Gilead-BioStats/gsm.app/issues/428" class="external-link">#428</a>).</li>
+<li>
+<code>dfAnalyticsInput</code> can now provide information from multiple <code>SnapshotDate</code>s (<a href="https://github.com/Gilead-BioStats/gsm.app/issues/455" class="external-link">#455</a>).</li>
+</ul></div>
 </div>
     <div class="section level2">
 <h2 class="pkg-version" data-toc-text="2.4.0" id="gsmapp-240">gsm.app 2.4.0<a class="anchor" aria-label="anchor" href="#gsmapp-240"></a></h2>
@@ -45,7 +58,7 @@
 <div class="section level3">
 <h3 id="new-features-2-4-0">New Features<a class="anchor" aria-label="anchor" href="#new-features-2-4-0"></a></h3>
 <ul><li>The “Site” and “Participant” inputs are now displayed in the top bar of the app, since they are used throughout the app. Tab-specific filters remain in the sidebar, which is collapsed by default (<a href="https://github.com/Gilead-BioStats/gsm.app/issues/400" class="external-link">#400</a>, <a href="https://github.com/Gilead-BioStats/gsm.app/issues/418" class="external-link">#418</a>). We will continue to evolve this layout through user feedback.</li>
-<li>The package has been updated to use <a href="https://gilead-biostats.github.io/gsm.core" class="external-link">{gsm.core}</a> and <a href="https://gilead-biostats.github.io/gsm.kri" class="external-link">{gsm.kri}</a>, rather than the monolithic {gsm} (<a href="https://github.com/Gilead-BioStats/gsm.app/issues/412" class="external-link">#412</a>).</li>
+<li>The package has been updated to use <a href="https://gilead-biostats.github.io/gsm.core/" class="external-link">{gsm.core}</a> and <a href="https://gilead-biostats.github.io/gsm.kri/" class="external-link">{gsm.kri}</a>, rather than the monolithic {gsm} (<a href="https://github.com/Gilead-BioStats/gsm.app/issues/412" class="external-link">#412</a>).</li>
 <li>The {gsm.ae} plugin has been split off into its own package (<a href="https://openrbqm.github.io/gsm.ae/" class="external-link">site</a> | <a href="https://openrbqm.shinyapps.io/gsm-ae/" class="external-link">demo app</a>). This split helps us identify tools that will help with future plugin development, and makes it easier to evolve the main app and the AE plugin independently (<a href="https://github.com/Gilead-BioStats/gsm.app/issues/325" class="external-link">#325</a>).</li>
 <li>We show the title of the study in the top bar by default, as well as in the name of the browser tab (<a href="https://github.com/Gilead-BioStats/gsm.app/issues/382" class="external-link">#382</a>).</li>
 </ul></div>
@@ -70,7 +83,7 @@
 <ul><li>Domain data is now fetched at the app level and passed on to tabs and plugins, minimizing computation time (<a href="https://github.com/Gilead-BioStats/gsm.app/issues/345" class="external-link">#345</a>).</li>
 <li>“Domain” is now a top-level input, so that domains selected on the “Domain Details” tab can be passed into plugins, and domains selected inside plugins can be passed back to the “Domain Details” tab (<a href="https://github.com/Gilead-BioStats/gsm.app/issues/361" class="external-link">#361</a>).</li>
 <li>Errors generated by the function that fetches data are passed on to users of the app. This allows the deployment team to pass information to users about how to correct issues, such as by selecting a site or participant, or by avoiding a particular site or participant (<a href="https://github.com/Gilead-BioStats/gsm.app/issues/355" class="external-link">#355</a>).</li>
-<li>The “Time Series” plot on the “Metric Details” tab now supports longitudinial data. If more than one snapshot is provided to the app, the additional snapshots will be displayed here (<a href="https://github.com/Gilead-BioStats/gsm.app/issues/386" class="external-link">#386</a>, <a href="https://github.com/Gilead-BioStats/gsm.app/issues/390" class="external-link">#390</a>).</li>
+<li>The “Time Series” plot on the “Metric Details” tab now supports longitudinal data. If more than one snapshot is provided to the app, the additional snapshots will be displayed here (<a href="https://github.com/Gilead-BioStats/gsm.app/issues/386" class="external-link">#386</a>, <a href="https://github.com/Gilead-BioStats/gsm.app/issues/390" class="external-link">#390</a>).</li>
 </ul></div>
 </div>
     <div class="section level2">
