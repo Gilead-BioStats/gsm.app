@@ -11,7 +11,7 @@ Widget_Plot(id, strWidgetName, ...)
 
 \item{strWidgetName}{\code{character} The name of a widget in the gsm package.}
 
-\item{...}{Additional parameters passed on to the widgetas JSON.}
+\item{...}{Additional parameters passed on to the widget as JSON.}
 }
 \value{
 An htmlwidget object as created by \code{\link[htmlwidgets:createWidget]{htmlwidgets::createWidget()}}.
