@@ -1,5 +1,6 @@
 test_that("mod_GroupOverview_UI creates the expected UI", {
-  test_result <- mod_GroupOverview_UI("test_id", sample_dfResults)
+  latest_dfResults <- gsm.kri::FilterByLatestSnapshotDate(sample_dfResults)
+  test_result <- mod_GroupOverview_UI("test_id", latest_dfResults)
   expect_s3_class(test_result, c("bslib_fragment", "shiny.tag"))
   class(test_result) <- "shiny.tag"
   expect_cleaned_html({
@@ -38,7 +39,7 @@ test_that("mod_GroupOverview_Server passes group subset info around", {
     mod_GroupOverview_Server,
     args = list(
       id = "test_id",
-      dfResults = sample_dfResults,
+      dfResults = gsm.kri::FilterByLatestSnapshotDate(sample_dfResults),
       dfMetrics = sample_dfMetrics,
       dfGroups = sample_dfGroups
     ),

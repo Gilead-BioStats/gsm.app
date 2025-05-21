@@ -198,7 +198,7 @@ gsmApp_Server <- function(
     ## Study Overview ----
     mod_StudyOverview_Server(
       "study_overview",
-      dfResults = dfResults,
+      dfResults = FilterByLatestIfPresent(dfResults),
       dfGroups = dfGroups,
       dfMetrics = dfMetrics,
       dfBounds = dfBounds,

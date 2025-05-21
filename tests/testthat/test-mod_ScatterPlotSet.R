@@ -47,8 +47,8 @@ test_that("mod_ScatterPlotSet_Server sets selected group correctly", {
     {
       # Initialize the value first.
       session$setInputs(`Analysis_kri0001-plot` = "All")
-      session$setInputs(`Analysis_kri0001-plot` = "0X003")
-      expect_equal(rctv_strGroupID(), "0X003")
+      session$setInputs(`Analysis_kri0001-plot` = "0X2096")
+      expect_equal(rctv_strGroupID(), "0X2096")
     }
   )
 })
@@ -63,7 +63,7 @@ test_that("mod_ScatterPlotSet_Server selects plots based on outside selection", 
       dfGroups = sample_dfGroups,
       dfBounds = sample_dfBounds,
       rctv_strMetricID = reactiveVal("whatever"),
-      rctv_strGroupID = reactiveVal("0X003")
+      rctv_strGroupID = reactiveVal("0X2096")
     ),
     {
       getSelectedGroupIDs <- function(strMetricID) {
@@ -79,11 +79,11 @@ test_that("mod_ScatterPlotSet_Server selects plots based on outside selection", 
       expect_type(outputSelections, "character")
       expect_equal(
         outputSelections,
-        rep("0X003", length(unique(sample_dfMetrics$MetricID)))
+        rep("0X2096", length(unique(sample_dfMetrics$MetricID)))
       )
 
       # Update the simulated outside input.
-      rctv_strGroupID("0X005")
+      rctv_strGroupID("0X7121")
       session$flushReact()
 
       # Confirm that the outputs update.
@@ -91,7 +91,7 @@ test_that("mod_ScatterPlotSet_Server selects plots based on outside selection", 
       expect_type(outputSelections, "character")
       expect_equal(
         outputSelections,
-        rep("0X005", length(unique(sample_dfMetrics$MetricID)))
+        rep("0X7121", length(unique(sample_dfMetrics$MetricID)))
       )
 
       # Update the simulated outside input to "All" (deselect).

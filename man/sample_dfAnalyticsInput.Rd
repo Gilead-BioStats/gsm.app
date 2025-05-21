@@ -5,7 +5,7 @@
 \alias{sample_dfAnalyticsInput}
 \title{Analytics Input Dataset}
 \format{
-A tibble with 7491 rows and
+A tibble with 3938 rows and
 8 columns:
 \describe{
 \item{MetricID}{metric identifier}

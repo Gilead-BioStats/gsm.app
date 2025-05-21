@@ -260,6 +260,7 @@ FilterDomainData <- function(
     PD = "deviationdate",
     SDRGCOMP = "mincreated_dts",
     STUDCOMP = "mincreated_dts",
+    SUBJ = "firstparticipantdate",
     Visit = "visit_dt",
     DATACHG = "visit_date",
     DATAENT = "visit_date",

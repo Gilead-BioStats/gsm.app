@@ -77,8 +77,8 @@ test_that("mod_TimeSeries_Server sets selected site", {
     ),
     {
       expect_null(input$plot)
-      session$setInputs(plot = "0X003")
-      expect_equal(rctv_strGroupID(), "0X003")
+      session$setInputs(plot = "0X5985")
+      expect_equal(rctv_strGroupID(), "0X5985")
     }
   )
 })

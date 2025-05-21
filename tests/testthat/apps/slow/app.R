@@ -11,33 +11,16 @@ if (
   pkgload::load_all(here::here())
 }
 
-group_subset <- c(
-  "0X001",
-  "0X021",
-  "0X103",
-  "0X159",
-  "0X170"
-)
-
-sample_dfResults_subset <- gsm.app::sample_dfResults %>%
-  dplyr::filter(GroupID %in% group_subset)
-sample_dfAnalyticsInput_subset <- gsm.app::sample_dfAnalyticsInput %>%
-  dplyr::filter(GroupID %in% group_subset)
-sample_dfGroups_subset <- gsm.app::sample_dfGroups %>%
-  dplyr::filter(
-    GroupLevel != "Site" | (GroupLevel == "Site" & GroupID %in% group_subset)
-  )
-
 slow_fnFetchData <- function(...) {
   Sys.sleep(5)
   return(gsm.app::sample_fnFetchData(...))
 }
 
 gsm.app::run_gsm_app(
-  dfAnalyticsInput = sample_dfAnalyticsInput_subset,
+  dfAnalyticsInput = gsm.app::sample_dfAnalyticsInput,
   dfBounds = gsm.app::sample_dfBounds,
-  dfGroups = sample_dfGroups_subset,
+  dfGroups = gsm.app::sample_dfGroups,
   dfMetrics = gsm.app::sample_dfMetrics,
-  dfResults = sample_dfResults_subset,
+  dfResults = gsm.app::sample_dfResults,
   fnFetchData = slow_fnFetchData
 )

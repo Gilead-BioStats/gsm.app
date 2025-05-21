@@ -11,8 +11,8 @@ test_that("mod_GroupDetails_Server renders group metadata", {
   # Inputs to simulate things that happen in the main server function.
   rctv_strMetricID <- reactiveVal("Analysis_kri0001")
   rctv_strGroupLevel <- reactiveVal("Site")
-  rctv_strGroupID <- reactiveVal("0X003")
-  rctv_strSubjectID <- reactiveVal("0545")
+  rctv_strGroupID <- reactiveVal("0X1858")
+  rctv_strSubjectID <- reactiveVal("S71113")
   rctv_lMetric <- reactive({
     lMetric <- as.list(FilterbyMetricID(sample_dfMetrics, rctv_strMetricID()))
     if (rctv_strGroupID() != "All") {
@@ -44,8 +44,8 @@ test_that("mod_GroupDetails_Server renders participants table", {
   # Inputs to simulate things that happen in the main server function.
   rctv_strMetricID <- reactiveVal("Analysis_kri0001")
   rctv_strGroupLevel <- reactiveVal("Site")
-  rctv_strGroupID <- reactiveVal("0X003")
-  rctv_strSubjectID <- reactiveVal("0545")
+  rctv_strGroupID <- reactiveVal("0X1858")
+  rctv_strSubjectID <- reactiveVal("S71113")
   rctv_lMetric <- reactive({
     lMetric <- as.list(FilterbyMetricID(sample_dfMetrics, rctv_strMetricID()))
     if (rctv_strGroupID() != "All") {
@@ -53,12 +53,13 @@ test_that("mod_GroupDetails_Server renders participants table", {
     }
     lMetric
   })
+  dfGroups <- validate_dfGroups(sample_dfGroups, sample_dfResults)
 
   testServer(
     mod_GroupDetails_Server,
     args = list(
       id = "GroupDetailsTest",
-      dfGroups = sample_dfGroups,
+      dfGroups = dfGroups,
       dfAnalyticsInput = sample_dfAnalyticsInput,
       rctv_strGroupID = rctv_strGroupID,
       rctv_strGroupLevel = rctv_strGroupLevel,
@@ -72,7 +73,7 @@ test_that("mod_GroupDetails_Server renders participants table", {
       expect_named(output$`participants-gt-table`, c("html", "deps"))
 
       # Test the participant table title is correct
-      expect_equal(output$`participants-title`, "Site 0X003")
+      expect_equal(output$`participants-title`, "Site 0X1858")
     }
   )
 })

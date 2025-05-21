@@ -13,7 +13,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
               </button>
-              <span class="navbar-brand">Protocol Nickname</span>
+              <span class="navbar-brand">GROOVE-85</span>
             </div>
             <div class="navbar-collapse collapse" id="navbar-collapse-XXXX">
               <ul class="nav navbar-nav nav-underline shiny-tab-input" id="primary_nav_bar" data-tabsetid="XXXX">
@@ -33,7 +33,7 @@
                       <strong>Site</strong>
                     </label>
                     <div id="group-group" class="virtual-select" style="display:inline-block;" data-update="change">
-                      <script type="application/json" data-for="group-group">{"stateInput":true,"options":{"type":["vector"],"choices":["All","0X001","0X002","0X003","0X004","0X005","0X006","0X007","0X008","0X010","0X011","0X012","0X013","0X014","0X015","0X016","0X021","0X022","0X024","0X026","0X027","0X028","0X029","0X037","0X041","0X043","0X064","0X079","0X103","0X109","0X124","0X155","0X159","0X170","0X173","X185X"]},"config":{"multiple":false,"search":false,"hideClearButton":true,"autoSelectFirstOption":true,"showSelectedOptionsFirst":false,"showValueAsTags":false,"optionsCount":10,"noOfDisplayValues":50,"allowNewOption":false,"disableSelectAll":true,"disableOptionGroupCheckbox":true,"disabled":false}}</script>
+                      <script type="application/json" data-for="group-group">{"stateInput":true,"options":{"type":["vector"],"choices":["All","0X1145","0X1255","0X1427","0X1667","0X1858","0X2050","0X2096","0X226","0X2263","0X2585","0X2887","0X3174","0X3311","0X3349","0X3795","0X3972","0X4372","0X4694","0X4790","0X5041","0X5241","0X5370","0X5456","0X5590","0X5902","0X5985","0X6029","0X6444","0X6465","0X6916","0X7121","0X7265","0X732","0X7526","0X7840","0X7856","0X8251","0X8522","0X8733","0X8941","0X8989","0X9090","0X9328","0X9567","0X9621","0X9667","0X9818","0X9824","0X9919","0X9976"]},"config":{"multiple":false,"search":false,"hideClearButton":true,"autoSelectFirstOption":true,"showSelectedOptionsFirst":false,"showValueAsTags":false,"optionsCount":10,"noOfDisplayValues":50,"allowNewOption":false,"disableSelectAll":true,"disableOptionGroupCheckbox":true,"disabled":false}}</script>
                     </div>
                   </div>
                 </li>
@@ -64,7 +64,7 @@
                   <div class="card bslib-card bslib-mb-spacing html-fill-item html-fill-container" data-bslib-card-init data-require-bs-caller="card()" data-require-bs-version="5">
                     <div class="card-header">
                       <h5>Study Information</h5>
-                      <h6 class="card-subtitle mb-2 text-muted">Snapshot Date: 2018-01-01</h6>
+                      <h6 class="card-subtitle mb-2 text-muted">Snapshot Date: 2012-01-31</h6>
                     </div>
                     <div class="card-body bslib-gap-spacing html-fill-item html-fill-container" style="margin-top:auto;margin-bottom:auto;flex:1 1 auto;">
                       <label class="toggle">
@@ -529,13 +529,13 @@
         
         <tbody class="gt_table_body">
           <tr><td headers="Description" class="gt_row gt_left">Nickname</td>
-      <td headers="Value" class="gt_row gt_right">Protocol Nickname</td></tr>
+      <td headers="Value" class="gt_row gt_right">GROOVE-85</td></tr>
           <tr><td headers="Description" class="gt_row gt_left">Status</td>
       <td headers="Value" class="gt_row gt_right">Active</td></tr>
           <tr><td headers="Description" class="gt_row gt_left">Site Activation</td>
-      <td headers="Value" class="gt_row gt_right">35 / 190 (18.4%)</td></tr>
+      <td headers="Value" class="gt_row gt_right">44 / 50 (88%)</td></tr>
           <tr><td headers="Description" class="gt_row gt_left">Participant Enrollment</td>
-      <td headers="Value" class="gt_row gt_right">227 / 1300 (17.5%)</td></tr>
+      <td headers="Value" class="gt_row gt_right">192 / 250 (76.8%)</td></tr>
         </tbody>
         
         
@@ -995,49 +995,49 @@
         
         <tbody class="gt_table_body">
           <tr><td headers="Description" class="gt_row gt_left">Studyid</td>
-      <td headers="Value" class="gt_row gt_right">AA-AA-000-0000</td></tr>
+      <td headers="Value" class="gt_row gt_right">DEMO-001</td></tr>
           <tr><td headers="Description" class="gt_row gt_left">Nickname</td>
-      <td headers="Value" class="gt_row gt_right">Protocol Nickname</td></tr>
+      <td headers="Value" class="gt_row gt_right">GROOVE-85</td></tr>
           <tr><td headers="Description" class="gt_row gt_left">Protocol Title</td>
-      <td headers="Value" class="gt_row gt_right">Protocol Title</td></tr>
+      <td headers="Value" class="gt_row gt_right">Protocol Title H</td></tr>
           <tr><td headers="Description" class="gt_row gt_left">Status</td>
       <td headers="Value" class="gt_row gt_right">Active</td></tr>
           <tr><td headers="Description" class="gt_row gt_left">Num Plan Site</td>
-      <td headers="Value" class="gt_row gt_right">190</td></tr>
+      <td headers="Value" class="gt_row gt_right">50</td></tr>
           <tr><td headers="Description" class="gt_row gt_left">Num Plan Subj</td>
-      <td headers="Value" class="gt_row gt_right">1300</td></tr>
+      <td headers="Value" class="gt_row gt_right">250</td></tr>
           <tr><td headers="Description" class="gt_row gt_left">Act Fpfv</td>
-      <td headers="Value" class="gt_row gt_right">2003-01-01</td></tr>
+      <td headers="Value" class="gt_row gt_right">2012-01-16</td></tr>
           <tr><td headers="Description" class="gt_row gt_left">Est Fpfv</td>
-      <td headers="Value" class="gt_row gt_right">2003-01-01</td></tr>
+      <td headers="Value" class="gt_row gt_right">2012-01-21</td></tr>
           <tr><td headers="Description" class="gt_row gt_left">Est Lplv</td>
-      <td headers="Value" class="gt_row gt_right">2021-06-01</td></tr>
+      <td headers="Value" class="gt_row gt_right">2012-05-03</td></tr>
           <tr><td headers="Description" class="gt_row gt_left">Est Lpfv</td>
-      <td headers="Value" class="gt_row gt_right">2020-06-01</td></tr>
+      <td headers="Value" class="gt_row gt_right">2012-03-14</td></tr>
           <tr><td headers="Description" class="gt_row gt_left">Therapeutic Area</td>
-      <td headers="Value" class="gt_row gt_right">Therapeutic Area</td></tr>
+      <td headers="Value" class="gt_row gt_right">Inflammation</td></tr>
           <tr><td headers="Description" class="gt_row gt_left">Protocol Indication</td>
-      <td headers="Value" class="gt_row gt_right">Protocol Indication</td></tr>
+      <td headers="Value" class="gt_row gt_right">Cardiovascular Health</td></tr>
           <tr><td headers="Description" class="gt_row gt_left">Phase</td>
-      <td headers="Value" class="gt_row gt_right">P3</td></tr>
+      <td headers="Value" class="gt_row gt_right">P4</td></tr>
           <tr><td headers="Description" class="gt_row gt_left">Product</td>
-      <td headers="Value" class="gt_row gt_right">Product</td></tr>
+      <td headers="Value" class="gt_row gt_right">Product Name 5</td></tr>
           <tr><td headers="Description" class="gt_row gt_left">Site Target</td>
-      <td headers="Value" class="gt_row gt_right">190</td></tr>
+      <td headers="Value" class="gt_row gt_right">50</td></tr>
           <tr><td headers="Description" class="gt_row gt_left">Participant Target</td>
-      <td headers="Value" class="gt_row gt_right">1300</td></tr>
+      <td headers="Value" class="gt_row gt_right">250</td></tr>
           <tr><td headers="Description" class="gt_row gt_left">Participants Enrolled</td>
-      <td headers="Value" class="gt_row gt_right">227</td></tr>
+      <td headers="Value" class="gt_row gt_right">192</td></tr>
           <tr><td headers="Description" class="gt_row gt_left">Sites Enrolled</td>
-      <td headers="Value" class="gt_row gt_right">35</td></tr>
+      <td headers="Value" class="gt_row gt_right">44</td></tr>
           <tr><td headers="Description" class="gt_row gt_left">Percent Sites Activated</td>
-      <td headers="Value" class="gt_row gt_right">18.4</td></tr>
+      <td headers="Value" class="gt_row gt_right">88</td></tr>
           <tr><td headers="Description" class="gt_row gt_left">Site Activation</td>
-      <td headers="Value" class="gt_row gt_right">35 / 190 (18.4%)</td></tr>
+      <td headers="Value" class="gt_row gt_right">44 / 50 (88%)</td></tr>
           <tr><td headers="Description" class="gt_row gt_left">Percent Participants Enrolled</td>
-      <td headers="Value" class="gt_row gt_right">17.5</td></tr>
+      <td headers="Value" class="gt_row gt_right">76.8</td></tr>
           <tr><td headers="Description" class="gt_row gt_left">Participant Enrollment</td>
-      <td headers="Value" class="gt_row gt_right">227 / 1300 (17.5%)</td></tr>
+      <td headers="Value" class="gt_row gt_right">192 / 250 (76.8%)</td></tr>
         </tbody>
         
         
@@ -1065,8 +1065,8 @@
                           <div class="card bslib-card bslib-mb-spacing bslib-card-input html-fill-item html-fill-container" data-bslib-card-init data-full-screen="false" data-require-bs-caller="card()" data-require-bs-version="5" id="study_overview-table">
                             <div class="card-body bslib-gap-spacing html-fill-item html-fill-container" style="margin-top:auto;margin-bottom:auto;flex:1 1 auto;">
                               <div id="study_overview-table-kri_counts">
-                                <a class="action-button badge rounded-pill toggle-pill text-dark fs-6 p-2" href="#" id="study_overview-table-kri_counts-red-toggle_pill" style="background-color: #FF5859; opacity: 0.5;">1 Red KRIs</a>
-                                <a class="action-button badge rounded-pill toggle-pill text-dark fs-6 p-2" href="#" id="study_overview-table-kri_counts-amber-toggle_pill" style="background-color: #FEAA02; opacity: 0.5;">4 Amber KRIs</a>
+                                <a class="action-button badge rounded-pill toggle-pill text-dark fs-6 p-2" href="#" id="study_overview-table-kri_counts-red-toggle_pill" style="background-color: #FF5859; opacity: 0.5;">0 Red KRIs</a>
+                                <a class="action-button badge rounded-pill toggle-pill text-dark fs-6 p-2" href="#" id="study_overview-table-kri_counts-amber-toggle_pill" style="background-color: #FEAA02; opacity: 0.5;">0 Amber KRIs</a>
                               </div>
                               <div class="row gy-2">
                                 <div class="Widget_GroupOverview html-widget html-widget-output shiny-report-size html-fill-item" id="study_overview-table-group_overview" style="width:100%;height:100%;"></div>
