@@ -95,11 +95,27 @@ validate_dfGroups <- function(x, dfResults) {
     x,
     chrRequiredColumns = c("GroupLevel", "Param", "Value", "GroupID")
   )
-  if (is.data.frame(dfResults) && "GroupLevel" %in% colnames(dfResults)) {
-    x <- dplyr::filter(
-      x,
-      .data$GroupLevel %in% c(unique(dfResults$GroupLevel), "Study")
-    )
+  # dfResults isn't validated yet at this point, so do minimal validation.
+  if (is.data.frame(dfResults)) {
+    groupCols <- c("GroupID", "GroupLevel")
+    if (any(groupCols %in% colnames(dfResults))) {
+      dfGroupStudy <- x %>%
+        dplyr::filter(.data$GroupLevel == "Study") %>%
+        dplyr::distinct(.data$GroupID, .data$GroupLevel)
+
+      dfGroupsUsed <- dfResults %>%
+        dplyr::select(dplyr::any_of(groupCols)) %>%
+        dplyr::distinct() %>%
+        dplyr::bind_rows(dfGroupStudy)
+
+      x <- dplyr::semi_join(
+        x,
+        dfGroupsUsed,
+        by = groupCols
+      )
+    }
+
+
   }
 }
 

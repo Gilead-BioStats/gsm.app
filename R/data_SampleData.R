@@ -146,11 +146,11 @@ sample_fnFetchData <- function(
   strSubjectID <- NullifyEmpty(strSubjectID)
 
   if (
-    !is.null(strGroupID) && strGroupID == "0X013" && strDomainID == "LB"
+    !is.null(strGroupID) && strGroupID == "0X3349" && strDomainID == "LB"
   ) {
     gsmappAbort(
       c(
-        "Site 0X013 has data issues for the Lab domain.",
+        "Site 0X3349 has data issues for the Lab domain.",
         "This is to demonstrate behavior with errors.",
         "Please select another Site."
       ),
@@ -166,17 +166,44 @@ sample_fnFetchData <- function(
     df <- dplyr::rename(df, IntakeID = "subjectid")
   }
 
-  return(
-    FilterDomainData(
-      df,
-      strDomainID = strDomainID,
-      dSnapshotDate = dSnapshotDate,
-      dfGroups = gsm.app::sample_dfGroups,
-      strGroupLevel = strGroupLevel,
-      strGroupID = strGroupID,
-      strSubjectID = strSubjectID
-    )
+  df <- FilterDomainData(
+    df,
+    strDomainID = strDomainID,
+    dSnapshotDate = dSnapshotDate,
+    dfGroups = gsm.app::sample_dfGroups,
+    strGroupLevel = strGroupLevel,
+    strGroupID = strGroupID,
+    strSubjectID = strSubjectID
   )
+  df <- RecalculateDomainData(
+    df,
+    strDomainID = strDomainID,
+    dSnapshotDate = dSnapshotDate
+  )
+
+  return(df)
+}
+
+RecalculateDomainData <- function(df,
+                                  strDomainID,
+                                  dSnapshotDate = NULL) {
+  if (!is.null(dSnapshotDate)) {
+    if (strDomainID == "SUBJ") {
+      # Dates can't be after dSnapshotDate.
+      df %>%
+        dplyr::filter(.data$firstparticipantdate <= dSnapshotDate) %>%
+        dplyr::mutate(
+          firstdosedate = dplyr::if_else(
+            .data$firstdosedate <= dSnapshotDate,
+            .data$firstdosedate,
+            NA
+          ),
+          timeonstudy = as.integer(dSnapshotDate - .data$firstparticipantdate),
+          timeontreatment = as.integer(dSnapshotDate - .data$firstdosedate)
+        )
+    }
+  }
+  return(df)
 }
 
 #' Construct a Data Count Function

@@ -6,152 +6,104 @@
 # clindata is needed to generate this data, but is not a requirement for using
 # or testing the package, so it is not listed in the DESCRIPTION. Likewise for
 # gsm.mapping and gsm.reporting.
-# pak::pak("Gilead-BioStats/clindata")
-# pak::pak("Gilead-BioStats/gsm.mapping@dev")
-# pak::pak("Gilead-BioStats/gsm.reporting@dev")
+# pak::pak("Gilead-BioStats/gsm.reporting")
+# pak::pak("Gilead-BioStats/gsm.core#30")
+# pak::pak("Gilead-BioStats/gsm.mapping#68")
+# pak::pak("Gilead-BioStats/gsm.datasim#58")
 
 pkgload::load_all()
 library(conflicted)
 conflicted::conflict_prefer_all("gsm.app", quiet = TRUE)
 library(gsm.core)
 library(gsm.mapping)
-library(gsm.kri)
+library(gsm.datasim)
 library(gsm.reporting)
-library(clindata)
 library(dplyr)
 library(purrr)
 
 # Set up inputs ----
 
 chrDomainsUsed <- c(
-  "AE", "DATACHG", "DATAENT", "ENROLL", "LB", "PD", "QUERY", "SDRGCOMP", "SITE",
-  "STUDCOMP", "STUDY", "SUBJ", "Visit"
+  "AE", "DATACHG", "DATAENT", "ENROLL", "LB", "PD", "QUERY",
+  "SDRGCOMP", "SITE", "STUDCOMP", "STUDY", "SUBJ", "Visit"
 )
 
-# I chose these sites via code in a previous iteration of this file.
-chrGroupsUsed <- c(
-  "0X001", "0X002", "0X003", "0X004", "0X005", "0X006", "0X007",
-  "0X008", "0X010", "0X011", "0X012", "0X013", "0X014", "0X015",
-  "0X016", "0X021", "0X022", "0X024", "0X026", "0X027", "0X028",
-  "0X029", "0X037", "0X041", "0X043", "0X064", "0X079", "0X103",
-  "0X109", "0X124", "0X155", "0X159", "0X170", "0X173", "X185X"
-)
+strStudyID <- "DEMO-001"
 
-lSource <- list(
-  Source_AE = clindata::rawplus_ae,
-  Source_DATACHG = clindata::edc_data_points,
-  Source_DATAENT = clindata::edc_data_pages,
-  Source_ENROLL = clindata::rawplus_enroll,
-  Source_LB = clindata::rawplus_lb,
-  Source_PD = clindata::ctms_protdev,
-  Source_STUDY = clindata::ctms_study,
-  Source_SITE = clindata::ctms_site,
-  Source_SUBJ = clindata::rawplus_dm,
-  Source_STUDCOMP = clindata::rawplus_studcomp,
-  Source_SDRGCOMP = clindata::rawplus_sdrgcomp,
-  Source_QUERY = clindata::edc_queries,
-  Source_VISIT = clindata::rawplus_visdt
-)
-
-# I got an error for I think a "" value. It was easier to just cast it to date.
-lSource$Source_VISIT$visit_dt <- as.Date(lSource$Source_VISIT$visit_dt)
-
-# Create Mapped Data ----
-
-lMappings <- gsm.core::MakeWorkflowList(
-  strPath = system.file("workflow/1_mappings", package = "gsm.app"),
-  strNames = chrDomainsUsed,
-  strPackage = NULL
-)
-lSpec <- gsm.mapping::CombineSpecs(lMappings)
-lRaw <- gsm.mapping::Ingest(lSource, lSpec)
-lRaw <- lRaw %>%
-  purrr::map(dplyr::as_tibble)
-
-# Filter to our sites of interest.
-lRaw$Raw_SUBJ <- dplyr::filter(lRaw$Raw_SUBJ, invid %in% chrGroupsUsed)
-lRaw$Raw_AE <- dplyr::filter(lRaw$Raw_AE, subjid %in% lRaw$Raw_SUBJ$subjid)
-lRaw$Raw_ENROLL <- dplyr::filter(lRaw$Raw_ENROLL, invid %in% chrGroupsUsed)
-lRaw$Raw_LB <- dplyr::filter(lRaw$Raw_LB, subjid %in% lRaw$Raw_SUBJ$subjid)
-lRaw$Raw_PD <- dplyr::filter(lRaw$Raw_PD, subjid %in% lRaw$Raw_SUBJ$subjid)
-lRaw$Raw_SDRGCOMP <- dplyr::filter(lRaw$Raw_SDRGCOMP, subjid %in% lRaw$Raw_SUBJ$subjid)
-lRaw$Raw_STUDCOMP <- dplyr::filter(lRaw$Raw_STUDCOMP, subjid %in% lRaw$Raw_SUBJ$subjid)
-lRaw$Raw_VISIT <- dplyr::filter(lRaw$Raw_VISIT, subjid %in% lRaw$Raw_SUBJ$subjid)
-lRaw$Raw_DATACHG <- dplyr::filter(lRaw$Raw_DATACHG, subject_nsv %in% lRaw$Raw_SUBJ$subject_nsv)
-lRaw$Raw_DATAENT <- dplyr::filter(lRaw$Raw_DATAENT, subject_nsv %in% lRaw$Raw_SUBJ$subject_nsv)
-lRaw$Raw_QUERY <- dplyr::filter(lRaw$Raw_QUERY, subject_nsv %in% lRaw$Raw_SUBJ$subject_nsv)
-lRaw$Raw_SITE <- dplyr::filter(lRaw$Raw_SITE, invid %in% chrGroupsUsed)
-
-lMapped <- gsm.core::RunWorkflows(lMappings, lRaw)
-lMapped <- lMapped %>%
-  purrr::map(dplyr::as_tibble)
-
-# Cast mapped data that should be a timestamp to that format. See
-# https://github.com/Gilead-BioStats/gsm.core/issues/22
-lMapped$Mapped_AE$mincreated_dts <- lubridate::as_datetime(lMapped$Mapped_AE$mincreated_dts)
-lMapped$Mapped_SDRGCOMP$mincreated_dts <- lubridate::as_datetime(lMapped$Mapped_SDRGCOMP$mincreated_dts)
-lMapped$Mapped_STUDCOMP$mincreated_dts <- lubridate::as_datetime(lMapped$Mapped_STUDCOMP$mincreated_dts)
-lMapped$Mapped_SUBJ$mincreated_dts <- lubridate::as_datetime(lMapped$Mapped_SUBJ$mincreated_dts)
-
-# Create Analysis Data - Generate KRIs ----
-
+# Metric & workflow info is the same regardless of how many sites.
 lWorkflows <- gsm.core::MakeWorkflowList(
   "^kri",
   strPath = "workflow/2_metrics",
   strPackage = "gsm.kri"
 )
-## Don't use kri0012 yet.
+## Don't use kri/cou0012 (Screen Failure Rate) yet.
 lWorkflows$kri0012 <- NULL
-## Don't use kri0013 yet.
+# lWorkflows$cou0012 <- NULL
+## Don't use kri/cou0013 (PKCollection Compliance Rate) yet.
 lWorkflows$kri0013 <- NULL
+# lWorkflows$cou0013 <- NULL
 
-# Things that are done already ----
-sample_dfGroups <- dplyr::bind_rows(
-  lMapped$Mapped_SITE,
-  lMapped$Mapped_STUDY
-)
 sample_dfMetrics <- gsm.reporting::MakeMetric(lWorkflows = lWorkflows)
 
-dSnapshotDate <- c(
-  as.Date("2018-01-01"),
-  as.Date("2019-01-01"),
-  as.Date("2020-01-01")
+lMappings <- gsm.core::MakeWorkflowList(
+  strPath = "workflow/1_mappings",
+  strNames = chrDomainsUsed,
+  strPackage = "gsm.mapping"
 )
-chrDateFields <- c(
-  Mapped_AE = "mincreated_dts",
-  Mapped_ENROLL = "enroll_dt",
-  Mapped_LB = "lb_dt",
-  Mapped_PD = "deviationdate",
-  Mapped_SDRGCOMP = "mincreated_dts",
-  Mapped_STUDCOMP = "mincreated_dts",
-  Mapped_Visit = "visit_dt",
-  Mapped_DATACHG = "visit_date",
-  Mapped_DATAENT = "visit_date",
-  Mapped_QUERY = "created"
-)
+lSpec <- gsm.mapping::CombineSpecs(lMappings)
 
-lAllResults <- purrr::map(
-  dSnapshotDate,
-  function(this_dSnapshotDate) {
-    this_lMapped <- lMapped
-    for (tbl in names(chrDateFields)) {
-      this_lMapped[[tbl]] <- FilterBefore(
-        this_lMapped[[tbl]],
-        strField = chrDateFields[[tbl]],
-        dMaxDate = this_dSnapshotDate
-      )
-    }
-    lAnalysis <- gsm.core::RunWorkflows(lWorkflows, this_lMapped)
+intSiteCount <- 50L
+intParticipantCountPerSite <- 5L
+intParticipantCount <- intSiteCount * intParticipantCountPerSite
+# Determined by iterating from 1-938 looking for >5 sites with red flags.
+intSeed <- 938L
+# bGoodEnough <- FALSE
+
+# while (!bGoodEnough) {
+  set.seed(intSeed)
+  snapshots <- gsm.datasim::generate_rawdata_for_single_study(
+    SnapshotCount = 3,
+    SnapshotWidth = "months",
+    ParticipantCount = intParticipantCount,
+    SiteCount = intSiteCount,
+    StudyID = strStudyID,
+    workflow_path = "workflow/1_mappings",
+    mappings = chrDomainsUsed,
+    package = "gsm.mapping"
+  )
+
+  dSnapshotDate <- as.Date(names(snapshots))
+
+  # We can't use just the latest snapshot and then re-divide; among other likely
+  # issues, `Raw_SUBJ$timeonstudy` is updated regardless of when the subject's
+  # profile was created, for example.
+
+  lAllResults <- purrr::map(dSnapshotDate, function(thisDate) {
+    lRaw <- snapshots[[as.character(thisDate)]]
+    # Temporarily fix a weird column name.
+    lRaw$Raw_SUBJ$firstparticipantdate <- lRaw$Raw_SUBJ$firstparticipant
+
+    # Create Mapped Data ----
+
+    lIngested <- gsm.mapping::Ingest(lRaw, lSpec)
+
+    lMapped <- gsm.core::RunWorkflows(lMappings, lIngested)
+    lMapped <- lMapped %>%
+      purrr::map(dplyr::as_tibble)
+
+    # Create Analysis Data - Generate KRIs ----
+
+    lAnalysis <- gsm.core::RunWorkflows(lWorkflows, lMapped)
     dfResults <- gsm.reporting::BindResults(
       lAnalysis = lAnalysis,
       strName = "Analysis_Summary",
-      dSnapshotDate = this_dSnapshotDate,
-      strStudyID = "AA-AA-000-0000"
+      dSnapshotDate = thisDate,
+      strStudyID = strStudyID
     )
     dfAnalyticsInput <- purrr::map(lAnalysis, "Analysis_Input") %>%
       dplyr::bind_rows(.id = "MetricID") %>%
       dplyr::as_tibble() %>%
-      dplyr::mutate(SnapshotDate = this_dSnapshotDate)
+      dplyr::mutate(SnapshotDate = thisDate)
     dfBounds <- gsm.reporting::MakeBounds(
       dfResults = dfResults,
       dfMetrics = sample_dfMetrics
@@ -159,26 +111,56 @@ lAllResults <- purrr::map(
     list(
       dfAnalyticsInput = dfAnalyticsInput,
       dfResults = dfResults,
-      dfBounds = dfBounds
+      dfBounds = dfBounds,
+      lMapped = lMapped
     )
-  }
-)
+  })
 
-# Standard dfs ----
+  # Standard dfs ----
 
-sample_dfResults <- purrr::list_rbind(
-  purrr::map(lAllResults, "dfResults")
-)
-sample_dfBounds <- purrr::list_rbind(
-  purrr::map(lAllResults, "dfBounds")
-)
-sample_dfAnalyticsInput <- purrr::list_rbind(
-  purrr::map(lAllResults, "dfAnalyticsInput")
-)
+  sample_dfResults <- purrr::list_rbind(
+    purrr::map(lAllResults, "dfResults")
+  )
+
+#   RedSites <- sample_dfResults %>%
+#     dplyr::filter(SnapshotDate == "2012-03-31") %>%
+#     dplyr::summarize(
+#       RedsAtSite = sum(!is.na(Flag) & abs(Flag) == 2),
+#       .by = c("GroupLevel", "GroupID")
+#     ) %>%
+#     dplyr::filter(RedsAtSite >= 1) %>%
+#     nrow()
+#
+#   if (RedSites > 5 || intSeed > 1000) {
+#     bGoodEnough <- TRUE
+#   } else {
+#     intSeed <- intSeed + 1L
+#   }
+# }
+#
+# cli::cli_inform("Seed {intSeed} has {RedSites} red sites.")
+
+  sample_dfBounds <- purrr::list_rbind(
+    purrr::map(lAllResults, "dfBounds")
+  )
+  sample_dfAnalyticsInput <- purrr::list_rbind(
+    purrr::map(lAllResults, "dfAnalyticsInput")
+  )
+
+  # We'll use lMapped as of the final snapshot date. In sample_fnFetchData, I'll
+  # have to recalculate some fields, like `Mapped_SUBJ$timeonstudy`.
+  lMapped <- lAllResults[[3]]$lMapped
+
+  sample_dfGroups <- dplyr::bind_rows(
+    # lMapped$Mapped_COUNTRY,
+    lMapped$Mapped_SITE,
+    lMapped$Mapped_STUDY
+  )
 
 # lMapped for Domain Data ----
 
-# SITE and STUDY are in dfGroups
+# COUNTRY, SITE, and STUDY are in dfGroups
+# lMapped$Mapped_COUNTRY <- NULL
 lMapped$Mapped_SITE <- NULL
 lMapped$Mapped_STUDY <- NULL
 
@@ -186,7 +168,8 @@ lMapped$Mapped_STUDY <- NULL
 dfSubjectGroups <- dplyr::distinct(
   sample_dfAnalyticsInput,
   .data$SubjectID,
-  .data$GroupID
+  .data$GroupID,
+  .data$GroupLevel
 )
 sample_lMapped <- purrr::map(lMapped, function(thisDomain) {
   dplyr::inner_join(
@@ -200,6 +183,8 @@ sample_lMapped <- purrr::map(lMapped, function(thisDomain) {
 
 chrFieldNames <- c(
   aeen_dt = "End Date",
+  aeongo = "Ongoing?",
+  aerel = "Related?",
   aeser = "Serious",
   aest_dt = "Start Date",
   aetoxgr = "Toxicity Grade",
@@ -246,11 +231,15 @@ usethis::use_data(
   chrFieldNames,
   overwrite = TRUE,
   internal = TRUE,
-  compress = "xz"
+  compress = "bzip2"
 )
 
 # Everything else that we use is exported as sample data. Split things up by
 # compression type.
+# usethis::use_data(
+#   overwrite = TRUE,
+#   compress = "bzip2"
+# )
 usethis::use_data(
   sample_dfAnalyticsInput,
   sample_dfBounds,
@@ -275,17 +264,18 @@ usethis::use_data(
 
 # Clean up ----
 rm(
-  chrDateFields,
+  # chrDateFields,
   chrFieldNames,
-  chrGroupsUsed,
   chrDomainsUsed,
   dSnapshotDate,
   dfSubjectGroups,
+  intParticipantCount,
+  intParticipantCountPerSite,
+  intSeed,
+  intSiteCount,
   lAllResults,
   lMapped,
   lMappings,
-  lRaw,
-  lSource,
   lWorkflows,
   lSpec,
   sample_dfAnalyticsInput,
@@ -293,5 +283,7 @@ rm(
   sample_dfGroups,
   sample_dfMetrics,
   sample_dfResults,
-  sample_lMapped
+  sample_lMapped,
+  snapshots,
+  strStudyID
 )

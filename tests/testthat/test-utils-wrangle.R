@@ -75,3 +75,16 @@ test_that("FilterByLatestIfPresent does nothing if SnapshotDate doesn't exist", 
   given <- dplyr::tibble(x = 1:5)
   expect_no_error(FilterByLatestIfPresent(given))
 })
+
+test_that("FilterByGroupAndLevel adds GroupLevel when necessary", {
+  given <- dplyr::tibble(GroupID = 1:5)
+  dfGroups <- dplyr::tibble(GroupID = 1:5, GroupLevel = "Site")
+  expect_no_error(
+    FilterByGroupAndLevel(
+      given,
+      strGroupLevel = "Site",
+      strGroupID = 3,
+      dfGroups = dfGroups
+    )
+  )
+})

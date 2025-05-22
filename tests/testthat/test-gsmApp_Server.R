@@ -20,9 +20,9 @@ test_that("gsmApp_Server initializes correctly", {
       expect_equal(input$`group-group`, "All")
 
       session$setInputs(
-        `group-group` = "0X001"
+        `group-group` = "0X1858"
       )
-      expect_equal(input$`group-group`, "0X001")
+      expect_equal(input$`group-group`, "0X1858")
     }
   )
 })
@@ -51,8 +51,8 @@ test_that("gsmApp_Server triggers reset", {
       expect_equal(input$`group-group`, "All")
 
       # Change something from default.
-      session$setInputs(`group-group` = "0X001")
-      expect_equal(input$`group-group`, "0X001")
+      session$setInputs(`group-group` = "0X1858")
+      expect_equal(input$`group-group`, "0X1858")
 
       session$setInputs(reset = 1L)
       # Ideally we'd check inputs here, but testServer doesn't see the change.

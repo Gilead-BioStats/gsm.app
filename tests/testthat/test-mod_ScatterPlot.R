@@ -42,7 +42,8 @@ test_that("mod_ScatterPlot_Server starts as expected", {
       rctv_dfResults = reactive(dfResults),
       rctv_lMetric = reactive(lMetric),
       dfGroups = dfGroups,
-      rctv_dfBounds = reactive(dfBounds)
+      rctv_dfBounds = reactive(dfBounds),
+      rctv_strGroupID = reactiveVal("All")
     ),
     {
       test_result <- output$plot
@@ -77,8 +78,11 @@ test_that("mod_ScatterPlot_Server sets selected group", {
     ),
     {
       expect_null(input$plot)
-      session$setInputs(plot = "0X003")
-      expect_equal(rctv_strGroupID(), "0X003")
+      session$setInputs(plot = "0X2096")
+      expect_equal(rctv_strGroupID(), "0X2096")
+
+      session$setInputs(plot = NULL)
+      expect_equal(rctv_strGroupID(), "All")
     }
   )
 })

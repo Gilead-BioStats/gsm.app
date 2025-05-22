@@ -6,7 +6,7 @@
       <div class="card bslib-card bslib-mb-spacing html-fill-item html-fill-container" data-bslib-card-init data-require-bs-caller="card()" data-require-bs-version="5">
         <div class="card-header">
           <h5>Study Information</h5>
-          <h6 class="card-subtitle mb-2 text-muted">Snapshot Date: 2020-01-01</h6>
+          <h6 class="card-subtitle mb-2 text-muted">Snapshot Date: 2012-03-31</h6>
         </div>
         <div class="card-body bslib-gap-spacing html-fill-item html-fill-container" style="margin-top:auto;margin-bottom:auto;flex:1 1 auto;">
           <label class="toggle">
@@ -471,13 +471,13 @@
         
         <tbody class="gt_table_body">
           <tr><td headers="Description" class="gt_row gt_left">Nickname</td>
-      <td headers="Value" class="gt_row gt_right">Protocol Nickname</td></tr>
+      <td headers="Value" class="gt_row gt_right">GROOVE-85</td></tr>
           <tr><td headers="Description" class="gt_row gt_left">Status</td>
       <td headers="Value" class="gt_row gt_right">Active</td></tr>
           <tr><td headers="Description" class="gt_row gt_left">Site Activation</td>
-      <td headers="Value" class="gt_row gt_right">35 / 190 (18.4%)</td></tr>
+      <td headers="Value" class="gt_row gt_right">44 / 50 (88%)</td></tr>
           <tr><td headers="Description" class="gt_row gt_left">Participant Enrollment</td>
-      <td headers="Value" class="gt_row gt_right">227 / 1300 (17.5%)</td></tr>
+      <td headers="Value" class="gt_row gt_right">192 / 250 (76.8%)</td></tr>
         </tbody>
         
         
@@ -937,49 +937,49 @@
         
         <tbody class="gt_table_body">
           <tr><td headers="Description" class="gt_row gt_left">Studyid</td>
-      <td headers="Value" class="gt_row gt_right">AA-AA-000-0000</td></tr>
+      <td headers="Value" class="gt_row gt_right">DEMO-001</td></tr>
           <tr><td headers="Description" class="gt_row gt_left">Nickname</td>
-      <td headers="Value" class="gt_row gt_right">Protocol Nickname</td></tr>
+      <td headers="Value" class="gt_row gt_right">GROOVE-85</td></tr>
           <tr><td headers="Description" class="gt_row gt_left">Protocol Title</td>
-      <td headers="Value" class="gt_row gt_right">Protocol Title</td></tr>
+      <td headers="Value" class="gt_row gt_right">Protocol Title H</td></tr>
           <tr><td headers="Description" class="gt_row gt_left">Status</td>
       <td headers="Value" class="gt_row gt_right">Active</td></tr>
           <tr><td headers="Description" class="gt_row gt_left">Num Plan Site</td>
-      <td headers="Value" class="gt_row gt_right">190</td></tr>
+      <td headers="Value" class="gt_row gt_right">50</td></tr>
           <tr><td headers="Description" class="gt_row gt_left">Num Plan Subj</td>
-      <td headers="Value" class="gt_row gt_right">1300</td></tr>
+      <td headers="Value" class="gt_row gt_right">250</td></tr>
           <tr><td headers="Description" class="gt_row gt_left">Act Fpfv</td>
-      <td headers="Value" class="gt_row gt_right">2003-01-01</td></tr>
+      <td headers="Value" class="gt_row gt_right">2012-01-16</td></tr>
           <tr><td headers="Description" class="gt_row gt_left">Est Fpfv</td>
-      <td headers="Value" class="gt_row gt_right">2003-01-01</td></tr>
+      <td headers="Value" class="gt_row gt_right">2012-01-21</td></tr>
           <tr><td headers="Description" class="gt_row gt_left">Est Lplv</td>
-      <td headers="Value" class="gt_row gt_right">2021-06-01</td></tr>
+      <td headers="Value" class="gt_row gt_right">2012-05-03</td></tr>
           <tr><td headers="Description" class="gt_row gt_left">Est Lpfv</td>
-      <td headers="Value" class="gt_row gt_right">2020-06-01</td></tr>
+      <td headers="Value" class="gt_row gt_right">2012-03-14</td></tr>
           <tr><td headers="Description" class="gt_row gt_left">Therapeutic Area</td>
-      <td headers="Value" class="gt_row gt_right">Therapeutic Area</td></tr>
+      <td headers="Value" class="gt_row gt_right">Inflammation</td></tr>
           <tr><td headers="Description" class="gt_row gt_left">Protocol Indication</td>
-      <td headers="Value" class="gt_row gt_right">Protocol Indication</td></tr>
+      <td headers="Value" class="gt_row gt_right">Cardiovascular Health</td></tr>
           <tr><td headers="Description" class="gt_row gt_left">Phase</td>
-      <td headers="Value" class="gt_row gt_right">P3</td></tr>
+      <td headers="Value" class="gt_row gt_right">P4</td></tr>
           <tr><td headers="Description" class="gt_row gt_left">Product</td>
-      <td headers="Value" class="gt_row gt_right">Product</td></tr>
+      <td headers="Value" class="gt_row gt_right">Product Name 5</td></tr>
           <tr><td headers="Description" class="gt_row gt_left">Site Target</td>
-      <td headers="Value" class="gt_row gt_right">190</td></tr>
+      <td headers="Value" class="gt_row gt_right">50</td></tr>
           <tr><td headers="Description" class="gt_row gt_left">Participant Target</td>
-      <td headers="Value" class="gt_row gt_right">1300</td></tr>
+      <td headers="Value" class="gt_row gt_right">250</td></tr>
           <tr><td headers="Description" class="gt_row gt_left">Participants Enrolled</td>
-      <td headers="Value" class="gt_row gt_right">227</td></tr>
+      <td headers="Value" class="gt_row gt_right">192</td></tr>
           <tr><td headers="Description" class="gt_row gt_left">Sites Enrolled</td>
-      <td headers="Value" class="gt_row gt_right">35</td></tr>
+      <td headers="Value" class="gt_row gt_right">44</td></tr>
           <tr><td headers="Description" class="gt_row gt_left">Percent Sites Activated</td>
-      <td headers="Value" class="gt_row gt_right">18.4</td></tr>
+      <td headers="Value" class="gt_row gt_right">88</td></tr>
           <tr><td headers="Description" class="gt_row gt_left">Site Activation</td>
-      <td headers="Value" class="gt_row gt_right">35 / 190 (18.4%)</td></tr>
+      <td headers="Value" class="gt_row gt_right">44 / 50 (88%)</td></tr>
           <tr><td headers="Description" class="gt_row gt_left">Percent Participants Enrolled</td>
-      <td headers="Value" class="gt_row gt_right">17.5</td></tr>
+      <td headers="Value" class="gt_row gt_right">76.8</td></tr>
           <tr><td headers="Description" class="gt_row gt_left">Participant Enrollment</td>
-      <td headers="Value" class="gt_row gt_right">227 / 1300 (17.5%)</td></tr>
+      <td headers="Value" class="gt_row gt_right">192 / 250 (76.8%)</td></tr>
         </tbody>
         
         

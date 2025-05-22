@@ -19,15 +19,16 @@ test_that("sample_fnFetchData returns expected data", {
       "agerep",
       "sex",
       "race",
-      "mincreated_dts"
+      "mincreated_dts",
+      "GroupLevel"
     )
   )
-  expect_equal(nrow(test_result), 227)
+  expect_equal(nrow(test_result), 192)
 })
 
 test_that("sample_fnFetchData returns expected data by Site", {
   expect_no_error({
-    test_result <- sample_fnFetchData("SUBJ", strGroupID = "0X103")
+    test_result <- sample_fnFetchData("SUBJ", strGroupID = "0X1858")
   })
   expect_s3_class(test_result, c("tbl_df", "tbl", "data.frame"))
 
@@ -46,15 +47,16 @@ test_that("sample_fnFetchData returns expected data by Site", {
       "agerep",
       "sex",
       "race",
-      "mincreated_dts"
+      "mincreated_dts",
+      "GroupLevel"
     )
   )
-  expect_equal(nrow(test_result), 5)
+  expect_equal(nrow(test_result), 11)
 })
 
 test_that("sample_fnFetchData returns expected data by Subject", {
   expect_no_error({
-    test_result <- sample_fnFetchData("SUBJ", strSubjectID = "0008")
+    test_result <- sample_fnFetchData("SUBJ", strSubjectID = "S50530")
   })
   expect_s3_class(test_result, c("tbl_df", "tbl", "data.frame"))
 
@@ -73,7 +75,8 @@ test_that("sample_fnFetchData returns expected data by Subject", {
       "agerep",
       "sex",
       "race",
-      "mincreated_dts"
+      "mincreated_dts",
+      "GroupLevel"
     )
   )
   expect_equal(nrow(test_result), 1)
@@ -81,29 +84,29 @@ test_that("sample_fnFetchData returns expected data by Subject", {
 
 test_that("sample_fnFetchData throws an error in one situation", {
   expect_error(
-    sample_fnFetchData("LB", "0X013"),
+    sample_fnFetchData("LB", "0X3349"),
     class = "gsm.app-error-sample_data-demo"
   )
 })
 
 test_that("sample_fnFetchData can filter by date", {
   expect_no_error({
-    test_result <- sample_fnFetchData("AE", dSnapshotDate = "2018-01-01")
+    test_result <- sample_fnFetchData("AE", dSnapshotDate = "2012-01-31")
   })
-  expect_equal(nrow(test_result), 1062)
+  expect_equal(nrow(test_result), 123)
   expect_no_error({
-    test_result <- sample_fnFetchData("AE", dSnapshotDate = "2019-01-01")
+    test_result <- sample_fnFetchData("AE", dSnapshotDate = "2012-02-29")
   })
-  expect_equal(nrow(test_result), 1150)
+  expect_equal(nrow(test_result), 364)
   expect_no_error({
-    test_result <- sample_fnFetchData("AE", dSnapshotDate = "2020-01-01")
+    test_result <- sample_fnFetchData("AE", dSnapshotDate = "2012-03-21")
   })
-  expect_equal(nrow(test_result), 1168)
+  expect_equal(nrow(test_result), 572)
 })
 
 test_that("sample_fnFetchData accepts strGroupLevel arg", {
   expect_no_error({
     test_result <- sample_fnFetchData("AE", strGroupLevel = "whatever")
   })
-  expect_equal(nrow(test_result), 1168)
+  expect_equal(nrow(test_result), 572)
 })

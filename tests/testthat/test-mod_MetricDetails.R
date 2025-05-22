@@ -40,8 +40,8 @@ test_that("mod_MetricDetails_Server initializes and renders scatter plot", {
       session$setInputs(selected_tab = "Scatter Plot")
 
       # Simulate selecting a group from the scatter plot
-      session$setInputs(`scatter_plot-plot` = "0X005")
-      expect_equal(rctv_strGroupID(), "0X005")
+      session$setInputs(`scatter_plot-plot` = "0X2096")
+      expect_equal(rctv_strGroupID(), "0X2096")
     }
   )
 })

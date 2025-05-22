@@ -12,7 +12,8 @@ test_that("mod_GroupParticipants_Server starts as expected", {
   dfAnalyticsInput <- FilterbyMetricID(
     sample_dfAnalyticsInput,
     "Analysis_kri0001"
-  )
+  ) %>%
+    FilterByLatestIfPresent()
   rctv_strGroupID <- reactiveVal("All")
 
   testServer(
@@ -40,7 +41,7 @@ test_that("mod_GroupParticipants_Server starts as expected", {
         call = call
       )
 
-      rctv_strGroupID("0X003")
+      rctv_strGroupID("0X7121")
       test_result <- output$`gt-table`
       expect_type(test_result, "list")
       expect_named(test_result, c("html", "deps"))
@@ -59,7 +60,8 @@ test_that("mod_GroupParticipants_Server returns selected participant", {
   dfAnalyticsInput <- FilterbyMetricID(
     sample_dfAnalyticsInput,
     "Analysis_kri0001"
-  )
+  ) %>%
+    FilterByLatestIfPresent()
 
   testServer(
     mod_GroupParticipants_Server,
@@ -80,7 +82,7 @@ test_that("mod_GroupParticipants_Server returns selected participant", {
       # Without this I don't think the gt data registers properly.
       session$flushReact()
       session$setInputs(`gt-table` = 3L)
-      expect_equal(session$returned(), "0351")
+      expect_equal(session$returned(), "S73894")
       session$setInputs(`gt-table` = 0L)
       expect_equal(session$returned(), "All")
       session$setInputs(`gt-table` = NULL)
