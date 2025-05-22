@@ -80,6 +80,9 @@ test_that("mod_ScatterPlot_Server sets selected group", {
       expect_null(input$plot)
       session$setInputs(plot = "0X2096")
       expect_equal(rctv_strGroupID(), "0X2096")
+
+      session$setInputs(plot = NULL)
+      expect_equal(rctv_strGroupID(), "All")
     }
   )
 })
