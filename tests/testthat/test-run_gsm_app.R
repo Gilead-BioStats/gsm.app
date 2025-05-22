@@ -62,7 +62,7 @@ test_that("run_gsm_app populates Study Overview", {
   )
 
   # Set group via drop-down.
-  app$set_inputs(`group-group` = "0X7856")
+  app$set_inputs(`group-group` = "0X6465")
   app$wait_for_idle()
   app$set_inputs(primary_nav_bar = "Study Overview")
   app$wait_for_js(
@@ -81,7 +81,7 @@ test_that("run_gsm_app populates Study Overview", {
   )
 
   # Click on SAE plot.
-  app$run_js("clickWidgetPlotGroup('study_overview-scatter-Analysis_kri0002', '0X170');")
+  app$run_js("clickWidgetPlotGroup('study_overview-scatter-Analysis_kri0002', '0X7840');")
   app$set_inputs(
     `study_overview-scatter-selectedScatterPlot` = "study_overview-scatter-Analysis_kri0002",
     allow_no_input_binding_ = TRUE
@@ -170,7 +170,7 @@ test_that("run_gsm_app populates Metric Details", {
   )
 
   # Choose a group in the drop-down.
-  app$set_inputs(`group-group` = "0X7856")
+  app$set_inputs(`group-group` = "0X6465")
   app$wait_for_idle()
   app$expect_values(
     export = TRUE,
@@ -179,7 +179,7 @@ test_that("run_gsm_app populates Metric Details", {
   )
 
   # Click back through to make sure all have the group selected. Alternate
-  # between 0X7856 and 0X7840 as we go.
+  # between 0X7840 and 0X7856 as we go.
   app$set_inputs(`metric_details-selected_tab` = "Time Series")
   app$wait_for_js(
     "isCanvasLoaded('metric_details-time_series');",
@@ -191,7 +191,9 @@ test_that("run_gsm_app populates Metric Details", {
     name = "time-group",
     screenshot_args = list(selector = ".active .tabbable")
   )
-  app$run_js("clickWidgetPlotGroup('metric_details-time_series', '0X7856');")
+  # My click function doesn't work for time series except maybe if a thing is already selected.
+  app$set_inputs(`group-group` = "0X7840")
+  app$wait_for_idle()
   app$wait_for_js(
     "isCanvasLoaded('metric_details-time_series');",
     timeout = 2000
@@ -199,7 +201,20 @@ test_that("run_gsm_app populates Metric Details", {
   app$wait_for_idle()
   app$expect_values(
     export = TRUE,
-    name = "time-group_click",
+    name = "time-group_select",
+    screenshot_args = list(selector = ".active .tabbable")
+  )
+
+  app$set_inputs(`group-group` = "0X9824")
+  app$wait_for_idle()
+  app$wait_for_js(
+    "isCanvasLoaded('metric_details-time_series');",
+    timeout = 2000
+  )
+  app$wait_for_idle()
+  app$expect_values(
+    export = TRUE,
+    name = "time-group_select2",
     screenshot_args = list(selector = ".active .tabbable")
   )
 
@@ -214,7 +229,7 @@ test_that("run_gsm_app populates Metric Details", {
     name = "bar_score-group",
     screenshot_args = list(selector = ".active .tabbable")
   )
-  app$run_js("clickWidgetPlotGroup('metric_details-bar_chart_score', '0X7840');")
+  app$run_js("clickWidgetPlotGroup('metric_details-bar_chart_score', '0X7856');")
   app$wait_for_js(
     "isCanvasLoaded('metric_details-bar_chart_score');",
     timeout = 2000
@@ -237,7 +252,7 @@ test_that("run_gsm_app populates Metric Details", {
     name = "bar_value-group",
     screenshot_args = list(selector = ".active .tabbable")
   )
-  app$run_js("clickWidgetPlotGroup('metric_details-bar_chart_metric', '0X7856');")
+  app$run_js("clickWidgetPlotGroup('metric_details-bar_chart_metric', '0X7840');")
   app$wait_for_js(
     "isCanvasLoaded('metric_details-bar_chart_metric');",
     timeout = 2000
@@ -260,7 +275,7 @@ test_that("run_gsm_app populates Metric Details", {
     name = "scatter-group",
     screenshot_args = list(selector = ".active .tabbable")
   )
-  app$run_js("clickWidgetPlotGroup('metric_details-scatter_plot', '0X7840');")
+  app$run_js("clickWidgetPlotGroup('metric_details-scatter_plot', '0X7856');")
   app$wait_for_js(
     "isCanvasLoaded('metric_details-scatter_plot');",
     timeout = 2000

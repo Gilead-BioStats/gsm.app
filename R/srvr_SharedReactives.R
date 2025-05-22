@@ -32,8 +32,7 @@ srvr_rctv_lMetric <- function(
   reactive({
     req(rctv_strMetricID())
     lMetric <- rctv_lMetric_base()
-    lMetric$selectedGroupIDs <- NullifyEmpty(rctv_strGroupID()) %||%
-      lMetric$selectedGroupIDs
+    lMetric$selectedGroupIDs <- NullifyEmpty(rctv_strGroupID())
     return(lMetric)
   }) %>%
     bindCache(rctv_strMetricID(), rctv_strGroupID())
