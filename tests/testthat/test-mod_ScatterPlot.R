@@ -42,7 +42,8 @@ test_that("mod_ScatterPlot_Server starts as expected", {
       rctv_dfResults = reactive(dfResults),
       rctv_lMetric = reactive(lMetric),
       dfGroups = dfGroups,
-      rctv_dfBounds = reactive(dfBounds)
+      rctv_dfBounds = reactive(dfBounds),
+      rctv_strGroupID = reactiveVal("All")
     ),
     {
       test_result <- output$plot
