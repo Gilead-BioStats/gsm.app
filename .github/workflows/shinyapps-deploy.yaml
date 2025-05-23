@@ -74,11 +74,11 @@ jobs:
         run: |
           install.packages("pak")
           extras <- c(
-            "pkgload",
-            "pkgdown",
-            "AsioHeaders",
-            "cpp11",
-            "progress"
+            "pkgload" #,
+          #  "pkgdown",
+          #  "AsioHeaders",
+          #  "cpp11",
+          #  "progress"
           )
           remove.packages(intersect(extras, rownames(installed.packages())))
           pak::pak(extras)
