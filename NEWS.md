@@ -1,3 +1,5 @@
+# gsm.app (development version)
+
 # gsm.app 2.5.0
 
 We now support multiple group levels! We also provided more options to allow app admins to optimize data fetches.
