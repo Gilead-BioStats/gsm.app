@@ -64,8 +64,13 @@ jobs:
 
       - uses: r-lib/actions/setup-r-dependencies@v2
         with:
-          extra-packages: any::rcmdcheck
           needs: deploy
+
+      - name: Install this package
+        run: |
+          # This should also ensure that dependencies are up-to-date.
+          pak::pak()
+        shell: Rscript {0}
 
       # # Use a cache to speed up installation, if possible. Packages will be
       # # restored if they're in the cache, then updated if necessary in the
