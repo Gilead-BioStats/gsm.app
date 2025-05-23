@@ -1,3 +1,5 @@
+skip_if_not_installed("shinytest2")
+
 test_that("run_gsm_app initializes the expected app", {
   skip_on_cran()
   app <- AppDriver$new(

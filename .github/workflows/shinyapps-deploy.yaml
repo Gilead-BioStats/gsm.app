@@ -56,39 +56,35 @@ jobs:
         run: |
           rm -rf .github data-raw tests
           rm -f _pkgdown.yml .gitignore principles.md
+
       - uses: r-lib/actions/setup-r@v2
         with:
           use-public-rspm: true
           r-version: 'oldrel'
 
-      # Use a cache to speed up installation, if possible. Packages will be
-      # restored if they're in the cache, then updated if necessary in the
-      # following step, then re-cached at the end of the run.
-      - name: Use R package cache
-        uses: actions/cache@v4
+      - uses: r-lib/actions/setup-r-dependencies@v2
         with:
-          path: ${{ runner.temp }}/Library
-          key: ${{ runner.os }}-R-${{ hashFiles('DESCRIPTION') }}
+          extra-packages: any::rcmdcheck
+          needs: deploy
 
-      - name: Install packages
+      # # Use a cache to speed up installation, if possible. Packages will be
+      # # restored if they're in the cache, then updated if necessary in the
+      # # following step, then re-cached at the end of the run.
+      # - name: Use R package cache
+      #   uses: actions/cache@v4
+      #   with:
+      #     path: ${{ runner.temp }}/Library
+      #     key: ${{ runner.os }}-R-${{ hashFiles('DESCRIPTION') }}
+
+      - name: Install plugin dependencies
         run: |
-          install.packages("pak")
-          # extras <- c("pkgload")
-          # remove.packages(intersect(extras, rownames(installed.packages())))
-          # pak::pak(extras)
-          # Make sure everything is up-to-date.
-          pak::pak()
-
-          # Install plugin dependencies. Technically this plugin doesn't have
-          # any, but keep this in place as an example.
+          # Technically this plugin doesn't have any, but keep this in place as
+          # an example.
           pkgload::load_all(".", export_all = FALSE, attach_testthat = FALSE)
           subjPlugin <- plugin_Read(
             system.file("plugins", "ParticipantProfile", package = "gsm.app")
           )
           plugin_InstallDependencySources(subjPlugin)
-
-          # Manually install rsconnect to deploy.
-          pak::pak("rsconnect")
         shell: Rscript {0}
 
       - name: Set APPNAME
