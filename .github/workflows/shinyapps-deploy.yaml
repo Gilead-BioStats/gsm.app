@@ -64,11 +64,10 @@ jobs:
 
       - uses: r-lib/actions/setup-r-dependencies@v2
 
-      - name: Install this package
+      - name: Install things for rsconnect
         run: |
-          # This should also ensure that dependencies are up-to-date.
-          # pak::pak()
-          pak::pak("rsconnect")
+          # I don't know why it misses cpp11 (nor why it's needed).
+          pak::pak(c("cpp11", "rsconnect"))
         shell: Rscript {0}
 
       # # Use a cache to speed up installation, if possible. Packages will be
