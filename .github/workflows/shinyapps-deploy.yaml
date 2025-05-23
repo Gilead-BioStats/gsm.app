@@ -63,13 +63,12 @@ jobs:
           r-version: 'oldrel'
 
       - uses: r-lib/actions/setup-r-dependencies@v2
-        with:
-          needs: deploy
 
       - name: Install this package
         run: |
           # This should also ensure that dependencies are up-to-date.
-          pak::pak()
+          # pak::pak()
+          pak::pak("rsconnect")
         shell: Rscript {0}
 
       # # Use a cache to speed up installation, if possible. Packages will be
