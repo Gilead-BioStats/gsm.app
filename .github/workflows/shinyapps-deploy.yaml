@@ -73,13 +73,7 @@ jobs:
       - name: Install packages
         run: |
           install.packages("pak")
-          extras <- c(
-            "pkgload" #,
-          #  "pkgdown",
-          #  "AsioHeaders",
-          #  "cpp11",
-          #  "progress"
-          )
+          extras <- c("pkgload")
           remove.packages(intersect(extras, rownames(installed.packages())))
           pak::pak(extras)
           # Make sure everything is up-to-date.
