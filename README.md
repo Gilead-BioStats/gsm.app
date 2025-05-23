@@ -25,14 +25,14 @@ gsm.app produces Shiny applications with drill-down functionality for
 <div class="pkgdown-release">
 
 You can explore a sample app produced by the latest release of gsm.app
-[here](https://openrbqm.shinyapps.io/gsm-app).
+[here](https://rinpharma.shinyapps.io/gsm-app).
 
 </div>
 
 <div class="pkgdown-devel">
 
 You can explore a sample app produced by the development version of
-gsm.app [here](https://openrbqm.shinyapps.io/gsm-app-dev).
+gsm.app [here](https://rinpharma.shinyapps.io/gsm-app-dev).
 
 </div>
 

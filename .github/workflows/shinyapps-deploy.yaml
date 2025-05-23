@@ -94,7 +94,7 @@ jobs:
           plugin_InstallDependencySources(subjPlugin)
 
           # Manually install rsconnect to deploy.
-          pak::pak("rstudio/rsconnect@v1.3.4")
+          pak::pak("rsconnect")
         shell: Rscript {0}
 
       - name: Set APPNAME
@@ -138,7 +138,7 @@ jobs:
         run: |
           appname <- Sys.getenv("APPNAME")
           rsconnect::setAccountInfo(
-            name = "openrbqm",
+            name = "rinpharma",
             token = Sys.getenv("SHINYAPPSIO_TOKEN"),
             secret = Sys.getenv("SHINYAPPSIO_SECRET")
           )
@@ -153,7 +153,7 @@ jobs:
         uses: actions/github-script@v6
         with:
           script: |
-            const appUrl = `https://openrbqm.shinyapps.io/${process.env.APPNAME}`;
+            const appUrl = `https://rinpharma.shinyapps.io/${process.env.APPNAME}`;
             const comment = `🚀 Deployed App: [${appUrl}](${appUrl})`;
 
             await github.rest.issues.createComment({
