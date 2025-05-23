@@ -44,10 +44,10 @@ Suggests:
     pak,
     pkgload (>= 1.4.0),
     rmarkdown,
+    shinytest2 (>= 0.4.1),
     testthat (>= 3.0.0),
     withr
 Config/Needs/data: usethis
-Config/Needs/shinytest: shinytest2 (>= 0.4.1)
 Config/Needs/deploy: rsconnect
 Remotes: 
     gsm.core=gilead-biostats/gsm.core@main,
