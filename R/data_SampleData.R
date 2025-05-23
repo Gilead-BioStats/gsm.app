@@ -1,6 +1,6 @@
 #' Analytics Input Dataset
 #'
-#' Summary metric data for the "Site Subjects" module on the "Metric Details"
+#' Summary metric data for the "Group Subjects" module on the "Metric Details"
 #' tab.
 #'
 #' @format A tibble with `r nrow(gsm.app::sample_dfAnalyticsInput)` rows and
@@ -13,6 +13,7 @@
 #'   \item{Numerator}{numerator for this individual}
 #'   \item{Denominator}{denominator for this individual}
 #'   \item{Metric}{calculated rate/metric value}
+#'   \item{SnapshotDate}{The snapshot with which this data is associated. We currently only use the most recent SnapshotDate}
 #' }
 #' @source Generated from data in the `clindata` package, using the
 #'   `gsm.mapping` package.
@@ -84,7 +85,7 @@
 
 #' KRI Results Dataset
 #'
-#' Information about the status of each site in the sample data.
+#' Information about the status of each group in the sample data.
 #'
 #' @format A tibble with `r nrow(gsm.app::sample_dfResults)` rows and
 #'   `r ncol(gsm.app::sample_dfResults)` columns:
@@ -118,7 +119,7 @@
 #'
 #' @examples
 #' head(sample_fnFetchData("AE"))
-#' head(sample_fnFetchData("AE", strSiteID = "0X103"))
+#' head(sample_fnFetchData("AE", strGroupID = "0X103"))
 #' head(sample_fnFetchData("AE", strSubjectID = "1350"))
 sample_fnFetchData <- function(
   strDomainID = c(
@@ -133,21 +134,23 @@ sample_fnFetchData <- function(
     "DATAENT",
     "QUERY"
   ),
-  strSiteID = NULL,
-  strSubjectID = NULL
+  strGroupID = NULL,
+  strGroupLevel = NULL,
+  strSubjectID = NULL,
+  dSnapshotDate = NULL
 ) {
   strDomainID <- toupper(strDomainID)
   strDomainID <- rlang::arg_match(strDomainID)
 
-  strSiteID <- NullifyEmpty(strSiteID)
+  strGroupID <- NullifyEmpty(strGroupID)
   strSubjectID <- NullifyEmpty(strSubjectID)
 
   if (
-    !is.null(strSiteID) && strSiteID == "0X013" && strDomainID == "LB"
+    !is.null(strGroupID) && strGroupID == "0X3349" && strDomainID == "LB"
   ) {
     gsmappAbort(
       c(
-        "Site 0X013 has data issues for the Lab domain.",
+        "Site 0X3349 has data issues for the Lab domain.",
         "This is to demonstrate behavior with errors.",
         "Please select another Site."
       ),
@@ -159,11 +162,97 @@ sample_fnFetchData <- function(
   df$studyid <- NULL
   df$invid <- NULL
   df <- dplyr::rename(df, SubjectID = "subjid")
-  if (length(strSiteID)) {
-    df <- dplyr::filter(df, .data$GroupID == strSiteID)
+  if ("subjectid" %in% colnames(df)) {
+    df <- dplyr::rename(df, IntakeID = "subjectid")
   }
-  if (length(strSubjectID)) {
-    df <- dplyr::filter(df, .data$SubjectID == strSubjectID)
+
+  df <- FilterDomainData(
+    df,
+    strDomainID = strDomainID,
+    dSnapshotDate = dSnapshotDate,
+    dfGroups = gsm.app::sample_dfGroups,
+    strGroupLevel = strGroupLevel,
+    strGroupID = strGroupID,
+    strSubjectID = strSubjectID
+  )
+  df <- RecalculateDomainData(
+    df,
+    strDomainID = strDomainID,
+    dSnapshotDate = dSnapshotDate
+  )
+
+  return(df)
+}
+
+RecalculateDomainData <- function(df,
+                                  strDomainID,
+                                  dSnapshotDate = NULL) {
+  if (!is.null(dSnapshotDate)) {
+    if (strDomainID == "SUBJ") {
+      # Dates can't be after dSnapshotDate.
+      df %>%
+        dplyr::filter(.data$firstparticipantdate <= dSnapshotDate) %>%
+        dplyr::mutate(
+          firstdosedate = dplyr::if_else(
+            .data$firstdosedate <= dSnapshotDate,
+            .data$firstdosedate,
+            NA
+          ),
+          timeonstudy = as.integer(dSnapshotDate - .data$firstparticipantdate),
+          timeontreatment = as.integer(dSnapshotDate - .data$firstdosedate)
+        )
+    }
   }
-  return(dplyr::select(df, "SubjectID", "GroupID", dplyr::everything()))
+  return(df)
+}
+
+#' Construct a Data Count Function
+#'
+#' It is often faster to fetch *counts* of data, rather than the entire dataset.
+#' If your `fnFetchData()` function is already fast, however, this function
+#' allows you to construct a simple data counter from your data fetcher.
+#'
+#' @inheritParams shared-params
+#'
+#' @returns A function that returns counts of rows in the specified domain data.
+#' @export
+#'
+#' @examples
+#' fnDataCounter <- ConstructDataCounter(sample_fnFetchData)
+#' fnDataCounter("AE") == nrow(sample_fnFetchData("AE"))
+ConstructDataCounter <- function(fnFetchData) {
+  force(fnFetchData)
+  function(
+    strDomainID = c(
+      "AE",
+      "ENROLL",
+      "LB",
+      "PD",
+      "SDRGCOMP",
+      "STUDCOMP",
+      "SUBJ",
+      "DATACHG",
+      "DATAENT",
+      "QUERY"
+    ),
+    strGroupID = NULL,
+    strGroupLevel = NULL,
+    strSubjectID = NULL,
+    dSnapshotDate = NULL
+  ) {
+    tryCatch(
+      {
+        NROW(fnFetchData(
+          strDomainID = strDomainID,
+          strGroupID = strGroupID,
+          strGroupLevel = strGroupLevel,
+          strSubjectID = strSubjectID,
+          dSnapshotDate = dSnapshotDate
+        ))
+      },
+      error = function(cnd) {
+        return(NA_integer_)
+      }
+    )
+  }
 }

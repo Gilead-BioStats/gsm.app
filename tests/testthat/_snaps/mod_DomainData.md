@@ -8,7 +8,14 @@
           <style>#myDomain-card .bslib-full-screen-enter { bottom: unset !important; }</style>
           <div class="card bslib-card bslib-mb-spacing bslib-card-input html-fill-item html-fill-container" data-bslib-card-init data-full-screen="false" data-require-bs-caller="card()" data-require-bs-version="5" id="myDomain-card">
             <div class="card-body bslib-gap-spacing html-fill-item html-fill-container" style="margin-top:auto;margin-bottom:auto;flex:1 1 auto;">
-              <div class="shiny-html-output gt_shiny" id="myDomain-gt-table"></div>
+              <div data-spinner-id="myDomain-spinner" class="shiny-spinner-output-container shiny-spinner-hideui">
+                <div class="load-container shiny-spinner-hidden load7">
+                  <div id="myDomain-spinner" class="loader">Loading...</div>
+                  <div id="myDomain-spinner__caption" class="shiny-spinner-caption">loading data...</div>
+                </div>
+                <div style="height:200px" class="shiny-spinner-placeholder"></div>
+                <div class="shiny-html-output gt_shiny" id="myDomain-gt-table"></div>
+              </div>
             </div>
             <bslib-tooltip placement="auto" bsOptions="[]" data-require-bs-version="5" data-require-bs-caller="tooltip()">
               <template>Expand</template>

@@ -5,8 +5,8 @@
 \alias{sample_dfAnalyticsInput}
 \title{Analytics Input Dataset}
 \format{
-A tibble with 2673 rows and
-7 columns:
+A tibble with 3938 rows and
+8 columns:
 \describe{
 \item{MetricID}{metric identifier}
 \item{SubjectID}{unique subject identifier}
@@ -15,6 +15,7 @@ A tibble with 2673 rows and
 \item{Numerator}{numerator for this individual}
 \item{Denominator}{denominator for this individual}
 \item{Metric}{calculated rate/metric value}
+\item{SnapshotDate}{The snapshot with which this data is associated. We currently only use the most recent SnapshotDate}
 }
 }
 \source{
@@ -25,7 +26,7 @@ Generated from data in the \code{clindata} package, using the
 sample_dfAnalyticsInput
 }
 \description{
-Summary metric data for the "Site Subjects" module on the "Metric Details"
+Summary metric data for the "Group Subjects" module on the "Metric Details"
 tab.
 }
 \seealso{

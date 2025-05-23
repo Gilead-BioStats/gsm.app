@@ -30,12 +30,12 @@ htmlDependency_ScatterPlotInput <- function() {
 #' @inheritParams shared-params
 #' @keywords internal
 mod_ScatterPlot_Server <- function(
-    id,
-    rctv_dfResults,
-    rctv_lMetric,
-    dfGroups,
-    rctv_dfBounds,
-    rctv_strSiteID
+  id,
+  rctv_dfResults,
+  rctv_lMetric,
+  dfGroups,
+  rctv_dfBounds,
+  rctv_strGroupID
 ) {
   mod_WidgetPlot_Server(
     id,
@@ -45,7 +45,7 @@ mod_ScatterPlot_Server <- function(
     rctv_lMetric = rctv_lMetric,
     dfGroups = dfGroups,
     rctv_dfBounds = rctv_dfBounds,
-    rctv_strSiteID = rctv_strSiteID
+    rctv_strGroupID = rctv_strGroupID
   )
 }
 
@@ -54,11 +54,11 @@ mod_ScatterPlot_Server <- function(
 #' @inheritParams shared-params
 #' @keywords internal
 Widget_ScatterPlot <- function(
-    id,
-    dfResults,
-    lMetric = list(),
-    dfGroups = NULL,
-    dfBounds = NULL
+  id,
+  dfResults,
+  lMetric = list(),
+  dfGroups = NULL,
+  dfBounds = NULL
 ) {
   stopifnot(
     "dfResults is not a data.frame" = is.data.frame(dfResults),
@@ -88,9 +88,9 @@ Widget_ScatterPlot <- function(
 #' @inheritParams Widget_PlotOutput
 #' @keywords internal
 Widget_ScatterPlotOutput <- function(
-    outputId,
-    width = "100%",
-    height = "400px"
+  outputId,
+  width = "100%",
+  height = "400px"
 ) {
   Widget_PlotOutput("Widget_ScatterPlot", outputId, width, height)
 }

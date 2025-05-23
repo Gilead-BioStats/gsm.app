@@ -6,12 +6,12 @@
 \usage{
 plugin_Define(
   strName,
-  chrDomains,
+  lSpec,
   fnShinyUI,
   fnShinyServer,
   ...,
+  lWorkflows = list(),
   chrRequiredInputs = character(),
-  lConfig = list(),
   envCall = rlang::caller_env()
 )
 }
@@ -19,11 +19,9 @@ plugin_Define(
 \item{strName}{\verb{length-1 character} The name of the plugin, as it will
 display to the user in the menu of tabs and plugins.}
 
-\item{chrDomains}{\code{character} Names of the data domains that are used by the
-plugin. Supported values: "AE" (Adverse Events), "DATACHG" (Data Changes),
-"DATAENT" (Data Entry), "ENROLL" (Enrollment), "LB" (Lab), "PD" (Protocol
-Deviations), "QUERY" (Queries), "STUDCOMP" (Study Completion), "SUBJ"
-(Subject Metadata), "SDRGCOMP" (Treatment Completion).}
+\item{lSpec}{\code{list} A named list defining the data domains required by the
+plugin, where the names are the names of the domains and the elements are
+column definitions.}
 
 \item{fnShinyUI}{\verb{function or character} A shiny module UI function for the
 plugin, or the name of such a function in the current session.}
@@ -31,16 +29,21 @@ plugin, or the name of such a function in the current session.}
 \item{fnShinyServer}{\verb{function or character} A shiny module server function
 for the plugin, or the name of such a function in the current session.}
 
-\item{...}{These dots are for future extensions and must be empty.}
+\item{...}{Additional named arguments passed on to \code{fnShinyUI} and/or
+\code{fnShinyServer} by name.}
+
+\item{lWorkflows}{\code{list} An optional named list of workflows to run in order
+to translate app domain data into the format required by the plugin (as
+defined in the plugin \code{spec}). These workflows are ran before the plugin's
+\code{spec} is applied, and are meant to serve as a bridge between your domain
+data and the plugin's expected domains.}
 
 \item{chrRequiredInputs}{\code{character} An optional vector of any inputs
-("Metric", "Site", "Participant", or "Domain") that must have a non-empty
-value before the plugin can load. "None" and "All" count as "empty" for
-this check. If the user has not set a value for that input, the app will
-display a placeholder instructing the user to make a selection.}
-
-\item{lConfig}{\code{list} Optional additional arguments to pass to \code{fnShinyUI}
-and \code{fnShinyServer}.}
+("metric", "group", "group level", "participant", or "domain") that must
+have a non-empty value before the plugin can load. "None" and "All" count
+as "empty" for this check. If the user has not set a value for that input,
+the app will display a placeholder instructing the user to make a
+selection.}
 
 \item{envCall}{\code{environment} The environment from which this function was
 called, for use in better error messages. This value should usually be left
@@ -48,8 +51,8 @@ as the default, or passed from the calling function if the calling function
 also has an \code{envCall} argument.}
 }
 \value{
-A \code{list} with elements \code{meta}, \code{shiny}, \code{domains}, and (optionally)
-\code{required_inputs}.
+A \code{list} with elements \code{meta}, \code{shiny}, \code{spec}, \code{workflows},
+\code{config}, \code{required_inputs}, and \code{packages}.
 }
 \description{
 Define a plugin
@@ -57,7 +60,7 @@ Define a plugin
 \examples{
 aePlugin <- plugin_Define(
   strName = "Adverse Events",
-  chrDomains = c("AE", "SUBJ"),
+  lSpec = list("AE" = list(), "SUBJ" = list()),
   fnShinyUI = "mod_AE_UI",
   fnShinyServer = "mod_AE_Server"
 )

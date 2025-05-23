@@ -14,7 +14,7 @@ gsmApp_UI <- function(
   strTitle = ExtractAppTitle(dfGroups),
   strFavicon = "angles-up",
   strFaviconColor = ColorScheme("red"),
-  tagListSidebar = NULL
+  tagListExtra = NULL
 ) {
   # Transform data for use in lower-level functions. ----
   chrMetrics <- rlang::set_names(dfMetrics$MetricID, dfMetrics$Metric)
@@ -26,25 +26,20 @@ gsmApp_UI <- function(
     fillable = FALSE,
     !!!out_MainTabs(
       chrDomains = chrDomains,
+      dfGroups = dfGroups,
       dfResults = dfResults,
       chrMetrics = chrMetrics,
       lPlugins = lPlugins
     ),
     bslib::nav_spacer(),
     !!!out_NavbarExtras(
-      sort(unique(dfGroups$GroupID[dfGroups$GroupLevel == "Site"]))
-    ),
-    sidebar = out_Sidebar(
-      dfGroups,
-      dfResults,
-      chrDomains,
-      chrMetrics,
-      tagListSidebar
+      dfGroups
     ),
     header = tagList(
       favawesome::fav(strFavicon, fill = strFaviconColor),
       htmlDependency_Stylesheet("defaultStyles.css"),
-      shinyjs::useShinyjs()
+      shinyjs::useShinyjs(),
+      tagListExtra
     )
   )
 }

@@ -23,7 +23,7 @@ mod_ActionList_UI <- function(id, chrLinkIDs, chrLabels, chrValues) {
       actionLink(ns(strLinkID), label = strLabel)
     }
   )
-  out_MetadataList(chrLabels = links, chrValues = chrValues)
+  out_MetadataList(chrValues = chrValues, chrLabels = links)
 }
 
 #' List of ActionLinks Server

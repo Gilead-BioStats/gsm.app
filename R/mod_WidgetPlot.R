@@ -71,42 +71,61 @@ htmlDependency_WidgetInputHelpers <- function() {
 #' @param ... Additional parameters passed to `fn_Widget`.
 #' @keywords internal
 mod_WidgetPlot_Server <- function(
-    id,
-    fn_Widget,
-    fn_WidgetOutput,
-    rctv_dfResults,
-    rctv_lMetric,
-    dfGroups,
-    rctv_dfBounds,
-    rctv_strSiteID,
-    ...
+  id,
+  fn_Widget,
+  fn_WidgetOutput,
+  rctv_dfResults,
+  rctv_lMetric,
+  dfGroups,
+  rctv_dfBounds,
+  rctv_strGroupID,
+  ...
 ) {
   moduleServer(id, function(input, output, session) {
-    output$plot <- renderWidgetPlot({
-      fn_Widget(
-        session$ns("plot"),
-        rctv_dfResults(),
-        lMetric = rctv_lMetric(),
-        dfGroups = dfGroups,
-        dfBounds = rctv_dfBounds(),
-        ...
-      )
-    }, fn_WidgetOutput)
-    observe({
-      lMetric <- rctv_lMetric()
-      session$sendCustomMessage(
-        type = "updateWidgetPlotGroup",
-        message = list(
-          id = session$ns("plot"),
-          selectedGroupID = lMetric$selectedGroupIDs
+    rctv_chrKnownGroups <- reactive({
+      req(rctv_dfResults())
+      sort(unique(rctv_dfResults()$GroupID))
+    })
+
+    output$plot <- renderWidgetPlot(
+      {
+        fn_Widget(
+          session$ns("plot"),
+          rctv_dfResults(),
+          lMetric = rctv_lMetric(),
+          dfGroups = dfGroups,
+          dfBounds = rctv_dfBounds(),
+          ...
         )
-      )
-    })
+      },
+      fn_WidgetOutput
+    )
     observe({
-      input_val <- input$plot
-      if (!is.null(input_val) && input_val != "") {
-        rctv_strSiteID(input_val)
+      strGroupID <- NullifyEmpty(rctv_strGroupID())
+      if (is.null(strGroupID) || strGroupID %in% rctv_chrKnownGroups()) {
+        session$sendCustomMessage(
+          type = "updateWidgetPlotGroup",
+          message = list(
+            id = session$ns("plot"),
+            selectedGroupID = strGroupID
+          )
+        )
       }
-    })
+    }) %>%
+      bindEvent(rctv_strGroupID(), ignoreNULL = FALSE, ignoreInit = TRUE)
+
+    observe({
+      strGroupID_Plot <- input$plot
+      strGroupID <- NullifyEmpty(rctv_strGroupID())
+      if (!is.null(strGroupID_Plot) && strGroupID_Plot != "") {
+        rctv_strGroupID(strGroupID_Plot)
+      } else if (
+        is.null(strGroupID_Plot) &&
+          !is.null(strGroupID) && strGroupID %in% rctv_chrKnownGroups()
+      ) {
+        rctv_strGroupID("All")
+      }
+    }) %>%
+      bindEvent(input$plot, ignoreNULL = FALSE)
   })
 }

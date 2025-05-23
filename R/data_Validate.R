@@ -1,3 +1,21 @@
+#' Confirm that an object is valid lPlugins
+#'
+#' @inheritParams shared-params
+#' @returns `lPlugins` with normalized names.
+#' @keywords internal
+validate_lPlugins <- function(lPlugins, envCall = rlang::caller_env()) {
+  # TODO: This does not validate everything (or even very much) about plugins.
+  # Most validation is curerently in `plugin_Read()`.
+  if (length(lPlugins)) {
+    names(lPlugins)[!rlang::have_name(lPlugins)] <- stringr::str_pad(
+      which(!rlang::have_name(lPlugins)),
+      width = 3,
+      pad = "0"
+    )
+  }
+  return(lPlugins)
+}
+
 #' Confirm that an object is valid chrDomains
 #'
 #' @inheritParams shared-params
@@ -17,9 +35,19 @@ validate_chrDomains <- function(
   )
 
   if (length(lPlugins)) {
-    chrPluginDomains <- purrr::map(lPlugins, "domains") %>%
-      unlist() %>%
-      toupper()
+    # TODO: This does not catch things 100%. See #436 for things related to
+    # this.
+    chrPluginDomains <- purrr::map(lPlugins, function(lPlugin) {
+      if (length(lPlugin$workflows)) { # nocov start
+        rlang::check_installed("gsm.mapping", "to process data for plugins.")
+        return(gsm.mapping::CombineSpecs(lPlugin$workflows))
+      } # nocov end
+      return(lPlugin$spec)
+    }) %>%
+      purrr::list_c() %>%
+      names() %>%
+      toupper() %>%
+      unique()
     pluginDomainIsKnown <- chrPluginDomains %in% c(
       names(chrDomains),
       toupper(chrDomains)
@@ -62,11 +90,33 @@ validate_dfResults <- function(x) {
 #' @inheritParams CheckDF
 #' @inherit CheckDF return
 #' @keywords internal
-validate_dfGroups <- function(x) {
-  CheckDF(
+validate_dfGroups <- function(x, dfResults) {
+  x <- CheckDF(
     x,
     chrRequiredColumns = c("GroupLevel", "Param", "Value", "GroupID")
   )
+  # dfResults isn't validated yet at this point, so do minimal validation.
+  if (is.data.frame(dfResults)) {
+    groupCols <- c("GroupID", "GroupLevel")
+    if (any(groupCols %in% colnames(dfResults))) {
+      dfGroupStudy <- x %>%
+        dplyr::filter(.data$GroupLevel == "Study") %>%
+        dplyr::distinct(.data$GroupID, .data$GroupLevel)
+
+      dfGroupsUsed <- dfResults %>%
+        dplyr::select(dplyr::any_of(groupCols)) %>%
+        dplyr::distinct() %>%
+        dplyr::bind_rows(dfGroupStudy)
+
+      x <- dplyr::semi_join(
+        x,
+        dfGroupsUsed,
+        by = groupCols
+      )
+    }
+
+
+  }
 }
 
 #' Confirm that an object is a dfMetrics
@@ -96,7 +146,7 @@ validate_dfBounds <- function(x) {
 #' @inherit CheckDF return
 #' @keywords internal
 validate_dfAnalyticsInput <- function(x) {
-  CheckDF(
+  x <- CheckDF(
     x,
     chrRequiredColumns = c(
       "GroupLevel",
@@ -108,4 +158,5 @@ validate_dfAnalyticsInput <- function(x) {
       "Denominator"
     )
   )
+  return(x)
 }

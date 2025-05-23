@@ -25,12 +25,12 @@ mod_GroupOverview_UI <- function(id, dfResults) {
 #' @inheritParams shared-params
 #' @keywords internal
 mod_GroupOverview_Server <- function(
-    id,
-    dfResults,
-    dfMetrics,
-    dfGroups,
-    rctv_strMetricID,
-    rctv_strSiteID
+  id,
+  dfResults,
+  dfMetrics,
+  dfGroups,
+  rctv_strGroupID,
+  rctv_strMetricID
 ) {
   moduleServer(id, function(input, output, session) {
     dfResults <- gsm.kri::FilterByLatestSnapshotDate(dfResults)
@@ -63,7 +63,7 @@ mod_GroupOverview_Server <- function(
     })
     observe({
       req(input$group_overview$selectedGroupID)
-      rctv_strSiteID(input$group_overview$selectedGroupID)
+      rctv_strGroupID(input$group_overview$selectedGroupID)
     })
     observe({
       req(input$group_overview$groupSubset)
@@ -77,13 +77,13 @@ mod_GroupOverview_Server <- function(
 #' @inheritParams shared-params
 #' @keywords internal
 Widget_GroupOverview <- function(
-    id,
-    dfResults,
-    dfMetrics,
-    dfGroups,
-    strGroupLevel = NULL,
-    strGroupSubset = "red",
-    strGroupLabelKey = "InvestigatorLastName"
+  id,
+  dfResults,
+  dfMetrics,
+  dfGroups,
+  strGroupLevel = NULL,
+  strGroupSubset = "red",
+  strGroupLabelKey = "InvestigatorLastName"
 ) {
   # set strGroupLevel if NULL and dfMetrics is not NULL
   if (is.null(strGroupLevel) && !is.null(dfMetrics)) {

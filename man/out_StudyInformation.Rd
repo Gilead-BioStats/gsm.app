@@ -9,8 +9,7 @@ out_StudyInformation(dfGroups, dfResults)
 \arguments{
 \item{dfGroups}{\code{data.frame} Group-level metadata dictionary.}
 
-\item{dfResults}{\code{data.frame} A stacked summary of analysis pipeline output.
-This will be filtered to cases where \code{GroupLevel == "Site"}.}
+\item{dfResults}{\code{data.frame} A stacked summary of analysis pipeline output.}
 }
 \value{
 A \code{\link[bslib:card]{bslib::card()}} with overall study metadata.

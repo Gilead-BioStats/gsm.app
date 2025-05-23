@@ -25,7 +25,7 @@ test_that("run_gsm_app populates Study Overview", {
   app$expect_values(
     export = TRUE,
     name = "init",
-    screenshot_args = list(selector = ".main")
+    screenshot_args = list(selector = "div[data-value='Study Overview'")
   )
 
   # Scatter Plots subtab.
@@ -43,11 +43,13 @@ test_that("run_gsm_app populates Study Overview", {
   app$expect_values(
     export = TRUE,
     name = "plots",
-    screenshot_args = list(selector = ".main")
+    screenshot_args = list(
+      selector = list(selector = "div[data-value='Study Overview'] .tabbable")
+    )
   )
 
   # Click on AE plot.
-  app$run_js("clickWidgetPlotGroup('study_overview-scatter-Analysis_kri0001', '0X159');")
+  app$run_js("clickWidgetPlotGroup('study_overview-scatter-Analysis_kri0001', '0X7840');")
   app$wait_for_js(
     "isCanvasLoaded('metric_details-scatter_plot');",
     timeout = 2000
@@ -55,12 +57,12 @@ test_that("run_gsm_app populates Study Overview", {
   app$wait_for_idle()
   app$expect_values(
     export = TRUE,
-    name = "plots-ae-site",
+    name = "plots-ae-group",
     screenshot_args = list(selector = "#metric_details-scatter_plot")
   )
 
-  # Set site via drop-down.
-  app$set_inputs(site = "0X001")
+  # Set group via drop-down.
+  app$set_inputs(`group-group` = "0X6465")
   app$wait_for_idle()
   app$set_inputs(primary_nav_bar = "Study Overview")
   app$wait_for_js(
@@ -74,12 +76,12 @@ test_that("run_gsm_app populates Study Overview", {
   app$wait_for_idle()
   app$expect_values(
     export = TRUE,
-    name = "plots-ae-site-dropdown",
+    name = "plots-ae-group-dropdown",
     screenshot_args = list(selector = "#study_overview-scatter")
   )
 
   # Click on SAE plot.
-  app$run_js("clickWidgetPlotGroup('study_overview-scatter-Analysis_kri0002', '0X170');")
+  app$run_js("clickWidgetPlotGroup('study_overview-scatter-Analysis_kri0002', '0X7840');")
   app$set_inputs(
     `study_overview-scatter-selectedScatterPlot` = "study_overview-scatter-Analysis_kri0002",
     allow_no_input_binding_ = TRUE
@@ -119,7 +121,7 @@ test_that("run_gsm_app populates Metric Details", {
   app$expect_values(
     export = TRUE,
     name = "scatter",
-    screenshot_args = list(selector = ".main")
+    screenshot_args = list(selector = "div[data-value='Metric Details'")
   )
 
   # Click through to each tab.
@@ -132,7 +134,7 @@ test_that("run_gsm_app populates Metric Details", {
   app$expect_values(
     export = TRUE,
     name = "bar_value",
-    screenshot_args = list(selector = ".main")
+    screenshot_args = list(selector = "div[data-value='Metric Details'")
   )
 
   app$set_inputs(`metric_details-selected_tab` = "Bar Chart (KRI Score)")
@@ -144,7 +146,7 @@ test_that("run_gsm_app populates Metric Details", {
   app$expect_values(
     export = TRUE,
     name = "bar_score",
-    screenshot_args = list(selector = ".main")
+    screenshot_args = list(selector = "div[data-value='Metric Details'")
   )
 
   app$set_inputs(`metric_details-selected_tab` = "Time Series")
@@ -156,7 +158,7 @@ test_that("run_gsm_app populates Metric Details", {
   app$expect_values(
     export = TRUE,
     name = "time",
-    screenshot_args = list(selector = ".main")
+    screenshot_args = list(selector = "div[data-value='Metric Details'")
   )
 
   app$set_inputs(`metric_details-selected_tab` = "Analysis Output")
@@ -164,20 +166,20 @@ test_that("run_gsm_app populates Metric Details", {
   app$expect_values(
     export = TRUE,
     name = "analysis",
-    screenshot_args = list(selector = ".main")
+    screenshot_args = list(selector = "div[data-value='Metric Details'")
   )
 
-  # Choose a site in the drop-down.
-  app$set_inputs(site = "0X001")
+  # Choose a group in the drop-down.
+  app$set_inputs(`group-group` = "0X6465")
   app$wait_for_idle()
   app$expect_values(
     export = TRUE,
-    name = "analysis-site",
+    name = "analysis-group",
     screenshot_args = list(selector = ".active .tabbable")
   )
 
-  # Click back through to make sure all have the site selected. Alternate
-  # between 0X001 and 0X159 as we go.
+  # Click back through to make sure all have the group selected. Alternate
+  # between 0X7840 and 0X7856 as we go.
   app$set_inputs(`metric_details-selected_tab` = "Time Series")
   app$wait_for_js(
     "isCanvasLoaded('metric_details-time_series');",
@@ -186,10 +188,12 @@ test_that("run_gsm_app populates Metric Details", {
   app$wait_for_idle()
   app$expect_values(
     export = TRUE,
-    name = "time-site",
+    name = "time-group",
     screenshot_args = list(selector = ".active .tabbable")
   )
-  app$run_js("clickWidgetPlotGroup('metric_details-time_series', '0X001');")
+  # My click function doesn't work for time series except maybe if a thing is already selected.
+  app$set_inputs(`group-group` = "0X7840")
+  app$wait_for_idle()
   app$wait_for_js(
     "isCanvasLoaded('metric_details-time_series');",
     timeout = 2000
@@ -197,7 +201,20 @@ test_that("run_gsm_app populates Metric Details", {
   app$wait_for_idle()
   app$expect_values(
     export = TRUE,
-    name = "time-site_click",
+    name = "time-group_select",
+    screenshot_args = list(selector = ".active .tabbable")
+  )
+
+  app$set_inputs(`group-group` = "0X9824")
+  app$wait_for_idle()
+  app$wait_for_js(
+    "isCanvasLoaded('metric_details-time_series');",
+    timeout = 2000
+  )
+  app$wait_for_idle()
+  app$expect_values(
+    export = TRUE,
+    name = "time-group_select2",
     screenshot_args = list(selector = ".active .tabbable")
   )
 
@@ -209,10 +226,10 @@ test_that("run_gsm_app populates Metric Details", {
   app$wait_for_idle()
   app$expect_values(
     export = TRUE,
-    name = "bar_score-site",
+    name = "bar_score-group",
     screenshot_args = list(selector = ".active .tabbable")
   )
-  app$run_js("clickWidgetPlotGroup('metric_details-bar_chart_score', '0X159');")
+  app$run_js("clickWidgetPlotGroup('metric_details-bar_chart_score', '0X7856');")
   app$wait_for_js(
     "isCanvasLoaded('metric_details-bar_chart_score');",
     timeout = 2000
@@ -220,7 +237,7 @@ test_that("run_gsm_app populates Metric Details", {
   app$wait_for_idle()
   app$expect_values(
     export = TRUE,
-    name = "bar_score-site_click",
+    name = "bar_score-group_click",
     screenshot_args = list(selector = ".active .tabbable")
   )
 
@@ -232,10 +249,10 @@ test_that("run_gsm_app populates Metric Details", {
   app$wait_for_idle()
   app$expect_values(
     export = TRUE,
-    name = "bar_value-site",
+    name = "bar_value-group",
     screenshot_args = list(selector = ".active .tabbable")
   )
-  app$run_js("clickWidgetPlotGroup('metric_details-bar_chart_metric', '0X001');")
+  app$run_js("clickWidgetPlotGroup('metric_details-bar_chart_metric', '0X7840');")
   app$wait_for_js(
     "isCanvasLoaded('metric_details-bar_chart_metric');",
     timeout = 2000
@@ -243,7 +260,7 @@ test_that("run_gsm_app populates Metric Details", {
   app$wait_for_idle()
   app$expect_values(
     export = TRUE,
-    name = "bar_value-site_click",
+    name = "bar_value-group_click",
     screenshot_args = list(selector = ".active .tabbable")
   )
 
@@ -255,10 +272,10 @@ test_that("run_gsm_app populates Metric Details", {
   app$wait_for_idle()
   app$expect_values(
     export = TRUE,
-    name = "scatter-site",
+    name = "scatter-group",
     screenshot_args = list(selector = ".active .tabbable")
   )
-  app$run_js("clickWidgetPlotGroup('metric_details-scatter_plot', '0X159');")
+  app$run_js("clickWidgetPlotGroup('metric_details-scatter_plot', '0X7856');")
   app$wait_for_js(
     "isCanvasLoaded('metric_details-scatter_plot');",
     timeout = 2000
@@ -266,7 +283,7 @@ test_that("run_gsm_app populates Metric Details", {
   app$wait_for_idle()
   app$expect_values(
     export = TRUE,
-    name = "scatter-site_circle",
+    name = "scatter-group_circle",
     screenshot_args = list(selector = ".active .tabbable")
   )
   app$stop()
@@ -289,16 +306,16 @@ test_that("run_gsm_app populates Domain Details", {
   app$expect_values(
     export = TRUE,
     name = "no-participant",
-    screenshot_args = list(selector = ".main")
+    screenshot_args = list(selector = "div[data-value='Domain Details'")
   )
 
   # Select a participant via the drop-down.
-  app$set_inputs(`participant` = "0285")
+  app$set_inputs(`participant` = "S23407")
   app$wait_for_idle()
   app$expect_values(
     export = TRUE,
     name = "participant",
-    screenshot_args = list(selector = ".main")
+    screenshot_args = list(selector = "div[data-value='Domain Details'")
   )
 
   # Select another domain.
@@ -307,7 +324,16 @@ test_that("run_gsm_app populates Domain Details", {
   app$expect_values(
     export = TRUE,
     name = "sd",
-    screenshot_args = list(selector = ".main")
+    screenshot_args = list(selector = "div[data-value='Domain Details'")
+  )
+
+  # Select a domain via the Domain Summary.
+  app$set_inputs(`domain_details-counts-domain_list_choices-ENROLL` = "click")
+  app$wait_for_idle()
+  app$expect_values(
+    export = TRUE,
+    name = "domain_summary_click",
+    screenshot_args = list(selector = "div[data-value='Domain Details'")
   )
 
   app$stop()
@@ -325,11 +351,11 @@ test_that("run_gsm_app display Domain error", {
   app$wait_for_value(input = "participant", timeout = 2000)
 
   # Trigger the error.
-  app$set_inputs(site = "0X013")
+  app$set_inputs(`group-group` = "0X3349")
   app$wait_for_idle()
   app$set_inputs(primary_nav_bar = "Domain Details")
   app$wait_for_idle()
-  app$set_inputs(`domain` = "LB")
+  app$set_inputs(`domain_details-selected_tab` = "LB")
   app$wait_for_idle()
   app$expect_values(
     export = TRUE,

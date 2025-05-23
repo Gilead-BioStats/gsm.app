@@ -1,6 +1,6 @@
 Package: gsm.app
 Title: gsm Shiny Application
-Version: 2.4.0
+Version: 2.5.0
 Authors@R: c(
     person("Jon", "Harmon", , "jonthegeek@gmail.com", role = c("aut", "cre"),
            comment = c(ORCID = "0000-0003-4781-4346")),
@@ -22,9 +22,9 @@ Imports:
     dplyr,
     favawesome,
     glue,
-    gsm.core,
-    gsm.kri,
-    gt (>= 0.11.1.9000),
+    gsm.core (>= 1.1.0),
+    gsm.kri (>= 1.1.0),
+    gt (>= 1.0.0),
     htmltools,
     htmlwidgets,
     jsonlite,
@@ -32,27 +32,28 @@ Imports:
     purrr,
     rlang,
     shiny (>= 1.6.0),
+    shinycssloaders,
     shinyjs,
     shinyWidgets,
+    stringr,
     yaml
 Suggests: 
-    chromote (>= 0.4.0),
+    chromote (>= 0.5.0),
     devtools,
+    gsm.mapping (>= 1.0.1),
     here,
     knitr,
     pak,
+    pkgload (>= 1.4.0),
     rmarkdown,
-    shinytest2,
-    stringr,
+    shinytest2 (>= 0.4.1),
     testthat (>= 3.0.0),
     usethis,
     withr
-Remotes:
-    gsm.core=gilead-biostats/gsm.core@v1.0.0,
-    gsm.kri=gilead-biostats/gsm.kri@v1.0.0,
-    gt=rstudio/gt,
-    chromote=rstudio/chromote,
-    shinytest2=rstudio/shinytest2
+Remotes: 
+    gsm.core=gilead-biostats/gsm.core@main,
+    gsm.mapping=Gilead-BioStats/gsm.mapping@main,
+    gsm.kri=gilead-biostats/gsm.kri@main
 Config/testthat/edition: 3
 Encoding: UTF-8
 Language: en-US

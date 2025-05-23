@@ -12,17 +12,17 @@ test_that("gsmApp_Server initializes correctly", {
     {
       # Simulate initialization.
       session$setInputs(
-        primary_nav_bar = "Study Overview",
-        metric = "Analysis_kri0001",
-        site = "All",
-        participant = "All"
+        `group-level` = "Site",
+        `group-group` = "All",
+        participant = "All",
+        primary_nav_bar = "Study Overview"
       )
-      expect_equal(input$metric, "Analysis_kri0001")
+      expect_equal(input$`group-group`, "All")
 
       session$setInputs(
-        site = "0X001"
+        `group-group` = "0X1858"
       )
-      expect_equal(input$site, "0X001")
+      expect_equal(input$`group-group`, "0X1858")
     }
   )
 })
@@ -45,14 +45,14 @@ test_that("gsmApp_Server triggers reset", {
       session$setInputs(
         primary_nav_bar = "Study Overview",
         metric = "Analysis_kri0001",
-        site = "All",
+        `group-group` = "All",
         participant = "All"
       )
-      expect_equal(input$site, "All")
+      expect_equal(input$`group-group`, "All")
 
       # Change something from default.
-      session$setInputs(site = "0X001")
-      expect_equal(input$site, "0X001")
+      session$setInputs(`group-group` = "0X1858")
+      expect_equal(input$`group-group`, "0X1858")
 
       session$setInputs(reset = 1L)
       # Ideally we'd check inputs here, but testServer doesn't see the change.
@@ -68,8 +68,8 @@ test_that("gsmApp_Server executes optional server functions", {
     dfBounds = sample_dfBounds,
     dfAnalyticsInput = sample_dfAnalyticsInput,
     fnFetchData = sample_fnFetchData,
-    fnServer = function(input, output, session) {
-      rctv_testVal <<- reactiveVal("testing")
+    fnServer = function(input, output, session, env = rlang::caller_env()) {
+      assign("rctv_testVal", reactiveVal("testing"), envir = env)
     }
   )
   testServer(
@@ -97,7 +97,8 @@ test_that("gsmApp_Server sets participant drop-down properly", {
       session$setInputs(
         primary_nav_bar = "Study Overview",
         metric = "Analysis_kri0001",
-        site = "All",
+        `group-level` = "Site",
+        `group-group` = "All",
         participant = "All"
       )
       expect_equal(input$participant, "All")

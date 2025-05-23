@@ -7,9 +7,17 @@
 mod_Plugins_Server(
   id,
   lPlugins,
+  dfAnalyticsInput,
+  dfBounds,
+  dfGroups,
+  dfMetrics,
+  dfResults,
   l_rctvDomains,
+  l_rctvDomainHashes,
+  rctv_dSnapshotDate,
   rctv_strMetricID,
-  rctv_strSiteID,
+  rctv_strGroupID,
+  rctv_strGroupLevel,
   rctv_strSubjectID,
   rctv_strDomainID
 )
@@ -19,15 +27,38 @@ mod_Plugins_Server(
 
 \item{lPlugins}{\code{list} Optional list of plugins to include in the app.}
 
-\item{l_rctvDomains}{\code{list} A named list of \code{\link[shiny:reactive]{shiny::reactive()}} objects, each
-of which returns a domain dataframe.}
+\item{dfAnalyticsInput}{\code{data.frame} Participant-level metric data.}
+
+\item{dfBounds}{\code{data.frame} Set of predicted percentages/rates and upper-
+and lower-bounds across the full range of sample sizes/total exposure
+values for reporting.}
+
+\item{dfGroups}{\code{data.frame} Group-level metadata dictionary.}
+
+\item{dfMetrics}{\code{data.frame} Metric-specific metadata for use in charts and
+reporting.}
+
+\item{dfResults}{\code{data.frame} A stacked summary of analysis pipeline output.}
+
+\item{l_rctvDomains}{\code{list} A named list of lists of \code{\link[shiny:reactive]{shiny::reactive()}}
+objects. Each list contains a "Study" element, a "Group" element, and a
+"Selection" element, each of which returns a domain dataframe.}
+
+\item{l_rctvDomainHashes}{\code{list} A named list of \code{\link[shiny:reactive]{shiny::reactive()}} objects,
+each of which returns the \code{\link[rlang:hash]{rlang::hash()}} of a domain dataframe.}
+
+\item{rctv_dSnapshotDate}{\verb{reactive Date} A \code{\link[shiny:reactive]{shiny::reactive()}} object that
+returns the date of a data snapshot.}
 
 \item{rctv_strMetricID}{\verb{reactive character} A \code{\link[shiny:reactive]{shiny::reactive()}} object
 that returns the selected \code{MetricID}.}
 
-\item{rctv_strSiteID}{\verb{reactive character} A \code{\link[shiny:reactiveVal]{shiny::reactiveVal()}} object
-that returns the \code{GroupID} of the selected site, and can be used to update
-the selected site.}
+\item{rctv_strGroupID}{\verb{reactive character} A \code{\link[shiny:reactiveVal]{shiny::reactiveVal()}} object
+that returns the \code{GroupID} of the selected group (usually site), and can be
+used to update which group is selected.}
+
+\item{rctv_strGroupLevel}{\verb{reactive character} A \code{\link[shiny:reactiveVal]{shiny::reactiveVal()}}
+object that returns the selected \code{GroupLevel}.}
 
 \item{rctv_strSubjectID}{\verb{reactive character} A \code{\link[shiny:reactive]{shiny::reactive()}} object
 that returns the \code{SubjectID} of the selected participant.}

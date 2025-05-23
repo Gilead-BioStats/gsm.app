@@ -20,10 +20,10 @@ mod_MetricTable_UI <- function(id) {
 #' @returns A [shiny::reactive()] with the id of the selected group.
 #' @keywords internal
 mod_MetricTable_Server <- function(
-    id,
-    rctv_dfResults,
-    dfGroups,
-    rctv_strSiteID
+  id,
+  rctv_dfResults,
+  dfGroups,
+  rctv_strGroupID
 ) {
   moduleServer(id, function(input, output, session) {
     # Update the widget when the source data changes.
@@ -32,12 +32,12 @@ mod_MetricTable_Server <- function(
       rmt <- gsm.kri::Report_MetricTable(
         rctv_dfResults(),
         dfGroups = dfGroups,
-        strGroupLevel = "Site"
+        strGroupLevel = "Site" # This should be rctv_strGroupLevel()
       )
       if (inherits(rmt, "gt_tbl")) {
         return(out_gtInteractive(rmt))
       }
-      return(out_gtPlaceholder("metric with flagged sites"))
+      return(out_gtPlaceholder("metric with flagged groups"))
     })
 
     # Extract the data back out of the widget.
@@ -56,7 +56,7 @@ mod_MetricTable_Server <- function(
         GroupID = character(),
         MetricID = character(),
         Group = character(),
-        SnapshotDate = as.Date(1)[0],
+        SnapshotDate = as.Date(1, origin = "1970-01-01")[0],
         Enrolled = integer(),
         Numerator = numeric(),
         Denominator = numeric(),
@@ -71,7 +71,7 @@ mod_MetricTable_Server <- function(
       "gt",
       rctv_tblData,
       rctv_tbl,
-      rctv_strSiteID,
+      rctv_strGroupID,
       "GroupID"
     )
   })

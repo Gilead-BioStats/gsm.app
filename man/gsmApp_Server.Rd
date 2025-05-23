@@ -11,6 +11,7 @@ gsmApp_Server(
   dfMetrics,
   dfResults,
   fnFetchData,
+  fnCountData = ConstructDataCounter(fnFetchData),
   chrDomains = c(AE = "Adverse Events", DATACHG = "Data Changes", DATAENT = "Data Entry",
     ENROLL = "Enrollment", LB = "Lab", PD = "Protocol Deviations", QUERY = "Queries",
     STUDCOMP = "Study Completion", SUBJ = "Subject Metadata", SDRGCOMP =
@@ -31,15 +32,20 @@ values for reporting.}
 \item{dfMetrics}{\code{data.frame} Metric-specific metadata for use in charts and
 reporting.}
 
-\item{dfResults}{\code{data.frame} A stacked summary of analysis pipeline output.
-This will be filtered to cases where \code{GroupLevel == "Site"}.}
+\item{dfResults}{\code{data.frame} A stacked summary of analysis pipeline output.}
 
 \item{fnFetchData}{\code{function} A function that takes a \code{strDomainID} argument
-and optional \code{strSiteID} and \code{strSubjectID} and returns a data.frame. See
-\code{\link[=sample_fnFetchData]{sample_fnFetchData()}} for an example. The returned data.frame contains
-information about the named domain. If the function throws an error, the
-error is elevated to the user, so you can use errors to pass requirements
-through to the user.}
+and optional \code{strGroupID}, \code{strGroupLevel}, \code{strSubjectID}, and/or
+\code{dSnapshotDate}, and returns a data.frame. See \code{\link[=sample_fnFetchData]{sample_fnFetchData()}} for
+an example. The returned data.frame contains information about the named
+domain. If the function throws an error, the error is elevated to the user,
+so you can use errors to pass requirements through to the user.}
+
+\item{fnCountData}{\code{function} A function that takes a \code{strDomainID} argument
+and optional \code{strGroupID}, \code{strGroupLevel}, \code{strSubjectID}, and/or
+\code{dSnapshotDate}, and returns an integer count of the number of rows in that
+filtered domain. By default, this function is constructed using
+\code{fnFetchData()} and \code{\link[=ConstructDataCounter]{ConstructDataCounter()}}.}
 
 \item{chrDomains}{\code{character} A (named) vector of domains to include in the
 app. The values of the vector will be used as labels, and the names will be

@@ -5,10 +5,10 @@
 #' @keywords internal
 srvr_rctv_lMetric_base <- function(
   dfMetrics,
-  rctv_strMetricID,
-  session = getDefaultReactiveDomain()
+  rctv_strMetricID
 ) {
   reactive({
+    req(rctv_strMetricID())
     as.list(
       FilterbyMetricID(dfMetrics, rctv_strMetricID())
     )
@@ -16,32 +16,26 @@ srvr_rctv_lMetric_base <- function(
     bindCache(rctv_strMetricID())
 }
 
-#' Reactive lMetric by metric and site
+#' Reactive lMetric by metric and group
 #'
 #' @inheritParams shared-params
 #' @returns A [shiny::reactive()] of dfMetrics as a list, with information about
-#'   the selected site.
+#'   the selected group.
 #' @keywords internal
 srvr_rctv_lMetric <- function(
   dfMetrics,
   rctv_strMetricID,
-  rctv_strSiteID,
+  rctv_strGroupID,
   session = getDefaultReactiveDomain()
 ) {
-  rctv_lMetric_base <- srvr_rctv_lMetric_base(
-    dfMetrics,
-    rctv_strMetricID,
-    session
-  )
+  rctv_lMetric_base <- srvr_rctv_lMetric_base(dfMetrics, rctv_strMetricID)
   reactive({
+    req(rctv_strMetricID())
     lMetric <- rctv_lMetric_base()
-    site <- rctv_strSiteID()
-    if (site != "All") {
-      lMetric$selectedGroupIDs <- site
-    }
-    lMetric
+    lMetric$selectedGroupIDs <- NullifyEmpty(rctv_strGroupID())
+    return(lMetric)
   }) %>%
-    bindCache(rctv_strMetricID(), rctv_strSiteID())
+    bindCache(rctv_strMetricID(), rctv_strGroupID())
 }
 
 #' Reactive participant IDs
@@ -51,23 +45,24 @@ srvr_rctv_lMetric <- function(
 #' @keywords internal
 srvr_rctv_chrParticipantIDs <- function(
   dfAnalyticsInput,
-  rctv_strSiteID
+  rctv_strGroupID
 ) {
+  # TODO: Add GroupLevel
   dfParticipantGroups <- dplyr::arrange(
     dplyr::distinct(dfAnalyticsInput, .data$SubjectID, .data$GroupID),
     .data$SubjectID
   )
   reactive({
-    site <- rctv_strSiteID()
-    if (site == "All") {
+    group <- NullifyEmpty(rctv_strGroupID())
+    if (is.null(group)) {
       return(c("All", dfParticipantGroups$SubjectID))
     }
     c(
       "All",
       dfParticipantGroups$SubjectID[
-        dfParticipantGroups$GroupID == site
+        dfParticipantGroups$GroupID == group
       ]
     )
   }) %>%
-    bindCache(rctv_strSiteID())
+    bindCache(rctv_strGroupID())
 }

@@ -15,8 +15,7 @@ Widget_ScatterPlot(
 \arguments{
 \item{id}{\code{character} The id for this element.}
 
-\item{dfResults}{\code{data.frame} A stacked summary of analysis pipeline output.
-This will be filtered to cases where \code{GroupLevel == "Site"}.}
+\item{dfResults}{\code{data.frame} A stacked summary of analysis pipeline output.}
 
 \item{lMetric}{\code{list} Named list of data describing a single metric, as well
 as things like which group is selected.}

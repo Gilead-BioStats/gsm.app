@@ -4,24 +4,36 @@
 \alias{plugin_Read}
 \title{Read a Plugin Definition}
 \usage{
-plugin_Read(strPath)
+plugin_Read(strPath, lWorkflows = list(), ...)
 }
 \arguments{
 \item{strPath}{The directory that contains the plugin.}
+
+\item{lWorkflows}{\code{list} An optional named list of workflows to run in order
+to translate app domain data into the format required by the plugin (as
+defined in the plugin \code{spec}). These workflows are ran before the plugin's
+\code{spec} is applied, and are meant to serve as a bridge between your domain
+data and the plugin's expected domains.}
+
+\item{...}{Additional named arguments passed on to \code{fnShinyUI} and/or
+\code{fnShinyServer} by name.}
 }
 \value{
-A \code{list} with elements \code{meta}, \code{shiny}, \code{domains}, and (optionally)
-\code{required_inputs} and/or \code{packages}, read from the YAML file in \code{strPath}.
-As a side effect, any \code{R} files in \code{strPath} are also loaded using
-\code{source()}.
+A \code{list} with elements \code{meta}, \code{shiny}, \code{spec}, \code{workflows},
+\code{config}, \code{required_inputs}, and \code{packages}, read from the YAML file in
+\code{strPath}. As a side effect, any \code{R} files in \code{strPath} are also loaded
+using \code{source()}.
 }
 \description{
 Plugins are defined by a named \code{list} with elements \code{meta} (containing at
 least a \code{Name} to show in the plugin menu), \code{shiny} (containing \code{UI} and
 \code{Server} fields to define the Shiny UI and Server functions for the plugin),
-and \code{domains} (to specify the data domains that the plugin uses), plus
-optional fields \code{required_inputs} and \code{packages}. Use \code{plugin_Read()} to read
-these element definitions and any R files in the same directory.
+and \code{spec} (a specification of the data domains that the plugin uses), plus
+optional fields \code{packages}, and \code{required_inputs}. Use \code{plugin_Read()} to
+read these element definitions and any R files in the same directory. and
+\code{spec} (a specification of the data domains that the plugin uses), plus
+optional fields \code{packages}, and \code{required_inputs}. Use \code{plugin_Read()} to
+read these element definitions and any R files in the same directory.
 }
 \examples{
 subjPlugin <- plugin_Read(

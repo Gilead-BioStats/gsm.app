@@ -9,10 +9,10 @@
 #' @export
 #' @examples
 #' out_MetadataList(
-#'   c("Thing 1", "Thing 2", "Thing 3"),
-#'   c("value 1", "value 2", "value 3")
+#'   c("value 1", "value 2", "value 3"),
+#'   c("Thing 1", "Thing 2", "Thing 3")
 #' )
-out_MetadataList <- function(chrLabels, chrValues) {
+out_MetadataList <- function(chrValues, chrLabels = names(chrValues)) {
   tagList(
     htmlDependency_Stylesheet("metadata.css"),
     !!!purrr::map2(

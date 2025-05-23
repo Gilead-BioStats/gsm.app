@@ -10,7 +10,8 @@ mod_ParticipantDomainSummary_UI <- function(id) {
 mod_ParticipantDomainSummary_Server <- function(
   id,
   rctv_strDomainID,
-  l_rctvParticipantDomainData
+  l_rctvParticipantDomainData,
+  l_rctvStudyDomainData
 ) {
   moduleServer(id, function(input, output, session) {
     chrDomainNames <- names(l_rctvParticipantDomainData)
@@ -19,9 +20,15 @@ mod_ParticipantDomainSummary_Server <- function(
         session$ns("domain_list_choices"),
         chrDomainNames,
         chrDomainNames,
-        purrr::map_int(l_rctvParticipantDomainData, function(rctv_dfDomain) {
-          NROW(rctv_dfDomain())
-        })
+        purrr::map2_chr(
+          l_rctvParticipantDomainData,
+          l_rctvStudyDomainData,
+          function(rctv_dfDomain, rctv_dfDomain_Study) {
+            unclass(glue::glue(
+              "{NROW(rctv_dfDomain())} ({NROW(rctv_dfDomain_Study())})"
+            ))
+          }
+        )
       )
     })
     rctv_strSelectedDomain <- mod_ActionList_Server(

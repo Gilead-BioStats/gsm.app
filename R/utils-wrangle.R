@@ -10,7 +10,10 @@ FilterBy <- function(
   df,
   Value,
   strField = ExtractFieldName(rlang::caller_arg(Value))) {
-  df[df[[strField]] == Value, ]
+  if (length(Value)) {
+    return(df[df[[strField]] == Value, ])
+  }
+  return(df) # nocov
 }
 
 #' Get a field name from a variable name
@@ -42,7 +45,8 @@ FilterbyMetricID <- function(df, strMetricID) {
 #' @inherit FilterBy return
 #' @keywords internal
 FilterbyGroupID <- function(df, strGroupID) {
-  if (strGroupID == "All") {
+  strGroupID <- NullifyEmpty(strGroupID)
+  if (is.null(strGroupID)) {
     return(df)
   }
   FilterBy(df, strGroupID)
@@ -69,4 +73,56 @@ FindNonZeroDecimals <- function(dblX, intMaxDecimals = 5L) {
 
   # No interesting decimals.
   return(0L)
+}
+
+#' Filter to only values before a date
+#'
+#' @param df A data.frame to filter.
+#' @param strField The name of the field.
+#' @param dMaxDate The date that values should be before.
+#'
+#' @returns The filtered df.
+#' @keywords internal
+FilterBefore <- function(df, strField, dMaxDate) {
+  df[as.Date(df[[strField]]) < dMaxDate, ]
+}
+
+#' Filter to latest snapshot if field exists
+#'
+#' @param df A data.frame to filter.
+#'
+#' @returns The filtered df.
+#' @keywords internal
+FilterByLatestIfPresent <- function(df) {
+  # TODO: Many places where this is used should use rctv_dSnapshotDate instead,
+  # once that is changeable.
+  if ("SnapshotDate" %in% colnames(df)) {
+    return(gsm.kri::FilterByLatestSnapshotDate(df))
+  }
+  return(df)
+}
+
+FilterByGroupAndLevel <- function(
+  df,
+  strGroupLevel = NULL,
+  strGroupID = NULL,
+  dfGroups = NULL
+) {
+  if (length(strGroupID)) {
+    if (length(strGroupLevel)) {
+      if (!("GroupLevel" %in% colnames(df)) && NROW(dfGroups)) {
+        dfGroups <- dplyr::distinct(dfGroups, .data$GroupID, .data$GroupLevel)
+        df <- dplyr::left_join(df, dfGroups, by = "GroupID")
+      }
+      if ("GroupLevel" %in% colnames(df)) {
+        df <- dplyr::filter(df, .data$GroupLevel == strGroupLevel)
+      }
+    }
+    df <- dplyr::filter(df, .data$GroupID == strGroupID)
+  }
+  return(df)
+}
+
+FilterBySubjectID <- function(df, strSubjectID = NULL) {
+  FilterBy(df, strSubjectID)
 }

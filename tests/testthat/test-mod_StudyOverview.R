@@ -1,6 +1,7 @@
 test_that("mod_StudyOverview_UI creates the expected UI", {
   test_result <- mod_StudyOverview_UI(
     "testID",
+    sample_dfGroups,
     sample_dfResults,
     rlang::set_names(sample_dfMetrics$MetricID, sample_dfMetrics$Metric)
   )
@@ -21,14 +22,14 @@ test_that("mod_StudyOverview_Server sets selected group and metric", {
       dfGroups = sample_dfGroups,
       dfBounds = sample_dfBounds,
       rctv_strMetricID = reactiveVal("Analysis_kri0002"),
-      rctv_strSiteID = reactiveVal("0X003")
+      rctv_strGroupID = reactiveVal("0X2096")
     ),
     {
       # Test the selected group reactive
       session$setInputs(`scatter-Analysis_kri0001-plot` = "All")
-      expect_equal(rctv_strSiteID(), "All")
-      session$setInputs(`scatter-Analysis_kri0001-plot` = "0X005")
-      expect_equal(rctv_strSiteID(), "0X005")
+      expect_equal(rctv_strGroupID(), "All")
+      session$setInputs(`scatter-Analysis_kri0001-plot` = "0X5985")
+      expect_equal(rctv_strGroupID(), "0X5985")
 
       # Test the selected metric reactive
       # When we click a plot, it updates.
@@ -45,7 +46,7 @@ test_that("mod_StudyOverview_Server sets selected group and metric", {
           clickCounter = 1L
         )
       )
-      expect_equal(rctv_strSiteID(), "0X024")
+      expect_equal(rctv_strGroupID(), "0X024")
       expect_equal(rctv_strMetricID(), "Analysis_kri0003")
     }
   )

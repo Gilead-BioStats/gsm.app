@@ -5,7 +5,7 @@
 \alias{sample_dfResults}
 \title{KRI Results Dataset}
 \format{
-A tibble with 396 rows and
+A tibble with 873 rows and
 10 columns:
 \describe{
 \item{GroupID}{grouping variable}
@@ -28,7 +28,7 @@ Generated from data in the \code{clindata} package, using the
 sample_dfResults
 }
 \description{
-Information about the status of each site in the sample data.
+Information about the status of each group in the sample data.
 }
 \seealso{
 Other sample data: 

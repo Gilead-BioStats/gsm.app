@@ -94,7 +94,7 @@ jobs:
           plugin_InstallDependencySources(subjPlugin)
 
           # Manually install rsconnect to deploy.
-          pak::pak("rsconnect")
+          pak::pak("rstudio/rsconnect@v1.3.4")
         shell: Rscript {0}
 
       - name: Set APPNAME

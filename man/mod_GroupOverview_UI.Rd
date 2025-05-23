@@ -9,8 +9,7 @@ mod_GroupOverview_UI(id, dfResults)
 \arguments{
 \item{id}{\code{character} The id for this element.}
 
-\item{dfResults}{\code{data.frame} A stacked summary of analysis pipeline output.
-This will be filtered to cases where \code{GroupLevel == "Site"}.}
+\item{dfResults}{\code{data.frame} A stacked summary of analysis pipeline output.}
 }
 \value{
 A \code{\link[bslib:card]{bslib::card()}} with a \code{\link[=mod_RAGPillSet_UI]{mod_RAGPillSet_UI()}} and a corresponding

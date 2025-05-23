@@ -30,13 +30,13 @@ htmlDependency_BarChartInput <- function() {
 #' @inheritParams shared-params
 #' @keywords internal
 mod_BarChart_Server <- function(
-    id,
-    rctv_dfResults,
-    rctv_lMetric,
-    dfGroups,
-    rctv_strSiteID,
-    strOutcome = "Score",
-    rctv_dfBounds = shiny::reactive(NULL)
+  id,
+  rctv_dfResults,
+  rctv_lMetric,
+  dfGroups,
+  rctv_strGroupID,
+  strOutcome = "Score",
+  rctv_dfBounds = shiny::reactive(NULL)
 ) {
   mod_WidgetPlot_Server(
     id,
@@ -46,7 +46,7 @@ mod_BarChart_Server <- function(
     rctv_lMetric = rctv_lMetric,
     dfGroups = dfGroups,
     rctv_dfBounds = rctv_dfBounds,
-    rctv_strSiteID = rctv_strSiteID,
+    rctv_strGroupID = rctv_strGroupID,
     strOutcome = strOutcome
   )
 }
@@ -56,12 +56,12 @@ mod_BarChart_Server <- function(
 #' @inheritParams shared-params
 #' @keywords internal
 Widget_BarChart <- function(
-    id,
-    dfResults,
-    strOutcome = "Score",
-    lMetric = list(),
-    dfGroups = NULL,
-    dfBounds = NULL
+  id,
+  dfResults,
+  strOutcome = "Score",
+  lMetric = list(),
+  dfGroups = NULL,
+  dfBounds = NULL
 ) {
   stopifnot(
     "dfResults is not a data.frame" = is.data.frame(dfResults),
@@ -80,8 +80,8 @@ Widget_BarChart <- function(
   vThreshold <- NULL
   if (
     strOutcome == "Score" &&
-    !is.null(dfBounds) &&
-    "Threshold" %in% colnames(dfBounds)
+      !is.null(dfBounds) &&
+      "Threshold" %in% colnames(dfBounds)
   ) {
     vThreshold <- dfBounds$Threshold
   }
@@ -101,9 +101,9 @@ Widget_BarChart <- function(
 #' @inheritParams Widget_PlotOutput
 #' @keywords internal
 Widget_BarChartOutput <- function(
-    outputId,
-    width = "100%",
-    height = "400px"
+  outputId,
+  width = "100%",
+  height = "400px"
 ) {
   Widget_PlotOutput("Widget_BarChart", outputId, width, height)
 }

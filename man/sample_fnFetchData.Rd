@@ -7,17 +7,24 @@
 sample_fnFetchData(
   strDomainID = c("AE", "ENROLL", "LB", "PD", "SDRGCOMP", "STUDCOMP", "SUBJ", "DATACHG",
     "DATAENT", "QUERY"),
-  strSiteID = NULL,
-  strSubjectID = NULL
+  strGroupID = NULL,
+  strGroupLevel = NULL,
+  strSubjectID = NULL,
+  dSnapshotDate = NULL
 )
 }
 \arguments{
 \item{strDomainID}{\code{character} The domain data.frame to load.}
 
-\item{strSiteID}{\code{character} A \code{GroupID} of an individual site within a
-study.}
+\item{strGroupID}{\code{character} A \code{GroupID} of an individual site or other
+group within a study.}
+
+\item{strGroupLevel}{\code{character} Value for the group level. Default: \code{NULL}
+and taken from \code{dfMetrics$GroupLevel} if available.}
 
 \item{strSubjectID}{\code{character} A \code{SubjectID} of an individual participant.}
+
+\item{dSnapshotDate}{\code{Date} The date of a data snapshot.}
 }
 \value{
 A data.frame with information about the specified domain.
@@ -28,7 +35,7 @@ supply to find additional data about a given domain.
 }
 \examples{
 head(sample_fnFetchData("AE"))
-head(sample_fnFetchData("AE", strSiteID = "0X103"))
+head(sample_fnFetchData("AE", strGroupID = "0X103"))
 head(sample_fnFetchData("AE", strSubjectID = "1350"))
 }
 \seealso{

@@ -20,6 +20,9 @@ that domain.}
 \item{chrFromTabs}{\code{character} A vector of tab names. Syncing is only
 triggered if the user is currently on one of these tabs.}
 
+\item{chrInputNamesPretty}{\code{character} A vector of names to display for
+missing inputs.}
+
 \item{chrLinkIDs}{\code{character} Module ids for multiple modules.}
 
 \item{chrLabels}{\code{character} A vector of labels for display to the user.}
@@ -38,12 +41,19 @@ data.frame.}
 \item{chrRequiredFields}{\code{character} A vector of names of required fields in
 an object.}
 
-\item{chrRequiredInputs}{\code{character} A vector of inputs required by a Plugin.}
+\item{chrRequiredInputs}{\code{character} An optional vector of any inputs
+("metric", "group", "group level", "participant", or "domain") that must
+have a non-empty value before the plugin can load. "None" and "All" count
+as "empty" for this check. If the user has not set a value for that input,
+the app will display a placeholder instructing the user to make a
+selection.}
 
-\item{chrSites}{\code{character} A vector of sites available in the study.}
+\item{chrGroups}{\code{character} A vector of groups available in the study.}
 
 \item{chrValues}{\code{character} A vector of values to associate with a vector of
 labels.}
+
+\item{df}{\code{data.frame} A data frame to wrangle.}
 
 \item{dfAnalyticsInput}{\code{data.frame} Participant-level metric data.}
 
@@ -59,8 +69,12 @@ reporting.}
 \item{dfParticipantGroups}{\code{data.frame} Unique \code{SubjectID} and \code{GroupID}
 combos from \code{dfAnalyticsInput}.}
 
-\item{dfResults}{\code{data.frame} A stacked summary of analysis pipeline output.
-This will be filtered to cases where \code{GroupLevel == "Site"}.}
+\item{dfResults}{\code{data.frame} A stacked summary of analysis pipeline output.}
+
+\item{dfSubjectGroups}{\code{data.frame} A subset of \code{dfGroups} with \code{GroupLevel},
+\code{GroupID}, and \code{SubjectID}.}
+
+\item{dSnapshotDate}{\code{Date} The date of a data snapshot.}
 
 \item{envCall}{\code{environment} The environment from which this function was
 called, for use in better error messages. This value should usually be left
@@ -71,12 +85,18 @@ also has an \code{envCall} argument.}
 in the message or widget are defined. You almost definitely want to leave
 this as the default value.}
 
+\item{fnCountData}{\code{function} A function that takes a \code{strDomainID} argument
+and optional \code{strGroupID}, \code{strGroupLevel}, \code{strSubjectID}, and/or
+\code{dSnapshotDate}, and returns an integer count of the number of rows in that
+filtered domain. By default, this function is constructed using
+\code{fnFetchData()} and \code{\link[=ConstructDataCounter]{ConstructDataCounter()}}.}
+
 \item{fnFetchData}{\code{function} A function that takes a \code{strDomainID} argument
-and optional \code{strSiteID} and \code{strSubjectID} and returns a data.frame. See
-\code{\link[=sample_fnFetchData]{sample_fnFetchData()}} for an example. The returned data.frame contains
-information about the named domain. If the function throws an error, the
-error is elevated to the user, so you can use errors to pass requirements
-through to the user.}
+and optional \code{strGroupID}, \code{strGroupLevel}, \code{strSubjectID}, and/or
+\code{dSnapshotDate}, and returns a data.frame. See \code{\link[=sample_fnFetchData]{sample_fnFetchData()}} for
+an example. The returned data.frame contains information about the named
+domain. If the function throws an error, the error is elevated to the user,
+so you can use errors to pass requirements through to the user.}
 
 \item{fnHtmlDependency}{\code{function} A function that returns an
 \code{\link[htmltools:htmlDependency]{htmltools::htmlDependency()}} or multiple wrapped in \code{\link[shiny:reexports]{shiny::tagList()}}.}
@@ -85,6 +105,12 @@ through to the user.}
 \code{input}, \code{output}, and \code{session}. This function will be called at the start
 of the main app server function.}
 
+\item{fnShinyUI}{\verb{function or character} A shiny module UI function for the
+plugin, or the name of such a function in the current session.}
+
+\item{fnShinyServer}{\verb{function or character} A shiny module server function
+for the plugin, or the name of such a function in the current session.}
+
 \item{fnWidgetOutput}{\code{function} An \code{\link[htmlwidgets:htmlwidgets-shiny]{htmlwidgets::shinyWidgetOutput()}}
 function.}
 
@@ -92,23 +118,70 @@ function.}
 
 \item{intKRIColorCount}{\code{integer} A named vector of counts by color.}
 
-\item{intRed}{\code{integer} The number of sites with at least one red flag.}
+\item{intRed}{\code{integer} The number of groups with at least one red flag.}
 
-\item{intAmber}{\code{integer} The number of sites with at least one amber flag.}
+\item{intAmber}{\code{integer} The number of groups with at least one amber flag.}
+
+\item{lDataModel}{\code{list} Named list of the standard gsm dataframes
+(\code{dfAnalyticsInput}, \code{dfBounds}, \code{dfGroups}, \code{dfMetrics}, and \code{dfResults}).}
+
+\item{lGroups}{\code{list} Named list of character vectors, in which the names are
+the group levels and the vectors are the group IDs within that group level.}
 
 \item{lMetric}{\code{list} Named list of data describing a single metric, as well
 as things like which group is selected.}
 
-\item{l_rctvDomains}{\code{list} A named list of \code{\link[shiny:reactive]{shiny::reactive()}} objects, each
-of which returns a domain dataframe.}
+\item{l_rctvDomains}{\code{list} A named list of lists of \code{\link[shiny:reactive]{shiny::reactive()}}
+objects. Each list contains a "Study" element, a "Group" element, and a
+"Selection" element, each of which returns a domain dataframe.}
 
-\item{lPluginDefinition}{\code{list} A named list with required elements
-\code{strTitle}, \code{fnUI}, and \code{fnServer}, and optional fields \code{packages} and
-\code{lConfig}. Usually generated by \code{\link[=plugin_Read]{plugin_Read()}}.}
+\item{l_rctvDomainLoaded}{\code{list} A named list of \code{\link[shiny:reactive]{shiny::reactive()}} objects.
+The list contains a "Study" element and an element per group level, each of
+which returns a \code{logical} (\code{FALSE} if the data has not been accessed,
+\code{TRUE} if it has).}
+
+\item{l_rctvDomainsLoaded}{\code{list} A named list of lists of
+\code{\link[shiny:reactive]{shiny::reactive()}} objects. Each list contains a "Study" element and an
+element per group level, each of which returns a \code{logical} (\code{FALSE} if the
+data has not been accessed, \code{TRUE} if it has).}
+
+\item{l_rctvDomains_Selection}{\code{list} A named list of \code{\link[shiny:reactive]{shiny::reactive()}}
+objects, each of which returns a domain dataframe for the current filter.}
+
+\item{l_rctvDomainHashes}{\code{list} A named list of \code{\link[shiny:reactive]{shiny::reactive()}} objects,
+each of which returns the \code{\link[rlang:hash]{rlang::hash()}} of a domain dataframe.}
+
+\item{l_rctvDomainHashes_Selection}{\code{list} A named list of
+\code{\link[shiny:reactive]{shiny::reactive()}} objects, each of which returns the \code{\link[rlang:hash]{rlang::hash()}} of a
+domain dataframe for the current filter.}
+
+\item{l_rctvInputs}{\code{list} A named list of \code{\link[shiny:reactiveVal]{shiny::reactiveVal()}} objects,
+each of which returns the current value of an input or input-like variable.}
+
+\item{lPlugin}{\code{list} A named list with required elements \code{meta} and \code{shiny},
+and optional fields \code{spec}, \code{packages} and \code{required_inputs}. Usually
+generated by \code{\link[=plugin_Read]{plugin_Read()}}.}
 
 \item{lPlugins}{\code{list} Optional list of plugins to include in the app.}
 
+\item{lSpec}{\code{list} A named list defining the data domains required by the
+plugin, where the names are the names of the domains and the elements are
+column definitions.}
+
 \item{lStudy}{\code{list} Named list of data describing the overall study.}
+
+\item{lWorkflows}{\code{list} An optional named list of workflows to run in order
+to translate app domain data into the format required by the plugin (as
+defined in the plugin \code{spec}). These workflows are ran before the plugin's
+\code{spec} is applied, and are meant to serve as a bridge between your domain
+data and the plugin's expected domains.}
+
+\item{rctv_bPluginReady}{\verb{reactive Boolean} A \code{\link[shiny:reactive]{shiny::reactive()}} object that
+returns \code{TRUE} if all inputs required by the plugin are non-empty, and
+\code{FALSE} if one or more inputs are not ready.}
+
+\item{rctv_dSnapshotDate}{\verb{reactive Date} A \code{\link[shiny:reactive]{shiny::reactive()}} object that
+returns the date of a data snapshot.}
 
 \item{rctv_dfBounds}{\verb{reactive dataframe} A \code{\link[shiny:reactive]{shiny::reactive()}} object that
 returns a set of predicted percentages/rates and upper- and lower-bounds
@@ -126,6 +199,12 @@ returns a stacked summary of analysis pipeline output.}
 \item{rctv_gtObject}{\verb{reactive gt_table} A \code{\link[shiny:reactive]{shiny::reactive()}} object that
 returns a \code{\link[gt:gt]{gt::gt()}} object.}
 
+\item{rctv_intDomainCounts}{\verb{reactive integer} A \code{\link[shiny:reactive]{shiny::reactive()}} object
+that returns the count of rows for the current selection for all domains.}
+
+\item{rctv_lColumnNames}{\verb{reactive list} A \code{\link[shiny:reactive]{shiny::reactive()}} object that
+returns a named list of column names to substitute into tables for display.}
+
 \item{rctv_lMetric}{\verb{reactive list} A \code{\link[shiny:reactive]{shiny::reactive()}} object that returns
 a named list of data describing a single metric, as well as things like
 which group is selected.}
@@ -137,8 +216,18 @@ returns a Boolean value indicating whether something is "off" (\code{FALSE}) or
 \item{rctv_strDomainID}{\verb{reactive character} A \code{\link[shiny:reactive]{shiny::reactive()}} object
 that returns the selected \code{DomainID} (such as "AE" or "SUBJ").}
 
+\item{rctv_strDomainHash}{\verb{reactive character} A \code{\link[shiny:reactive]{shiny::reactive()}} object
+that returns the the \code{\link[rlang:hash]{rlang::hash()}} of a domain dataframe.}
+
 \item{rctv_strCurrentTab}{\verb{reactive character} A \code{\link[shiny:reactive]{shiny::reactive()}} object
 that returns the currently selected tab.}
+
+\item{rctv_strGroupID}{\verb{reactive character} A \code{\link[shiny:reactiveVal]{shiny::reactiveVal()}} object
+that returns the \code{GroupID} of the selected group (usually site), and can be
+used to update which group is selected.}
+
+\item{rctv_strGroupLevel}{\verb{reactive character} A \code{\link[shiny:reactiveVal]{shiny::reactiveVal()}}
+object that returns the selected \code{GroupLevel}.}
 
 \item{rctv_strGroupSubset}{\verb{reactive character} A \code{\link[shiny:reactive]{shiny::reactive()}} object
 that returns the selected subset of groups to include in the table.}
@@ -155,10 +244,6 @@ that returns the selected \code{MetricID}.}
 returns the name of an object, such as a particular dataframe in a named
 list.}
 
-\item{rctv_strSiteID}{\verb{reactive character} A \code{\link[shiny:reactiveVal]{shiny::reactiveVal()}} object
-that returns the \code{GroupID} of the selected site, and can be used to update
-the selected site.}
-
 \item{rctv_strSubjectID}{\verb{reactive character} A \code{\link[shiny:reactive]{shiny::reactive()}} object
 that returns the \code{SubjectID} of the selected participant.}
 
@@ -171,6 +256,9 @@ default should almost always be used).}
 \item{strArg}{\code{character} The name of the argument in the calling function.
 In general, this value should either be left as the default, or passed from
 the calling function if the calling function also has a \code{strArg} argument.}
+
+\item{strCache}{\code{character} An additional string to ensure that a cache key
+is unique.}
 
 \item{strClass}{\code{character} A descriptive label for this type of error, in
 lower_snake_case.}
@@ -206,8 +294,6 @@ check that the package is installed, and attach it. The function can also
 be supplied as a function or a purrr-style formula. See
 \code{\link[rlang:as_function]{rlang::as_function()}} (the \code{x} argument) for more details.}
 
-\item{strGroupID}{\code{character} A \code{GroupID} to focus on.}
-
 \item{strGroupLabelKey}{\code{character} Value for the group label key. Default:
 \code{"InvestigatorLastName"}.}
 
@@ -226,8 +312,8 @@ Default: \code{"red"}. Options:
 \item{strInputID}{\code{character} An ID to use for the Shiny input created by
 this module or used by this JavaScript.}
 
-\item{strInputName}{\code{character} The name of an input. One of \code{"site"},
-\code{"participant"}, or \code{"domain"}.}
+\item{strInputName}{\code{character} The name of an input. One of \code{"group"},
+\code{"level"}, \code{"participant"}, or \code{"domain"}.}
 
 \item{strLabel}{\code{character} The label of a field.}
 
@@ -238,8 +324,8 @@ this module or used by this JavaScript.}
 \item{strPlotTitle}{\code{character} A title for a plot, usually the name of a
 metric.}
 
-\item{strSiteID}{\code{character} A \code{GroupID} of an individual site within a
-study.}
+\item{strGroupID}{\code{character} A \code{GroupID} of an individual site or other
+group within a study.}
 
 \item{strSubjectID}{\code{character} A \code{SubjectID} of an individual participant.}
 
@@ -256,8 +342,8 @@ inspected.}
 
 \item{strWidgetName}{\code{character} The name of a widget in the gsm package.}
 
-\item{tagListSidebar}{\code{taglist} An optional \code{\link[htmltools:tagList]{htmltools::tagList()}} of
-additional elements to add to the top of the app sidebar.}
+\item{tagListExtra}{\code{taglist} An optional \code{\link[htmltools:tagList]{htmltools::tagList()}} of
+additional elements to add to the top of the app.}
 
 \item{x}{An object to validate.}
 }

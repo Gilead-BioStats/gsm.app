@@ -13,7 +13,10 @@ test_that("mod_DomainData_Server sets placeholder when no data is available", {
     mod_DomainData_Server,
     args = list(
       id = "myPD",
-      rctv_dfDomain = reactive({NULL})
+      rctv_dfDomain = reactive({
+        NULL
+      }),
+      rctv_strGroupLevel = reactiveVal("Site")
     ),
     {
       test_html <- output$`gt-table`$html
@@ -38,7 +41,8 @@ test_that("mod_DomainData_Server renders tables correctly", {
     mod_DomainData_Server,
     args = list(
       id = "AE",
-      rctv_dfDomain = mock_data$AE
+      rctv_dfDomain = mock_data$AE,
+      rctv_strDomainHash = reactiveVal("hash")
     ),
     {
       table_data <- rctv_tblData()
@@ -51,7 +55,8 @@ test_that("mod_DomainData_Server renders tables correctly", {
     mod_DomainData_Server,
     args = list(
       id = "DATACHG",
-      rctv_dfDomain = mock_data$DATACHG
+      rctv_dfDomain = mock_data$DATACHG,
+      rctv_strDomainHash = reactiveVal("hash")
     ),
     {
       table_data <- rctv_tblData()

@@ -42,7 +42,8 @@ test_that("mod_BarChart_Server starts as expected", {
       rctv_dfResults = reactive(dfResults),
       rctv_lMetric = reactive(lMetric),
       dfGroups = dfGroups,
-      rctv_dfBounds = reactive(dfBounds)
+      rctv_dfBounds = reactive(dfBounds),
+      rctv_strGroupID = reactiveVal("All")
     ),
     {
       test_result <- output$plot
@@ -73,12 +74,12 @@ test_that("mod_BarChart_Server returns selected site", {
       rctv_lMetric = reactive(lMetric),
       dfGroups = dfGroups,
       rctv_dfBounds = reactive(dfBounds),
-      rctv_strSiteID = reactiveVal("All")
+      rctv_strGroupID = reactiveVal("All")
     ),
     {
       expect_null(input$plot)
-      session$setInputs(plot = "0X003")
-      expect_equal(rctv_strSiteID(), "0X003")
+      session$setInputs(plot = "0X1858")
+      expect_equal(rctv_strGroupID(), "0X1858")
     }
   )
 })

@@ -2,10 +2,22 @@
 #'
 #' @inheritParams shared-params
 #' @keywords internal
-mod_MetricDetails_UI <- function(id) {
+mod_MetricDetails_UI <- function(id, chrMetrics) {
   ns <- NS(id)
   bslib::navset_underline(
     id = ns("selected_tab"),
+    bslib::nav_item(
+      class = "navbar-extras",
+      htmlDependency_Stylesheet("navbarExtras.css"),
+      shinyWidgets::virtualSelectInput(
+        inputId = ns("metric"),
+        # label = strong("Metric"),
+        label = NULL,
+        choices = chrMetrics,
+        inline = TRUE
+      )
+    ),
+    bslib::nav_spacer(),
     bslib::nav_panel(
       "Scatter Plot",
       mod_ScatterPlot_UI(ns("scatter_plot"))
@@ -34,35 +46,45 @@ mod_MetricDetails_UI <- function(id) {
 #' @inheritParams shared-params
 #' @keywords internal
 mod_MetricDetails_Server <- function(
-    id,
-    dfResults,
-    dfGroups,
-    dfBounds,
-    rctv_lMetric,
-    rctv_strSiteID,
-    rctv_strMetricID
+  id,
+  dfResults,
+  dfGroups,
+  dfBounds,
+  rctv_lMetric,
+  rctv_strGroupID,
+  rctv_strMetricID
 ) {
   moduleServer(id, function(input, output, session) {
     # Shared reactives ----
     rctv_dfResults_byMetricID <- reactive({
+      req(rctv_strMetricID())
       FilterbyMetricID(dfResults, rctv_strMetricID())
     }) %>%
       bindCache(rctv_strMetricID())
 
     rctv_dfBounds_byMetricID <- reactive({
+      req(rctv_strMetricID())
       FilterbyMetricID(dfBounds, rctv_strMetricID())
     }) %>%
       bindCache(rctv_strMetricID())
 
     rctv_dfResults_Latest <- reactive({
+      req(rctv_strMetricID())
       gsm.kri::FilterByLatestSnapshotDate(rctv_dfResults_byMetricID())
     }) %>%
       bindCache(rctv_strMetricID())
 
     rctv_dfBounds_Latest <- reactive({
+      req(rctv_strMetricID())
       gsm.kri::FilterByLatestSnapshotDate(rctv_dfBounds_byMetricID())
     }) %>%
       bindCache(rctv_strMetricID())
+
+    observe({
+      rctv_strMetricID(input$metric)
+    })
+
+    srvr_SyncVirtualSelectInput("metric", rctv_strMetricID, session)
 
     # Selections from tabs ----
 
@@ -72,7 +94,7 @@ mod_MetricDetails_Server <- function(
       rctv_lMetric = rctv_lMetric,
       dfGroups = dfGroups,
       rctv_dfBounds = rctv_dfBounds_Latest,
-      rctv_strSiteID = rctv_strSiteID
+      rctv_strGroupID = rctv_strGroupID
     )
 
     mod_BarChart_Server(
@@ -81,7 +103,7 @@ mod_MetricDetails_Server <- function(
       rctv_lMetric = rctv_lMetric,
       dfGroups = dfGroups,
       strOutcome = "Metric",
-      rctv_strSiteID = rctv_strSiteID
+      rctv_strGroupID = rctv_strGroupID
     )
 
     mod_BarChart_Server(
@@ -91,7 +113,7 @@ mod_MetricDetails_Server <- function(
       dfGroups = dfGroups,
       strOutcome = "Score",
       rctv_dfBounds = rctv_dfBounds_Latest,
-      rctv_strSiteID = rctv_strSiteID
+      rctv_strGroupID = rctv_strGroupID
     )
 
     mod_TimeSeries_Server(
@@ -101,14 +123,14 @@ mod_MetricDetails_Server <- function(
       dfGroups = dfGroups,
       strOutcome = "Score",
       rctv_dfBounds = rctv_dfBounds_byMetricID,
-      rctv_strSiteID = rctv_strSiteID
+      rctv_strGroupID = rctv_strGroupID
     )
 
     mod_MetricTable_Server(
       "analysis_output",
       rctv_dfResults = rctv_dfResults_Latest,
       dfGroups = dfGroups,
-      rctv_strSiteID = rctv_strSiteID
+      rctv_strGroupID = rctv_strGroupID
     )
   })
 }

@@ -16,6 +16,8 @@
 #'   that domain.
 #' @param chrFromTabs `character` A vector of tab names. Syncing is only
 #'   triggered if the user is currently on one of these tabs.
+#' @param chrInputNamesPretty `character` A vector of names to display for
+#'   missing inputs.
 #' @param chrLinkIDs `character` Module ids for multiple modules.
 #' @param chrLabels `character` A vector of labels for display to the user.
 #' @param chrMessage `character` A vector of message elements to be formatted
@@ -27,10 +29,16 @@
 #'   data.frame.
 #' @param chrRequiredFields `character` A vector of names of required fields in
 #'   an object.
-#' @param chrRequiredInputs `character` A vector of inputs required by a Plugin.
-#' @param chrSites `character` A vector of sites available in the study.
+#' @param chrRequiredInputs `character` An optional vector of any inputs
+#'   ("metric", "group", "group level", "participant", or "domain") that must
+#'   have a non-empty value before the plugin can load. "None" and "All" count
+#'   as "empty" for this check. If the user has not set a value for that input,
+#'   the app will display a placeholder instructing the user to make a
+#'   selection.
+#' @param chrGroups `character` A vector of groups available in the study.
 #' @param chrValues `character` A vector of values to associate with a vector of
 #'   labels.
+#' @param df `data.frame` A data frame to wrangle.
 #' @param dfAnalyticsInput `data.frame` Participant-level metric data.
 #' @param dfBounds `data.frame` Set of predicted percentages/rates and upper-
 #'   and lower-bounds across the full range of sample sizes/total exposure
@@ -41,7 +49,9 @@
 #' @param dfParticipantGroups `data.frame` Unique `SubjectID` and `GroupID`
 #'   combos from `dfAnalyticsInput`.
 #' @param dfResults `data.frame` A stacked summary of analysis pipeline output.
-#'   This will be filtered to cases where `GroupLevel == "Site"`.
+#' @param dfSubjectGroups `data.frame` A subset of `dfGroups` with `GroupLevel`,
+#'   `GroupID`, and `SubjectID`.
+#' @param dSnapshotDate `Date` The date of a data snapshot.
 #' @param envCall `environment` The environment from which this function was
 #'   called, for use in better error messages. This value should usually be left
 #'   as the default, or passed from the calling function if the calling function
@@ -49,32 +59,76 @@
 #' @param envEvaluate `environment` The environment in which any variables used
 #'   in the message or widget are defined. You almost definitely want to leave
 #'   this as the default value.
+#' @param fnCountData `function` A function that takes a `strDomainID` argument
+#'   and optional `strGroupID`, `strGroupLevel`, `strSubjectID`, and/or
+#'   `dSnapshotDate`, and returns an integer count of the number of rows in that
+#'   filtered domain. By default, this function is constructed using
+#'   `fnFetchData()` and [ConstructDataCounter()].
 #' @param fnFetchData `function` A function that takes a `strDomainID` argument
-#'   and optional `strSiteID` and `strSubjectID` and returns a data.frame. See
-#'   [sample_fnFetchData()] for an example. The returned data.frame contains
-#'   information about the named domain. If the function throws an error, the
-#'   error is elevated to the user, so you can use errors to pass requirements
-#'   through to the user.
+#'   and optional `strGroupID`, `strGroupLevel`, `strSubjectID`, and/or
+#'   `dSnapshotDate`, and returns a data.frame. See [sample_fnFetchData()] for
+#'   an example. The returned data.frame contains information about the named
+#'   domain. If the function throws an error, the error is elevated to the user,
+#'   so you can use errors to pass requirements through to the user.
 #' @param fnHtmlDependency `function` A function that returns an
 #'   [htmltools::htmlDependency()] or multiple wrapped in [shiny::tagList()].
 #' @param fnServer `function` A Shiny server function that takes arguments
 #'   `input`, `output`, and `session`. This function will be called at the start
 #'   of the main app server function.
+#' @param fnShinyUI `function or character` A shiny module UI function for the
+#'   plugin, or the name of such a function in the current session.
+#' @param fnShinyServer `function or character` A shiny module server function
+#'   for the plugin, or the name of such a function in the current session.
 #' @param fnWidgetOutput `function` An [htmlwidgets::shinyWidgetOutput()]
 #'   function.
 #' @param id `character` The id for this element.
 #' @param intKRIColorCount `integer` A named vector of counts by color.
-#' @param intRed `integer` The number of sites with at least one red flag.
-#' @param intAmber `integer` The number of sites with at least one amber flag.
+#' @param intRed `integer` The number of groups with at least one red flag.
+#' @param intAmber `integer` The number of groups with at least one amber flag.
+#' @param lDataModel `list` Named list of the standard gsm dataframes
+#'   (`dfAnalyticsInput`, `dfBounds`, `dfGroups`, `dfMetrics`, and `dfResults`).
+#' @param lGroups `list` Named list of character vectors, in which the names are
+#'   the group levels and the vectors are the group IDs within that group level.
 #' @param lMetric `list` Named list of data describing a single metric, as well
 #'   as things like which group is selected.
-#' @param l_rctvDomains `list` A named list of [shiny::reactive()] objects, each
-#'   of which returns a domain dataframe.
-#' @param lPluginDefinition `list` A named list with required elements
-#'   `strTitle`, `fnUI`, and `fnServer`, and optional fields `packages` and
-#'   `lConfig`. Usually generated by [plugin_Read()].
+#' @param l_rctvDomains `list` A named list of lists of [shiny::reactive()]
+#'   objects. Each list contains a "Study" element, a "Group" element, and a
+#'   "Selection" element, each of which returns a domain dataframe.
+#' @param l_rctvDomainLoaded `list` A named list of [shiny::reactive()] objects.
+#'   The list contains a "Study" element and an element per group level, each of
+#'   which returns a `logical` (`FALSE` if the data has not been accessed,
+#'   `TRUE` if it has).
+#' @param l_rctvDomainsLoaded `list` A named list of lists of
+#'   [shiny::reactive()] objects. Each list contains a "Study" element and an
+#'   element per group level, each of which returns a `logical` (`FALSE` if the
+#'   data has not been accessed, `TRUE` if it has).
+#' @param l_rctvDomains_Selection `list` A named list of [shiny::reactive()]
+#'   objects, each of which returns a domain dataframe for the current filter.
+#' @param l_rctvDomainHashes `list` A named list of [shiny::reactive()] objects,
+#'   each of which returns the [rlang::hash()] of a domain dataframe.
+#' @param l_rctvDomainHashes_Selection `list` A named list of
+#'   [shiny::reactive()] objects, each of which returns the [rlang::hash()] of a
+#'   domain dataframe for the current filter.
+#' @param l_rctvInputs `list` A named list of [shiny::reactiveVal()] objects,
+#'   each of which returns the current value of an input or input-like variable.
+#' @param lPlugin `list` A named list with required elements `meta` and `shiny`,
+#'   and optional fields `spec`, `packages` and `required_inputs`. Usually
+#'   generated by [plugin_Read()].
 #' @param lPlugins `list` Optional list of plugins to include in the app.
+#' @param lSpec `list` A named list defining the data domains required by the
+#'   plugin, where the names are the names of the domains and the elements are
+#'   column definitions.
 #' @param lStudy `list` Named list of data describing the overall study.
+#' @param lWorkflows `list` An optional named list of workflows to run in order
+#'   to translate app domain data into the format required by the plugin (as
+#'   defined in the plugin `spec`). These workflows are ran before the plugin's
+#'   `spec` is applied, and are meant to serve as a bridge between your domain
+#'   data and the plugin's expected domains.
+#' @param rctv_bPluginReady `reactive Boolean` A [shiny::reactive()] object that
+#'   returns `TRUE` if all inputs required by the plugin are non-empty, and
+#'   `FALSE` if one or more inputs are not ready.
+#' @param rctv_dSnapshotDate `reactive Date` A [shiny::reactive()] object that
+#'   returns the date of a data snapshot.
 #' @param rctv_dfBounds `reactive dataframe` A [shiny::reactive()] object that
 #'   returns a set of predicted percentages/rates and upper- and lower-bounds
 #'   across the full range of sample sizes/total exposure values for reporting.
@@ -86,6 +140,10 @@
 #'   returns a stacked summary of analysis pipeline output.
 #' @param rctv_gtObject `reactive gt_table` A [shiny::reactive()] object that
 #'   returns a [gt::gt()] object.
+#' @param rctv_intDomainCounts `reactive integer` A [shiny::reactive()] object
+#'   that returns the count of rows for the current selection for all domains.
+#' @param rctv_lColumnNames `reactive list` A [shiny::reactive()] object that
+#'   returns a named list of column names to substitute into tables for display.
 #' @param rctv_lMetric `reactive list` A [shiny::reactive()] object that returns
 #'   a named list of data describing a single metric, as well as things like
 #'   which group is selected.
@@ -94,8 +152,15 @@
 #'   "on" (`TRUE`).
 #' @param rctv_strDomainID `reactive character` A [shiny::reactive()] object
 #'   that returns the selected `DomainID` (such as "AE" or "SUBJ").
+#' @param rctv_strDomainHash `reactive character` A [shiny::reactive()] object
+#'   that returns the the [rlang::hash()] of a domain dataframe.
 #' @param rctv_strCurrentTab `reactive character` A [shiny::reactive()] object
 #'   that returns the currently selected tab.
+#' @param rctv_strGroupID `reactive character` A [shiny::reactiveVal()] object
+#'   that returns the `GroupID` of the selected group (usually site), and can be
+#'   used to update which group is selected.
+#' @param rctv_strGroupLevel `reactive character` A [shiny::reactiveVal()]
+#'   object that returns the selected `GroupLevel`.
 #' @param rctv_strGroupSubset `reactive character` A [shiny::reactive()] object
 #'   that returns the selected subset of groups to include in the table.
 #' @param rctv_strInput `reactive character` A [shiny::reactive()] object that
@@ -107,9 +172,6 @@
 #' @param rctv_strName `reactive character` A [shiny::reactive()] object that
 #'   returns the name of an object, such as a particular dataframe in a named
 #'   list.
-#' @param rctv_strSiteID `reactive character` A [shiny::reactiveVal()] object
-#'   that returns the `GroupID` of the selected site, and can be used to update
-#'   the selected site.
 #' @param rctv_strSubjectID `reactive character` A [shiny::reactive()] object
 #'   that returns the `SubjectID` of the selected participant.
 #' @param rctv_strValue `reactive character` A [shiny::reactive()] object that
@@ -119,6 +181,8 @@
 #' @param strArg `character` The name of the argument in the calling function.
 #'   In general, this value should either be left as the default, or passed from
 #'   the calling function if the calling function also has a `strArg` argument.
+#' @param strCache `character` An additional string to ensure that a cache key
+#'   is unique.
 #' @param strClass `character` A descriptive label for this type of error, in
 #'   lower_snake_case.
 #' @param strColorFamily `character` Whether to load the `"dark"` version of
@@ -155,15 +219,15 @@
 #' - `"amber"`: Groups with 1+ amber flag.
 #' @param strInputID `character` An ID to use for the Shiny input created by
 #'   this module or used by this JavaScript.
-#' @param strInputName `character` The name of an input. One of `"site"`,
-#'   `"participant"`, or `"domain"`.
+#' @param strInputName `character` The name of an input. One of `"group"`,
+#'   `"level"`, `"participant"`, or `"domain"`.
 #' @param strLabel `character` The label of a field.
 #' @param strMetricID `character` A `MetricID` to focus on.
 #' @param strOutcome `character` Outcome variable. Default: `"Score"`.
 #' @param strPlotTitle `character` A title for a plot, usually the name of a
 #'   metric.
-#' @param strSiteID `character` A `GroupID` of an individual site within a
-#'   study.
+#' @param strGroupID `character` A `GroupID` of an individual site or other
+#'   group within a study.
 #' @param strSubjectID `character` A `SubjectID` of an individual participant.
 #' @param strTargetTab `character` The tab to switch to.
 #' @param strText `character` Text to display.
@@ -172,8 +236,8 @@
 #' @param strWhat `character` A sentence-case description of the object being
 #'   inspected.
 #' @param strWidgetName `character` The name of a widget in the gsm package.
-#' @param tagListSidebar `taglist` An optional [htmltools::tagList()] of
-#'   additional elements to add to the top of the app sidebar.
+#' @param tagListExtra `taglist` An optional [htmltools::tagList()] of
+#'   additional elements to add to the top of the app.
 #' @param x An object to validate.
 #'
 #' @name shared-params

@@ -10,6 +10,7 @@ gsmApp_Server <- function(
   dfMetrics,
   dfResults,
   fnFetchData,
+  fnCountData = ConstructDataCounter(fnFetchData),
   chrDomains = c(
     AE = "Adverse Events",
     DATACHG = "Data Changes",
@@ -33,10 +34,13 @@ gsmApp_Server <- function(
   force(dfGroups)
   force(dfMetrics)
   force(dfResults)
-  force(chrDomains)
   force(fnFetchData)
+  force(fnCountData)
+  force(chrDomains)
+  force(lPlugins)
   force(fnServer)
   function(input, output, session) {
+    # Extras ----
     if (!is.null(fnServer)) {
       fnServer(input, output, session)
     }
@@ -46,82 +50,173 @@ gsmApp_Server <- function(
 
     # Shared Reactives ----
 
-    ## Inputs ----
-    ##
-    ## Inputs pass to modules (etc) as reactiveVals.
-    rctv_strMetricID <- reactiveVal()
-    observe({rctv_strMetricID(input$metric)})
-    srvr_SyncSelectInput("metric", rctv_strMetricID, session)
-
-    rctv_strSiteID <- reactiveVal()
-    observe({rctv_strSiteID(input$site)})
-    srvr_SyncVirtualSelectInput("site", rctv_strSiteID, session)
-
+    ## reactiveVals ----
     rctv_strPrimaryNavBar <- reactiveVal()
-    observe({rctv_strPrimaryNavBar(input$primary_nav_bar)})
+    rctv_strGroupLevel <- reactiveVal()
+    rctv_strGroupID <- reactiveVal()
+    rctv_strSubjectID <- reactiveVal("All")
+    rctv_strMetricID <- reactiveVal(dfMetrics$MetricID[[1]])
+    rctv_strDomainID <- reactiveVal(names(chrDomains)[[1]])
+    # Future-proof by making SnapshotDate available to pass around.
+    rctv_dSnapshotDate <- reactiveVal(max(dfResults$SnapshotDate))
+
+    ## Primary Inputs ----
+    ##
+    ## Inputs update via reactiveVals.
+
+    ### Groups ----
+    chrGroupLevels <- setdiff(sort(unique(dfGroups$GroupLevel)), "Study")
+    names(chrGroupLevels) <- chrGroupLevels
+    lGroups <- purrr::map(
+      chrGroupLevels,
+      function(strGroupLevel) {
+        sort(unique(dfGroups$GroupID[dfGroups$GroupLevel == strGroupLevel]))
+      }
+    )
+    mod_GroupInput_Server(
+      "group",
+      lGroups,
+      rctv_strGroupID,
+      rctv_strGroupLevel
+    )
+
+    ### Tabs ----
+    observe({
+      rctv_strPrimaryNavBar(input$primary_nav_bar)
+    })
     # TODO: Sync tab in response to this reactive.
 
     ### Participants ----
+    dfSubjectGroups <- dplyr::distinct(
+      FilterByLatestIfPresent(dfAnalyticsInput),
+      .data$GroupLevel,
+      .data$GroupID,
+      .data$SubjectID
+    ) %>%
+      dplyr::arrange(.data$SubjectID)
+    # lSubjectGroups <- purrr::imap(
+    #   lGroups,
+    #   function(chrGroupIDs, strGroupLevel) {
+    #     purrr::map(
+    #       rlang::set_names(chrGroupIDs, chrGroupIDs),
+    #       function(strGroupID) {
+    #         dfSubjectGroups$SubjectID[
+    #           dfSubjectGroups$GroupLevel == strGroupLevel &
+    #             dfSubjectGroups$GroupID == strGroupID
+    #         ]
+    #       }
+    #     )
+    #   }
+    # )
     rctv_chrParticipantIDs <- srvr_rctv_chrParticipantIDs(
-      dfAnalyticsInput,
-      rctv_strSiteID
+      FilterByLatestIfPresent(dfAnalyticsInput),
+      rctv_strGroupID
     )
 
-    rctv_strSubjectID <- reactiveVal("All")
     observe({
       if (input$participant != "" && input$participant != rctv_strSubjectID()) {
-        rctv_strSubjectID(input$participant)           # Tested via UI.
+        rctv_strSubjectID(input$participant) # Tested via UI.
       }
     }) %>%
       bindEvent(input$participant)
     observe({
       if (input$participant != rctv_strSubjectID()) {
-        shinyWidgets::updateVirtualSelect(
-          inputId = "participant",
-          choices = rctv_chrParticipantIDs(),
-          selected = rctv_strSubjectID(),
-          session = session
+        shinyWidgets::updateVirtualSelect( # Tested via UI.
+          inputId = "participant", # Tested via UI.
+          choices = rctv_chrParticipantIDs(), # Tested via UI.
+          selected = rctv_strSubjectID(), # Tested via UI.
+          session = session # Tested via UI.
         )
       }
     }) %>%
       bindEvent(rctv_strSubjectID())
 
-    ### Domains ----
-    rctv_strDomainID <- reactiveVal()
-    observe({rctv_strDomainID(input$domain)})
-    srvr_SyncSelectInput("domain", rctv_strDomainID, session)
+    ## Domain Data ----
+    ##
+    ## This stuff needs to be defined at the top so it's available to plugins.
+
+    ## Reactive watchers are used to check whether domains have been accessed.
+    ## That way, if higher-level data for a given domain has been fetched
+    ## already, we can subset that rather than re-fetching.
+    l_rctvDomainsLoaded <- purrr::map(
+      chrDomains,
+      function(strDomain) {
+        c(
+          list(Study = reactiveVal(FALSE)),
+          purrr::map(
+            lGroups,
+            function(chrGroups) {
+              purrr::map(
+                rlang::set_names(chrGroups, chrGroups),
+                ~ reactiveVal(FALSE)
+              )
+            }
+          )
+        )
+      }
+    )
 
     l_rctvDomains <- mod_dfDomains_Server(
       "l_rctv_dfDomains",
-      fnFetchData,
-      chrDomains,
-      rctv_strSiteID,
-      rctv_strSubjectID
+      fnFetchData = fnFetchData,
+      chrDomains = chrDomains,
+      dfSubjectGroups = dfSubjectGroups,
+      l_rctvDomainsLoaded = l_rctvDomainsLoaded,
+      rctv_dSnapshotDate = rctv_dSnapshotDate,
+      rctv_strGroupID = rctv_strGroupID,
+      rctv_strGroupLevel = rctv_strGroupLevel,
+      rctv_strSubjectID = rctv_strSubjectID
     )
 
-    # Tab Contents ----
+    ## Also produce a reusable hash of each domain, for cleaner caching.
+    l_rctvDomainHashes <- mod_DomainHashes_Server(
+      "l_rctv_strDomainHashes",
+      l_rctvDomains,
+      rctv_dSnapshotDate = rctv_dSnapshotDate,
+      rctv_strGroupID = rctv_strGroupID,
+      rctv_strGroupLevel = rctv_strGroupLevel,
+      rctv_strSubjectID = rctv_strSubjectID
+    )
+
+    ## We actually USE l_rctvDomains transposed from what's easy to build.
+    l_rctvDomains <- purrr::list_transpose(l_rctvDomains, simplify = FALSE)
+    l_rctvDomainHashes <- purrr::list_transpose(l_rctvDomainHashes, simplify = FALSE)
+
+    ## Also fetch the counts.
+    rctv_intDomainCounts <- srvr_DomainCounts(
+      "domain_counts",
+      fnCountData = fnCountData,
+      chrDomains = chrDomains,
+      rctv_dSnapshotDate = rctv_dSnapshotDate,
+      rctv_strGroupID = rctv_strGroupID,
+      rctv_strGroupLevel = rctv_strGroupLevel,
+      rctv_strSubjectID = rctv_strSubjectID
+    )
+
+    # Tabs ----
 
     ## Study Overview ----
     mod_StudyOverview_Server(
       "study_overview",
-      dfResults = dfResults,
+      dfResults = FilterByLatestIfPresent(dfResults),
       dfGroups = dfGroups,
       dfMetrics = dfMetrics,
       dfBounds = dfBounds,
-      rctv_strSiteID = rctv_strSiteID,
-      rctv_strMetricID
+      rctv_strGroupID = rctv_strGroupID,
+      rctv_strMetricID = rctv_strMetricID
     )
 
     ## Metric Details ----
     srvr_MetricDetails(
-      dfAnalyticsInput = dfAnalyticsInput,
+      dfAnalyticsInput = FilterByLatestIfPresent(dfAnalyticsInput),
       dfBounds = dfBounds,
       dfGroups = dfGroups,
       dfMetrics = dfMetrics,
       dfResults = dfResults,
       rctv_strMetricID = rctv_strMetricID,
       rctv_strPrimaryNavBar = rctv_strPrimaryNavBar,
-      rctv_strSiteID = rctv_strSiteID,
+      rctv_strGroupID = rctv_strGroupID,
+      rctv_strGroupLevel = rctv_strGroupLevel,
       rctv_strSubjectID = rctv_strSubjectID,
       input = input,
       output = output,
@@ -131,20 +226,20 @@ gsmApp_Server <- function(
     ## Sync participant dropdown filter ----
     ##
     ## Revisit as app becomes fully modularized.
-    rctv_LastSiteFilter <- reactiveVal("unfiltered")
+    rctv_LastGroupFilter <- reactiveVal("unfiltered")
     observe({
       req(rctv_strSubjectID())
       req(rctv_chrParticipantIDs())
-      req(rctv_LastSiteFilter())
+      req(rctv_LastGroupFilter())
       selected <- "All"
       if (rctv_strSubjectID() %in% rctv_chrParticipantIDs()) {
         selected <- rctv_strSubjectID()
       }
       if (
         selected != input$participant ||
-          rctv_LastSiteFilter() != input$site
+          rctv_LastGroupFilter() != rctv_strGroupID()
       ) {
-        rctv_LastSiteFilter(input$site)
+        rctv_LastGroupFilter(rctv_strGroupID())
         if (selected == "All") {
           # This double-update prevents the old option from showing in the list
           # erroneously.
@@ -162,7 +257,7 @@ gsmApp_Server <- function(
         )
       }
     }) %>%
-      bindEvent(rctv_strSubjectID(), input$site)
+      bindEvent(rctv_strSubjectID(), rctv_strGroupID())
 
     ## Domain Details ----
     srvr_SyncTab(
@@ -181,10 +276,14 @@ gsmApp_Server <- function(
       chrFromTabs = c("Study Overview", "Metric Details"),
       session = session
     )
+
     mod_DomainDetails_Server(
       "domain_details",
-      l_rctvDomains = l_rctvDomains,
+      l_rctvDomains_Selection = l_rctvDomains$Selection,
+      l_rctvDomainHashes_Selection = l_rctvDomainHashes$Selection,
       rctv_strDomainID = rctv_strDomainID,
+      rctv_intDomainCounts = rctv_intDomainCounts,
+      rctv_strGroupLevel = rctv_strGroupLevel,
       chrDomains = chrDomains
     )
 
@@ -192,9 +291,17 @@ gsmApp_Server <- function(
     mod_Plugins_Server(
       "plugins",
       lPlugins = lPlugins,
+      dfAnalyticsInput = dfAnalyticsInput,
+      dfBounds = dfBounds,
+      dfGroups = dfGroups,
+      dfMetrics = dfMetrics,
+      dfResults = dfResults,
       l_rctvDomains = l_rctvDomains,
+      l_rctvDomainHashes = l_rctvDomainHashes,
+      rctv_dSnapshotDate = rctv_dSnapshotDate,
       rctv_strMetricID = rctv_strMetricID,
-      rctv_strSiteID = rctv_strSiteID,
+      rctv_strGroupID = rctv_strGroupID,
+      rctv_strGroupLevel = rctv_strGroupLevel,
       rctv_strSubjectID = rctv_strSubjectID,
       rctv_strDomainID = rctv_strDomainID
     )

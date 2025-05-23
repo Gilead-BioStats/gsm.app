@@ -24,6 +24,7 @@ run_gsm_app <- function(
   dfMetrics,
   dfResults,
   fnFetchData,
+  fnCountData = ConstructDataCounter(fnFetchData),
   chrDomains = c(
     AE = "Adverse Events",
     DATACHG = "Data Changes",
@@ -40,20 +41,17 @@ run_gsm_app <- function(
   strTitle = ExtractAppTitle(dfGroups),
   strFavicon = "angles-up",
   strFaviconColor = "#FF5859",
-  tagListSidebar = NULL,
+  tagListExtra = NULL,
   fnServer = NULL
 ) {
   # There's no point launching the app if the data won't work.
   dfAnalyticsInput <- validate_dfAnalyticsInput(dfAnalyticsInput)
   dfBounds <- validate_dfBounds(dfBounds)
-  dfGroups <- validate_dfGroups(dfGroups)
+  dfGroups <- validate_dfGroups(dfGroups, dfResults)
   dfMetrics <- validate_dfMetrics(dfMetrics)
   dfResults <- validate_dfResults(dfResults)
+  lPlugins <- validate_lPlugins(lPlugins)
   chrDomains <- validate_chrDomains(chrDomains, lPlugins)
-
-  # We currently only use site-level data in this app.
-  dfAnalyticsInput <- dfAnalyticsInput[dfAnalyticsInput$GroupLevel == "Site", ]
-  dfResults <- dfResults[dfResults$GroupLevel == "Site", ]
 
   shinyApp(
     ui = gsmApp_UI(
@@ -65,7 +63,7 @@ run_gsm_app <- function(
       strTitle = strTitle,
       strFavicon = strFavicon,
       strFaviconColor = strFaviconColor,
-      tagListSidebar = tagListSidebar
+      tagListExtra = tagListExtra
     ),
     server = gsmApp_Server(
       dfAnalyticsInput = dfAnalyticsInput,
@@ -75,6 +73,7 @@ run_gsm_app <- function(
       dfResults = dfResults,
       chrDomains = chrDomains,
       fnFetchData = fnFetchData,
+      fnCountData = fnCountData,
       lPlugins = lPlugins,
       fnServer = fnServer
     )

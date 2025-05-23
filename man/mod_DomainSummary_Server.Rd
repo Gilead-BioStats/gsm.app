@@ -4,7 +4,12 @@
 \alias{mod_DomainSummary_Server}
 \title{Dynamically Generate the Domain Summary}
 \usage{
-mod_DomainSummary_Server(id, rctv_strDomainID, l_rctvDomains, chrDomains)
+mod_DomainSummary_Server(
+  id,
+  rctv_strDomainID,
+  rctv_intDomainCounts,
+  chrDomains
+)
 }
 \arguments{
 \item{id}{\code{character} The id for this element.}
@@ -12,8 +17,8 @@ mod_DomainSummary_Server(id, rctv_strDomainID, l_rctvDomains, chrDomains)
 \item{rctv_strDomainID}{\verb{reactive character} A \code{\link[shiny:reactive]{shiny::reactive()}} object
 that returns the selected \code{DomainID} (such as "AE" or "SUBJ").}
 
-\item{l_rctvDomains}{\code{list} A named list of \code{\link[shiny:reactive]{shiny::reactive()}} objects, each
-of which returns a domain dataframe.}
+\item{rctv_intDomainCounts}{\verb{reactive integer} A \code{\link[shiny:reactive]{shiny::reactive()}} object
+that returns the count of rows for the current selection for all domains.}
 
 \item{chrDomains}{\code{character} A (named) vector of domains to include in the
 app. The values of the vector will be used as labels, and the names will be

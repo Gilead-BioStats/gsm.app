@@ -13,7 +13,7 @@ gsmApp_UI(
   strTitle = ExtractAppTitle(dfGroups),
   strFavicon = "angles-up",
   strFaviconColor = ColorScheme("red"),
-  tagListSidebar = NULL
+  tagListExtra = NULL
 )
 }
 \arguments{
@@ -27,8 +27,7 @@ that domain.}
 \item{dfMetrics}{\code{data.frame} Metric-specific metadata for use in charts and
 reporting.}
 
-\item{dfResults}{\code{data.frame} A stacked summary of analysis pipeline output.
-This will be filtered to cases where \code{GroupLevel == "Site"}.}
+\item{dfResults}{\code{data.frame} A stacked summary of analysis pipeline output.}
 
 \item{lPlugins}{\code{list} Optional list of plugins to include in the app.}
 
@@ -40,8 +39,8 @@ via \code{\link[favawesome:fav]{favawesome::fav()}}.}
 \item{strFaviconColor}{\code{character} The hexcode or name of a color to use as
 the icon fill for \code{\link[favawesome:fav]{favawesome::fav()}}.}
 
-\item{tagListSidebar}{\code{taglist} An optional \code{\link[htmltools:tagList]{htmltools::tagList()}} of
-additional elements to add to the top of the app sidebar.}
+\item{tagListExtra}{\code{taglist} An optional \code{\link[htmltools:tagList]{htmltools::tagList()}} of
+additional elements to add to the top of the app.}
 }
 \value{
 A Shiny UI object

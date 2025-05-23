@@ -41,26 +41,35 @@ mod_DomainDetails_UI <- function(
 #' @keywords internal
 mod_DomainDetails_Server <- function(
   id,
-  l_rctvDomains,
+  l_rctvDomains_Selection,
+  l_rctvDomainHashes_Selection,
   rctv_strDomainID,
+  rctv_intDomainCounts,
+  rctv_strGroupLevel,
   chrDomains
 ) {
   moduleServer(id, function(input, output, session) {
     observe({
+      req(input$selected_tab)
       mod_DomainData_Server(
         id = input$selected_tab,
-        l_rctvDomains[[input$selected_tab]]
+        rctv_dfDomain = l_rctvDomains_Selection[[input$selected_tab]],
+        rctv_strDomainHash = l_rctvDomainHashes_Selection[[input$selected_tab]],
+        rctv_strGroupLevel = rctv_strGroupLevel
       )
     })
     observe({
+      req(rctv_strDomainID())
       mod_DomainSummary_Server(
         "counts",
         rctv_strDomainID,
-        l_rctvDomains,
+        rctv_intDomainCounts,
         chrDomains
       )
     })
     observe({
+      req(rctv_strDomainID())
+      req(input$selected_tab)
       input_val <- input$selected_tab
       if (!is.null(input_val) && input_val != "") {
         rctv_strDomainID(input_val)
@@ -70,11 +79,15 @@ mod_DomainDetails_Server <- function(
         input$selected_tab,
         ignoreInit = TRUE
       )
+    # tested in shinytest2
     observe({
+      req(rctv_strDomainID())
+      req(input$selected_tab)
       input_val <- NullifyEmpty(rctv_strDomainID())
       if (!is.null(input_val) && input_val != input$selected_tab) {
         bslib::nav_select("selected_tab", input_val, session = session)
       }
     })
+    # end of "untested"
   })
 }
