@@ -38,8 +38,6 @@ Imports:
     stringr,
     yaml
 Suggests: 
-    chromote (>= 0.5.0),
-    devtools,
     gsm.mapping (>= 1.0.1),
     here,
     knitr,
@@ -48,12 +46,15 @@ Suggests:
     rmarkdown,
     shinytest2 (>= 0.4.1),
     testthat (>= 3.0.0),
-    usethis,
     withr
+Config/Needs/data: 
+    usethis, 
+    Gilead-BioStats/gsm.reporting, 
+    Gilead-BioStats/gsm.datasim@dev
 Remotes: 
-    gsm.core=gilead-biostats/gsm.core@main,
+    gsm.core=Gilead-BioStats/gsm.core@main,
     gsm.mapping=Gilead-BioStats/gsm.mapping@main,
-    gsm.kri=gilead-biostats/gsm.kri@main
+    gsm.kri=Gilead-BioStats/gsm.kri@main
 Config/testthat/edition: 3
 Encoding: UTF-8
 Language: en-US
