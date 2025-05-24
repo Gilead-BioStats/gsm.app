@@ -7,9 +7,9 @@
 # or testing the package, so it is not listed in the DESCRIPTION. Likewise for
 # gsm.mapping and gsm.reporting.
 # pak::pak("Gilead-BioStats/gsm.reporting")
-# pak::pak("Gilead-BioStats/gsm.core#30")
-# pak::pak("Gilead-BioStats/gsm.mapping#68")
-# pak::pak("Gilead-BioStats/gsm.datasim#58")
+# pak::pak("Gilead-BioStats/gsm.core@dev")
+# pak::pak("Gilead-BioStats/gsm.mapping@dev")
+# pak::pak("Gilead-BioStats/gsm.datasim@dev")
 
 pkgload::load_all()
 library(conflicted)
