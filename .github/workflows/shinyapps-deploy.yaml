@@ -64,21 +64,6 @@ jobs:
 
       - uses: r-lib/actions/setup-r-dependencies@v2
 
-      - name: Install things for rsconnect
-        run: |
-          # I don't know why it misses cpp11 (nor why it's needed).
-          pak::pak(c("cpp11", "rsconnect"))
-        shell: Rscript {0}
-
-      # # Use a cache to speed up installation, if possible. Packages will be
-      # # restored if they're in the cache, then updated if necessary in the
-      # # following step, then re-cached at the end of the run.
-      # - name: Use R package cache
-      #   uses: actions/cache@v4
-      #   with:
-      #     path: ${{ runner.temp }}/Library
-      #     key: ${{ runner.os }}-R-${{ hashFiles('DESCRIPTION') }}
-
       - name: Install plugin dependencies
         run: |
           # Technically this plugin doesn't have any, but keep this in place as
@@ -123,6 +108,12 @@ jobs:
           echo "GSMAPP_FAVICONCOLOR=$FAVICONCOLOR" >> .Renviron
           echo "GSMAPP_TITLE=$APPTITLE" >> .Renviron
           echo "GITHUB_PAT=$GITHUB_PAT" >> .Renviron
+
+      - name: Install things for rsconnect
+        run: |
+          # I don't know why it misses cpp11 (nor why it's needed).
+          pak::pak(c("cpp11", "rsconnect"))
+        shell: Rscript {0}
 
       - name: Push to shinyapps.io
         env:
