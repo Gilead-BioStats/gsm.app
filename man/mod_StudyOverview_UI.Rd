@@ -4,7 +4,7 @@
 \alias{mod_StudyOverview_UI}
 \title{Study Overview UI}
 \usage{
-mod_StudyOverview_UI(id, dfGroups, dfResults, chrMetrics)
+mod_StudyOverview_UI(id, dfGroups, dfResults, dfMetrics)
 }
 \arguments{
 \item{id}{\code{character} The id for this element.}
@@ -13,8 +13,8 @@ mod_StudyOverview_UI(id, dfGroups, dfResults, chrMetrics)
 
 \item{dfResults}{\code{data.frame} A stacked summary of analysis pipeline output.}
 
-\item{chrMetrics}{\code{character} A named vector of MetricIDs, where the names
-are the full Metric.}
+\item{dfMetrics}{\code{data.frame} Metric-specific metadata for use in charts and
+reporting.}
 }
 \description{
 Study Overview UI

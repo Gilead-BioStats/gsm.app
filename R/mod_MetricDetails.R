@@ -2,8 +2,17 @@
 #'
 #' @inheritParams shared-params
 #' @keywords internal
-mod_MetricDetails_UI <- function(id, chrMetrics) {
+mod_MetricDetails_UI <- function(id, dfMetrics) {
   ns <- NS(id)
+  # Only give choices from the last GroupLevel at first.
+  dfMetrics <- dfMetrics %>%
+    dplyr::filter(
+      .data$GroupLevel == sort(
+        unique(dfMetrics$GroupLevel),
+        decreasing = TRUE
+      )[[1]]
+    ) %>%
+    dplyr::arrange(.data$Metric)
   bslib::navset_underline(
     id = ns("selected_tab"),
     bslib::nav_item(
@@ -11,9 +20,8 @@ mod_MetricDetails_UI <- function(id, chrMetrics) {
       htmlDependency_Stylesheet("navbarExtras.css"),
       shinyWidgets::virtualSelectInput(
         inputId = ns("metric"),
-        # label = strong("Metric"),
         label = NULL,
-        choices = chrMetrics,
+        choices = rlang::set_names(dfMetrics$MetricID, dfMetrics$Metric),
         inline = TRUE
       )
     ),
@@ -47,11 +55,13 @@ mod_MetricDetails_UI <- function(id, chrMetrics) {
 #' @keywords internal
 mod_MetricDetails_Server <- function(
   id,
-  dfResults,
-  dfGroups,
   dfBounds,
+  dfGroups,
+  dfMetrics,
+  dfResults,
   rctv_lMetric,
   rctv_strGroupID,
+  rctv_strGroupLevel,
   rctv_strMetricID
 ) {
   moduleServer(id, function(input, output, session) {
@@ -83,6 +93,24 @@ mod_MetricDetails_Server <- function(
     observe({
       rctv_strMetricID(input$metric)
     })
+
+    # bindEvent(
+    #   observe({
+    #     dfMetrics <- dplyr::filter(
+    #       dfMetrics,
+    #       .data$GroupLevel == rctv_strGroupLevel()
+    #     ) %>%
+    #       dplyr::arrange(.data$Metric)
+    #     shinyWidgets::updateVirtualSelect(
+    #       inputId = id,
+    #       choices = rlang::set_names(dfMetrics$MetricID, dfMetrics$Metric),
+    #       selected = rctv_strMetricID(),
+    #       session = session
+    #     )
+    #   }),
+    #   rctv_strGroupLevel(),
+    #   ignoreInit = TRUE
+    # )
 
     srvr_SyncVirtualSelectInput("metric", rctv_strMetricID, session)
 
@@ -130,7 +158,8 @@ mod_MetricDetails_Server <- function(
       "analysis_output",
       rctv_dfResults = rctv_dfResults_Latest,
       dfGroups = dfGroups,
-      rctv_strGroupID = rctv_strGroupID
+      rctv_strGroupID = rctv_strGroupID,
+      rctv_strGroupLevel = rctv_strGroupLevel
     )
   })
 }

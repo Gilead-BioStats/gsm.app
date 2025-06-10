@@ -5,17 +5,26 @@
 #'   of plots, and the output of [out_DetectCardClicks()] (the JavaScript
 #'   necessary to detect that the plot has been clicked).
 #' @keywords internal
-mod_ScatterPlotSet_UI <- function(id, chrMetrics) {
+mod_ScatterPlotSet_UI <- function(id, dfMetrics) {
   ns <- NS(id)
-  plots <- purrr::imap(
-    chrMetrics,
-    function(MetricID, MetricName) {
-      mod_ScatterPlot_UI(ns(MetricID), MetricName)
+  plots <- purrr::pmap(
+    list(
+      strMetricID = dfMetrics$MetricID,
+      strMetricName = dfMetrics$Metric,
+      strGroupLevel = dfMetrics$GroupLevel
+    ),
+    function(strMetricID, strMetricName, strGroupLevel) {
+      mod_ScatterPlot_UI(
+        ns(strMetricID),
+        strMetricName,
+        strGroupLevel = strGroupLevel
+      )
     }
   )
   tagList(
     bslib::layout_column_wrap(id = id, width = 1 / 2, !!!unname(plots)),
-    out_DetectCardClicks(id, ns("selectedScatterPlot"))
+    out_DetectCardClicks(id, ns("selectedScatterPlot")),
+    htmlDependency_HideOtherGroupLevels()
   )
 }
 
@@ -30,6 +39,7 @@ mod_ScatterPlotSet_Server <- function(
   dfGroups,
   dfBounds,
   rctv_strGroupID,
+  rctv_strGroupLevel,
   rctv_strMetricID
 ) {
   moduleServer(id, function(input, output, session) {
@@ -69,5 +79,30 @@ mod_ScatterPlotSet_Server <- function(
       rctv_strMetricID(rctv_strSelectedMetricID())
     }) %>%
       bindEvent(rctv_strSelectedMetricID())
+
+    # Hide plots that are NOT for the selected group level.
+    observe({
+      session$sendCustomMessage("hideOtherGroupLevels", list(
+        groupLevel = rctv_strGroupLevel()
+      ))
+    })
   })
+}
+
+#' HideGroupLevel JavaScript
+#'
+#' Attach `hideOtherGroupLevels.js` to an app or other HTML exactly once.
+#'
+#' @returns An `html_dependency` object (see [htmltools::htmlDependency()]),
+#'   which is attached to the Shiny app exactly once, regardless of how many
+#'   times it is added.
+#' @keywords internal
+htmlDependency_HideOtherGroupLevels <- function() {
+  htmltools::htmlDependency(
+    name = "HideOtherGroupLevels",
+    version = "0.0.1",
+    src = "js",
+    package = "gsm.app",
+    script = "hideOtherGroupLevels.js"
+  )
 }

@@ -203,6 +203,7 @@ gsmApp_Server <- function(
       dfMetrics = dfMetrics,
       dfBounds = dfBounds,
       rctv_strGroupID = rctv_strGroupID,
+      rctv_strGroupLevel = rctv_strGroupLevel,
       rctv_strMetricID = rctv_strMetricID
     )
 

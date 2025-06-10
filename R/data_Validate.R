@@ -5,7 +5,7 @@
 #' @keywords internal
 validate_lPlugins <- function(lPlugins, envCall = rlang::caller_env()) {
   # TODO: This does not validate everything (or even very much) about plugins.
-  # Most validation is curerently in `plugin_Read()`.
+  # Most validation is currently in `plugin_Read()`.
   if (length(lPlugins)) {
     names(lPlugins)[!rlang::have_name(lPlugins)] <- stringr::str_pad(
       which(!rlang::have_name(lPlugins)),

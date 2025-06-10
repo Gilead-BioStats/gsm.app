@@ -7,18 +7,18 @@
 out_MainTabs <- function(
   chrDomains,
   dfGroups,
+  dfMetrics,
   dfResults,
-  chrMetrics,
   lPlugins = NULL
 ) {
   MainTabs <- list(
     bslib::nav_panel(
       title = "Study Overview",
-      mod_StudyOverview_UI("study_overview", dfGroups, dfResults, chrMetrics)
+      mod_StudyOverview_UI("study_overview", dfGroups, dfResults, dfMetrics)
     ),
     bslib::nav_panel(
       title = "Metric Details",
-      mod_MetricDetails_UI("metric_details", chrMetrics = chrMetrics),
+      mod_MetricDetails_UI("metric_details", dfMetrics = dfMetrics),
       mod_GroupDetails_UI("group_details", dfGroups)
     ),
     bslib::nav_panel(

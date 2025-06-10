@@ -51,8 +51,10 @@ srvr_MetricDetails <- function(
     dfResults = dfResults,
     dfGroups = dfGroups,
     dfBounds = dfBounds,
+    dfMetrics = dfMetrics,
     rctv_lMetric = rctv_lMetric,
     rctv_strGroupID = rctv_strGroupID,
+    rctv_strGroupLevel = rctv_strGroupLevel,
     rctv_strMetricID = rctv_strMetricID
   )
   mod_GroupDetails_Server(

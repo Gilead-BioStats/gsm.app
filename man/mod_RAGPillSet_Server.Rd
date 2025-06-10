@@ -4,13 +4,26 @@
 \alias{mod_RAGPillSet_Server}
 \title{Set of RAG Toggle Pills Server}
 \usage{
-mod_RAGPillSet_Server(id, rctv_strGroupSubset = reactive("red"))
+mod_RAGPillSet_Server(
+  id,
+  dfResults,
+  rctv_strGroupLevel,
+  rctv_strGroupSubset = reactive("red"),
+  strLabel = "KRIs"
+)
 }
 \arguments{
 \item{id}{\code{character} The id for this element.}
 
+\item{dfResults}{\code{data.frame} A stacked summary of analysis pipeline output.}
+
+\item{rctv_strGroupLevel}{\verb{reactive character} A \code{\link[shiny:reactiveVal]{shiny::reactiveVal()}}
+object that returns the selected \code{GroupLevel}.}
+
 \item{rctv_strGroupSubset}{\verb{reactive character} A \code{\link[shiny:reactive]{shiny::reactive()}} object
 that returns the selected subset of groups to include in the table.}
+
+\item{strLabel}{\code{character} The label of a field.}
 }
 \value{
 A \code{\link[shiny:reactive]{shiny::reactive()}} with the state of the selection as a string.

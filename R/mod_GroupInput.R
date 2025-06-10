@@ -6,7 +6,11 @@
 #' @keywords internal
 mod_GroupInput_UI <- function(id, dfGroups) {
   ns <- NS(id)
-  chrGroupLevels <- setdiff(sort(unique(dfGroups$GroupLevel)), "Study")
+  # Default to the *last* GroupLevel to temporarily "hack" it to put Site first.
+  chrGroupLevels <- setdiff(
+    sort(unique(dfGroups$GroupLevel), decreasing = TRUE),
+    "Study"
+  )
   chrGroups <- sort(unique(
     dfGroups$GroupID[dfGroups$GroupLevel == chrGroupLevels[[1]]]
   ))

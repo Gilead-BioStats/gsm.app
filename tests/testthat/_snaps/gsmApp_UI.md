@@ -13,7 +13,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
               </button>
-              <span class="navbar-brand">GROOVE-85</span>
+              <span class="navbar-brand">TREE-10</span>
             </div>
             <div class="navbar-collapse collapse" id="navbar-collapse-XXXX">
               <ul class="nav navbar-nav nav-underline shiny-tab-input" id="primary_nav_bar" data-tabsetid="XXXX">
@@ -29,11 +29,21 @@
                 <div class="bslib-nav-spacer"></div>
                 <li class="bslib-nav-item nav-item form-inline navbar-extras">
                   <div class="form-group shiny-input-container shiny-input-container-inline">
+                    <label class="control-label" id="group-level-label" for="group-level">
+                      <strong>Group Level</strong>
+                    </label>
+                    <div id="group-level" class="virtual-select" style="display:inline-block;" data-update="change">
+                      <script type="application/json" data-for="group-level">{"stateInput":true,"options":{"type":["vector"],"choices":["Site","Country"]},"config":{"multiple":false,"search":false,"hideClearButton":true,"autoSelectFirstOption":true,"showSelectedOptionsFirst":false,"showValueAsTags":false,"optionsCount":10,"noOfDisplayValues":50,"allowNewOption":false,"disableSelectAll":true,"disableOptionGroupCheckbox":true,"disabled":false}}</script>
+                    </div>
+                  </div>
+                </li>
+                <li class="bslib-nav-item nav-item form-inline navbar-extras">
+                  <div class="form-group shiny-input-container shiny-input-container-inline">
                     <label class="control-label" id="group-group-label" for="group-group">
                       <strong>Site</strong>
                     </label>
                     <div id="group-group" class="virtual-select" style="display:inline-block;" data-update="change">
-                      <script type="application/json" data-for="group-group">{"stateInput":true,"options":{"type":["vector"],"choices":["All","0X1145","0X1255","0X1427","0X1667","0X1858","0X2050","0X2096","0X226","0X2263","0X2585","0X2887","0X3174","0X3311","0X3349","0X3795","0X3972","0X4372","0X4694","0X4790","0X5041","0X5241","0X5370","0X5456","0X5590","0X5902","0X5985","0X6029","0X6444","0X6465","0X6916","0X7121","0X7265","0X732","0X7526","0X7840","0X7856","0X8251","0X8522","0X8733","0X8941","0X8989","0X9090","0X9328","0X9567","0X9621","0X9667","0X9818","0X9824","0X9919","0X9976"]},"config":{"multiple":false,"search":false,"hideClearButton":true,"autoSelectFirstOption":true,"showSelectedOptionsFirst":false,"showValueAsTags":false,"optionsCount":10,"noOfDisplayValues":50,"allowNewOption":false,"disableSelectAll":true,"disableOptionGroupCheckbox":true,"disabled":false}}</script>
+                      <script type="application/json" data-for="group-group">{"stateInput":true,"options":{"type":["vector"],"choices":["All","0X1221","0X1235","0X1363","0X1372","0X2227","0X2503","0X257","0X2635","0X2686","0X2775","0X2788","0X3108","0X3213","0X3346","0X3474","0X3581","0X3712","0X3744","0X3777","0X3892","0X4178","0X4579","0X4769","0X4783","0X5226","0X5239","0X5495","0X5766","0X5841","0X610","0X6112","0X6192","0X6698","0X703","0X7258","0X730","0X7394","0X7427","0X771","0X7798","0X7994","0X8088","0X8186","0X8352","0X8458","0X8469","0X8881","0X902","0X9194","0X9640"]},"config":{"multiple":false,"search":false,"hideClearButton":true,"autoSelectFirstOption":true,"showSelectedOptionsFirst":false,"showValueAsTags":false,"optionsCount":10,"noOfDisplayValues":50,"allowNewOption":false,"disableSelectAll":true,"disableOptionGroupCheckbox":true,"disabled":false}}</script>
                     </div>
                   </div>
                 </li>
@@ -529,13 +539,13 @@
         
         <tbody class="gt_table_body">
           <tr><td headers="Description" class="gt_row gt_left">Nickname</td>
-      <td headers="Value" class="gt_row gt_right">GROOVE-85</td></tr>
+      <td headers="Value" class="gt_row gt_right">TREE-10</td></tr>
           <tr><td headers="Description" class="gt_row gt_left">Status</td>
       <td headers="Value" class="gt_row gt_right">Active</td></tr>
           <tr><td headers="Description" class="gt_row gt_left">Site Activation</td>
       <td headers="Value" class="gt_row gt_right">44 / 50 (88%)</td></tr>
           <tr><td headers="Description" class="gt_row gt_left">Participant Enrollment</td>
-      <td headers="Value" class="gt_row gt_right">192 / 250 (76.8%)</td></tr>
+      <td headers="Value" class="gt_row gt_right">173 / 250 (69.2%)</td></tr>
         </tbody>
         
         
@@ -997,9 +1007,9 @@
           <tr><td headers="Description" class="gt_row gt_left">Studyid</td>
       <td headers="Value" class="gt_row gt_right">DEMO-001</td></tr>
           <tr><td headers="Description" class="gt_row gt_left">Nickname</td>
-      <td headers="Value" class="gt_row gt_right">GROOVE-85</td></tr>
+      <td headers="Value" class="gt_row gt_right">TREE-10</td></tr>
           <tr><td headers="Description" class="gt_row gt_left">Protocol Title</td>
-      <td headers="Value" class="gt_row gt_right">Protocol Title H</td></tr>
+      <td headers="Value" class="gt_row gt_right">Protocol Title X</td></tr>
           <tr><td headers="Description" class="gt_row gt_left">Status</td>
       <td headers="Value" class="gt_row gt_right">Active</td></tr>
           <tr><td headers="Description" class="gt_row gt_left">Num Plan Site</td>
@@ -1007,27 +1017,27 @@
           <tr><td headers="Description" class="gt_row gt_left">Num Plan Subj</td>
       <td headers="Value" class="gt_row gt_right">250</td></tr>
           <tr><td headers="Description" class="gt_row gt_left">Act Fpfv</td>
-      <td headers="Value" class="gt_row gt_right">2012-01-16</td></tr>
+      <td headers="Value" class="gt_row gt_right">2012-01-28</td></tr>
           <tr><td headers="Description" class="gt_row gt_left">Est Fpfv</td>
-      <td headers="Value" class="gt_row gt_right">2012-01-21</td></tr>
+      <td headers="Value" class="gt_row gt_right">2012-01-03</td></tr>
           <tr><td headers="Description" class="gt_row gt_left">Est Lplv</td>
-      <td headers="Value" class="gt_row gt_right">2012-05-03</td></tr>
+      <td headers="Value" class="gt_row gt_right">2012-07-10</td></tr>
           <tr><td headers="Description" class="gt_row gt_left">Est Lpfv</td>
-      <td headers="Value" class="gt_row gt_right">2012-03-14</td></tr>
+      <td headers="Value" class="gt_row gt_right">2012-03-16</td></tr>
           <tr><td headers="Description" class="gt_row gt_left">Therapeutic Area</td>
-      <td headers="Value" class="gt_row gt_right">Inflammation</td></tr>
+      <td headers="Value" class="gt_row gt_right">Virology</td></tr>
           <tr><td headers="Description" class="gt_row gt_left">Protocol Indication</td>
-      <td headers="Value" class="gt_row gt_right">Cardiovascular Health</td></tr>
+      <td headers="Value" class="gt_row gt_right">Hematology</td></tr>
           <tr><td headers="Description" class="gt_row gt_left">Phase</td>
-      <td headers="Value" class="gt_row gt_right">P4</td></tr>
+      <td headers="Value" class="gt_row gt_right">P2</td></tr>
           <tr><td headers="Description" class="gt_row gt_left">Product</td>
-      <td headers="Value" class="gt_row gt_right">Product Name 5</td></tr>
+      <td headers="Value" class="gt_row gt_right">Product Name 30</td></tr>
           <tr><td headers="Description" class="gt_row gt_left">Site Target</td>
       <td headers="Value" class="gt_row gt_right">50</td></tr>
           <tr><td headers="Description" class="gt_row gt_left">Participant Target</td>
       <td headers="Value" class="gt_row gt_right">250</td></tr>
           <tr><td headers="Description" class="gt_row gt_left">Participants Enrolled</td>
-      <td headers="Value" class="gt_row gt_right">192</td></tr>
+      <td headers="Value" class="gt_row gt_right">173</td></tr>
           <tr><td headers="Description" class="gt_row gt_left">Sites Enrolled</td>
       <td headers="Value" class="gt_row gt_right">44</td></tr>
           <tr><td headers="Description" class="gt_row gt_left">Percent Sites Activated</td>
@@ -1035,9 +1045,9 @@
           <tr><td headers="Description" class="gt_row gt_left">Site Activation</td>
       <td headers="Value" class="gt_row gt_right">44 / 50 (88%)</td></tr>
           <tr><td headers="Description" class="gt_row gt_left">Percent Participants Enrolled</td>
-      <td headers="Value" class="gt_row gt_right">76.8</td></tr>
+      <td headers="Value" class="gt_row gt_right">69.2</td></tr>
           <tr><td headers="Description" class="gt_row gt_left">Participant Enrollment</td>
-      <td headers="Value" class="gt_row gt_right">192 / 250 (76.8%)</td></tr>
+      <td headers="Value" class="gt_row gt_right">173 / 250 (69.2%)</td></tr>
         </tbody>
         
         
@@ -1066,12 +1076,10 @@
                             <div class="card-body bslib-gap-spacing html-fill-item html-fill-container" style="margin-top:auto;margin-bottom:auto;flex:1 1 auto;">
                               <div id="study_overview-table-kri_counts">
                                 <a class="action-button badge rounded-pill toggle-pill text-dark fs-6 p-2" href="#" id="study_overview-table-kri_counts-red-toggle_pill" style="background-color: #FF5859; opacity: 0.5;">0 Red KRIs</a>
-                                <a class="action-button badge rounded-pill toggle-pill text-dark fs-6 p-2" href="#" id="study_overview-table-kri_counts-amber-toggle_pill" style="background-color: #FEAA02; opacity: 0.5;">0 Amber KRIs</a>
+                                <a class="action-button badge rounded-pill toggle-pill text-dark fs-6 p-2" href="#" id="study_overview-table-kri_counts-amber-toggle_pill" style="background-color: #FEAA02; opacity: 0.5;">1 Amber KRIs</a>
                               </div>
-                              <div class="row gy-2">
-                                <div class="Widget_GroupOverview html-widget html-widget-output shiny-report-size html-fill-item" id="study_overview-table-group_overview" style="width:100%;height:100%;"></div>
-                                <div class="footnote">Click cells for associated risk signal details.</div>
-                              </div>
+                              <div class="Widget_GroupOverview html-widget html-widget-output shiny-report-size html-fill-item" id="study_overview-table-group_overview" style="width:100%;height:100%;"></div>
+                              <div class="footnote">Click cells for associated risk signal details.</div>
                             </div>
                             <bslib-tooltip placement="auto" bsOptions="[]" data-require-bs-version="5" data-require-bs-caller="tooltip()">
                               <template>Expand</template>
@@ -1085,8 +1093,184 @@
                         <div class="bslib-grid bslib-mb-spacing html-fill-item" data-require-bs-caller="layout_column_wrap()" data-require-bs-version="5" id="study_overview-scatter" style="grid-template-columns:repeat(2, minmax(0, 1fr));grid-auto-rows:1fr;--bslib-grid-height:auto;--bslib-grid-height-mobile:auto;">
                           <div class="bslib-grid-item bslib-gap-spacing html-fill-container">
                             <div>
+                              <style>#study_overview-scatter-Analysis_cou0001 .bslib-full-screen-enter { bottom: unset !important; }</style>
+                              <div class="card bslib-card bslib-mb-spacing bslib-card-input html-fill-item html-fill-container chart" data-bslib-card-init data-full-screen="false" data-group-level="Country" data-require-bs-caller="card()" data-require-bs-version="5" id="study_overview-scatter-Analysis_cou0001">
+                                <div class="card-body bslib-gap-spacing html-fill-item html-fill-container" style="margin-top:auto;margin-bottom:auto;flex:1 1 auto;">
+                                  <h5>Adverse Event Rate</h5>
+                                  <div class="Widget_ScatterPlot html-widget html-widget-output shiny-report-size html-fill-item" id="study_overview-scatter-Analysis_cou0001-plot" style="width:100%;height:400px;"></div>
+                                </div>
+                                <bslib-tooltip placement="auto" bsOptions="[]" data-require-bs-version="5" data-require-bs-caller="tooltip()">
+                                  <template>Expand</template>
+                                  <button aria-expanded="false" aria-label="Expand card" class="bslib-full-screen-enter badge rounded-pill"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" style="height:1em;width:1em;fill:currentColor;" aria-hidden="true" role="img"><path d="M20 5C20 4.4 19.6 4 19 4H13C12.4 4 12 3.6 12 3C12 2.4 12.4 2 13 2H21C21.6 2 22 2.4 22 3V11C22 11.6 21.6 12 21 12C20.4 12 20 11.6 20 11V5ZM4 19C4 19.6 4.4 20 5 20H11C11.6 20 12 20.4 12 21C12 21.6 11.6 22 11 22H3C2.4 22 2 21.6 2 21V13C2 12.4 2.4 12 3 12C3.6 12 4 12.4 4 13V19Z"/></svg></button>
+                                </bslib-tooltip>
+                                <script data-bslib-card-init>bslib.Card.initializeAllCards();</script>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="bslib-grid-item bslib-gap-spacing html-fill-container">
+                            <div>
+                              <style>#study_overview-scatter-Analysis_cou0002 .bslib-full-screen-enter { bottom: unset !important; }</style>
+                              <div class="card bslib-card bslib-mb-spacing bslib-card-input html-fill-item html-fill-container chart" data-bslib-card-init data-full-screen="false" data-group-level="Country" data-require-bs-caller="card()" data-require-bs-version="5" id="study_overview-scatter-Analysis_cou0002">
+                                <div class="card-body bslib-gap-spacing html-fill-item html-fill-container" style="margin-top:auto;margin-bottom:auto;flex:1 1 auto;">
+                                  <h5>Serious Adverse Event Rate</h5>
+                                  <div class="Widget_ScatterPlot html-widget html-widget-output shiny-report-size html-fill-item" id="study_overview-scatter-Analysis_cou0002-plot" style="width:100%;height:400px;"></div>
+                                </div>
+                                <bslib-tooltip placement="auto" bsOptions="[]" data-require-bs-version="5" data-require-bs-caller="tooltip()">
+                                  <template>Expand</template>
+                                  <button aria-expanded="false" aria-label="Expand card" class="bslib-full-screen-enter badge rounded-pill"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" style="height:1em;width:1em;fill:currentColor;" aria-hidden="true" role="img"><path d="M20 5C20 4.4 19.6 4 19 4H13C12.4 4 12 3.6 12 3C12 2.4 12.4 2 13 2H21C21.6 2 22 2.4 22 3V11C22 11.6 21.6 12 21 12C20.4 12 20 11.6 20 11V5ZM4 19C4 19.6 4.4 20 5 20H11C11.6 20 12 20.4 12 21C12 21.6 11.6 22 11 22H3C2.4 22 2 21.6 2 21V13C2 12.4 2.4 12 3 12C3.6 12 4 12.4 4 13V19Z"/></svg></button>
+                                </bslib-tooltip>
+                                <script data-bslib-card-init>bslib.Card.initializeAllCards();</script>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="bslib-grid-item bslib-gap-spacing html-fill-container">
+                            <div>
+                              <style>#study_overview-scatter-Analysis_cou0003 .bslib-full-screen-enter { bottom: unset !important; }</style>
+                              <div class="card bslib-card bslib-mb-spacing bslib-card-input html-fill-item html-fill-container chart" data-bslib-card-init data-full-screen="false" data-group-level="Country" data-require-bs-caller="card()" data-require-bs-version="5" id="study_overview-scatter-Analysis_cou0003">
+                                <div class="card-body bslib-gap-spacing html-fill-item html-fill-container" style="margin-top:auto;margin-bottom:auto;flex:1 1 auto;">
+                                  <h5>Non-Important Protocol Deviation Rate</h5>
+                                  <div class="Widget_ScatterPlot html-widget html-widget-output shiny-report-size html-fill-item" id="study_overview-scatter-Analysis_cou0003-plot" style="width:100%;height:400px;"></div>
+                                </div>
+                                <bslib-tooltip placement="auto" bsOptions="[]" data-require-bs-version="5" data-require-bs-caller="tooltip()">
+                                  <template>Expand</template>
+                                  <button aria-expanded="false" aria-label="Expand card" class="bslib-full-screen-enter badge rounded-pill"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" style="height:1em;width:1em;fill:currentColor;" aria-hidden="true" role="img"><path d="M20 5C20 4.4 19.6 4 19 4H13C12.4 4 12 3.6 12 3C12 2.4 12.4 2 13 2H21C21.6 2 22 2.4 22 3V11C22 11.6 21.6 12 21 12C20.4 12 20 11.6 20 11V5ZM4 19C4 19.6 4.4 20 5 20H11C11.6 20 12 20.4 12 21C12 21.6 11.6 22 11 22H3C2.4 22 2 21.6 2 21V13C2 12.4 2.4 12 3 12C3.6 12 4 12.4 4 13V19Z"/></svg></button>
+                                </bslib-tooltip>
+                                <script data-bslib-card-init>bslib.Card.initializeAllCards();</script>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="bslib-grid-item bslib-gap-spacing html-fill-container">
+                            <div>
+                              <style>#study_overview-scatter-Analysis_cou0004 .bslib-full-screen-enter { bottom: unset !important; }</style>
+                              <div class="card bslib-card bslib-mb-spacing bslib-card-input html-fill-item html-fill-container chart" data-bslib-card-init data-full-screen="false" data-group-level="Country" data-require-bs-caller="card()" data-require-bs-version="5" id="study_overview-scatter-Analysis_cou0004">
+                                <div class="card-body bslib-gap-spacing html-fill-item html-fill-container" style="margin-top:auto;margin-bottom:auto;flex:1 1 auto;">
+                                  <h5>Important Protocol Deviation Rate</h5>
+                                  <div class="Widget_ScatterPlot html-widget html-widget-output shiny-report-size html-fill-item" id="study_overview-scatter-Analysis_cou0004-plot" style="width:100%;height:400px;"></div>
+                                </div>
+                                <bslib-tooltip placement="auto" bsOptions="[]" data-require-bs-version="5" data-require-bs-caller="tooltip()">
+                                  <template>Expand</template>
+                                  <button aria-expanded="false" aria-label="Expand card" class="bslib-full-screen-enter badge rounded-pill"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" style="height:1em;width:1em;fill:currentColor;" aria-hidden="true" role="img"><path d="M20 5C20 4.4 19.6 4 19 4H13C12.4 4 12 3.6 12 3C12 2.4 12.4 2 13 2H21C21.6 2 22 2.4 22 3V11C22 11.6 21.6 12 21 12C20.4 12 20 11.6 20 11V5ZM4 19C4 19.6 4.4 20 5 20H11C11.6 20 12 20.4 12 21C12 21.6 11.6 22 11 22H3C2.4 22 2 21.6 2 21V13C2 12.4 2.4 12 3 12C3.6 12 4 12.4 4 13V19Z"/></svg></button>
+                                </bslib-tooltip>
+                                <script data-bslib-card-init>bslib.Card.initializeAllCards();</script>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="bslib-grid-item bslib-gap-spacing html-fill-container">
+                            <div>
+                              <style>#study_overview-scatter-Analysis_cou0005 .bslib-full-screen-enter { bottom: unset !important; }</style>
+                              <div class="card bslib-card bslib-mb-spacing bslib-card-input html-fill-item html-fill-container chart" data-bslib-card-init data-full-screen="false" data-group-level="Country" data-require-bs-caller="card()" data-require-bs-version="5" id="study_overview-scatter-Analysis_cou0005">
+                                <div class="card-body bslib-gap-spacing html-fill-item html-fill-container" style="margin-top:auto;margin-bottom:auto;flex:1 1 auto;">
+                                  <h5>Grade 3+ Lab Abnormality Rate</h5>
+                                  <div class="Widget_ScatterPlot html-widget html-widget-output shiny-report-size html-fill-item" id="study_overview-scatter-Analysis_cou0005-plot" style="width:100%;height:400px;"></div>
+                                </div>
+                                <bslib-tooltip placement="auto" bsOptions="[]" data-require-bs-version="5" data-require-bs-caller="tooltip()">
+                                  <template>Expand</template>
+                                  <button aria-expanded="false" aria-label="Expand card" class="bslib-full-screen-enter badge rounded-pill"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" style="height:1em;width:1em;fill:currentColor;" aria-hidden="true" role="img"><path d="M20 5C20 4.4 19.6 4 19 4H13C12.4 4 12 3.6 12 3C12 2.4 12.4 2 13 2H21C21.6 2 22 2.4 22 3V11C22 11.6 21.6 12 21 12C20.4 12 20 11.6 20 11V5ZM4 19C4 19.6 4.4 20 5 20H11C11.6 20 12 20.4 12 21C12 21.6 11.6 22 11 22H3C2.4 22 2 21.6 2 21V13C2 12.4 2.4 12 3 12C3.6 12 4 12.4 4 13V19Z"/></svg></button>
+                                </bslib-tooltip>
+                                <script data-bslib-card-init>bslib.Card.initializeAllCards();</script>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="bslib-grid-item bslib-gap-spacing html-fill-container">
+                            <div>
+                              <style>#study_overview-scatter-Analysis_cou0006 .bslib-full-screen-enter { bottom: unset !important; }</style>
+                              <div class="card bslib-card bslib-mb-spacing bslib-card-input html-fill-item html-fill-container chart" data-bslib-card-init data-full-screen="false" data-group-level="Country" data-require-bs-caller="card()" data-require-bs-version="5" id="study_overview-scatter-Analysis_cou0006">
+                                <div class="card-body bslib-gap-spacing html-fill-item html-fill-container" style="margin-top:auto;margin-bottom:auto;flex:1 1 auto;">
+                                  <h5>Study Discontinuation Rate</h5>
+                                  <div class="Widget_ScatterPlot html-widget html-widget-output shiny-report-size html-fill-item" id="study_overview-scatter-Analysis_cou0006-plot" style="width:100%;height:400px;"></div>
+                                </div>
+                                <bslib-tooltip placement="auto" bsOptions="[]" data-require-bs-version="5" data-require-bs-caller="tooltip()">
+                                  <template>Expand</template>
+                                  <button aria-expanded="false" aria-label="Expand card" class="bslib-full-screen-enter badge rounded-pill"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" style="height:1em;width:1em;fill:currentColor;" aria-hidden="true" role="img"><path d="M20 5C20 4.4 19.6 4 19 4H13C12.4 4 12 3.6 12 3C12 2.4 12.4 2 13 2H21C21.6 2 22 2.4 22 3V11C22 11.6 21.6 12 21 12C20.4 12 20 11.6 20 11V5ZM4 19C4 19.6 4.4 20 5 20H11C11.6 20 12 20.4 12 21C12 21.6 11.6 22 11 22H3C2.4 22 2 21.6 2 21V13C2 12.4 2.4 12 3 12C3.6 12 4 12.4 4 13V19Z"/></svg></button>
+                                </bslib-tooltip>
+                                <script data-bslib-card-init>bslib.Card.initializeAllCards();</script>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="bslib-grid-item bslib-gap-spacing html-fill-container">
+                            <div>
+                              <style>#study_overview-scatter-Analysis_cou0007 .bslib-full-screen-enter { bottom: unset !important; }</style>
+                              <div class="card bslib-card bslib-mb-spacing bslib-card-input html-fill-item html-fill-container chart" data-bslib-card-init data-full-screen="false" data-group-level="Country" data-require-bs-caller="card()" data-require-bs-version="5" id="study_overview-scatter-Analysis_cou0007">
+                                <div class="card-body bslib-gap-spacing html-fill-item html-fill-container" style="margin-top:auto;margin-bottom:auto;flex:1 1 auto;">
+                                  <h5>Treatment Discontinuation Rate</h5>
+                                  <div class="Widget_ScatterPlot html-widget html-widget-output shiny-report-size html-fill-item" id="study_overview-scatter-Analysis_cou0007-plot" style="width:100%;height:400px;"></div>
+                                </div>
+                                <bslib-tooltip placement="auto" bsOptions="[]" data-require-bs-version="5" data-require-bs-caller="tooltip()">
+                                  <template>Expand</template>
+                                  <button aria-expanded="false" aria-label="Expand card" class="bslib-full-screen-enter badge rounded-pill"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" style="height:1em;width:1em;fill:currentColor;" aria-hidden="true" role="img"><path d="M20 5C20 4.4 19.6 4 19 4H13C12.4 4 12 3.6 12 3C12 2.4 12.4 2 13 2H21C21.6 2 22 2.4 22 3V11C22 11.6 21.6 12 21 12C20.4 12 20 11.6 20 11V5ZM4 19C4 19.6 4.4 20 5 20H11C11.6 20 12 20.4 12 21C12 21.6 11.6 22 11 22H3C2.4 22 2 21.6 2 21V13C2 12.4 2.4 12 3 12C3.6 12 4 12.4 4 13V19Z"/></svg></button>
+                                </bslib-tooltip>
+                                <script data-bslib-card-init>bslib.Card.initializeAllCards();</script>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="bslib-grid-item bslib-gap-spacing html-fill-container">
+                            <div>
+                              <style>#study_overview-scatter-Analysis_cou0008 .bslib-full-screen-enter { bottom: unset !important; }</style>
+                              <div class="card bslib-card bslib-mb-spacing bslib-card-input html-fill-item html-fill-container chart" data-bslib-card-init data-full-screen="false" data-group-level="Country" data-require-bs-caller="card()" data-require-bs-version="5" id="study_overview-scatter-Analysis_cou0008">
+                                <div class="card-body bslib-gap-spacing html-fill-item html-fill-container" style="margin-top:auto;margin-bottom:auto;flex:1 1 auto;">
+                                  <h5>Query Rate</h5>
+                                  <div class="Widget_ScatterPlot html-widget html-widget-output shiny-report-size html-fill-item" id="study_overview-scatter-Analysis_cou0008-plot" style="width:100%;height:400px;"></div>
+                                </div>
+                                <bslib-tooltip placement="auto" bsOptions="[]" data-require-bs-version="5" data-require-bs-caller="tooltip()">
+                                  <template>Expand</template>
+                                  <button aria-expanded="false" aria-label="Expand card" class="bslib-full-screen-enter badge rounded-pill"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" style="height:1em;width:1em;fill:currentColor;" aria-hidden="true" role="img"><path d="M20 5C20 4.4 19.6 4 19 4H13C12.4 4 12 3.6 12 3C12 2.4 12.4 2 13 2H21C21.6 2 22 2.4 22 3V11C22 11.6 21.6 12 21 12C20.4 12 20 11.6 20 11V5ZM4 19C4 19.6 4.4 20 5 20H11C11.6 20 12 20.4 12 21C12 21.6 11.6 22 11 22H3C2.4 22 2 21.6 2 21V13C2 12.4 2.4 12 3 12C3.6 12 4 12.4 4 13V19Z"/></svg></button>
+                                </bslib-tooltip>
+                                <script data-bslib-card-init>bslib.Card.initializeAllCards();</script>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="bslib-grid-item bslib-gap-spacing html-fill-container">
+                            <div>
+                              <style>#study_overview-scatter-Analysis_cou0009 .bslib-full-screen-enter { bottom: unset !important; }</style>
+                              <div class="card bslib-card bslib-mb-spacing bslib-card-input html-fill-item html-fill-container chart" data-bslib-card-init data-full-screen="false" data-group-level="Country" data-require-bs-caller="card()" data-require-bs-version="5" id="study_overview-scatter-Analysis_cou0009">
+                                <div class="card-body bslib-gap-spacing html-fill-item html-fill-container" style="margin-top:auto;margin-bottom:auto;flex:1 1 auto;">
+                                  <h5>Delayed Query Resolution Rate</h5>
+                                  <div class="Widget_ScatterPlot html-widget html-widget-output shiny-report-size html-fill-item" id="study_overview-scatter-Analysis_cou0009-plot" style="width:100%;height:400px;"></div>
+                                </div>
+                                <bslib-tooltip placement="auto" bsOptions="[]" data-require-bs-version="5" data-require-bs-caller="tooltip()">
+                                  <template>Expand</template>
+                                  <button aria-expanded="false" aria-label="Expand card" class="bslib-full-screen-enter badge rounded-pill"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" style="height:1em;width:1em;fill:currentColor;" aria-hidden="true" role="img"><path d="M20 5C20 4.4 19.6 4 19 4H13C12.4 4 12 3.6 12 3C12 2.4 12.4 2 13 2H21C21.6 2 22 2.4 22 3V11C22 11.6 21.6 12 21 12C20.4 12 20 11.6 20 11V5ZM4 19C4 19.6 4.4 20 5 20H11C11.6 20 12 20.4 12 21C12 21.6 11.6 22 11 22H3C2.4 22 2 21.6 2 21V13C2 12.4 2.4 12 3 12C3.6 12 4 12.4 4 13V19Z"/></svg></button>
+                                </bslib-tooltip>
+                                <script data-bslib-card-init>bslib.Card.initializeAllCards();</script>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="bslib-grid-item bslib-gap-spacing html-fill-container">
+                            <div>
+                              <style>#study_overview-scatter-Analysis_cou0010 .bslib-full-screen-enter { bottom: unset !important; }</style>
+                              <div class="card bslib-card bslib-mb-spacing bslib-card-input html-fill-item html-fill-container chart" data-bslib-card-init data-full-screen="false" data-group-level="Country" data-require-bs-caller="card()" data-require-bs-version="5" id="study_overview-scatter-Analysis_cou0010">
+                                <div class="card-body bslib-gap-spacing html-fill-item html-fill-container" style="margin-top:auto;margin-bottom:auto;flex:1 1 auto;">
+                                  <h5>Delayed Data Entry Rate</h5>
+                                  <div class="Widget_ScatterPlot html-widget html-widget-output shiny-report-size html-fill-item" id="study_overview-scatter-Analysis_cou0010-plot" style="width:100%;height:400px;"></div>
+                                </div>
+                                <bslib-tooltip placement="auto" bsOptions="[]" data-require-bs-version="5" data-require-bs-caller="tooltip()">
+                                  <template>Expand</template>
+                                  <button aria-expanded="false" aria-label="Expand card" class="bslib-full-screen-enter badge rounded-pill"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" style="height:1em;width:1em;fill:currentColor;" aria-hidden="true" role="img"><path d="M20 5C20 4.4 19.6 4 19 4H13C12.4 4 12 3.6 12 3C12 2.4 12.4 2 13 2H21C21.6 2 22 2.4 22 3V11C22 11.6 21.6 12 21 12C20.4 12 20 11.6 20 11V5ZM4 19C4 19.6 4.4 20 5 20H11C11.6 20 12 20.4 12 21C12 21.6 11.6 22 11 22H3C2.4 22 2 21.6 2 21V13C2 12.4 2.4 12 3 12C3.6 12 4 12.4 4 13V19Z"/></svg></button>
+                                </bslib-tooltip>
+                                <script data-bslib-card-init>bslib.Card.initializeAllCards();</script>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="bslib-grid-item bslib-gap-spacing html-fill-container">
+                            <div>
+                              <style>#study_overview-scatter-Analysis_cou0011 .bslib-full-screen-enter { bottom: unset !important; }</style>
+                              <div class="card bslib-card bslib-mb-spacing bslib-card-input html-fill-item html-fill-container chart" data-bslib-card-init data-full-screen="false" data-group-level="Country" data-require-bs-caller="card()" data-require-bs-version="5" id="study_overview-scatter-Analysis_cou0011">
+                                <div class="card-body bslib-gap-spacing html-fill-item html-fill-container" style="margin-top:auto;margin-bottom:auto;flex:1 1 auto;">
+                                  <h5>Data Change Rate</h5>
+                                  <div class="Widget_ScatterPlot html-widget html-widget-output shiny-report-size html-fill-item" id="study_overview-scatter-Analysis_cou0011-plot" style="width:100%;height:400px;"></div>
+                                </div>
+                                <bslib-tooltip placement="auto" bsOptions="[]" data-require-bs-version="5" data-require-bs-caller="tooltip()">
+                                  <template>Expand</template>
+                                  <button aria-expanded="false" aria-label="Expand card" class="bslib-full-screen-enter badge rounded-pill"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" style="height:1em;width:1em;fill:currentColor;" aria-hidden="true" role="img"><path d="M20 5C20 4.4 19.6 4 19 4H13C12.4 4 12 3.6 12 3C12 2.4 12.4 2 13 2H21C21.6 2 22 2.4 22 3V11C22 11.6 21.6 12 21 12C20.4 12 20 11.6 20 11V5ZM4 19C4 19.6 4.4 20 5 20H11C11.6 20 12 20.4 12 21C12 21.6 11.6 22 11 22H3C2.4 22 2 21.6 2 21V13C2 12.4 2.4 12 3 12C3.6 12 4 12.4 4 13V19Z"/></svg></button>
+                                </bslib-tooltip>
+                                <script data-bslib-card-init>bslib.Card.initializeAllCards();</script>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="bslib-grid-item bslib-gap-spacing html-fill-container">
+                            <div>
                               <style>#study_overview-scatter-Analysis_kri0001 .bslib-full-screen-enter { bottom: unset !important; }</style>
-                              <div class="card bslib-card bslib-mb-spacing bslib-card-input html-fill-item html-fill-container chart" data-bslib-card-init data-full-screen="false" data-require-bs-caller="card()" data-require-bs-version="5" id="study_overview-scatter-Analysis_kri0001">
+                              <div class="card bslib-card bslib-mb-spacing bslib-card-input html-fill-item html-fill-container chart" data-bslib-card-init data-full-screen="false" data-group-level="Site" data-require-bs-caller="card()" data-require-bs-version="5" id="study_overview-scatter-Analysis_kri0001">
                                 <div class="card-body bslib-gap-spacing html-fill-item html-fill-container" style="margin-top:auto;margin-bottom:auto;flex:1 1 auto;">
                                   <h5>Adverse Event Rate</h5>
                                   <div class="Widget_ScatterPlot html-widget html-widget-output shiny-report-size html-fill-item" id="study_overview-scatter-Analysis_kri0001-plot" style="width:100%;height:400px;"></div>
@@ -1102,7 +1286,7 @@
                           <div class="bslib-grid-item bslib-gap-spacing html-fill-container">
                             <div>
                               <style>#study_overview-scatter-Analysis_kri0002 .bslib-full-screen-enter { bottom: unset !important; }</style>
-                              <div class="card bslib-card bslib-mb-spacing bslib-card-input html-fill-item html-fill-container chart" data-bslib-card-init data-full-screen="false" data-require-bs-caller="card()" data-require-bs-version="5" id="study_overview-scatter-Analysis_kri0002">
+                              <div class="card bslib-card bslib-mb-spacing bslib-card-input html-fill-item html-fill-container chart" data-bslib-card-init data-full-screen="false" data-group-level="Site" data-require-bs-caller="card()" data-require-bs-version="5" id="study_overview-scatter-Analysis_kri0002">
                                 <div class="card-body bslib-gap-spacing html-fill-item html-fill-container" style="margin-top:auto;margin-bottom:auto;flex:1 1 auto;">
                                   <h5>Serious Adverse Event Rate</h5>
                                   <div class="Widget_ScatterPlot html-widget html-widget-output shiny-report-size html-fill-item" id="study_overview-scatter-Analysis_kri0002-plot" style="width:100%;height:400px;"></div>
@@ -1118,7 +1302,7 @@
                           <div class="bslib-grid-item bslib-gap-spacing html-fill-container">
                             <div>
                               <style>#study_overview-scatter-Analysis_kri0003 .bslib-full-screen-enter { bottom: unset !important; }</style>
-                              <div class="card bslib-card bslib-mb-spacing bslib-card-input html-fill-item html-fill-container chart" data-bslib-card-init data-full-screen="false" data-require-bs-caller="card()" data-require-bs-version="5" id="study_overview-scatter-Analysis_kri0003">
+                              <div class="card bslib-card bslib-mb-spacing bslib-card-input html-fill-item html-fill-container chart" data-bslib-card-init data-full-screen="false" data-group-level="Site" data-require-bs-caller="card()" data-require-bs-version="5" id="study_overview-scatter-Analysis_kri0003">
                                 <div class="card-body bslib-gap-spacing html-fill-item html-fill-container" style="margin-top:auto;margin-bottom:auto;flex:1 1 auto;">
                                   <h5>Non-Important Protocol Deviation Rate</h5>
                                   <div class="Widget_ScatterPlot html-widget html-widget-output shiny-report-size html-fill-item" id="study_overview-scatter-Analysis_kri0003-plot" style="width:100%;height:400px;"></div>
@@ -1134,7 +1318,7 @@
                           <div class="bslib-grid-item bslib-gap-spacing html-fill-container">
                             <div>
                               <style>#study_overview-scatter-Analysis_kri0004 .bslib-full-screen-enter { bottom: unset !important; }</style>
-                              <div class="card bslib-card bslib-mb-spacing bslib-card-input html-fill-item html-fill-container chart" data-bslib-card-init data-full-screen="false" data-require-bs-caller="card()" data-require-bs-version="5" id="study_overview-scatter-Analysis_kri0004">
+                              <div class="card bslib-card bslib-mb-spacing bslib-card-input html-fill-item html-fill-container chart" data-bslib-card-init data-full-screen="false" data-group-level="Site" data-require-bs-caller="card()" data-require-bs-version="5" id="study_overview-scatter-Analysis_kri0004">
                                 <div class="card-body bslib-gap-spacing html-fill-item html-fill-container" style="margin-top:auto;margin-bottom:auto;flex:1 1 auto;">
                                   <h5>Important Protocol Deviation Rate</h5>
                                   <div class="Widget_ScatterPlot html-widget html-widget-output shiny-report-size html-fill-item" id="study_overview-scatter-Analysis_kri0004-plot" style="width:100%;height:400px;"></div>
@@ -1150,7 +1334,7 @@
                           <div class="bslib-grid-item bslib-gap-spacing html-fill-container">
                             <div>
                               <style>#study_overview-scatter-Analysis_kri0005 .bslib-full-screen-enter { bottom: unset !important; }</style>
-                              <div class="card bslib-card bslib-mb-spacing bslib-card-input html-fill-item html-fill-container chart" data-bslib-card-init data-full-screen="false" data-require-bs-caller="card()" data-require-bs-version="5" id="study_overview-scatter-Analysis_kri0005">
+                              <div class="card bslib-card bslib-mb-spacing bslib-card-input html-fill-item html-fill-container chart" data-bslib-card-init data-full-screen="false" data-group-level="Site" data-require-bs-caller="card()" data-require-bs-version="5" id="study_overview-scatter-Analysis_kri0005">
                                 <div class="card-body bslib-gap-spacing html-fill-item html-fill-container" style="margin-top:auto;margin-bottom:auto;flex:1 1 auto;">
                                   <h5>Grade 3+ Lab Abnormality Rate</h5>
                                   <div class="Widget_ScatterPlot html-widget html-widget-output shiny-report-size html-fill-item" id="study_overview-scatter-Analysis_kri0005-plot" style="width:100%;height:400px;"></div>
@@ -1166,7 +1350,7 @@
                           <div class="bslib-grid-item bslib-gap-spacing html-fill-container">
                             <div>
                               <style>#study_overview-scatter-Analysis_kri0006 .bslib-full-screen-enter { bottom: unset !important; }</style>
-                              <div class="card bslib-card bslib-mb-spacing bslib-card-input html-fill-item html-fill-container chart" data-bslib-card-init data-full-screen="false" data-require-bs-caller="card()" data-require-bs-version="5" id="study_overview-scatter-Analysis_kri0006">
+                              <div class="card bslib-card bslib-mb-spacing bslib-card-input html-fill-item html-fill-container chart" data-bslib-card-init data-full-screen="false" data-group-level="Site" data-require-bs-caller="card()" data-require-bs-version="5" id="study_overview-scatter-Analysis_kri0006">
                                 <div class="card-body bslib-gap-spacing html-fill-item html-fill-container" style="margin-top:auto;margin-bottom:auto;flex:1 1 auto;">
                                   <h5>Study Discontinuation Rate</h5>
                                   <div class="Widget_ScatterPlot html-widget html-widget-output shiny-report-size html-fill-item" id="study_overview-scatter-Analysis_kri0006-plot" style="width:100%;height:400px;"></div>
@@ -1182,7 +1366,7 @@
                           <div class="bslib-grid-item bslib-gap-spacing html-fill-container">
                             <div>
                               <style>#study_overview-scatter-Analysis_kri0007 .bslib-full-screen-enter { bottom: unset !important; }</style>
-                              <div class="card bslib-card bslib-mb-spacing bslib-card-input html-fill-item html-fill-container chart" data-bslib-card-init data-full-screen="false" data-require-bs-caller="card()" data-require-bs-version="5" id="study_overview-scatter-Analysis_kri0007">
+                              <div class="card bslib-card bslib-mb-spacing bslib-card-input html-fill-item html-fill-container chart" data-bslib-card-init data-full-screen="false" data-group-level="Site" data-require-bs-caller="card()" data-require-bs-version="5" id="study_overview-scatter-Analysis_kri0007">
                                 <div class="card-body bslib-gap-spacing html-fill-item html-fill-container" style="margin-top:auto;margin-bottom:auto;flex:1 1 auto;">
                                   <h5>Treatment Discontinuation Rate</h5>
                                   <div class="Widget_ScatterPlot html-widget html-widget-output shiny-report-size html-fill-item" id="study_overview-scatter-Analysis_kri0007-plot" style="width:100%;height:400px;"></div>
@@ -1198,7 +1382,7 @@
                           <div class="bslib-grid-item bslib-gap-spacing html-fill-container">
                             <div>
                               <style>#study_overview-scatter-Analysis_kri0008 .bslib-full-screen-enter { bottom: unset !important; }</style>
-                              <div class="card bslib-card bslib-mb-spacing bslib-card-input html-fill-item html-fill-container chart" data-bslib-card-init data-full-screen="false" data-require-bs-caller="card()" data-require-bs-version="5" id="study_overview-scatter-Analysis_kri0008">
+                              <div class="card bslib-card bslib-mb-spacing bslib-card-input html-fill-item html-fill-container chart" data-bslib-card-init data-full-screen="false" data-group-level="Site" data-require-bs-caller="card()" data-require-bs-version="5" id="study_overview-scatter-Analysis_kri0008">
                                 <div class="card-body bslib-gap-spacing html-fill-item html-fill-container" style="margin-top:auto;margin-bottom:auto;flex:1 1 auto;">
                                   <h5>Query Rate</h5>
                                   <div class="Widget_ScatterPlot html-widget html-widget-output shiny-report-size html-fill-item" id="study_overview-scatter-Analysis_kri0008-plot" style="width:100%;height:400px;"></div>
@@ -1214,7 +1398,7 @@
                           <div class="bslib-grid-item bslib-gap-spacing html-fill-container">
                             <div>
                               <style>#study_overview-scatter-Analysis_kri0009 .bslib-full-screen-enter { bottom: unset !important; }</style>
-                              <div class="card bslib-card bslib-mb-spacing bslib-card-input html-fill-item html-fill-container chart" data-bslib-card-init data-full-screen="false" data-require-bs-caller="card()" data-require-bs-version="5" id="study_overview-scatter-Analysis_kri0009">
+                              <div class="card bslib-card bslib-mb-spacing bslib-card-input html-fill-item html-fill-container chart" data-bslib-card-init data-full-screen="false" data-group-level="Site" data-require-bs-caller="card()" data-require-bs-version="5" id="study_overview-scatter-Analysis_kri0009">
                                 <div class="card-body bslib-gap-spacing html-fill-item html-fill-container" style="margin-top:auto;margin-bottom:auto;flex:1 1 auto;">
                                   <h5>Delayed Query Resolution Rate</h5>
                                   <div class="Widget_ScatterPlot html-widget html-widget-output shiny-report-size html-fill-item" id="study_overview-scatter-Analysis_kri0009-plot" style="width:100%;height:400px;"></div>
@@ -1230,7 +1414,7 @@
                           <div class="bslib-grid-item bslib-gap-spacing html-fill-container">
                             <div>
                               <style>#study_overview-scatter-Analysis_kri0010 .bslib-full-screen-enter { bottom: unset !important; }</style>
-                              <div class="card bslib-card bslib-mb-spacing bslib-card-input html-fill-item html-fill-container chart" data-bslib-card-init data-full-screen="false" data-require-bs-caller="card()" data-require-bs-version="5" id="study_overview-scatter-Analysis_kri0010">
+                              <div class="card bslib-card bslib-mb-spacing bslib-card-input html-fill-item html-fill-container chart" data-bslib-card-init data-full-screen="false" data-group-level="Site" data-require-bs-caller="card()" data-require-bs-version="5" id="study_overview-scatter-Analysis_kri0010">
                                 <div class="card-body bslib-gap-spacing html-fill-item html-fill-container" style="margin-top:auto;margin-bottom:auto;flex:1 1 auto;">
                                   <h5>Delayed Data Entry Rate</h5>
                                   <div class="Widget_ScatterPlot html-widget html-widget-output shiny-report-size html-fill-item" id="study_overview-scatter-Analysis_kri0010-plot" style="width:100%;height:400px;"></div>
@@ -1246,7 +1430,7 @@
                           <div class="bslib-grid-item bslib-gap-spacing html-fill-container">
                             <div>
                               <style>#study_overview-scatter-Analysis_kri0011 .bslib-full-screen-enter { bottom: unset !important; }</style>
-                              <div class="card bslib-card bslib-mb-spacing bslib-card-input html-fill-item html-fill-container chart" data-bslib-card-init data-full-screen="false" data-require-bs-caller="card()" data-require-bs-version="5" id="study_overview-scatter-Analysis_kri0011">
+                              <div class="card bslib-card bslib-mb-spacing bslib-card-input html-fill-item html-fill-container chart" data-bslib-card-init data-full-screen="false" data-group-level="Site" data-require-bs-caller="card()" data-require-bs-version="5" id="study_overview-scatter-Analysis_kri0011">
                                 <div class="card-body bslib-gap-spacing html-fill-item html-fill-container" style="margin-top:auto;margin-bottom:auto;flex:1 1 auto;">
                                   <h5>Data Change Rate</h5>
                                   <div class="Widget_ScatterPlot html-widget html-widget-output shiny-report-size html-fill-item" id="study_overview-scatter-Analysis_kri0011-plot" style="width:100%;height:400px;"></div>
@@ -1274,7 +1458,7 @@
                     <div class="form-group shiny-input-container shiny-input-container-inline">
                       <label class="control-label shiny-label-null" for="metric_details-metric" id="metric_details-metric-label"></label>
                       <div id="metric_details-metric" class="virtual-select" style="display:inline-block;" data-update="change">
-                        <script type="application/json" data-for="metric_details-metric">{"stateInput":true,"options":{"type":["transpose"],"choices":{"label":["Adverse Event Rate","Serious Adverse Event Rate","Non-Important Protocol Deviation Rate","Important Protocol Deviation Rate","Grade 3+ Lab Abnormality Rate","Study Discontinuation Rate","Treatment Discontinuation Rate","Query Rate","Delayed Query Resolution Rate","Delayed Data Entry Rate","Data Change Rate"],"value":["Analysis_kri0001","Analysis_kri0002","Analysis_kri0003","Analysis_kri0004","Analysis_kri0005","Analysis_kri0006","Analysis_kri0007","Analysis_kri0008","Analysis_kri0009","Analysis_kri0010","Analysis_kri0011"]}},"config":{"multiple":false,"search":false,"hideClearButton":true,"autoSelectFirstOption":true,"showSelectedOptionsFirst":false,"showValueAsTags":false,"optionsCount":10,"noOfDisplayValues":50,"allowNewOption":false,"disableSelectAll":true,"disableOptionGroupCheckbox":true,"disabled":false}}</script>
+                        <script type="application/json" data-for="metric_details-metric">{"stateInput":true,"options":{"type":["transpose"],"choices":{"label":["Adverse Event Rate","Data Change Rate","Delayed Data Entry Rate","Delayed Query Resolution Rate","Grade 3+ Lab Abnormality Rate","Important Protocol Deviation Rate","Non-Important Protocol Deviation Rate","Query Rate","Serious Adverse Event Rate","Study Discontinuation Rate","Treatment Discontinuation Rate"],"value":["Analysis_kri0001","Analysis_kri0011","Analysis_kri0010","Analysis_kri0009","Analysis_kri0005","Analysis_kri0004","Analysis_kri0003","Analysis_kri0008","Analysis_kri0002","Analysis_kri0006","Analysis_kri0007"]}},"config":{"multiple":false,"search":false,"hideClearButton":true,"autoSelectFirstOption":true,"showSelectedOptionsFirst":false,"showValueAsTags":false,"optionsCount":10,"noOfDisplayValues":50,"allowNewOption":false,"disableSelectAll":true,"disableOptionGroupCheckbox":true,"disabled":false}}</script>
                       </div>
                     </div>
                   </li>
@@ -1380,7 +1564,7 @@
                       <style>#group_details-card_group_metadata_list-contents .bslib-full-screen-enter { bottom: unset !important; }</style>
                       <div class="card bslib-card bslib-mb-spacing bslib-card-input html-fill-item html-fill-container" data-bslib-card-init data-full-screen="false" data-require-bs-caller="card()" data-require-bs-version="5" id="group_details-card_group_metadata_list-contents">
                         <div class="card-body bslib-gap-spacing html-fill-item html-fill-container" style="margin-top:auto;margin-bottom:auto;flex:1 1 auto;">
-                          <h5>Site Metadata</h5>
+                          <h5>Group Metadata</h5>
                           <div id="group_details-group_metadata_list" class="shiny-html-output"></div>
                         </div>
                         <bslib-tooltip placement="auto" bsOptions="[]" data-require-bs-version="5" data-require-bs-caller="tooltip()">
@@ -1395,9 +1579,9 @@
                     <style>#group_details-card_placeholder_group_metadata_list .bslib-full-screen-enter { bottom: unset !important; }</style>
                     <div class="card bslib-card bslib-mb-spacing bslib-card-input html-fill-item html-fill-container" data-bslib-card-init data-full-screen="false" data-require-bs-caller="card()" data-require-bs-version="5" id="group_details-card_placeholder_group_metadata_list">
                       <div class="card-body bslib-gap-spacing html-fill-item html-fill-container" style="margin-top:auto;margin-bottom:auto;flex:1 1 auto;">
-                        <h5>Site Metadata</h5>
+                        <h5>Group Metadata</h5>
                         <div class="card bslib-card bslib-mb-spacing html-fill-item html-fill-container placeholder" data-bslib-card-init data-require-bs-caller="card()" data-require-bs-version="5">
-                          <div class="card-body bslib-gap-spacing html-fill-item html-fill-container" style="margin-top:auto;margin-bottom:auto;flex:1 1 auto;">Please select a site.</div>
+                          <div class="card-body bslib-gap-spacing html-fill-item html-fill-container" style="margin-top:auto;margin-bottom:auto;flex:1 1 auto;">Please select a group.</div>
                           <script data-bslib-card-init>bslib.Card.initializeAllCards();</script>
                         </div>
                       </div>

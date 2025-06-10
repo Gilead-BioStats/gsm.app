@@ -4,7 +4,13 @@
 \alias{mod_WidgetPlot_UI}
 \title{Widget Plot Module UI}
 \usage{
-mod_WidgetPlot_UI(id, fnHtmlDependency, fnWidgetOutput, strPlotTitle = NULL)
+mod_WidgetPlot_UI(
+  id,
+  fnHtmlDependency,
+  fnWidgetOutput,
+  strPlotTitle = NULL,
+  strGroupLevel = NULL
+)
 }
 \arguments{
 \item{id}{\code{character} The id for this element.}
@@ -17,6 +23,9 @@ function.}
 
 \item{strPlotTitle}{\code{character} A title for a plot, usually the name of a
 metric.}
+
+\item{strGroupLevel}{\code{character} Value for the group level. Default: \code{NULL}
+and taken from \code{dfMetrics$GroupLevel} if available.}
 }
 \value{
 A \code{\link[bslib:card]{bslib::card()}} with an optional title and the corresponding

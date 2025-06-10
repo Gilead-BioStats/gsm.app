@@ -43,7 +43,7 @@ mod_GroupParticipants_Server <- function(
       if (rctv_lglGroupIsNone()) {
         return(paste(rctv_strGroupLevel(), "Subjects"))
       }
-      return(glue::glue("{rctv_strGroupLevel()} {rctv_strGroupID()}"))
+      return(glue::glue("{rctv_strGroupLevel()}: {rctv_strGroupID()}"))
     }) %>%
       bindCache(rctv_strGroupLevel(), rctv_strGroupID())
     output$subtitle <- renderUI({
