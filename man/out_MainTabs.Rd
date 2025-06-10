@@ -4,7 +4,7 @@
 \alias{out_MainTabs}
 \title{Main Tabbed Content}
 \usage{
-out_MainTabs(chrDomains, dfGroups, dfResults, chrMetrics, lPlugins = NULL)
+out_MainTabs(chrDomains, dfGroups, dfMetrics, dfResults, lPlugins = NULL)
 }
 \arguments{
 \item{chrDomains}{\code{character} A (named) vector of domains to include in the
@@ -14,10 +14,10 @@ that domain.}
 
 \item{dfGroups}{\code{data.frame} Group-level metadata dictionary.}
 
-\item{dfResults}{\code{data.frame} A stacked summary of analysis pipeline output.}
+\item{dfMetrics}{\code{data.frame} Metric-specific metadata for use in charts and
+reporting.}
 
-\item{chrMetrics}{\code{character} A named vector of MetricIDs, where the names
-are the full Metric.}
+\item{dfResults}{\code{data.frame} A stacked summary of analysis pipeline output.}
 
 \item{lPlugins}{\code{list} Optional list of plugins to include in the app.}
 }

@@ -1,7 +1,7 @@
 test_that("mod_ScatterPlotSet_UI creates the expected UI", {
   test_result <- mod_ScatterPlotSet_UI(
     "myID",
-    c(mod1 = "a", mod2 = "b", mod3 = "c")
+    head(sample_dfMetrics[sample_dfMetrics$GroupLevel == "Site", ])
   )
   expect_s3_class(test_result, c("shiny.tag.list", "list"))
   expect_s3_class(test_result[[1]], c("bslib_fragment", "shiny.tag"))
@@ -21,7 +21,8 @@ test_that("mod_ScatterPlotSet_Server initializes and creates scatter plots", {
       dfGroups = sample_dfGroups,
       dfBounds = sample_dfBounds,
       rctv_strMetricID = reactiveVal("whatever"),
-      rctv_strGroupID = reactiveVal("whatever")
+      rctv_strGroupID = reactiveVal("whatever"),
+      rctv_strGroupLevel = reactiveVal("Site")
     ),
     {
       lMetricIDs <- unique(dfMetrics$MetricID)
@@ -42,7 +43,8 @@ test_that("mod_ScatterPlotSet_Server sets selected group correctly", {
       dfGroups = sample_dfGroups,
       dfBounds = sample_dfBounds,
       rctv_strMetricID = reactiveVal("whatever"),
-      rctv_strGroupID = reactiveVal("All")
+      rctv_strGroupID = reactiveVal("All"),
+      rctv_strGroupLevel = reactiveVal("Site")
     ),
     {
       # Initialize the value first.
@@ -63,7 +65,8 @@ test_that("mod_ScatterPlotSet_Server sets selected metric", {
       dfGroups = sample_dfGroups,
       dfBounds = sample_dfBounds,
       rctv_strMetricID = reactiveVal("whatever"),
-      rctv_strGroupID = reactiveVal("whatever")
+      rctv_strGroupID = reactiveVal("whatever"),
+      rctv_strGroupLevel = reactiveVal("Site")
     ),
     {
       # After clicking we get back just the metric.

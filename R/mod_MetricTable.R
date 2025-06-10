@@ -23,7 +23,8 @@ mod_MetricTable_Server <- function(
   id,
   rctv_dfResults,
   dfGroups,
-  rctv_strGroupID
+  rctv_strGroupID,
+  rctv_strGroupLevel
 ) {
   moduleServer(id, function(input, output, session) {
     # Update the widget when the source data changes.

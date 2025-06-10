@@ -30,9 +30,6 @@ missing inputs.}
 \item{chrMessage}{\code{character} A vector of message elements to be formatted
 via \code{\link[cli:cli_bullets]{cli::cli_bullets()}}.}
 
-\item{chrMetrics}{\code{character} A named vector of MetricIDs, where the names
-are the full Metric.}
-
 \item{chrPluginFiles}{\code{character} The files in a plugin directory.}
 
 \item{chrRequiredColumns}{\code{character} A vector of expected columns in a

@@ -55,7 +55,13 @@ gsmApp_Server <- function(
     rctv_strGroupLevel <- reactiveVal()
     rctv_strGroupID <- reactiveVal()
     rctv_strSubjectID <- reactiveVal("All")
-    rctv_strMetricID <- reactiveVal(dfMetrics$MetricID[[1]])
+    firstGroupLevel <- sort(
+      unique(dfMetrics$GroupLevel),
+      decreasing = TRUE
+    )[[1]]
+    dfMetricsToSelect <- dfMetrics %>%
+      dplyr::filter(.data$GroupLevel == firstGroupLevel)
+    rctv_strMetricID <- reactiveVal(dfMetricsToSelect$MetricID[[1]])
     rctv_strDomainID <- reactiveVal(names(chrDomains)[[1]])
     # Future-proof by making SnapshotDate available to pass around.
     rctv_dSnapshotDate <- reactiveVal(max(dfResults$SnapshotDate))
@@ -203,6 +209,7 @@ gsmApp_Server <- function(
       dfMetrics = dfMetrics,
       dfBounds = dfBounds,
       rctv_strGroupID = rctv_strGroupID,
+      rctv_strGroupLevel = rctv_strGroupLevel,
       rctv_strMetricID = rctv_strMetricID
     )
 

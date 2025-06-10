@@ -5,7 +5,7 @@
 \alias{sample_dfResults}
 \title{KRI Results Dataset}
 \format{
-A tibble with 873 rows and
+A tibble with 944 rows and
 10 columns:
 \describe{
 \item{GroupID}{grouping variable}

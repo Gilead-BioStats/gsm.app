@@ -34,8 +34,41 @@ mod_RAGPillSet_UI <- function(
 #' @inheritParams shared-params
 #' @returns A [shiny::reactive()] with the state of the selection as a string.
 #' @keywords internal
-mod_RAGPillSet_Server <- function(id, rctv_strGroupSubset = reactive("red")) {
+mod_RAGPillSet_Server <- function(
+  id,
+  dfResults,
+  rctv_strGroupLevel,
+  rctv_strGroupSubset = reactive("red"),
+  strLabel = "KRIs"
+) {
   moduleServer(id, function(input, output, session) {
+    # observe({
+    #   cli::cli_inform("{rctv_strGroupSubset()}")
+    # })
+
+    rctv_intRed <- reactive({
+      dfResults %>%
+        dplyr::filter(
+          .data$GroupLevel == rctv_strGroupLevel(),
+          abs(.data$Flag) == 2
+        ) %>%
+        nrow()
+    })
+    rctv_strLabelRed <- reactive({
+      glue::glue("{rctv_intRed()} Red {strLabel}")
+    })
+    rctv_intAmber <- reactive({
+      dfResults %>%
+        dplyr::filter(
+          .data$GroupLevel == rctv_strGroupLevel(),
+          abs(.data$Flag) == 1
+        ) %>%
+        nrow()
+    })
+    rctv_strLabelAmber <- reactive({
+      glue::glue("{rctv_intAmber()} Amber {strLabel}")
+    })
+
     rctv_lglRed <- reactive({
       stringr::str_detect(rctv_strGroupSubset(), "red")
     })
@@ -44,11 +77,13 @@ mod_RAGPillSet_Server <- function(id, rctv_strGroupSubset = reactive("red")) {
     })
     rctv_lglRedState <- mod_TogglePill_Server(
       "red",
-      rctv_lglState = rctv_lglRed
+      rctv_lglState = rctv_lglRed,
+      rctv_strLabel = rctv_strLabelRed
     )
     rctv_lglAmberState <- mod_TogglePill_Server(
       "amber",
-      rctv_lglAmber
+      rctv_lglAmber,
+      rctv_strLabel = rctv_strLabelAmber
     )
     rctv_strGroupSubset_internal <- reactive({
       states <- c("red", "amber")

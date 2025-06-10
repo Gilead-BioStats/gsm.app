@@ -11,6 +11,7 @@ mod_ScatterPlotSet_Server(
   dfGroups,
   dfBounds,
   rctv_strGroupID,
+  rctv_strGroupLevel,
   rctv_strMetricID
 )
 }
@@ -31,6 +32,9 @@ values for reporting.}
 \item{rctv_strGroupID}{\verb{reactive character} A \code{\link[shiny:reactiveVal]{shiny::reactiveVal()}} object
 that returns the \code{GroupID} of the selected group (usually site), and can be
 used to update which group is selected.}
+
+\item{rctv_strGroupLevel}{\verb{reactive character} A \code{\link[shiny:reactiveVal]{shiny::reactiveVal()}}
+object that returns the selected \code{GroupLevel}.}
 
 \item{rctv_strMetricID}{\verb{reactive character} A \code{\link[shiny:reactive]{shiny::reactive()}} object
 that returns the selected \code{MetricID}.}

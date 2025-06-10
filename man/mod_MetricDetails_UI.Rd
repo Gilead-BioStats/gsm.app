@@ -4,13 +4,13 @@
 \alias{mod_MetricDetails_UI}
 \title{Metric Details UI}
 \usage{
-mod_MetricDetails_UI(id, chrMetrics)
+mod_MetricDetails_UI(id, dfMetrics)
 }
 \arguments{
 \item{id}{\code{character} The id for this element.}
 
-\item{chrMetrics}{\code{character} A named vector of MetricIDs, where the names
-are the full Metric.}
+\item{dfMetrics}{\code{data.frame} Metric-specific metadata for use in charts and
+reporting.}
 }
 \description{
 Metric Details UI
