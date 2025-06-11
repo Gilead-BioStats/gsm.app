@@ -33,7 +33,7 @@ mod_MetricTable_Server <- function(
       rmt <- gsm.kri::Report_MetricTable(
         rctv_dfResults(),
         dfGroups = dfGroups,
-        strGroupLevel = "Site" # This should be rctv_strGroupLevel()
+        strGroupLevel = rctv_strGroupLevel()
       )
       if (inherits(rmt, "gt_tbl")) {
         return(out_gtInteractive(rmt))

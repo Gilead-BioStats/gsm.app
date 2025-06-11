@@ -135,7 +135,7 @@ sample_fnFetchData <- function(
     "QUERY"
   ),
   strGroupID = NULL,
-  strGroupLevel = NULL,
+  strGroupLevel = "Site",
   strSubjectID = NULL,
   dSnapshotDate = NULL
 ) {
@@ -161,9 +161,17 @@ sample_fnFetchData <- function(
   df <- sample_lMapped[[paste0("Mapped_", strDomainID)]]
   df$studyid <- NULL
   df$invid <- NULL
-  df <- dplyr::rename(df, SubjectID = "subjid")
-  if ("subjectid" %in% colnames(df)) {
-    df <- dplyr::rename(df, IntakeID = "subjectid")
+
+  if (length(strGroupLevel)) {
+    dfSubjGroups <- dplyr::distinct(
+      gsm.app::sample_dfAnalyticsInput,
+      .data$SubjectID,
+      .data$GroupID,
+      .data$GroupLevel
+    ) %>%
+      dplyr::filter(.data$GroupLevel == strGroupLevel)
+    df <- df %>%
+      dplyr::inner_join(dfSubjGroups, by = "SubjectID")
   }
 
   df <- FilterDomainData(
@@ -188,9 +196,16 @@ RecalculateDomainData <- function(df,
                                   strDomainID,
                                   dSnapshotDate = NULL) {
   if (!is.null(dSnapshotDate)) {
+    dSnapshotDate <- as.Date(dSnapshotDate)
     if (strDomainID == "SUBJ") {
       # Dates can't be after dSnapshotDate.
       df %>%
+        dplyr::mutate(
+          dplyr::across(
+            c("firstparticipantdate", "firstdosedate"),
+            as.Date
+          )
+        ) %>%
         dplyr::filter(.data$firstparticipantdate <= dSnapshotDate) %>%
         dplyr::mutate(
           firstdosedate = dplyr::if_else(
@@ -222,23 +237,13 @@ RecalculateDomainData <- function(df,
 #' fnDataCounter("AE") == nrow(sample_fnFetchData("AE"))
 ConstructDataCounter <- function(fnFetchData) {
   force(fnFetchData)
+  fmls <- rlang::fn_fmls(fnFetchData)
   function(
-    strDomainID = c(
-      "AE",
-      "ENROLL",
-      "LB",
-      "PD",
-      "SDRGCOMP",
-      "STUDCOMP",
-      "SUBJ",
-      "DATACHG",
-      "DATAENT",
-      "QUERY"
-    ),
-    strGroupID = NULL,
-    strGroupLevel = NULL,
-    strSubjectID = NULL,
-    dSnapshotDate = NULL
+    strDomainID = eval(fmls$strDomainID),
+    strGroupID = eval(fmls$strGroupID),
+    strGroupLevel = eval(fmls$strGroupLevel),
+    strSubjectID = eval(fmls$strSubjectID),
+    dSnapshotDate = eval(fmls$dSnapshotDate)
   ) {
     tryCatch(
       {
@@ -251,7 +256,7 @@ ConstructDataCounter <- function(fnFetchData) {
         ))
       },
       error = function(cnd) {
-        return(NA_integer_)
+        return(NA_integer_) # nocov
       }
     )
   }

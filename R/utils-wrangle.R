@@ -84,7 +84,7 @@ FindNonZeroDecimals <- function(dblX, intMaxDecimals = 5L) {
 #' @returns The filtered df.
 #' @keywords internal
 FilterBefore <- function(df, strField, dMaxDate) {
-  df[as.Date(df[[strField]]) < dMaxDate, ]
+  df[as.Date(df[[strField]]) < as.Date(dMaxDate), ]
 }
 
 #' Filter to latest snapshot if field exists

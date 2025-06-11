@@ -22,7 +22,7 @@ NullifyEmpty <- function(strValue) {
     length(strValue) == 0 ||
       identical(strValue, "None") ||
       identical(strValue, "All") ||
-      identical(strValue, "")
+      identical(stringr::str_squish(strValue), "")
   ) {
     return(NULL)
   }

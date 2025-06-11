@@ -72,7 +72,7 @@ srvr_dfDomain <- function(
             fnFetchData(
               strDomainID,
               strGroupID = NULL,
-              strGroupLevel = NULL,
+              strGroupLevel = rctv_strGroupLevel(),
               strSubjectID = NULL,
               dSnapshotDate = rctv_dSnapshotDate()
             )
@@ -90,7 +90,7 @@ srvr_dfDomain <- function(
       }
     )
   }) %>%
-    bindCache(strDomainID)
+    bindCache(strDomainID, rctv_strGroupLevel())
 
   rctv_dfGroup <- reactive({
     strGroupLevel <- NullifyEmpty(rctv_strGroupLevel())
