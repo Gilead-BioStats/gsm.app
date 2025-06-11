@@ -51,14 +51,14 @@ gsmApp_Server <- function(
     # Shared Reactives ----
 
     ## reactiveVals ----
-    rctv_strPrimaryNavBar <- reactiveVal()
-    rctv_strGroupLevel <- reactiveVal()
-    rctv_strGroupID <- reactiveVal()
-    rctv_strSubjectID <- reactiveVal("All")
     firstGroupLevel <- sort(
       unique(dfMetrics$GroupLevel),
       decreasing = TRUE
     )[[1]]
+    rctv_strPrimaryNavBar <- reactiveVal()
+    rctv_strGroupLevel <- reactiveVal()
+    rctv_strGroupID <- reactiveVal()
+    rctv_strSubjectID <- reactiveVal("All")
     dfMetricsToSelect <- dfMetrics %>%
       dplyr::filter(.data$GroupLevel == firstGroupLevel)
     rctv_strMetricID <- reactiveVal(dfMetricsToSelect$MetricID[[1]])
