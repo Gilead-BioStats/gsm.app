@@ -291,79 +291,79 @@ test_that("run_gsm_app populates Metric Details", {
   app$stop()
 })
 
-# test_that("run_gsm_app populates Domain Details", {
-#   skip_on_cran()
-#   app <- AppDriver$new(
-#     test_path("apps", "standard"),
-#     name = "domain",
-#     width = 1200,
-#     height = 1200
-#   )
-#   app$wait_for_idle()
-#   app$wait_for_value(input = "participant", timeout = 2000)
-#
-#   # Navigate to Domain Details tab.
-#   app$set_inputs(primary_nav_bar = "Domain Details")
-#   app$wait_for_idle()
-#   app$expect_values(
-#     export = TRUE,
-#     name = "no-participant",
-#     screenshot_args = list(selector = "div[data-value='Domain Details'")
-#   )
-#
-#   # Select a participant via the drop-down.
-#   app$set_inputs(`participant` = "S23407")
-#   app$wait_for_idle()
-#   app$expect_values(
-#     export = TRUE,
-#     name = "participant",
-#     screenshot_args = list(selector = "div[data-value='Domain Details'")
-#   )
-#
-#   # Select another domain.
-#   app$set_inputs(`domain_details-selected_tab` = "STUDCOMP")
-#   app$wait_for_idle()
-#   app$expect_values(
-#     export = TRUE,
-#     name = "sd",
-#     screenshot_args = list(selector = "div[data-value='Domain Details'")
-#   )
-#
-#   # Select a domain via the Domain Summary.
-#   app$set_inputs(`domain_details-counts-domain_list_choices-ENROLL` = "click")
-#   app$wait_for_idle()
-#   app$expect_values(
-#     export = TRUE,
-#     name = "domain_summary_click",
-#     screenshot_args = list(selector = "div[data-value='Domain Details'")
-#   )
-#
-#   app$stop()
-# })
-#
-# test_that("run_gsm_app display Domain error", {
-#   skip_on_cran()
-#   app <- AppDriver$new(
-#     test_path("apps", "error"),
-#     name = "error",
-#     width = 1200,
-#     height = 1200
-#   )
-#   app$wait_for_idle()
-#   app$wait_for_value(input = "participant", timeout = 2000)
-#
-#   # Trigger the error.
-#   app$set_inputs(`group-group` = "0X3349")
-#   app$wait_for_idle()
-#   app$set_inputs(primary_nav_bar = "Domain Details")
-#   app$wait_for_idle()
-#   app$set_inputs(`domain_details-selected_tab` = "LB")
-#   app$wait_for_idle()
-#   app$expect_values(
-#     export = TRUE,
-#     name = "lb13",
-#     screenshot_args = list(selector = ".modal-content")
-#   )
-#
-#   app$stop()
-# })
+test_that("run_gsm_app populates Domain Details", {
+  skip_on_cran()
+  app <- AppDriver$new(
+    test_path("apps", "standard"),
+    name = "domain",
+    width = 1200,
+    height = 1200
+  )
+  app$wait_for_idle()
+  app$wait_for_value(input = "participant", timeout = 2000)
+
+  # Navigate to Domain Details tab.
+  app$set_inputs(primary_nav_bar = "Domain Details")
+  app$wait_for_idle()
+  app$expect_values(
+    export = TRUE,
+    name = "no-participant",
+    screenshot_args = list(selector = "div[data-value='Domain Details'")
+  )
+
+  # Select a participant via the drop-down.
+  app$set_inputs(`participant` = "S7900")
+  app$wait_for_idle()
+  app$expect_values(
+    export = TRUE,
+    name = "participant",
+    screenshot_args = list(selector = "div[data-value='Domain Details'")
+  )
+
+  # Select another domain.
+  app$set_inputs(`domain_details-selected_tab` = "STUDCOMP")
+  app$wait_for_idle()
+  app$expect_values(
+    export = TRUE,
+    name = "sd",
+    screenshot_args = list(selector = "div[data-value='Domain Details'")
+  )
+
+  # Select a domain via the Domain Summary.
+  app$set_inputs(`domain_details-counts-domain_list_choices-ENROLL` = "click")
+  app$wait_for_idle()
+  app$expect_values(
+    export = TRUE,
+    name = "domain_summary_click",
+    screenshot_args = list(selector = "div[data-value='Domain Details'")
+  )
+
+  app$stop()
+})
+
+test_that("run_gsm_app display Domain error", {
+  skip_on_cran()
+  app <- AppDriver$new(
+    test_path("apps", "error"),
+    name = "error",
+    width = 1200,
+    height = 1200
+  )
+  app$wait_for_idle()
+  app$wait_for_value(input = "participant", timeout = 2000)
+
+  # Trigger the error.
+  app$set_inputs(`group-group` = "0X9640")
+  app$wait_for_idle()
+  app$set_inputs(primary_nav_bar = "Domain Details")
+  app$wait_for_idle()
+  app$set_inputs(`domain_details-selected_tab` = "LB")
+  app$wait_for_idle()
+  app$expect_values(
+    export = TRUE,
+    name = "lb13",
+    screenshot_args = list(selector = ".modal-content")
+  )
+
+  app$stop()
+})

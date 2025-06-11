@@ -1392,7 +1392,7 @@
       <div class="tab-pane" title="Metric Details" data-value="Metric Details">
         <div class="tabbable">
           <ul class="nav nav-underline shiny-tab-input" id="metric_details-selected_tab" data-tabsetid="XXXX">
-            <li class="bslib-nav-item nav-item form-inline navbar-extras">
+            <li class="bslib-nav-item nav-item form-inline navbar-extras" id="metric-chooser-div">
               <div class="form-group shiny-input-container shiny-input-container-inline">
                 <label class="control-label shiny-label-null" for="metric_details-metric" id="metric_details-metric-label"></label>
                 <div id="metric_details-metric" class="virtual-select" style="display:inline-block;" data-update="change">

@@ -71,7 +71,6 @@ mod_GroupOverview_Server <- function(
         strGroupSubset = rctv_strGroupSubset()
       )
     })
-    outputOptions(output, "group_overview", suspendWhenHidden = FALSE)
 
     observe({
       req(input$group_overview$selectedMetricID)

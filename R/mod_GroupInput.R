@@ -66,6 +66,7 @@ mod_GroupInput_Server <- function(
     }
 
     observe({
+      req(input$group)
       rctv_strGroupID(input$group)
     })
     srvr_SyncVirtualSelectInput("group", rctv_strGroupID, session)

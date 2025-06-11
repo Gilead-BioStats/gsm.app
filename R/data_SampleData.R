@@ -146,11 +146,11 @@ sample_fnFetchData <- function(
   strSubjectID <- NullifyEmpty(strSubjectID)
 
   if (
-    !is.null(strGroupID) && strGroupID == "0X3349" && strDomainID == "LB"
+    !is.null(strGroupID) && strGroupID == "0X9640" && strDomainID == "LB"
   ) {
     gsmappAbort(
       c(
-        "Site 0X3349 has data issues for the Lab domain.",
+        "Site 0X9640 has data issues for the Lab domain.",
         "This is to demonstrate behavior with errors.",
         "Please select another Site."
       ),

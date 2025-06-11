@@ -55,13 +55,15 @@ srvr_rctv_chrParticipantIDs <- function(
   reactive({
     group <- NullifyEmpty(rctv_strGroupID())
     if (is.null(group)) {
-      return(c("All", dfParticipantGroups$SubjectID))
+      return(c("All", sort(unique(dfParticipantGroups$SubjectID))))
     }
     c(
       "All",
-      dfParticipantGroups$SubjectID[
-        dfParticipantGroups$GroupID == group
-      ]
+      sort(unique(
+        dfParticipantGroups$SubjectID[
+          dfParticipantGroups$GroupID == group
+        ]
+      ))
     )
   }) %>%
     bindCache(rctv_strGroupID())

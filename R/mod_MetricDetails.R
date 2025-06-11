@@ -16,6 +16,7 @@ mod_MetricDetails_UI <- function(id, dfMetrics) {
   bslib::navset_underline(
     id = ns("selected_tab"),
     bslib::nav_item(
+      id = "metric-chooser-div",
       class = "navbar-extras",
       htmlDependency_Stylesheet("navbarExtras.css"),
       shinyWidgets::virtualSelectInput(
@@ -91,6 +92,7 @@ mod_MetricDetails_Server <- function(
       bindCache(rctv_strMetricID())
 
     observe({
+      req(input$metric)
       rctv_strMetricID(input$metric)
     })
 
