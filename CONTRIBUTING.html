@@ -7,7 +7,7 @@
 
     <a class="navbar-brand me-2" href="index.html">gsm.app</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">2.5.0</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">2.5.1</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -79,7 +79,7 @@
 <li>New functions or changes to existing functions should include updated unit tests to demonstrate branch compatibility. Core developers request that unit tests are developed using <a href="https://testthat.r-lib.org/" class="external-link">testthat &gt;= v3.0.0</a>.</li>
 <li>Please include any relevant details that will provide context for the proposed updates or new functionality. Additionally, link the Pull Request to the relevant issue(s) by using either <a href="https://docs.github.com/en/issues/tracking-your-work-with-issues/linking-a-pull-request-to-an-issue#linking-a-pull-request-to-an-issue-using-a-keyword" class="external-link">closing keywords</a>, or the <code>Development</code> section on the sidebar of the Pull Request page.</li>
 <li>In general, all Pull Requests should target the <code>dev</code> branch (with the exception of a release Pull Request).</li>
-<li>All checks and tests must be passing before merging a Pull Request to <code>dev</code>. These checks are automatically run via GitHub Actions, as described in <a href="#github-action-workflow">Appendix 3</a>, but you can also run them locally by calling <code><a href="https://devtools.r-lib.org/reference/check.html" class="external-link">devtools::check()</a></code> on your <code>fix</code> branch before finalizing a Pull Request.</li>
+<li>All checks and tests must be passing before merging a Pull Request to <code>dev</code>. These checks are automatically run via GitHub Actions, as described in <a href="#github-action-workflow">Appendix 3</a>, but you can also run them locally by calling <code>devtools::check()</code> on your <code>fix</code> branch before finalizing a Pull Request.</li>
 </ul></div>
 </div>
 <div class="section level2">
@@ -104,7 +104,7 @@
 <li>Do not use <code>@import</code> or <code>@importFrom</code> directly in a function’s {roxygen2} block.</li>
 <li>If the imported function is an infix (like <code>%||%</code>) or is used in a “tight loop” that could conceivably be called millions of times, use <code>usethis::use_import_from(pkg, function)</code> to import the function.</li>
 <li>Other functions should be namespaced using <code>pkg::function()</code>. This makes it easier to find where the dependency is used, in case we want or need to reduce our dependency footprint.</li>
-<li>In rare cases, we might want to <code><a href="https://usethis.r-lib.org/reference/use_import_from.html" class="external-link">usethis::use_import_from()</a></code> other frequently used functions, or even <code>@import</code> an entire package. If you believe this should happen in your code, please explain why in your pull request.</li>
+<li>In rare cases, we might want to <code>usethis::use_import_from()</code> other frequently used functions, or even <code>@import</code> an entire package. If you believe this should happen in your code, please explain why in your pull request.</li>
 </ul></div>
 </div>
 <div class="section level2">
@@ -151,9 +151,9 @@
 <li><p>If applicable, review <code>README.md</code> and relevant vignettes to make sure updates are accurately described.</p></li>
 <li><p>Ensure all unit tests are passing.</p></li>
 <li><p>Check if all qualification tests are passing and if new features were added that need to be qualified. If updates are needed, they should be outlined in a release QC issue.</p></li>
-<li><p>Run <code><a href="https://devtools.r-lib.org/reference/spell_check.html" class="external-link">devtools::spell_check()</a></code> and resolve findings.</p></li>
+<li><p>Run <code>devtools::spell_check()</code> and resolve findings.</p></li>
 <li><p>Build site using <code><a href="https://pkgdown.r-lib.org/reference/build_site.html" class="external-link">pkgdown::build_site()</a></code>. Check that all examples are displayed correctly and that all new functions occur on the Reference page.</p></li>
-<li><p>Open a clean R session. Run <code><a href="https://devtools.r-lib.org/reference/install.html" class="external-link">devtools::install()</a></code> and then <code><a href="https://devtools.r-lib.org/reference/check.html" class="external-link">devtools::check()</a></code> locally and confirm that there are no issues/conflicts.</p></li>
+<li><p>Open a clean R session. Run <code>devtools::install()</code> and then <code>devtools::check()</code> locally and confirm that there are no issues/conflicts.</p></li>
 </ul></li>
 <li>Release Owner creates Pull Request from the <code>release</code> branch to the <code>main</code> branch:
 <ul><li>Use the <a href="https://github.com/Gilead-BioStats/gsm.app/blob/dev/.github/PULL_REQUEST_TEMPLATE/release.md" class="external-link">release Pull Request template</a> by adding <code>?template=release.md</code> to the URL when creating the Pull Request. The user can also click the link, then click <code>Raw</code>, and copy/paste the displayed Markdown into the Pull Request.</li>
@@ -207,8 +207,8 @@
 <label><input type="checkbox">Basic QC</label>
 <ul class="task-list"><li><label><input type="checkbox">Code is well commented and easy to read/understand.</label></li>
 <li><label><input type="checkbox">No file paths or other company-specific data are present.</label></li>
-<li><label><input type="checkbox"><code><a href="https://devtools.r-lib.org/reference/check.html" class="external-link">devtools::check()</a></code> passes with no errors/warnings/notes.</label></li>
-<li><label><input type="checkbox">Package documents are up to date, and running <code><a href="https://devtools.r-lib.org/reference/document.html" class="external-link">devtools::document()</a></code> does not change any files.</label></li>
+<li><label><input type="checkbox"><code>devtools::check()</code> passes with no errors/warnings/notes.</label></li>
+<li><label><input type="checkbox">Package documents are up to date, and running <code>devtools::document()</code> does not change any files.</label></li>
 <li><label><input type="checkbox">Code uses <a href="https://tidyverse.tidyverse.org" class="external-link">tidyverse</a> best practices for standard data manipulation. If unclear, reviewer should start a discussion thread.</label></li>
 <li><label><input type="checkbox">All new dependencies add significant value. If unclear, reviewer should start a discussion thread.</label></li>
 <li><label><input type="checkbox">All GitHub Actions run with no errors.</label></li>
@@ -239,8 +239,8 @@
 <ul class="task-list"><li><label><input type="checkbox">Code is well commented and easy to read/understand.</label></li>
 <li><label><input type="checkbox">No file paths or other company-specific data are present.</label></li>
 <li><label><input type="checkbox">Function called from dependencies are called via <code>::</code>.</label></li>
-<li><label><input type="checkbox"><code><a href="https://devtools.r-lib.org/reference/check.html" class="external-link">devtools::check()</a></code> passes with no errors/warnings/notes.</label></li>
-<li><label><input type="checkbox">Package documents are up to date, and running <code><a href="https://devtools.r-lib.org/reference/document.html" class="external-link">devtools::document()</a></code> does not change any files.</label></li>
+<li><label><input type="checkbox"><code>devtools::check()</code> passes with no errors/warnings/notes.</label></li>
+<li><label><input type="checkbox">Package documents are up to date, and running <code>devtools::document()</code> does not change any files.</label></li>
 <li><label><input type="checkbox">Codes use <a href="https://tidyverse.tidyverse.org" class="external-link">tidyverse</a> best practices for standard data manipulation. If unclear, reviewer should start a discussion thread.</label></li>
 <li><label><input type="checkbox">All new dependencies add significant value. If unclear, reviewer should start a discussion thread.</label></li>
 <li><label><input type="checkbox">All GitHub Actions run with no errors.</label></li>
@@ -252,7 +252,7 @@
 <div class="section level3">
 <h3 id="merges-to-dev-branch">Merges to <code>dev</code> Branch<a class="anchor" aria-label="anchor" href="#merges-to-dev-branch"></a></h3>
 <ul><li>R CMD Check (<code>R-CMD-check-dev</code>):
-<ul><li>Basic R CMD check which can be run using <code><a href="http://r-lib.github.io/rcmdcheck/reference/rcmdcheck.html" class="external-link">rcmdcheck::rcmdcheck()</a></code>
+<ul><li>Basic R CMD check which can be run using <code>rcmdcheck::rcmdcheck()</code>
 </li>
 <li>This check will run on <code>ubuntu-latest</code> and on R version 4.1.3.</li>
 </ul></li>
@@ -264,7 +264,7 @@
 <div class="section level2">
 <h2 id="merges-to-main-branch">Merges to <code>main</code> Branch<a class="anchor" aria-label="anchor" href="#merges-to-main-branch"></a></h2>
 <ul><li>R CMD Check (<code>R-CMD-check</code>):
-<ul><li>Basic R CMD check which can be run using <code><a href="http://r-lib.github.io/rcmdcheck/reference/rcmdcheck.html" class="external-link">rcmdcheck::rcmdcheck()</a></code>
+<ul><li>Basic R CMD check which can be run using <code>rcmdcheck::rcmdcheck()</code>
 </li>
 <li>This check will run on <code>ubuntu-latest</code> and on R version 4.1.3. Additionally, it will be run on the latest R release version on <code>windows-latest</code>, <code>macOS-latest</code>, and <code>ubuntu-latest</code>.</li>
 </ul></li>
@@ -289,7 +289,7 @@
 </div>
 
 <div class="pkgdown-footer-right">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.2.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.3.</p>
 </div>
 
     </footer></div>

@@ -7,7 +7,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">gsm.app</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">2.5.0</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">2.5.1</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -49,6 +49,7 @@
 <span>  <span class="va">dfMetrics</span>,</span>
 <span>  <span class="va">dfGroups</span>,</span>
 <span>  <span class="va">rctv_strGroupID</span>,</span>
+<span>  <span class="va">rctv_strGroupLevel</span>,</span>
 <span>  <span class="va">rctv_strMetricID</span></span>
 <span><span class="op">)</span></span></code></pre></div>
     </div>
@@ -80,6 +81,11 @@ that returns the <code>GroupID</code> of the selected group (usually site), and 
 used to update which group is selected.</p></dd>
 
 
+<dt id="arg-rctv-strgrouplevel">rctv_strGroupLevel<a class="anchor" aria-label="anchor" href="#arg-rctv-strgrouplevel"></a></dt>
+<dd><p><code>reactive character</code> A <code><a href="https://rdrr.io/pkg/shiny/man/reactiveVal.html" class="external-link">shiny::reactiveVal()</a></code>
+object that returns the selected <code>GroupLevel</code>.</p></dd>
+
+
 <dt id="arg-rctv-strmetricid">rctv_strMetricID<a class="anchor" aria-label="anchor" href="#arg-rctv-strmetricid"></a></dt>
 <dd><p><code>reactive character</code> A <code><a href="https://rdrr.io/pkg/shiny/man/reactive.html" class="external-link">shiny::reactive()</a></code> object
 that returns the selected <code>MetricID</code>.</p></dd>
@@ -95,7 +101,7 @@ that returns the selected <code>MetricID</code>.</p></dd>
 </div>
 
 <div class="pkgdown-footer-right">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.2.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.3.</p>
 </div>
 
     </footer></div>
