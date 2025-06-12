@@ -6,6 +6,11 @@
 #' @keywords internal
 mod_GroupOverview_UI <- function(id, dfResults) {
   ns <- NS(id)
+  # For starting counts, filter dfResults to the *first* GroupLevel.
+  dfResults <- dplyr::filter(
+    dfResults,
+    .data$GroupLevel == sort(unique(dfResults$GroupLevel))[[1]]
+  )
   out_Card(
     tagTitle = NULL,
     bslib::card_body(
@@ -30,15 +35,25 @@ mod_GroupOverview_Server <- function(
   dfMetrics,
   dfGroups,
   rctv_strGroupID,
+  rctv_strGroupLevel,
   rctv_strMetricID
 ) {
   moduleServer(id, function(input, output, session) {
     dfResults <- gsm.kri::FilterByLatestSnapshotDate(dfResults)
     rctv_strGroupSubset <- reactiveVal("red")
 
+    rctv_dfResults <- reactive({
+      dplyr::filter(dfResults, .data$GroupLevel == rctv_strGroupLevel())
+    })
+    rctv_dfMetrics <- reactive({
+      dplyr::filter(dfMetrics, .data$GroupLevel == rctv_strGroupLevel())
+    })
+
     rctv_strGroupSubset_Pills <- mod_RAGPillSet_Server(
       "kri_counts",
-      rctv_strGroupSubset
+      dfResults = dfResults,
+      rctv_strGroupLevel = rctv_strGroupLevel,
+      rctv_strGroupSubset = rctv_strGroupSubset
     )
 
     observe({
@@ -49,13 +64,13 @@ mod_GroupOverview_Server <- function(
     output$group_overview <- renderWidget_GroupOverview({
       Widget_GroupOverview(
         id = session$ns("group_overview"),
-        dfResults = dfResults,
-        dfMetrics = dfMetrics,
+        dfResults = rctv_dfResults(),
+        dfMetrics = rctv_dfMetrics(),
         dfGroups = dfGroups,
+        strGroupLevel = rctv_strGroupLevel(),
         strGroupSubset = rctv_strGroupSubset()
       )
     })
-    outputOptions(output, "group_overview", suspendWhenHidden = FALSE)
 
     observe({
       req(input$group_overview$selectedMetricID)
@@ -85,9 +100,8 @@ Widget_GroupOverview <- function(
   strGroupSubset = "red",
   strGroupLabelKey = "InvestigatorLastName"
 ) {
-  # set strGroupLevel if NULL and dfMetrics is not NULL
   if (is.null(strGroupLevel) && !is.null(dfMetrics)) {
-    strGroupLevel <- unique(dfMetrics$GroupLevel)
+    strGroupLevel <- unique(dfMetrics$GroupLevel) # nocov
   }
 
   if (is.null(strGroupLevel) || length(strGroupLevel) != 1) {
@@ -140,18 +154,15 @@ Widget_GroupOverview <- function(
 Widget_GroupOverviewOutput <- function(outputId, width = "100%", height = "100%") {
   tagList(
     htmlDependency_GroupOverview(),
-    fluidRow(
-      class = "gy-2",
-      gsmWidgetOutput(
-        "Widget_GroupOverview",
-        outputId,
-        width,
-        height
-      ),
-      div(
-        "Click cells for associated risk signal details.",
-        class = "footnote"
-      )
+    gsmWidgetOutput(
+      "Widget_GroupOverview",
+      outputId,
+      width,
+      height
+    ),
+    div(
+      "Click cells for associated risk signal details.",
+      class = "footnote"
     )
   )
 }

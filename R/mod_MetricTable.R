@@ -23,7 +23,8 @@ mod_MetricTable_Server <- function(
   id,
   rctv_dfResults,
   dfGroups,
-  rctv_strGroupID
+  rctv_strGroupID,
+  rctv_strGroupLevel
 ) {
   moduleServer(id, function(input, output, session) {
     # Update the widget when the source data changes.
@@ -32,7 +33,7 @@ mod_MetricTable_Server <- function(
       rmt <- gsm.kri::Report_MetricTable(
         rctv_dfResults(),
         dfGroups = dfGroups,
-        strGroupLevel = "Site" # This should be rctv_strGroupLevel()
+        strGroupLevel = rctv_strGroupLevel()
       )
       if (inherits(rmt, "gt_tbl")) {
         return(out_gtInteractive(rmt))

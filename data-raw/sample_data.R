@@ -7,9 +7,9 @@
 # or testing the package, so it is not listed in the DESCRIPTION. Likewise for
 # gsm.mapping and gsm.reporting.
 # pak::pak("Gilead-BioStats/gsm.reporting")
-# pak::pak("Gilead-BioStats/gsm.core@dev")
-# pak::pak("Gilead-BioStats/gsm.mapping@dev")
 # pak::pak("Gilead-BioStats/gsm.datasim@dev")
+# pak::pak("Gilead-BioStats/gsm.mapping@dev")
+# pak::pak("Gilead-BioStats/gsm.core@main")
 
 pkgload::load_all()
 library(conflicted)
@@ -24,24 +24,28 @@ library(purrr)
 # Set up inputs ----
 
 chrDomainsUsed <- c(
-  "AE", "DATACHG", "DATAENT", "ENROLL", "LB", "PD", "QUERY",
+  "AE", "COUNTRY", "DATACHG", "DATAENT", "ENROLL", "LB", "PD", "QUERY",
   "SDRGCOMP", "SITE", "STUDCOMP", "STUDY", "SUBJ", "Visit"
 )
 
 strStudyID <- "DEMO-001"
 
+# Silence the logging noise.
+assign("logger", log4r::logger(threshold = "FATAL"), envir = gsm.core:::.le)
+logger::log_threshold("FATAL")
+
 # Metric & workflow info is the same regardless of how many sites.
 lWorkflows <- gsm.core::MakeWorkflowList(
-  "^kri",
+  # "^kri",
   strPath = "workflow/2_metrics",
   strPackage = "gsm.kri"
 )
 ## Don't use kri/cou0012 (Screen Failure Rate) yet.
 lWorkflows$kri0012 <- NULL
-# lWorkflows$cou0012 <- NULL
+lWorkflows$cou0012 <- NULL
 ## Don't use kri/cou0013 (PKCollection Compliance Rate) yet.
 lWorkflows$kri0013 <- NULL
-# lWorkflows$cou0013 <- NULL
+lWorkflows$cou0013 <- NULL
 
 sample_dfMetrics <- gsm.reporting::MakeMetric(lWorkflows = lWorkflows)
 
@@ -55,11 +59,14 @@ lSpec <- gsm.mapping::CombineSpecs(lMappings)
 intSiteCount <- 50L
 intParticipantCountPerSite <- 5L
 intParticipantCount <- intSiteCount * intParticipantCountPerSite
-# Determined by iterating from 1-938 looking for >5 sites with red flags.
-intSeed <- 938L
-# bGoodEnough <- FALSE
+# Determined by iterating from 1-418 looking for >5 sites with red flags.
+# intSeed <- 1L
+intSeed <- 418L # 5 red sites, that'll do for now.
+# I checked through intSeed == 1103L, none had more than 5 red sites, and none
+# had *any* red countries.
+bGoodEnough <- FALSE
 
-# while (!bGoodEnough) {
+while (!bGoodEnough) {
   set.seed(intSeed)
   snapshots <- gsm.datasim::generate_rawdata_for_single_study(
     SnapshotCount = 3,
@@ -80,8 +87,6 @@ intSeed <- 938L
 
   lAllResults <- purrr::map(dSnapshotDate, function(thisDate) {
     lRaw <- snapshots[[as.character(thisDate)]]
-    # Temporarily fix a weird column name.
-    lRaw$Raw_SUBJ$firstparticipantdate <- lRaw$Raw_SUBJ$firstparticipant
 
     # Create Mapped Data ----
 
@@ -112,7 +117,8 @@ intSeed <- 938L
       dfAnalyticsInput = dfAnalyticsInput,
       dfResults = dfResults,
       dfBounds = dfBounds,
-      lMapped = lMapped
+      lMapped = lMapped,
+      NULL
     )
   })
 
@@ -122,23 +128,43 @@ intSeed <- 938L
     purrr::map(lAllResults, "dfResults")
   )
 
-#   RedSites <- sample_dfResults %>%
-#     dplyr::filter(SnapshotDate == "2012-03-31") %>%
-#     dplyr::summarize(
-#       RedsAtSite = sum(!is.na(Flag) & abs(Flag) == 2),
-#       .by = c("GroupLevel", "GroupID")
-#     ) %>%
-#     dplyr::filter(RedsAtSite >= 1) %>%
-#     nrow()
-#
-#   if (RedSites > 5 || intSeed > 1000) {
-#     bGoodEnough <- TRUE
-#   } else {
-#     intSeed <- intSeed + 1L
-#   }
-# }
-#
-# cli::cli_inform("Seed {intSeed} has {RedSites} red sites.")
+  RedResults <- sample_dfResults %>%
+    dplyr::filter(.data$SnapshotDate == max(dSnapshotDate)) %>%
+    dplyr::summarize(
+      Reds = sum(!is.na(.data$Flag) & abs(.data$Flag) == 2),
+      .by = c("GroupLevel", "GroupID")
+    ) %>%
+    dplyr::filter(.data$Reds >= 1) %>%
+    dplyr::count(.data$GroupLevel)
+
+  `%|0|%` <- function(x, y) {
+    if (!length(x)) return(y)
+    return(x)
+  }
+
+  RedCountries <- RedResults$n[RedResults$GroupLevel == "Country"] %|0|% 0L
+  RedSites <- RedResults$n[RedResults$GroupLevel == "Site"] %|0|% 0L
+
+  cli::cli_div(theme = list(span.strong = list(color = "green")))
+  cli::cli_inform(c(
+    "{intSeed}: {.strong {RedSites}} + {.strong {RedCountries}}"
+  ))
+
+  # Require at least 1 at Country level plus 5 at sites. In an ideal world, I'd
+  # probably require at least 1 red for every metric.
+  if (
+    (
+      # Temporary good enough, no red countries:
+      # nrow(RedResults) == 2 &&
+      RedResults$n[RedResults$GroupLevel == "Site"] >= 5
+    ) ||
+    intSeed > 5000
+  ) {
+    bGoodEnough <- TRUE
+  } else {
+    intSeed <- intSeed + 1L
+  }
+}
 
   sample_dfBounds <- purrr::list_rbind(
     purrr::map(lAllResults, "dfBounds")
@@ -152,7 +178,7 @@ intSeed <- 938L
   lMapped <- lAllResults[[3]]$lMapped
 
   sample_dfGroups <- dplyr::bind_rows(
-    # lMapped$Mapped_COUNTRY,
+    lMapped$Mapped_COUNTRY,
     lMapped$Mapped_SITE,
     lMapped$Mapped_STUDY
   )
@@ -160,23 +186,23 @@ intSeed <- 938L
 # lMapped for Domain Data ----
 
 # COUNTRY, SITE, and STUDY are in dfGroups
-# lMapped$Mapped_COUNTRY <- NULL
+lMapped$Mapped_COUNTRY <- NULL
 lMapped$Mapped_SITE <- NULL
 lMapped$Mapped_STUDY <- NULL
 
-# Apply subset to each mapped df.
-dfSubjectGroups <- dplyr::distinct(
-  sample_dfAnalyticsInput,
-  .data$SubjectID,
-  .data$GroupID,
-  .data$GroupLevel
-)
+# dfSubjectGroups <- dplyr::distinct(
+#   sample_dfAnalyticsInput,
+#   .data$SubjectID,
+#   .data$GroupID,
+#   .data$GroupLevel
+# )
 sample_lMapped <- purrr::map(lMapped, function(thisDomain) {
-  dplyr::inner_join(
-    thisDomain,
-    dfSubjectGroups,
-    by = c("subjid" = "SubjectID")
-  )
+  # dplyr::inner_join(
+  #   thisDomain,
+  #   dfSubjectGroups,
+  #   by = c("subjid" = "SubjectID")
+  # )
+  dplyr::rename(thisDomain, "SubjectID" = "subjid")
 })
 
 # User-facing names ----
@@ -264,11 +290,13 @@ usethis::use_data(
 
 # Clean up ----
 rm(
+  `%|0|%`,
+  bGoodEnough,
   # chrDateFields,
   chrFieldNames,
   chrDomainsUsed,
   dSnapshotDate,
-  dfSubjectGroups,
+  # dfSubjectGroups,
   intParticipantCount,
   intParticipantCountPerSite,
   intSeed,
@@ -278,6 +306,9 @@ rm(
   lMappings,
   lWorkflows,
   lSpec,
+  RedResults,
+  RedCountries,
+  RedSites,
   sample_dfAnalyticsInput,
   sample_dfBounds,
   sample_dfGroups,

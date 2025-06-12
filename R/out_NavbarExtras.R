@@ -38,7 +38,7 @@ input_NavbarExtra <- function(
     shinyWidgets::virtualSelectInput(
       inputId = strInputID,
       label = strong(label),
-      choices = chrChoices,
+      choices = unique(chrChoices),
       inline = TRUE
     )
   )

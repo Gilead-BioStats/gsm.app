@@ -4,7 +4,13 @@
 \alias{mod_MetricTable_Server}
 \title{Metric Table Module Server}
 \usage{
-mod_MetricTable_Server(id, rctv_dfResults, dfGroups, rctv_strGroupID)
+mod_MetricTable_Server(
+  id,
+  rctv_dfResults,
+  dfGroups,
+  rctv_strGroupID,
+  rctv_strGroupLevel
+)
 }
 \arguments{
 \item{id}{\code{character} The id for this element.}
@@ -17,6 +23,9 @@ returns a stacked summary of analysis pipeline output.}
 \item{rctv_strGroupID}{\verb{reactive character} A \code{\link[shiny:reactiveVal]{shiny::reactiveVal()}} object
 that returns the \code{GroupID} of the selected group (usually site), and can be
 used to update which group is selected.}
+
+\item{rctv_strGroupLevel}{\verb{reactive character} A \code{\link[shiny:reactiveVal]{shiny::reactiveVal()}}
+object that returns the selected \code{GroupLevel}.}
 }
 \value{
 A \code{\link[shiny:reactive]{shiny::reactive()}} with the id of the selected group.

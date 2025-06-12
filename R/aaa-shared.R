@@ -22,8 +22,6 @@
 #' @param chrLabels `character` A vector of labels for display to the user.
 #' @param chrMessage `character` A vector of message elements to be formatted
 #'   via [cli::cli_bullets()].
-#' @param chrMetrics `character` A named vector of MetricIDs, where the names
-#'   are the full Metric.
 #' @param chrPluginFiles `character` The files in a plugin directory.
 #' @param chrRequiredColumns `character` A vector of expected columns in a
 #'   data.frame.

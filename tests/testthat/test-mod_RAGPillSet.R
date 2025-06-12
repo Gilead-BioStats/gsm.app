@@ -11,6 +11,8 @@ test_that("mod_RAGPillSet_Server responds to external state", {
     mod_RAGPillSet_Server,
     args = list(
       id = "test_id",
+      dfResults = sample_dfResults,
+      rctv_strGroupLevel = reactiveVal("Site"),
       rctv_strGroupSubset = reactiveVal("red")
     ),
     {

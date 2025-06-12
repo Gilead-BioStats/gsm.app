@@ -16,9 +16,6 @@ gsmApp_UI <- function(
   strFaviconColor = ColorScheme("red"),
   tagListExtra = NULL
 ) {
-  # Transform data for use in lower-level functions. ----
-  chrMetrics <- rlang::set_names(dfMetrics$MetricID, dfMetrics$Metric)
-
   bslib::page_navbar(
     id = "primary_nav_bar",
     title = strTitle,
@@ -27,8 +24,8 @@ gsmApp_UI <- function(
     !!!out_MainTabs(
       chrDomains = chrDomains,
       dfGroups = dfGroups,
+      dfMetrics = dfMetrics,
       dfResults = dfResults,
-      chrMetrics = chrMetrics,
       lPlugins = lPlugins
     ),
     bslib::nav_spacer(),

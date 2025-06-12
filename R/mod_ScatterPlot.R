@@ -4,12 +4,13 @@
 #' @returns A [bslib::card()] with an optional title and a
 #'   [Widget_ScatterPlotOutput()].
 #' @keywords internal
-mod_ScatterPlot_UI <- function(id, strPlotTitle = NULL) {
+mod_ScatterPlot_UI <- function(id, strPlotTitle = NULL, strGroupLevel = NULL) {
   mod_WidgetPlot_UI(
     id = id,
     fnHtmlDependency = htmlDependency_ScatterPlotInput,
     fnWidgetOutput = Widget_ScatterPlotOutput,
-    strPlotTitle = strPlotTitle
+    strPlotTitle = strPlotTitle,
+    strGroupLevel = strGroupLevel
   )
 }
 

@@ -46,6 +46,7 @@ test_that("gsmApp_Server triggers reset", {
         primary_nav_bar = "Study Overview",
         metric = "Analysis_kri0001",
         `group-group` = "All",
+        `group-level` = "Site",
         participant = "All"
       )
       expect_equal(input$`group-group`, "All")

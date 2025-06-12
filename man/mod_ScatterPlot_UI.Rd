@@ -4,13 +4,16 @@
 \alias{mod_ScatterPlot_UI}
 \title{ScatterPlot Module UI}
 \usage{
-mod_ScatterPlot_UI(id, strPlotTitle = NULL)
+mod_ScatterPlot_UI(id, strPlotTitle = NULL, strGroupLevel = NULL)
 }
 \arguments{
 \item{id}{\code{character} The id for this element.}
 
 \item{strPlotTitle}{\code{character} A title for a plot, usually the name of a
 metric.}
+
+\item{strGroupLevel}{\code{character} Value for the group level. Default: \code{NULL}
+and taken from \code{dfMetrics$GroupLevel} if available.}
 }
 \value{
 A \code{\link[bslib:card]{bslib::card()}} with an optional title and a

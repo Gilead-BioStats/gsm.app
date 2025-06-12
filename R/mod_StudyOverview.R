@@ -2,7 +2,7 @@
 #'
 #' @inheritParams shared-params
 #' @keywords internal
-mod_StudyOverview_UI <- function(id, dfGroups, dfResults, chrMetrics) {
+mod_StudyOverview_UI <- function(id, dfGroups, dfResults, dfMetrics) {
   ns <- NS(id)
   dfResults <- gsm.kri::FilterByLatestSnapshotDate(dfResults)
 
@@ -17,7 +17,7 @@ mod_StudyOverview_UI <- function(id, dfGroups, dfResults, chrMetrics) {
       ),
       bslib::nav_panel(
         title = "Scatter Plots",
-        mod_ScatterPlotSet_UI(ns("scatter"), chrMetrics)
+        mod_ScatterPlotSet_UI(ns("scatter"), dfMetrics)
       )
     )
   )
@@ -34,6 +34,7 @@ mod_StudyOverview_Server <- function(
   dfGroups,
   dfBounds,
   rctv_strGroupID,
+  rctv_strGroupLevel,
   rctv_strMetricID
 ) {
   moduleServer(id, function(input, output, session) {
@@ -42,11 +43,12 @@ mod_StudyOverview_Server <- function(
     # Update things when the user clicks the GroupOverview table.
     mod_GroupOverview_Server(
       "table",
-      dfResults,
-      dfMetrics,
-      dfGroups,
-      rctv_strGroupID,
-      rctv_strMetricID
+      dfResults = dfResults,
+      dfMetrics = dfMetrics,
+      dfGroups = dfGroups,
+      rctv_strGroupID = rctv_strGroupID,
+      rctv_strGroupLevel = rctv_strGroupLevel,
+      rctv_strMetricID = rctv_strMetricID
     )
 
     # Update things when the user clicks a plot.
@@ -57,6 +59,7 @@ mod_StudyOverview_Server <- function(
       dfGroups = dfGroups,
       dfBounds = dfBounds,
       rctv_strGroupID = rctv_strGroupID,
+      rctv_strGroupLevel = rctv_strGroupLevel,
       rctv_strMetricID = rctv_strMetricID
     )
   })
