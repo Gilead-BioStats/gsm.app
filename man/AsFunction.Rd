@@ -2,9 +2,15 @@
 % Please edit documentation in R/utils.R
 \name{AsFunction}
 \alias{AsFunction}
+\alias{AsFunction.default}
+\alias{AsFunction.character}
 \title{Load a Function for a Plugin}
 \usage{
 AsFunction(strFunction)
+
+\method{AsFunction}{default}(strFunction)
+
+\method{AsFunction}{character}(strFunction)
 }
 \arguments{
 \item{strFunction}{\code{character} The name of a function, with or without
@@ -17,6 +23,6 @@ be supplied as a function or a purrr-style formula. See
 The function, if it can be found.
 }
 \description{
-Load a Function for a Plugin
+Use this function to translate a function definition that might be given as
+text (such as \code{dplyr::filter} in a yaml file) to a usable R function.
 }
-\keyword{internal}
