@@ -1,4 +1,19 @@
-# gsm.app (development version)
+# gsm.app 2.5.1
+
+This patch release fixes bugs related to the presence of multiple "Group Levels" (eg, "Site" and "Country") in app data (#469).
+
+## New Features
+- Demo apps now include Country-level KRIs, in addition to Site-level KRIs (#477).
+
+## Bug Fixes
+- Study Overview tab:
+  - The Overview Table is properly filtered to groups matching the selected Group Level (#471, #472).
+  - The Scatter Plots tab is also filtered to groups matching the selected Group Level (#470).
+- Metric Details tab:
+  - The metric drop-down menu at the top-left of the charts is now filtered to metrics related to the selected Group Level (#473).
+  - The Analysis Output tab respects Group Level (#474).
+- Domain Details tab:
+  - Sample domain data is now linked to the selected Group Level (#476).
 
 # gsm.app 2.5.0
 
