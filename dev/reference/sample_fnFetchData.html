@@ -9,7 +9,7 @@ supply to find additional data about a given domain."><meta name="robots" conten
 
     <a class="navbar-brand me-2" href="../index.html">gsm.app</a>
 
-    <small class="nav-text text-danger me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="In-development version">2.5.0.9000</small>
+    <small class="nav-text text-danger me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="In-development version">2.5.1</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -50,7 +50,7 @@ supply to find additional data about a given domain.</p>
 <span>  strDomainID <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"AE"</span>, <span class="st">"ENROLL"</span>, <span class="st">"LB"</span>, <span class="st">"PD"</span>, <span class="st">"SDRGCOMP"</span>, <span class="st">"STUDCOMP"</span>, <span class="st">"SUBJ"</span>, <span class="st">"DATACHG"</span>,</span>
 <span>    <span class="st">"DATAENT"</span>, <span class="st">"QUERY"</span><span class="op">)</span>,</span>
 <span>  strGroupID <span class="op">=</span> <span class="cn">NULL</span>,</span>
-<span>  strGroupLevel <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  strGroupLevel <span class="op">=</span> <span class="st">"Site"</span>,</span>
 <span>  strSubjectID <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  dSnapshotDate <span class="op">=</span> <span class="cn">NULL</span></span>
 <span><span class="op">)</span></span></code></pre></div>
@@ -102,12 +102,12 @@ and taken from <code>dfMetrics$GroupLevel</code> if available.</p></dd>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 6 × 12</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   SubjectID GroupID aeser aest_dt    aeen_dt    mdrpt_nsv mdrsoc_nsv aetoxgr</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;date&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;date&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">1</span> S39738    0X8522  Y     2012-01-30 2012-01-31 term2     soc2       1      </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">2</span> S4209     0X7265  Y     2012-01-27 2012-01-29 term1     soc1       4      </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">3</span> S70498    0X1858  N     2012-01-12 2012-01-15 term1     soc2       2      </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">4</span> S72050    0X2050  N     2012-01-04 2012-01-07 term2     soc2       5      </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">5</span> S29740    0X7121  Y     2012-01-11 2012-01-13 term1     soc2       1      </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">6</span> S75378    0X1145  Y     2012-01-06 2012-01-09 term1     soc1       2      </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">1</span> S94810    0X4579  Y     2012-01-09 2012-01-11 term2     soc1       1      </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">2</span> S62733    0X4178  Y     2012-01-30 2012-02-01 term1     soc1       5      </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">3</span> S87058    0X7258  N     2012-01-20 2012-01-23 term2     soc1       2      </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">4</span> S94810    0X4579  N     2012-01-08 2012-01-09 term1     soc1       4      </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">5</span> S54148    0X902   N     2012-01-09 2012-01-11 term2     soc1       4      </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">6</span> S54148    0X902   N     2012-01-04 2012-01-05 term1     soc2       1      </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 4 more variables: aeongo &lt;chr&gt;, aerel &lt;chr&gt;, mincreated_dts &lt;dttm&gt;,</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   GroupLevel &lt;chr&gt;</span></span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="fu">sample_fnFetchData</span><span class="op">(</span><span class="st">"AE"</span>, strGroupID <span class="op">=</span> <span class="st">"0X103"</span><span class="op">)</span><span class="op">)</span></span></span>
@@ -131,7 +131,7 @@ and taken from <code>dfMetrics$GroupLevel</code> if available.</p></dd>
 </div>
 
 <div class="pkgdown-footer-right">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.2.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.3.</p>
 </div>
 
     </footer></div>

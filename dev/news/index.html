@@ -7,7 +7,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">gsm.app</a>
 
-    <small class="nav-text text-danger me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="In-development version">2.5.0.9000</small>
+    <small class="nav-text text-danger me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="In-development version">2.5.1</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -37,7 +37,26 @@
     </div>
 
     <div class="section level2">
-<h2 class="pkg-version" data-toc-text="development version" id="gsmapp-development-version">gsm.app (development version)<a class="anchor" aria-label="anchor" href="#gsmapp-development-version"></a></h2>
+<h2 class="pkg-version" data-toc-text="2.5.1" id="gsmapp-251">gsm.app 2.5.1<a class="anchor" aria-label="anchor" href="#gsmapp-251"></a></h2>
+<p>This patch release fixes bugs related to the presence of multiple “Group Levels” (eg, “Site” and “Country”) in app data (<a href="https://github.com/Gilead-BioStats/gsm.app/issues/469" class="external-link">#469</a>).</p>
+<div class="section level3">
+<h3 id="new-features-2-5-1">New Features<a class="anchor" aria-label="anchor" href="#new-features-2-5-1"></a></h3>
+<ul><li>Demo apps now include Country-level KRIs, in addition to Site-level KRIs (<a href="https://github.com/Gilead-BioStats/gsm.app/issues/477" class="external-link">#477</a>).</li>
+</ul></div>
+<div class="section level3">
+<h3 id="bug-fixes-2-5-1">Bug Fixes<a class="anchor" aria-label="anchor" href="#bug-fixes-2-5-1"></a></h3>
+<ul><li>Study Overview tab:
+<ul><li>The Overview Table is properly filtered to groups matching the selected Group Level (<a href="https://github.com/Gilead-BioStats/gsm.app/issues/471" class="external-link">#471</a>, <a href="https://github.com/Gilead-BioStats/gsm.app/issues/472" class="external-link">#472</a>).</li>
+<li>The Scatter Plots tab is also filtered to groups matching the selected Group Level (<a href="https://github.com/Gilead-BioStats/gsm.app/issues/470" class="external-link">#470</a>).</li>
+</ul></li>
+<li>Metric Details tab:
+<ul><li>The metric drop-down menu at the top-left of the charts is now filtered to metrics related to the selected Group Level (<a href="https://github.com/Gilead-BioStats/gsm.app/issues/473" class="external-link">#473</a>).</li>
+<li>The Analysis Output tab respects Group Level (<a href="https://github.com/Gilead-BioStats/gsm.app/issues/474" class="external-link">#474</a>).</li>
+</ul></li>
+<li>Domain Details tab:
+<ul><li>Sample domain data is now linked to the selected Group Level (<a href="https://github.com/Gilead-BioStats/gsm.app/issues/476" class="external-link">#476</a>).</li>
+</ul></li>
+</ul></div>
 </div>
     <div class="section level2">
 <h2 class="pkg-version" data-toc-text="2.5.0" id="gsmapp-250">gsm.app 2.5.0<a class="anchor" aria-label="anchor" href="#gsmapp-250"></a></h2>
@@ -178,7 +197,7 @@
 </div>
 
 <div class="pkgdown-footer-right">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.2.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.3.</p>
 </div>
 
     </footer></div>

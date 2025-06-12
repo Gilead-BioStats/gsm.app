@@ -33,6 +33,7 @@
 <url><loc>https://gilead-biostats.github.io/gsm.app/dev/reference/FindUsedArgs.html</loc></url>
 <url><loc>https://gilead-biostats.github.io/gsm.app/dev/reference/MakePrefixRegex.html</loc></url>
 <url><loc>https://gilead-biostats.github.io/gsm.app/dev/reference/NullifyEmpty.html</loc></url>
+<url><loc>https://gilead-biostats.github.io/gsm.app/dev/reference/RecalculateDomainData.html</loc></url>
 <url><loc>https://gilead-biostats.github.io/gsm.app/dev/reference/SimplifyArgs.html</loc></url>
 <url><loc>https://gilead-biostats.github.io/gsm.app/dev/reference/UnNS.html</loc></url>
 <url><loc>https://gilead-biostats.github.io/gsm.app/dev/reference/Widget_BarChart.html</loc></url>
@@ -56,6 +57,7 @@
 <url><loc>https://gilead-biostats.github.io/gsm.app/dev/reference/htmlDependency_DetectCardClicks.html</loc></url>
 <url><loc>https://gilead-biostats.github.io/gsm.app/dev/reference/htmlDependency_GroupOverview.html</loc></url>
 <url><loc>https://gilead-biostats.github.io/gsm.app/dev/reference/htmlDependency_GroupOverviewInput.html</loc></url>
+<url><loc>https://gilead-biostats.github.io/gsm.app/dev/reference/htmlDependency_HideOtherGroupLevels.html</loc></url>
 <url><loc>https://gilead-biostats.github.io/gsm.app/dev/reference/htmlDependency_ScatterPlotInput.html</loc></url>
 <url><loc>https://gilead-biostats.github.io/gsm.app/dev/reference/htmlDependency_Stylesheet.html</loc></url>
 <url><loc>https://gilead-biostats.github.io/gsm.app/dev/reference/htmlDependency_TimeSeriesInput.html</loc></url>
