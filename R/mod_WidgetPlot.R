@@ -91,7 +91,7 @@ mod_WidgetPlot_Server <- function(
 
     output$plot <- renderWidgetPlot(
       {
-        dfGroups <-  dplyr::semi_join(
+        dfGroups <- dplyr::semi_join(
           dfGroups,
           dplyr::distinct(rctv_dfResults(), .data$GroupID, .data$GroupLevel),
           by = c("GroupID", "GroupLevel")

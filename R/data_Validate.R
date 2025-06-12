@@ -114,8 +114,6 @@ validate_dfGroups <- function(x, dfResults) {
         by = groupCols
       )
     }
-
-
   }
 }
 

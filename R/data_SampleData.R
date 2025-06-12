@@ -192,9 +192,20 @@ sample_fnFetchData <- function(
   return(df)
 }
 
-RecalculateDomainData <- function(df,
-                                  strDomainID,
-                                  dSnapshotDate = NULL) {
+#' Update Date-based Fields
+#'
+#' This function allows me to store domain data from a single snapshot and then
+#' back calculate things that are cumulative within snapshots.
+#'
+#' @inheritParams shared-params
+#'
+#' @returns The updated data.frame.
+#' @keywords internal
+RecalculateDomainData <- function(
+  df,
+  strDomainID,
+  dSnapshotDate = NULL
+) {
   if (!is.null(dSnapshotDate)) {
     dSnapshotDate <- as.Date(dSnapshotDate)
     if (strDomainID == "SUBJ") {
