@@ -4,7 +4,11 @@
 \alias{mod_TogglePill_Server}
 \title{Toggle Pill Module Server}
 \usage{
-mod_TogglePill_Server(id, rctv_lglState = shiny::reactive(FALSE))
+mod_TogglePill_Server(
+  id,
+  rctv_strLabel = reactive("0 Red KRIs"),
+  rctv_lglState = reactive(FALSE)
+)
 }
 \arguments{
 \item{id}{\code{character} The id for this element.}

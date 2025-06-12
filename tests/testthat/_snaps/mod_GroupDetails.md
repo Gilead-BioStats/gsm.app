@@ -10,7 +10,7 @@
               <style>#group_details-card_group_metadata_list-contents .bslib-full-screen-enter { bottom: unset !important; }</style>
               <div class="card bslib-card bslib-mb-spacing bslib-card-input html-fill-item html-fill-container" data-bslib-card-init data-full-screen="false" data-require-bs-caller="card()" data-require-bs-version="5" id="group_details-card_group_metadata_list-contents">
                 <div class="card-body bslib-gap-spacing html-fill-item html-fill-container" style="margin-top:auto;margin-bottom:auto;flex:1 1 auto;">
-                  <h5>Site Metadata</h5>
+                  <h5>Group Metadata</h5>
                   <div id="group_details-group_metadata_list" class="shiny-html-output"></div>
                 </div>
                 <bslib-tooltip placement="auto" bsOptions="[]" data-require-bs-version="5" data-require-bs-caller="tooltip()">
@@ -25,9 +25,9 @@
             <style>#group_details-card_placeholder_group_metadata_list .bslib-full-screen-enter { bottom: unset !important; }</style>
             <div class="card bslib-card bslib-mb-spacing bslib-card-input html-fill-item html-fill-container" data-bslib-card-init data-full-screen="false" data-require-bs-caller="card()" data-require-bs-version="5" id="group_details-card_placeholder_group_metadata_list">
               <div class="card-body bslib-gap-spacing html-fill-item html-fill-container" style="margin-top:auto;margin-bottom:auto;flex:1 1 auto;">
-                <h5>Site Metadata</h5>
+                <h5>Group Metadata</h5>
                 <div class="card bslib-card bslib-mb-spacing html-fill-item html-fill-container placeholder" data-bslib-card-init data-require-bs-caller="card()" data-require-bs-version="5">
-                  <div class="card-body bslib-gap-spacing html-fill-item html-fill-container" style="margin-top:auto;margin-bottom:auto;flex:1 1 auto;">Please select a site.</div>
+                  <div class="card-body bslib-gap-spacing html-fill-item html-fill-container" style="margin-top:auto;margin-bottom:auto;flex:1 1 auto;">Please select a group.</div>
                   <script data-bslib-card-init>bslib.Card.initializeAllCards();</script>
                 </div>
               </div>

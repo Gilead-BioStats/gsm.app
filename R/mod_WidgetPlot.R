@@ -8,13 +8,15 @@ mod_WidgetPlot_UI <- function(
   id,
   fnHtmlDependency,
   fnWidgetOutput,
-  strPlotTitle = NULL
+  strPlotTitle = NULL,
+  strGroupLevel = NULL
 ) {
   ns <- NS(id)
   out_Card(
     tagTitle = strPlotTitle,
     id = id,
     class = "chart",
+    `data-group-level` = strGroupLevel,
     fnHtmlDependency(),
     fnWidgetOutput(ns("plot"))
   )
@@ -89,6 +91,11 @@ mod_WidgetPlot_Server <- function(
 
     output$plot <- renderWidgetPlot(
       {
+        dfGroups <- dplyr::semi_join(
+          dfGroups,
+          dplyr::distinct(rctv_dfResults(), .data$GroupID, .data$GroupLevel),
+          by = c("GroupID", "GroupLevel")
+        )
         fn_Widget(
           session$ns("plot"),
           rctv_dfResults(),

@@ -73,7 +73,7 @@ test_that("mod_GroupDetails_Server renders participants table", {
       expect_named(output$`participants-gt-table`, c("html", "deps"))
 
       # Test the participant table title is correct
-      expect_equal(output$`participants-title`, "Site 0X1858")
+      expect_equal(output$`participants-title`, "Site: 0X1858")
     }
   )
 })

@@ -1,7 +1,7 @@
 test_that("mod_MetricDetails_UI creates the expected UI", {
   test_result <- mod_MetricDetails_UI(
     "testID",
-    rlang::set_names(sample_dfMetrics$MetricID, sample_dfMetrics$Metric)
+    sample_dfMetrics
   )
   expect_s3_class(test_result, c("bslib_fragment", "shiny.tag"))
   class(test_result) <- "shiny.tag"
@@ -14,6 +14,7 @@ test_that("mod_MetricDetails_Server initializes and renders scatter plot", {
   # Inputs to simulate things that happen in the main server function.
   rctv_strMetricID <- reactiveVal("Analysis_kri0001")
   rctv_strGroupID <- reactiveVal("All")
+  rctv_strGroupLevel <- reactiveVal("Site")
   rctv_lMetric <- reactive({
     lMetric <- as.list(FilterbyMetricID(sample_dfMetrics, rctv_strMetricID()))
     if (rctv_strGroupID() != "All") {
@@ -26,11 +27,13 @@ test_that("mod_MetricDetails_Server initializes and renders scatter plot", {
     mod_MetricDetails_Server,
     args = list(
       id = "metricDetailsTest",
-      dfResults = sample_dfResults,
-      dfGroups = sample_dfGroups,
       dfBounds = sample_dfBounds,
+      dfGroups = sample_dfGroups,
+      dfMetrics = sample_dfMetrics,
+      dfResults = sample_dfResults,
       rctv_lMetric = rctv_lMetric,
       rctv_strGroupID = rctv_strGroupID,
+      rctv_strGroupLevel = rctv_strGroupLevel,
       rctv_strMetricID = rctv_strMetricID
     ),
     {
@@ -51,6 +54,7 @@ test_that("mod_MetricDetails_Server renders tab outputs", {
   # Inputs to simulate things that happen in the main server function.
   rctv_strMetricID <- reactiveVal("Analysis_kri0001")
   rctv_strGroupID <- reactiveVal("All")
+  rctv_strGroupLevel <- reactiveVal("Site")
   rctv_lMetric <- reactive({
     lMetric <- as.list(FilterbyMetricID(sample_dfMetrics, rctv_strMetricID()))
     if (rctv_strGroupID() != "All") {
@@ -63,11 +67,13 @@ test_that("mod_MetricDetails_Server renders tab outputs", {
     mod_MetricDetails_Server,
     args = list(
       id = "metricDetailsTest",
-      dfResults = sample_dfResults,
-      dfGroups = sample_dfGroups,
       dfBounds = sample_dfBounds,
+      dfGroups = sample_dfGroups,
+      dfMetrics = sample_dfMetrics,
+      dfResults = sample_dfResults,
       rctv_lMetric = rctv_lMetric,
       rctv_strGroupID = rctv_strGroupID,
+      rctv_strGroupLevel = rctv_strGroupLevel,
       rctv_strMetricID = rctv_strMetricID
     ),
     {

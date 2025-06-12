@@ -8,7 +8,7 @@ sample_fnFetchData(
   strDomainID = c("AE", "ENROLL", "LB", "PD", "SDRGCOMP", "STUDCOMP", "SUBJ", "DATACHG",
     "DATAENT", "QUERY"),
   strGroupID = NULL,
-  strGroupLevel = NULL,
+  strGroupLevel = "Site",
   strSubjectID = NULL,
   dSnapshotDate = NULL
 )

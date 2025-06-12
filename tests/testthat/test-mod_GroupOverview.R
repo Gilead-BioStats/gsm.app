@@ -17,7 +17,8 @@ test_that("mod_GroupOverview_Server sets the expected reactives", {
       dfMetrics = sample_dfMetrics,
       dfGroups = sample_dfGroups,
       rctv_strMetricID = reactiveVal("xxxx"),
-      rctv_strGroupID = reactiveVal("xxxx")
+      rctv_strGroupID = reactiveVal("xxxx"),
+      rctv_strGroupLevel = reactiveVal("Site")
     ),
     {
       session$setInputs(
@@ -41,7 +42,8 @@ test_that("mod_GroupOverview_Server passes group subset info around", {
       id = "test_id",
       dfResults = gsm.kri::FilterByLatestSnapshotDate(sample_dfResults),
       dfMetrics = sample_dfMetrics,
-      dfGroups = sample_dfGroups
+      dfGroups = sample_dfGroups,
+      rctv_strGroupLevel = reactiveVal("Site")
     ),
     {
       expect_equal(rctv_strGroupSubset(), "red")
@@ -79,7 +81,8 @@ test_that("Widget_GroupOverview creates a valid HTML widget", {
     id = "test",
     sample_dfResults,
     sample_dfMetrics,
-    sample_dfGroups
+    sample_dfGroups,
+    strGroupLevel = "Site"
   )
   expect_s3_class(widget, c("WidgetGroupOverview", "htmlwidget"))
 })
@@ -89,7 +92,8 @@ test_that("Widget_GroupOverview returns expected data", {
     id = "test",
     sample_dfResults,
     sample_dfMetrics,
-    sample_dfGroups
+    sample_dfGroups,
+    strGroupLevel = "Site"
   )
 
   expect_named(

@@ -3,6 +3,7 @@
 S3method(AsFunction,character)
 S3method(AsFunction,default)
 export("%>%")
+export(AsFunction)
 export(ColorScheme)
 export(ConstructDataCounter)
 export(ExtractAppTitle)

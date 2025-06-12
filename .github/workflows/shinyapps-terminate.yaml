@@ -35,7 +35,7 @@ jobs:
             sep = "-"
           )
           rsconnect::setAccountInfo(
-            name = "openrbqm",
+            name = "rinpharma",
             token = Sys.getenv("SHINYAPPSIO_TOKEN"),
             secret = Sys.getenv("SHINYAPPSIO_SECRET")
           )
@@ -68,7 +68,7 @@ jobs:
               issue_number: context.issue.number,
             });
 
-            const appUrl = `https://openrbqm.shinyapps.io/${process.env.REPO_NAME}-pr-${process.env.PR_NUMBER}`;
+            const appUrl = `https://rinpharma.shinyapps.io/${process.env.REPO_NAME}-pr-${process.env.PR_NUMBER}`;
             const comment = comments.find(comment =>
               comment.body.includes(appUrl) && comment.user.login === 'github-actions[bot]'
             );

@@ -6,16 +6,28 @@
       [[1]]
       <li class="bslib-nav-item nav-item form-inline navbar-extras">
         <div class="form-group shiny-input-container shiny-input-container-inline">
-          <label class="control-label" id="group-group-label" for="group-group">
-            <strong>Site</strong>
+          <label class="control-label" id="group-level-label" for="group-level">
+            <strong>Group Level</strong>
           </label>
-          <div id="group-group" class="virtual-select" style="display:inline-block;" data-update="change">
-            <script type="application/json" data-for="group-group">{"stateInput":true,"options":{"type":["vector"],"choices":["All","0X1145","0X1255","0X1427","0X1667","0X1858","0X2050","0X2096","0X226","0X2263","0X2585","0X2887","0X3174","0X3311","0X3349","0X3795","0X3972","0X4372","0X4694","0X4790","0X5041","0X5241","0X5370","0X5456","0X5590","0X5902","0X5985","0X6029","0X6444","0X6465","0X6916","0X7121","0X7265","0X732","0X7526","0X7840","0X7856","0X8251","0X8522","0X8733","0X8941","0X8989","0X9090","0X9328","0X9567","0X9621","0X9667","0X9818","0X9824","0X9919","0X9976"]},"config":{"multiple":false,"search":false,"hideClearButton":true,"autoSelectFirstOption":true,"showSelectedOptionsFirst":false,"showValueAsTags":false,"optionsCount":10,"noOfDisplayValues":50,"allowNewOption":false,"disableSelectAll":true,"disableOptionGroupCheckbox":true,"disabled":false}}</script>
+          <div id="group-level" class="virtual-select" style="display:inline-block;" data-update="change">
+            <script type="application/json" data-for="group-level">{"stateInput":true,"options":{"type":["vector"],"choices":["Site","Country"]},"config":{"multiple":false,"search":false,"hideClearButton":true,"autoSelectFirstOption":true,"showSelectedOptionsFirst":false,"showValueAsTags":false,"optionsCount":10,"noOfDisplayValues":50,"allowNewOption":false,"disableSelectAll":true,"disableOptionGroupCheckbox":true,"disabled":false}}</script>
           </div>
         </div>
       </li>
       
       [[2]]
+      <li class="bslib-nav-item nav-item form-inline navbar-extras">
+        <div class="form-group shiny-input-container shiny-input-container-inline">
+          <label class="control-label" id="group-group-label" for="group-group">
+            <strong>Site</strong>
+          </label>
+          <div id="group-group" class="virtual-select" style="display:inline-block;" data-update="change">
+            <script type="application/json" data-for="group-group">{"stateInput":true,"options":{"type":["vector"],"choices":["All","0X1221","0X1235","0X1363","0X1372","0X2227","0X2503","0X257","0X2635","0X2686","0X2775","0X2788","0X3108","0X3213","0X3346","0X3474","0X3581","0X3712","0X3744","0X3777","0X3892","0X4178","0X4579","0X4769","0X4783","0X5226","0X5239","0X5495","0X5766","0X5841","0X610","0X6112","0X6192","0X6698","0X703","0X7258","0X730","0X7394","0X7427","0X771","0X7798","0X7994","0X8088","0X8186","0X8352","0X8458","0X8469","0X8881","0X902","0X9194","0X9640"]},"config":{"multiple":false,"search":false,"hideClearButton":true,"autoSelectFirstOption":true,"showSelectedOptionsFirst":false,"showValueAsTags":false,"optionsCount":10,"noOfDisplayValues":50,"allowNewOption":false,"disableSelectAll":true,"disableOptionGroupCheckbox":true,"disabled":false}}</script>
+          </div>
+        </div>
+      </li>
+      
+      [[3]]
       <li class="bslib-nav-item nav-item form-inline navbar-extras">
         <div class="form-group shiny-input-container shiny-input-container-inline">
           <label class="control-label" id="participant-label" for="participant">
@@ -27,7 +39,7 @@
         </div>
       </li>
       
-      [[3]]
+      [[4]]
       <li class="bslib-nav-item nav-item form-inline navbar-extras">
         <button class="btn btn-default action-button btn-primary" id="reset" type="button">
           <i class="fas fa-rotate" role="presentation" aria-label="rotate icon" title="Reset all inputs"></i>

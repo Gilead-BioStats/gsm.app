@@ -22,7 +22,7 @@ NullifyEmpty <- function(strValue) {
     length(strValue) == 0 ||
       identical(strValue, "None") ||
       identical(strValue, "All") ||
-      identical(strValue, "")
+      identical(stringr::str_squish(strValue), "")
   ) {
     return(NULL)
   }
@@ -69,20 +69,25 @@ ColorScheme <- function(
 
 #' Load a Function for a Plugin
 #'
+#' Use this function to translate a function definition that might be given as
+#' text (such as `dplyr::filter` in a yaml file) to a usable R function.
+#'
 #' @inheritParams shared-params
 #'
 #' @returns The function, if it can be found.
-#' @keywords internal
+#' @export
 AsFunction <- function(strFunction) {
   UseMethod("AsFunction")
 }
 
 #' @export
+#' @rdname AsFunction
 AsFunction.default <- function(strFunction) {
   rlang::as_function(strFunction)
 }
 
 #' @export
+#' @rdname AsFunction
 AsFunction.character <- function(strFunction) {
   fnFunction <- gsm.core::GetStrFunctionIfNamespaced(strFunction)
   # Extra step to work around things that are still character.

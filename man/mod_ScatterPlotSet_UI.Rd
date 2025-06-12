@@ -4,13 +4,13 @@
 \alias{mod_ScatterPlotSet_UI}
 \title{ScatterPlot Set Module UI}
 \usage{
-mod_ScatterPlotSet_UI(id, chrMetrics)
+mod_ScatterPlotSet_UI(id, dfMetrics)
 }
 \arguments{
 \item{id}{\code{character} The id for this element.}
 
-\item{chrMetrics}{\code{character} A named vector of MetricIDs, where the names
-are the full Metric.}
+\item{dfMetrics}{\code{data.frame} Metric-specific metadata for use in charts and
+reporting.}
 }
 \value{
 An \code{\link[htmltools:tagList]{htmltools::tagList()}} containing a \code{\link[bslib:layout_column_wrap]{bslib::layout_column_wrap()}}
