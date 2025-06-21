@@ -1,0 +1,901 @@
+---
+title: "Data Preparation for gsm.app"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Data Preparation for gsm.app}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  eval = FALSE
+)
+```
+
+```{r setup}
+library(gsm.app)
+library(dplyr)
+library(purrr)
+```
+
+# Introduction
+
+This vignette provides a comprehensive guide on how to prepare data for use with the {gsm.app} Shiny application. The gsm.app package creates interactive dashboards for exploring Good Statistical Monitoring (GSM) Key Risk Indicator (KRI) assessments in clinical trials.
+
+# Required Data Structures
+
+The {gsm.app} requires five main data frames and one function to operate:
+
+1. **`dfAnalyticsInput`** - Participant-level metric data
+2. **`dfBounds`** - Statistical bounds for flagging
+3. **`dfGroups`** - Group-level metadata (sites, countries, study)
+4. **`dfMetrics`** - Metric definitions and metadata
+5. **`dfResults`** - KRI assessment results
+6. **`fnFetchData`** - Function to retrieve domain-specific data
+
+## 1. dfAnalyticsInput Structure
+
+This data frame contains participant-level metric calculations used for drill-down functionality.
+
+```{r dfAnalyticsInput-structure}
+# Required columns:
+# - MetricID: Unique identifier for each metric (e.g., "Analysis_kri0001")
+# - SubjectID: Unique participant identifier
+# - GroupID: Group identifier (site ID, country code, etc.)
+# - GroupLevel: Level of grouping ("Site", "Country", etc.)
+# - Numerator: Numerator value for the metric calculation
+# - Denominator: Denominator value for the metric calculation  
+# - Metric: Calculated metric value (Numerator/Denominator or rate)
+# - SnapshotDate: Date of the data snapshot
+
+sample_dfAnalyticsInput_structure <- data.frame(
+  MetricID = c("Analysis_kri0001", "Analysis_kri0001", "Analysis_kri0002"),
+  SubjectID = c("SUBJ001", "SUBJ002", "SUBJ001"),
+  GroupID = c("SITE001", "SITE001", "SITE001"),
+  GroupLevel = c("Site", "Site", "Site"),
+  Numerator = c(5, 2, 1),
+  Denominator = c(100, 85, 100),
+  Metric = c(0.05, 0.024, 0.01),
+  SnapshotDate = as.Date(c("2024-01-31", "2024-01-31", "2024-01-31"))
+)
+```
+
+## 2. dfBounds Structure
+
+This data frame defines the statistical bounds used for flagging metrics.
+
+```{r dfBounds-structure}
+# Required columns:
+# - Threshold: Number of standard deviations for bounds (e.g., -2, -1, 2, 3)
+# - Denominator: Predicted denominator values across range
+# - Numerator: Predicted numerator bounds 
+# - Metric: Predicted metric bounds
+# - MetricID: Unique identifier matching dfAnalyticsInput
+# - StudyID: Study identifier
+# - SnapshotDate: Date of the data snapshot
+
+sample_dfBounds_structure <- data.frame(
+  Threshold = c(-2, -1, 2, 3),
+  Denominator = c(100, 100, 100, 100),
+  Numerator = c(2.1, 3.5, 8.2, 10.1),
+  Metric = c(0.021, 0.035, 0.082, 0.101),
+  MetricID = rep("Analysis_kri0001", 4),
+  StudyID = rep("STUDY001", 4),
+  SnapshotDate = as.Date(rep("2024-01-31", 4))
+)
+```
+
+## 3. dfGroups Structure
+
+This data frame contains metadata about study groups (sites, countries, overall study).
+
+```{r dfGroups-structure}
+# Required columns:
+# - GroupID: Unique identifier for the group
+# - GroupLevel: Level of the group ("Site", "Country", "Study")  
+# - Param: Parameter name (e.g., "ParticipantCount", "nickname")
+# - Value: Parameter value
+
+sample_dfGroups_structure <- data.frame(
+  GroupID = c("SITE001", "SITE001", "US", "US", "STUDY001"),
+  GroupLevel = c("Site", "Site", "Country", "Country", "Study"),
+  Param = c("ParticipantCount", "SiteCount", "ParticipantCount", "SiteCount", "nickname"),
+  Value = c("50", "1", "150", "3", "Sample Clinical Trial")
+)
+```
+
+## 4. dfMetrics Structure
+
+This data frame contains metadata about each metric/KRI.
+
+```{r dfMetrics-structure}
+# Key columns:
+# - MetricID: Unique identifier matching other data frames
+# - Metric: Human-readable metric name
+# - GroupLevel: Level at which metric is calculated
+# - Abbreviation: Short name for display
+# - Numerator: Description of numerator
+# - Denominator: Description of denominator
+# - Threshold: Flagging thresholds (comma-separated)
+
+sample_dfMetrics_structure <- data.frame(
+  MetricID = c("Analysis_kri0001", "Analysis_kri0002"),
+  Metric = c("Adverse Event Rate", "Serious Adverse Event Rate"),
+  GroupLevel = c("Site", "Site"),
+  Abbreviation = c("AE", "SAE"),
+  Numerator = c("Adverse Events", "Serious Adverse Events"),
+  Denominator = c("Days on Study", "Days on Study"),
+  Threshold = c("-2,-1,2,3", "-2,-1,2,3"),
+  Type = c("Analysis", "Analysis"),
+  Model = c("Normal Approximation", "Normal Approximation"),
+  Score = c("Adjusted Z-Score", "Adjusted Z-Score")
+)
+```
+
+## 5. dfResults Structure
+
+This data frame contains the KRI assessment results and flags.
+
+```{r dfResults-structure}
+# Required columns:
+# - GroupID: Group identifier matching dfGroups
+# - GroupLevel: Level of grouping
+# - Numerator: Aggregated numerator for the group
+# - Denominator: Aggregated denominator for the group  
+# - Metric: Calculated metric value
+# - Score: Statistical score (e.g., z-score)
+# - Flag: Ordinal flag (-2, -1, 0, 1, 2) indicating severity
+# - MetricID: Metric identifier
+# - StudyID: Study identifier
+# - SnapshotDate: Date of assessment
+
+sample_dfResults_structure <- data.frame(
+  GroupID = c("SITE001", "SITE002", "US"),
+  GroupLevel = c("Site", "Site", "Country"),
+  Numerator = c(25, 15, 40),
+  Denominator = c(500, 400, 900),
+  Metric = c(0.05, 0.0375, 0.044),
+  Score = c(1.2, -0.5, 0.8),
+  Flag = c(0, 0, 0),
+  MetricID = rep("Analysis_kri0001", 3),
+  StudyID = rep("STUDY001", 3),
+  SnapshotDate = as.Date(rep("2024-01-31", 3))
+)
+```
+
+# Data Preparation Workflow
+
+The following workflow uses the {gsm.core} and {gsm.reporting} packages to systematically create all required data structures for {gsm.app}. This approach ensures:
+
+- **Standardized KRI calculations** using validated statistical methods from {gsm.core}
+- **Proper reporting data structures** using {gsm.reporting} functions
+- **Consistent data formats** across all outputs
+- **Automated workflow execution** with minimal manual intervention
+- **Quality assurance** through built-in validation functions
+- **Professional reporting capabilities** with integrated bounds and metadata
+
+The gsm.app package is designed to work seamlessly with the outputs from the {gsm} ecosystem's standard workflow.
+
+## Step 1: Prepare Raw Clinical Data
+
+Before creating the gsm.app data structures, you need to prepare your raw clinical data in the expected format. The {gsm} ecosystem expects data in "Raw+" format which closely follows CDISC standards:
+
+```{r prepare-raw-data}
+# Example: Loading and cleaning raw data
+# This would be customized based on your data sources (CDISC domains)
+
+# Load raw datasets in CDISC-like format
+raw_adverse_events <- read.csv("ae.csv")    # CDISC AE domain
+raw_demographics <- read.csv("dm.csv")      # CDISC DM domain  
+raw_exposure <- read.csv("ex.csv")          # CDISC EX domain
+raw_lab_data <- read.csv("lb.csv")          # CDISC LB domain
+raw_protocol_deviations <- read.csv("pd.csv")  # Protocol deviations
+raw_queries <- read.csv("queries.csv")      # Data queries
+raw_data_entry <- read.csv("dataent.csv")   # Data entry logs
+
+# Additional CTMS data for reporting
+raw_site_data <- read.csv("site.csv")       # Site metadata
+raw_study_data <- read.csv("study.csv")     # Study metadata
+
+# Basic data cleaning and standardization
+raw_adverse_events <- raw_adverse_events %>%
+  filter(!is.na(USUBJID)) %>%
+  mutate(
+    AESTDT = as.Date(AESTDT),
+    AEENDT = as.Date(AEENDT)
+  )
+
+# Ensure all datasets have required columns for gsm workflows
+# This step varies by domain - see gsm.mapping documentation for specifics
+```
+
+## Step 2: Set Up GSM Core Workflows
+
+The {gsm.core} package provides a systematic approach to creating KRI assessments. The workflow involves creating mappings and then running analysis workflows.
+
+```{r setup-workflows}
+library(gsm.core)
+library(gsm.mapping)  # For data mapping workflows
+library(gsm.kri)      # For KRI analysis workflows
+
+# Define which domains you want to include
+domains_to_include <- c(
+  "AE",        # Adverse Events
+  "DATACHG",   # Data Changes  
+  "DATAENT",   # Data Entry
+  "ENROLL",    # Enrollment
+  "LB",        # Laboratory
+  "PD",        # Protocol Deviations
+  "STUDCOMP",  # Study Completion
+  "SUBJ"       # Subject Metadata
+)
+
+# Step 2a: Create mapping workflows
+lMappingWorkflows <- MakeWorkflowList(
+  strPath = "workflow/1_mappings",
+  strNames = domains_to_include,
+  strPackage = "gsm.mapping"
+)
+
+# Step 2b: Create analysis workflows  
+lAnalysisWorkflows <- MakeWorkflowList(
+  strPath = "workflow/2_metrics", 
+  strPackage = "gsm.kri"
+)
+
+# Optional: Remove specific KRIs that aren't ready or applicable
+lAnalysisWorkflows$kri0012 <- NULL  # Screen Failure Rate
+lAnalysisWorkflows$kri0013 <- NULL  # PK Collection Compliance Rate
+```
+
+## Step 3: Create Mapped Data Using GSM Core
+
+Use the gsm.core workflow to transform your raw clinical data into the standardized format:
+
+```{r create-mapped-data}
+# Step 3a: Combine mapping specifications
+lMappingSpec <- gsm.mapping::CombineSpecs(lMappingWorkflows)
+
+# Step 3b: Create raw data list in the expected format
+# This maps your raw data to the format expected by gsm workflows
+lRawData <- list(
+  Raw_AE = raw_adverse_events,
+  Raw_DM = raw_demographics,
+  Raw_EX = raw_exposure,
+  Raw_LB = raw_lab_data,
+  Raw_PD = raw_protocol_deviations
+  # Add other domains as needed
+)
+
+# Step 3c: Ingest and map the data
+lIngested <- gsm.mapping::Ingest(lRawData, lMappingSpec)
+lMappedData <- RunWorkflows(lMappingWorkflows, lIngested)
+
+# Convert to tibbles for easier handling
+lMappedData <- lMappedData %>%
+  purrr::map(dplyr::as_tibble)
+```
+
+## Step 3: Generate Reporting Data
+
+Now we'll transform our analysis results into the specific data frames required by gsm.app using gsm.reporting functions. This follows the step-by-step reporting workflow documented in gsm.reporting.
+
+### Step 3.1: Create dfMetrics Metadata
+
+The `dfMetrics` table contains metadata for each KRI, derived from the workflow specifications:
+
+```{r create-dfmetrics}
+# Create dfMetrics - metadata for each KRI
+dfMetrics <- gsm.reporting::MakeMetric(lWorkflows = lAnalysisWorkflows)
+
+# Preview the structure
+head(dfMetrics)
+```
+
+### Step 3.2: Create dfResults from Analysis Output
+
+The `dfResults` data frame stacks all metric results into a single table:
+
+```{r create-dfresults}
+# Create dfResults - stacked analysis results
+dfResults <- gsm.reporting::BindResults(
+  lAnalysis = lAnalysisResults,
+  strName = "Analysis_Summary",
+  dSnapshotDate = Sys.Date(),
+  strStudyID = "DEMO-STUDY-001"
+)
+
+# Preview the structure
+head(dfResults)
+```
+
+### Step 3.3: Create dfBounds for Confidence Intervals
+
+The `dfBounds` data frame provides confidence intervals and bounds for visualizations:
+
+```{r create-dfbounds}
+# Create dfBounds - confidence intervals and bounds for charts
+dfBounds <- gsm.reporting::MakeBounds(
+  dfResults = dfResults,
+  dfMetrics = dfMetrics
+)
+
+# Preview the structure
+head(dfBounds)
+```
+
+### Step 3.4: Create dfGroups from CTMS Data
+
+The `dfGroups` data frame contains group-level metadata for sites, studies, and countries. This requires transforming CTMS data and participant enrollment information:
+
+```{r create-dfgroups}
+# Transform CTMS Site data
+dfCTMSSite <- gsm.core::RunQuery(
+  df = lRawData$Raw_SITE, 
+  strQuery = "SELECT invid as GroupID, site_status as Status, pi_first_name as InvestigatorFirstName, pi_last_name as InvestigatorLastName, city as City, state as State, country as Country FROM df"
+) %>%
+  gsm.mapping::MakeLongMeta(strGroupLevel = 'Site')
+
+# Transform CTMS Study data  
+dfCTMSStudy <- gsm.core::RunQuery(
+  df = lRawData$Raw_STUDY,
+  strQuery = "SELECT studyid as GroupID, study_status as Status FROM df"
+) %>%
+  gsm.mapping::MakeLongMeta(strGroupLevel = 'Study')
+
+# Get participant and site counts from mapped subject data
+dfSiteCounts <- gsm.core::RunQuery(
+  df = lMappedData$Mapped_SUBJ,
+  strQuery = "SELECT invid as GroupID, COUNT(DISTINCT subjid) as ParticipantCount, COUNT(DISTINCT invid) as SiteCount FROM df GROUP BY invid"
+) %>%
+  gsm.mapping::MakeLongMeta(strGroupLevel = "Site")
+
+dfStudyCounts <- gsm.core::RunQuery(
+  df = lMappedData$Mapped_SUBJ,
+  strQuery = "SELECT studyid as GroupID, COUNT(DISTINCT subjid) as ParticipantCount, COUNT(DISTINCT invid) as SiteCount FROM df GROUP BY studyid"
+) %>%
+  gsm.mapping::MakeLongMeta(strGroupLevel = "Study")
+
+dfCountryCounts <- gsm.core::RunQuery(
+  df = lMappedData$Mapped_SUBJ,
+  strQuery = "SELECT country as GroupID, COUNT(DISTINCT subjid) as ParticipantCount, COUNT(DISTINCT invid) as SiteCount FROM df GROUP BY country"
+) %>%
+  gsm.mapping::MakeLongMeta(strGroupLevel = "Country")
+
+# Combine all group data
+dfGroups <- dplyr::bind_rows(
+  SiteCounts = dfSiteCounts,
+  StudyCounts = dfStudyCounts, 
+  CountryCounts = dfCountryCounts,
+  Site = dfCTMSSite,
+  Study = dfCTMSStudy
+)
+
+# Preview the structure
+head(dfGroups)
+```
+
+The resulting data frames follow the gsm reporting data model:
+
+- **dfGroups**: Group-level metadata with GroupID, GroupLevel, Param, and Value columns
+- **dfMetrics**: Metric metadata including thresholds, models, and scoring information
+- **dfResults**: Stacked analysis results with calculated metrics, scores, and flags
+- **dfBounds**: Predicted bounds and confidence intervals for visualization
+
+## Step 4: Create Complete Example Data
+
+Now that you have the core reporting data, let's create any additional data structures needed for the app:
+
+```{r create-additional-data}
+# Create dfAnalyticsInput for detailed data exploration
+dfAnalyticsInput <- purrr::map(lAnalysisResults, "Analysis_Input") %>%
+  dplyr::bind_rows(.id = "MetricID") %>%
+  dplyr::as_tibble() %>%
+  dplyr::mutate(SnapshotDate = Sys.Date())
+
+# Prepare domain data for the fetch function (remove group mappings)
+lDomainData <- lMappedData
+lDomainData$Mapped_COUNTRY <- NULL
+lDomainData$Mapped_SITE <- NULL
+lDomainData$Mapped_STUDY <- NULL
+
+# Rename subjid to SubjectID for consistency
+lDomainData <- purrr::map(lDomainData, function(domain_df) {
+  if ("subjid" %in% names(domain_df)) {
+    domain_df <- domain_df %>%
+      dplyr::rename(SubjectID = .data$subjid)
+  }
+  return(domain_df)
+})
+```
+
+## Step 5: Create Data Fetch Function
+
+The app requires a function to fetch domain-specific data for the "Domain Details" tab. This function uses the mapped data you created with gsm.core:
+
+```{r create-fetch-function}
+# Create a function to fetch domain data using your mapped data
+create_fetch_function <- function(lDomainData, dfAnalyticsInput) {
+  
+  # Create subject-to-group mappings
+  dfSubjectGroups <- dfAnalyticsInput %>%
+    dplyr::distinct(.data$SubjectID, .data$GroupID, .data$GroupLevel)
+  
+  function(strDomainID, strGroupLevel = NULL, strGroupID = NULL, 
+           strSubjectID = NULL, dSnapshotDate = NULL) {
+    
+    # Get the appropriate domain dataset
+    domain_name <- paste0("Mapped_", strDomainID)
+    domain_data <- lDomainData[[domain_name]]
+    
+    if (is.null(domain_data)) {
+      warning(paste("No data available for domain:", strDomainID))
+      return(NULL)
+    }
+    
+    # Add group information to domain data
+    if ("SubjectID" %in% names(domain_data)) {
+      domain_data <- domain_data %>%
+        dplyr::left_join(dfSubjectGroups, by = "SubjectID")
+    }
+    
+    # Apply filters based on parameters
+    if (!is.null(strSubjectID) && strSubjectID != "All") {
+      domain_data <- domain_data %>%
+        dplyr::filter(.data$SubjectID == strSubjectID)
+    }
+    
+    if (!is.null(strGroupID) && strGroupID != "All" && 
+        !is.null(strGroupLevel) && "GroupLevel" %in% names(domain_data)) {
+      domain_data <- domain_data %>%
+        dplyr::filter(.data$GroupLevel == strGroupLevel, .data$GroupID == strGroupID)
+    }
+    
+    # Apply snapshot date filter if applicable
+    if (!is.null(dSnapshotDate)) {
+      # Look for common date columns and filter
+      date_columns <- names(domain_data)[grepl("_dt$|date|Date", names(domain_data))]
+      
+      if (length(date_columns) > 0) {
+        # Use the first date column found
+        date_col <- date_columns[1]
+        if (date_col %in% names(domain_data)) {
+          domain_data <- domain_data %>%
+            dplyr::filter(.data[[date_col]] <= dSnapshotDate)
+        }
+      }
+    }
+    
+    return(domain_data)
+  }
+}
+
+# Create the fetch function using your mapped data
+fnFetchData <- create_fetch_function(lDomainData, dfAnalyticsInput)
+```
+
+# Launching the Application
+
+Once all data structures are prepared using the gsm.core workflow, you can launch the application:
+
+```{r launch-app}
+# Launch the gsm.app with your prepared data
+run_gsm_app(
+  dfAnalyticsInput = dfAnalyticsInput,
+  dfBounds = dfBounds,
+  dfGroups = dfGroups,
+  dfMetrics = dfMetrics,
+  dfResults = dfResults,
+  fnFetchData = fnFetchData,
+  strTitle = "My Clinical Trial Dashboard",
+  chrDomains = names(lDomainData) %>% 
+    stringr::str_remove("^Mapped_") %>%
+    rlang::set_names(., .)  # Create named vector for domains
+)
+```
+
+## Complete Workflow Example
+
+Here's a complete example that ties everything together:
+
+```{r complete-example}
+# Complete workflow using gsm.core
+complete_gsm_workflow <- function(lRawData, strStudyID = "STUDY001") {
+  
+  # 1. Set up workflows
+  lMappingWorkflows <- gsm.core::MakeWorkflowList(
+    strPath = "workflow/1_mappings",
+    strPackage = "gsm.mapping"
+  )
+  
+  lAnalysisWorkflows <- gsm.core::MakeWorkflowList(
+    strPath = "workflow/2_metrics",
+    strPackage = "gsm.kri"
+  )
+  
+  # 2. Create mapping specifications and ingest data
+  lMappingSpec <- gsm.mapping::CombineSpecs(lMappingWorkflows)
+  lIngested <- gsm.mapping::Ingest(lRawData, lMappingSpec)
+  
+  # 3. Run mapping workflows
+  lMappedData <- gsm.core::RunWorkflows(lMappingWorkflows, lIngested)
+  lMappedData <- purrr::map(lMappedData, dplyr::as_tibble)
+  
+  # 4. Run analysis workflows
+  lAnalysisResults <- gsm.core::RunWorkflows(lAnalysisWorkflows, lMappedData)
+  
+  # 5. Create required data frames
+  dfResults <- gsm.reporting::BindResults(
+    lAnalysis = lAnalysisResults,
+    strName = "Analysis_Summary", 
+    dSnapshotDate = Sys.Date(),
+    strStudyID = strStudyID
+  )
+  
+  dfAnalyticsInput <- purrr::map(lAnalysisResults, "Analysis_Input") %>%
+    dplyr::bind_rows(.id = "MetricID") %>%
+    dplyr::as_tibble() %>%
+    dplyr::mutate(SnapshotDate = Sys.Date())
+  
+  dfMetrics <- gsm.reporting::MakeMetric(lWorkflows = lAnalysisWorkflows)
+  
+  dfBounds <- gsm.reporting::MakeBounds(
+    dfResults = dfResults,
+    dfMetrics = dfMetrics
+  )
+  
+  dfGroups <- dplyr::bind_rows(
+    lMappedData$Mapped_COUNTRY,
+    lMappedData$Mapped_SITE,
+    lMappedData$Mapped_STUDY
+  )
+  
+  # 6. Prepare domain data
+  lDomainData <- lMappedData
+  lDomainData$Mapped_COUNTRY <- NULL
+  lDomainData$Mapped_SITE <- NULL
+  lDomainData$Mapped_STUDY <- NULL
+  
+  lDomainData <- purrr::map(lDomainData, function(domain_df) {
+    if ("subjid" %in% names(domain_df)) {
+      domain_df <- dplyr::rename(domain_df, SubjectID = .data$subjid)
+    }
+    return(domain_df)
+  })
+  
+  # 7. Create fetch function
+  dfSubjectGroups <- dfAnalyticsInput %>%
+    dplyr::distinct(.data$SubjectID, .data$GroupID, .data$GroupLevel)
+  
+  fnFetchData <- create_fetch_function(lDomainData, dfSubjectGroups)
+  
+  # Return all components
+  list(
+    dfAnalyticsInput = dfAnalyticsInput,
+    dfBounds = dfBounds,
+    dfGroups = dfGroups,
+    dfMetrics = dfMetrics,
+    dfResults = dfResults,
+    fnFetchData = fnFetchData,
+    lDomainData = lDomainData
+  )
+}
+
+# Usage:
+# prepared_data <- complete_gsm_workflow(lRawData, "MY_STUDY_ID")
+# 
+# run_gsm_app(
+#   dfAnalyticsInput = prepared_data$dfAnalyticsInput,
+#   dfBounds = prepared_data$dfBounds,
+#   dfGroups = prepared_data$dfGroups,
+#   dfMetrics = prepared_data$dfMetrics,
+#   dfResults = prepared_data$dfResults,
+#   fnFetchData = prepared_data$fnFetchData,
+#   strTitle = "Clinical Trial Monitoring Dashboard"
+# )
+```
+
+# Deployment Examples
+
+## Local Deployment
+
+For local development and testing:
+
+```{r local-deployment}
+# Save prepared data to RDS files for easy loading
+saveRDS(dfAnalyticsInput, "data/dfAnalyticsInput.rds")
+saveRDS(dfBounds, "data/dfBounds.rds") 
+saveRDS(dfGroups, "data/dfGroups.rds")
+saveRDS(dfMetrics, "data/dfMetrics.rds")
+saveRDS(dfResults, "data/dfResults.rds")
+
+# Create a simple app.R file for local deployment
+app_code <- '
+library(gsm.app)
+
+# Load prepared data
+dfAnalyticsInput <- readRDS("data/dfAnalyticsInput.rds")
+dfBounds <- readRDS("data/dfBounds.rds")
+dfGroups <- readRDS("data/dfGroups.rds")
+dfMetrics <- readRDS("data/dfMetrics.rds")
+dfResults <- readRDS("data/dfResults.rds")
+
+# Load your custom fetch function
+source("functions/fetch_data.R")
+
+# Launch app
+run_gsm_app(
+  dfAnalyticsInput = dfAnalyticsInput,
+  dfBounds = dfBounds,
+  dfGroups = dfGroups,
+  dfMetrics = dfMetrics,
+  dfResults = dfResults,
+  fnFetchData = fnFetchData,
+  strTitle = "Clinical Trial Monitoring Dashboard"
+)
+'
+
+writeLines(app_code, "app.R")
+```
+
+## Shinyapps.io Deployment
+
+For deployment to shinyapps.io:
+
+```{r shinyapps-deployment}
+# Install required packages
+install.packages(c("rsconnect", "gsm.app"))
+
+# Set up rsconnect account (one-time setup)
+# rsconnect::setAccountInfo(name='your-account', 
+#                          token='your-token',
+#                          secret='your-secret')
+
+# Deploy the app
+library(rsconnect)
+deployApp(
+  appDir = ".",  # Current directory containing app.R
+  appName = "my-clinical-dashboard",
+  appTitle = "Clinical Trial Monitoring Dashboard"
+)
+```
+
+## RStudio Connect Deployment
+
+For enterprise deployment using RStudio Connect:
+
+```{r rstudio-connect}
+# Create manifest.json for dependency management
+rsconnect::writeManifest()
+
+# Deploy to RStudio Connect
+rsconnect::deployApp(
+  appDir = ".", 
+  server = "your-connect-server.com",
+  account = "your-account"
+)
+```
+
+## Docker Deployment
+
+For containerized deployment, create a Dockerfile:
+
+```dockerfile
+FROM rocker/shiny-verse:latest
+
+# Install system dependencies
+RUN apt-get update && apt-get install -y \
+    libssl-dev \
+    libxml2-dev
+
+# Install R packages
+RUN R -e "install.packages(c('gsm.app', 'DT', 'shinydashboard'))"
+
+# Copy app files
+COPY . /srv/shiny-server/myapp/
+
+# Set working directory
+WORKDIR /srv/shiny-server/myapp
+
+# Expose port
+EXPOSE 3838
+
+# Run app
+CMD ["R", "-e", "shiny::runApp(host='0.0.0.0', port=3838)"]
+```
+
+Build and run the container:
+
+```bash
+# Build the Docker image
+docker build -t my-gsm-app .
+
+# Run the container
+docker run -p 3838:3838 my-gsm-app
+```
+
+# Data Validation and Quality Checks
+
+Before deploying your app, it's important to validate your data:
+
+```{r data-validation}
+# Validate data structures using built-in functions
+validate_data <- function(dfAnalyticsInput, dfBounds, dfGroups, 
+                         dfMetrics, dfResults) {
+  
+  # These functions are available in gsm.app
+  tryCatch({
+    gsm.app:::validate_dfAnalyticsInput(dfAnalyticsInput)
+    message("✓ dfAnalyticsInput validation passed")
+  }, error = function(e) {
+    message("✗ dfAnalyticsInput validation failed:", e$message)
+  })
+  
+  tryCatch({
+    gsm.app:::validate_dfBounds(dfBounds)
+    message("✓ dfBounds validation passed")
+  }, error = function(e) {
+    message("✗ dfBounds validation failed:", e$message)
+  })
+  
+  tryCatch({
+    gsm.app:::validate_dfGroups(dfGroups, dfResults)
+    message("✓ dfGroups validation passed")
+  }, error = function(e) {
+    message("✗ dfGroups validation failed:", e$message)
+  })
+  
+  tryCatch({
+    gsm.app:::validate_dfMetrics(dfMetrics)
+    message("✓ dfMetrics validation passed")
+  }, error = function(e) {
+    message("✗ dfMetrics validation failed:", e$message)
+  })
+  
+  tryCatch({
+    gsm.app:::validate_dfResults(dfResults)
+    message("✓ dfResults validation passed")
+  }, error = function(e) {
+    message("✗ dfResults validation failed:", e$message)
+  })
+}
+
+# Run validation
+validate_data(dfAnalyticsInput, dfBounds, dfGroups, dfMetrics, dfResults)
+```
+
+# Benefits of Using gsm.core and gsm.reporting
+
+The workflow demonstrated above leverages the full {gsm} ecosystem to provide several key advantages:
+
+## Standardized Data Processing
+
+- **Validated Methodologies**: gsm.core implements statistically validated methods for KRI calculation that have been peer-reviewed and used in production clinical trials
+- **Consistent Data Model**: All outputs follow the established {gsm} data model, ensuring compatibility across tools and analyses
+- **Automated Quality Checks**: Built-in validation functions catch data quality issues early in the process
+
+## Reproducible Workflows
+
+- **YAML-Driven Configuration**: Workflows are defined in YAML files, making them version-controllable and shareable
+- **Parameterized Analysis**: Easy to modify thresholds, methods, and metrics without changing code
+- **Traceable Results**: Complete audit trail from raw data to final results
+
+## Professional Reporting
+
+- **Publication-Ready Visualizations**: gsm.reporting produces high-quality charts and tables suitable for regulatory submissions
+- **Standardized Bounds Calculation**: Confidence intervals and flagging thresholds are calculated using established statistical methods
+- **Comprehensive Metadata**: Rich metadata enables detailed drill-down capabilities in the app
+
+## Scalability and Maintenance
+
+- **Modular Design**: Each step can be run independently, enabling efficient re-processing of specific components
+- **Enterprise Ready**: Designed for use in regulated clinical trial environments with appropriate validation documentation
+- **Community Support**: Active development and user community provides ongoing enhancements and support
+
+This approach ensures that your gsm.app deployment is built on a solid foundation of validated clinical data monitoring practices, while maintaining the flexibility to customize as needed for your specific study requirements.
+
+## Advanced Configuration
+
+You can specify which domains are available in your app:
+
+```{r custom-domains}
+run_gsm_app(
+  dfAnalyticsInput = dfAnalyticsInput,
+  dfBounds = dfBounds,
+  dfGroups = dfGroups,
+  dfMetrics = dfMetrics,
+  dfResults = dfResults,
+  fnFetchData = fnFetchData,
+  chrDomains = c(
+    AE = "Adverse Events",
+    DM = "Demographics", 
+    EX = "Exposure",
+    LB = "Laboratory Data"
+  ),
+  strTitle = "Custom Clinical Dashboard"
+)
+```
+
+You can extend functionality with plugins:
+
+```{r plugins-example}
+# Load a plugin (example)
+# my_plugin <- plugin_Read("path/to/plugin")
+
+run_gsm_app(
+  dfAnalyticsInput = dfAnalyticsInput,
+  dfBounds = dfBounds,
+  dfGroups = dfGroups,
+  dfMetrics = dfMetrics,
+  dfResults = dfResults,
+  fnFetchData = fnFetchData,
+  # lPlugins = list(my_plugin),
+  strTitle = "Enhanced Clinical Dashboard"
+)
+```
+
+# Troubleshooting
+
+## Common Issues
+
+1. **Data Validation Errors**: Ensure all required columns are present and correctly named
+2. **Missing MetricID Links**: Verify MetricID values are consistent across all data frames
+3. **Date Format Issues**: Ensure all date columns are properly formatted as Date objects
+4. **Memory Issues**: For large datasets, consider data filtering and optimization
+5. **Fetch Function Errors**: Test your `fnFetchData` function with various parameter combinations
+
+## Performance Optimization
+
+```{r performance-tips}
+# Tips for better performance:
+
+# 1. Filter data to recent snapshots only
+dfResults_recent <- dfResults %>%
+  filter(SnapshotDate >= (max(SnapshotDate) - 90)) # Last 90 days
+
+# 2. Index key columns for faster joins
+dfAnalyticsInput <- dfAnalyticsInput %>%
+  arrange(MetricID, GroupID, SubjectID)
+
+# 3. Pre-aggregate data when possible
+dfResults_summary <- dfResults %>%
+  group_by(GroupLevel, MetricID) %>%
+  summarise(
+    avg_metric = mean(Metric, na.rm = TRUE),
+    flag_count = sum(abs(Flag) >= 1, na.rm = TRUE),
+    .groups = "drop"
+  )
+```
+
+# Summary
+
+This vignette has demonstrated a comprehensive workflow for preparing clinical trial data for use with {gsm.app} using the {gsm.core} and {gsm.reporting} packages. The approach provides:
+
+## Key Benefits
+
+1. **Validated Statistical Methods**: Uses peer-reviewed KRI calculation methods from {gsm.core}
+2. **Standardized Data Model**: Ensures compatibility across the {gsm} ecosystem
+3. **Professional Reporting**: Produces publication-ready visualizations and tables
+4. **Automated Workflows**: Reduces manual intervention and potential errors
+5. **Quality Assurance**: Built-in validation and data quality checks
+6. **Scalable Architecture**: Suitable for both development and production environments
+
+## Next Steps
+
+- **Customize Workflows**: Modify YAML configuration files to match your specific study requirements
+- **Validate Results**: Use the validation functions provided in {gsm.core} to verify data quality
+- **Deploy Applications**: Choose the deployment method that best fits your infrastructure needs
+- **Monitor Performance**: Implement the performance optimization techniques for larger datasets
+
+## Additional Resources
+
+- [gsm.core Documentation](https://gilead-biostats.github.io/gsm.core/)
+- [gsm.reporting Documentation](https://gilead-biostats.github.io/gsm.reporting/)
+- [gsm.app Repository](https://github.com/Gilead-BioStats/gsm.app)
+
+For questions or issues, please refer to the package documentation or submit issues to the appropriate GitHub repositories.
+
+For more advanced topics, see the additional vignettes and package documentation.
