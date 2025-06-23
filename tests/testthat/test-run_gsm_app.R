@@ -367,3 +367,35 @@ test_that("run_gsm_app display Domain error", {
 
   app$stop()
 })
+
+test_that("run_gsm_app display participant plugin", {
+  skip_on_cran()
+  app <- AppDriver$new(
+    test_path("apps", "plugin"),
+    name = "partiprof",
+    width = 1200,
+    height = 1200
+  )
+  app$wait_for_idle()
+  app$wait_for_value(input = "participant", timeout = 2000)
+
+  # Display empty mod without participant
+  app$set_inputs(primary_nav_bar = "Participant Profile")
+  app$wait_for_idle()
+  app$expect_values(
+    export = TRUE,
+    name = "blank",
+    screenshot_args = list(selector = "div[data-value='Participant Profile'")
+  )
+
+  # Display full mod when participant selected
+  app$set_inputs(`participant` = "S7900")
+  app$wait_for_idle()
+  app$expect_values(
+    export = TRUE,
+    name = "S7900",
+    screenshot_args = list(selector = "div[data-value='Participant Profile'")
+  )
+
+  app$stop()
+})

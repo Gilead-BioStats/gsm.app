@@ -1,3 +1,5 @@
+# gsm.app (development version)
+
 # gsm.app 2.5.1
 
 This patch release fixes bugs related to the presence of multiple "Group Levels" (eg, "Site" and "Country") in app data (#469).
