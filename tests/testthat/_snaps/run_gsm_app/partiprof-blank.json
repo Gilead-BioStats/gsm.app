@@ -1,5 +1,8 @@
 {
-  "export": {
-
+  "input": {
+    "group-group": ["All"],
+    "group-level": ["Site"],
+    "participant": ["All"],
+    "primary_nav_bar": ["Participant Profile"]
   }
 }
