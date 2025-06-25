@@ -23,18 +23,24 @@ library(purrr)
 
 # Introduction
 
-This vignette provides a comprehensive guide on how to prepare data for use with the {gsm.app} Shiny application. The gsm.app package creates interactive dashboards for exploring Good Statistical Monitoring (GSM) Key Risk Indicator (KRI) assessments in clinical trials.
+The {gsm.app} package creates interactive dashboards for exploring Good Statistical Monitoring (GSM) Key Risk Indicator (KRI) assessments in clinical trials. This vignette provides a comprehensive guide on how to prepare data for use with the {gsm.app} Shiny application and how to deploy an app.
+
+The {gsm} suite of packages leverages Key Risk Indicators (KRIs) and thresholds to conduct study-level, country-level and site-level Risk Based Monitoring for clinical trials. The {gsm.app} uses {gsm.core} and {gsm.reporting} outputs to create all required data structures for the Shiny app and therefore this vignette will refer to the the functions and workflows that produce data frames, visualizations, metadata, and reports within those packages.
+
+The image below illustrates the overarching context in which the reporting workflow runs, taking inputs from both the output of the analytics workflow, as well as raw study-, site-, and country-level data in the Raw/Raw+ format.
+
+![](data_model_detailed.png){width="100%"}
 
 # Required Data Structures
 
 The {gsm.app} requires five main data frames and one function to operate:
 
-1. **`dfAnalyticsInput`** - Participant-level metric data
-2. **`dfBounds`** - Statistical bounds for flagging
-3. **`dfGroups`** - Group-level metadata (sites, countries, study)
-4. **`dfMetrics`** - Metric definitions and metadata
-5. **`dfResults`** - KRI assessment results
-6. **`fnFetchData`** - Function to retrieve domain-specific data
+1.  **`dfAnalyticsInput`** - Participant-level metric data (stacked across metrics)
+2.  **`dfBounds`** - Statistical bounds for flagging. Set of predicted percentages/rates and upper- and lower-bounds across the full range of sample sizes/total exposure values for reporting.
+3.  **`dfGroups`** - Group-level metadata (sites, countries, study)
+4.  **`dfMetrics`** - Metric-specific metadata for use in charts and reporting.
+5.  **`dfResults`** - KRI assessment results. A stacked summary of analysis pipeline output.
+6.  **`fnFetchData`** - Function to retrieve domain-specific data
 
 ## 1. dfAnalyticsInput Structure
 
@@ -45,10 +51,10 @@ This data frame contains participant-level metric calculations used for drill-do
 # - MetricID: Unique identifier for each metric (e.g., "Analysis_kri0001")
 # - SubjectID: Unique participant identifier
 # - GroupID: Group identifier (site ID, country code, etc.)
-# - GroupLevel: Level of grouping ("Site", "Country", etc.)
-# - Numerator: Numerator value for the metric calculation
-# - Denominator: Denominator value for the metric calculation  
-# - Metric: Calculated metric value (Numerator/Denominator or rate)
+# - GroupLevel: Type of Group specified in `GroupID` (Country, Site)
+# - Numerator: Total Time on Treatment (measured in days; per subject)
+# - Denominator: Total Number of Event(s) of Interest (e.g., the number of AEs reported; per subject)
+# - Metric: Rate of Event Incidence (calculated as `Exposure`/`Count`; per subject)
 # - SnapshotDate: Date of the data snapshot
 
 sample_dfAnalyticsInput_structure <- data.frame(
@@ -69,10 +75,11 @@ This data frame defines the statistical bounds used for flagging metrics.
 
 ```{r dfBounds-structure}
 # Required columns:
-# - Threshold: Number of standard deviations for bounds (e.g., -2, -1, 2, 3)
-# - Denominator: Predicted denominator values across range
-# - Numerator: Predicted numerator bounds 
-# - Metric: Predicted metric bounds
+# - Threshold: Number of standard deviations that the upper and lower bounds are based on (e.g., -2, -1, 2, 3)
+# - Denominator: The calculated denominator value
+# - LogDenominator: The calculated log denominator value 
+# - Numerator: The calculated numerator value 
+# - Metric: The calculated rate/metric value
 # - MetricID: Unique identifier matching dfAnalyticsInput
 # - StudyID: Study identifier
 # - SnapshotDate: Date of the data snapshot
@@ -80,6 +87,7 @@ This data frame defines the statistical bounds used for flagging metrics.
 sample_dfBounds_structure <- data.frame(
   Threshold = c(-2, -1, 2, 3),
   Denominator = c(100, 100, 100, 100),
+  LogDenominator = c(5.1, 5.11, 5.11, 5.12),
   Numerator = c(2.1, 3.5, 8.2, 10.1),
   Metric = c(0.021, 0.035, 0.082, 0.101),
   MetricID = rep("Analysis_kri0001", 4),
@@ -94,10 +102,10 @@ This data frame contains metadata about study groups (sites, countries, overall 
 
 ```{r dfGroups-structure}
 # Required columns:
-# - GroupID: Unique identifier for the group
-# - GroupLevel: Level of the group ("Site", "Country", "Study")  
-# - Param: Parameter name (e.g., "ParticipantCount", "nickname")
-# - Value: Parameter value
+# - GroupID: Group identifier (site ID, country code, etc.)
+# - GroupLevel: Type of Group specified in `GroupID` (Country, Site, Study)
+# - Param: Parameter name (e.g., "ParticipantCount", "SiteCopunt")
+# - Value: Parameter value (e.g. "Active")
 
 sample_dfGroups_structure <- data.frame(
   GroupID = c("SITE001", "SITE001", "US", "US", "STUDY001"),
@@ -113,13 +121,18 @@ This data frame contains metadata about each metric/KRI.
 
 ```{r dfMetrics-structure}
 # Key columns:
-# - MetricID: Unique identifier matching other data frames
+# - MetricID: Unique identifier for the metric matching other data frames
 # - Metric: Human-readable metric name
-# - GroupLevel: Level at which metric is calculated
-# - Abbreviation: Short name for display
-# - Numerator: Description of numerator
-# - Denominator: Description of denominator
-# - Threshold: Flagging thresholds (comma-separated)
+# - GroupLevel: Type of Group (Country, Site, Study)
+# - Abbreviation: Short metric name for display
+# - Numerator: Data source for the Numerator
+# - Denominator: Data source for the Denominator
+# - Model: Model used to calculate metric
+# - Score: Type of statistical score reported (e.g., z-score)
+# - Threshold: comma-separated Thresholds to be used for bounds and flags (e.g, "-2,-1,2,3")
+# - Flag: The calculated flag
+# - Priority: Assigned priority
+# - AnalysisType: Type of analysis performed
 
 sample_dfMetrics_structure <- data.frame(
   MetricID = c("Analysis_kri0001", "Analysis_kri0002"),
@@ -131,7 +144,10 @@ sample_dfMetrics_structure <- data.frame(
   Threshold = c("-2,-1,2,3", "-2,-1,2,3"),
   Type = c("Analysis", "Analysis"),
   Model = c("Normal Approximation", "Normal Approximation"),
-  Score = c("Adjusted Z-Score", "Adjusted Z-Score")
+  Score = c("Adjusted Z-Score", "Adjusted Z-Score"),
+  Flag = c( NA, "0,1,2"),
+  AnalysisType = c("rate", "binary")
+  
 )
 ```
 
@@ -142,15 +158,15 @@ This data frame contains the KRI assessment results and flags.
 ```{r dfResults-structure}
 # Required columns:
 # - GroupID: Group identifier matching dfGroups
-# - GroupLevel: Level of grouping
-# - Numerator: Aggregated numerator for the group
-# - Denominator: Aggregated denominator for the group  
-# - Metric: Calculated metric value
-# - Score: Statistical score (e.g., z-score)
-# - Flag: Ordinal flag (-2, -1, 0, 1, 2) indicating severity
-# - MetricID: Metric identifier
+# - GroupLevel: Type of Group specified in `GroupID` (Country, Site, Study)
+# - Numerator: The calculated numerator value
+# - Denominator: The calculated denominator value  
+# - Metric:  The calculated rate/metric value
+# - Score: The calculated metric score (e.g., z-score)
+# - Flag: The calculated flag
+# - MetricID: Unique identifier matching dfAnalyticsInput
 # - StudyID: Study identifier
-# - SnapshotDate: Date of assessment
+# - SnapshotDate: Date of the data snapshot
 
 sample_dfResults_structure <- data.frame(
   GroupID = c("SITE001", "SITE002", "US"),
@@ -170,18 +186,20 @@ sample_dfResults_structure <- data.frame(
 
 The following workflow uses the {gsm.core} and {gsm.reporting} packages to systematically create all required data structures for {gsm.app}. This approach ensures:
 
-- **Standardized KRI calculations** using validated statistical methods from {gsm.core}
-- **Proper reporting data structures** using {gsm.reporting} functions
-- **Consistent data formats** across all outputs
-- **Automated workflow execution** with minimal manual intervention
-- **Quality assurance** through built-in validation functions
-- **Professional reporting capabilities** with integrated bounds and metadata
+-   **Standardized KRI calculations** using validated statistical methods from {gsm.core}
+-   **Proper reporting data structures** using {gsm.reporting} functions
+-   **Consistent data formats** across all outputs
+-   **Automated workflow execution** with minimal manual intervention
+-   **Quality assurance** through built-in validation functions
+-   **Professional reporting capabilities** with integrated bounds and metadata
 
 The gsm.app package is designed to work seamlessly with the outputs from the {gsm} ecosystem's standard workflow.
 
 ## Step 1: Prepare Raw Clinical Data
 
-Before creating the gsm.app data structures, you need to prepare your raw clinical data in the expected format. The {gsm} ecosystem expects data in "Raw+" format which closely follows CDISC standards:
+Before creating the gsm.app data structures, you need to prepare your raw clinical data in the expected format. The {gsm} ecosystem expects data in "Raw+" format which closely follows CDISC standards.
+
+The raw data used in the analysis pipeline is typically sourced from clinical trial databases and is transformed into mapped data using simple transformations. Mapped data is then used as input for the analysis pipeline.
 
 ```{r prepare-raw-data}
 # Example: Loading and cleaning raw data
@@ -212,7 +230,7 @@ raw_adverse_events <- raw_adverse_events %>%
 # This step varies by domain - see gsm.mapping documentation for specifics
 ```
 
-## Step 2: Set Up GSM Core Workflows
+## Step 2: Set Up gsm.core Workflows
 
 The {gsm.core} package provides a systematic approach to creating KRI assessments. The workflow involves creating mappings and then running analysis workflows.
 
@@ -380,10 +398,10 @@ head(dfGroups)
 
 The resulting data frames follow the gsm reporting data model:
 
-- **dfGroups**: Group-level metadata with GroupID, GroupLevel, Param, and Value columns
-- **dfMetrics**: Metric metadata including thresholds, models, and scoring information
-- **dfResults**: Stacked analysis results with calculated metrics, scores, and flags
-- **dfBounds**: Predicted bounds and confidence intervals for visualization
+-   **dfGroups**: Group-level metadata with GroupID, GroupLevel, Param, and Value columns
+-   **dfMetrics**: Metric metadata including thresholds, models, and scoring information
+-   **dfResults**: Stacked analysis results with calculated metrics, scores, and flags
+-   **dfBounds**: Predicted bounds and confidence intervals for visualization
 
 ## Step 4: Create Complete Example Data
 
@@ -683,7 +701,7 @@ rsconnect::deployApp(
 
 For containerized deployment, create a Dockerfile:
 
-```dockerfile
+``` dockerfile
 FROM rocker/shiny-verse:latest
 
 # Install system dependencies
@@ -709,7 +727,7 @@ CMD ["R", "-e", "shiny::runApp(host='0.0.0.0', port=3838)"]
 
 Build and run the container:
 
-```bash
+``` bash
 # Build the Docker image
 docker build -t my-gsm-app .
 
@@ -773,27 +791,27 @@ The workflow demonstrated above leverages the full {gsm} ecosystem to provide se
 
 ## Standardized Data Processing
 
-- **Validated Methodologies**: gsm.core implements statistically validated methods for KRI calculation that have been peer-reviewed and used in production clinical trials
-- **Consistent Data Model**: All outputs follow the established {gsm} data model, ensuring compatibility across tools and analyses
-- **Automated Quality Checks**: Built-in validation functions catch data quality issues early in the process
+-   **Validated Methodologies**: gsm.core implements statistically validated methods for KRI calculation that have been peer-reviewed and used in production clinical trials
+-   **Consistent Data Model**: All outputs follow the established {gsm} data model, ensuring compatibility across tools and analyses
+-   **Automated Quality Checks**: Built-in validation functions catch data quality issues early in the process
 
 ## Reproducible Workflows
 
-- **YAML-Driven Configuration**: Workflows are defined in YAML files, making them version-controllable and shareable
-- **Parameterized Analysis**: Easy to modify thresholds, methods, and metrics without changing code
-- **Traceable Results**: Complete audit trail from raw data to final results
+-   **YAML-Driven Configuration**: Workflows are defined in YAML files, making them version-controllable and shareable
+-   **Parameterized Analysis**: Easy to modify thresholds, methods, and metrics without changing code
+-   **Traceable Results**: Complete audit trail from raw data to final results
 
 ## Professional Reporting
 
-- **Publication-Ready Visualizations**: gsm.reporting produces high-quality charts and tables suitable for regulatory submissions
-- **Standardized Bounds Calculation**: Confidence intervals and flagging thresholds are calculated using established statistical methods
-- **Comprehensive Metadata**: Rich metadata enables detailed drill-down capabilities in the app
+-   **Publication-Ready Visualizations**: gsm.reporting produces high-quality charts and tables suitable for regulatory submissions
+-   **Standardized Bounds Calculation**: Confidence intervals and flagging thresholds are calculated using established statistical methods
+-   **Comprehensive Metadata**: Rich metadata enables detailed drill-down capabilities in the app
 
 ## Scalability and Maintenance
 
-- **Modular Design**: Each step can be run independently, enabling efficient re-processing of specific components
-- **Enterprise Ready**: Designed for use in regulated clinical trial environments with appropriate validation documentation
-- **Community Support**: Active development and user community provides ongoing enhancements and support
+-   **Modular Design**: Each step can be run independently, enabling efficient re-processing of specific components
+-   **Enterprise Ready**: Designed for use in regulated clinical trial environments with appropriate validation documentation
+-   **Community Support**: Active development and user community provides ongoing enhancements and support
 
 This approach ensures that your gsm.app deployment is built on a solid foundation of validated clinical data monitoring practices, while maintaining the flexibility to customize as needed for your specific study requirements.
 
@@ -841,11 +859,11 @@ run_gsm_app(
 
 ## Common Issues
 
-1. **Data Validation Errors**: Ensure all required columns are present and correctly named
-2. **Missing MetricID Links**: Verify MetricID values are consistent across all data frames
-3. **Date Format Issues**: Ensure all date columns are properly formatted as Date objects
-4. **Memory Issues**: For large datasets, consider data filtering and optimization
-5. **Fetch Function Errors**: Test your `fnFetchData` function with various parameter combinations
+1.  **Data Validation Errors**: Ensure all required columns are present and correctly named
+2.  **Missing MetricID Links**: Verify MetricID values are consistent across all data frames
+3.  **Date Format Issues**: Ensure all date columns are properly formatted as Date objects
+4.  **Memory Issues**: For large datasets, consider data filtering and optimization
+5.  **Fetch Function Errors**: Test your `fnFetchData` function with various parameter combinations
 
 ## Performance Optimization
 
@@ -876,25 +894,25 @@ This vignette has demonstrated a comprehensive workflow for preparing clinical t
 
 ## Key Benefits
 
-1. **Validated Statistical Methods**: Uses peer-reviewed KRI calculation methods from {gsm.core}
-2. **Standardized Data Model**: Ensures compatibility across the {gsm} ecosystem
-3. **Professional Reporting**: Produces publication-ready visualizations and tables
-4. **Automated Workflows**: Reduces manual intervention and potential errors
-5. **Quality Assurance**: Built-in validation and data quality checks
-6. **Scalable Architecture**: Suitable for both development and production environments
+1.  **Validated Statistical Methods**: Uses peer-reviewed KRI calculation methods from {gsm.core}
+2.  **Standardized Data Model**: Ensures compatibility across the {gsm} ecosystem
+3.  **Professional Reporting**: Produces publication-ready visualizations and tables
+4.  **Automated Workflows**: Reduces manual intervention and potential errors
+5.  **Quality Assurance**: Built-in validation and data quality checks
+6.  **Scalable Architecture**: Suitable for both development and production environments
 
 ## Next Steps
 
-- **Customize Workflows**: Modify YAML configuration files to match your specific study requirements
-- **Validate Results**: Use the validation functions provided in {gsm.core} to verify data quality
-- **Deploy Applications**: Choose the deployment method that best fits your infrastructure needs
-- **Monitor Performance**: Implement the performance optimization techniques for larger datasets
+-   **Customize Workflows**: Modify YAML configuration files to match your specific study requirements
+-   **Validate Results**: Use the validation functions provided in {gsm.core} to verify data quality
+-   **Deploy Applications**: Choose the deployment method that best fits your infrastructure needs
+-   **Monitor Performance**: Implement the performance optimization techniques for larger datasets
 
 ## Additional Resources
 
-- [gsm.core Documentation](https://gilead-biostats.github.io/gsm.core/)
-- [gsm.reporting Documentation](https://gilead-biostats.github.io/gsm.reporting/)
-- [gsm.app Repository](https://github.com/Gilead-BioStats/gsm.app)
+-   [gsm.core Documentation](https://gilead-biostats.github.io/gsm.core/)
+-   [gsm.reporting Documentation](https://gilead-biostats.github.io/gsm.reporting/)
+-   [gsm.app Repository](https://github.com/Gilead-BioStats/gsm.app)
 
 For questions or issues, please refer to the package documentation or submit issues to the appropriate GitHub repositories.
 
