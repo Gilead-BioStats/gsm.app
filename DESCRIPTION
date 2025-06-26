@@ -54,7 +54,8 @@ Config/Needs/data:
 Remotes: 
     gsm.core=Gilead-BioStats/gsm.core@main,
     gsm.mapping=Gilead-BioStats/gsm.mapping@main,
-    gsm.kri=Gilead-BioStats/gsm.kri@main
+    gsm.kri=Gilead-BioStats/gsm.kri@main,
+    shiny=rstudio/shiny@v1.10.0
 Config/testthat/edition: 3
 Encoding: UTF-8
 Language: en-US
