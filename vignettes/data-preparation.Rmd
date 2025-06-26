@@ -1,5 +1,5 @@
 ---
-title: "Data Preparation for gsm.app"
+title: "gsm.app Data Preparation and Deployment"
 output: rmarkdown::html_vignette
 vignette: >
   %\VignetteIndexEntry{Data Preparation for gsm.app}
@@ -41,6 +41,8 @@ The {gsm.app} requires five main data frames and one function to operate:
 4.  **`dfMetrics`** - Metric-specific metadata for use in charts and reporting.
 5.  **`dfResults`** - KRI assessment results. A stacked summary of analysis pipeline output.
 6.  **`fnFetchData`** - Function to retrieve domain-specific data
+
+Let's first look at the required data sources in detail and then go through the steps to prepare the data.
 
 ## 1. dfAnalyticsInput Structure
 
@@ -314,27 +316,27 @@ head(dfMetrics)
 
 The reporting data model is documented in detail at [Reporting Data](https://gilead-biostats.github.io/gsm.core/articles/DataModel.html#reporting-data).
 
-# Creating the fnFetchData Function and App Deployment
+# App Deployment
+
+Now that our data are ready let's look at how to deploy an app.
 
 ## Creating the fnFetchData Function
 
 The `fnFetchData` function is essential for the {gsm.app} to provide drill-down functionality for domain-specific data. This function tells the app how to fetch domain data and should return filtered data based on the parameters passed from the app interface.
 
-### Function Structure
-
-The `fnFetchData` function should accept parameters that allow filtering by group, metric, and other relevant criteria:
-
 ```{r create-fnfetchdata}
-# Create the data fetch function
-fnFetchData <- function(strDomainID = 
-                        c("AE", "ENROLL", "LB", "PD", "SDRGCOMP", 
-                          "STUDCOMP", "SUBJ", "DATACHG", "DATAENT", "QUERY"),
-                      strGroupID = NULL,
-                      strGroupLevel = "Site",
-                      strSubjectID = NULL,
-                      dSnapshotDate = NULL) {
- 
-  return(strDomainID)
+fnFetchData <- function(strDomainID, strGroupLevel = NULL, strGroupID = NULL, 
+                       strSubjectID = NULL, dSnapshotDate = NULL) {
+  
+  # Use the sample function as a template
+  # In your implementation, replace this with code that fetches from your data sources
+  gsm.app::sample_fnFetchData(
+    strDomainID = strDomainID,
+    strGroupLevel = strGroupLevel, 
+    strGroupID = strGroupID,
+    strSubjectID = strSubjectID,
+    dSnapshotDate = dSnapshotDate
+  )
 }
 ```
 
@@ -343,19 +345,18 @@ fnFetchData <- function(strDomainID =
 
 Once you have prepared all the required data structures and the `fnFetchData` function, you can deploy the {gsm.app}.
 
-For development and testing, run the app locally:
-run_gsm_app() creates a Shiny app to explore a set of clinical trial data. The app facilitates exploration of the data by allowing the user to click to diver deeper into aspects of the data.
+For development and testing, run the app locally: run_gsm_app() creates a Shiny app to explore a set of clinical trial data. The app facilitates exploration of the data by allowing the user to click to diver deeper into aspects of the data.
 
 
 ```{r local-deployment}
 # Create the app data structure
 run_gsm_app(
-  dfAnalyticsInput,
-  dfBounds,
-  dfGroups,
-  dfMetrics,
-  dfResults,
-  fnFetchData,
+  dfAnalyticsInput = dfAnalyticsInput,
+  dfBounds = dfBounds,
+  dfGroups = dfGroups,
+  dfMetrics = dfMetrics,
+  dfResults = dfResults,
+  fnFetchData = fnFetchData,
   fnCountData = ConstructDataCounter(fnFetchData),
   chrDomains = c(AE = "Adverse Events", DATACHG = "Data Changes", DATAENT = "Data Entry",
     ENROLL = "Enrollment", LB = "Lab", PD = "Protocol Deviations", QUERY = "Queries",
@@ -370,7 +371,6 @@ run_gsm_app(
 )
 ```
 
-
 # Troubleshooting
 
 ## Common Issues
@@ -381,28 +381,6 @@ run_gsm_app(
 4.  **Memory Issues**: For large datasets, consider data filtering and optimization
 5.  **Fetch Function Errors**: Test your `fnFetchData` function with various parameter combinations
 
-## Performance Optimization
-
-```{r performance-tips}
-# Tips for better performance:
-
-# 1. Filter data to recent snapshots only
-dfResults_recent <- dfResults %>%
-  filter(SnapshotDate >= (max(SnapshotDate) - 90)) # Last 90 days
-
-# 2. Index key columns for faster joins
-dfAnalyticsInput <- dfAnalyticsInput %>%
-  arrange(MetricID, GroupID, SubjectID)
-
-# 3. Pre-aggregate data when possible
-dfResults_summary <- dfResults %>%
-  group_by(GroupLevel, MetricID) %>%
-  summarise(
-    avg_metric = mean(Metric, na.rm = TRUE),
-    flag_count = sum(abs(Flag) >= 1, na.rm = TRUE),
-    .groups = "drop"
-  )
-```
 
 # Summary
 
