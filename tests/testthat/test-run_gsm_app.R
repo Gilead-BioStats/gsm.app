@@ -101,6 +101,40 @@ test_that("run_gsm_app populates Study Overview", {
   app$stop()
 })
 
+test_that("run_gsm_app Study Overview works with GroupLevel", {
+  skip_on_cran()
+  app <- AppDriver$new(
+    test_path("apps", "standard"),
+    name = "study",
+    width = 1200,
+    height = 1200
+  )
+  app$wait_for_idle()
+  app$wait_for_value(input = "participant", timeout = 2000)
+
+  # When Group Level changes, Enrolled column is populated.
+  app$set_inputs(`group-level` = "Country")
+  app$run_js(file = test_path("fixtures", "WidgetPlotTestHelpers.js"))
+  app$wait_for_js(
+    "isCanvasLoaded('metric_details-scatter_plot');",
+    timeout = 2000
+  )
+  app$wait_for_idle()
+  app$set_inputs(primary_nav_bar = "Study Overview")
+  app$wait_for_idle()
+  app$set_inputs(`study_overview-table-kri_counts-red-toggle_pill` = "click")
+  app$wait_for_idle()
+  app$expect_values(
+    export = TRUE,
+    name = "enrolled",
+    screenshot_args = list(
+      selector = list(selector = "table.group-overview")
+    )
+  )
+
+  app$stop()
+})
+
 test_that("run_gsm_app populates Metric Details", {
   skip_on_cran()
   app <- AppDriver$new(
@@ -341,7 +375,7 @@ test_that("run_gsm_app populates Domain Details", {
   app$stop()
 })
 
-test_that("run_gsm_app display Domain error", {
+test_that("run_gsm_app displays Domain error", {
   skip_on_cran()
   app <- AppDriver$new(
     test_path("apps", "error"),
@@ -363,6 +397,38 @@ test_that("run_gsm_app display Domain error", {
     export = TRUE,
     name = "lb13",
     screenshot_args = list(selector = ".modal-content")
+  )
+
+  app$stop()
+})
+
+test_that("run_gsm_app displays participant plugin", {
+  skip_on_cran()
+  app <- AppDriver$new(
+    test_path("apps", "plugin"),
+    name = "partiprof",
+    width = 1200,
+    height = 1200
+  )
+  app$wait_for_idle()
+  app$wait_for_value(input = "participant", timeout = 2000)
+
+  # Display empty mod without participant
+  app$set_inputs(primary_nav_bar = "Participant Profile")
+  app$wait_for_idle()
+  app$expect_values(
+    export = TRUE,
+    name = "blank",
+    screenshot_args = list(selector = "div[data-value='Participant Profile'")
+  )
+
+  # Display full mod when participant selected
+  app$set_inputs(`participant` = "S7900")
+  app$wait_for_idle()
+  app$expect_values(
+    export = TRUE,
+    name = "S7900",
+    screenshot_args = list(selector = "div[data-value='Participant Profile'")
   )
 
   app$stop()
