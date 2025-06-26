@@ -21,6 +21,13 @@ subset_inputs <- function(regex, negate = FALSE, include_full_screen = FALSE) {
   return(inputs)
 }
 
+primary_inputs <- c(
+  "group-group",
+  "group-level",
+  "participant",
+  "primary_nav_bar"
+)
+
 # I don't really do anything here yet, but it's here in case we need it.
 scrub_expected <- function(val) {
   val_list <- jsonlite::parse_json(val)

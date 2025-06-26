@@ -31,10 +31,7 @@ test_that("run_gsm_app populates Study Overview", {
   app$wait_for_value(input = "participant", timeout = 2000)
   app$expect_values(
     input = c(
-      "group-group",
-      "group-level",
-      "participant",
-      "primary_nav_bar",
+      primary_inputs,
       subset_inputs("^study_overview-", include_full_screen = TRUE)
     ),
     name = "init",
@@ -56,10 +53,7 @@ test_that("run_gsm_app populates Study Overview", {
   app$wait_for_idle()
   app$expect_values(
     input = c(
-      "group-group",
-      "group-level",
-      "participant",
-      "primary_nav_bar",
+      primary_inputs,
       subset_inputs("^study_overview-")
     ),
     name = "plots",
@@ -78,10 +72,7 @@ test_that("run_gsm_app populates Study Overview", {
   app$wait_for_idle()
   app$expect_values(
     input = c(
-      "group-group",
-      "group-level",
-      "participant",
-      "primary_nav_bar",
+      primary_inputs,
       subset_inputs("^study_overview-"),
       subset_inputs("^metric_details-")
     ),
@@ -105,10 +96,7 @@ test_that("run_gsm_app populates Study Overview", {
   app$wait_for_idle()
   app$expect_values(
     input = c(
-      "group-group",
-      "group-level",
-      "participant",
-      "primary_nav_bar",
+      primary_inputs,
       subset_inputs("^study_overview-")
     ),
     name = "plots-ae-group-dropdown",
@@ -129,10 +117,7 @@ test_that("run_gsm_app populates Study Overview", {
   app$wait_for_idle()
   app$expect_values(
     input = c(
-      "group-group",
-      "group-level",
-      "participant",
-      "primary_nav_bar",
+      primary_inputs,
       subset_inputs("^study_overview-"),
       subset_inputs("^metric_details-")
     ),
@@ -168,10 +153,7 @@ test_that("run_gsm_app Study Overview works with GroupLevel", {
   app$wait_for_idle()
   app$expect_values(
     input = c(
-      "group-group",
-      "group-level",
-      "participant",
-      "primary_nav_bar",
+      primary_inputs,
       subset_inputs("^study_overview-")
     ),
     name = "enrolled",
@@ -203,10 +185,7 @@ test_that("run_gsm_app populates Metric Details", {
   app$wait_for_idle()
   app$expect_values(
     input = c(
-      "group-group",
-      "group-level",
-      "participant",
-      "primary_nav_bar",
+      primary_inputs,
       subset_inputs("^metric_details-")
     ),
     name = "scatter",
@@ -223,10 +202,7 @@ test_that("run_gsm_app populates Metric Details", {
   app$wait_for_idle()
   app$expect_values(
     input = c(
-      "group-group",
-      "group-level",
-      "participant",
-      "primary_nav_bar",
+      primary_inputs,
       subset_inputs("^metric_details-")
     ),
     name = "bar_value",
@@ -242,10 +218,7 @@ test_that("run_gsm_app populates Metric Details", {
   app$wait_for_idle()
   app$expect_values(
     input = c(
-      "group-group",
-      "group-level",
-      "participant",
-      "primary_nav_bar",
+      primary_inputs,
       subset_inputs("^metric_details-")
     ),
     name = "bar_score",
@@ -261,10 +234,7 @@ test_that("run_gsm_app populates Metric Details", {
   app$wait_for_idle()
   app$expect_values(
     input = c(
-      "group-group",
-      "group-level",
-      "participant",
-      "primary_nav_bar",
+      primary_inputs,
       subset_inputs("^metric_details-")
     ),
     name = "time",
@@ -276,10 +246,7 @@ test_that("run_gsm_app populates Metric Details", {
   app$wait_for_idle()
   app$expect_values(
     input = c(
-      "group-group",
-      "group-level",
-      "participant",
-      "primary_nav_bar",
+      primary_inputs,
       subset_inputs("^metric_details-")
     ),
     name = "analysis",
@@ -292,10 +259,7 @@ test_that("run_gsm_app populates Metric Details", {
   app$wait_for_idle()
   app$expect_values(
     input = c(
-      "group-group",
-      "group-level",
-      "participant",
-      "primary_nav_bar",
+      primary_inputs,
       subset_inputs("^metric_details-")
     ),
     name = "analysis-group",
@@ -313,10 +277,7 @@ test_that("run_gsm_app populates Metric Details", {
   app$wait_for_idle()
   app$expect_values(
     input = c(
-      "group-group",
-      "group-level",
-      "participant",
-      "primary_nav_bar",
+      primary_inputs,
       subset_inputs("^metric_details-")
     ),
     name = "time-group",
@@ -335,10 +296,7 @@ test_that("run_gsm_app populates Metric Details", {
   app$wait_for_idle()
   app$expect_values(
     input = c(
-      "group-group",
-      "group-level",
-      "participant",
-      "primary_nav_bar",
+      primary_inputs,
       subset_inputs("^metric_details-")
     ),
     name = "time-group_select",
@@ -355,10 +313,7 @@ test_that("run_gsm_app populates Metric Details", {
   app$wait_for_idle()
   app$expect_values(
     input = c(
-      "group-group",
-      "group-level",
-      "participant",
-      "primary_nav_bar",
+      primary_inputs,
       subset_inputs("^metric_details-")
     ),
     name = "time-group_select2",
@@ -374,10 +329,7 @@ test_that("run_gsm_app populates Metric Details", {
   app$wait_for_idle()
   app$expect_values(
     input = c(
-      "group-group",
-      "group-level",
-      "participant",
-      "primary_nav_bar",
+      primary_inputs,
       subset_inputs("^metric_details-")
     ),
     name = "bar_score-group",
@@ -392,10 +344,7 @@ test_that("run_gsm_app populates Metric Details", {
   app$wait_for_idle()
   app$expect_values(
     input = c(
-      "group-group",
-      "group-level",
-      "participant",
-      "primary_nav_bar",
+      primary_inputs,
       subset_inputs("^metric_details-")
     ),
     name = "bar_score-group_click",
@@ -411,10 +360,7 @@ test_that("run_gsm_app populates Metric Details", {
   app$wait_for_idle()
   app$expect_values(
     input = c(
-      "group-group",
-      "group-level",
-      "participant",
-      "primary_nav_bar",
+      primary_inputs,
       subset_inputs("^metric_details-")
     ),
     name = "bar_value-group",
@@ -430,10 +376,7 @@ test_that("run_gsm_app populates Metric Details", {
   app$wait_for_idle()
   app$expect_values(
     input = c(
-      "group-group",
-      "group-level",
-      "participant",
-      "primary_nav_bar",
+      primary_inputs,
       subset_inputs("^metric_details-")
     ),
     name = "bar_value-group_click",
@@ -449,10 +392,7 @@ test_that("run_gsm_app populates Metric Details", {
   app$wait_for_idle()
   app$expect_values(
     input = c(
-      "group-group",
-      "group-level",
-      "participant",
-      "primary_nav_bar",
+      primary_inputs,
       subset_inputs("^metric_details-")
     ),
     name = "scatter-group",
@@ -468,10 +408,7 @@ test_that("run_gsm_app populates Metric Details", {
   app$wait_for_idle()
   app$expect_values(
     input = c(
-      "group-group",
-      "group-level",
-      "participant",
-      "primary_nav_bar",
+      primary_inputs,
       subset_inputs("^metric_details-")
     ),
     name = "scatter-group_circle",
@@ -497,10 +434,7 @@ test_that("run_gsm_app populates Domain Details", {
   app$wait_for_idle()
   app$expect_values(
     input = c(
-      "group-group",
-      "group-level",
-      "participant",
-      "primary_nav_bar",
+      primary_inputs,
       subset_inputs("^domain_details-")
     ),
     name = "no-participant",
@@ -513,10 +447,7 @@ test_that("run_gsm_app populates Domain Details", {
   app$wait_for_idle()
   app$expect_values(
     input = c(
-      "group-group",
-      "group-level",
-      "participant",
-      "primary_nav_bar",
+      primary_inputs,
       subset_inputs("^domain_details-")
     ),
     name = "participant",
@@ -529,10 +460,7 @@ test_that("run_gsm_app populates Domain Details", {
   app$wait_for_idle()
   app$expect_values(
     input = c(
-      "group-group",
-      "group-level",
-      "participant",
-      "primary_nav_bar",
+      primary_inputs,
       subset_inputs("^domain_details-")
     ),
     name = "sd",
@@ -545,10 +473,7 @@ test_that("run_gsm_app populates Domain Details", {
   app$wait_for_idle()
   app$expect_values(
     input = c(
-      "group-group",
-      "group-level",
-      "participant",
-      "primary_nav_bar",
+      primary_inputs,
       subset_inputs("^domain_details-")
     ),
     name = "domain_summary_click",
@@ -601,12 +526,7 @@ test_that("run_gsm_app displays participant plugin", {
   app$set_inputs(primary_nav_bar = "Participant Profile")
   app$wait_for_idle()
   app$expect_values(
-    input = c(
-      "group-group",
-      "group-level",
-      "participant",
-      "primary_nav_bar"
-    ),
+    input = primary_inputs,
     name = "blank",
     screenshot_args = list(selector = "div[data-value='Participant Profile'"),
     transform = scrub_expected
@@ -616,12 +536,7 @@ test_that("run_gsm_app displays participant plugin", {
   app$set_inputs(`participant` = "S7900")
   app$wait_for_idle()
   app$expect_values(
-    input = c(
-      "group-group",
-      "group-level",
-      "participant",
-      "primary_nav_bar"
-    ),
+    input = primary_inputs,
     name = "S7900",
     screenshot_args = list(selector = "div[data-value='Participant Profile'"),
     transform = scrub_expected
