@@ -1,8 +1,8 @@
 ---
-title: "gsm.app Data Preparation and Deployment"
+title: "Data Preparation and App Deployment"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{Data Preparation for gsm.app}
+  %\VignetteIndexEntry{Data Preparation and App Deployment}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
@@ -15,7 +15,7 @@ knitr::opts_chunk$set(
 )
 ```
 
-```{r setup}
+```{r setup, include = FALSE}
 library(gsm.app)
 library(dplyr)
 library(purrr)
@@ -211,11 +211,6 @@ library(dplyr)
 lSource <- gsm.core::lSource
 ```
 
-```{r include=TRUE}
-# Preview available domains
-lSource
-```
-
 For more details on data requirements and formats, see the [Data Model documentation](https://gilead-biostats.github.io/gsm.core/articles/DataModel.html#raw-and-mapped-data).
 
 ## Step 2: Create Mapping Workflows
@@ -249,10 +244,8 @@ lRaw <- gsm.mapping::Ingest(lSource, lMappingSpec)
 # Step 2: Create Mapped Data Layer - filter, aggregate and join raw data 
 lMapped <- gsm.core::RunWorkflows(lMappingWorkflows, lRaw)
 
-# Preview mapped data structure
-names(lMapped)
-head(lMapped$Mapped_AE)
 ```
+
 
 ## Step 4: Run Analysis Workflows
 
@@ -264,7 +257,7 @@ Following the [step-by-step analysis workflow](https://gilead-biostats.github.io
 4.  **Flag**: Analysis results with flags for statistical outliers
 5.  **Summary**: Standardized subset for reporting
 
-```{r run-analysis-workflows}
+```{r run-analysis-workflows, message = FALSE}
 # Create analysis workflows for KRI calculations
 lAnalysisWorkflows <- gsm.core::MakeWorkflowList(
   strPath = "workflow/2_metrics", 
@@ -273,10 +266,8 @@ lAnalysisWorkflows <- gsm.core::MakeWorkflowList(
 
 # Run analysis workflows to calculate KRIs
 lAnalyzed <- gsm.core::RunWorkflows(lAnalysisWorkflows, lMapped)
-
-# Each analysis contains the five-step data pipeline
-lAnalyzed$Analysis_kri0001# Example: AE KRI
 ```
+
 
 For details on the analysis data model, see the [Analysis Data documentation](https://gilead-biostats.github.io/gsm.core/articles/DataModel.html#analysis-data).
 
@@ -308,10 +299,6 @@ dfAnalyticsInput <- purrr::map(lAnalyzed, "Analysis_Input") %>%
   dplyr::bind_rows(.id = "MetricID") %>%
   dplyr::as_tibble() %>%
   dplyr::mutate(SnapshotDate = Sys.Date())
-
-# Preview reporting data
-head(dfResults)
-head(dfMetrics)
 ```
 
 The reporting data model is documented in detail at [Reporting Data](https://gilead-biostats.github.io/gsm.core/articles/DataModel.html#reporting-data).
@@ -324,7 +311,7 @@ Now that our data are ready let's look at how to deploy an app.
 
 The `fnFetchData` function is essential for the {gsm.app} to provide drill-down functionality for domain-specific data. This function tells the app how to fetch domain data and should return filtered data based on the parameters passed from the app interface.
 
-```{r create-fnfetchdata}
+```{r create-fnfetchdata, eval = FALSE}
 fnFetchData <- function(strDomainID, strGroupLevel = NULL, strGroupID = NULL, 
                        strSubjectID = NULL, dSnapshotDate = NULL) {
   
@@ -341,14 +328,14 @@ fnFetchData <- function(strDomainID, strGroupLevel = NULL, strGroupID = NULL,
 ```
 
 
-## App Deployment
+## Running the App
 
 Once you have prepared all the required data structures and the `fnFetchData` function, you can deploy the {gsm.app}.
 
 For development and testing, run the app locally: run_gsm_app() creates a Shiny app to explore a set of clinical trial data. The app facilitates exploration of the data by allowing the user to click to diver deeper into aspects of the data.
 
 
-```{r local-deployment}
+```{r local-deployment, eval = FALSE}
 # Create the app data structure
 run_gsm_app(
   dfAnalyticsInput = dfAnalyticsInput,
