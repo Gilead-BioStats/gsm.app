@@ -41,7 +41,7 @@ mod_GroupParticipants_Server <- function(
     output$title <- renderText({
       req(rctv_strGroupLevel())
       if (rctv_lglGroupIsNone()) {
-        return(paste(rctv_strGroupLevel(), "Subjects"))
+        return(paste(rctv_strGroupLevel(), "Participants"))
       }
       return(glue::glue("{rctv_strGroupLevel()}: {rctv_strGroupID()}"))
     }) %>%
