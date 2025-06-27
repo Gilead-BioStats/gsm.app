@@ -31,7 +31,7 @@ Imports:
     magrittr,
     purrr,
     rlang,
-    shiny (>= 1.11.1),
+    shiny (> 1.11.0),
     shinycssloaders,
     shinyjs,
     shinyWidgets,
@@ -55,7 +55,7 @@ Remotes:
     gsm.core=Gilead-BioStats/gsm.core@main,
     gsm.mapping=Gilead-BioStats/gsm.mapping@main,
     gsm.kri=Gilead-BioStats/gsm.kri@main,
-    shiny=rstudio/shiny@rc-v1.11.1
+    shiny=rstudio/shiny
 Config/testthat/edition: 3
 Encoding: UTF-8
 Language: en-US
