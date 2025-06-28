@@ -43,6 +43,7 @@
       <li class="bslib-nav-item nav-item form-inline navbar-extras">
         <button class="btn btn-default action-button btn-primary" id="reset" type="button">
           <i class="fas fa-rotate" role="presentation" aria-label="rotate icon" title="Reset all inputs"></i>
+          <span class="shiny-icon-separator"></span>
         </button>
       </li>
       
