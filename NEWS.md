@@ -1,4 +1,4 @@
-# gsm.app 2.5.2
+# gsm.app (development version)
 
 This is a patch bugfix release.
 
