@@ -25,7 +25,7 @@ HTMLWidgets.widget({
           el,
           input.dfResults,
           {
-            GroupLevel: input.GroupLevel,
+            GroupLevel: input.strGroupLevel,
             groupLabelKey: input.strGroupLabelKey,
             groupClickCallback: groupOverviewGroupClickFactory(incrementer),
             metricClickCallback: groupOverviewMetricClickFactory(incrementer)
