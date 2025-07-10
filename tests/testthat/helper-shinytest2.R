@@ -8,12 +8,17 @@ if (rlang::is_installed("shinytest2", version = "0.4.1")) {
 init_json_path <- test_path("_snaps/run_gsm_app/init-init.json")
 
 if (file.exists(init_json_path)) {
-  input_names <- names(jsonlite::read_json(init_json_path)$input)
+  main_input_names <- names(jsonlite::read_json(init_json_path)$input)
 } else {
-  input_names <- character()
+  main_input_names <- character()
 }
 
-subset_inputs <- function(regex, negate = FALSE, include_full_screen = FALSE) {
+subset_inputs <- function(
+  regex,
+  negate = FALSE,
+  include_full_screen = FALSE,
+  input_names = main_input_names
+) {
   inputs <- stringr::str_subset(input_names, regex, negate = negate)
   if (!include_full_screen) {
     inputs <- stringr::str_subset(inputs, "_full_screen$", negate = TRUE)
