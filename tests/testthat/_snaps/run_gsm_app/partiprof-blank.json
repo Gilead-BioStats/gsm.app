@@ -1,9 +1,8 @@
 {
   "input": {
-    "domain_details-selected_tab": ["AE"],
     "group-group": ["All"],
     "group-level": ["Site"],
     "participant": ["All"],
-    "primary_nav_bar": ["Domain Details"]
+    "primary_nav_bar": ["Participant Profile"]
   }
 }

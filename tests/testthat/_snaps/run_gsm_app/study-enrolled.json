@@ -1,10 +1,10 @@
 {
   "input": {
-    "group-group": ["0X7798"],
-    "group-level": ["Site"],
+    "group-group": ["All"],
+    "group-level": ["Country"],
     "participant": ["All"],
     "primary_nav_bar": ["Study Overview"],
-    "study_overview-nav_bar": ["Scatter Plots"],
+    "study_overview-nav_bar": ["Overview Table"],
     "study_overview-scatter-Analysis_cou0001-plot": {},
     "study_overview-scatter-Analysis_cou0002-plot": {},
     "study_overview-scatter-Analysis_cou0003-plot": {},
@@ -16,17 +16,17 @@
     "study_overview-scatter-Analysis_cou0009-plot": {},
     "study_overview-scatter-Analysis_cou0010-plot": {},
     "study_overview-scatter-Analysis_cou0011-plot": {},
-    "study_overview-scatter-Analysis_kri0001-plot": ["0X7798"],
-    "study_overview-scatter-Analysis_kri0002-plot": ["0X7798"],
-    "study_overview-scatter-Analysis_kri0003-plot": ["0X7798"],
-    "study_overview-scatter-Analysis_kri0004-plot": ["0X7798"],
-    "study_overview-scatter-Analysis_kri0005-plot": ["0X7798"],
-    "study_overview-scatter-Analysis_kri0006-plot": ["0X7798"],
-    "study_overview-scatter-Analysis_kri0007-plot": ["0X7798"],
-    "study_overview-scatter-Analysis_kri0008-plot": ["0X7798"],
-    "study_overview-scatter-Analysis_kri0009-plot": ["0X7798"],
-    "study_overview-scatter-Analysis_kri0010-plot": ["0X7798"],
-    "study_overview-scatter-Analysis_kri0011-plot": ["0X7798"],
+    "study_overview-scatter-Analysis_kri0001-plot": {},
+    "study_overview-scatter-Analysis_kri0002-plot": {},
+    "study_overview-scatter-Analysis_kri0003-plot": {},
+    "study_overview-scatter-Analysis_kri0004-plot": {},
+    "study_overview-scatter-Analysis_kri0005-plot": {},
+    "study_overview-scatter-Analysis_kri0006-plot": {},
+    "study_overview-scatter-Analysis_kri0007-plot": {},
+    "study_overview-scatter-Analysis_kri0008-plot": {},
+    "study_overview-scatter-Analysis_kri0009-plot": {},
+    "study_overview-scatter-Analysis_kri0010-plot": {},
+    "study_overview-scatter-Analysis_kri0011-plot": {},
     "study_overview-table-group_overview": {
       "selectedGroupID": [""],
       "selectedMetricID": [""],
@@ -34,6 +34,6 @@
       "clickCounter": [0]
     },
     "study_overview-table-kri_counts-amber-toggle_pill": [0],
-    "study_overview-table-kri_counts-red-toggle_pill": [0]
+    "study_overview-table-kri_counts-red-toggle_pill": [1]
   }
 }

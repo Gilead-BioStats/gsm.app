@@ -55,7 +55,7 @@ mod_GroupInput_Server <- function(
       observe({
         shinyWidgets::updateVirtualSelect(
           inputId = "group",
-          label = rctv_strGroupLevel(),
+          label = strong(rctv_strGroupLevel()),
           choices = c("All", rctv_chrGroups()),
           selected = "All"
         )

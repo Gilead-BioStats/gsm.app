@@ -1,3 +1,14 @@
+# gsm.app (development version)
+
+# gsm.app 2.5.2
+
+This is a patch bugfix release.
+
+## Bug Fixes
+- The Data Summary in the sample Participant Profile plugin functions properly (#489).
+- The Overview Table on the Study Overview tab now responds properly to the Group Level drop-down menu, showing "Enrolled" counts and proper hovers (#492).
+- The "Site" (or "Country") drop-down menu maintains its bold formatting to match the other drop-down menus in the top nav bar.
+
 # gsm.app 2.5.1
 
 This patch release fixes bugs related to the presence of multiple "Group Levels" (eg, "Site" and "Country") in app data (#469).

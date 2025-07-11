@@ -10,13 +10,13 @@ spec:
     _all:
       required: true
   AE:
-    _all:
-      required: true
+    SubjectID:
+      type: character
   ENROLL:
-    _all:
-      required: true
+    SubjectID:
+      type: character
   STUDCOMP:
-    _all:
-      required: true
+    SubjectID:
+      type: character
 required_inputs:
   - Participant
