@@ -1,5 +1,9 @@
 {
-  "export": {
-
+  "input": {
+    "domain_details-selected_tab": ["STUDCOMP"],
+    "group-group": ["All"],
+    "group-level": ["Site"],
+    "participant": ["S7900"],
+    "primary_nav_bar": ["Domain Details"]
   }
 }

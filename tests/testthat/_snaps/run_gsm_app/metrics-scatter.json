@@ -1,5 +1,14 @@
 {
-  "export": {
-
+  "input": {
+    "group-group": ["All"],
+    "group-level": ["Site"],
+    "metric_details-bar_chart_metric-plot": {},
+    "metric_details-bar_chart_score-plot": {},
+    "metric_details-metric": ["Analysis_kri0001"],
+    "metric_details-scatter_plot-plot": {},
+    "metric_details-selected_tab": ["Scatter Plot"],
+    "metric_details-time_series-plot": {},
+    "participant": ["All"],
+    "primary_nav_bar": ["Metric Details"]
   }
 }

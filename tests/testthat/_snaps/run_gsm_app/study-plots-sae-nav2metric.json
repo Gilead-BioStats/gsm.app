@@ -1,5 +1,45 @@
 {
-  "export": {
-
+  "input": {
+    "group-group": ["0X4579"],
+    "group-level": ["Site"],
+    "metric_details-bar_chart_metric-plot": {},
+    "metric_details-bar_chart_score-plot": {},
+    "metric_details-metric": ["Analysis_kri0002"],
+    "metric_details-scatter_plot-plot": ["0X4579"],
+    "metric_details-selected_tab": ["Scatter Plot"],
+    "metric_details-time_series-plot": {},
+    "participant": ["All"],
+    "primary_nav_bar": ["Metric Details"],
+    "study_overview-nav_bar": ["Scatter Plots"],
+    "study_overview-scatter-Analysis_cou0001-plot": {},
+    "study_overview-scatter-Analysis_cou0002-plot": {},
+    "study_overview-scatter-Analysis_cou0003-plot": {},
+    "study_overview-scatter-Analysis_cou0004-plot": {},
+    "study_overview-scatter-Analysis_cou0005-plot": {},
+    "study_overview-scatter-Analysis_cou0006-plot": {},
+    "study_overview-scatter-Analysis_cou0007-plot": {},
+    "study_overview-scatter-Analysis_cou0008-plot": {},
+    "study_overview-scatter-Analysis_cou0009-plot": {},
+    "study_overview-scatter-Analysis_cou0010-plot": {},
+    "study_overview-scatter-Analysis_cou0011-plot": {},
+    "study_overview-scatter-Analysis_kri0001-plot": ["0X4579"],
+    "study_overview-scatter-Analysis_kri0002-plot": ["0X4579"],
+    "study_overview-scatter-Analysis_kri0003-plot": ["0X4579"],
+    "study_overview-scatter-Analysis_kri0004-plot": ["0X4579"],
+    "study_overview-scatter-Analysis_kri0005-plot": ["0X4579"],
+    "study_overview-scatter-Analysis_kri0006-plot": ["0X4579"],
+    "study_overview-scatter-Analysis_kri0007-plot": ["0X4579"],
+    "study_overview-scatter-Analysis_kri0008-plot": ["0X4579"],
+    "study_overview-scatter-Analysis_kri0009-plot": ["0X4579"],
+    "study_overview-scatter-Analysis_kri0010-plot": ["0X4579"],
+    "study_overview-scatter-Analysis_kri0011-plot": ["0X4579"],
+    "study_overview-table-group_overview": {
+      "selectedGroupID": [""],
+      "selectedMetricID": [""],
+      "groupSubset": [""],
+      "clickCounter": [0]
+    },
+    "study_overview-table-kri_counts-amber-toggle_pill": [0],
+    "study_overview-table-kri_counts-red-toggle_pill": [0]
   }
 }
