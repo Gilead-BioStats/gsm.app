@@ -1,3 +1,17 @@
 url: https://gilead-biostats.github.io/gsm.app/
 template:
   bootstrap: 5
+
+navbar:
+  structure:
+    left: [intro, reference, articles, tutorials, news]
+    right: [search, github]
+
+articles:
+- title: Getting Started
+  navbar: ~
+  contents:
+  - data-preparation
+- title: Advanced Topics  
+  contents:
+  - plugins

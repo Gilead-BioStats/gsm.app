@@ -1,0 +1,399 @@
+---
+title: "Data Preparation and App Deployment"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Data Preparation and App Deployment}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  eval = FALSE
+)
+```
+
+```{r setup, include = FALSE}
+library(gsm.app)
+library(dplyr)
+library(purrr)
+```
+
+# Introduction
+
+The {gsm.app} package creates interactive dashboards for exploring Good Statistical Monitoring (GSM) Key Risk Indicator (KRI) assessments in clinical trials. This vignette provides a comprehensive guide on how to prepare data for use with the {gsm.app} Shiny application and how to deploy an app.
+
+The {gsm} suite of packages leverages Key Risk Indicators (KRIs) and thresholds to conduct study-level, country-level and site-level Risk Based Monitoring for clinical trials. The {gsm.app} uses {gsm.core} and {gsm.reporting} outputs to create all required data structures for the Shiny app and therefore this vignette will refer to the the functions and workflows that produce data frames, visualizations, metadata, and reports within those packages.
+
+The image below illustrates the overarching context in which the reporting workflow runs, taking inputs from both the output of the analytics workflow, as well as raw study-, site-, and country-level data in the Raw/Raw+ format.
+
+![](data_model_detailed.png){width="100%"}
+
+# Required Data Structures
+
+The {gsm.app} requires five main data frames and one function to operate:
+
+1.  **`dfAnalyticsInput`** - Participant-level metric data (stacked across metrics)
+2.  **`dfBounds`** - Statistical bounds for flagging. Set of predicted percentages/rates and upper- and lower-bounds across the full range of sample sizes/total exposure values for reporting.
+3.  **`dfGroups`** - Group-level metadata (sites, countries, study)
+4.  **`dfMetrics`** - Metric-specific metadata for use in charts and reporting.
+5.  **`dfResults`** - KRI assessment results. A stacked summary of analysis pipeline output.
+6.  **`fnFetchData`** - Function to retrieve domain-specific data
+
+Let's first look at the required data sources in detail and then go through the steps to prepare the data.
+
+## 1. dfAnalyticsInput Structure
+
+This data frame contains participant-level metric calculations used for drill-down functionality.
+
+```{r dfAnalyticsInput-structure}
+# Required columns:
+# - MetricID: Unique identifier for each metric (e.g., "Analysis_kri0001")
+# - SubjectID: Unique participant identifier
+# - GroupID: Group identifier (site ID, country code, etc.)
+# - GroupLevel: Type of Group specified in `GroupID` (Country, Site)
+# - Numerator: Total Time on Treatment (measured in days; per subject)
+# - Denominator: Total Number of Event(s) of Interest (e.g., the number of AEs reported; per subject)
+# - Metric: Rate of Event Incidence (calculated as `Exposure`/`Count`; per subject)
+# - SnapshotDate: Date of the data snapshot
+
+sample_dfAnalyticsInput_structure <- data.frame(
+  MetricID = c("Analysis_kri0001", "Analysis_kri0001", "Analysis_kri0002"),
+  SubjectID = c("SUBJ001", "SUBJ002", "SUBJ001"),
+  GroupID = c("SITE001", "SITE001", "SITE001"),
+  GroupLevel = c("Site", "Site", "Site"),
+  Numerator = c(5, 2, 1),
+  Denominator = c(100, 85, 100),
+  Metric = c(0.05, 0.024, 0.01),
+  SnapshotDate = as.Date(c("2024-01-31", "2024-01-31", "2024-01-31"))
+)
+```
+
+## 2. dfBounds Structure
+
+This data frame defines the statistical bounds used for flagging metrics.
+
+```{r dfBounds-structure}
+# Required columns:
+# - Threshold: Number of standard deviations that the upper and lower bounds are based on (e.g., -2, -1, 2, 3)
+# - Denominator: The calculated denominator value
+# - LogDenominator: The calculated log denominator value 
+# - Numerator: The calculated numerator value 
+# - Metric: The calculated rate/metric value
+# - MetricID: Unique identifier matching dfAnalyticsInput
+# - StudyID: Study identifier
+# - SnapshotDate: Date of the data snapshot
+
+sample_dfBounds_structure <- data.frame(
+  Threshold = c(-2, -1, 2, 3),
+  Denominator = c(100, 100, 100, 100),
+  LogDenominator = c(5.1, 5.11, 5.11, 5.12),
+  Numerator = c(2.1, 3.5, 8.2, 10.1),
+  Metric = c(0.021, 0.035, 0.082, 0.101),
+  MetricID = rep("Analysis_kri0001", 4),
+  StudyID = rep("STUDY001", 4),
+  SnapshotDate = as.Date(rep("2024-01-31", 4))
+)
+```
+
+## 3. dfGroups Structure
+
+This data frame contains metadata about study groups (sites, countries, overall study).
+
+```{r dfGroups-structure}
+# Required columns:
+# - GroupID: Group identifier (site ID, country code, etc.)
+# - GroupLevel: Type of Group specified in `GroupID` (Country, Site, Study)
+# - Param: Parameter name (e.g., "ParticipantCount", "SiteCopunt")
+# - Value: Parameter value (e.g. "Active")
+
+sample_dfGroups_structure <- data.frame(
+  GroupID = c("SITE001", "SITE001", "US", "US", "STUDY001"),
+  GroupLevel = c("Site", "Site", "Country", "Country", "Study"),
+  Param = c("ParticipantCount", "SiteCount", "ParticipantCount", "SiteCount", "nickname"),
+  Value = c("50", "1", "150", "3", "Sample Clinical Trial")
+)
+```
+
+## 4. dfMetrics Structure
+
+This data frame contains metadata about each metric/KRI.
+
+```{r dfMetrics-structure}
+# Key columns:
+# - MetricID: Unique identifier for the metric matching other data frames
+# - Metric: Human-readable metric name
+# - GroupLevel: Type of Group (Country, Site, Study)
+# - Abbreviation: Short metric name for display
+# - Numerator: Data source for the Numerator
+# - Denominator: Data source for the Denominator
+# - Model: Model used to calculate metric
+# - Score: Type of statistical score reported (e.g., z-score)
+# - Threshold: comma-separated Thresholds to be used for bounds and flags (e.g, "-2,-1,2,3")
+# - Flag: The calculated flag
+# - Priority: Assigned priority
+# - AnalysisType: Type of analysis performed
+
+sample_dfMetrics_structure <- data.frame(
+  MetricID = c("Analysis_kri0001", "Analysis_kri0002"),
+  Metric = c("Adverse Event Rate", "Serious Adverse Event Rate"),
+  GroupLevel = c("Site", "Site"),
+  Abbreviation = c("AE", "SAE"),
+  Numerator = c("Adverse Events", "Serious Adverse Events"),
+  Denominator = c("Days on Study", "Days on Study"),
+  Threshold = c("-2,-1,2,3", "-2,-1,2,3"),
+  Type = c("Analysis", "Analysis"),
+  Model = c("Normal Approximation", "Normal Approximation"),
+  Score = c("Adjusted Z-Score", "Adjusted Z-Score"),
+  Flag = c( NA, "0,1,2"),
+  AnalysisType = c("rate", "binary")
+  
+)
+```
+
+## 5. dfResults Structure
+
+This data frame contains the KRI assessment results and flags.
+
+```{r dfResults-structure}
+# Required columns:
+# - GroupID: Group identifier matching dfGroups
+# - GroupLevel: Type of Group specified in `GroupID` (Country, Site, Study)
+# - Numerator: The calculated numerator value
+# - Denominator: The calculated denominator value  
+# - Metric:  The calculated rate/metric value
+# - Score: The calculated metric score (e.g., z-score)
+# - Flag: The calculated flag
+# - MetricID: Unique identifier matching dfAnalyticsInput
+# - StudyID: Study identifier
+# - SnapshotDate: Date of the data snapshot
+
+sample_dfResults_structure <- data.frame(
+  GroupID = c("SITE001", "SITE002", "US"),
+  GroupLevel = c("Site", "Site", "Country"),
+  Numerator = c(25, 15, 40),
+  Denominator = c(500, 400, 900),
+  Metric = c(0.05, 0.0375, 0.044),
+  Score = c(1.2, -0.5, 0.8),
+  Flag = c(0, 0, 0),
+  MetricID = rep("Analysis_kri0001", 3),
+  StudyID = rep("STUDY001", 3),
+  SnapshotDate = as.Date(rep("2024-01-31", 3))
+)
+```
+
+# Data Preparation Workflow
+
+The following workflow uses the {gsm.core} and {gsm.reporting} packages to systematically create all required data structures for {gsm.app}. This workflow implements the standardized [Data Model](https://gilead-biostats.github.io/gsm.core/articles/DataModel.html) from the {gsm} ecosystem and follows the step-by-step approach outlined in the [Data Analysis](https://gilead-biostats.github.io/gsm.core/articles/DataAnalysis.html) and [Data Reporting](https://gilead-biostats.github.io/gsm.reporting/articles/DataReporting.html) vignettes.
+
+The {gsm} suite provides a standardized data pipeline for conducting study-level Risk Based Quality Management (RBQM) for clinical trials. There are four main types of data used:
+
+-   **Raw Data**: Clinical and operational data from study databases
+-   **Mapped Data**: Data that has been transformed and standardized for analysis
+-   **Analysis Data**: Data that has been analyzed to calculate Key Risk Indicators (KRIs)
+-   **Reporting Data**: Data that has been summarized and formatted for reporting
+
+## Step 1: Set Up Data Sources
+
+First, establish your data sources using the sample data from {gsm.core}. For your own implementation, you would replace this with your study's clinical data sources.
+
+```{r setup-data-sources}
+library(gsm.core)
+library(gsm.mapping)
+library(gsm.kri)
+library(gsm.reporting)
+library(dplyr)
+
+# Use sample data sources from gsm.core
+# In production, replace this with your study's data sources
+lSource <- gsm.core::lSource
+```
+
+For more details on data requirements and formats, see the [Data Model documentation](https://gilead-biostats.github.io/gsm.core/articles/DataModel.html#raw-and-mapped-data).
+
+## Step 2: Create Mapping Workflows
+
+Data mapping transforms raw clinical data into standardized mapped data compatible with the analytics pipeline. As described in the [Cookbook](https://gilead-biostats.github.io/gsm.core/articles/Cookbook.html#example-3---study-level-reporting-workflows), we'll use YAML workflows for systematic data processing.
+
+```{r create-mapping-workflows}
+# Define core mappings needed for standard KRIs
+core_mappings <- c("AE", "COUNTRY", "DATACHG", "DATAENT", "ENROLL", "LB", "PK", "VISIT",
+                   "PD", "QUERY", "STUDY", "STUDCOMP", "SDRGCOMP", "SITE", "SUBJ")
+
+# Create mapping workflow specifications
+lMappingWorkflows <- gsm.core::MakeWorkflowList(
+  strNames = core_mappings,
+  strPath = "workflow/1_mappings", 
+  strPackage = "gsm.mapping"
+)
+
+# Combine mapping specifications
+lMappingSpec <- gsm.mapping::CombineSpecs(lMappingWorkflows)
+```
+
+## Step 3: Create Mapped Data Layer
+
+Transform raw data into mapped data using the [data ingestion process](https://gilead-biostats.github.io/gsm.core/articles/Cookbook.html#automate-data-ingestion-using-ingest-and-combinespecs). This standardizes column names and applies necessary transformations.
+
+```{r create-mapped-data}
+# Step 1: Data Ingestion - standardize tables/column names
+lRaw <- gsm.mapping::Ingest(lSource, lMappingSpec)
+
+# Step 2: Create Mapped Data Layer - filter, aggregate and join raw data 
+lMapped <- gsm.core::RunWorkflows(lMappingWorkflows, lRaw)
+
+```
+
+
+## Step 4: Run Analysis Workflows
+
+Following the [step-by-step analysis workflow](https://gilead-biostats.github.io/gsm.core/articles/DataAnalysis.html), create KRI assessments using the standardized five-step process:
+
+1.  **Input**: Cross-domain participant-level input data
+2.  **Transform**: Site-level transformed data including KRI calculation\
+3.  **Analyze**: Site-level analysis results with statistical modeling
+4.  **Flag**: Analysis results with flags for statistical outliers
+5.  **Summary**: Standardized subset for reporting
+
+```{r run-analysis-workflows, message = FALSE}
+# Create analysis workflows for KRI calculations
+lAnalysisWorkflows <- gsm.core::MakeWorkflowList(
+  strPath = "workflow/2_metrics", 
+  strPackage = "gsm.kri"
+)
+
+# Run analysis workflows to calculate KRIs
+lAnalyzed <- gsm.core::RunWorkflows(lAnalysisWorkflows, lMapped)
+```
+
+
+For details on the analysis data model, see the [Analysis Data documentation](https://gilead-biostats.github.io/gsm.core/articles/DataModel.html#analysis-data).
+
+## Step 5: Create Reporting Data
+
+Transform analysis results into reporting data frames using {gsm.reporting}. This follows the [step-by-step reporting workflow](https://gilead-biostats.github.io/gsm.reporting/articles/DataReporting.html#step-by-step-reporting-workflow) to create standardized reporting datasets.
+
+```{r create-reporting-data}
+# Create reporting workflows
+lReportingWorkflows <- gsm.core::MakeWorkflowList(
+  strPath = "workflow/3_reporting", 
+  strPackage = "gsm.reporting"
+)
+
+# Run reporting workflows - creates dfResults, dfBounds, dfGroups, dfMetrics
+lReporting <- gsm.core::RunWorkflows(
+  lReportingWorkflows, 
+  c(lMapped, list(lAnalyzed = lAnalyzed, lWorkflows = lAnalysisWorkflows))
+)
+
+# Extract reporting data frames
+dfResults <- lReporting$Reporting_Results
+dfBounds <- lReporting$Reporting_Bounds  
+dfGroups <- lReporting$Reporting_Groups
+dfMetrics <- lReporting$Reporting_Metrics
+
+# Create dfAnalyticsInput for participant-level drill-down
+dfAnalyticsInput <- purrr::map(lAnalyzed, "Analysis_Input") %>%
+  dplyr::bind_rows(.id = "MetricID") %>%
+  dplyr::as_tibble() %>%
+  dplyr::mutate(SnapshotDate = Sys.Date())
+```
+
+The reporting data model is documented in detail at [Reporting Data](https://gilead-biostats.github.io/gsm.core/articles/DataModel.html#reporting-data).
+
+# App Deployment
+
+Now that our data are ready let's look at how to deploy an app.
+
+## Creating the fnFetchData Function
+
+The `fnFetchData` function is essential for the {gsm.app} to provide drill-down functionality for domain-specific data. This function tells the app how to fetch domain data and should return filtered data based on the parameters passed from the app interface.
+
+```{r create-fnfetchdata, eval = FALSE}
+fnFetchData <- function(strDomainID, strGroupLevel = NULL, strGroupID = NULL, 
+                       strSubjectID = NULL, dSnapshotDate = NULL) {
+  
+  # Use the sample function as a template
+  # In your implementation, replace this with code that fetches from your data sources
+  gsm.app::sample_fnFetchData(
+    strDomainID = strDomainID,
+    strGroupLevel = strGroupLevel, 
+    strGroupID = strGroupID,
+    strSubjectID = strSubjectID,
+    dSnapshotDate = dSnapshotDate
+  )
+}
+```
+
+
+## Running the App
+
+Once you have prepared all the required data structures and the `fnFetchData` function, you can deploy the {gsm.app}.
+
+For development and testing, run the app locally: run_gsm_app() creates a Shiny app to explore a set of clinical trial data. The app facilitates exploration of the data by allowing the user to click to diver deeper into aspects of the data.
+
+
+```{r local-deployment, eval = FALSE}
+# Create the app data structure
+run_gsm_app(
+  dfAnalyticsInput = dfAnalyticsInput,
+  dfBounds = dfBounds,
+  dfGroups = dfGroups,
+  dfMetrics = dfMetrics,
+  dfResults = dfResults,
+  fnFetchData = fnFetchData,
+  fnCountData = ConstructDataCounter(fnFetchData),
+  chrDomains = c(AE = "Adverse Events", DATACHG = "Data Changes", DATAENT = "Data Entry",
+    ENROLL = "Enrollment", LB = "Lab", PD = "Protocol Deviations", QUERY = "Queries",
+    STUDCOMP = "Study Completion", SUBJ = "Subject Metadata", SDRGCOMP =
+    "Treatment Completion"),
+  lPlugins = NULL,
+  strTitle = ExtractAppTitle(dfGroups),
+  strFavicon = "angles-up",
+  strFaviconColor = "#FF5859",
+  tagListExtra = NULL,
+  fnServer = NULL
+)
+```
+
+# Troubleshooting
+
+## Common Issues
+
+1.  **Data Validation Errors**: Ensure all required columns are present and correctly named
+2.  **Missing MetricID Links**: Verify MetricID values are consistent across all data frames
+3.  **Date Format Issues**: Ensure all date columns are properly formatted as Date objects
+4.  **Memory Issues**: For large datasets, consider data filtering and optimization
+5.  **Fetch Function Errors**: Test your `fnFetchData` function with various parameter combinations
+
+
+# Summary
+
+This vignette has demonstrated a comprehensive workflow for preparing clinical trial data for use with {gsm.app} using the {gsm.core} and {gsm.reporting} packages. The approach provides:
+
+## Key Benefits
+
+1.  **Validated Statistical Methods**: Uses peer-reviewed KRI calculation methods from {gsm.core}
+2.  **Standardized Data Model**: Ensures compatibility across the {gsm} ecosystem
+3.  **Professional Reporting**: Produces publication-ready visualizations and tables
+4.  **Automated Workflows**: Reduces manual intervention and potential errors
+5.  **Quality Assurance**: Built-in validation and data quality checks
+6.  **Scalable Architecture**: Suitable for both development and production environments
+
+## Next Steps
+
+-   **Customize Workflows**: Modify YAML configuration files to match your specific study requirements
+-   **Validate Results**: Use the validation functions provided in {gsm.core} to verify data quality
+-   **Deploy Applications**: Choose the deployment method that best fits your infrastructure needs
+-   **Monitor Performance**: Implement the performance optimization techniques for larger datasets
+
+## Additional Resources
+
+-   [gsm.core Documentation](https://gilead-biostats.github.io/gsm.core/)
+-   [gsm.reporting Documentation](https://gilead-biostats.github.io/gsm.reporting/)
+-   [gsm.app Repository](https://github.com/Gilead-BioStats/gsm.app)
+
+For questions or issues, please refer to the package documentation or submit issues to the appropriate GitHub repositories.
+
