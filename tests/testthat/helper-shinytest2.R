@@ -27,9 +27,9 @@ subset_inputs <- function(
 }
 
 primary_inputs <- c(
-  "group-group",
-  "group-level",
-  "participant",
+  "group-group-select",
+  "group-level-select",
+  "participant-select",
   "primary_nav_bar"
 )
 

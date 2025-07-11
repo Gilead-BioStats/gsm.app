@@ -204,7 +204,8 @@
 #'   check that the package is installed, and attach it. The function can also
 #'   be supplied as a function or a purrr-style formula. See
 #'   [rlang::as_function()] (the `x` argument) for more details.
-#' @param strGroupID `character` A `GroupID` to focus on.
+#' @param strGroupID `character` A `GroupID` of an individual site or other
+#'   group within a study.
 #' @param strGroupLabelKey `character` Value for the group label key. Default:
 #'   `"InvestigatorLastName"`.
 #' @param strGroupLevel `character` Value for the group level. Default: `NULL`
@@ -224,8 +225,6 @@
 #' @param strOutcome `character` Outcome variable. Default: `"Score"`.
 #' @param strPlotTitle `character` A title for a plot, usually the name of a
 #'   metric.
-#' @param strGroupID `character` A `GroupID` of an individual site or other
-#'   group within a study.
 #' @param strSubjectID `character` A `SubjectID` of an individual participant.
 #' @param strTargetTab `character` The tab to switch to.
 #' @param strText `character` Text to display.

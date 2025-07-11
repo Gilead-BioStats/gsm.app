@@ -1,5 +1,10 @@
 skip_if_not_installed("shinytest2")
 
+# Uncomment this to un-skip tests 1 at a time. Useful for dealing with large
+# changes.
+
+# skip_on_cran <- skip
+
 # Many tests refer to subset_inputs, which is created in helper-shinytest2.R,
 # using the json snapshot created in the first test.
 
@@ -12,7 +17,7 @@ test_that("run_gsm_app initializes the expected app", {
     height = 1200
   )
   app$wait_for_idle()
-  app$wait_for_value(input = "participant", timeout = 2000)
+  app$wait_for_value(input = "participant-select", timeout = 2000)
   # This expectation checks every input & output. We'll likely need to update
   # this one often, but it gives us an opportunity to see what changed.
   app$expect_values(name = "init", transform = scrub_expected)
@@ -28,7 +33,7 @@ test_that("run_gsm_app populates Study Overview", {
     height = 1200
   )
   app$wait_for_idle()
-  app$wait_for_value(input = "participant", timeout = 2000)
+  app$wait_for_value(input = "participant-select", timeout = 2000)
   app$expect_values(
     input = c(
       primary_inputs,
@@ -82,7 +87,7 @@ test_that("run_gsm_app populates Study Overview", {
   )
 
   # Set group via drop-down.
-  app$set_inputs(`group-group` = "0X7798")
+  app$set_inputs(`group-group-select` = "0X7798")
   app$wait_for_idle()
   app$set_inputs(primary_nav_bar = "Study Overview")
   app$wait_for_js(
@@ -137,10 +142,10 @@ test_that("run_gsm_app Study Overview works with GroupLevel", {
     height = 1200
   )
   app$wait_for_idle()
-  app$wait_for_value(input = "participant", timeout = 2000)
+  app$wait_for_value(input = "participant-select", timeout = 2000)
 
   # When Group Level changes, Enrolled column is populated.
-  app$set_inputs(`group-level` = "Country")
+  app$set_inputs(`group-level-select` = "Country")
   app$run_js(file = test_path("fixtures", "WidgetPlotTestHelpers.js"))
   app$wait_for_js(
     "isCanvasLoaded('metric_details-scatter_plot');",
@@ -173,7 +178,7 @@ test_that("run_gsm_app populates Metric Details", {
     height = 1200
   )
   app$wait_for_idle()
-  app$wait_for_value(input = "participant", timeout = 2000)
+  app$wait_for_value(input = "participant-select", timeout = 2000)
 
   # Navigate to Metric Details tab.
   app$run_js(file = test_path("fixtures", "WidgetPlotTestHelpers.js"))
@@ -255,7 +260,7 @@ test_that("run_gsm_app populates Metric Details", {
   )
 
   # Choose a group in the drop-down.
-  app$set_inputs(`group-group` = "0X5766")
+  app$set_inputs(`group-group-select` = "0X5766")
   app$wait_for_idle()
   app$expect_values(
     input = c(
@@ -287,7 +292,7 @@ test_that("run_gsm_app populates Metric Details", {
 
   # My click function doesn't work for time series except maybe if a thing is
   # already selected.
-  app$set_inputs(`group-group` = "0X4579")
+  app$set_inputs(`group-group-select` = "0X4579")
   app$wait_for_idle()
   app$wait_for_js(
     "isCanvasLoaded('metric_details-time_series');",
@@ -304,7 +309,7 @@ test_that("run_gsm_app populates Metric Details", {
     transform = scrub_expected
   )
 
-  app$set_inputs(`group-group` = "0X5766")
+  app$set_inputs(`group-group-select` = "0X5766")
   app$wait_for_idle()
   app$wait_for_js(
     "isCanvasLoaded('metric_details-time_series');",
@@ -427,7 +432,7 @@ test_that("run_gsm_app populates Domain Details", {
     height = 1200
   )
   app$wait_for_idle()
-  app$wait_for_value(input = "participant", timeout = 2000)
+  app$wait_for_value(input = "participant-select", timeout = 2000)
 
   # Navigate to Domain Details tab.
   app$set_inputs(primary_nav_bar = "Domain Details")
@@ -443,7 +448,7 @@ test_that("run_gsm_app populates Domain Details", {
   )
 
   # Select a participant via the drop-down.
-  app$set_inputs(`participant` = "S7900")
+  app$set_inputs(`participant-select` = "S7900")
   app$wait_for_idle()
   app$expect_values(
     input = c(
@@ -493,10 +498,10 @@ test_that("run_gsm_app displays Domain error", {
     height = 1200
   )
   app$wait_for_idle()
-  app$wait_for_value(input = "participant", timeout = 2000)
+  app$wait_for_value(input = "participant-select", timeout = 2000)
 
   # Trigger the error.
-  app$set_inputs(`group-group` = "0X9640")
+  app$set_inputs(`group-group-select` = "0X9640")
   app$wait_for_idle()
   app$set_inputs(primary_nav_bar = "Domain Details")
   app$wait_for_idle()
@@ -520,7 +525,7 @@ test_that("run_gsm_app displays participant plugin", {
     height = 1200
   )
   app$wait_for_idle()
-  app$wait_for_value(input = "participant", timeout = 2000)
+  app$wait_for_value(input = "participant-select", timeout = 2000)
 
   # Display empty mod without participant
   app$set_inputs(primary_nav_bar = "Participant Profile")
@@ -533,7 +538,7 @@ test_that("run_gsm_app displays participant plugin", {
   )
 
   # Display full mod when participant selected
-  app$set_inputs(`participant` = "S7900")
+  app$set_inputs(`participant-select` = "S7900")
   app$wait_for_idle()
   app$expect_values(
     input = primary_inputs,

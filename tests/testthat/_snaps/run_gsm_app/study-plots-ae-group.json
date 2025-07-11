@@ -1,14 +1,14 @@
 {
   "input": {
-    "group-group": ["0X4579"],
-    "group-level": ["Site"],
+    "group-group-select": ["0X4579"],
+    "group-level-select": ["Site"],
     "metric_details-bar_chart_metric-plot": {},
     "metric_details-bar_chart_score-plot": {},
     "metric_details-metric": ["Analysis_kri0001"],
     "metric_details-scatter_plot-plot": {},
     "metric_details-selected_tab": ["Scatter Plot"],
     "metric_details-time_series-plot": {},
-    "participant": ["All"],
+    "participant-select": ["All"],
     "primary_nav_bar": ["Metric Details"],
     "study_overview-nav_bar": ["Scatter Plots"],
     "study_overview-scatter-Analysis_cou0001-plot": {},

@@ -1,8 +1,7 @@
 #' Group and GroupLevel Dropdown Menu UI
 #'
 #' @inheritParams shared-params
-#' @returns A `list` with one or two [shinyWidgets::virtualSelectInput()]
-#'   elements.
+#' @returns A `list` with one or two UI elements.
 #' @keywords internal
 mod_GroupInput_UI <- function(id, dfGroups) {
   ns <- NS(id)
@@ -11,18 +10,16 @@ mod_GroupInput_UI <- function(id, dfGroups) {
     sort(unique(dfGroups$GroupLevel), decreasing = TRUE),
     "Study"
   )
-  chrGroups <- sort(unique(
-    dfGroups$GroupID[dfGroups$GroupLevel == chrGroupLevels[[1]]]
-  ))
 
-  return(list(
-    if (length(chrGroupLevels) > 1) {
-      input_NavbarExtra(ns("level"), chrGroupLevels)
-    },
-    input_NavbarExtra(
+  purrr::compact(list(
+    mod_PotentialChoice_UI(
+      ns("level"),
+      chrChoices = chrGroupLevels,
+      strLabel = "Group Level"
+    ),
+    mod_CascadingSelect_UI(
       ns("group"),
-      c("All", chrGroups),
-      label = chrGroupLevels[[1]]
+      strLabel = chrGroupLevels[[1]]
     )
   ))
 }
@@ -40,35 +37,18 @@ mod_GroupInput_Server <- function(
   rctv_strGroupLevel
 ) {
   moduleServer(id, function(input, output, session) {
-    chrGroupLevels <- names(lGroups)
-    if (length(chrGroupLevels) > 1) {
-      observe({
-        rctv_strGroupLevel(input$level)
-      })
-      srvr_SyncVirtualSelectInput("level", rctv_strGroupLevel, session)
+    mod_PotentialChoice_Server(
+      "level",
+      chrChoices = names(lGroups),
+      rctv_strSelection = rctv_strGroupLevel
+    )
 
-      rctv_chrGroups <- reactive({
-        req(rctv_strGroupLevel())
-        lGroups[[rctv_strGroupLevel()]]
-      }) %>%
-        bindCache(rctv_strGroupLevel())
-      observe({
-        shinyWidgets::updateVirtualSelect(
-          inputId = "group",
-          label = strong(rctv_strGroupLevel()),
-          choices = c("All", rctv_chrGroups()),
-          selected = "All"
-        )
-      }) %>%
-        bindEvent(rctv_strGroupLevel())
-    } else {
-      rctv_strGroupLevel(chrGroupLevels[[1]])
-    }
-
-    observe({
-      req(input$group)
-      rctv_strGroupID(input$group)
-    })
-    srvr_SyncVirtualSelectInput("group", rctv_strGroupID, session)
+    mod_CascadingSelect_Server(
+      "group",
+      rctv_strDependent = rctv_strGroupLevel,
+      l_chrChoices = lGroups,
+      rctv_strSelection = rctv_strGroupID,
+      lglUpdateLabel = TRUE
+    )
   })
 }

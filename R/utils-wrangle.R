@@ -9,7 +9,8 @@
 FilterBy <- function(
   df,
   Value,
-  strField = ExtractFieldName(rlang::caller_arg(Value))) {
+  strField = ExtractFieldName(rlang::caller_arg(Value))
+) {
   if (length(Value)) {
     return(df[df[[strField]] == Value, ])
   }
@@ -125,4 +126,18 @@ FilterByGroupAndLevel <- function(
 
 FilterBySubjectID <- function(df, strSubjectID = NULL) {
   FilterBy(df, strSubjectID)
+}
+
+#' Split a data frame by a grouping variable.
+#'
+#' @inheritParams shared-params
+#' @param strGroupingVar `character` The name of the grouping variable.
+#' @param strValueVar `character` The name of the value variable.
+#' @returns A named list of values.
+#' @keywords internal
+splitByGrouping <- function(df, strGroupingVar, strValueVar) {
+  df %>%
+    dplyr::select(dplyr::all_of(c(strGroupingVar, strValueVar))) %>%
+    split(.[[strGroupingVar]]) %>%
+    purrr::map(~ sort(unique(.[[strValueVar]])))
 }

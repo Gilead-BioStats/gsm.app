@@ -1,8 +1,8 @@
 {
   "input": {
-    "group-group": ["0X7798"],
-    "group-level": ["Site"],
-    "participant": ["All"],
+    "group-group-select": ["0X7798"],
+    "group-level-select": ["Site"],
+    "participant-select": ["All"],
     "primary_nav_bar": ["Study Overview"],
     "study_overview-nav_bar": ["Scatter Plots"],
     "study_overview-scatter-Analysis_cou0001-plot": {},
