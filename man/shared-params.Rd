@@ -291,6 +291,9 @@ check that the package is installed, and attach it. The function can also
 be supplied as a function or a purrr-style formula. See
 \code{\link[rlang:as_function]{rlang::as_function()}} (the \code{x} argument) for more details.}
 
+\item{strGroupID}{\code{character} A \code{GroupID} of an individual site or other
+group within a study.}
+
 \item{strGroupLabelKey}{\code{character} Value for the group label key. Default:
 \code{"InvestigatorLastName"}.}
 
@@ -320,9 +323,6 @@ this module or used by this JavaScript.}
 
 \item{strPlotTitle}{\code{character} A title for a plot, usually the name of a
 metric.}
-
-\item{strGroupID}{\code{character} A \code{GroupID} of an individual site or other
-group within a study.}
 
 \item{strSubjectID}{\code{character} A \code{SubjectID} of an individual participant.}
 

@@ -7,7 +7,7 @@
 input_NavbarExtra(
   strInputID,
   chrChoices = NULL,
-  label = MakeParamLabelsChr(strInputID)
+  strLabel = MakeParamLabelsChr(strInputID)
 )
 }
 \arguments{
@@ -16,6 +16,8 @@ this module or used by this JavaScript.}
 
 \item{chrChoices}{\code{character} A (named, optionally) vector of choices for a
 \code{\link[shiny:selectInput]{shiny::selectInput()}} or similar input function.}
+
+\item{strLabel}{\code{character} The label of a field.}
 }
 \value{
 A \code{\link[bslib:nav-items]{bslib::nav_item()}} with a \code{\link[shinyWidgets:virtualSelectInput]{shinyWidgets::virtualSelectInput()}}.
