@@ -13,7 +13,7 @@ mod_CascadingSelect_Server(
 )
 }
 \arguments{
-\item{id}{\code{character} The module ID.}
+\item{id}{\code{character} The id for this element.}
 
 \item{rctv_strDependent}{\code{reactive} The reactive string value that this
 module's selection depends on.}

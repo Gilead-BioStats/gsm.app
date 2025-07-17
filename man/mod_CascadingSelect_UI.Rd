@@ -7,15 +7,15 @@
 mod_CascadingSelect_UI(id, strLabel, chrChoices = "All")
 }
 \arguments{
-\item{id}{\code{character} The module ID.}
+\item{id}{\code{character} The id for this element.}
 
 \item{strLabel}{\code{character} The initial label for the select input.}
 
-\item{chrChoices}{\code{character} The initial set of choices for the select
-input.}
+\item{chrChoices}{\code{character} A (named, optionally) vector of choices for
+this input.}
 }
 \value{
-A \code{bslib::nav_item()}
+A \code{bslib::nav_item()}.
 }
 \description{
 Cascading Select Input UI

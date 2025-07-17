@@ -9,8 +9,8 @@ mod_PotentialChoice_Server(id, chrChoices, rctv_strSelection)
 \arguments{
 \item{id}{\code{character} The id for this element.}
 
-\item{chrChoices}{\code{character} A (named, optionally) vector of choices for a
-\code{\link[shiny:selectInput]{shiny::selectInput()}} or similar input function.}
+\item{chrChoices}{\code{character} A (named, optionally) vector of choices for
+this input.}
 
 \item{rctv_strSelection}{\code{reactiveVal} A \code{reactiveVal} from the parent scope
 that this module will update with its selection.}

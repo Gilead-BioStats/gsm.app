@@ -22,9 +22,6 @@ mod_PotentialChoice_UI <- function(id, chrChoices, strLabel) {
 #' UI.
 #'
 #' @inheritParams shared-params
-#' @param rctv_strSelection `reactiveVal` A `reactiveVal` from the parent scope
-#'   that this module will update with its selection.
-#'
 #' @returns No returns, but this server creates [shiny::observe()] elements to
 #'   keep inputs in sync.
 #' @keywords internal

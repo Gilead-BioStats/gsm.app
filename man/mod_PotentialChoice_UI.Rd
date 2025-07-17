@@ -9,8 +9,8 @@ mod_PotentialChoice_UI(id, chrChoices, strLabel)
 \arguments{
 \item{id}{\code{character} The id for this element.}
 
-\item{chrChoices}{\code{character} A (named, optionally) vector of choices for a
-\code{\link[shiny:selectInput]{shiny::selectInput()}} or similar input function.}
+\item{chrChoices}{\code{character} A (named, optionally) vector of choices for
+this input.}
 
 \item{strLabel}{\code{character} The label of a field.}
 }
