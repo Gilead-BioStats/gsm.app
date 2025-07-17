@@ -1,8 +1,8 @@
 {
   "input": {
-    "group-group": ["All"],
-    "group-level": ["Country"],
-    "participant": ["All"],
+    "group-group-select": ["All"],
+    "group-level-select": ["Country"],
+    "participant-select": ["All"],
     "primary_nav_bar": ["Study Overview"],
     "study_overview-nav_bar": ["Overview Table"],
     "study_overview-scatter-Analysis_cou0001-plot": {},

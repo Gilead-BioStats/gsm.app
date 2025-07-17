@@ -1,14 +1,14 @@
 {
   "input": {
-    "group-group": ["All"],
-    "group-level": ["Site"],
+    "group-group-select": ["All"],
+    "group-level-select": ["Site"],
     "metric_details-bar_chart_metric-plot": {},
     "metric_details-bar_chart_score-plot": {},
     "metric_details-metric": ["Analysis_kri0001"],
     "metric_details-scatter_plot-plot": {},
     "metric_details-selected_tab": ["Bar Chart (KRI Score)"],
     "metric_details-time_series-plot": {},
-    "participant": ["All"],
+    "participant-select": ["All"],
     "primary_nav_bar": ["Metric Details"]
   }
 }

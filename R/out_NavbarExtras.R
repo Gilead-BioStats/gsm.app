@@ -5,10 +5,10 @@
 #'   [shinyWidgets::virtualSelectInput()].
 #' @keywords internal
 out_NavbarExtras <- function(dfGroups) {
-  purrr::compact(c(
+  c(
     mod_GroupInput_UI("group", dfGroups),
     list(
-      input_NavbarExtra("participant"),
+      mod_CascadingSelect_UI("participant", strLabel = "Participant"),
       bslib::nav_item(
         class = "navbar-extras",
         actionButton(
@@ -19,7 +19,7 @@ out_NavbarExtras <- function(dfGroups) {
         )
       )
     )
-  ))
+  )
 }
 
 #' Individual input within the right navbar
@@ -30,14 +30,14 @@ out_NavbarExtras <- function(dfGroups) {
 input_NavbarExtra <- function(
   strInputID,
   chrChoices = NULL,
-  label = MakeParamLabelsChr(strInputID)
+  strLabel = MakeParamLabelsChr(strInputID)
 ) {
   bslib::nav_item(
     class = "navbar-extras",
     htmlDependency_Stylesheet("navbarExtras.css"),
     shinyWidgets::virtualSelectInput(
       inputId = strInputID,
-      label = strong(label),
+      label = strong(strLabel),
       choices = unique(chrChoices),
       inline = TRUE
     )

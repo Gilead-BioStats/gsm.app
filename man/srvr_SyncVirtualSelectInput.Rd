@@ -6,18 +6,23 @@
 \usage{
 srvr_SyncVirtualSelectInput(
   id,
-  rctv_strValue,
-  session = getDefaultReactiveDomain()
+  session = getDefaultReactiveDomain(),
+  rctv_chrChoices = reactive(NULL, domain = session),
+  rctv_strLabel = reactive(NULL, domain = session),
+  rctv_strSelected = reactive(NULL, domain = session)
 )
 }
 \arguments{
 \item{id}{\code{character} The id for this element.}
 
-\item{rctv_strValue}{\verb{reactive character} A \code{\link[shiny:reactive]{shiny::reactive()}} object that
-returns the value of a field.}
-
 \item{session}{\code{environment} Session from which to make a child scope (the
 default should almost always be used).}
+
+\item{rctv_chrChoices}{\verb{reactive character} Choices to set.}
+
+\item{rctv_strLabel}{\verb{reactive character} Label to set.}
+
+\item{rctv_strSelected}{\verb{reactive character} Selected value to set.}
 }
 \value{
 A \code{\link[shiny:observe]{shiny::observe()}} that triggers

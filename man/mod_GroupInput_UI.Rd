@@ -12,8 +12,7 @@ mod_GroupInput_UI(id, dfGroups)
 \item{dfGroups}{\code{data.frame} Group-level metadata dictionary.}
 }
 \value{
-A \code{list} with one or two \code{\link[shinyWidgets:virtualSelectInput]{shinyWidgets::virtualSelectInput()}}
-elements.
+A \code{list} with one or two UI elements.
 }
 \description{
 Group and GroupLevel Dropdown Menu UI

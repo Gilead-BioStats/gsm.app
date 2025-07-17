@@ -12,17 +12,17 @@ test_that("gsmApp_Server initializes correctly", {
     {
       # Simulate initialization.
       session$setInputs(
-        `group-level` = "Site",
-        `group-group` = "All",
-        participant = "All",
+        `group-level-select` = "Site",
+        `group-group-select` = "All",
+        `participant-select` = "All",
         primary_nav_bar = "Study Overview"
       )
-      expect_equal(input$`group-group`, "All")
+      expect_equal(input$`group-group-select`, "All")
 
       session$setInputs(
-        `group-group` = "0X1858"
+        `group-group-select` = "0X7258"
       )
-      expect_equal(input$`group-group`, "0X1858")
+      expect_equal(input$`group-group-select`, "0X7258")
     }
   )
 })
@@ -45,15 +45,15 @@ test_that("gsmApp_Server triggers reset", {
       session$setInputs(
         primary_nav_bar = "Study Overview",
         metric = "Analysis_kri0001",
-        `group-group` = "All",
-        `group-level` = "Site",
-        participant = "All"
+        `group-group-select` = "All",
+        `group-level-select` = "Site",
+        `participant-select` = "All"
       )
-      expect_equal(input$`group-group`, "All")
+      expect_equal(input$`group-group-select`, "All")
 
       # Change something from default.
-      session$setInputs(`group-group` = "0X1858")
-      expect_equal(input$`group-group`, "0X1858")
+      session$setInputs(`group-group-select` = "0X7258")
+      expect_equal(input$`group-group-select`, "0X7258")
 
       session$setInputs(reset = 1L)
       # Ideally we'd check inputs here, but testServer doesn't see the change.
@@ -98,11 +98,11 @@ test_that("gsmApp_Server sets participant drop-down properly", {
       session$setInputs(
         primary_nav_bar = "Study Overview",
         metric = "Analysis_kri0001",
-        `group-level` = "Site",
-        `group-group` = "All",
-        participant = "All"
+        `group-level-select` = "Site",
+        `group-group-select` = "All",
+        `participant-select` = "All"
       )
-      expect_equal(input$participant, "All")
+      expect_equal(input$`participant-select`, "All")
       expect_equal(rctv_strSubjectID(), "All")
     }
   )

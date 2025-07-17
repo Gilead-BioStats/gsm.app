@@ -1,8 +1,8 @@
 {
   "input": {
-    "group-group": ["All"],
-    "group-level": ["Site"],
-    "participant": ["All"],
+    "group-group-select": ["All"],
+    "group-level-select": ["Site"],
+    "participant-select": ["All"],
     "primary_nav_bar": ["Participant Profile"]
   }
 }
