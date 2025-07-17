@@ -136,8 +136,9 @@ FilterBySubjectID <- function(df, strSubjectID = NULL) {
 #' @returns A named list of values.
 #' @keywords internal
 splitByGrouping <- function(df, strGroupingVar, strValueVar) {
-  df %>%
-    dplyr::select(dplyr::all_of(c(strGroupingVar, strValueVar))) %>%
-    split(.[[strGroupingVar]]) %>%
-    purrr::map(~ sort(unique(.[[strValueVar]])))
+  dfGrouping <- dplyr::select(df, dplyr::all_of(c(strGroupingVar, strValueVar)))
+  purrr::map(
+    split(dfGrouping, dfGrouping[[strGroupingVar]]),
+    ~ sort(unique(.x[[strValueVar]]))
+  )
 }
