@@ -46,6 +46,7 @@ mod_CascadingSelect_Server <- function(
       reactive(input$select)
     )
 
+    # Sync the input with this module's internally calculated state.
     srvr_SyncVirtualSelectInput(
       "select",
       rctv_chrChoices = l_rctvState$rctv_chrChoices,
@@ -57,6 +58,7 @@ mod_CascadingSelect_Server <- function(
     observe(rctv_strSelection(l_rctvState$rctv_strSelected()))
     observe(rctv_strSelection(input$select))
 
+    # Sync the input when state is set externally.
     srvr_SyncVirtualSelectInput(
       "select",
       rctv_strSelected = rctv_strSelection,

@@ -104,7 +104,6 @@ gsmApp_Server <- function(
     observe({
       rctv_strPrimaryNavBar(input$primary_nav_bar)
     })
-    # TODO: Sync tab in response to this reactive.
 
     ## Domain Data ----
     ##
