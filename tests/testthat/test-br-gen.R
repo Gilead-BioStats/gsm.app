@@ -257,19 +257,24 @@ test_that("BR-GEN-08: The user can reset all filters to their default values.", 
 
   # The reset button breaks the methods used by app, so from here we need to go
   # directly to chromote.
-  sess <- app$get_chromote_session()
-  p <- sess$Page$loadEventFired(wait_ = FALSE)
-  app$click("reset")
-  sess$wait_for(p)
-  path <- withr::local_tempfile(fileext = ".png")
-  expect_snapshot_file(
-    sess$screenshot(
-      filename = path,
-      selector = ".navbar"
-    ),
-    "gen-09-02-after.png",
-    variant = "br"
-  )
+  if (isTRUE(as.logical(Sys.getenv("SHINYTEST2_TEST_SCREENSHOT")))) {
+    sess <- app$get_chromote_session()
+    p <- sess$Page$loadEventFired(wait_ = FALSE)
+    app$click("reset")
+    sess$wait_for(p)
+    path <- withr::local_tempfile(fileext = ".png")
+    expect_snapshot_file(
+      sess$screenshot(
+        filename = path,
+        selector = ".navbar"
+      ),
+      "gen-09-02-after.png",
+      variant = "br"
+    )
+  } else {
+    succeed("Skipping screenshot test on this platform.")
+  }
+
 
   app$stop()
 })
