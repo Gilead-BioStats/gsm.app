@@ -1,5 +1,6 @@
 skip_if_not_installed("shinytest2")
 # skip_on_cran <- skip
+
 test_that("BR-GEN-01: By default, the app will display a title generated from the study information in dfGroups.", {
   skip_on_cran()
   app <- AppDriver$new(
@@ -274,7 +275,6 @@ test_that("BR-GEN-08: The user can reset all filters to their default values.", 
   } else {
     succeed("Skipping screenshot test on this platform.")
   }
-
 
   app$stop()
 })
