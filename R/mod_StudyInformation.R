@@ -1,10 +1,10 @@
-#' Study Information Card
+#' Study Information Card UI
 #'
 #' @inheritParams shared-params
-#'
 #' @returns A [bslib::card()] with overall study metadata.
 #' @keywords internal
-out_StudyInformation <- function(dfGroups, dfResults) {
+mod_StudyInformation_UI <- function(id, dfGroups, dfResults) {
+  ns <- NS(id)
   SnapshotDate <- max(as.Date(dfResults$SnapshotDate))
   bslib::card(
     bslib::card_header(
@@ -14,8 +14,8 @@ out_StudyInformation <- function(dfGroups, dfResults) {
     gsm.kri::Report_StudyInfo(
       dfGroups,
       tagHeader = NULL,
-      strId = "study_overview-study_information-study_table"
+      strId = ns("study_table")
     ),
-    id = "study_overview-study_information"
+    id = id
   )
 }
