@@ -44,6 +44,7 @@ Suggests:
     pak,
     pkgload (>= 1.4.0),
     rmarkdown,
+    rvest,
     shinytest2 (>= 0.4.1),
     testthat (>= 3.0.0),
     withr
