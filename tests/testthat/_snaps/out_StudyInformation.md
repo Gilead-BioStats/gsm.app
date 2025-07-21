@@ -3,7 +3,7 @@
     Code
       test_result
     Output
-      <div class="card bslib-card bslib-mb-spacing html-fill-item html-fill-container" data-bslib-card-init data-require-bs-caller="card()" data-require-bs-version="5">
+      <div class="card bslib-card bslib-mb-spacing bslib-card-input html-fill-item html-fill-container" data-bslib-card-init data-require-bs-caller="card()" data-require-bs-version="5" id="study_information">
         <div class="card-header">
           <h5>Study Information</h5>
           <h6 class="card-subtitle mb-2 text-muted">Snapshot Date: 2012-03-31</h6>
