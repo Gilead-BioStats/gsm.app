@@ -11,7 +11,7 @@ test_that("BR-GEN-01: By default, the app will display a title generated from th
   )
   app$wait_for_idle()
   expect_equal(app$get_text("title"), "TREE-10")
-  app$expect_screenshot(name = "default-title", selector = ".navbar")
+  expect_official_screenshot(app, name = "default-title", selector = ".navbar")
   app$stop()
 })
 
@@ -26,7 +26,7 @@ test_that("BR-GEN-02: The app title can be customized at launch.", {
   )
   app$wait_for_idle()
   expect_equal(app$get_text("title"), "Custom Title")
-  app$expect_screenshot(name = "custom-title", selector = ".navbar")
+  expect_official_screenshot(app, name = "custom-title", selector = ".navbar")
   app$stop()
 })
 
@@ -50,12 +50,12 @@ test_that("BR-GEN-03: The user can navigate between the main sections of the app
   )
   app$wait_for_idle()
   expect_equal(app$get_value(input = "primary_nav_bar"), "Metric Details")
-  app$expect_screenshot(name = "metric-details")
+  expect_official_screenshot(app, name = "metric-details")
 
   app$set_inputs(primary_nav_bar = "Domain Details")
   app$wait_for_idle()
   expect_equal(app$get_value(input = "primary_nav_bar"), "Domain Details")
-  app$expect_screenshot(name = "domain-details")
+  expect_official_screenshot(app, name = "domain-details")
 
   app$stop()
 })
@@ -72,7 +72,7 @@ test_that("BR-GEN-04: If the data contains more than one group level (e.g., 'Sit
   )
   app$wait_for_idle()
   expect_equal(app$get_value(input = "group-level-select"), "Site")
-  app$expect_screenshot(name = "multi-level", selector = ".navbar")
+  expect_official_screenshot(app, name = "multi-level", selector = ".navbar")
   app$stop()
 
   # Single group level.
@@ -85,7 +85,7 @@ test_that("BR-GEN-04: If the data contains more than one group level (e.g., 'Sit
   )
   app$wait_for_idle()
   expect_null(app$get_value(input = "group-level-select"))
-  app$expect_screenshot(name = "single-level", selector = ".navbar")
+  expect_official_screenshot(app, name = "single-level", selector = ".navbar")
   app$stop()
 })
 
@@ -112,10 +112,11 @@ test_that("BR-GEN-05: If the 'Group Level' filter is displayed, the user can fil
     app$get_text("#group-group-select .vscomp-option-text")
   )
   expect_in(group_choices, site_choices)
-  app$expect_screenshot(name = "site", selector = ".navbar")
+  expect_official_screenshot(app, name = "site", selector = ".navbar")
   app$click(selector = "#group-group-select .vscomp-arrow")
   app$wait_for_idle()
-  app$expect_screenshot(
+  expect_official_screenshot(
+    app,
     name = "site-choices",
     selector = "#group-group-select .vscomp-dropbox"
   )
@@ -129,10 +130,11 @@ test_that("BR-GEN-05: If the 'Group Level' filter is displayed, the user can fil
     app$get_text("#group-group-select .vscomp-option-text")
   )
   expect_in(group_choices, country_choices)
-  app$expect_screenshot(name = "country", selector = ".navbar")
+  expect_official_screenshot(app, name = "country", selector = ".navbar")
   app$click(selector = "#group-group-select .vscomp-arrow")
   app$wait_for_idle()
-  app$expect_screenshot(
+  expect_official_screenshot(
+    app,
     name = "country-choices",
     selector = "#group-group-select .vscomp-dropbox"
   )
@@ -160,10 +162,11 @@ test_that("BR-GEN-06: The user can filter the data by group (e.g., 'Site' or 'Co
     dplyr::distinct(.data$GroupID) %>%
     nrow()
   expect_gt(n_groups_in_choices, 1)
-  app$expect_screenshot(name = "no_group", selector = ".navbar")
+  expect_official_screenshot(app, name = "no_group", selector = ".navbar")
   app$click(selector = "#participant-select .vscomp-arrow")
   app$wait_for_idle()
-  app$expect_screenshot(
+  expect_official_screenshot(
+    app,
     name = "no_group-participants",
     selector = "#participant-select .vscomp-dropbox"
   )
@@ -182,10 +185,11 @@ test_that("BR-GEN-06: The user can filter the data by group (e.g., 'Site' or 'Co
     dplyr::pull("GroupID") %>%
     unique()
   expect_equal(groups_in_choices, "0X7258")
-  app$expect_screenshot(name = "group-selected", selector = ".navbar")
+  expect_official_screenshot(app, name = "group-selected", selector = ".navbar")
   app$click(selector = "#participant-select .vscomp-arrow")
   app$wait_for_idle()
-  app$expect_screenshot(
+  expect_official_screenshot(
+    app,
     name = "group-selected-participants",
     selector = "#participant-select .vscomp-dropbox"
   )
@@ -208,7 +212,8 @@ test_that("BR-GEN-07: The user can filter the data by 'Participant'.", {
   domain_summary_counts_all <- as.integer(
     app$get_text("#domain_details-counts-card .metadata-list-item-value")
   )
-  app$expect_screenshot(
+  expect_official_screenshot(
+    app,
     name = "counts-no-participant",
     selector = "#domain_details-counts-card"
   )
@@ -219,7 +224,8 @@ test_that("BR-GEN-07: The user can filter the data by 'Participant'.", {
     app$get_text("#domain_details-counts-card .metadata-list-item-value")
   )
   expect_lt(domain_summary_counts_subset[[1]], domain_summary_counts_all[[1]])
-  app$expect_screenshot(
+  expect_official_screenshot(
+    app,
     name = "counts-S7900",
     selector = "#domain_details-counts-card"
   )
@@ -247,7 +253,7 @@ test_that("BR-GEN-08: The user can reset all filters to their default values.", 
   expect_equal(app$get_value(input = "group-level-select"), "Country")
   expect_equal(app$get_value(input = "group-group-select"), "US")
   expect_equal(app$get_value(input = "participant-select"), "S10581")
-  app$expect_screenshot(name = "01-before", selector = ".navbar")
+  expect_official_screenshot(app, name = "01-before", selector = ".navbar")
 
   # The reset button breaks the methods used by app, so from here we need to go
   # directly to chromote.
