@@ -1,5 +1,4 @@
 skip_if_not_installed("shinytest2")
-skip()
 
 # Uncomment this to un-skip tests 1 at a time. Useful for dealing with large
 # changes.
