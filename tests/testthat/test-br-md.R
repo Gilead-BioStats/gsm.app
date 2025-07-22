@@ -1,0 +1,667 @@
+setup_br()
+# skip_on_cran <- skip
+
+test_that("BR-MD-01: The user can view visualizations of a single KRI, selected via a dropdown menu.", {
+  skip_on_cran()
+  app <- AppDriver$new(
+    app_dir = test_path("apps", "standard"),
+    variant = "br",
+    name = "md-01",
+    width = 1300,
+    height = 800
+  )
+  app$wait_for_idle()
+  app$set_inputs(primary_nav_bar = "Metric Details")
+  app$wait_for_idle()
+  app$run_js(file = test_path("fixtures", "WidgetPlotTestHelpers.js"))
+  app$wait_for_js(
+    "isCanvasLoaded('metric_details-scatter_plot');",
+    timeout = 2000
+  )
+
+  # Default KRI
+  target_kri <- "Analysis_kri0001"
+  expect_equal(
+    app$get_value(input = "metric_details-metric"),
+    target_kri
+  )
+  expect_equal(
+    app$get_js(
+      "document.querySelector('#metric_details-scatter_plot-plot canvas').chart.data._config_.MetricID"
+    ),
+    target_kri
+  )
+  expect_official_screenshot(app, name = "default_kri")
+
+  # Change KRI
+  target_kri <- "Analysis_kri0002"
+  app$set_inputs(`metric_details-metric` = target_kri)
+  app$wait_for_idle()
+  app$wait_for_js(
+    "isCanvasLoaded('metric_details-scatter_plot');",
+    timeout = 2000
+  )
+  expect_equal(
+    app$get_value(input = "metric_details-metric"),
+    target_kri
+  )
+  expect_equal(
+    app$get_js(
+      "document.querySelector('#metric_details-scatter_plot-plot canvas').chart.data._config_.MetricID"
+    ),
+    target_kri
+  )
+  expect_official_screenshot(app, name = "changed_kri")
+  app$stop()
+})
+
+test_that("BR-MD-02: The KRI selection dropdown is filtered to show only KRIs relevant to the selected 'Group Level'.", {
+  skip_on_cran()
+  app <- AppDriver$new(
+    app_dir = test_path("apps", "standard"),
+    variant = "br",
+    name = "md-02",
+    width = 1300,
+    height = 800
+  )
+  app$wait_for_idle()
+  app$set_inputs(primary_nav_bar = "Metric Details")
+  app$wait_for_idle()
+  app$run_js(file = test_path("fixtures", "WidgetPlotTestHelpers.js"))
+  dd_selector <- "#metric_details-metric"
+  dd_text_selector <- paste(dd_selector, ".vscomp-option-text")
+  dd_arrow_selector <- paste(dd_selector, ".vscomp-arrow")
+  dd_choice_selector <- paste(dd_selector, ".vscomp-dropbox")
+
+  # Site level
+  site_metrics <- sample_dfMetrics %>%
+    dplyr::filter(.data$GroupLevel == "Site") %>%
+    dplyr::pull(.data$Metric)
+  dropdown_options_site <- app$get_text(dd_text_selector) %>%
+    stringr::str_squish()
+  expect_setequal(dropdown_options_site, site_metrics)
+  app$wait_for_js(
+    "isCanvasLoaded('metric_details-scatter_plot');",
+    timeout = 2000
+  )
+  app$click(selector = dd_arrow_selector)
+  app$wait_for_idle()
+  expect_official_screenshot(
+    app,
+    name = "site-choices",
+    selector = dd_choice_selector
+  )
+
+  # Country level
+  app$set_inputs(`group-level-select` = "Country")
+  app$wait_for_idle()
+  country_metrics <- gsm.app::sample_dfMetrics %>%
+    dplyr::filter(.data$GroupLevel == "Country") %>%
+    dplyr::pull(.data$Metric)
+  dropdown_options_country <- app$get_text(dd_text_selector) %>%
+    stringr::str_squish()
+  expect_setequal(dropdown_options_country, country_metrics)
+  app$wait_for_js(
+    "isCanvasLoaded('metric_details-scatter_plot');",
+    timeout = 2000
+  )
+  # Close then re-open the menu.
+  app$click(selector = dd_arrow_selector)
+  app$wait_for_idle()
+  app$click(selector = dd_arrow_selector)
+  app$wait_for_idle()
+  expect_official_screenshot(
+    app,
+    name = "country-choices",
+    selector = dd_choice_selector
+  )
+  app$stop()
+})
+
+test_that("BR-MD-03: The user can view an interactive scatter plot of the selected KRI's latest results, based on gsm.kri::Widget_ScatterPlot().", {
+  skip_on_cran()
+  app <- AppDriver$new(
+    app_dir = test_path("apps", "standard"),
+    variant = "br",
+    name = "md-03",
+    width = 1300,
+    height = 800
+  )
+  app$wait_for_idle()
+  app$set_inputs(primary_nav_bar = "Metric Details")
+  app$wait_for_idle()
+  app$run_js(file = test_path("fixtures", "WidgetPlotTestHelpers.js"))
+  app$wait_for_js(
+    "isCanvasLoaded('metric_details-scatter_plot');",
+    timeout = 2000
+  )
+  expect_css_class(
+    app$get_html("body"),
+    "#metric_details-scatter_plot-plot",
+    "Widget_ScatterPlot"
+  )
+  expect_official_screenshot(app, name = "scatter_plot")
+  app$stop()
+})
+
+test_that("BR-MD-04: The selected group is highlighted in the interactive scatter plot.", {
+  skip_on_cran()
+  app <- AppDriver$new(
+    app_dir = test_path("apps", "standard"),
+    variant = "br",
+    name = "md-04",
+    width = 1300,
+    height = 800
+  )
+  app$wait_for_idle()
+  app$set_inputs(primary_nav_bar = "Metric Details")
+  app$wait_for_idle()
+  app$run_js(file = test_path("fixtures", "WidgetPlotTestHelpers.js"))
+  app$wait_for_js(
+    "isCanvasLoaded('metric_details-scatter_plot');",
+    timeout = 2000
+  )
+  target_group <- "0X4579"
+  app$set_inputs(`group-group-select` = target_group)
+  app$wait_for_idle()
+  selected_group_js <- app$get_js(
+    "document.querySelector('#metric_details-scatter_plot-plot canvas').chart.data._config_.selectedGroupIDs"
+  )
+  expect_equal(selected_group_js, target_group)
+  expect_official_screenshot(app, name = "scatter_plot-selected")
+  app$stop()
+})
+
+test_that("BR-MD-05: Clicking a group in the scatter plot updates the group drop-down.", {
+  skip_on_cran()
+  app <- AppDriver$new(
+    app_dir = test_path("apps", "standard"),
+    variant = "br",
+    name = "md-05",
+    width = 1300,
+    height = 800
+  )
+  app$wait_for_idle()
+  app$set_inputs(primary_nav_bar = "Metric Details")
+  app$wait_for_idle()
+  app$run_js(file = test_path("fixtures", "WidgetPlotTestHelpers.js"))
+  app$wait_for_js("isCanvasLoaded('metric_details-scatter_plot');")
+  app$run_js("clickWidgetPlotGroup('metric_details-scatter_plot', '0X4579');")
+  app$wait_for_idle()
+  expect_equal(app$get_value(input = "group-group-select"), "0X4579")
+  expect_official_screenshot(app, name = "scatter_plot-click")
+  app$stop()
+})
+
+test_that("BR-MD-06: The user can view an interactive bar chart of the selected KRI's latest metric values, based on gsm.kri::Widget_BarChart().", {
+  skip_on_cran()
+  app <- AppDriver$new(
+    app_dir = test_path("apps", "standard"),
+    variant = "br",
+    name = "md-06",
+    width = 1300,
+    height = 800
+  )
+  app$wait_for_idle()
+  app$set_inputs(primary_nav_bar = "Metric Details")
+  app$wait_for_idle()
+  app$set_inputs(`metric_details-selected_tab` = "Bar Chart (KRI Value)")
+  app$wait_for_idle()
+  app$run_js(file = test_path("fixtures", "WidgetPlotTestHelpers.js"))
+  app$wait_for_js(
+    "isCanvasLoaded('metric_details-bar_chart_metric');",
+    timeout = 2000
+  )
+  expect_css_class(
+    app$get_html("body"),
+    "#metric_details-bar_chart_metric-plot",
+    "Widget_BarChart"
+  )
+  expect_official_screenshot(app, name = "bar_chart-values")
+  app$stop()
+})
+
+test_that("BR-MD-07: The selected group is highlighted in the interactive bar chart (value).", {
+  skip_on_cran()
+  app <- AppDriver$new(
+    app_dir = test_path("apps", "standard"),
+    variant = "br",
+    name = "md-07",
+    width = 1300,
+    height = 800
+  )
+  app$wait_for_idle()
+  app$set_inputs(primary_nav_bar = "Metric Details")
+  app$wait_for_idle()
+  app$set_inputs(`metric_details-selected_tab` = "Bar Chart (KRI Value)")
+  app$wait_for_idle()
+  app$run_js(file = test_path("fixtures", "WidgetPlotTestHelpers.js"))
+  app$wait_for_js(
+    "isCanvasLoaded('metric_details-bar_chart_metric');",
+    timeout = 2000
+  )
+  target_group <- "0X4579"
+  app$set_inputs(`group-group-select` = target_group)
+  app$wait_for_idle()
+  selected_group_js <- app$get_js(
+    "document.querySelector('#metric_details-bar_chart_metric-plot canvas').chart.data._config_.selectedGroupIDs"
+  )
+  expect_equal(selected_group_js, target_group)
+  expect_official_screenshot(app, name = "bar_chart-values-selected")
+  app$stop()
+})
+
+test_that("BR-MD-08: Clicking a group in the bar chart (value) updates the group drop-down.", {
+  skip_on_cran()
+  app <- AppDriver$new(
+    app_dir = test_path("apps", "standard"),
+    variant = "br",
+    name = "md-08",
+    width = 1300,
+    height = 800
+  )
+  app$wait_for_idle()
+  app$set_inputs(primary_nav_bar = "Metric Details")
+  app$wait_for_idle()
+  app$set_inputs(`metric_details-selected_tab` = "Bar Chart (KRI Value)")
+  app$wait_for_idle()
+  app$run_js(file = test_path("fixtures", "WidgetPlotTestHelpers.js"))
+  app$wait_for_js("isCanvasLoaded('metric_details-bar_chart_metric');")
+  app$run_js("clickWidgetPlotGroup('metric_details-bar_chart_metric', '0X4579');")
+  app$wait_for_idle()
+  expect_equal(app$get_value(input = "group-group-select"), "0X4579")
+  expect_official_screenshot(app, name = "bar_chart-values-click")
+  app$stop()
+})
+
+test_that("BR-MD-09: The user can view an interactive bar chart of the selected KRI's latest scores, based on gsm.kri::Widget_BarChart().", {
+  skip_on_cran()
+  app <- AppDriver$new(
+    app_dir = test_path("apps", "standard"),
+    variant = "br",
+    name = "md-09",
+    width = 1300,
+    height = 800
+  )
+  app$wait_for_idle()
+  app$set_inputs(primary_nav_bar = "Metric Details")
+  app$wait_for_idle()
+  app$set_inputs(`metric_details-selected_tab` = "Bar Chart (KRI Score)")
+  app$wait_for_idle()
+  app$run_js(file = test_path("fixtures", "WidgetPlotTestHelpers.js"))
+  app$wait_for_js(
+    "isCanvasLoaded('metric_details-bar_chart_score');",
+    timeout = 2000
+  )
+  expect_css_class(
+    app$get_html("body"),
+    "#metric_details-bar_chart_score-plot",
+    "Widget_BarChart"
+  )
+  expect_official_screenshot(app, name = "bar_chart-scores")
+  app$stop()
+})
+
+test_that("BR-MD-10: The selected group is highlighted in the interactive bar chart (score).", {
+  skip_on_cran()
+  app <- AppDriver$new(
+    app_dir = test_path("apps", "standard"),
+    variant = "br",
+    name = "md-10",
+    width = 1300,
+    height = 800
+  )
+  app$wait_for_idle()
+  app$set_inputs(primary_nav_bar = "Metric Details")
+  app$wait_for_idle()
+  app$set_inputs(`metric_details-selected_tab` = "Bar Chart (KRI Score)")
+  app$wait_for_idle()
+  app$run_js(file = test_path("fixtures", "WidgetPlotTestHelpers.js"))
+  app$wait_for_js(
+    "isCanvasLoaded('metric_details-bar_chart_score');",
+    timeout = 2000
+  )
+  target_group <- "0X4579"
+  app$set_inputs(`group-group-select` = target_group)
+  app$wait_for_idle()
+  selected_group_js <- app$get_js(
+    "document.querySelector('#metric_details-bar_chart_score-plot canvas').chart.data._config_.selectedGroupIDs"
+  )
+  expect_equal(selected_group_js, target_group)
+  expect_official_screenshot(app, name = "bar_chart-scores-selected")
+  app$stop()
+})
+
+test_that("BR-MD-11: Clicking a group in the bar chart (score) updates the group drop-down.", {
+  skip_on_cran()
+  app <- AppDriver$new(
+    app_dir = test_path("apps", "standard"),
+    variant = "br",
+    name = "md-11",
+    width = 1300,
+    height = 800
+  )
+  app$wait_for_idle()
+  app$set_inputs(primary_nav_bar = "Metric Details")
+  app$wait_for_idle()
+  app$set_inputs(`metric_details-selected_tab` = "Bar Chart (KRI Score)")
+  app$wait_for_idle()
+  app$run_js(file = test_path("fixtures", "WidgetPlotTestHelpers.js"))
+  app$wait_for_js("isCanvasLoaded('metric_details-bar_chart_score');")
+  app$run_js("clickWidgetPlotGroup('metric_details-bar_chart_score', '0X4579');")
+  app$wait_for_idle()
+  expect_equal(app$get_value(input = "group-group-select"), "0X4579")
+  expect_official_screenshot(app, name = "bar_chart-scores-click")
+  app$stop()
+})
+
+test_that("BR-MD-12: The user can view an interactive time-series plot of the selected KRI's scores across all available data snapshots, based on gsm.kri::Widget_TimeSeries().", {
+  skip_on_cran()
+  app <- AppDriver$new(
+    app_dir = test_path("apps", "standard"),
+    variant = "br",
+    name = "md-12",
+    width = 1300,
+    height = 800
+  )
+  app$wait_for_idle()
+  app$set_inputs(primary_nav_bar = "Metric Details")
+  app$wait_for_idle()
+  app$set_inputs(`metric_details-selected_tab` = "Time Series")
+  app$wait_for_idle()
+  app$run_js(file = test_path("fixtures", "WidgetPlotTestHelpers.js"))
+  app$wait_for_js(
+    "isCanvasLoaded('metric_details-time_series');",
+    timeout = 2000
+  )
+  expect_css_class(
+    app$get_html("body"),
+    "#metric_details-time_series-plot",
+    "Widget_TimeSeries"
+  )
+  expect_official_screenshot(app, name = "time_series")
+  app$stop()
+})
+
+test_that("BR-MD-13: The selected group is highlighted in the interactive time-series plot.", {
+  skip_on_cran()
+  app <- AppDriver$new(
+    app_dir = test_path("apps", "standard"),
+    variant = "br",
+    name = "md-13",
+    width = 1300,
+    height = 800
+  )
+  app$wait_for_idle()
+  app$set_inputs(primary_nav_bar = "Metric Details")
+  app$wait_for_idle()
+  app$set_inputs(`metric_details-selected_tab` = "Time Series")
+  app$wait_for_idle()
+  app$run_js(file = test_path("fixtures", "WidgetPlotTestHelpers.js"))
+  app$wait_for_js(
+    "isCanvasLoaded('metric_details-time_series');",
+    timeout = 2000
+  )
+  target_group <- "0X4579"
+  app$set_inputs(`group-group-select` = target_group)
+  app$wait_for_idle()
+  selected_group_js <- app$get_js(
+    "document.querySelector('#metric_details-time_series-plot canvas').chart.data._config_.selectedGroupIDs"
+  )
+  expect_equal(selected_group_js, target_group)
+  expect_official_screenshot(app, name = "time_series-selected")
+  app$stop()
+})
+
+test_that("BR-MD-14: Clicking a group in the time-series plot updates the group drop-down.", {
+  skip_on_cran()
+  app <- AppDriver$new(
+    app_dir = test_path("apps", "standard"),
+    variant = "br",
+    name = "md-14",
+    width = 1300,
+    height = 800
+  )
+  app$wait_for_idle()
+  app$set_inputs(primary_nav_bar = "Metric Details")
+  app$wait_for_idle()
+  app$set_inputs(`metric_details-selected_tab` = "Time Series")
+  app$wait_for_idle()
+  app$run_js(file = test_path("fixtures", "WidgetPlotTestHelpers.js"))
+  app$wait_for_js("isCanvasLoaded('metric_details-time_series');")
+  app$run_js("clickTimeSeriesGroup('metric_details-time_series', '0X4579');")
+  app$wait_for_idle()
+  expect_equal(app$get_value(input = "group-group-select"), "0X4579")
+  expect_official_screenshot(app, name = "time_series-click")
+  app$stop()
+})
+
+test_that("BR-MD-15: The user can view a table of the KRI results for each group, as generated by gsm.kri::Report_MetricTable().", {
+  skip_on_cran()
+  app <- AppDriver$new(
+    app_dir = test_path("apps", "standard"),
+    variant = "br",
+    name = "md-15",
+    width = 1300,
+    height = 800
+  )
+  app$wait_for_idle()
+  app$set_inputs(primary_nav_bar = "Metric Details")
+  app$wait_for_idle()
+  app$set_inputs(`metric_details-selected_tab` = "Analysis Output")
+  app$wait_for_idle()
+  expect_css_class(
+    app$get_html("body"),
+    "#metric_details-analysis_output-gt-table",
+    "gt_shiny"
+  )
+  expect_setequal(
+    app$get_text("#metric_details-analysis_output-gt-table .rt-th"),
+    c(
+      "", # Hidden selection checkbox column
+      "Group",
+      "Enrolled",
+      "Numerator",
+      "Denominator",
+      "Metric",
+      "Score",
+      "Flag"
+    )
+  )
+  expect_official_screenshot(app, name = "analysis_output")
+  app$stop()
+})
+
+test_that("BR-MD-16: The selected group is highlighted in the KRI results table.", {
+  skip_on_cran()
+  app <- AppDriver$new(
+    app_dir = test_path("apps", "standard"),
+    variant = "br",
+    name = "md-16",
+    width = 1300,
+    height = 800
+  )
+  app$wait_for_idle()
+  app$set_inputs(primary_nav_bar = "Metric Details")
+  app$wait_for_idle()
+  app$set_inputs(`metric_details-selected_tab` = "Analysis Output")
+  app$wait_for_idle()
+  target_group <- "0X7798"
+  app$set_inputs(`group-group-select` = target_group)
+  app$wait_for_idle()
+  selected_group <- rvest::read_html(app$get_html("body")) %>%
+    rvest::html_element("#metric_details-analysis_output-gt-table") %>%
+    rvest::html_element(".rt-tr-selected .rt-td:nth-child(2)") %>%
+    rvest::html_text2() %>%
+    stringr::str_extract("^\\S+")
+  expect_equal(selected_group, target_group)
+  expect_official_screenshot(app, name = "analysis_output-selected")
+  app$stop()
+})
+
+test_that("BR-MD-17: Clicking a group in the KRI results table updates the group drop-down.", {
+  skip_on_cran()
+  app <- AppDriver$new(
+    app_dir = test_path("apps", "standard"),
+    variant = "br",
+    name = "md-17",
+    width = 1300,
+    height = 800
+  )
+  app$wait_for_idle()
+  app$set_inputs(primary_nav_bar = "Metric Details")
+  app$wait_for_idle()
+  app$set_inputs(`metric_details-selected_tab` = "Analysis Output")
+  app$wait_for_idle()
+  target_row_selector <- "#metric_details-analysis_output-gt-table .rt-tbody .rt-tr-group:nth-child(5)"
+  target_cell_selector <- paste(target_row_selector, ".rt-td:nth-child(2)")
+  target_group <- app$get_text(target_cell_selector) %>%
+    stringr::str_extract("^\\S+")
+  app$click(selector = target_cell_selector)
+  app$wait_for_idle()
+  expect_equal(app$get_value(input = "group-group-select"), target_group)
+  expect_official_screenshot(app, name = "analysis_output-click")
+  app$stop()
+})
+
+test_that("BR-MD-18: When a group is selected, the user can view that group's metadata.", {
+  skip_on_cran()
+  app <- AppDriver$new(
+    app_dir = test_path("apps", "standard"),
+    variant = "br",
+    name = "md-18",
+    width = 1300,
+    height = 800
+  )
+  app$wait_for_idle()
+  app$set_inputs(primary_nav_bar = "Metric Details")
+  app$wait_for_idle()
+  target_group <- "0X7798"
+  app$set_inputs(`group-group-select` = target_group)
+  app$wait_for_idle()
+  group_details_selector <- "#group_details-card_group_metadata_list"
+  expect_equal(
+    app$get_text(paste(group_details_selector, "h5")),
+    "Group Metadata"
+  )
+  group_metadata_elements <- rvest::read_html(app$get_html("body")) %>%
+    rvest::html_element(group_details_selector) %>%
+    rvest::html_elements(".metadata-list-item")
+  expected_metadata <- sample_dfGroups %>%
+    dplyr::filter(.data$GroupLevel == "Site", .data$GroupID == target_group) %>%
+    dplyr::select("Param", "Value") %>%
+    dplyr::mutate(
+      Param = stringr::str_remove_all(.data$Param, "_") %>%
+        tolower()
+    ) %>%
+    dplyr::arrange(.data$Param)
+  group_metadata <- dplyr::tibble(
+    Param = group_metadata_elements %>%
+      rvest::html_element(".metadata-list-item-label") %>%
+      rvest::html_text2() %>%
+      stringr::str_remove_all("\\s") %>%
+      tolower(),
+    Value = group_metadata_elements %>%
+      rvest::html_element(".metadata-list-item-value") %>%
+      rvest::html_text2()
+  ) %>%
+    dplyr::arrange(.data$Param)
+  expect_equal(group_metadata, expected_metadata)
+  expect_official_screenshot(app, name = "group_metadata", selector = "#group_details-card_group_metadata_list")
+  app$stop()
+})
+
+test_that("BR-MD-19: When a group is selected, the user can view a table of participants within that group, showing their numerator, denominator, and metric values for the selected KRI.", {
+  skip_on_cran()
+  app <- AppDriver$new(
+    app_dir = test_path("apps", "standard"),
+    variant = "br",
+    name = "md-19",
+    width = 1300,
+    height = 800
+  )
+  app$wait_for_idle()
+  app$set_inputs(primary_nav_bar = "Metric Details")
+  app$wait_for_idle()
+  target_group <- "0X7798"
+  app$set_inputs(`group-group-select` = target_group)
+  app$wait_for_idle()
+  participants_selector <- "#group_details-participants-"
+  expect_equal(
+    stringr::str_squish(app$get_text(paste0(participants_selector, "title"))),
+    glue::glue("Site: {target_group}")
+  )
+  expect_equal(
+    stringr::str_squish(app$get_text(paste0(participants_selector, "subtitle"))),
+    "Click rows for participant details"
+  )
+  expected_participants <- sample_dfAnalyticsInput %>%
+    dplyr::filter(
+      .data$SnapshotDate == "2012-03-31",
+      .data$GroupLevel == "Site",
+      .data$MetricID == "Analysis_kri0001",
+      .data$GroupID == target_group,
+      .data$Denominator > 15
+    ) %>%
+    dplyr::arrange(dplyr::desc(.data$Metric)) %>%
+    dplyr::mutate(
+      Metric = round(Metric, 5)
+    ) %>%
+    dplyr::select(
+      "SubjectID",
+      "Adverse Events" = "Numerator",
+      "Days on Study" = "Denominator",
+      "Adverse Event Rate" = "Metric"
+    )
+  participant_rows <- rvest::read_html(app$get_html("body")) %>%
+    rvest::html_element(paste0(participants_selector, "gt-table")) %>%
+    rvest::html_elements(".rt-tbody .rt-tr")
+  participant_data <- dplyr::tibble(
+    SubjectID = participant_rows %>%
+      rvest::html_elements(".rt-td:nth-child(2) .rt-text-content") %>%
+      rvest::html_text2(),
+    "Adverse Events" = participant_rows %>%
+      rvest::html_elements(".rt-td:nth-child(3) .rt-text-content") %>%
+      rvest::html_text2() %>%
+      as.double(),
+    "Days on Study" = participant_rows %>%
+      rvest::html_elements(".rt-td:nth-child(4) .rt-text-content") %>%
+      rvest::html_text2() %>%
+      as.double(),
+    "Adverse Event Rate" = participant_rows %>%
+      rvest::html_elements(".rt-td:nth-child(5) .rt-text-content") %>%
+      rvest::html_text2() %>%
+      as.double()
+  )
+  expect_equal(participant_data, expected_participants)
+  expect_official_screenshot(
+    app,
+    name = "participant_table",
+    selector = paste0(participants_selector, "gt_card")
+  )
+  app$stop()
+})
+
+test_that("BR-MD-20: Clicking a participant in the participant table selects that participant and navigates to the Domain Details tab.", {
+  skip_on_cran()
+  app <- AppDriver$new(
+    app_dir = test_path("apps", "standard"),
+    variant = "br",
+    name = "md-20",
+    width = 1300,
+    height = 800
+  )
+  app$wait_for_idle()
+  app$set_inputs(primary_nav_bar = "Metric Details")
+  app$wait_for_idle()
+  app$set_inputs(`group-group-select` = "0X7798")
+  app$wait_for_idle()
+  selector <- "#group_details-participants-gt-table .rt-tbody .rt-tr-group:nth-child(1) .rt-tr .rt-td:nth-child(2) .rt-text-content"
+  subject_id <- app$get_text(selector)
+  app$click(selector = selector)
+  app$wait_for_idle()
+  expect_equal(app$get_value(input = "primary_nav_bar"), "Domain Details")
+  expect_equal(app$get_value(input = "participant-select"), subject_id)
+  expect_official_screenshot(app, name = "participant_table-click")
+  app$stop()
+})

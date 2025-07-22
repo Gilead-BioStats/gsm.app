@@ -1,4 +1,4 @@
-skip_if_not_installed("shinytest2")
+setup_br()
 # skip_on_cran <- skip
 
 test_that("BR-GEN-01: By default, the app will display a title generated from the study information in dfGroups.", {

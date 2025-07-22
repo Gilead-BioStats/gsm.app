@@ -43,7 +43,7 @@ function clickWithMouse(el, x, y) {
 }
 
 /**
- * Simulates a click on a specific gruop in a chart widget, identified by its
+ * Simulates a click on a specific group in a chart widget, identified by its
  * container ID and target group ID.
  *
  * @param {string} containerId    - The ID of the container element that holds
@@ -61,6 +61,45 @@ function clickWidgetPlotGroup(containerId, targetGroupID) {
 
   const instance = canvas.chart;
   const data = instance.data.datasets[0].data;
+  const xScale = instance.scales.x;
+  const yScale = instance.scales.y;
+
+  data.forEach(function(point) {
+    if (point.GroupID === targetGroupID) {
+      // Get the pixel coordinates for the point relative to the canvas
+      const xpix = xScale.getPixelForValue(point.x);
+      const ypix = yScale.getPixelForValue(point.y);
+
+      // Use the abstracted function to simulate the click with element-relative coordinates
+      clickWithMouse(canvas, xpix, ypix);
+    }
+  });
+}
+
+/**
+ * Simulates a click on a specific group in a time series chart widget.
+ *
+ * @param {string} containerId    - The ID of the container element that holds the chart.
+ * @param {string} targetGroupID  - The group ID of the data point to click on.
+ * @param {string} flagType       - The type of flag to click on, either "red" or "amber".
+ *
+ * @returns {undefined}
+ */
+function clickTimeSeriesGroup(containerId, targetGroupID, flagType = "amber") {
+  const canvas = document.querySelector(`#${containerId} canvas`);
+  if (!canvas || !canvas.chart) {
+    console.error("Canvas or chart instance not found for:", containerId);
+    return;
+  }
+
+  const instance = canvas.chart;
+  let data;
+  if (flagType === "red") {
+    data = instance.data.datasets[5].data;
+  } else {
+    data = instance.data.datasets[6].data;
+  }
+
   const xScale = instance.scales.x;
   const yScale = instance.scales.y;
 
