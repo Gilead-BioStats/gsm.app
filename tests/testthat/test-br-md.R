@@ -1,8 +1,8 @@
-setup_br()
-# skip_on_cran <- skip
+skip_if_not_br()
+currently_debugging <- FALSE
 
 test_that("BR-MD-01: The user can view visualizations of a single KRI, selected via a dropdown menu.", {
-  skip_on_cran()
+  skip_if(currently_debugging)
   app <- AppDriver$new(
     app_dir = test_path("apps", "standard"),
     variant = "br",
@@ -56,7 +56,7 @@ test_that("BR-MD-01: The user can view visualizations of a single KRI, selected 
 })
 
 test_that("BR-MD-02: The KRI selection dropdown is filtered to show only KRIs relevant to the selected 'Group Level'.", {
-  skip_on_cran()
+  skip_if(currently_debugging)
   app <- AppDriver$new(
     app_dir = test_path("apps", "standard"),
     variant = "br",
@@ -119,7 +119,7 @@ test_that("BR-MD-02: The KRI selection dropdown is filtered to show only KRIs re
 })
 
 test_that("BR-MD-03: The user can view an interactive scatter plot of the selected KRI's latest results, based on gsm.kri::Widget_ScatterPlot().", {
-  skip_on_cran()
+  skip_if(currently_debugging)
   app <- AppDriver$new(
     app_dir = test_path("apps", "standard"),
     variant = "br",
@@ -145,7 +145,7 @@ test_that("BR-MD-03: The user can view an interactive scatter plot of the select
 })
 
 test_that("BR-MD-04: The selected group is highlighted in the interactive scatter plot.", {
-  skip_on_cran()
+  skip_if(currently_debugging)
   app <- AppDriver$new(
     app_dir = test_path("apps", "standard"),
     variant = "br",
@@ -173,7 +173,7 @@ test_that("BR-MD-04: The selected group is highlighted in the interactive scatte
 })
 
 test_that("BR-MD-05: Clicking a group in the scatter plot updates the group drop-down.", {
-  skip_on_cran()
+  skip_if(currently_debugging)
   app <- AppDriver$new(
     app_dir = test_path("apps", "standard"),
     variant = "br",
@@ -194,7 +194,7 @@ test_that("BR-MD-05: Clicking a group in the scatter plot updates the group drop
 })
 
 test_that("BR-MD-06: The user can view an interactive bar chart of the selected KRI's latest metric values, based on gsm.kri::Widget_BarChart().", {
-  skip_on_cran()
+  skip_if(currently_debugging)
   app <- AppDriver$new(
     app_dir = test_path("apps", "standard"),
     variant = "br",
@@ -222,7 +222,7 @@ test_that("BR-MD-06: The user can view an interactive bar chart of the selected 
 })
 
 test_that("BR-MD-07: The selected group is highlighted in the interactive bar chart (value).", {
-  skip_on_cran()
+  skip_if(currently_debugging)
   app <- AppDriver$new(
     app_dir = test_path("apps", "standard"),
     variant = "br",
@@ -252,7 +252,7 @@ test_that("BR-MD-07: The selected group is highlighted in the interactive bar ch
 })
 
 test_that("BR-MD-08: Clicking a group in the bar chart (value) updates the group drop-down.", {
-  skip_on_cran()
+  skip_if(currently_debugging)
   app <- AppDriver$new(
     app_dir = test_path("apps", "standard"),
     variant = "br",
@@ -275,7 +275,7 @@ test_that("BR-MD-08: Clicking a group in the bar chart (value) updates the group
 })
 
 test_that("BR-MD-09: The user can view an interactive bar chart of the selected KRI's latest scores, based on gsm.kri::Widget_BarChart().", {
-  skip_on_cran()
+  skip_if(currently_debugging)
   app <- AppDriver$new(
     app_dir = test_path("apps", "standard"),
     variant = "br",
@@ -303,7 +303,7 @@ test_that("BR-MD-09: The user can view an interactive bar chart of the selected 
 })
 
 test_that("BR-MD-10: The selected group is highlighted in the interactive bar chart (score).", {
-  skip_on_cran()
+  skip_if(currently_debugging)
   app <- AppDriver$new(
     app_dir = test_path("apps", "standard"),
     variant = "br",
@@ -333,7 +333,7 @@ test_that("BR-MD-10: The selected group is highlighted in the interactive bar ch
 })
 
 test_that("BR-MD-11: Clicking a group in the bar chart (score) updates the group drop-down.", {
-  skip_on_cran()
+  skip_if(currently_debugging)
   app <- AppDriver$new(
     app_dir = test_path("apps", "standard"),
     variant = "br",
@@ -356,7 +356,7 @@ test_that("BR-MD-11: Clicking a group in the bar chart (score) updates the group
 })
 
 test_that("BR-MD-12: The user can view an interactive time-series plot of the selected KRI's scores across all available data snapshots, based on gsm.kri::Widget_TimeSeries().", {
-  skip_on_cran()
+  skip_if(currently_debugging)
   app <- AppDriver$new(
     app_dir = test_path("apps", "standard"),
     variant = "br",
@@ -384,7 +384,7 @@ test_that("BR-MD-12: The user can view an interactive time-series plot of the se
 })
 
 test_that("BR-MD-13: The selected group is highlighted in the interactive time-series plot.", {
-  skip_on_cran()
+  skip_if(currently_debugging)
   app <- AppDriver$new(
     app_dir = test_path("apps", "standard"),
     variant = "br",
@@ -414,7 +414,7 @@ test_that("BR-MD-13: The selected group is highlighted in the interactive time-s
 })
 
 test_that("BR-MD-14: Clicking a group in the time-series plot updates the group drop-down.", {
-  skip_on_cran()
+  skip_if(currently_debugging)
   app <- AppDriver$new(
     app_dir = test_path("apps", "standard"),
     variant = "br",
@@ -437,7 +437,7 @@ test_that("BR-MD-14: Clicking a group in the time-series plot updates the group 
 })
 
 test_that("BR-MD-15: The user can view a table of the KRI results for each group, as generated by gsm.kri::Report_MetricTable().", {
-  skip_on_cran()
+  skip_if(currently_debugging)
   app <- AppDriver$new(
     app_dir = test_path("apps", "standard"),
     variant = "br",
@@ -473,7 +473,7 @@ test_that("BR-MD-15: The user can view a table of the KRI results for each group
 })
 
 test_that("BR-MD-16: The selected group is highlighted in the KRI results table.", {
-  skip_on_cran()
+  skip_if(currently_debugging)
   app <- AppDriver$new(
     app_dir = test_path("apps", "standard"),
     variant = "br",
@@ -500,7 +500,7 @@ test_that("BR-MD-16: The selected group is highlighted in the KRI results table.
 })
 
 test_that("BR-MD-17: Clicking a group in the KRI results table updates the group drop-down.", {
-  skip_on_cran()
+  skip_if(currently_debugging)
   app <- AppDriver$new(
     app_dir = test_path("apps", "standard"),
     variant = "br",
@@ -525,7 +525,7 @@ test_that("BR-MD-17: Clicking a group in the KRI results table updates the group
 })
 
 test_that("BR-MD-18: When a group is selected, the user can view that group's metadata.", {
-  skip_on_cran()
+  skip_if(currently_debugging)
   app <- AppDriver$new(
     app_dir = test_path("apps", "standard"),
     variant = "br",
@@ -572,7 +572,7 @@ test_that("BR-MD-18: When a group is selected, the user can view that group's me
 })
 
 test_that("BR-MD-19: When a group is selected, the user can view a table of participants within that group, showing their numerator, denominator, and metric values for the selected KRI.", {
-  skip_on_cran()
+  skip_if(currently_debugging)
   app <- AppDriver$new(
     app_dir = test_path("apps", "standard"),
     variant = "br",
@@ -588,11 +588,11 @@ test_that("BR-MD-19: When a group is selected, the user can view a table of part
   app$wait_for_idle()
   participants_selector <- "#group_details-participants-"
   expect_equal(
-    stringr::str_squish(app$get_text(paste0(participants_selector, "title"))),
+    app$get_text(paste0(participants_selector, "title")),
     glue::glue("Site: {target_group}")
   )
   expect_equal(
-    stringr::str_squish(app$get_text(paste0(participants_selector, "subtitle"))),
+    app$get_text(paste0(participants_selector, "subtitle")),
     "Click rows for participant details"
   )
   expected_participants <- sample_dfAnalyticsInput %>%
@@ -643,7 +643,7 @@ test_that("BR-MD-19: When a group is selected, the user can view a table of part
 })
 
 test_that("BR-MD-20: Clicking a participant in the participant table selects that participant and navigates to the Domain Details tab.", {
-  skip_on_cran()
+  skip_if(currently_debugging)
   app <- AppDriver$new(
     app_dir = test_path("apps", "standard"),
     variant = "br",

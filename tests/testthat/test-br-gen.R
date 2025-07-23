@@ -1,8 +1,8 @@
-setup_br()
-# skip_on_cran <- skip
+skip_if_not_br()
+currently_debugging <- FALSE
 
 test_that("BR-GEN-01: By default, the app will display a title generated from the study information in dfGroups.", {
-  skip_on_cran()
+  skip_if(currently_debugging)
   app <- AppDriver$new(
     app_dir = test_path("apps", "standard"),
     variant = "br",
@@ -17,7 +17,7 @@ test_that("BR-GEN-01: By default, the app will display a title generated from th
 })
 
 test_that("BR-GEN-02: The app title can be customized at launch.", {
-  skip_on_cran()
+  skip_if(currently_debugging)
   app <- AppDriver$new(
     app_dir = test_path("apps", "custom-title"),
     variant = "br",
@@ -32,7 +32,7 @@ test_that("BR-GEN-02: The app title can be customized at launch.", {
 })
 
 test_that("BR-GEN-03: The user can navigate between the main sections of the app using a navigation bar at the top of the page.", {
-  skip_on_cran()
+  skip_if(currently_debugging)
   app <- AppDriver$new(
     app_dir = test_path("apps", "standard"),
     variant = "br",
@@ -62,7 +62,7 @@ test_that("BR-GEN-03: The user can navigate between the main sections of the app
 })
 
 test_that("BR-GEN-04: If the data contains more than one group level (e.g., 'Site' vs 'Country'), a 'Group Level' filter is displayed.", {
-  skip_on_cran()
+  skip_if(currently_debugging)
   # Multiple group levels.
   app <- AppDriver$new(
     app_dir = test_path("apps", "standard"),
@@ -91,7 +91,7 @@ test_that("BR-GEN-04: If the data contains more than one group level (e.g., 'Sit
 })
 
 test_that("BR-GEN-05: If the 'Group Level' filter is displayed, the user can filter the data by group level.", {
-  skip_on_cran()
+  skip_if(currently_debugging)
   site_choices <- c(
     "All",
     unique(sample_dfGroups$GroupID[sample_dfGroups$GroupLevel == "Site"])
@@ -143,7 +143,7 @@ test_that("BR-GEN-05: If the 'Group Level' filter is displayed, the user can fil
 })
 
 test_that("BR-GEN-06: The user can filter the data by group (e.g., 'Site' or 'Country') within the selected 'Group Level'.", {
-  skip_on_cran()
+  skip_if(currently_debugging)
   app <- AppDriver$new(
     app_dir = test_path("apps", "standard"),
     variant = "br",
@@ -199,7 +199,7 @@ test_that("BR-GEN-06: The user can filter the data by group (e.g., 'Site' or 'Co
 })
 
 test_that("BR-GEN-07: The user can filter the data by 'Participant'.", {
-  skip_on_cran()
+  skip_if(currently_debugging)
   app <- AppDriver$new(
     app_dir = test_path("apps", "standard"),
     variant = "br",
@@ -234,7 +234,7 @@ test_that("BR-GEN-07: The user can filter the data by 'Participant'.", {
 })
 
 test_that("BR-GEN-08: The user can reset all filters to their default values.", {
-  skip_on_cran()
+  skip_if(currently_debugging)
   app <- AppDriver$new(
     app_dir = test_path("apps", "standard"),
     variant = "br",
