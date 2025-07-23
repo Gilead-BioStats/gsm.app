@@ -238,7 +238,7 @@ test_that("BR-GEN-08: The user can reset all filters to their default values.", 
   app <- AppDriver$new(
     app_dir = test_path("apps", "standard"),
     variant = "br",
-    name = "gen-09",
+    name = "gen-08",
     width = 1300,
     height = 800
   )
