@@ -8,8 +8,10 @@ skip_if_not_br <- function() {
 }
 
 probably_skip_br_tests <- function() {
+  # I'm still including this, but I'd like to TRY to run them all everywhere.
   skip_if_not(
-    as.logical(Sys.getenv("RUN_BR_TESTS", "false")),
+    # as.logical(Sys.getenv("RUN_BR_TESTS", "false")),
+    TRUE,
     "BR tests are super slow"
   )
 }
