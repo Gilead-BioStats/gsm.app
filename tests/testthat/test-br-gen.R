@@ -113,14 +113,9 @@ test_that("BR-GEN-05: If the 'Group Level' filter is displayed, the user can fil
     app$get_text("#group-group-select .vscomp-option-text")
   )
   expect_in(group_choices, site_choices)
-  expect_official_screenshot(app, name = "site", selector = ".navbar")
   app$click(selector = "#group-group-select .vscomp-arrow")
   app$wait_for_idle()
-  expect_official_screenshot(
-    app,
-    name = "site-choices",
-    selector = "#group-group-select .vscomp-dropbox"
-  )
+  expect_official_screenshot(app, name = "site-choices")
 
   app$click(selector = "#group-group-select .vscomp-arrow")
   app$wait_for_idle()
@@ -131,14 +126,9 @@ test_that("BR-GEN-05: If the 'Group Level' filter is displayed, the user can fil
     app$get_text("#group-group-select .vscomp-option-text")
   )
   expect_in(group_choices, country_choices)
-  expect_official_screenshot(app, name = "country", selector = ".navbar")
   app$click(selector = "#group-group-select .vscomp-arrow")
   app$wait_for_idle()
-  expect_official_screenshot(
-    app,
-    name = "country-choices",
-    selector = "#group-group-select .vscomp-dropbox"
-  )
+  expect_official_screenshot(app, name = "country-choices")
   app$stop()
 })
 
@@ -163,14 +153,9 @@ test_that("BR-GEN-06: The user can filter the data by group (e.g., 'Site' or 'Co
     dplyr::distinct(.data$GroupID) %>%
     nrow()
   expect_gt(n_groups_in_choices, 1)
-  expect_official_screenshot(app, name = "no_group", selector = ".navbar")
   app$click(selector = "#participant-select .vscomp-arrow")
   app$wait_for_idle()
-  expect_official_screenshot(
-    app,
-    name = "no_group-participants",
-    selector = "#participant-select .vscomp-dropbox"
-  )
+  expect_official_screenshot(app, name = "no_group-participants")
 
   app$click(selector = "#participant-select .vscomp-arrow")
   app$set_inputs(`group-group-select` = "0X7258")
@@ -186,14 +171,9 @@ test_that("BR-GEN-06: The user can filter the data by group (e.g., 'Site' or 'Co
     dplyr::pull("GroupID") %>%
     unique()
   expect_equal(groups_in_choices, "0X7258")
-  expect_official_screenshot(app, name = "group-selected", selector = ".navbar")
   app$click(selector = "#participant-select .vscomp-arrow")
   app$wait_for_idle()
-  expect_official_screenshot(
-    app,
-    name = "group-selected-participants",
-    selector = "#participant-select .vscomp-dropbox"
-  )
+  expect_official_screenshot(app, name = "group-selected-participants")
 
   app$stop()
 })
@@ -213,11 +193,7 @@ test_that("BR-GEN-07: The user can filter the data by 'Participant'.", {
   domain_summary_counts_all <- as.integer(
     app$get_text("#domain_details-counts-card .metadata-list-item-value")
   )
-  expect_official_screenshot(
-    app,
-    name = "counts-no-participant",
-    selector = "#domain_details-counts-card"
-  )
+  expect_official_screenshot(app, name = "counts-no-participant")
 
   app$set_inputs(`participant-select` = "S7900")
   app$wait_for_idle()
@@ -225,11 +201,7 @@ test_that("BR-GEN-07: The user can filter the data by 'Participant'.", {
     app$get_text("#domain_details-counts-card .metadata-list-item-value")
   )
   expect_lt(domain_summary_counts_subset[[1]], domain_summary_counts_all[[1]])
-  expect_official_screenshot(
-    app,
-    name = "counts-S7900",
-    selector = "#domain_details-counts-card"
-  )
+  expect_official_screenshot(app, name = "counts-S7900")
   app$stop()
 })
 
@@ -269,7 +241,7 @@ test_that("BR-GEN-08: The user can reset all filters to their default values.", 
         filename = path,
         selector = ".navbar"
       ),
-      "gen-09-02-after.png",
+      "gen-08-02-after.png",
       variant = "br"
     )
   } else {
