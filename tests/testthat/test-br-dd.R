@@ -6,7 +6,7 @@ test_that("BR-DD-01: The user can view a summary of the number of records for ea
   app <- AppDriver$new(
     app_dir = test_path("apps", "standard"),
     variant = "br",
-    name = "dd-01",
+    name = "br-dd-01",
     width = 1300,
     height = 800
   )
@@ -42,7 +42,7 @@ test_that("BR-DD-02: The domain summary counts update based on the selected 'Gro
   app <- AppDriver$new(
     app_dir = test_path("apps", "standard"),
     variant = "br",
-    name = "dd-02",
+    name = "br-dd-02",
     width = 1300,
     height = 800
   )
@@ -78,7 +78,7 @@ test_that("BR-DD-03: The user can switch between different domain data views usi
   app <- AppDriver$new(
     app_dir = test_path("apps", "standard"),
     variant = "br",
-    name = "dd-03",
+    name = "br-dd-03",
     width = 1300,
     height = 800
   )
@@ -106,7 +106,7 @@ test_that("BR-DD-04: Clicking a domain in the summary list switches the view to 
   app <- AppDriver$new(
     app_dir = test_path("apps", "standard"),
     variant = "br",
-    name = "dd-04",
+    name = "br-dd-04",
     width = 1300,
     height = 800
   )
@@ -149,7 +149,7 @@ test_that("BR-DD-05: The user can view the raw data for the selected domain in a
   app <- AppDriver$new(
     app_dir = test_path("apps", "standard"),
     variant = "br",
-    name = "dd-05",
+    name = "br-dd-05",
     width = 1300,
     height = 800
   )
@@ -171,7 +171,7 @@ test_that("BR-DD-06: The domain data table is filtered by the selected 'Group' a
   app <- AppDriver$new(
     app_dir = test_path("apps", "standard"),
     variant = "br",
-    name = "dd-06",
+    name = "br-dd-06",
     width = 1300,
     height = 800
   )
@@ -211,7 +211,7 @@ test_that("BR-DD-07: The app will display an error message if it is unable to lo
   app <- AppDriver$new(
     app_dir = test_path("apps", "error"),
     variant = "br",
-    name = "dd-07",
+    name = "br-dd-07",
     width = 1300,
     height = 800
   )

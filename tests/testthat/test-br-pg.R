@@ -6,7 +6,7 @@ test_that("BR-PG-01: If a single plugin is included in the app, it appears as a 
   app <- AppDriver$new(
     app_dir = test_path("apps", "plugin"),
     variant = "br",
-    name = "pg-01",
+    name = "br-pg-01",
     width = 1400,
     height = 800
   )
@@ -23,7 +23,7 @@ test_that("BR-PG-02: If multiple plugins are provided, they are grouped under a 
   app <- AppDriver$new(
     app_dir = test_path("apps", "plugins"),
     variant = "br",
-    name = "pg-02",
+    name = "br-pg-02",
     width = 1400,
     height = 800
   )
@@ -51,7 +51,7 @@ test_that("BR-PG-03: If a plugin specifies required inputs, a placeholder is sho
   app <- AppDriver$new(
     app_dir = test_path("apps", "plugin"),
     variant = "br",
-    name = "pg-03",
+    name = "br-pg-03",
     width = 1400,
     height = 800
   )

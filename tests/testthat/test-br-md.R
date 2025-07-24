@@ -6,7 +6,7 @@ test_that("BR-MD-01: The user can view visualizations of a single KRI, selected 
   app <- AppDriver$new(
     app_dir = test_path("apps", "standard"),
     variant = "br",
-    name = "md-01",
+    name = "br-md-01",
     width = 1300,
     height = 800
   )
@@ -60,7 +60,7 @@ test_that("BR-MD-02: The KRI selection dropdown is filtered to show only KRIs re
   app <- AppDriver$new(
     app_dir = test_path("apps", "standard"),
     variant = "br",
-    name = "md-02",
+    name = "br-md-02",
     width = 1300,
     height = 800
   )
@@ -123,7 +123,7 @@ test_that("BR-MD-03: The user can view an interactive scatter plot of the select
   app <- AppDriver$new(
     app_dir = test_path("apps", "standard"),
     variant = "br",
-    name = "md-03",
+    name = "br-md-03",
     width = 1300,
     height = 800
   )
@@ -149,7 +149,7 @@ test_that("BR-MD-04: The selected group is highlighted in the interactive scatte
   app <- AppDriver$new(
     app_dir = test_path("apps", "standard"),
     variant = "br",
-    name = "md-04",
+    name = "br-md-04",
     width = 1300,
     height = 800
   )
@@ -177,7 +177,7 @@ test_that("BR-MD-05: Clicking a group in the scatter plot updates the group drop
   app <- AppDriver$new(
     app_dir = test_path("apps", "standard"),
     variant = "br",
-    name = "md-05",
+    name = "br-md-05",
     width = 1300,
     height = 800
   )
@@ -198,7 +198,7 @@ test_that("BR-MD-06: The user can view an interactive bar chart of the selected 
   app <- AppDriver$new(
     app_dir = test_path("apps", "standard"),
     variant = "br",
-    name = "md-06",
+    name = "br-md-06",
     width = 1300,
     height = 800
   )
@@ -226,7 +226,7 @@ test_that("BR-MD-07: The selected group is highlighted in the interactive bar ch
   app <- AppDriver$new(
     app_dir = test_path("apps", "standard"),
     variant = "br",
-    name = "md-07",
+    name = "br-md-07",
     width = 1300,
     height = 800
   )
@@ -256,7 +256,7 @@ test_that("BR-MD-08: Clicking a group in the bar chart (value) updates the group
   app <- AppDriver$new(
     app_dir = test_path("apps", "standard"),
     variant = "br",
-    name = "md-08",
+    name = "br-md-08",
     width = 1300,
     height = 800
   )
@@ -279,7 +279,7 @@ test_that("BR-MD-09: The user can view an interactive bar chart of the selected 
   app <- AppDriver$new(
     app_dir = test_path("apps", "standard"),
     variant = "br",
-    name = "md-09",
+    name = "br-md-09",
     width = 1300,
     height = 800
   )
@@ -307,7 +307,7 @@ test_that("BR-MD-10: The selected group is highlighted in the interactive bar ch
   app <- AppDriver$new(
     app_dir = test_path("apps", "standard"),
     variant = "br",
-    name = "md-10",
+    name = "br-md-10",
     width = 1300,
     height = 800
   )
@@ -337,7 +337,7 @@ test_that("BR-MD-11: Clicking a group in the bar chart (score) updates the group
   app <- AppDriver$new(
     app_dir = test_path("apps", "standard"),
     variant = "br",
-    name = "md-11",
+    name = "br-md-11",
     width = 1300,
     height = 800
   )
@@ -360,7 +360,7 @@ test_that("BR-MD-12: The user can view an interactive time-series plot of the se
   app <- AppDriver$new(
     app_dir = test_path("apps", "standard"),
     variant = "br",
-    name = "md-12",
+    name = "br-md-12",
     width = 1300,
     height = 800
   )
@@ -388,7 +388,7 @@ test_that("BR-MD-13: The selected group is highlighted in the interactive time-s
   app <- AppDriver$new(
     app_dir = test_path("apps", "standard"),
     variant = "br",
-    name = "md-13",
+    name = "br-md-13",
     width = 1300,
     height = 800
   )
@@ -418,7 +418,7 @@ test_that("BR-MD-14: Clicking a group in the time-series plot updates the group 
   app <- AppDriver$new(
     app_dir = test_path("apps", "standard"),
     variant = "br",
-    name = "md-14",
+    name = "br-md-14",
     width = 1300,
     height = 800
   )
@@ -441,7 +441,7 @@ test_that("BR-MD-15: The user can view a table of the KRI results for each group
   app <- AppDriver$new(
     app_dir = test_path("apps", "standard"),
     variant = "br",
-    name = "md-15",
+    name = "br-md-15",
     width = 1300,
     height = 800
   )
@@ -477,7 +477,7 @@ test_that("BR-MD-16: The selected group is highlighted in the KRI results table.
   app <- AppDriver$new(
     app_dir = test_path("apps", "standard"),
     variant = "br",
-    name = "md-16",
+    name = "br-md-16",
     width = 1300,
     height = 800
   )
@@ -504,7 +504,7 @@ test_that("BR-MD-17: Clicking a group in the KRI results table updates the group
   app <- AppDriver$new(
     app_dir = test_path("apps", "standard"),
     variant = "br",
-    name = "md-17",
+    name = "br-md-17",
     width = 1300,
     height = 800
   )
@@ -529,7 +529,7 @@ test_that("BR-MD-18: When a group is selected, the user can view that group's me
   app <- AppDriver$new(
     app_dir = test_path("apps", "standard"),
     variant = "br",
-    name = "md-18",
+    name = "br-md-18",
     width = 1300,
     height = 800
   )
@@ -576,7 +576,7 @@ test_that("BR-MD-19: When a group is selected, the user can view a table of part
   app <- AppDriver$new(
     app_dir = test_path("apps", "standard"),
     variant = "br",
-    name = "md-19",
+    name = "br-md-19",
     width = 1300,
     height = 800
   )
@@ -647,7 +647,7 @@ test_that("BR-MD-20: Clicking a participant in the participant table selects tha
   app <- AppDriver$new(
     app_dir = test_path("apps", "standard"),
     variant = "br",
-    name = "md-20",
+    name = "br-md-20",
     width = 1300,
     height = 800
   )

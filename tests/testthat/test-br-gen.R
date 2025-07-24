@@ -6,7 +6,7 @@ test_that("BR-GEN-01: By default, the app will display a title generated from th
   app <- AppDriver$new(
     app_dir = test_path("apps", "standard"),
     variant = "br",
-    name = "gen-01",
+    name = "br-gen-01",
     width = 1300,
     height = 800
   )
@@ -21,7 +21,7 @@ test_that("BR-GEN-02: The app title can be customized at launch.", {
   app <- AppDriver$new(
     app_dir = test_path("apps", "custom-title"),
     variant = "br",
-    name = "gen-02",
+    name = "br-gen-02",
     width = 1300,
     height = 800
   )
@@ -36,7 +36,7 @@ test_that("BR-GEN-03: The user can navigate between the main sections of the app
   app <- AppDriver$new(
     app_dir = test_path("apps", "standard"),
     variant = "br",
-    name = "gen-03",
+    name = "br-gen-03",
     width = 1300,
     height = 800
   )
@@ -67,7 +67,7 @@ test_that("BR-GEN-04: If the data contains more than one group level (e.g., 'Sit
   app <- AppDriver$new(
     app_dir = test_path("apps", "standard"),
     variant = "br",
-    name = "gen-04",
+    name = "br-gen-04",
     width = 1300,
     height = 800
   )
@@ -80,7 +80,7 @@ test_that("BR-GEN-04: If the data contains more than one group level (e.g., 'Sit
   app <- AppDriver$new(
     app_dir = test_path("apps", "single-level"),
     variant = "br",
-    name = "gen-04",
+    name = "br-gen-04",
     width = 1300,
     height = 800
   )
@@ -103,7 +103,7 @@ test_that("BR-GEN-05: If the 'Group Level' filter is displayed, the user can fil
   app <- AppDriver$new(
     app_dir = test_path("apps", "standard"),
     variant = "br",
-    name = "gen-05",
+    name = "br-gen-05",
     width = 1300,
     height = 800
   )
@@ -137,7 +137,7 @@ test_that("BR-GEN-06: The user can filter the data by group (e.g., 'Site' or 'Co
   app <- AppDriver$new(
     app_dir = test_path("apps", "standard"),
     variant = "br",
-    name = "gen-06",
+    name = "br-gen-06",
     width = 1300,
     height = 800
   )
@@ -183,7 +183,7 @@ test_that("BR-GEN-07: The user can filter the data by 'Participant'.", {
   app <- AppDriver$new(
     app_dir = test_path("apps", "standard"),
     variant = "br",
-    name = "gen-07",
+    name = "br-gen-07",
     width = 1300,
     height = 800
   )
@@ -210,7 +210,7 @@ test_that("BR-GEN-08: The user can reset all filters to their default values.", 
   app <- AppDriver$new(
     app_dir = test_path("apps", "standard"),
     variant = "br",
-    name = "gen-08",
+    name = "br-gen-08",
     width = 1300,
     height = 800
   )
@@ -241,7 +241,7 @@ test_that("BR-GEN-08: The user can reset all filters to their default values.", 
         filename = path,
         selector = ".navbar"
       ),
-      "gen-08-02-after.png",
+      "br-gen-08-02-after.png",
       variant = "br"
     )
   } else {

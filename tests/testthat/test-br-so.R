@@ -6,7 +6,7 @@ test_that("BR-SO-01: The user can view a card with a high-level overview of the 
   app <- AppDriver$new(
     app_dir = test_path("apps", "standard"),
     variant = "br",
-    name = "so-01",
+    name = "br-so-01",
     width = 1300,
     height = 800
   )
@@ -48,7 +48,7 @@ test_that("BR-SO-02: The user can view an interactive KRI summary table based on
   app <- AppDriver$new(
     app_dir = test_path("apps", "standard"),
     variant = "br",
-    name = "so-02",
+    name = "br-so-02",
     width = 1300,
     height = 800
   )
@@ -76,7 +76,7 @@ test_that("BR-SO-03: The KRI summary table is filtered to the selected 'Group Le
   app <- AppDriver$new(
     app_dir = test_path("apps", "standard"),
     variant = "br",
-    name = "so-03",
+    name = "br-so-03",
     width = 1300,
     height = 800
   )
@@ -142,7 +142,7 @@ test_that("BR-SO-04: The user can filter the KRI summary table by flag status (r
   app <- AppDriver$new(
     app_dir = test_path("apps", "standard"),
     variant = "br",
-    name = "so-04",
+    name = "br-so-04",
     width = 1300,
     height = 800
   )
@@ -213,7 +213,7 @@ test_that("BR-SO-05: The flag status pills display a count of KRIs with that fla
   app <- AppDriver$new(
     app_dir = test_path("apps", "standard"),
     variant = "br",
-    name = "so-05",
+    name = "br-so-05",
     width = 1300,
     height = 800
   )
@@ -281,7 +281,7 @@ test_that("BR-SO-06: Clicking a KRI cell in the summary table navigates the user
   app <- AppDriver$new(
     app_dir = test_path("apps", "standard"),
     variant = "br",
-    name = "so-06",
+    name = "br-so-06",
     width = 1300,
     height = 800
   )
@@ -316,7 +316,7 @@ test_that("BR-SO-07: The user can view a set of interactive scatter plots based 
   app <- AppDriver$new(
     app_dir = test_path("apps", "standard"),
     variant = "br",
-    name = "so-07",
+    name = "br-so-07",
     width = 1300,
     height = 800
   )
@@ -355,7 +355,7 @@ test_that("BR-SO-08: The set of scatter plots is filtered to show only plots rel
   app <- AppDriver$new(
     app_dir = test_path("apps", "standard"),
     variant = "br",
-    name = "so-08",
+    name = "br-so-08",
     width = 1300,
     height = 800
   )
@@ -416,7 +416,7 @@ test_that("BR-SO-09: Clicking a point in a scatter plot navigates the user to th
   app <- AppDriver$new(
     app_dir = test_path("apps", "standard"),
     variant = "br",
-    name = "so-09",
+    name = "br-so-09",
     width = 1300,
     height = 800
   )
