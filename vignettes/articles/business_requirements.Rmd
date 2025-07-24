@@ -1,0 +1,34 @@
+---
+title: "Business Requirements"
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+```{r load-data, include = FALSE}
+source("br_utils.R", local = TRUE)
+brs <- read_brs("business_requirements.yml")
+br_abbrs <- extract_br_abbrs(brs)
+br_imgs <- read_br_imgs()
+```
+
+```{r generate-br-report, results='asis', echo=FALSE}
+purrr::iwalk(brs, function(br_list, category_name) {
+  cat(paste0("## ", category_name, "\n\n"))
+  category_abbr <- br_abbrs[category_name]
+  purrr::iwalk(br_list, function(br_description, br_id) {
+    cat(paste0("### ", br_id, ": ", br_description, "\n\n"))
+    if (category_abbr %in% names(br_imgs)) {
+      img_paths <- br_imgs[[category_abbr]][[br_id]]
+      if (!is.null(img_paths)) {
+        cat(glue::glue("![]({img_paths})"), sep = "\n")
+        cat("\n\n")
+      }
+    }
+  })
+})
+```
