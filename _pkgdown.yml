@@ -4,14 +4,5 @@ template:
 
 navbar:
   structure:
-    left: [intro, reference, articles, tutorials, news]
+    left: [intro, reference, articles, news]
     right: [search, github]
-
-articles:
-- title: Getting Started
-  navbar: ~
-  contents:
-  - data-preparation
-- title: Advanced Topics  
-  contents:
-  - plugins
