@@ -37,15 +37,12 @@ mod_ActionList_UI <- function(id, chrLinkIDs, chrLabels, chrValues) {
 #' @export
 mod_ActionList_Server <- function(id, chrLinkIDs) {
   moduleServer(id, function(input, output, session) {
-    lastClickedLink <- reactiveVal(NULL)
-    observe({
-      lapply(chrLinkIDs, function(name) {
-        observe(lastClickedLink(name)) %>%
-          bindEvent(input[[name]])
+    rctv_strLastClicked <- reactiveVal(NULL)
+    purrr::walk(chrLinkIDs, function(strLinkID) {
+      observeEvent(input[[strLinkID]], {
+        rctv_strLastClicked(strLinkID)
       })
-      observe(lastClickedLink(NULL)) %>%
-        bindEvent(length(chrLinkIDs) == 0)
     })
-    lastClickedLink
+    return(rctv_strLastClicked)
   })
 }

@@ -69,28 +69,17 @@ gsmApp_Server <- function(
     ## Primary Inputs ----
     ##
     ## Inputs update via reactiveVals.
-
     ### Groups ----
-    chrGroupLevels <- setdiff(sort(unique(dfGroups$GroupLevel)), "Study")
-    names(chrGroupLevels) <- chrGroupLevels
-    lGroups <- purrr::map(
-      chrGroupLevels,
-      function(strGroupLevel) {
-        sort(unique(dfGroups$GroupID[dfGroups$GroupLevel == strGroupLevel]))
-      }
-    )
+    lGroups <- dfGroups %>%
+      dplyr::filter(.data$GroupLevel != "Study") %>%
+      splitByGrouping("GroupLevel", "GroupID")
+
     mod_GroupInput_Server(
       "group",
       lGroups,
       rctv_strGroupID,
       rctv_strGroupLevel
     )
-
-    ### Tabs ----
-    observe({
-      rctv_strPrimaryNavBar(input$primary_nav_bar)
-    })
-    # TODO: Sync tab in response to this reactive.
 
     ### Participants ----
     dfSubjectGroups <- dplyr::distinct(
@@ -100,42 +89,21 @@ gsmApp_Server <- function(
       .data$SubjectID
     ) %>%
       dplyr::arrange(.data$SubjectID)
-    # lSubjectGroups <- purrr::imap(
-    #   lGroups,
-    #   function(chrGroupIDs, strGroupLevel) {
-    #     purrr::map(
-    #       rlang::set_names(chrGroupIDs, chrGroupIDs),
-    #       function(strGroupID) {
-    #         dfSubjectGroups$SubjectID[
-    #           dfSubjectGroups$GroupLevel == strGroupLevel &
-    #             dfSubjectGroups$GroupID == strGroupID
-    #         ]
-    #       }
-    #     )
-    #   }
-    # )
-    rctv_chrParticipantIDs <- srvr_rctv_chrParticipantIDs(
-      FilterByLatestIfPresent(dfAnalyticsInput),
-      rctv_strGroupID
+
+    lParticipantIDs <- splitByGrouping(dfSubjectGroups, "GroupID", "SubjectID")
+
+    mod_CascadingSelect_Server(
+      "participant",
+      rctv_strDependent = rctv_strGroupID,
+      l_chrChoices = lParticipantIDs,
+      rctv_strSelection = rctv_strSubjectID,
+      lglUpdateLabel = FALSE
     )
 
+    ### Tabs ----
     observe({
-      if (input$participant != "" && input$participant != rctv_strSubjectID()) {
-        rctv_strSubjectID(input$participant) # Tested via UI.
-      }
-    }) %>%
-      bindEvent(input$participant)
-    observe({
-      if (input$participant != rctv_strSubjectID()) {
-        shinyWidgets::updateVirtualSelect( # Tested via UI.
-          inputId = "participant", # Tested via UI.
-          choices = rctv_chrParticipantIDs(), # Tested via UI.
-          selected = rctv_strSubjectID(), # Tested via UI.
-          session = session # Tested via UI.
-        )
-      }
-    }) %>%
-      bindEvent(rctv_strSubjectID())
+      rctv_strPrimaryNavBar(input$primary_nav_bar)
+    })
 
     ## Domain Data ----
     ##
@@ -229,42 +197,6 @@ gsmApp_Server <- function(
       output = output,
       session = session
     )
-
-    ## Sync participant dropdown filter ----
-    ##
-    ## Revisit as app becomes fully modularized.
-    rctv_LastGroupFilter <- reactiveVal("unfiltered")
-    observe({
-      req(rctv_strSubjectID())
-      req(rctv_chrParticipantIDs())
-      req(rctv_LastGroupFilter())
-      selected <- "All"
-      if (rctv_strSubjectID() %in% rctv_chrParticipantIDs()) {
-        selected <- rctv_strSubjectID()
-      }
-      if (
-        selected != input$participant ||
-          rctv_LastGroupFilter() != rctv_strGroupID()
-      ) {
-        rctv_LastGroupFilter(rctv_strGroupID())
-        if (selected == "All") {
-          # This double-update prevents the old option from showing in the list
-          # erroneously.
-          shinyWidgets::updateVirtualSelect(
-            inputId = "participant",
-            selected = "All",
-            session = session
-          )
-        }
-        shinyWidgets::updateVirtualSelect(
-          inputId = "participant",
-          choices = rctv_chrParticipantIDs(),
-          selected = selected,
-          session = session
-        )
-      }
-    }) %>%
-      bindEvent(rctv_strSubjectID(), rctv_strGroupID())
 
     ## Domain Details ----
     srvr_SyncTab(

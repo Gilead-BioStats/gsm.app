@@ -37,34 +37,3 @@ srvr_rctv_lMetric <- function(
   }) %>%
     bindCache(rctv_strMetricID(), rctv_strGroupID())
 }
-
-#' Reactive participant IDs
-#'
-#' @inheritParams shared-params
-#' @returns A [shiny::reactive()] of dfMetrics as a list, filtered by metric.
-#' @keywords internal
-srvr_rctv_chrParticipantIDs <- function(
-  dfAnalyticsInput,
-  rctv_strGroupID
-) {
-  # TODO: Add GroupLevel
-  dfParticipantGroups <- dplyr::arrange(
-    dplyr::distinct(dfAnalyticsInput, .data$SubjectID, .data$GroupID),
-    .data$SubjectID
-  )
-  reactive({
-    group <- NullifyEmpty(rctv_strGroupID())
-    if (is.null(group)) {
-      return(c("All", sort(unique(dfParticipantGroups$SubjectID))))
-    }
-    c(
-      "All",
-      sort(unique(
-        dfParticipantGroups$SubjectID[
-          dfParticipantGroups$GroupID == group
-        ]
-      ))
-    )
-  }) %>%
-    bindCache(rctv_strGroupID())
-}

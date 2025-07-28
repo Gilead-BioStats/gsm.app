@@ -123,7 +123,11 @@ mod_MetricDetails_Server <- function(
     )
     # nocov end
 
-    srvr_SyncVirtualSelectInput("metric", rctv_strMetricID, session)
+    srvr_SyncVirtualSelectInput(
+      "metric",
+      rctv_strSelected = rctv_strMetricID,
+      session = session
+    )
 
     # Selections from tabs ----
 
