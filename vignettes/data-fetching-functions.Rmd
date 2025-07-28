@@ -1,0 +1,279 @@
+<!-- filepath: c:\Users\schildress\dev\gsm.app\vignettes\data-fetching-functions.Rmd -->
+---
+title: "Writing Custom Data Fetching Functions for GSM App"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Writing Custom Data Fetching Functions for GSM App}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+```{r setup}
+library(gsm.app)
+```
+
+## Overview
+
+The GSM app allows you to provide custom data fetching functions that read and subset data from your local file system or database. This vignette demonstrates how to write functions that can be passed to `run_gsm_app()` via the `fnFetchData` and `fnCountData` parameters.
+
+## Data Fetching Function (`fnFetchData`)
+
+The `fnFetchData` function should accept the following parameters and return a filtered data frame:
+
+- `strDomain`: Character string specifying the data domain (e.g., "AE", "LB", "DM")
+- `strGroupLevel`: Character string specifying the group level (e.g., "Site", "Country") 
+- `strGroupID`: Character string specifying the specific group ID to filter on
+- `strSubjectID`: Character string specifying the subject ID (optional, may be NULL)
+
+### Basic Implementation
+
+Here's a basic template for a data fetching function:
+
+```{r eval=FALSE}
+my_fetch_data <- function(strDomain, strGroupLevel, strGroupID, strSubjectID = NULL) {
+  # Define base path to your data files
+  data_path <- "path/to/your/data"
+  
+  # Construct file path based on domain
+  file_path <- file.path(data_path, paste0(strDomain, ".csv"))
+  
+  # Check if file exists
+  if (!file.exists(file_path)) {
+    warning(paste("Data file not found:", file_path))
+    return(data.frame())
+  }
+  
+  # Read the data
+  data <- read.csv(file_path, stringsAsFactors = FALSE)
+  
+  # Apply group-level filtering
+  if (!is.null(strGroupLevel) && strGroupLevel != "" && strGroupLevel %in% names(data)) {
+    if (!is.null(strGroupID) && strGroupID != "") {
+      data <- data[data[[strGroupLevel]] == strGroupID, ]
+    }
+  }
+  
+  # Apply subject-level filtering if specified
+  if (!is.null(strSubjectID) && strSubjectID != "" && "SubjectID" %in% names(data)) {
+    data <- data[data$SubjectID == strSubjectID, ]
+  }
+  
+  return(data)
+}
+```
+
+### Advanced Implementation with Multiple Data Sources
+
+For more complex scenarios where you have multiple data sources or need custom logic:
+
+```{r eval=FALSE}
+advanced_fetch_data <- function(strDomain, strGroupLevel, strGroupID, strSubjectID = NULL) {
+  # Define data source mappings
+  data_sources <- list(
+    "AE" = "adverse_events.csv",
+    "LB" = "lab_data.csv", 
+    "DM" = "demographics.csv",
+    "VS" = "vital_signs.csv"
+  )
+  
+  # Base data directory
+  base_path <- "C:/clinical_data"
+  
+  # Get the appropriate file for the domain
+  if (!strDomain %in% names(data_sources)) {
+    warning(paste("Unknown domain:", strDomain))
+    return(data.frame())
+  }
+  
+  file_name <- data_sources[[strDomain]]
+  full_path <- file.path(base_path, file_name)
+  
+  # Read data with error handling
+  tryCatch({
+    data <- read.csv(full_path, stringsAsFactors = FALSE)
+  }, error = function(e) {
+    warning(paste("Error reading file:", full_path, "-", e$message))
+    return(data.frame())
+  })
+  
+  # Domain-specific preprocessing
+  if (strDomain == "AE") {
+    # Ensure required columns exist for adverse events
+    required_cols <- c("SubjectID", "AETERM", "AESEV", "AEREL")
+    missing_cols <- setdiff(required_cols, names(data))
+    if (length(missing_cols) > 0) {
+      warning(paste("Missing required columns for AE domain:", paste(missing_cols, collapse = ", ")))
+    }
+  }
+  
+  # Apply group filtering with validation
+  if (!is.null(strGroupLevel) && strGroupLevel != "") {
+    if (strGroupLevel %in% names(data)) {
+      if (!is.null(strGroupID) && strGroupID != "") {
+        # Handle both exact matches and pattern matching
+        if (strGroupLevel == "Site") {
+          data <- data[data[[strGroupLevel]] == strGroupID, ]
+        } else {
+          # For other group levels, you might want pattern matching
+          data <- data[grepl(strGroupID, data[[strGroupLevel]], ignore.case = TRUE), ]
+        }
+      }
+    } else {
+      warning(paste("Group level column not found:", strGroupLevel))
+    }
+  }
+  
+  # Subject filtering
+  if (!is.null(strSubjectID) && strSubjectID != "") {
+    if ("SubjectID" %in% names(data)) {
+      data <- data[data$SubjectID == strSubjectID, ]
+    } else {
+      warning("SubjectID column not found in data")
+    }
+  }
+  
+  # Remove any rows with all NA values
+  data <- data[rowSums(is.na(data)) != ncol(data), ]
+  
+  return(data)
+}
+```
+
+## Data Counting Function (`fnCountData`)
+
+The `fnCountData` function should accept the same parameters as `fnFetchData` but return an integer count instead of a data frame.
+
+### Basic Implementation
+
+```{r eval=FALSE}
+my_count_data <- function(strDomain, strGroupLevel, strGroupID, strSubjectID = NULL) {
+  # Reuse the fetch function and count rows
+  data <- my_fetch_data(strDomain, strGroupLevel, strGroupID, strSubjectID)
+  return(nrow(data))
+}
+```
+
+### Optimized Implementation
+
+For better performance, especially with large datasets, you might want to implement counting without loading all data:
+
+```{r eval=FALSE}
+optimized_count_data <- function(strDomain, strGroupLevel, strGroupID, strSubjectID = NULL) {
+  # Define data source mappings (same as fetch function)
+  data_sources <- list(
+    "AE" = "adverse_events.csv",
+    "LB" = "lab_data.csv", 
+    "DM" = "demographics.csv",
+    "VS" = "vital_signs.csv"
+  )
+  
+  base_path <- "C:/clinical_data"
+  
+  if (!strDomain %in% names(data_sources)) {
+    return(0L)
+  }
+  
+  file_name <- data_sources[[strDomain]]
+  full_path <- file.path(base_path, file_name)
+  
+  if (!file.exists(full_path)) {
+    return(0L)
+  }
+  
+  # For very large files, you might want to use data.table or other optimized reading
+  tryCatch({
+    # Read only necessary columns for filtering
+    if (requireNamespace("data.table", quietly = TRUE)) {
+      # Use data.table for efficient reading and filtering
+      data <- data.table::fread(full_path)
+      
+      # Apply filters
+      if (!is.null(strGroupLevel) && strGroupLevel != "" && strGroupLevel %in% names(data)) {
+        if (!is.null(strGroupID) && strGroupID != "") {
+          data <- data[data[[strGroupLevel]] == strGroupID]
+        }
+      }
+      
+      if (!is.null(strSubjectID) && strSubjectID != "" && "SubjectID" %in% names(data)) {
+        data <- data[data[["SubjectID"]] == strSubjectID]
+      }
+      
+      return(nrow(data))
+    } else {
+      # Fallback to base R
+      data <- read.csv(full_path, stringsAsFactors = FALSE)
+      
+      # Apply same filtering logic as fetch function
+      if (!is.null(strGroupLevel) && strGroupLevel != "" && strGroupLevel %in% names(data)) {
+        if (!is.null(strGroupID) && strGroupID != "") {
+          data <- data[data[[strGroupLevel]] == strGroupID, ]
+        }
+      }
+      
+      if (!is.null(strSubjectID) && strSubjectID != "" && "SubjectID" %in% names(data)) {
+        data <- data[data$SubjectID == strSubjectID, ]
+      }
+      
+      # Remove rows with all NA
+      data <- data[rowSums(is.na(data)) != ncol(data), ]
+      
+      return(nrow(data))
+    }
+  }, error = function(e) {
+    warning(paste("Error counting data:", e$message))
+    return(0L)
+  })
+}
+```
+
+## Using the Functions with `run_gsm_app()`
+
+Once you've defined your data fetching functions, pass them to the GSM app:
+
+```{r eval=FALSE}
+# Run the app with custom data functions
+run_gsm_app(
+  fnFetchData = my_fetch_data,
+  fnCountData = my_count_data
+)
+
+# Or with the advanced versions
+run_gsm_app(
+  fnFetchData = advanced_fetch_data,
+  fnCountData = optimized_count_data
+)
+```
+
+## Best Practices
+
+1. **Error Handling**: Always include proper error handling to prevent the app from crashing
+2. **Data Validation**: Validate that required columns exist in your data
+3. **Performance**: For large datasets, consider using `data.table` or similar packages for efficient data operations
+4. **Consistency**: Ensure both `fnFetchData` and `fnCountData` apply the same filtering logic
+5. **Documentation**: Document the expected data structure and column names
+6. **Testing**: Test your functions with various parameter combinations before deployment
+
+## Example Data Structure
+
+Your data files should typically include these columns:
+
+- `SubjectID`: Unique subject identifier
+- Group level columns (e.g., `Site`, `Country`, `Study`)
+- Domain-specific data columns
+- Any additional metadata columns
+
+Example structure for adverse events data:
+```
+SubjectID | Site | Country | AETERM | AESEV | AEREL | AESTDT
+001       | 101  | USA     | Nausea | Mild  | Possible | 2023-01-15
+002       | 101  | USA     | Headache | Moderate | Unlikely | 2023-01-16
+```
+
+This structure allows the filtering functions to work properly with the
