@@ -45,9 +45,16 @@ extract_br_abbrs <- function(brs) {
   })
 }
 
-read_br_imgs <- function(testthat_path = "../../tests/testthat") {
+read_br_imgs <- function(path = "br") {
+  if (!fs::dir_exists(path)) {
+    cli::cli_abort(
+      "Image directory not found at '", path, "'. ",
+      "Did you forget to run `sync_br_snapshots()`?"
+    )
+  }
+
   imgs <- as.character(fs::dir_ls(
-    fs::path(testthat_path, "_snaps", "br"),
+    path,
     recurse = TRUE,
     type = "file"
   ))
@@ -64,4 +71,30 @@ read_br_imgs <- function(testthat_path = "../../tests/testthat") {
       imgs_name1[unique(br_set)]
     }
   )
+}
+
+#' Sync Business Requirement Snapshots
+#'
+#' Copies snapshots from the `testthat` directory to the vignette's `br/`
+#' subdirectory. This is necessary for `pkgdown` to find the images when
+#' building the site.
+#'
+#' This function should be ran interactively after test snapshots are updated,
+#' and it will be ran by GitHub Actions before building the `pkgdown` site.
+sync_br_snapshots <- function() {
+  from <- here::here("tests/testthat/_snaps/br")
+  if (!dir.exists(from)) {
+    cli::cli_abort(
+      "Snapshot directory not found at '",
+      from,
+      "'. Did you run the tests?"
+    )
+  }
+
+  to <- here::here("vignettes/articles/br")
+  if (fs::dir_exists(to)) {
+    fs::dir_delete(to)
+  }
+
+  fs::dir_copy(from, to)
 }
