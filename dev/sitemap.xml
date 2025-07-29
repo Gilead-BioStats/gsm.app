@@ -2,6 +2,7 @@
 <url><loc>https://gilead-biostats.github.io/gsm.app/dev/CODE_OF_CONDUCT.html</loc></url>
 <url><loc>https://gilead-biostats.github.io/gsm.app/dev/CONTRIBUTING.html</loc></url>
 <url><loc>https://gilead-biostats.github.io/gsm.app/dev/LICENSE.html</loc></url>
+<url><loc>https://gilead-biostats.github.io/gsm.app/dev/articles/business_requirements.html</loc></url>
 <url><loc>https://gilead-biostats.github.io/gsm.app/dev/articles/index.html</loc></url>
 <url><loc>https://gilead-biostats.github.io/gsm.app/dev/articles/plugins.html</loc></url>
 <url><loc>https://gilead-biostats.github.io/gsm.app/dev/authors.html</loc></url>
@@ -107,6 +108,7 @@
 <url><loc>https://gilead-biostats.github.io/gsm.app/dev/reference/mod_ScatterPlot_Server.html</loc></url>
 <url><loc>https://gilead-biostats.github.io/gsm.app/dev/reference/mod_ScatterPlot_UI.html</loc></url>
 <url><loc>https://gilead-biostats.github.io/gsm.app/dev/reference/mod_SelectState_Server.html</loc></url>
+<url><loc>https://gilead-biostats.github.io/gsm.app/dev/reference/mod_StudyInformation_UI.html</loc></url>
 <url><loc>https://gilead-biostats.github.io/gsm.app/dev/reference/mod_StudyOverview_Server.html</loc></url>
 <url><loc>https://gilead-biostats.github.io/gsm.app/dev/reference/mod_StudyOverview_UI.html</loc></url>
 <url><loc>https://gilead-biostats.github.io/gsm.app/dev/reference/mod_TimeSeries_Server.html</loc></url>
@@ -126,7 +128,6 @@
 <url><loc>https://gilead-biostats.github.io/gsm.app/dev/reference/out_MetadataList.html</loc></url>
 <url><loc>https://gilead-biostats.github.io/gsm.app/dev/reference/out_NavbarExtras.html</loc></url>
 <url><loc>https://gilead-biostats.github.io/gsm.app/dev/reference/out_Placeholder.html</loc></url>
-<url><loc>https://gilead-biostats.github.io/gsm.app/dev/reference/out_StudyInformation.html</loc></url>
 <url><loc>https://gilead-biostats.github.io/gsm.app/dev/reference/out_gtInteractive.html</loc></url>
 <url><loc>https://gilead-biostats.github.io/gsm.app/dev/reference/out_gtPlaceholder.html</loc></url>
 <url><loc>https://gilead-biostats.github.io/gsm.app/dev/reference/out_gtSmartFmtNumbers.html</loc></url>
