@@ -16,11 +16,25 @@ probably_skip_br_tests <- function() {
   )
 }
 
+# App Driver ----
+
+br_app <- function(app_dir, name, width = 1300, ...) {
+  shinytest2::AppDriver$new(
+    app_dir = test_path("apps", app_dir),
+    variant = "br",
+    name = name,
+    width = width,
+    height = 800,
+    ...
+  )
+}
+
 # Screenshots ----
 
-expect_official_screenshot <- function(app, ...) {
+expect_official_screenshot <- function(app, name, ...) {
   if (isTRUE(as.logical(Sys.getenv("SHINYTEST2_TEST_SCREENSHOT")))) {
-    app$expect_screenshot(...)
+    name <- paste(name, collapse = "-")
+    app$expect_screenshot(name = name, ...)
   } else {
     succeed("Skipping screenshot test on this platform.")
   }
