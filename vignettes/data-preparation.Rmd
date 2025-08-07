@@ -37,6 +37,8 @@ Preparing data for use with {gsm.app} involves a standardized, reproducible pipe
 
     Specify and apply mapping workflows to transform raw data into standardized mapped data.
 
+    It is important to note that [`gsm.mapping`](https://gilead-biostats.github.io/gsm.mapping/) provides necessary functions and workflows to perform the data transformation from raw/source datasets to appropriate domains. The gsm.app is designed to be flexible to accept data conforming to the data.mapping specification.
+
 3.  [Generate Mapped Data Layer](https://gilead-biostats.github.io/gsm.core/articles/Cookbook.html#automate-data-ingestion-using-ingest-and-combinespecs)
 
     Use mapping specifications to ingest, filter, and join data, producing a harmonized mapped data layer.
@@ -54,9 +56,13 @@ At this point, you should have all required data structures to deploy the app.
 The {gsm.app} requires five main data frames to operate:
 
 1.  **`dfAnalyticsInput`** - Participant-level metric data (stacked across metrics)
+
 2.  **`dfBounds`** - Statistical bounds for flagging. Set of predicted percentages/rates and upper- and lower-bounds across the full range of sample sizes/total exposure values for reporting.
+
 3.  **`dfGroups`** - Group-level metadata (sites, countries, study)
+
 4.  **`dfMetrics`** - Metric-specific metadata for use in charts and reporting.
+
 5.  **`dfResults`** - KRI assessment results. A stacked summary of analysis pipeline output.
 
 # Data Fetching Function (`fnFetchData`)
