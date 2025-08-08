@@ -1,0 +1,84 @@
+---
+title: "BR 518: Generate an app to help CMs explore snapshot data"
+format: html
+fig-cap-location: top
+---
+
+```{r}
+#| echo: false
+#| message: false
+library(magrittr)
+br_issue_number <- 518
+brs <- yaml::read_yaml("business_requirements.yml")
+br <- purrr::keep(
+  brs,
+  ~ .x$issue == br_issue_number
+)[[1]]
+
+# TODO: this should be abstracted
+img_dir <- "img"
+all_imgs <- fs::dir_ls(img_dir, recurse = TRUE, type = "file")
+names(all_imgs) <- fs::path_ext_remove(fs::path_file(all_imgs))
+```
+
+## Description
+
+[GitHub issue](https://github.com/Gilead-BioStats/gsm.app/issues/<`r br$issue`>)
+
+`r br$description`
+
+---
+
+## Features & Bug Fixes
+
+Explore the screenshot evidence presented here to determine if you agree that the app does what is described. If you do, go to the linked GitHub issue for that feature or bug fix, and comment with your approval.
+
+```{r}
+#| echo: false
+#| results: asis
+purrr::walk(br$features, function(feature) {
+  callout_class <- "tip"
+  if (stringr::str_starts(tolower(feature$title), "bug")) {
+    callout_class <- "important"
+  }
+
+  feature_header <- glue::glue(
+    ':::: {{.callout-{callout_class} collapse="true"}}',
+    "## {feature$issue}: {feature$title}",
+    "[GitHub issue](https://github.com/Gilead-BioStats/gsm.app/issues/{feature$issue})",
+    .sep = "\n"
+  )
+
+  cat(paste(feature_header, "", sep = "\n"))
+
+  purrr::iwalk(feature$acceptance_criteria, function(ac, i) {
+    ac_header <- glue::glue(
+      '::: {{.callout collapse="true"}}',
+      "### {ac}",
+      .sep = "\n"
+    )
+
+    cat(paste("", ac_header, "", sep = "\n"))
+    ac_pad <- stringr::str_pad(i, width = 2, pad = "0")
+    img_pattern <- glue::glue("^{feature$issue}-{ac_pad}-")
+    relevant_img_names <- stringr::str_subset(names(all_imgs), img_pattern)
+
+    if (length(relevant_img_names) > 0) {
+      purrr::walk(relevant_img_names, function(img_name) {
+        caption <- stringr::str_remove(img_name, "^(\\d+-)+") %>%
+          stringr::str_replace_all(c("_" = " ", "-" = ": "))
+        img_path <- all_imgs[[img_name]]
+        cat(
+          glue::glue("![{caption}]({img_path}){{.lightbox}}"),
+          "",
+          sep = "\n"
+        )
+      })
+    }
+
+    cat(':::\n\n')
+  })
+
+  cat('::::\n')
+})
+```

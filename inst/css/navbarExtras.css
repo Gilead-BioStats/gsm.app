@@ -5,8 +5,14 @@
   gap: 0.5rem; /* Space between label and input */
 }
 
+.navbar-extras .vscomp-dropbox {
+  width: fit-content;
+}
+
 .navbar-extras .vscomp-dropbox-container {
   z-index: 100 !important;
+  width: fit-content;
+  max-width: fit-content !important;
 }
 
 .navbar-extras .control-label {
@@ -15,7 +21,7 @@
 }
 
 .navbar-extras .virtual-select {
-  min-width: 100px;
+  min-width: max-content;
 }
 
 .navbar-extras button {

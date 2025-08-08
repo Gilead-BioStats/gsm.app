@@ -37,7 +37,7 @@ jobs:
           extra-packages: any::pkgdown, local::.
 
       - name: Sync BR Snapshots
-        run: Rscript -e "source('vignettes/articles/br_utils.R'); sync_br_snapshots()"
+        run: Rscript -e "source('vignettes/articles/business_requirements/sync_br_imgs.R')"
 
       - name: build pkgdown reference index
         run: pkgdown::build_reference_index()

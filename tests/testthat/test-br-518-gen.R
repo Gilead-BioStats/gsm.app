@@ -31,21 +31,21 @@ test_that("521: The user can filter the data.", {
     expect_equal(app$get_value(input = "group-level-select"), "Site")
     expect_official_screenshot(
       app,
-      name = "01-multi-level",
+      name = "01-multilevel",
       selector = ".navbar"
     )
     app$stop()
 
     # Single group level.
     app <- br_app(
-      app_dir = "single-level",
+      app_dir = "single_level",
       name = "521"
     )
     app$wait_for_idle()
     expect_null(app$get_value(input = "group-level-select"))
     expect_official_screenshot(
       app,
-      name = "01-single-level",
+      name = "01-single_level",
       selector = ".navbar"
     )
     app$stop()
@@ -74,7 +74,7 @@ test_that("521: The user can filter the data.", {
     expect_in(group_choices, site_choices)
     app$click(selector = "#group-group-select .vscomp-arrow")
     app$wait_for_idle()
-    expect_official_screenshot(app, name = "02-choices-site")
+    expect_official_screenshot(app, name = "02-choices_site")
 
     app$click(selector = "#group-group-select .vscomp-arrow")
     app$wait_for_idle()
@@ -87,7 +87,12 @@ test_that("521: The user can filter the data.", {
     expect_in(group_choices, country_choices)
     app$click(selector = "#group-group-select .vscomp-arrow")
     app$wait_for_idle()
-    expect_official_screenshot(app, name = "02-choices-country")
+    app$run_js(file = test_path("fixtures", "WidgetPlotTestHelpers.js"))
+    app$wait_for_js(
+      "isCanvasLoaded('metric_details-scatter_plot');",
+      timeout = 2000
+    )
+    expect_official_screenshot(app, name = "02-choices_country")
 
     # Reset to starting state.
     app$click(selector = "#group-group-select .vscomp-arrow")

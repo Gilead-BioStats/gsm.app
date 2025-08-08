@@ -1,0 +1,17 @@
+---
+title: "Business Requirements"
+format: html
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+## Ready for Review
+- [518: Generate an app to help CMs explore snapshot data](business_requirements/518.html)
+
+## To Do
+- 519: Users can easily explore Domain Details
