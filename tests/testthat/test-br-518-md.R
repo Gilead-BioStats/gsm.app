@@ -80,7 +80,7 @@ test_that("526: The user can view visualizations of a single KRI.", {
     app$wait_for_idle()
     expect_official_screenshot(
       app,
-      name = c("02", "site choices"),
+      name = c("02", "site_choices"),
       selector = dd_choice_selector
     )
 
