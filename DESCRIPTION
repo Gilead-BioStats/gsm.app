@@ -43,6 +43,7 @@ Suggests:
     knitr,
     pak,
     pkgload (>= 1.4.0),
+    quarto,
     rmarkdown,
     rvest,
     shinytest2 (>= 0.4.1),
