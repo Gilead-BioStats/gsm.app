@@ -5,11 +5,11 @@ fig-cap-location: top
 ---
 
 ```{r}
-#: echo: false
+#| echo: false
 # This is crazy but seems to maybe work, inspired by
-me <- normalizePath(
+br_path <- normalizePath(
   if (Sys.getenv("QUARTO_DOCUMENT_PATH") != "") {
-    Sys.getenv("QUARTO_DOCUMENT_PATH")
+    fs::path(Sys.getenv("QUARTO_DOCUMENT_PATH"), "business_requirements")
   } else if (file.exists("business_requirements.yml")) {
     getwd()
   } else if (file.exists("business_requirements/business_requirements.yml")) {
@@ -22,6 +22,7 @@ me <- normalizePath(
     "vignettes/articles/business_requirements"
   }
 )
+my_path <- fs::path_abs("..", br_path)
 ```
 
 ```{r}
@@ -29,14 +30,15 @@ me <- normalizePath(
 #| message: false
 library(magrittr)
 br_issue_number <- 518
-brs <- yaml::read_yaml(fs::path(me, "business_requirements.yml"))
+brs <- yaml::read_yaml(fs::path(br_path, "business_requirements.yml"))
 br <- purrr::keep(
   brs,
   ~ .x$issue == br_issue_number
 )[[1]]
 
-img_path <- fs::path(me, "img")
-all_imgs <- fs::dir_ls(me, recurse = TRUE, type = "file", glob = "*.png")
+img_path <- fs::path(br_path, "img")
+all_imgs <- fs::dir_ls(img_path, recurse = TRUE, type = "file", glob = "*.png")
+all_imgs <- fs::path_rel(all_imgs, start = my_path)
 names(all_imgs) <- fs::path_ext_remove(fs::path_file(all_imgs))
 ```
 
