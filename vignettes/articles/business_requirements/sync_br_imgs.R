@@ -1,3 +1,5 @@
+library(magrittr)
+
 #' Sync Business Requirement Snapshots
 #'
 #' Copies snapshots from the `testthat` directory to the vignette's `br/`
