@@ -1,28 +1,36 @@
 ---
 title: "BR 518: Generate an app to help CMs explore snapshot data"
-format: html
+format: 
+  html:
+    callout: true
 fig-cap-location: top
 ---
 
 ```{r}
 #| echo: false
-# This is crazy but seems to maybe work, inspired by
-br_path <- normalizePath(
-  if (Sys.getenv("QUARTO_DOCUMENT_PATH") != "") {
-    fs::path(Sys.getenv("QUARTO_DOCUMENT_PATH"), "business_requirements")
-  } else if (file.exists("business_requirements.yml")) {
-    getwd()
-  } else if (file.exists("business_requirements/business_requirements.yml")) {
-    "business_requirements"
-  } else if (
-    file.exists("articles/business_requirements/business_requirements.yml")
+# This is crazy but seems to maybe work, inspired by https://github.com/r-lib/nanoparquet/blob/e881a75cf4930156625c4b728a17f3cc6cd86796/vignettes/articles/benchmarks.qmd#L22
+br_path <- if (Sys.getenv("QUARTO_DOCUMENT_PATH") != "") {
+  if (
+    fs::dir_exists(fs::path(
+      Sys.getenv("QUARTO_DOCUMENT_PATH"),
+      "business_requirements"
+    ))
   ) {
-    "articles/business_requirements"
+    fs::path(Sys.getenv("QUARTO_DOCUMENT_PATH"), "business_requirements")
   } else {
-    "vignettes/articles/business_requirements"
+    fs::path(Sys.getenv("QUARTO_DOCUMENT_PATH"))
   }
-)
-my_path <- fs::path_abs("..", br_path)
+} else if (fs::file_exists("business_requirements.yml")) {
+  fs::path(getwd())
+} else if (fs::file_exists("business_requirements/business_requirements.yml")) {
+  fs::path("business_requirements")
+} else if (
+  fs::file_exists("articles/business_requirements/business_requirements.yml")
+) {
+  fs::path("articles/business_requirements")
+} else {
+  fs::path("vignettes/articles/business_requirements")
+}
 ```
 
 ```{r}
@@ -38,7 +46,7 @@ br <- purrr::keep(
 
 img_path <- fs::path(br_path, "img")
 all_imgs <- fs::dir_ls(img_path, recurse = TRUE, type = "file", glob = "*.png")
-all_imgs <- fs::path_rel(all_imgs, start = my_path)
+all_imgs <- fs::path_rel(all_imgs, start = br_path)
 names(all_imgs) <- fs::path_ext_remove(fs::path_file(all_imgs))
 ```
 
