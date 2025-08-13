@@ -1,5 +1,5 @@
 ---
-title: "BR 518: Generate an app to help CMs explore snapshot data"
+title: "518: Generate an app to help CMs explore snapshot data"
 format: 
   html:
     lightbox: true

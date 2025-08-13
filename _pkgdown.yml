@@ -6,3 +6,19 @@ navbar:
   structure:
     left: [intro, reference, articles, news]
     right: [search, github]
+
+
+articles:
+- title: Main
+  navbar: ~
+  contents:
+  - data-preparation
+  - data-ingestion
+  - plugins
+- title: Business Requirements
+  navbar: ~
+  contents:
+  - articles/business_requirements
+- title: internal
+  contents:
+  - starts_with("articles/br")
