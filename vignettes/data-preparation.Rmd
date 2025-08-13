@@ -67,6 +67,14 @@ The {gsm.app} requires five main data frames to operate:
 
 # Data Fetching Function (`fnFetchData`)
 
+## Overview
+
+The {gsm.app} operates on two levels: summary-level KRI results and detail-level domain-specific data. When users identify concerning metrics (e.g., high adverse event rates at a specific site), they need to drill down to examine the underlying records that generated those signals. This requires a data fetching approach that can dynamically filter and return relevant data based on the current app selections.
+
+The data fetching functionality enables real-time access to source data during investigation while maintaining performance by avoiding unnecessary data loading. For a comprehensive guide on implementing data ingestion functions, see the [Data Ingestion vignette](data-ingestion.html).
+
+## Implementation
+
 The gsm app allows you to provide custom data fetching functions that read and subset data from your local file system or database. The [fnFetchData](https://gilead-biostats.github.io/gsm.app/reference/sample_fnFetchData.html) function is essential for the {gsm.app} to provide drill-down functionality for domain-specific data. This function tells the app how to fetch domain data and should return filtered data based on the parameters passed from the app interface.
 
 The function definition can be customized to suite your system and data needs, however there are several factors that should be accounted for when creating a `fnFetchData` function
