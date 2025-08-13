@@ -7,8 +7,8 @@ mod_StudyOverview_UI <- function(id, dfGroups, dfResults, dfMetrics) {
   dfResults <- gsm.kri::FilterByLatestSnapshotDate(dfResults)
 
   bslib::layout_columns(
-    col_widths = c(2, 10),
-    out_StudyInformation(dfGroups, dfResults),
+    col_widths = c(3, 9),
+    mod_StudyInformation_UI(ns("study_information"), dfGroups, dfResults),
     bslib::navset_underline(
       id = ns("nav_bar"),
       bslib::nav_panel(

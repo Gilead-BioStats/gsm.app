@@ -1,12 +1,13 @@
 /**
  * Simulates a mouse click event (mousedown, mouseup, and click) at the
- * specified coordinates on the given element.
+ * specified coordinates relative to the top-left corner of the target element,
+ * ensuring the event bubbles up the DOM tree.
  *
  * @param {HTMLElement} el - The target element to dispatch the mouse events on.
- * @param {number}      x  - The x-coordinate (clientX) relative to the viewport
- *                           where the click should occur.
- * @param {number}      y  - The y-coordinate (clientY) relative to the viewport
- *                           where the click should occur.
+ * @param {number}      x  - The x-coordinate relative to the element's top-left
+ * corner.
+ * @param {number}      y  - The y-coordinate relative to the element's top-left
+ * corner.
  *
  * @returns {undefined}
  */
@@ -16,88 +17,164 @@ function clickWithMouse(el, x, y) {
     return;
   }
 
-  var clickLocation = { clientX: x, clientY: y };
+  const rect = el.getBoundingClientRect();
+  const clientX = rect.left + x;
+  const clientY = rect.top + y;
 
-  var mousedownEvent = new MouseEvent('mousedown', clickLocation);
-  el.dispatchEvent(mousedownEvent);
+  // Find the actual element at the target coordinates to ensure we're clicking the right thing.
+  const target = document.elementFromPoint(clientX, clientY);
+  if (!target) {
+      console.error("No element found at specified coordinates");
+      return;
+  }
 
-  var mouseupEvent = new MouseEvent('mouseup', clickLocation);
-  el.dispatchEvent(mouseupEvent);
+  const clickLocation = {
+    clientX: clientX,
+    clientY: clientY,
+    bubbles: true, // This is the crucial part to enable event bubbling.
+    cancelable: true,
+    view: window
+  };
 
-  var clickEvent = new MouseEvent('click', clickLocation);
-  el.dispatchEvent(clickEvent);
+  // Dispatch events that will bubble up the DOM.
+  target.dispatchEvent(new MouseEvent('mousedown', clickLocation));
+  target.dispatchEvent(new MouseEvent('mouseup', clickLocation));
+  target.dispatchEvent(new MouseEvent('click', clickLocation));
 }
 
 /**
- * Simulates a click on a specific gruop in a chart widget, identified by its
+ * Simulates a click on a specific group in a chart widget, identified by its
  * container ID and target group ID.
  *
  * @param {string} containerId    - The ID of the container element that holds
- *                                  the chart.
+ * the chart.
  * @param {string} targetGroupID  - The group ID of the data point to click on.
  *
  * @returns {undefined}
  */
 function clickWidgetPlotGroup(containerId, targetGroupID) {
-  var canvas = document.querySelector(`#${containerId} canvas`);
+  const canvas = document.querySelector(`#${containerId} canvas`);
   if (!canvas || !canvas.chart) {
     console.error("Canvas or chart instance not found for:", containerId);
     return;
   }
 
-  var instance = canvas.chart;
-  var data = instance.data.datasets[0].data;
-  var xScale = instance.scales.x;
-  var yScale = instance.scales.y;
+  const instance = canvas.chart;
+  const data = instance.data.datasets[0].data;
+  const xScale = instance.scales.x;
+  const yScale = instance.scales.y;
 
   data.forEach(function(point) {
     if (point.GroupID === targetGroupID) {
-      // Get the pixel coordinates for the point
-      var xpix = xScale.getPixelForValue(point.x);
-      var ypix = yScale.getPixelForValue(point.y);
+      // Get the pixel coordinates for the point relative to the canvas
+      const xpix = xScale.getPixelForValue(point.x);
+      const ypix = yScale.getPixelForValue(point.y);
 
-      // Calculate the clientX and clientY relative to the viewport
-      var rect = canvas.getBoundingClientRect();
-      var clientX = rect.left + xpix;
-      var clientY = rect.top + ypix;
-
-      // Use the abstracted function to simulate the click
-      clickWithMouse(canvas, clientX, clientY);
+      // Use the abstracted function to simulate the click with element-relative coordinates
+      clickWithMouse(canvas, xpix, ypix);
     }
   });
 }
 
 /**
- * Checks if a chart widget has finished loading by validating the presence of
- * a chart and checking certain chart properties.
+ * Simulates a click on a specific group in a time series chart widget.
+ *
+ * @param {string} containerId    - The ID of the container element that holds the chart.
+ * @param {string} targetGroupID  - The group ID of the data point to click on.
+ * @param {string} flagType       - The type of flag to click on, either "red" or "amber".
+ *
+ * @returns {undefined}
+ */
+function clickTimeSeriesGroup(containerId, targetGroupID, flagType = "amber") {
+  const canvas = document.querySelector(`#${containerId} canvas`);
+  if (!canvas || !canvas.chart) {
+    console.error("Canvas or chart instance not found for:", containerId);
+    return;
+  }
+
+  const instance = canvas.chart;
+  let data;
+  if (flagType === "red") {
+    data = instance.data.datasets[5].data;
+  } else {
+    data = instance.data.datasets[6].data;
+  }
+
+  const xScale = instance.scales.x;
+  const yScale = instance.scales.y;
+
+  data.forEach(function(point) {
+    if (point.GroupID === targetGroupID) {
+      // Get the pixel coordinates for the point relative to the canvas
+      const xpix = xScale.getPixelForValue(point.x);
+      const ypix = yScale.getPixelForValue(point.y);
+
+      // Use the abstracted function to simulate the click with element-relative coordinates
+      clickWithMouse(canvas, xpix, ypix);
+    }
+  });
+}
+
+/**
+ * Checks if a chart widget has finished loading. This function is designed to be
+ * robust for use in automated testing environments.
  *
  * @param {string} containerId - The ID of the container element that holds the
- *                               chart.
+ * chart.
  *
  * @returns {boolean} True if the widget is fully loaded, false otherwise.
  */
 function isCanvasLoaded(containerId) {
-  const canvas = document.querySelector(`#${containerId} canvas`);
-  if (!canvas) return false;
-  if (canvas.width === 0 || canvas.height === 0) return false;
+    const canvas = document.querySelector(`#${containerId} canvas`);
 
-  const context = canvas.getContext('2d');
-  if (!context) return false;
+    // 1. Basic Checks: Ensure the canvas element exists and is visible.
+    if (!canvas || canvas.width === 0 || canvas.height === 0) {
+        return false;
+    }
 
-  // Check if the canvas is visible (i.e., has a non-zero bounding box)
-  const boundingRect = canvas.getBoundingClientRect();
-  if (boundingRect.width === 0 || boundingRect.height === 0) return false;
-  if (boundingRect.top < 0 || boundingRect.left < 0 || boundingRect.bottom > window.innerHeight || boundingRect.right > window.innerWidth) return false;
+    const rect = canvas.getBoundingClientRect();
+    if (rect.width === 0 || rect.height === 0 || rect.top > window.innerHeight || rect.left > window.innerWidth) {
+        return false;
+    }
 
-  // Check pixel contents.
-  const isNonEmptyPixel = (x, y) => {
-    const [r, g, b, a] = context.getImageData(x, y, 1, 1).data;
-    return r !== 0 || g !== 0 || b !== 0 || a !== 0;
-  };
-  if (!isNonEmptyPixel(0, 0)) return false; // Top-left
-  if (!isNonEmptyPixel(canvas.width / 2, canvas.height / 2)) return false; // Center
-  if (!isNonEmptyPixel(canvas.width - 1, canvas.height - 1)) return false; // Bottom-right
+    // 2. Chart.js Instance Check
+    const chart = canvas.chart;
+    if (!chart) {
+        return false;
+    }
 
-  return true; // Canvas is fully loaded
+    // 3. Animation Check
+    if (chart.animating || (chart.options.animation && chart.animating)) {
+        return false;
+    }
+
+    // 4. Full Pixel Scan: Check that the canvas isn't blank (all one color or transparent).
+    const context = canvas.getContext('2d');
+    if (!context) {
+        return false;
+    }
+
+    const imageData = context.getImageData(0, 0, canvas.width, canvas.height).data;
+    let firstVisibleColor = null;
+
+    for (let i = 0; i < imageData.length; i += 4) {
+        // Check if the pixel is visible (alpha > 0).
+        if (imageData[i + 3] > 0) {
+            const currentColor = [imageData[i], imageData[i+1], imageData[i+2], imageData[i+3]].join(',');
+
+            if (firstVisibleColor === null) {
+                // This is the first visible pixel we've found.
+                firstVisibleColor = currentColor;
+            } else if (currentColor !== firstVisibleColor) {
+                // We found a second, different visible color. The chart is rendered.
+                return true;
+            }
+        }
+    }
+
+    // If the loop completes, one of two conditions is met:
+    // 1. No visible pixels were found (firstVisibleColor is null).
+    // 2. All visible pixels are the exact same color.
+    // In either case, the chart is considered not fully loaded.
+    return false;
 }
-

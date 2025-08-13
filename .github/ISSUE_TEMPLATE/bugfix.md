@@ -1,5 +1,5 @@
 ---
-name: "Bugfix Issue Template"
+name: "Report a bug"
 about: "Fix a bug in the code"
 title: "Bugfix: ProvideATitle"
 ---
@@ -25,3 +25,7 @@ title: "Bugfix: ProvideATitle"
 
 ## Additional Comments
 <!--- Not required, anything else import pertaining to this bug -->
+
+## Acceptance Criteria
+<!-- Add agreed-upon acceptance criteria as a bulleted list, each line starting 
+with `- [ ]`. Used for automated qualification reports. -->

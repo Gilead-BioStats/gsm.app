@@ -3,9 +3,9 @@
     Code
       test_result
     Output
-      <bslib-layout-columns class="bslib-grid grid bslib-mb-spacing html-fill-item" col-widths-sm="2,10" data-require-bs-caller="layout_columns()" data-require-bs-version="5">
+      <bslib-layout-columns class="bslib-grid grid bslib-mb-spacing html-fill-item" col-widths-sm="3,9" data-require-bs-caller="layout_columns()" data-require-bs-version="5">
         <div class="bslib-grid-item bslib-gap-spacing html-fill-container">
-          <div class="card bslib-card bslib-mb-spacing html-fill-item html-fill-container" data-bslib-card-init data-require-bs-caller="card()" data-require-bs-version="5">
+          <div class="card bslib-card bslib-mb-spacing bslib-card-input html-fill-item html-fill-container" data-bslib-card-init data-require-bs-caller="card()" data-require-bs-version="5" id="testID-study_information">
             <div class="card-header">
               <h5>Study Information</h5>
               <h6 class="card-subtitle mb-2 text-muted">Snapshot Date: 2012-03-31</h6>
@@ -13,30 +13,30 @@
             <div class="card-body bslib-gap-spacing html-fill-item html-fill-container" style="margin-top:auto;margin-bottom:auto;flex:1 1 auto;">
               <label class="toggle">
         <input class="toggle-checkbox btn-show-details" type="checkbox"
-          data-shown-table="study_table"
-          data-hidden-table="study_table_hide"
+          data-shown-table="testID-study_information-study_table"
+          data-hidden-table="testID-study_information-study_table_hide"
           data-hidden="false"
           onclick="toggleTables(this)">
         <div class="toggle-switch"></div>
         <span class="toggle-label">Show Details</span>
       </label>
-              <div id="study_table" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-                <style>#study_table table {
+              <div id="testID-study_information-study_table" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+                <style>#testID-study_information-study_table table {
         font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
         -webkit-font-smoothing: antialiased;
         -moz-osx-font-smoothing: grayscale;
       }
       
-      #study_table thead, #study_table tbody, #study_table tfoot, #study_table tr, #study_table td, #study_table th {
+      #testID-study_information-study_table thead, #testID-study_information-study_table tbody, #testID-study_information-study_table tfoot, #testID-study_information-study_table tr, #testID-study_information-study_table td, #testID-study_information-study_table th {
         border-style: none;
       }
       
-      #study_table p {
+      #testID-study_information-study_table p {
         margin: 0;
         padding: 0;
       }
       
-      #study_table .gt_table {
+      #testID-study_information-study_table .gt_table {
         display: table;
         border-collapse: collapse;
         line-height: normal;
@@ -62,12 +62,12 @@
         border-left-color: #D3D3D3;
       }
       
-      #study_table .gt_caption {
+      #testID-study_information-study_table .gt_caption {
         padding-top: 4px;
         padding-bottom: 4px;
       }
       
-      #study_table .gt_title {
+      #testID-study_information-study_table .gt_title {
         color: #333333;
         font-size: 125%;
         font-weight: initial;
@@ -79,7 +79,7 @@
         border-bottom-width: 0;
       }
       
-      #study_table .gt_subtitle {
+      #testID-study_information-study_table .gt_subtitle {
         color: #333333;
         font-size: 85%;
         font-weight: initial;
@@ -91,7 +91,7 @@
         border-top-width: 0;
       }
       
-      #study_table .gt_heading {
+      #testID-study_information-study_table .gt_heading {
         background-color: #FFFFFF;
         text-align: center;
         border-bottom-color: #FFFFFF;
@@ -103,13 +103,13 @@
         border-right-color: #D3D3D3;
       }
       
-      #study_table .gt_bottom_border {
+      #testID-study_information-study_table .gt_bottom_border {
         border-bottom-style: solid;
         border-bottom-width: 2px;
         border-bottom-color: #D3D3D3;
       }
       
-      #study_table .gt_col_headings {
+      #testID-study_information-study_table .gt_col_headings {
         border-top-style: solid;
         border-top-width: 2px;
         border-top-color: #D3D3D3;
@@ -124,7 +124,7 @@
         border-right-color: #D3D3D3;
       }
       
-      #study_table .gt_col_heading {
+      #testID-study_information-study_table .gt_col_heading {
         color: #333333;
         background-color: #FFFFFF;
         font-size: 100%;
@@ -144,7 +144,7 @@
         overflow-x: hidden;
       }
       
-      #study_table .gt_column_spanner_outer {
+      #testID-study_information-study_table .gt_column_spanner_outer {
         color: #333333;
         background-color: #FFFFFF;
         font-size: 100%;
@@ -156,15 +156,15 @@
         padding-right: 4px;
       }
       
-      #study_table .gt_column_spanner_outer:first-child {
+      #testID-study_information-study_table .gt_column_spanner_outer:first-child {
         padding-left: 0;
       }
       
-      #study_table .gt_column_spanner_outer:last-child {
+      #testID-study_information-study_table .gt_column_spanner_outer:last-child {
         padding-right: 0;
       }
       
-      #study_table .gt_column_spanner {
+      #testID-study_information-study_table .gt_column_spanner {
         border-bottom-style: solid;
         border-bottom-width: 2px;
         border-bottom-color: #D3D3D3;
@@ -176,11 +176,11 @@
         width: 100%;
       }
       
-      #study_table .gt_spanner_row {
+      #testID-study_information-study_table .gt_spanner_row {
         border-bottom-style: hidden;
       }
       
-      #study_table .gt_group_heading {
+      #testID-study_information-study_table .gt_group_heading {
         padding-top: 4px;
         padding-bottom: 4px;
         padding-left: 5px;
@@ -206,7 +206,7 @@
         text-align: left;
       }
       
-      #study_table .gt_empty_group_heading {
+      #testID-study_information-study_table .gt_empty_group_heading {
         padding: 0.5px;
         color: #333333;
         background-color: #FFFFFF;
@@ -221,15 +221,15 @@
         vertical-align: middle;
       }
       
-      #study_table .gt_from_md > :first-child {
+      #testID-study_information-study_table .gt_from_md > :first-child {
         margin-top: 0;
       }
       
-      #study_table .gt_from_md > :last-child {
+      #testID-study_information-study_table .gt_from_md > :last-child {
         margin-bottom: 0;
       }
       
-      #study_table .gt_row {
+      #testID-study_information-study_table .gt_row {
         padding-top: 4px;
         padding-bottom: 4px;
         padding-left: 5px;
@@ -248,7 +248,7 @@
         overflow-x: hidden;
       }
       
-      #study_table .gt_stub {
+      #testID-study_information-study_table .gt_stub {
         color: #333333;
         background-color: #FFFFFF;
         font-size: 100%;
@@ -261,7 +261,7 @@
         padding-right: 5px;
       }
       
-      #study_table .gt_stub_row_group {
+      #testID-study_information-study_table .gt_stub_row_group {
         color: #333333;
         background-color: #FFFFFF;
         font-size: 100%;
@@ -275,15 +275,15 @@
         vertical-align: top;
       }
       
-      #study_table .gt_row_group_first td {
+      #testID-study_information-study_table .gt_row_group_first td {
         border-top-width: 2px;
       }
       
-      #study_table .gt_row_group_first th {
+      #testID-study_information-study_table .gt_row_group_first th {
         border-top-width: 2px;
       }
       
-      #study_table .gt_summary_row {
+      #testID-study_information-study_table .gt_summary_row {
         color: #333333;
         background-color: #FFFFFF;
         text-transform: inherit;
@@ -293,16 +293,16 @@
         padding-right: 5px;
       }
       
-      #study_table .gt_first_summary_row {
+      #testID-study_information-study_table .gt_first_summary_row {
         border-top-style: solid;
         border-top-color: #D3D3D3;
       }
       
-      #study_table .gt_first_summary_row.thick {
+      #testID-study_information-study_table .gt_first_summary_row.thick {
         border-top-width: 2px;
       }
       
-      #study_table .gt_last_summary_row {
+      #testID-study_information-study_table .gt_last_summary_row {
         padding-top: 4px;
         padding-bottom: 4px;
         padding-left: 5px;
@@ -312,7 +312,7 @@
         border-bottom-color: #D3D3D3;
       }
       
-      #study_table .gt_grand_summary_row {
+      #testID-study_information-study_table .gt_grand_summary_row {
         color: #333333;
         background-color: #FFFFFF;
         text-transform: inherit;
@@ -322,7 +322,7 @@
         padding-right: 5px;
       }
       
-      #study_table .gt_first_grand_summary_row {
+      #testID-study_information-study_table .gt_first_grand_summary_row {
         padding-top: 4px;
         padding-bottom: 4px;
         padding-left: 5px;
@@ -332,7 +332,7 @@
         border-top-color: #D3D3D3;
       }
       
-      #study_table .gt_last_grand_summary_row_top {
+      #testID-study_information-study_table .gt_last_grand_summary_row_top {
         padding-top: 4px;
         padding-bottom: 4px;
         padding-left: 5px;
@@ -342,11 +342,11 @@
         border-bottom-color: #D3D3D3;
       }
       
-      #study_table .gt_striped {
+      #testID-study_information-study_table .gt_striped {
         background-color: rgba(128, 128, 128, 0.05);
       }
       
-      #study_table .gt_table_body {
+      #testID-study_information-study_table .gt_table_body {
         border-top-style: solid;
         border-top-width: 2px;
         border-top-color: #D3D3D3;
@@ -355,7 +355,7 @@
         border-bottom-color: #D3D3D3;
       }
       
-      #study_table .gt_footnotes {
+      #testID-study_information-study_table .gt_footnotes {
         color: #333333;
         background-color: #FFFFFF;
         border-bottom-style: none;
@@ -369,7 +369,7 @@
         border-right-color: #D3D3D3;
       }
       
-      #study_table .gt_footnote {
+      #testID-study_information-study_table .gt_footnote {
         margin: 0px;
         font-size: 90%;
         padding-top: 2px;
@@ -378,7 +378,7 @@
         padding-right: 5px;
       }
       
-      #study_table .gt_sourcenotes {
+      #testID-study_information-study_table .gt_sourcenotes {
         color: #333333;
         background-color: #FFFFFF;
         border-bottom-style: none;
@@ -392,7 +392,7 @@
         border-right-color: #D3D3D3;
       }
       
-      #study_table .gt_sourcenote {
+      #testID-study_information-study_table .gt_sourcenote {
         font-size: 90%;
         padding-top: 2px;
         padding-bottom: 2px;
@@ -400,72 +400,72 @@
         padding-right: 5px;
       }
       
-      #study_table .gt_left {
+      #testID-study_information-study_table .gt_left {
         text-align: left;
       }
       
-      #study_table .gt_center {
+      #testID-study_information-study_table .gt_center {
         text-align: center;
       }
       
-      #study_table .gt_right {
+      #testID-study_information-study_table .gt_right {
         text-align: right;
         font-variant-numeric: tabular-nums;
       }
       
-      #study_table .gt_font_normal {
+      #testID-study_information-study_table .gt_font_normal {
         font-weight: normal;
       }
       
-      #study_table .gt_font_bold {
+      #testID-study_information-study_table .gt_font_bold {
         font-weight: bold;
       }
       
-      #study_table .gt_font_italic {
+      #testID-study_information-study_table .gt_font_italic {
         font-style: italic;
       }
       
-      #study_table .gt_super {
+      #testID-study_information-study_table .gt_super {
         font-size: 65%;
       }
       
-      #study_table .gt_footnote_marks {
+      #testID-study_information-study_table .gt_footnote_marks {
         font-size: 75%;
         vertical-align: 0.4em;
         position: initial;
       }
       
-      #study_table .gt_asterisk {
+      #testID-study_information-study_table .gt_asterisk {
         font-size: 100%;
         vertical-align: 0;
       }
       
-      #study_table .gt_indent_1 {
+      #testID-study_information-study_table .gt_indent_1 {
         text-indent: 5px;
       }
       
-      #study_table .gt_indent_2 {
+      #testID-study_information-study_table .gt_indent_2 {
         text-indent: 10px;
       }
       
-      #study_table .gt_indent_3 {
+      #testID-study_information-study_table .gt_indent_3 {
         text-indent: 15px;
       }
       
-      #study_table .gt_indent_4 {
+      #testID-study_information-study_table .gt_indent_4 {
         text-indent: 20px;
       }
       
-      #study_table .gt_indent_5 {
+      #testID-study_information-study_table .gt_indent_5 {
         text-indent: 25px;
       }
       
-      #study_table .katex-display {
+      #testID-study_information-study_table .katex-display {
         display: inline-flex !important;
         margin-bottom: 0.75em !important;
       }
       
-      #study_table div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+      #testID-study_information-study_table div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
         height: 0px !important;
       }
       </style>
@@ -485,24 +485,24 @@
         
       </table>
               </div>
-              <div id="study_table_hide" style="display: none;">
-                <div id="study_table_hide_gt" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-                  <style>#study_table_hide_gt table {
+              <div id="testID-study_information-study_table_hide" style="display: none;">
+                <div id="testID-study_information-study_table_hide_gt" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+                  <style>#testID-study_information-study_table_hide_gt table {
         font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
         -webkit-font-smoothing: antialiased;
         -moz-osx-font-smoothing: grayscale;
       }
       
-      #study_table_hide_gt thead, #study_table_hide_gt tbody, #study_table_hide_gt tfoot, #study_table_hide_gt tr, #study_table_hide_gt td, #study_table_hide_gt th {
+      #testID-study_information-study_table_hide_gt thead, #testID-study_information-study_table_hide_gt tbody, #testID-study_information-study_table_hide_gt tfoot, #testID-study_information-study_table_hide_gt tr, #testID-study_information-study_table_hide_gt td, #testID-study_information-study_table_hide_gt th {
         border-style: none;
       }
       
-      #study_table_hide_gt p {
+      #testID-study_information-study_table_hide_gt p {
         margin: 0;
         padding: 0;
       }
       
-      #study_table_hide_gt .gt_table {
+      #testID-study_information-study_table_hide_gt .gt_table {
         display: table;
         border-collapse: collapse;
         line-height: normal;
@@ -528,12 +528,12 @@
         border-left-color: #D3D3D3;
       }
       
-      #study_table_hide_gt .gt_caption {
+      #testID-study_information-study_table_hide_gt .gt_caption {
         padding-top: 4px;
         padding-bottom: 4px;
       }
       
-      #study_table_hide_gt .gt_title {
+      #testID-study_information-study_table_hide_gt .gt_title {
         color: #333333;
         font-size: 125%;
         font-weight: initial;
@@ -545,7 +545,7 @@
         border-bottom-width: 0;
       }
       
-      #study_table_hide_gt .gt_subtitle {
+      #testID-study_information-study_table_hide_gt .gt_subtitle {
         color: #333333;
         font-size: 85%;
         font-weight: initial;
@@ -557,7 +557,7 @@
         border-top-width: 0;
       }
       
-      #study_table_hide_gt .gt_heading {
+      #testID-study_information-study_table_hide_gt .gt_heading {
         background-color: #FFFFFF;
         text-align: center;
         border-bottom-color: #FFFFFF;
@@ -569,13 +569,13 @@
         border-right-color: #D3D3D3;
       }
       
-      #study_table_hide_gt .gt_bottom_border {
+      #testID-study_information-study_table_hide_gt .gt_bottom_border {
         border-bottom-style: solid;
         border-bottom-width: 2px;
         border-bottom-color: #D3D3D3;
       }
       
-      #study_table_hide_gt .gt_col_headings {
+      #testID-study_information-study_table_hide_gt .gt_col_headings {
         border-top-style: solid;
         border-top-width: 2px;
         border-top-color: #D3D3D3;
@@ -590,7 +590,7 @@
         border-right-color: #D3D3D3;
       }
       
-      #study_table_hide_gt .gt_col_heading {
+      #testID-study_information-study_table_hide_gt .gt_col_heading {
         color: #333333;
         background-color: #FFFFFF;
         font-size: 100%;
@@ -610,7 +610,7 @@
         overflow-x: hidden;
       }
       
-      #study_table_hide_gt .gt_column_spanner_outer {
+      #testID-study_information-study_table_hide_gt .gt_column_spanner_outer {
         color: #333333;
         background-color: #FFFFFF;
         font-size: 100%;
@@ -622,15 +622,15 @@
         padding-right: 4px;
       }
       
-      #study_table_hide_gt .gt_column_spanner_outer:first-child {
+      #testID-study_information-study_table_hide_gt .gt_column_spanner_outer:first-child {
         padding-left: 0;
       }
       
-      #study_table_hide_gt .gt_column_spanner_outer:last-child {
+      #testID-study_information-study_table_hide_gt .gt_column_spanner_outer:last-child {
         padding-right: 0;
       }
       
-      #study_table_hide_gt .gt_column_spanner {
+      #testID-study_information-study_table_hide_gt .gt_column_spanner {
         border-bottom-style: solid;
         border-bottom-width: 2px;
         border-bottom-color: #D3D3D3;
@@ -642,11 +642,11 @@
         width: 100%;
       }
       
-      #study_table_hide_gt .gt_spanner_row {
+      #testID-study_information-study_table_hide_gt .gt_spanner_row {
         border-bottom-style: hidden;
       }
       
-      #study_table_hide_gt .gt_group_heading {
+      #testID-study_information-study_table_hide_gt .gt_group_heading {
         padding-top: 4px;
         padding-bottom: 4px;
         padding-left: 5px;
@@ -672,7 +672,7 @@
         text-align: left;
       }
       
-      #study_table_hide_gt .gt_empty_group_heading {
+      #testID-study_information-study_table_hide_gt .gt_empty_group_heading {
         padding: 0.5px;
         color: #333333;
         background-color: #FFFFFF;
@@ -687,15 +687,15 @@
         vertical-align: middle;
       }
       
-      #study_table_hide_gt .gt_from_md > :first-child {
+      #testID-study_information-study_table_hide_gt .gt_from_md > :first-child {
         margin-top: 0;
       }
       
-      #study_table_hide_gt .gt_from_md > :last-child {
+      #testID-study_information-study_table_hide_gt .gt_from_md > :last-child {
         margin-bottom: 0;
       }
       
-      #study_table_hide_gt .gt_row {
+      #testID-study_information-study_table_hide_gt .gt_row {
         padding-top: 4px;
         padding-bottom: 4px;
         padding-left: 5px;
@@ -714,7 +714,7 @@
         overflow-x: hidden;
       }
       
-      #study_table_hide_gt .gt_stub {
+      #testID-study_information-study_table_hide_gt .gt_stub {
         color: #333333;
         background-color: #FFFFFF;
         font-size: 100%;
@@ -727,7 +727,7 @@
         padding-right: 5px;
       }
       
-      #study_table_hide_gt .gt_stub_row_group {
+      #testID-study_information-study_table_hide_gt .gt_stub_row_group {
         color: #333333;
         background-color: #FFFFFF;
         font-size: 100%;
@@ -741,15 +741,15 @@
         vertical-align: top;
       }
       
-      #study_table_hide_gt .gt_row_group_first td {
+      #testID-study_information-study_table_hide_gt .gt_row_group_first td {
         border-top-width: 2px;
       }
       
-      #study_table_hide_gt .gt_row_group_first th {
+      #testID-study_information-study_table_hide_gt .gt_row_group_first th {
         border-top-width: 2px;
       }
       
-      #study_table_hide_gt .gt_summary_row {
+      #testID-study_information-study_table_hide_gt .gt_summary_row {
         color: #333333;
         background-color: #FFFFFF;
         text-transform: inherit;
@@ -759,16 +759,16 @@
         padding-right: 5px;
       }
       
-      #study_table_hide_gt .gt_first_summary_row {
+      #testID-study_information-study_table_hide_gt .gt_first_summary_row {
         border-top-style: solid;
         border-top-color: #D3D3D3;
       }
       
-      #study_table_hide_gt .gt_first_summary_row.thick {
+      #testID-study_information-study_table_hide_gt .gt_first_summary_row.thick {
         border-top-width: 2px;
       }
       
-      #study_table_hide_gt .gt_last_summary_row {
+      #testID-study_information-study_table_hide_gt .gt_last_summary_row {
         padding-top: 4px;
         padding-bottom: 4px;
         padding-left: 5px;
@@ -778,7 +778,7 @@
         border-bottom-color: #D3D3D3;
       }
       
-      #study_table_hide_gt .gt_grand_summary_row {
+      #testID-study_information-study_table_hide_gt .gt_grand_summary_row {
         color: #333333;
         background-color: #FFFFFF;
         text-transform: inherit;
@@ -788,7 +788,7 @@
         padding-right: 5px;
       }
       
-      #study_table_hide_gt .gt_first_grand_summary_row {
+      #testID-study_information-study_table_hide_gt .gt_first_grand_summary_row {
         padding-top: 4px;
         padding-bottom: 4px;
         padding-left: 5px;
@@ -798,7 +798,7 @@
         border-top-color: #D3D3D3;
       }
       
-      #study_table_hide_gt .gt_last_grand_summary_row_top {
+      #testID-study_information-study_table_hide_gt .gt_last_grand_summary_row_top {
         padding-top: 4px;
         padding-bottom: 4px;
         padding-left: 5px;
@@ -808,11 +808,11 @@
         border-bottom-color: #D3D3D3;
       }
       
-      #study_table_hide_gt .gt_striped {
+      #testID-study_information-study_table_hide_gt .gt_striped {
         background-color: rgba(128, 128, 128, 0.05);
       }
       
-      #study_table_hide_gt .gt_table_body {
+      #testID-study_information-study_table_hide_gt .gt_table_body {
         border-top-style: solid;
         border-top-width: 2px;
         border-top-color: #D3D3D3;
@@ -821,7 +821,7 @@
         border-bottom-color: #D3D3D3;
       }
       
-      #study_table_hide_gt .gt_footnotes {
+      #testID-study_information-study_table_hide_gt .gt_footnotes {
         color: #333333;
         background-color: #FFFFFF;
         border-bottom-style: none;
@@ -835,7 +835,7 @@
         border-right-color: #D3D3D3;
       }
       
-      #study_table_hide_gt .gt_footnote {
+      #testID-study_information-study_table_hide_gt .gt_footnote {
         margin: 0px;
         font-size: 90%;
         padding-top: 2px;
@@ -844,7 +844,7 @@
         padding-right: 5px;
       }
       
-      #study_table_hide_gt .gt_sourcenotes {
+      #testID-study_information-study_table_hide_gt .gt_sourcenotes {
         color: #333333;
         background-color: #FFFFFF;
         border-bottom-style: none;
@@ -858,7 +858,7 @@
         border-right-color: #D3D3D3;
       }
       
-      #study_table_hide_gt .gt_sourcenote {
+      #testID-study_information-study_table_hide_gt .gt_sourcenote {
         font-size: 90%;
         padding-top: 2px;
         padding-bottom: 2px;
@@ -866,72 +866,72 @@
         padding-right: 5px;
       }
       
-      #study_table_hide_gt .gt_left {
+      #testID-study_information-study_table_hide_gt .gt_left {
         text-align: left;
       }
       
-      #study_table_hide_gt .gt_center {
+      #testID-study_information-study_table_hide_gt .gt_center {
         text-align: center;
       }
       
-      #study_table_hide_gt .gt_right {
+      #testID-study_information-study_table_hide_gt .gt_right {
         text-align: right;
         font-variant-numeric: tabular-nums;
       }
       
-      #study_table_hide_gt .gt_font_normal {
+      #testID-study_information-study_table_hide_gt .gt_font_normal {
         font-weight: normal;
       }
       
-      #study_table_hide_gt .gt_font_bold {
+      #testID-study_information-study_table_hide_gt .gt_font_bold {
         font-weight: bold;
       }
       
-      #study_table_hide_gt .gt_font_italic {
+      #testID-study_information-study_table_hide_gt .gt_font_italic {
         font-style: italic;
       }
       
-      #study_table_hide_gt .gt_super {
+      #testID-study_information-study_table_hide_gt .gt_super {
         font-size: 65%;
       }
       
-      #study_table_hide_gt .gt_footnote_marks {
+      #testID-study_information-study_table_hide_gt .gt_footnote_marks {
         font-size: 75%;
         vertical-align: 0.4em;
         position: initial;
       }
       
-      #study_table_hide_gt .gt_asterisk {
+      #testID-study_information-study_table_hide_gt .gt_asterisk {
         font-size: 100%;
         vertical-align: 0;
       }
       
-      #study_table_hide_gt .gt_indent_1 {
+      #testID-study_information-study_table_hide_gt .gt_indent_1 {
         text-indent: 5px;
       }
       
-      #study_table_hide_gt .gt_indent_2 {
+      #testID-study_information-study_table_hide_gt .gt_indent_2 {
         text-indent: 10px;
       }
       
-      #study_table_hide_gt .gt_indent_3 {
+      #testID-study_information-study_table_hide_gt .gt_indent_3 {
         text-indent: 15px;
       }
       
-      #study_table_hide_gt .gt_indent_4 {
+      #testID-study_information-study_table_hide_gt .gt_indent_4 {
         text-indent: 20px;
       }
       
-      #study_table_hide_gt .gt_indent_5 {
+      #testID-study_information-study_table_hide_gt .gt_indent_5 {
         text-indent: 25px;
       }
       
-      #study_table_hide_gt .katex-display {
+      #testID-study_information-study_table_hide_gt .katex-display {
         display: inline-flex !important;
         margin-bottom: 0.75em !important;
       }
       
-      #study_table_hide_gt div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+      #testID-study_information-study_table_hide_gt div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
         height: 0px !important;
       }
       </style>

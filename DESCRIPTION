@@ -2,9 +2,12 @@ Package: gsm.app
 Title: gsm Shiny Application
 Version: 2.5.2.9000
 Authors@R: c(
-    person("Jon", "Harmon", , "jonthegeek@gmail.com", role = c("aut", "cre"),
+    person("Jon", "Harmon", , "jon.harmon@atorusresearch.com", role = c("aut", "cre"),
            comment = c(ORCID = "0000-0003-4781-4346")),
+    person("Laura", "Maxwell", , "laura.maxwell@atorusresearch.com", role = "aut"),
+    person("Natalia", "Andriychuk", , "Natalia.Andriychuk@gilead.com", role = "aut"),
     person("Spencer", "Childress", , "spencer.childress@gilead.com", role = "aut"),
+    person("Jeremy", "Wildfire", , "jeremy.wildfire@gilead.com", role = "aut"),
     person("Taylor", "Rodgers", , "Taylor.Rodgers@freestateanalytics.com", role = "aut"),
     person("Matt", "Roumaya", , "matthewroumaya@gmail.com", role = "aut",
            comment = c(ORCID = "0000-0002-8009-2771"))
@@ -43,7 +46,9 @@ Suggests:
     knitr,
     pak,
     pkgload (>= 1.4.0),
+    quarto,
     rmarkdown,
+    rvest,
     shinytest2 (>= 0.4.1),
     testthat (>= 3.0.0),
     withr
@@ -62,3 +67,4 @@ LazyData: true
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.3.2
 VignetteBuilder: knitr
+Config/Needs/website: rmarkdown
