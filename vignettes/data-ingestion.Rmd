@@ -40,6 +40,28 @@ When a user identifies a site with concerning metrics (e.g., high adverse event 
 - Maintaining performance by avoiding loading unnecessary data
 - Providing real-time access to source data during investigation
 
+## Performance and Memory Considerations
+
+You might wonder why we don't simply load all domain data when the app initializes. The dynamic data fetching approach offers several critical advantages:
+
+**Memory Efficiency**: Clinical trial datasets can be enormous. A large Phase III study might have:
+- Millions of adverse event records
+- Hundreds of thousands of laboratory measurements  
+- Extensive demographics and medical history data
+- Multiple gigabytes of total domain data
+
+Loading all of this data into memory would consume substantial RAM and potentially crash the application or make it unusable on standard hardware.
+
+**App Startup Performance**: Reading and loading large datasets takes time. By fetching data on-demand, the app starts quickly and users can begin exploring summary-level results immediately, rather than waiting for all domain data to load.
+
+**Network Efficiency**: In database-connected environments, loading all domain data would require massive data transfers. On-demand fetching transfers only the specific records needed for the current investigation.
+
+**Scalability**: As studies grow in size or when monitoring multiple studies simultaneously, the dynamic approach scales naturally without increasing the base memory footprint.
+
+**User Experience**: Most app usage focuses on summary-level exploration. Users typically drill down to detailed data for only a small subset of sites or subjects, making it wasteful to preload data that may never be viewed.
+
+The trade-off is a small delay when users first request detailed data for a specific domain/group combination, but this is typically much faster than the alternative of loading everything upfront.
+
 # Step 1: Manual Data Fetching Example
 
 Let's start with a concrete scenario. An investigator has identified that Site 101 is reporting adverse events at a rate significantly higher than other sites. They want to review the specific adverse event records for this site to understand what's driving the signal.
