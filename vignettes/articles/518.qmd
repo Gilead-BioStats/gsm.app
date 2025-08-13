@@ -18,7 +18,7 @@ my_path <- fs::path(my_path)
 if (fs::dir_exists(fs::path(my_path, "business_requirements"))) {
   br_path <- fs::path(my_path, "business_requirements")
 } else if (fs::file_exists("business_requirements.yml")) {
-  br_path <- mypath
+  br_path <- my_path
 } else if (
   fs::file_exists("articles/business_requirements/business_requirements.yml")
 ) {
