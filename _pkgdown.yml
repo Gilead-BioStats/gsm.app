@@ -16,7 +16,6 @@ articles:
   - data-ingestion
   - plugins
 - title: Business Requirements
-  navbar: Qualification
   contents:
   - articles/business_requirements
 - title: internal
