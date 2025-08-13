@@ -10,7 +10,10 @@
 <link href="../deps/bootstrap-5.3.1/bootstrap.min.css" rel="stylesheet">
 <script src="../deps/bootstrap-5.3.1/bootstrap.bundle.min.js"></script><link href="../deps/font-awesome-6.5.2/css/all.min.css" rel="stylesheet">
 <link href="../deps/font-awesome-6.5.2/css/v4-shims.min.css" rel="stylesheet">
-<script src="../deps/headroom-0.11.0/headroom.min.js"></script><script src="../deps/headroom-0.11.0/jQuery.headroom.min.js"></script><script src="../deps/bootstrap-toc-1.0.1/bootstrap-toc.min.js"></script><script src="../deps/clipboard.js-2.0.11/clipboard.min.js"></script><script src="../deps/search-1.0.0/autocomplete.jquery.min.js"></script><script src="../deps/search-1.0.0/fuse.min.js"></script><script src="../deps/search-1.0.0/mark.min.js"></script><!-- pkgdown --><script src="../pkgdown.js"></script><meta property="og:title" content="Business Requirements">
+<script src="../deps/headroom-0.11.0/headroom.min.js"></script><script src="../deps/headroom-0.11.0/jQuery.headroom.min.js"></script><script src="../deps/bootstrap-toc-1.0.1/bootstrap-toc.min.js"></script><script src="../deps/clipboard.js-2.0.11/clipboard.min.js"></script><script src="../deps/search-1.0.0/autocomplete.jquery.min.js"></script><script src="../deps/search-1.0.0/fuse.min.js"></script><script src="../deps/search-1.0.0/mark.min.js"></script><script src="business_requirements_files/libs/quarto-html/popper.min.js"></script><script src="business_requirements_files/libs/quarto-html/tippy.umd.min.js"></script><link href="business_requirements_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="business_requirements_files/libs/quarto-html/light-border.css" rel="stylesheet">
+<!-- pkgdown --><script src="../pkgdown.js"></script><link href="../extra.css" rel="stylesheet">
+<meta property="og:title" content="Business Requirements">
 <meta name="robots" content="noindex">
 </head>
 <body>
@@ -34,7 +37,8 @@
 <li class="active nav-item dropdown">
   <button class="nav-link dropdown-toggle" type="button" id="dropdown-articles" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">Articles</button>
   <ul class="dropdown-menu" aria-labelledby="dropdown-articles">
-<li><a class="dropdown-item" href="../articles/business_requirements.html">Business Requirements</a></li>
+<li><a class="dropdown-item" href="../articles/518.html">BR 518: Generate an app to help CMs explore snapshot data</a></li>
+    <li><a class="dropdown-item" href="../articles/business_requirements.html">Business Requirements</a></li>
     <li><a class="dropdown-item" href="../articles/plugins.html">Plugins</a></li>
   </ul>
 </li>
@@ -50,334 +54,122 @@
 
 
   </div>
-</nav><div class="container template-article">
-
-
-
-
+</nav><div class="container template-quarto">
 <div class="row">
   <main id="main" class="col-md-9"><div class="page-header">
 
       <h1>Business Requirements</h1>
-            
-      
-      <small class="dont-index">Source: <a href="https://github.com/Gilead-BioStats/gsm.app/blob/dev/vignettes/articles/business_requirements.Rmd" class="external-link"><code>vignettes/articles/business_requirements.Rmd</code></a></small>
-      <div class="d-none name"><code>business_requirements.Rmd</code></div>
+
+
+
+
+      <small class="dont-index">Source: <a href="https://github.com/Gilead-BioStats/gsm.app/blob/dev/vignettes/articles/business_requirements.qmd" class="external-link"><code>vignettes/articles/business_requirements.qmd</code></a></small>
+      <div class="d-none name"><code></code></div>
     </div>
 
-    
-    
-<div class="section level2">
-<h2 id="general">General<a class="anchor" aria-label="anchor" href="#general"></a>
+
+
+
+
+
+    <section class="level2"><h2 id="ready-for-review">Ready for Review<a class="anchor" aria-label="anchor" href="#ready-for-review"></a>
 </h2>
-<div class="section level3">
-<h3 id="br-gen-01-by-default-the-app-will-display-a-title-generated-from-the-study-information-in-dfgroups-">BR-GEN-01: By default, the app will display a title generated from
-the study information in dfGroups.<a class="anchor" aria-label="anchor" href="#br-gen-01-by-default-the-app-will-display-a-title-generated-from-the-study-information-in-dfgroups-"></a>
-</h3>
-<p><img src="br/br-gen/br-gen-01-default-title.png"></p>
-</div>
-<div class="section level3">
-<h3 id="br-gen-02-the-app-title-can-be-customized-at-launch-">BR-GEN-02: The app title can be customized at launch.<a class="anchor" aria-label="anchor" href="#br-gen-02-the-app-title-can-be-customized-at-launch-"></a>
-</h3>
-<p><img src="br/br-gen/br-gen-02-custom-title.png"></p>
-</div>
-<div class="section level3">
-<h3 id="br-gen-03-the-user-can-navigate-between-the-main-sections-of-the-app-using-a-navigation-bar-at-the-top-of-the-page-">BR-GEN-03: The user can navigate between the main sections of the
-app using a navigation bar at the top of the page.<a class="anchor" aria-label="anchor" href="#br-gen-03-the-user-can-navigate-between-the-main-sections-of-the-app-using-a-navigation-bar-at-the-top-of-the-page-"></a>
-</h3>
-<p><img src="br/br-gen/br-gen-03-domain-details.png"><img src="br/br-gen/br-gen-03-metric-details.png"></p>
-</div>
-<div class="section level3">
-<h3 id="br-gen-04-if-the-data-contains-more-than-one-group-level-e-g--site-vs-country-a-group-level-filter-is-displayed-">BR-GEN-04: If the data contains more than one group level (e.g.,
-“Site” vs “Country”), a “Group Level” filter is displayed.<a class="anchor" aria-label="anchor" href="#br-gen-04-if-the-data-contains-more-than-one-group-level-e-g--site-vs-country-a-group-level-filter-is-displayed-"></a>
-</h3>
-<p><img src="br/br-gen/br-gen-04-multi-level.png"><img src="br/br-gen/br-gen-04-single-level.png"></p>
-</div>
-<div class="section level3">
-<h3 id="br-gen-05-if-the-group-level-filter-is-displayed-the-user-can-filter-the-data-by-group-level-">BR-GEN-05: If the “Group Level” filter is displayed, the user can
-filter the data by group level.<a class="anchor" aria-label="anchor" href="#br-gen-05-if-the-group-level-filter-is-displayed-the-user-can-filter-the-data-by-group-level-"></a>
-</h3>
-<p><img src="br/br-gen/br-gen-05-country-choices.png"><img src="br/br-gen/br-gen-05-site-choices.png"></p>
-</div>
-<div class="section level3">
-<h3 id="br-gen-06-the-user-can-filter-the-data-by-group-e-g--site-or-country-within-the-selected-group-level-">BR-GEN-06: The user can filter the data by group (e.g., “Site” or
-“Country”) within the selected “Group Level”.<a class="anchor" aria-label="anchor" href="#br-gen-06-the-user-can-filter-the-data-by-group-e-g--site-or-country-within-the-selected-group-level-"></a>
-</h3>
-<p><img src="br/br-gen/br-gen-06-group-selected-participants.png"><img src="br/br-gen/br-gen-06-no_group-participants.png"></p>
-</div>
-<div class="section level3">
-<h3 id="br-gen-07-the-user-can-filter-the-data-by-participant-">BR-GEN-07: The user can filter the data by “Participant”.<a class="anchor" aria-label="anchor" href="#br-gen-07-the-user-can-filter-the-data-by-participant-"></a>
-</h3>
-<p><img src="br/br-gen/br-gen-07-counts-S7900.png"><img src="br/br-gen/br-gen-07-counts-no-participant.png"></p>
-</div>
-<div class="section level3">
-<h3 id="br-gen-08-the-user-can-reset-all-filters-to-their-default-values-">BR-GEN-08: The user can reset all filters to their default
-values.<a class="anchor" aria-label="anchor" href="#br-gen-08-the-user-can-reset-all-filters-to-their-default-values-"></a>
-</h3>
-<p><img src="br/br-gen/br-gen-08-01-before.png"><img src="br/br-gen/br-gen-08-02-after.png"></p>
-</div>
-</div>
-<div class="section level2">
-<h2 id="study-overview">Study Overview<a class="anchor" aria-label="anchor" href="#study-overview"></a>
+<ul>
+<li><a href="518.html">518: Generate an app to help CMs explore snapshot data</a></li>
+</ul></section><section class="level2"><h2 id="to-do">To Do<a class="anchor" aria-label="anchor" href="#to-do"></a>
 </h2>
-<div class="section level3">
-<h3 id="br-so-01-the-user-can-view-a-card-with-a-high-level-overview-of-the-study-metadata-as-generated-by-gsm-krireport_studyinfo-">BR-SO-01: The user can view a card with a high-level overview of the
-study metadata, as generated by gsm.kri::Report_StudyInfo().<a class="anchor" aria-label="anchor" href="#br-so-01-the-user-can-view-a-card-with-a-high-level-overview-of-the-study-metadata-as-generated-by-gsm-krireport_studyinfo-"></a>
-</h3>
-<p><img src="br/br-so/br-so-01-study_info_card.png"></p>
-</div>
-<div class="section level3">
-<h3 id="br-so-02-the-user-can-view-an-interactive-kri-summary-table-based-on-gsm-kriwidget_groupoverview-">BR-SO-02: The user can view an interactive KRI summary table based
-on gsm.kri::Widget_GroupOverview().<a class="anchor" aria-label="anchor" href="#br-so-02-the-user-can-view-an-interactive-kri-summary-table-based-on-gsm-kriwidget_groupoverview-"></a>
-</h3>
-<p><img src="br/br-so/br-so-02-kri_summary_table.png"></p>
-</div>
-<div class="section level3">
-<h3 id="br-so-03-the-kri-summary-table-is-filtered-to-the-selected-group-level-">BR-SO-03: The KRI summary table is filtered to the selected “Group
-Level”.<a class="anchor" aria-label="anchor" href="#br-so-03-the-kri-summary-table-is-filtered-to-the-selected-group-level-"></a>
-</h3>
-<p><img src="br/br-so/br-so-03-country.png"><img src="br/br-so/br-so-03-site.png"></p>
-</div>
-<div class="section level3">
-<h3 id="br-so-04-the-user-can-filter-the-kri-summary-table-by-flag-status-red-amber-or-both-using-clickable-pills-">BR-SO-04: The user can filter the KRI summary table by flag status
-(red, amber, or both) using clickable pills.<a class="anchor" aria-label="anchor" href="#br-so-04-the-user-can-filter-the-kri-summary-table-by-flag-status-red-amber-or-both-using-clickable-pills-"></a>
-</h3>
-<p><img src="br/br-so/br-so-04-all.png"><img src="br/br-so/br-so-04-amber_only.png"><img src="br/br-so/br-so-04-red_and_amber.png"><img src="br/br-so/br-so-04-red_only.png"></p>
-</div>
-<div class="section level3">
-<h3 id="br-so-05-the-flag-status-pills-display-a-count-of-kris-with-that-flag-status-for-the-selected-group-level-">BR-SO-05: The flag status pills display a count of KRIs with that
-flag status for the selected “Group Level”.<a class="anchor" aria-label="anchor" href="#br-so-05-the-flag-status-pills-display-a-count-of-kris-with-that-flag-status-for-the-selected-group-level-"></a>
-</h3>
-<p><img src="br/br-so/br-so-05-country.png"><img src="br/br-so/br-so-05-site.png"></p>
-</div>
-<div class="section level3">
-<h3 id="br-so-06-clicking-a-kri-cell-in-the-summary-table-navigates-the-user-to-the-metric-details-tab-filtered-to-that-kri-and-group-">BR-SO-06: Clicking a KRI cell in the summary table navigates the
-user to the “Metric Details” tab, filtered to that KRI and group.<a class="anchor" aria-label="anchor" href="#br-so-06-clicking-a-kri-cell-in-the-summary-table-navigates-the-user-to-the-metric-details-tab-filtered-to-that-kri-and-group-"></a>
-</h3>
-<p><img src="br/br-so/br-so-06-table_click_navigation.png"></p>
-</div>
-<div class="section level3">
-<h3 id="br-so-07-the-user-can-view-a-set-of-interactive-scatter-plots-based-on-gsm-kriwidget_scatterplot-one-for-each-kri-">BR-SO-07: The user can view a set of interactive scatter plots based
-on gsm.kri::Widget_ScatterPlot(), one for each KRI.<a class="anchor" aria-label="anchor" href="#br-so-07-the-user-can-view-a-set-of-interactive-scatter-plots-based-on-gsm-kriwidget_scatterplot-one-for-each-kri-"></a>
-</h3>
-<p><img src="br/br-so/br-so-07-scatter_plots.png"></p>
-</div>
-<div class="section level3">
-<h3 id="br-so-08-the-set-of-scatter-plots-is-filtered-to-show-only-plots-relevant-to-the-selected-group-level-">BR-SO-08: The set of scatter plots is filtered to show only plots
-relevant to the selected “Group Level”.<a class="anchor" aria-label="anchor" href="#br-so-08-the-set-of-scatter-plots-is-filtered-to-show-only-plots-relevant-to-the-selected-group-level-"></a>
-</h3>
-<p><img src="br/br-so/br-so-08-country.png"><img src="br/br-so/br-so-08-site.png"></p>
-</div>
-<div class="section level3">
-<h3 id="br-so-09-clicking-a-point-in-a-scatter-plot-navigates-the-user-to-the-metric-details-tab-filtered-to-that-kri-and-group-">BR-SO-09: Clicking a point in a scatter plot navigates the user to
-the “Metric Details” tab, filtered to that KRI and group.<a class="anchor" aria-label="anchor" href="#br-so-09-clicking-a-point-in-a-scatter-plot-navigates-the-user-to-the-metric-details-tab-filtered-to-that-kri-and-group-"></a>
-</h3>
-<p><img src="br/br-so/br-so-09-plot_click_navigation.png"></p>
-</div>
-</div>
-<div class="section level2">
-<h2 id="metric-details">Metric Details<a class="anchor" aria-label="anchor" href="#metric-details"></a>
-</h2>
-<div class="section level3">
-<h3 id="br-md-01-the-user-can-view-visualizations-of-a-single-kri-selected-via-a-dropdown-menu-">BR-MD-01: The user can view visualizations of a single KRI, selected
-via a dropdown menu.<a class="anchor" aria-label="anchor" href="#br-md-01-the-user-can-view-visualizations-of-a-single-kri-selected-via-a-dropdown-menu-"></a>
-</h3>
-<p><img src="br/br-md/br-md-01-changed_kri.png"><img src="br/br-md/br-md-01-default_kri.png"></p>
-</div>
-<div class="section level3">
-<h3 id="br-md-02-the-kri-selection-dropdown-is-filtered-to-show-only-kris-relevant-to-the-selected-group-level-">BR-MD-02: The KRI selection dropdown is filtered to show only KRIs
-relevant to the selected “Group Level”.<a class="anchor" aria-label="anchor" href="#br-md-02-the-kri-selection-dropdown-is-filtered-to-show-only-kris-relevant-to-the-selected-group-level-"></a>
-</h3>
-<p><img src="br/br-md/br-md-02-country-choices.png"><img src="br/br-md/br-md-02-site-choices.png"></p>
-</div>
-<div class="section level3">
-<h3 id="br-md-03-the-user-can-view-an-interactive-scatter-plot-of-the-selected-kris-latest-results-based-on-gsm-kriwidget_scatterplot-">BR-MD-03: The user can view an interactive scatter plot of the
-selected KRI’s latest results, based on
-gsm.kri::Widget_ScatterPlot().<a class="anchor" aria-label="anchor" href="#br-md-03-the-user-can-view-an-interactive-scatter-plot-of-the-selected-kris-latest-results-based-on-gsm-kriwidget_scatterplot-"></a>
-</h3>
-<p><img src="br/br-md/br-md-03-scatter_plot.png"></p>
-</div>
-<div class="section level3">
-<h3 id="br-md-04-the-selected-group-is-highlighted-in-the-interactive-scatter-plot-">BR-MD-04: The selected group is highlighted in the interactive
-scatter plot.<a class="anchor" aria-label="anchor" href="#br-md-04-the-selected-group-is-highlighted-in-the-interactive-scatter-plot-"></a>
-</h3>
-<p><img src="br/br-md/br-md-04-scatter_plot-selected.png"></p>
-</div>
-<div class="section level3">
-<h3 id="br-md-05-clicking-a-group-in-the-scatter-plot-updates-the-group-drop-down-">BR-MD-05: Clicking a group in the scatter plot updates the group
-drop-down.<a class="anchor" aria-label="anchor" href="#br-md-05-clicking-a-group-in-the-scatter-plot-updates-the-group-drop-down-"></a>
-</h3>
-<p><img src="br/br-md/br-md-05-scatter_plot-click.png"></p>
-</div>
-<div class="section level3">
-<h3 id="br-md-06-the-user-can-view-an-interactive-bar-chart-of-the-selected-kris-latest-metric-values-based-on-gsm-kriwidget_barchart-">BR-MD-06: The user can view an interactive bar chart of the selected
-KRI’s latest metric values, based on gsm.kri::Widget_BarChart().<a class="anchor" aria-label="anchor" href="#br-md-06-the-user-can-view-an-interactive-bar-chart-of-the-selected-kris-latest-metric-values-based-on-gsm-kriwidget_barchart-"></a>
-</h3>
-<p><img src="br/br-md/br-md-06-bar_chart-values.png"></p>
-</div>
-<div class="section level3">
-<h3 id="br-md-07-the-selected-group-is-highlighted-in-the-interactive-bar-chart-value-">BR-MD-07: The selected group is highlighted in the interactive bar
-chart (value).<a class="anchor" aria-label="anchor" href="#br-md-07-the-selected-group-is-highlighted-in-the-interactive-bar-chart-value-"></a>
-</h3>
-<p><img src="br/br-md/br-md-07-bar_chart-values-selected.png"></p>
-</div>
-<div class="section level3">
-<h3 id="br-md-08-clicking-a-group-in-the-bar-chart-value-updates-the-group-drop-down-">BR-MD-08: Clicking a group in the bar chart (value) updates the
-group drop-down.<a class="anchor" aria-label="anchor" href="#br-md-08-clicking-a-group-in-the-bar-chart-value-updates-the-group-drop-down-"></a>
-</h3>
-<p><img src="br/br-md/br-md-08-bar_chart-values-click.png"></p>
-</div>
-<div class="section level3">
-<h3 id="br-md-09-the-user-can-view-an-interactive-bar-chart-of-the-selected-kris-latest-scores-based-on-gsm-kriwidget_barchart-">BR-MD-09: The user can view an interactive bar chart of the selected
-KRI’s latest scores, based on gsm.kri::Widget_BarChart().<a class="anchor" aria-label="anchor" href="#br-md-09-the-user-can-view-an-interactive-bar-chart-of-the-selected-kris-latest-scores-based-on-gsm-kriwidget_barchart-"></a>
-</h3>
-<p><img src="br/br-md/br-md-09-bar_chart-scores.png"></p>
-</div>
-<div class="section level3">
-<h3 id="br-md-10-the-selected-group-is-highlighted-in-the-interactive-bar-chart-score-">BR-MD-10: The selected group is highlighted in the interactive bar
-chart (score).<a class="anchor" aria-label="anchor" href="#br-md-10-the-selected-group-is-highlighted-in-the-interactive-bar-chart-score-"></a>
-</h3>
-<p><img src="br/br-md/br-md-10-bar_chart-scores-selected.png"></p>
-</div>
-<div class="section level3">
-<h3 id="br-md-11-clicking-a-group-in-the-bar-chart-score-updates-the-group-drop-down-">BR-MD-11: Clicking a group in the bar chart (score) updates the
-group drop-down.<a class="anchor" aria-label="anchor" href="#br-md-11-clicking-a-group-in-the-bar-chart-score-updates-the-group-drop-down-"></a>
-</h3>
-<p><img src="br/br-md/br-md-11-bar_chart-scores-click.png"></p>
-</div>
-<div class="section level3">
-<h3 id="br-md-12-the-user-can-view-an-interactive-time-series-plot-of-the-selected-kris-scores-across-all-available-data-snapshots-based-on-gsm-kriwidget_timeseries-">BR-MD-12: The user can view an interactive time-series plot of the
-selected KRI’s scores across all available data snapshots, based on
-gsm.kri::Widget_TimeSeries().<a class="anchor" aria-label="anchor" href="#br-md-12-the-user-can-view-an-interactive-time-series-plot-of-the-selected-kris-scores-across-all-available-data-snapshots-based-on-gsm-kriwidget_timeseries-"></a>
-</h3>
-<p><img src="br/br-md/br-md-12-time_series.png"></p>
-</div>
-<div class="section level3">
-<h3 id="br-md-13-the-selected-group-is-highlighted-in-the-interactive-time-series-plot-">BR-MD-13: The selected group is highlighted in the interactive
-time-series plot.<a class="anchor" aria-label="anchor" href="#br-md-13-the-selected-group-is-highlighted-in-the-interactive-time-series-plot-"></a>
-</h3>
-<p><img src="br/br-md/br-md-13-time_series-selected.png"></p>
-</div>
-<div class="section level3">
-<h3 id="br-md-14-clicking-a-group-in-the-time-series-plot-updates-the-group-drop-down-">BR-MD-14: Clicking a group in the time-series plot updates the group
-drop-down.<a class="anchor" aria-label="anchor" href="#br-md-14-clicking-a-group-in-the-time-series-plot-updates-the-group-drop-down-"></a>
-</h3>
-<p><img src="br/br-md/br-md-14-time_series-click.png"></p>
-</div>
-<div class="section level3">
-<h3 id="br-md-15-the-user-can-view-a-table-of-the-kri-results-for-each-group-as-generated-by-gsm-krireport_metrictable-">BR-MD-15: The user can view a table of the KRI results for each
-group, as generated by gsm.kri::Report_MetricTable().<a class="anchor" aria-label="anchor" href="#br-md-15-the-user-can-view-a-table-of-the-kri-results-for-each-group-as-generated-by-gsm-krireport_metrictable-"></a>
-</h3>
-<p><img src="br/br-md/br-md-15-analysis_output.png"></p>
-</div>
-<div class="section level3">
-<h3 id="br-md-16-the-selected-group-is-highlighted-in-the-kri-results-table-">BR-MD-16: The selected group is highlighted in the KRI results
-table.<a class="anchor" aria-label="anchor" href="#br-md-16-the-selected-group-is-highlighted-in-the-kri-results-table-"></a>
-</h3>
-<p><img src="br/br-md/br-md-16-analysis_output-selected.png"></p>
-</div>
-<div class="section level3">
-<h3 id="br-md-17-clicking-a-group-in-the-kri-results-table-updates-the-group-drop-down-">BR-MD-17: Clicking a group in the KRI results table updates the
-group drop-down.<a class="anchor" aria-label="anchor" href="#br-md-17-clicking-a-group-in-the-kri-results-table-updates-the-group-drop-down-"></a>
-</h3>
-<p><img src="br/br-md/br-md-17-analysis_output-click.png"></p>
-</div>
-<div class="section level3">
-<h3 id="br-md-18-when-a-group-is-selected-the-user-can-view-that-groups-metadata-">BR-MD-18: When a group is selected, the user can view that group’s
-metadata.<a class="anchor" aria-label="anchor" href="#br-md-18-when-a-group-is-selected-the-user-can-view-that-groups-metadata-"></a>
-</h3>
-<p><img src="br/br-md/br-md-18-group_metadata.png"></p>
-</div>
-<div class="section level3">
-<h3 id="br-md-19-when-a-group-is-selected-the-user-can-view-a-table-of-participants-within-that-group-showing-their-numerator-denominator-and-metric-values-for-the-selected-kri-">BR-MD-19: When a group is selected, the user can view a table of
-participants within that group, showing their numerator, denominator,
-and metric values for the selected KRI.<a class="anchor" aria-label="anchor" href="#br-md-19-when-a-group-is-selected-the-user-can-view-a-table-of-participants-within-that-group-showing-their-numerator-denominator-and-metric-values-for-the-selected-kri-"></a>
-</h3>
-<p><img src="br/br-md/br-md-19-participant_table.png"></p>
-</div>
-<div class="section level3">
-<h3 id="br-md-20-clicking-a-participant-in-the-participant-table-selects-that-participant-and-navigates-to-the-domain-details-tab-">BR-MD-20: Clicking a participant in the participant table selects
-that participant and navigates to the Domain Details tab.<a class="anchor" aria-label="anchor" href="#br-md-20-clicking-a-participant-in-the-participant-table-selects-that-participant-and-navigates-to-the-domain-details-tab-"></a>
-</h3>
-<p><img src="br/br-md/br-md-20-participant_table-click.png"></p>
-</div>
-</div>
-<div class="section level2">
-<h2 id="domain-details">Domain Details<a class="anchor" aria-label="anchor" href="#domain-details"></a>
-</h2>
-<div class="section level3">
-<h3 id="br-dd-01-the-user-can-view-a-summary-of-the-number-of-records-for-each-available-data-domain-">BR-DD-01: The user can view a summary of the number of records for
-each available data domain.<a class="anchor" aria-label="anchor" href="#br-dd-01-the-user-can-view-a-summary-of-the-number-of-records-for-each-available-data-domain-"></a>
-</h3>
-<p><img src="br/br-dd/br-dd-01-domain_summary.png"></p>
-</div>
-<div class="section level3">
-<h3 id="br-dd-02-the-domain-summary-counts-update-based-on-the-selected-group-and-participant-filters-">BR-DD-02: The domain summary counts update based on the selected
-“Group” and “Participant” filters.<a class="anchor" aria-label="anchor" href="#br-dd-02-the-domain-summary-counts-update-based-on-the-selected-group-and-participant-filters-"></a>
-</h3>
-<p><img src="br/br-dd/br-dd-02-filter_by_group.png"><img src="br/br-dd/br-dd-02-filter_by_participant.png"></p>
-</div>
-<div class="section level3">
-<h3 id="br-dd-03-the-user-can-switch-between-different-domain-data-views-using-a-set-of-tabs-">BR-DD-03: The user can switch between different domain data views
-using a set of tabs.<a class="anchor" aria-label="anchor" href="#br-dd-03-the-user-can-switch-between-different-domain-data-views-using-a-set-of-tabs-"></a>
-</h3>
-<p><img src="br/br-dd/br-dd-03-AE.png"><img src="br/br-dd/br-dd-03-ENROLL.png"></p>
-</div>
-<div class="section level3">
-<h3 id="br-dd-04-clicking-a-domain-in-the-summary-list-switches-the-view-to-that-domains-data-tab-">BR-DD-04: Clicking a domain in the summary list switches the view to
-that domain’s data tab.<a class="anchor" aria-label="anchor" href="#br-dd-04-clicking-a-domain-in-the-summary-list-switches-the-view-to-that-domains-data-tab-"></a>
-</h3>
-<p><img src="br/br-dd/br-dd-04-ENROLL.png"></p>
-</div>
-<div class="section level3">
-<h3 id="br-dd-05-the-user-can-view-the-raw-data-for-the-selected-domain-in-a-table-">BR-DD-05: The user can view the raw data for the selected domain in
-a table.<a class="anchor" aria-label="anchor" href="#br-dd-05-the-user-can-view-the-raw-data-for-the-selected-domain-in-a-table-"></a>
-</h3>
-<p><img src="br/br-dd/br-dd-05-AE.png"></p>
-</div>
-<div class="section level3">
-<h3 id="br-dd-06-the-domain-data-table-is-filtered-by-the-selected-group-and-participant-">BR-DD-06: The domain data table is filtered by the selected “Group”
-and “Participant”.<a class="anchor" aria-label="anchor" href="#br-dd-06-the-domain-data-table-is-filtered-by-the-selected-group-and-participant-"></a>
-</h3>
-<p><img src="br/br-dd/br-dd-06-filter_by_group.png"><img src="br/br-dd/br-dd-06-filter_by_participant.png"><img src="br/br-dd/br-dd-06-unfiltered.png"></p>
-</div>
-<div class="section level3">
-<h3 id="br-dd-07-the-app-will-display-an-error-message-if-it-is-unable-to-load-data-for-a-specific-domain-">BR-DD-07: The app will display an error message if it is unable to
-load data for a specific domain.<a class="anchor" aria-label="anchor" href="#br-dd-07-the-app-will-display-an-error-message-if-it-is-unable-to-load-data-for-a-specific-domain-"></a>
-</h3>
-<p><img src="br/br-dd/br-dd-07-error_modal.png"></p>
-</div>
-</div>
-<div class="section level2">
-<h2 id="plugins">Plugins<a class="anchor" aria-label="anchor" href="#plugins"></a>
-</h2>
-<div class="section level3">
-<h3 id="br-pg-01-if-a-single-plugin-is-included-in-the-app-it-appears-as-a-new-tab-">BR-PG-01: If a single plugin is included in the app, it appears as a
-new tab.<a class="anchor" aria-label="anchor" href="#br-pg-01-if-a-single-plugin-is-included-in-the-app-it-appears-as-a-new-tab-"></a>
-</h3>
-<p><img src="br/br-pg/br-pg-01-single.png"></p>
-</div>
-<div class="section level3">
-<h3 id="br-pg-02-if-multiple-plugins-are-provided-they-are-grouped-under-a-plugins-dropdown-menu-in-the-navigation-bar-">BR-PG-02: If multiple plugins are provided, they are grouped under a
-“Plugins” dropdown menu in the navigation bar.<a class="anchor" aria-label="anchor" href="#br-pg-02-if-multiple-plugins-are-provided-they-are-grouped-under-a-plugins-dropdown-menu-in-the-navigation-bar-"></a>
-</h3>
-<p><img src="br/br-pg/br-pg-02-multiple.png"></p>
-</div>
-<div class="section level3">
-<h3 id="br-pg-03-if-a-plugin-specifies-required-inputs-a-placeholder-is-shown-if-that-input-is-set-to-all-">BR-PG-03: If a plugin specifies required inputs, a placeholder is
-shown if that input is set to ‘All’.<a class="anchor" aria-label="anchor" href="#br-pg-03-if-a-plugin-specifies-required-inputs-a-placeholder-is-shown-if-that-input-is-set-to-all-"></a>
-</h3>
-<p><img src="br/br-pg/br-pg-03-loaded.png"><img src="br/br-pg/br-pg-03-placeholder.png"></p>
-</div>
-</div>
-  </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
+<ul>
+<li>519: Users can easily explore Domain Details</li>
+</ul></section><script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'light-border',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config);
+    }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script></main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
     </nav></aside>
 </div>
 
 
-
     <footer><div class="pkgdown-footer-left">
-  <p>Developed by Jon Harmon, Spencer Childress, Taylor Rodgers, Matt Roumaya.</p>
+  <p>Developed by Jon Harmon, Laura Maxwell, Natalia Andriychuk, Spencer Childress, Jeremy Wildfire, Taylor Rodgers, Matt Roumaya.</p>
 </div>
 
 <div class="pkgdown-footer-right">
