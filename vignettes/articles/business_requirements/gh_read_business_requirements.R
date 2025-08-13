@@ -42,7 +42,7 @@ extract_acceptance_criteria <- function(strFeatureBody) {
     stringr::str_trim() %>%
     stringr::str_subset(".")
   intACHeaderRow <- stringr::str_which(chrBody, "^#+\\s+Acceptance Criteri")
-  if (isTRUE(as.logical(intACHeaderRow))) {
+  if (length(intACHeaderRow) > 0) {
     strChecklistMDRegex <- "^\\s*-\\s*\\[[^\\]]*\\]\\s*"
     # We only want lines after the Acceptance Criteria header, and those lines
     # need to be a checklist member.
