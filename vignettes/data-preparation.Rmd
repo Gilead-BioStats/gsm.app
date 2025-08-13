@@ -25,9 +25,9 @@ library(purrr)
 
 The {gsm.app} package creates interactive dashboards for exploring Good Statistical Monitoring (GSM) Key Risk Indicator (KRI) assessments in clinical trials. This vignette provides a comprehensive overview on how to prepare data for use with the {gsm.app} Shiny application and how to deploy an app.
 
-The {gsm} suite of packages leverages Key Risk Indicators (KRIs) and thresholds to conduct study-level, country-level and site-level Risk Based Monitoring for clinical trials. {gsm.app} package tailored to the {gsm} analysis data model that connects risk signals with the underlying data.
+The {gsm} suite of packages leverages Key Risk Indicators (KRIs) and thresholds to conduct study-level, country-level and site-level Risk Based Monitoring for clinical trials. The {gsm.app} package is tailored to the {gsm} analysis data model, generating shiny apps that connect risk signals with the underlying data.
 
-Preparing data for use with {gsm.app} involves a standardized, reproducible pipeline leveraging the {gsm.core}, {gsm.mapping}, {gsm.kri}, and {gsm.reporting} packages. The process consists of the following high-level steps:
+Preparing data for use with {gsm.app} involves a standardized, reproducible pipeline leveraging the `{gsm.core}`, `{gsm.mapping}`, `{gsm.kri}`, and `{gsm.reporting}` packages. The process consists of the following high-level steps:
 
 1.  [Set Up Data Sources](https://gilead-biostats.github.io/gsm.core/articles/DataModel.html#raw-and-mapped-data).
 
@@ -37,9 +37,9 @@ Preparing data for use with {gsm.app} involves a standardized, reproducible pipe
 
     Specify and apply mapping workflows to transform raw data into standardized mapped data.
 
-    It is important to note that [`gsm.mapping`](https://gilead-biostats.github.io/gsm.mapping/) provides necessary functions and workflows to perform the data transformation from raw/source datasets to appropriate domains. The gsm.app is designed to be flexible to accept data conforming to the data.mapping specification.
+    It is important to note that `{gsm.mapping}` provides necessary functions and workflows to perform the data transformation from raw/source datasets to appropriate domains. The gsm.app is designed to be flexible to accept data conforming to the data.mapping specification.
 
-3.  [Generate Mapped Data Layer](https://gilead-biostats.github.io/gsm.core/articles/Cookbook.html#automate-data-ingestion-using-ingest-and-combinespecs)
+3.  [Generate Mapped Data Layer](https://gilead-biostats.github.io/gsm.core/articles/Cookbook.html#example-3---study-level-reporting-workflows)
 
     Use mapping specifications to ingest, filter, and join data, producing a harmonized mapped data layer.
 
@@ -47,7 +47,7 @@ Preparing data for use with {gsm.app} involves a standardized, reproducible pipe
 
     Apply analysis workflows to calculate Key Risk Indicators (KRIs) and perform statistical modeling.
 
-5.  [Create Reporting Data](https://gilead-biostats.github.io/gsm.reporting/articles/DataReporting.html#step-by-step-reporting-workflow)
+5.  [Create Reporting Data](https://gilead-biostats.github.io/gsm.reporting/articles/DataReporting.html)
 
     Transform analysis results into reporting-ready data frames for use in dashboards and reports. The reporting data model is documented in detail at [Reporting Data](https://gilead-biostats.github.io/gsm.core/articles/DataModel.html#reporting-data).
 
@@ -67,140 +67,9 @@ The {gsm.app} requires five main data frames to operate:
 
 # Data Fetching Function (`fnFetchData`)
 
-## Overview
-
 The {gsm.app} operates on two levels: summary-level KRI results and detail-level domain-specific data. When users identify concerning metrics (e.g., high adverse event rates at a specific site), they need to drill down to examine the underlying records that generated those signals. This requires a data fetching approach that can dynamically filter and return relevant data based on the current app selections.
 
-The data fetching functionality enables real-time access to source data during investigation while maintaining performance by avoiding unnecessary data loading. For a comprehensive guide on implementing data ingestion functions, see the [Data Ingestion vignette](data-ingestion.html).
-
-## Implementation
-
-The gsm app allows you to provide custom data fetching functions that read and subset data from your local file system or database. The [fnFetchData](https://gilead-biostats.github.io/gsm.app/reference/sample_fnFetchData.html) function is essential for the {gsm.app} to provide drill-down functionality for domain-specific data. This function tells the app how to fetch domain data and should return filtered data based on the parameters passed from the app interface.
-
-The function definition can be customized to suite your system and data needs, however there are several factors that should be accounted for when creating a `fnFetchData` function
-
-The `fnFetchData` function should accept the following parameters and return a filtered data frame:
-
--   `strDomain`: Character string specifying the data domain (e.g., "AE", "LB", "DM")
--   `strGroupLevel`: Character string specifying the group level (e.g., "Site", "Country")
--   `strGroupID`: Character string specifying the specific group ID to filter on
--   `strSubjectID`: Character string specifying the subject ID (optional, may be NULL)
-
-### Basic Implementation
-
-Here's a basic template for a data fetching function assuming your data stored locally:
-
-```{r create-fnfetchdata, eval = FALSE}
-fnFetchData <- function(strDomain,
-                      strGroupID = NULL,
-                      strGroupLevel = "Site",
-                      strSubjectID = NULL,
-                      dSnapshotDate = NULL) {
-  
-  # Define base path to your data files
-  data_path <- "path/to/your/data"
-  
-  # Construct file path based on domain
-  file_path <- file.path(data_path, paste0(strDomain, ".csv"))
-  
-  # Read the data
-  dfDomain <- read.csv(file_path, stringsAsFactors = FALSE)
-
-  #rename columns, if needed
-  dfDomain <- dfDomain %>%
-    dplyr::rename(
-      "SubjectID" = "USUBJID"
-    )
-
-  # Apply group-level filtering, if specified
-  if (!is.null(strGroupID) && "GroupID" %in% colnames(dfDomain)) {
-    dfDomain <- dplyr::filter(dfDomain, .data$GroupID == strGroupID)
-  }
-
-  # Apply subject-level filtering, if specified
-  if (!is.null(strSubjectID) && "SubjectID" %in% colnames(dfDomain)) {
-    dfDomain <- dplyr::filter(dfDomain, .data$SubjectID == strSubjectID)
-  }
-
-  return(dfDomain)
-}
-```
-
-### Advanced Implementation with Multiple Data Sources
-
-For more complex scenarios where you have multiple data sources or need custom logic:
-
-```{r eval=FALSE}
-
-advanced_fetch_data <- function(strDomain, 
-                                strGroupLevel, 
-                                strGroupID, 
-                                strSubjectID = NULL) {
-  # Define data source mappings
-  data_sources <- list(
-    "AE" = "adverse_events.csv",
-    "LB" = "lab_data.csv", 
-    "DM" = "demographics.csv",
-    "VS" = "vital_signs.csv"
-  )
-  
-  # Base data directory
-  base_path <-  "path/to/your/data"
-  
-  # Get the appropriate file for the domain
-  if (!strDomain %in% names(data_sources)) {
-    warning(paste("Unknown domain:", strDomain))
-    return(data.frame())
-  }
-  
-  file_name <- data_sources[[strDomain]]
-  full_path <- file.path(base_path, file_name)
-  
-  # Read data with error handling
-  tryCatch({
-    data <- read.csv(full_path, stringsAsFactors = FALSE)
-  }, error = function(e) {
-    warning(paste("Error reading file:", full_path, "-", e$message))
-    return(data.frame())
-  })
-  
-  # Domain-specific preprocessing
-  if (strDomain == "AE") {
-    # Ensure required columns exist for adverse events
-    required_cols <- c("SubjectID", "AETERM", "AESEV", "AEREL")
-    missing_cols <- setdiff(required_cols, names(data))
-    if (length(missing_cols) > 0) {
-      warning(paste("Missing required columns for AE domain:", paste(missing_cols, collapse = ", ")))
-    }
-  }
-  
-  # Apply group-level filtering, if specified
-  if (!is.null(strGroupID) && "GroupID" %in% colnames(dfDomain)) {
-    dfDomain <- dplyr::filter(dfDomain, .data$GroupID == strGroupID)
-  }
-
-  # Apply subject-level filtering, if specified
-  if (!is.null(strSubjectID) && "SubjectID" %in% colnames(dfDomain)) {
-    dfDomain <- dplyr::filter(dfDomain, .data$SubjectID == strSubjectID)
-  }
-  
-  return(data)
-}
-```
-
-## Data Counting Function (`fnCountData`)
-
-The Domain Summary tab in gsm.app provides information on number of records for each domain. When working with large datasets, retrieving only the count of records is often significantly faster than fetching the full dataset. However, if your `fnFetchData()` function is already fast, `fnCountData` allows you to construct a simple data counter from your data fetcher as it can be just a wrapper around `fnFetchData` . The [`fnCountData`](https://gilead-biostats.github.io/gsm.app/reference/ConstructDataCounter.html) function should accept the `fnFetchData` function as a parameter, but return an integer count instead of a data frame.
-
-### Implementation
-
-```{r eval=FALSE}
-fnCountData <- function(fnFetchData) {
-  # Reuse the fetch function and count rows
-  data <- fnFetchData(strDomain, strGroupLevel, strGroupID, strSubjectID)
-  return(nrow(data))
-}
-```
+The data-fetching functionality enables real-time access to source data during investigation while maintaining performance by avoiding unnecessary data loading. For a comprehensive guide on implementing data ingestion functions, see `vignette("data-ingestion")`.
 
 # App Deployment
 
