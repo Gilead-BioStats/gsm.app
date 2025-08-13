@@ -1,5 +1,5 @@
 ---
-name: "Feature Issue Template"  
+name: "Request a feature"  
 about: "Develop a new feature"
 title: "Feature: ProvideATitle"
 ---
@@ -12,3 +12,6 @@ title: "Feature: ProvideATitle"
 ## Additional Comments
 <!--- Not required, anything else import pertaining to this feature -->
 
+## Acceptance Criteria
+<!-- Add agreed-upon acceptance criteria as a bulleted list, each line starting 
+with `- [ ]`. Used for automated qualification reports. -->

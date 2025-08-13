@@ -116,8 +116,8 @@ function clickTimeSeriesGroup(containerId, targetGroupID, flagType = "amber") {
 }
 
 /**
- * Checks if a chart widget has finished loading by validating the presence of
- * a chart and checking certain chart properties.
+ * Checks if a chart widget has finished loading. This function is designed to be
+ * robust for use in automated testing environments.
  *
  * @param {string} containerId - The ID of the container element that holds the
  * chart.
@@ -125,26 +125,56 @@ function clickTimeSeriesGroup(containerId, targetGroupID, flagType = "amber") {
  * @returns {boolean} True if the widget is fully loaded, false otherwise.
  */
 function isCanvasLoaded(containerId) {
-  const canvas = document.querySelector(`#${containerId} canvas`);
-  if (!canvas) return false;
-  if (canvas.width === 0 || canvas.height === 0) return false;
+    const canvas = document.querySelector(`#${containerId} canvas`);
 
-  const context = canvas.getContext('2d');
-  if (!context) return false;
+    // 1. Basic Checks: Ensure the canvas element exists and is visible.
+    if (!canvas || canvas.width === 0 || canvas.height === 0) {
+        return false;
+    }
 
-  // Check if the canvas is visible (i.e., has a non-zero bounding box)
-  const boundingRect = canvas.getBoundingClientRect();
-  if (boundingRect.width === 0 || boundingRect.height === 0) return false;
-  if (boundingRect.top < 0 || boundingRect.left < 0 || boundingRect.bottom > window.innerHeight || boundingRect.right > window.innerWidth) return false;
+    const rect = canvas.getBoundingClientRect();
+    if (rect.width === 0 || rect.height === 0 || rect.top > window.innerHeight || rect.left > window.innerWidth) {
+        return false;
+    }
 
-  // Check pixel contents.
-  const isNonEmptyPixel = (x, y) => {
-    const [r, g, b, a] = context.getImageData(x, y, 1, 1).data;
-    return r !== 0 || g !== 0 || b !== 0 || a !== 0;
-  };
-  if (!isNonEmptyPixel(0, 0)) return false; // Top-left
-  if (!isNonEmptyPixel(canvas.width / 2, canvas.height / 2)) return false; // Center
-  if (!isNonEmptyPixel(canvas.width - 1, canvas.height - 1)) return false; // Bottom-right
+    // 2. Chart.js Instance Check
+    const chart = canvas.chart;
+    if (!chart) {
+        return false;
+    }
 
-  return true; // Canvas is fully loaded
+    // 3. Animation Check
+    if (chart.animating || (chart.options.animation && chart.animating)) {
+        return false;
+    }
+
+    // 4. Full Pixel Scan: Check that the canvas isn't blank (all one color or transparent).
+    const context = canvas.getContext('2d');
+    if (!context) {
+        return false;
+    }
+
+    const imageData = context.getImageData(0, 0, canvas.width, canvas.height).data;
+    let firstVisibleColor = null;
+
+    for (let i = 0; i < imageData.length; i += 4) {
+        // Check if the pixel is visible (alpha > 0).
+        if (imageData[i + 3] > 0) {
+            const currentColor = [imageData[i], imageData[i+1], imageData[i+2], imageData[i+3]].join(',');
+
+            if (firstVisibleColor === null) {
+                // This is the first visible pixel we've found.
+                firstVisibleColor = currentColor;
+            } else if (currentColor !== firstVisibleColor) {
+                // We found a second, different visible color. The chart is rendered.
+                return true;
+            }
+        }
+    }
+
+    // If the loop completes, one of two conditions is met:
+    // 1. No visible pixels were found (firstVisibleColor is null).
+    // 2. All visible pixels are the exact same color.
+    // In either case, the chart is considered not fully loaded.
+    return false;
 }

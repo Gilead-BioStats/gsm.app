@@ -31,7 +31,7 @@ jobs:
           needs: website
 
       - name: Sync BR Snapshots
-        run: Rscript -e "source('vignettes/articles/br_utils.R'); sync_br_snapshots()"
+        run: Rscript -e "source('vignettes/articles/business_requirements/sync_br_imgs.R')"
 
       - name: Deploy pkgdown
         run: |
