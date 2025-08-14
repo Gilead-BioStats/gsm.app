@@ -18,7 +18,8 @@ mod_MetricTable_Server(
 \item{rctv_dfResults}{\verb{reactive dataframe} A \code{\link[shiny:reactive]{shiny::reactive()}} object that
 returns a stacked summary of analysis pipeline output.}
 
-\item{dfGroups}{\code{data.frame} Group-level metadata dictionary.}
+\item{dfGroups}{\code{data.frame} Group-level metadata dictionary. See
+\code{vignette("DataReporting", package = "gsm.reporting")} for an example.}
 
 \item{rctv_strGroupID}{\verb{reactive character} A \code{\link[shiny:reactiveVal]{shiny::reactiveVal()}} object
 that returns the \code{GroupID} of the selected group (usually site), and can be

@@ -21,14 +21,16 @@ mod_MetricDetails_Server(
 
 \item{dfBounds}{\code{data.frame} Set of predicted percentages/rates and upper-
 and lower-bounds across the full range of sample sizes/total exposure
-values for reporting.}
+values for reporting. Created with \code{\link[gsm.reporting:MakeBounds]{gsm.reporting::MakeBounds()}}.}
 
-\item{dfGroups}{\code{data.frame} Group-level metadata dictionary.}
+\item{dfGroups}{\code{data.frame} Group-level metadata dictionary. See
+\code{vignette("DataReporting", package = "gsm.reporting")} for an example.}
 
 \item{dfMetrics}{\code{data.frame} Metric-specific metadata for use in charts and
-reporting.}
+reporting. Created with \code{\link[gsm.reporting:MakeMetric]{gsm.reporting::MakeMetric()}}.}
 
-\item{dfResults}{\code{data.frame} A stacked summary of analysis pipeline output.}
+\item{dfResults}{\code{data.frame} A stacked summary of analysis pipeline output.
+Created with \code{\link[gsm.reporting:BindResults]{gsm.reporting::BindResults()}}.}
 
 \item{rctv_lMetric}{\verb{reactive list} A \code{\link[shiny:reactive]{shiny::reactive()}} object that returns
 a named list of data describing a single metric, as well as things like

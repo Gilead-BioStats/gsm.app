@@ -9,9 +9,11 @@ mod_StudyInformation_UI(id, dfGroups, dfResults)
 \arguments{
 \item{id}{\code{character} The id for this element.}
 
-\item{dfGroups}{\code{data.frame} Group-level metadata dictionary.}
+\item{dfGroups}{\code{data.frame} Group-level metadata dictionary. See
+\code{vignette("DataReporting", package = "gsm.reporting")} for an example.}
 
-\item{dfResults}{\code{data.frame} A stacked summary of analysis pipeline output.}
+\item{dfResults}{\code{data.frame} A stacked summary of analysis pipeline output.
+Created with \code{\link[gsm.reporting:BindResults]{gsm.reporting::BindResults()}}.}
 }
 \value{
 A \code{\link[bslib:card]{bslib::card()}} with overall study metadata.

@@ -16,18 +16,20 @@ Widget_TimeSeries(
 \arguments{
 \item{id}{\code{character} The id for this element.}
 
-\item{dfResults}{\code{data.frame} A stacked summary of analysis pipeline output.}
+\item{dfResults}{\code{data.frame} A stacked summary of analysis pipeline output.
+Created with \code{\link[gsm.reporting:BindResults]{gsm.reporting::BindResults()}}.}
 
 \item{strOutcome}{\code{character} Outcome variable. Default: \code{"Score"}.}
 
 \item{lMetric}{\code{list} Named list of data describing a single metric, as well
 as things like which group is selected.}
 
-\item{dfGroups}{\code{data.frame} Group-level metadata dictionary.}
+\item{dfGroups}{\code{data.frame} Group-level metadata dictionary. See
+\code{vignette("DataReporting", package = "gsm.reporting")} for an example.}
 
 \item{dfBounds}{\code{data.frame} Set of predicted percentages/rates and upper-
 and lower-bounds across the full range of sample sizes/total exposure
-values for reporting.}
+values for reporting. Created with \code{\link[gsm.reporting:MakeBounds]{gsm.reporting::MakeBounds()}}.}
 }
 \description{
 Time Series Widget

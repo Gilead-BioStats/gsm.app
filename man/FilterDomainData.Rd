@@ -21,7 +21,8 @@ FilterDomainData(
 
 \item{dSnapshotDate}{\code{Date} The date of a data snapshot.}
 
-\item{dfGroups}{\code{data.frame} Group-level metadata dictionary.}
+\item{dfGroups}{\code{data.frame} Group-level metadata dictionary. See
+\code{vignette("DataReporting", package = "gsm.reporting")} for an example.}
 
 \item{strGroupLevel}{\code{character} Value for the group level. Default: \code{NULL}
 and taken from \code{dfMetrics$GroupLevel} if available.}

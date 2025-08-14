@@ -12,12 +12,14 @@ app. The values of the vector will be used as labels, and the names will be
 used as IDs. The IDs will be passed to \code{fnFetchData()} to fetch data about
 that domain.}
 
-\item{dfGroups}{\code{data.frame} Group-level metadata dictionary.}
+\item{dfGroups}{\code{data.frame} Group-level metadata dictionary. See
+\code{vignette("DataReporting", package = "gsm.reporting")} for an example.}
 
 \item{dfMetrics}{\code{data.frame} Metric-specific metadata for use in charts and
-reporting.}
+reporting. Created with \code{\link[gsm.reporting:MakeMetric]{gsm.reporting::MakeMetric()}}.}
 
-\item{dfResults}{\code{data.frame} A stacked summary of analysis pipeline output.}
+\item{dfResults}{\code{data.frame} A stacked summary of analysis pipeline output.
+Created with \code{\link[gsm.reporting:BindResults]{gsm.reporting::BindResults()}}.}
 
 \item{lPlugins}{\code{list} Optional list of plugins to include in the app.}
 }

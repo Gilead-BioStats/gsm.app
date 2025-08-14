@@ -37,16 +37,21 @@
 #' @param chrValues `character` A vector of values to associate with a vector of
 #'   labels.
 #' @param df `data.frame` A data frame to wrangle.
-#' @param dfAnalyticsInput `data.frame` Participant-level metric data.
+#' @param dfAnalyticsInput `data.frame` Participant-level metric data. This
+#'   data.frame is created by binding together the `lAnalysis` "Analysis_Input"
+#'   list of data.frames output of analysis workflows, with a `MetricID` column
+#'   for the name of each list.
 #' @param dfBounds `data.frame` Set of predicted percentages/rates and upper-
 #'   and lower-bounds across the full range of sample sizes/total exposure
-#'   values for reporting.
-#' @param dfGroups `data.frame` Group-level metadata dictionary.
+#'   values for reporting. Created with [gsm.reporting::MakeBounds()].
+#' @param dfGroups `data.frame` Group-level metadata dictionary. See
+#'   `vignette("DataReporting", package = "gsm.reporting")` for an example.
 #' @param dfMetrics `data.frame` Metric-specific metadata for use in charts and
-#'   reporting.
+#'   reporting. Created with [gsm.reporting::MakeMetric()].
 #' @param dfParticipantGroups `data.frame` Unique `SubjectID` and `GroupID`
 #'   combos from `dfAnalyticsInput`.
 #' @param dfResults `data.frame` A stacked summary of analysis pipeline output.
+#'   Created with [gsm.reporting::BindResults()].
 #' @param dfSubjectGroups `data.frame` A subset of `dfGroups` with `GroupLevel`,
 #'   `GroupID`, and `SubjectID`.
 #' @param dSnapshotDate `Date` The date of a data snapshot.
