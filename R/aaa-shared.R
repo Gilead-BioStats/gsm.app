@@ -38,9 +38,9 @@
 #'   labels.
 #' @param df `data.frame` A data frame to wrangle.
 #' @param dfAnalyticsInput `data.frame` Participant-level metric data. This
-#'   data.frame is created by binding together the `lAnalysis` list of
-#'   data.frames output of analysis workflows, with a `MetricID` column for the
-#'   name of each list.
+#'   data.frame is created by binding together the `lAnalysis` "Analysis_Input"
+#'   list of data.frames output of analysis workflows, with a `MetricID` column
+#'   for the name of each list.
 #' @param dfBounds `data.frame` Set of predicted percentages/rates and upper-
 #'   and lower-bounds across the full range of sample sizes/total exposure
 #'   values for reporting. Created with [gsm.reporting::MakeBounds()].

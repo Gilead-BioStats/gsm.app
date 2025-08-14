@@ -28,9 +28,9 @@ mod_Plugins_Server(
 \item{lPlugins}{\code{list} Optional list of plugins to include in the app.}
 
 \item{dfAnalyticsInput}{\code{data.frame} Participant-level metric data. This
-data.frame is created by binding together the \code{lAnalysis} list of
-data.frames output of analysis workflows, with a \code{MetricID} column for the
-name of each list.}
+data.frame is created by binding together the \code{lAnalysis} "Analysis_Input"
+list of data.frames output of analysis workflows, with a \code{MetricID} column
+for the name of each list.}
 
 \item{dfBounds}{\code{data.frame} Set of predicted percentages/rates and upper-
 and lower-bounds across the full range of sample sizes/total exposure

@@ -22,9 +22,9 @@ mod_GroupDetails_Server(
 \code{vignette("DataReporting", package = "gsm.reporting")} for an example.}
 
 \item{dfAnalyticsInput}{\code{data.frame} Participant-level metric data. This
-data.frame is created by binding together the \code{lAnalysis} list of
-data.frames output of analysis workflows, with a \code{MetricID} column for the
-name of each list.}
+data.frame is created by binding together the \code{lAnalysis} "Analysis_Input"
+list of data.frames output of analysis workflows, with a \code{MetricID} column
+for the name of each list.}
 
 \item{rctv_strGroupID}{\verb{reactive character} A \code{\link[shiny:reactiveVal]{shiny::reactiveVal()}} object
 that returns the \code{GroupID} of the selected group (usually site), and can be
