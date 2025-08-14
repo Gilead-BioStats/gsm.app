@@ -68,11 +68,15 @@
 
 
 <dt id="arg-dfgroups">dfGroups<a class="anchor" aria-label="anchor" href="#arg-dfgroups"></a></dt>
-<dd><p><code>data.frame</code> Group-level metadata dictionary.</p></dd>
+<dd><p><code>data.frame</code> Group-level metadata dictionary. See
+<code>vignette("DataReporting", package = "gsm.reporting")</code> for an example.</p></dd>
 
 
 <dt id="arg-dfanalyticsinput">dfAnalyticsInput<a class="anchor" aria-label="anchor" href="#arg-dfanalyticsinput"></a></dt>
-<dd><p><code>data.frame</code> Participant-level metric data.</p></dd>
+<dd><p><code>data.frame</code> Participant-level metric data. This
+data.frame is created by binding together the <code>lAnalysis</code> "Analysis_Input"
+list of data.frames output of analysis workflows, with a <code>MetricID</code> column
+for the name of each list.</p></dd>
 
 
 <dt id="arg-rctv-strgroupid">rctv_strGroupID<a class="anchor" aria-label="anchor" href="#arg-rctv-strgroupid"></a></dt>

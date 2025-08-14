@@ -66,7 +66,8 @@
 
 
 <dt id="arg-dfresults">dfResults<a class="anchor" aria-label="anchor" href="#arg-dfresults"></a></dt>
-<dd><p><code>data.frame</code> A stacked summary of analysis pipeline output.</p></dd>
+<dd><p><code>data.frame</code> A stacked summary of analysis pipeline output.
+Created with <code>gsm.reporting::BindResults()</code>.</p></dd>
 
 
 <dt id="arg-stroutcome">strOutcome<a class="anchor" aria-label="anchor" href="#arg-stroutcome"></a></dt>
@@ -79,13 +80,14 @@ as things like which group is selected.</p></dd>
 
 
 <dt id="arg-dfgroups">dfGroups<a class="anchor" aria-label="anchor" href="#arg-dfgroups"></a></dt>
-<dd><p><code>data.frame</code> Group-level metadata dictionary.</p></dd>
+<dd><p><code>data.frame</code> Group-level metadata dictionary. See
+<code>vignette("DataReporting", package = "gsm.reporting")</code> for an example.</p></dd>
 
 
 <dt id="arg-dfbounds">dfBounds<a class="anchor" aria-label="anchor" href="#arg-dfbounds"></a></dt>
 <dd><p><code>data.frame</code> Set of predicted percentages/rates and upper-
 and lower-bounds across the full range of sample sizes/total exposure
-values for reporting.</p></dd>
+values for reporting. Created with <code>gsm.reporting::MakeBounds()</code>.</p></dd>
 
 </dl></div>
 
