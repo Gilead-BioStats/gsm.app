@@ -21,18 +21,23 @@ gsmApp_Server(
 )
 }
 \arguments{
-\item{dfAnalyticsInput}{\code{data.frame} Participant-level metric data.}
+\item{dfAnalyticsInput}{\code{data.frame} Participant-level metric data. This
+data.frame is created by binding together the \code{lAnalysis} list of
+data.frames output of analysis workflows, with a \code{MetricID} column for the
+name of each list.}
 
 \item{dfBounds}{\code{data.frame} Set of predicted percentages/rates and upper-
 and lower-bounds across the full range of sample sizes/total exposure
-values for reporting.}
+values for reporting. Created with \code{\link[gsm.reporting:MakeBounds]{gsm.reporting::MakeBounds()}}.}
 
-\item{dfGroups}{\code{data.frame} Group-level metadata dictionary.}
+\item{dfGroups}{\code{data.frame} Group-level metadata dictionary. See
+\code{vignette("DataReporting", package = "gsm.reporting")} for an example.}
 
 \item{dfMetrics}{\code{data.frame} Metric-specific metadata for use in charts and
-reporting.}
+reporting. Created with \code{\link[gsm.reporting:MakeMetric]{gsm.reporting::MakeMetric()}}.}
 
-\item{dfResults}{\code{data.frame} A stacked summary of analysis pipeline output.}
+\item{dfResults}{\code{data.frame} A stacked summary of analysis pipeline output.
+Created with \code{\link[gsm.reporting:BindResults]{gsm.reporting::BindResults()}}.}
 
 \item{fnFetchData}{\code{function} A function that takes a \code{strDomainID} argument
 and optional \code{strGroupID}, \code{strGroupLevel}, \code{strSubjectID}, and/or

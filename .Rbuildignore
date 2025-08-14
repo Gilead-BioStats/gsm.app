@@ -15,5 +15,6 @@ _\.new\.png$
 ^principles\.md$
 ^scratch\.R$
 ^vignettes/articles$
+^vignettes/\.quarto$
 ^[.]?air[.]toml$
 ^\.vscode$

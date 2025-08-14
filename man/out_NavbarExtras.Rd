@@ -7,7 +7,8 @@
 out_NavbarExtras(dfGroups)
 }
 \arguments{
-\item{dfGroups}{\code{data.frame} Group-level metadata dictionary.}
+\item{dfGroups}{\code{data.frame} Group-level metadata dictionary. See
+\code{vignette("DataReporting", package = "gsm.reporting")} for an example.}
 }
 \value{
 A list of \code{\link[bslib:nav-items]{bslib::nav_item()}} with

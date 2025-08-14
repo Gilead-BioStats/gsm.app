@@ -23,7 +23,8 @@ returns a stacked summary of analysis pipeline output.}
 a named list of data describing a single metric, as well as things like
 which group is selected.}
 
-\item{dfGroups}{\code{data.frame} Group-level metadata dictionary.}
+\item{dfGroups}{\code{data.frame} Group-level metadata dictionary. See
+\code{vignette("DataReporting", package = "gsm.reporting")} for an example.}
 
 \item{rctv_dfBounds}{\verb{reactive dataframe} A \code{\link[shiny:reactive]{shiny::reactive()}} object that
 returns a set of predicted percentages/rates and upper- and lower-bounds

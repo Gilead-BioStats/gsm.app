@@ -15,7 +15,8 @@ mod_RAGPillSet_Server(
 \arguments{
 \item{id}{\code{character} The id for this element.}
 
-\item{dfResults}{\code{data.frame} A stacked summary of analysis pipeline output.}
+\item{dfResults}{\code{data.frame} A stacked summary of analysis pipeline output.
+Created with \code{\link[gsm.reporting:BindResults]{gsm.reporting::BindResults()}}.}
 
 \item{rctv_strGroupLevel}{\verb{reactive character} A \code{\link[shiny:reactiveVal]{shiny::reactiveVal()}}
 object that returns the selected \code{GroupLevel}.}

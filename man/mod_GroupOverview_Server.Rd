@@ -17,12 +17,14 @@ mod_GroupOverview_Server(
 \arguments{
 \item{id}{\code{character} The id for this element.}
 
-\item{dfResults}{\code{data.frame} A stacked summary of analysis pipeline output.}
+\item{dfResults}{\code{data.frame} A stacked summary of analysis pipeline output.
+Created with \code{\link[gsm.reporting:BindResults]{gsm.reporting::BindResults()}}.}
 
 \item{dfMetrics}{\code{data.frame} Metric-specific metadata for use in charts and
-reporting.}
+reporting. Created with \code{\link[gsm.reporting:MakeMetric]{gsm.reporting::MakeMetric()}}.}
 
-\item{dfGroups}{\code{data.frame} Group-level metadata dictionary.}
+\item{dfGroups}{\code{data.frame} Group-level metadata dictionary. See
+\code{vignette("DataReporting", package = "gsm.reporting")} for an example.}
 
 \item{rctv_strGroupID}{\verb{reactive character} A \code{\link[shiny:reactiveVal]{shiny::reactiveVal()}} object
 that returns the \code{GroupID} of the selected group (usually site), and can be
