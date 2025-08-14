@@ -42,6 +42,7 @@ Imports:
     yaml
 Suggests: 
     gsm.mapping (>= 1.0.1),
+    gsm.reporting,
     here,
     knitr,
     pak,
@@ -54,12 +55,12 @@ Suggests:
     withr
 Config/Needs/data: 
     usethis, 
-    Gilead-BioStats/gsm.reporting, 
     Gilead-BioStats/gsm.datasim@dev
 Remotes: 
     gsm.core=Gilead-BioStats/gsm.core@main,
     gsm.mapping=Gilead-BioStats/gsm.mapping@main,
-    gsm.kri=Gilead-BioStats/gsm.kri@main
+    gsm.kri=Gilead-BioStats/gsm.kri@main,
+    gsm.reporting=Gilead-BioStats/gsm.reporting
 Config/testthat/edition: 3
 Encoding: UTF-8
 Language: en-US
