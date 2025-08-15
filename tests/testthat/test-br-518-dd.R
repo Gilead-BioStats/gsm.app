@@ -91,6 +91,7 @@ test_that("534: The user can view raw domain data.", {
   app$stop()
 })
 
+# Feature 535 superseded by Feature 543.
 test_that("535: The user can view a summary of the number of records for each available data domain.", {
   app <- br_app(
     app_dir = "standard",

@@ -53,3 +53,9 @@ expect_css_class <- function(html, selector, css_class) {
     fail("No classes found")
   }
 }
+
+# Other general ----
+
+select_tab <- function(tab_name) {
+  glue::glue('div.tab-pane[data-value="{tab_name}"]')
+}
