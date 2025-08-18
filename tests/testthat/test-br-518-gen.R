@@ -144,20 +144,14 @@ test_that("521: The user can filter the data.", {
     app$wait_for_idle()
   })
 
+  # Detailed tests of counts superseded by BR #519.
   test_that("521.04: The user can filter the data by 'Participant'.", {
     app$set_inputs(primary_nav_bar = "Domain Details")
     app$wait_for_idle()
-    domain_summary_counts_all <- as.integer(
-      app$get_text("#domain_details-counts-card .metadata-list-item-value")
-    )
     expect_official_screenshot(app, name = "04-counts-no_participant")
 
     app$set_inputs(`participant-select` = "S7900")
     app$wait_for_idle()
-    domain_summary_counts_subset <- as.integer(
-      app$get_text("#domain_details-counts-card .metadata-list-item-value")
-    )
-    expect_lt(domain_summary_counts_subset[[1]], domain_summary_counts_all[[1]])
     expect_official_screenshot(app, name = "04-counts-S7900")
 
     # Reset to starting state.
@@ -216,6 +210,7 @@ test_that("522: The user can drill down into views of different aspects of the d
   )
   app$wait_for_idle()
 
+  # Screenshots updated by BR #519.
   test_that("522.01: The user can navigate between the main sections of the app using a navigation bar at the top of the page.", {
     expect_equal(app$get_value(input = "primary_nav_bar"), "Study Overview")
 

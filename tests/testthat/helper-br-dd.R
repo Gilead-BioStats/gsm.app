@@ -28,7 +28,7 @@ get_domain_counts <- function(app) {
   tab_labels <- get_domain_tab_labels(app)
   tab_label_regex <- "^([^0-9]+) \\((\\d+)\\)$"
   labels <- stringr::str_extract(tab_labels, tab_label_regex, 1)
-  counts <- stringr::str_extract(tab_labels, tab_label_regex, 2)
+  counts <- as.integer(stringr::str_extract(tab_labels, tab_label_regex, 2))
   rlang::set_names(counts, labels)
 }
 

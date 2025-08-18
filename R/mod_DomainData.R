@@ -64,7 +64,8 @@ mod_DomainData_Server <- function(
         df <- rctv_tblData() # Tested via UI
         gtObj <- gt::gt(df) %>% # Tested via UI
           out_gtInteractive(selection_mode = "multiple") %>% # Tested via UI
-          gt::cols_label( # Tested via UI
+          gt::cols_label(
+            # Tested via UI
             .list = gsm.kri::MakeParamLabelsList(colnames(df), chrFieldNames) # Tested via UI
           ) %>% # Tested via UI
           out_gtSmartFmtNumbers(intMaxDecimals = 10L) # Tested via UI

@@ -15,7 +15,7 @@ test_that("543: The user can view counts of records for each available data doma
     expect_official_screenshot(
       app,
       name = c("01", "tabs_have_counts"),
-      selector = ".domain_details-selected_tab"
+      selector = "#domain_details-selected_tab"
     )
   })
 
@@ -24,7 +24,7 @@ test_that("543: The user can view counts of records for each available data doma
     expect_official_screenshot(
       app,
       name = c("02", "unfiltered"),
-      selector = ".domain_details-selected_tab"
+      selector = "#domain_details-selected_tab"
     )
 
     # Filter by group

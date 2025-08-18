@@ -535,6 +535,7 @@ test_that("533: When a group is selected, the user can view a table of participa
     )
   })
 
+  # Screenshots updated by BR #519.
   test_that("533.02: Clicking a participant in the participant table selects that participant and navigates to the Domain Details tab.", {
     selector <- "#group_details-participants-gt-table .rt-tbody .rt-tr-group:nth-child(1) .rt-tr .rt-td:nth-child(2) .rt-text-content"
     subject_id <- app$get_text(selector)
