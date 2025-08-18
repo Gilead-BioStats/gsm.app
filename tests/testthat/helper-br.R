@@ -1,18 +1,29 @@
 # Standard skips ----
 
 skip_if_not_br <- function() {
-  probably_skip_br_tests()
+  maybe_skip_br_tests()
+  skip_on_windows_ci()
   skip_if_not_installed("shinytest2")
   skip_if_not_installed("rvest")
   skip_on_cran()
 }
 
-probably_skip_br_tests <- function() {
+maybe_skip_br_tests <- function() {
   # I'm still including this, but I'd like to TRY to run them all everywhere.
   skip_if_not(
     # as.logical(Sys.getenv("RUN_BR_TESTS", "false")),
     TRUE,
     "BR tests are super slow"
+  )
+}
+
+skip_on_windows_ci <- function() {
+  # Ironically, the tests time out on the Windows runner on GitHub, even
+  # though they run fine on my local Windows machine.
+  skip_if(
+    Sys.info()[["sysname"]] == "Windows" &&
+      isTRUE(as.logical(Sys.getenv("CI", "false"))),
+    "BR tests time out on GitHub Windows runner"
   )
 }
 
