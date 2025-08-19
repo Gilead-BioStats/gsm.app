@@ -74,7 +74,11 @@ test_that("521: The user can filter the data.", {
     expect_in(group_choices, site_choices)
     app$click(selector = "#group-group-select .vscomp-arrow")
     app$wait_for_idle()
-    expect_official_screenshot(app, name = "02-choices_site")
+    expect_official_screenshot(
+      app,
+      name = "02-choices_site",
+      selector = "#group-group-select .vscomp-dropbox"
+    )
 
     app$click(selector = "#group-group-select .vscomp-arrow")
     app$wait_for_idle()
@@ -92,7 +96,11 @@ test_that("521: The user can filter the data.", {
       "isCanvasLoaded('metric_details-scatter_plot');",
       timeout = 2000
     )
-    expect_official_screenshot(app, name = "02-choices_country")
+    expect_official_screenshot(
+      app,
+      name = "02-choices_country",
+      selector = "#group-group-select .vscomp-dropbox"
+    )
 
     # Reset to starting state.
     app$click(selector = "#group-group-select .vscomp-arrow")
@@ -102,6 +110,7 @@ test_that("521: The user can filter the data.", {
     app$wait_for_idle()
   })
 
+  # Screenshots updated by #519.
   test_that("521.03: The user can filter the data by group (e.g., 'Site' or 'Country') within the selected 'Group Level'.", {
     participant_choices <- stringr::str_squish(
       app$get_text("#participant-select .vscomp-option-text")
@@ -116,7 +125,11 @@ test_that("521: The user can filter the data.", {
     expect_gt(n_groups_in_choices, 1)
     app$click(selector = "#participant-select .vscomp-arrow")
     app$wait_for_idle()
-    expect_official_screenshot(app, name = "03-participants-no_group")
+    expect_official_screenshot(
+      app,
+      name = "03-participants-no_group",
+      selector = "#participant-select .vscomp-dropbox"
+    )
 
     app$click(selector = "#participant-select .vscomp-arrow")
     app$set_inputs(`group-group-select` = "0X7258")
@@ -134,7 +147,11 @@ test_that("521: The user can filter the data.", {
     expect_equal(groups_in_choices, "0X7258")
     app$click(selector = "#participant-select .vscomp-arrow")
     app$wait_for_idle()
-    expect_official_screenshot(app, name = "03-participants-group_selected")
+    expect_official_screenshot(
+      app,
+      name = "03-participants-group_selected",
+      selector = "#participant-select .vscomp-dropbox"
+    )
 
     # Reset to starting state.
     app$click(selector = "#participant-select .vscomp-arrow")
@@ -148,11 +165,19 @@ test_that("521: The user can filter the data.", {
   test_that("521.04: The user can filter the data by 'Participant'.", {
     app$set_inputs(primary_nav_bar = "Domain Details")
     app$wait_for_idle()
-    expect_official_screenshot(app, name = "04-counts-no_participant")
+    expect_official_screenshot(
+      app,
+      name = "04-counts-no_participant",
+      selector = "#domain_details-selected_tab"
+    )
 
     app$set_inputs(`participant-select` = "S7900")
     app$wait_for_idle()
-    expect_official_screenshot(app, name = "04-counts-S7900")
+    expect_official_screenshot(
+      app,
+      name = "04-counts-S7900",
+      selector = "#domain_details-selected_tab"
+    )
 
     # Reset to starting state.
     app$set_inputs(`participant-select` = "All")

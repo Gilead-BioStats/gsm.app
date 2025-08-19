@@ -279,7 +279,8 @@ test_that("524: The user can view an interactive KRI summary table.", {
 
     expect_official_screenshot(
       app,
-      name = "05-table_click_navigation"
+      name = "05-table_click_navigation",
+      selector = ".navbar"
     )
   })
 
@@ -391,7 +392,8 @@ test_that("525: The user can view a set of interactive scatter plots, one for ea
 
     expect_official_screenshot(
       app,
-      name = "03-plot_click_navigation"
+      name = "03-plot_click_navigation",
+      selector = ".navbar"
     )
   })
 
