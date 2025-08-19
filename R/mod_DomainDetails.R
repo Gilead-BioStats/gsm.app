@@ -22,7 +22,7 @@ mod_DomainDetails_UI <- function(
   chrDomainLabels <- purrr::imap(
     chrDomains,
     function(strDomainLabel, strDomainID) {
-      mod_DomainCount_UI(ns(strDomainID), strDomainLabel, strDomainID)
+      mod_DomainLabel_UI(ns(strDomainID), strDomainLabel, strDomainID)
     }
   ) %>%
     unname()
@@ -61,7 +61,7 @@ mod_DomainDetails_Server <- function(
       purrr::imap(
         rctv_intDomainCounts(),
         function(intDomainCount, strDomainID) {
-          mod_DomainCount_Server(strDomainID, reactive(intDomainCount))
+          mod_DomainLabel_Server(strDomainID, reactive(intDomainCount))
         }
       )
     })

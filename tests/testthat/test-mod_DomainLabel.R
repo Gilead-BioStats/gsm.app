@@ -1,15 +1,15 @@
-test_that("mod_DomainCount_UI() returns the expected UI", {
-  test_result <- mod_DomainCount_UI("myDomain", "Adverse Events", "AE")
+test_that("mod_DomainLabel_UI() returns the expected UI", {
+  test_result <- mod_DomainLabel_UI("myDomain", "Adverse Events", "AE")
   expect_s3_class(test_result, c("html", "character"))
   expect_cleaned_html({
     test_result
   })
 })
 
-test_that("mod_DomainCount_Server outputs the expected result", {
+test_that("mod_DomainLabel_Server outputs the expected result", {
   # call <- rlang::current_env()
   testServer(
-    mod_DomainCount_Server,
+    mod_DomainLabel_Server,
     args = list(
       id = "ae_count",
       rctv_intDomainCount = reactiveVal(14L)
