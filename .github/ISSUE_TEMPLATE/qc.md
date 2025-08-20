@@ -1,5 +1,5 @@
 ---
-name: "QC Issue Template"
+name: "Update the QC process"
 about: "Update QC Framework: Documentation, Qualification, Automation etc."
 title: "QC: ProvideATitle"
 

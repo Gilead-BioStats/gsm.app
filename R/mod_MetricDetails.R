@@ -7,10 +7,11 @@ mod_MetricDetails_UI <- function(id, dfMetrics) {
   # Only give choices from the last GroupLevel at first.
   dfMetrics <- dfMetrics %>%
     dplyr::filter(
-      .data$GroupLevel == sort(
-        unique(dfMetrics$GroupLevel),
-        decreasing = TRUE
-      )[[1]]
+      .data$GroupLevel ==
+        sort(
+          unique(dfMetrics$GroupLevel),
+          decreasing = TRUE
+        )[[1]]
     ) %>%
     dplyr::arrange(.data$Metric)
   bslib::navset_underline(
@@ -123,7 +124,11 @@ mod_MetricDetails_Server <- function(
     )
     # nocov end
 
-    srvr_SyncVirtualSelectInput("metric", rctv_strMetricID, session)
+    srvr_SyncVirtualSelectInput(
+      "metric",
+      rctv_strSelected = rctv_strMetricID,
+      session = session
+    )
 
     # Selections from tabs ----
 

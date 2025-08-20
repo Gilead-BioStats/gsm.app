@@ -9,12 +9,14 @@ mod_StudyOverview_UI(id, dfGroups, dfResults, dfMetrics)
 \arguments{
 \item{id}{\code{character} The id for this element.}
 
-\item{dfGroups}{\code{data.frame} Group-level metadata dictionary.}
+\item{dfGroups}{\code{data.frame} Group-level metadata dictionary. See
+\code{vignette("DataReporting", package = "gsm.reporting")} for an example.}
 
-\item{dfResults}{\code{data.frame} A stacked summary of analysis pipeline output.}
+\item{dfResults}{\code{data.frame} A stacked summary of analysis pipeline output.
+Created with \code{\link[gsm.reporting:BindResults]{gsm.reporting::BindResults()}}.}
 
 \item{dfMetrics}{\code{data.frame} Metric-specific metadata for use in charts and
-reporting.}
+reporting. Created with \code{\link[gsm.reporting:MakeMetric]{gsm.reporting::MakeMetric()}}.}
 }
 \description{
 Study Overview UI

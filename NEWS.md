@@ -1,3 +1,13 @@
+# gsm.app 2.5.3
+
+This is a patch release to implement the qualification infrastructure. Most of the changes are invisible infrastructure changes.
+
+## Visible Changes
+- The [Articles menu](https://gilead-biostats.github.io/gsm.app/articles/) now includes a Business Requirements article, which collects information for package validation (#511, #517, #539), as well as articles about "Data Preparation and App Deployment" and "Data Ingestion for GSM App" (#195).
+- The [run_gsm_app() documentation](https://gilead-biostats.github.io/gsm.app/dev/reference/run_gsm_app.html) includes more details about how to generate the required data (#542).
+- The "Study Information" panel is wider to make it more readable on average screen sizes (#502).
+- The "Group Level", "Site" (or "Country"), and "Participant" menus size properly to their content, as does the Metric menu on the "Metric Details" tab (#538).
+
 # gsm.app 2.5.2
 
 This is a patch bugfix release.

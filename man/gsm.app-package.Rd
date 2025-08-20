@@ -18,11 +18,14 @@ Useful links:
 
 }
 \author{
-\strong{Maintainer}: Jon Harmon \email{jonthegeek@gmail.com} (\href{https://orcid.org/0000-0003-4781-4346}{ORCID})
+\strong{Maintainer}: Jon Harmon \email{jon.harmon@atorusresearch.com} (\href{https://orcid.org/0000-0003-4781-4346}{ORCID})
 
 Authors:
 \itemize{
+  \item Laura Maxwell \email{laura.maxwell@atorusresearch.com}
+  \item Natalia Andriychuk \email{Natalia.Andriychuk@gilead.com}
   \item Spencer Childress \email{spencer.childress@gilead.com}
+  \item Jeremy Wildfire \email{jeremy.wildfire@gilead.com}
   \item Taylor Rodgers \email{Taylor.Rodgers@freestateanalytics.com}
   \item Matt Roumaya \email{matthewroumaya@gmail.com} (\href{https://orcid.org/0000-0002-8009-2771}{ORCID})
 }

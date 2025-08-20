@@ -9,11 +9,11 @@ mod_GroupInput_UI(id, dfGroups)
 \arguments{
 \item{id}{\code{character} The id for this element.}
 
-\item{dfGroups}{\code{data.frame} Group-level metadata dictionary.}
+\item{dfGroups}{\code{data.frame} Group-level metadata dictionary. See
+\code{vignette("DataReporting", package = "gsm.reporting")} for an example.}
 }
 \value{
-A \code{list} with one or two \code{\link[shinyWidgets:virtualSelectInput]{shinyWidgets::virtualSelectInput()}}
-elements.
+A \code{list} with one or two UI elements.
 }
 \description{
 Group and GroupLevel Dropdown Menu UI

@@ -10,7 +10,7 @@ mod_MetricDetails_UI(id, dfMetrics)
 \item{id}{\code{character} The id for this element.}
 
 \item{dfMetrics}{\code{data.frame} Metric-specific metadata for use in charts and
-reporting.}
+reporting. Created with \code{\link[gsm.reporting:MakeMetric]{gsm.reporting::MakeMetric()}}.}
 }
 \description{
 Metric Details UI

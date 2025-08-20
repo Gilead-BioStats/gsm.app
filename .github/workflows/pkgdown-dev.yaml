@@ -30,6 +30,9 @@ jobs:
           extra-packages: any::pkgdown, local::.
           needs: website
 
+      - name: Sync BR Snapshots
+        run: Rscript -e "source('vignettes/articles/business_requirements/sync_br_imgs.R')"
+
       - name: Deploy pkgdown
         run: |
           git config --local user.email "actions@github.com"

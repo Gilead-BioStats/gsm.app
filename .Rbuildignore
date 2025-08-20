@@ -14,3 +14,7 @@ _\.new\.png$
 ^R/_disable_autoload\.R$
 ^principles\.md$
 ^scratch\.R$
+^vignettes/articles$
+^vignettes/\.quarto$
+^[.]?air[.]toml$
+^\.vscode$
