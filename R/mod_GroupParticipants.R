@@ -9,7 +9,7 @@ mod_GroupParticipants_UI <- function(id) {
   out_Card(
     tagTitle = NULL,
     bslib::card_header(
-      bslib::card_title(shiny::textOutput(ns("title"), inline = TRUE)),
+      bslib::card_title(textOutput(ns("title"), inline = TRUE)),
       uiOutput(ns("subtitle"))
     ),
     mod_gtBidirectional_UI(ns("gt")),

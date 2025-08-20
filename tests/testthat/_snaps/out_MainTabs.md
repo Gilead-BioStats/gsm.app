@@ -1560,34 +1560,34 @@
         <div class="tabbable">
           <ul class="nav nav-underline shiny-tab-input" id="domain_details-selected_tab" data-tabsetid="XXXX">
             <li class="active">
-              <a href="#tab-XXXX-1" data-toggle="tab" data-bs-toggle="tab" data-value="AE">Adverse Events (<span id="domain_details-AE-count" class="shiny-html-output"></span>)</a>
+              <a href="#tab-XXXX-1" data-toggle="tab" data-bs-toggle="tab" data-value="AE">Adverse Events (<span id="domain_details-AE-count" class="shiny-text-output"></span>)</a>
             </li>
             <li>
-              <a href="#tab-XXXX-2" data-toggle="tab" data-bs-toggle="tab" data-value="DATACHG">Data Changes (<span id="domain_details-DATACHG-count" class="shiny-html-output"></span>)</a>
+              <a href="#tab-XXXX-2" data-toggle="tab" data-bs-toggle="tab" data-value="DATACHG">Data Changes (<span id="domain_details-DATACHG-count" class="shiny-text-output"></span>)</a>
             </li>
             <li>
-              <a href="#tab-XXXX-3" data-toggle="tab" data-bs-toggle="tab" data-value="DATAENT">Data Entry (<span id="domain_details-DATAENT-count" class="shiny-html-output"></span>)</a>
+              <a href="#tab-XXXX-3" data-toggle="tab" data-bs-toggle="tab" data-value="DATAENT">Data Entry (<span id="domain_details-DATAENT-count" class="shiny-text-output"></span>)</a>
             </li>
             <li>
-              <a href="#tab-XXXX-4" data-toggle="tab" data-bs-toggle="tab" data-value="ENROLL">Enrollment (<span id="domain_details-ENROLL-count" class="shiny-html-output"></span>)</a>
+              <a href="#tab-XXXX-4" data-toggle="tab" data-bs-toggle="tab" data-value="ENROLL">Enrollment (<span id="domain_details-ENROLL-count" class="shiny-text-output"></span>)</a>
             </li>
             <li>
-              <a href="#tab-XXXX-5" data-toggle="tab" data-bs-toggle="tab" data-value="LB">Lab (<span id="domain_details-LB-count" class="shiny-html-output"></span>)</a>
+              <a href="#tab-XXXX-5" data-toggle="tab" data-bs-toggle="tab" data-value="LB">Lab (<span id="domain_details-LB-count" class="shiny-text-output"></span>)</a>
             </li>
             <li>
-              <a href="#tab-XXXX-6" data-toggle="tab" data-bs-toggle="tab" data-value="PD">Protocol Deviations (<span id="domain_details-PD-count" class="shiny-html-output"></span>)</a>
+              <a href="#tab-XXXX-6" data-toggle="tab" data-bs-toggle="tab" data-value="PD">Protocol Deviations (<span id="domain_details-PD-count" class="shiny-text-output"></span>)</a>
             </li>
             <li>
-              <a href="#tab-XXXX-7" data-toggle="tab" data-bs-toggle="tab" data-value="QUERY">Queries (<span id="domain_details-QUERY-count" class="shiny-html-output"></span>)</a>
+              <a href="#tab-XXXX-7" data-toggle="tab" data-bs-toggle="tab" data-value="QUERY">Queries (<span id="domain_details-QUERY-count" class="shiny-text-output"></span>)</a>
             </li>
             <li>
-              <a href="#tab-XXXX-8" data-toggle="tab" data-bs-toggle="tab" data-value="STUDCOMP">Study Completion (<span id="domain_details-STUDCOMP-count" class="shiny-html-output"></span>)</a>
+              <a href="#tab-XXXX-8" data-toggle="tab" data-bs-toggle="tab" data-value="STUDCOMP">Study Completion (<span id="domain_details-STUDCOMP-count" class="shiny-text-output"></span>)</a>
             </li>
             <li>
-              <a href="#tab-XXXX-9" data-toggle="tab" data-bs-toggle="tab" data-value="SUBJ">Subject Metadata (<span id="domain_details-SUBJ-count" class="shiny-html-output"></span>)</a>
+              <a href="#tab-XXXX-9" data-toggle="tab" data-bs-toggle="tab" data-value="SUBJ">Subject Metadata (<span id="domain_details-SUBJ-count" class="shiny-text-output"></span>)</a>
             </li>
             <li>
-              <a href="#tab-XXXX-10" data-toggle="tab" data-bs-toggle="tab" data-value="SDRGCOMP">Treatment Completion (<span id="domain_details-SDRGCOMP-count" class="shiny-html-output"></span>)</a>
+              <a href="#tab-XXXX-10" data-toggle="tab" data-bs-toggle="tab" data-value="SDRGCOMP">Treatment Completion (<span id="domain_details-SDRGCOMP-count" class="shiny-text-output"></span>)</a>
             </li>
           </ul>
           <div class="tab-content" data-tabsetid="XXXX">

@@ -19,11 +19,11 @@ test_that("mod_DomainLabel_Server outputs the expected result", {
       expect_snapshot(output$count)
 
       # Check that the value is as expected.
-      expect_equal(as.integer(output$count$html), 14)
+      expect_equal(as.integer(output$count), 14)
 
       rctv_intDomainCount(27L)
       session$flushReact()
-      expect_equal(as.integer(output$count$html), 27)
+      expect_equal(as.integer(output$count), 27)
     }
   )
 })

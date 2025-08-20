@@ -6,11 +6,11 @@
 #' @keywords internal
 mod_DomainLabel_UI <- function(id, strDomainLabel, strDomainID) {
   ns <- NS(id)
-  shiny::HTML(
+  HTML(
     paste0(
       strDomainLabel,
       " (",
-      shiny::uiOutput(ns("count"), inline = TRUE),
+      textOutput(ns("count"), inline = TRUE),
       ")"
     )
   )
@@ -25,7 +25,7 @@ mod_DomainLabel_UI <- function(id, strDomainLabel, strDomainID) {
 #' @keywords internal
 mod_DomainLabel_Server <- function(id, rctv_intDomainCount) {
   moduleServer(id, function(input, output, session) {
-    output$count <- renderUI({
+    output$count <- renderText({
       rctv_intDomainCount()
     })
   })
