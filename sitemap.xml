@@ -3,6 +3,10 @@
 <url><loc>https://gilead-biostats.github.io/gsm.app/CODE_OF_CONDUCT.html</loc></url>
 <url><loc>https://gilead-biostats.github.io/gsm.app/CONTRIBUTING.html</loc></url>
 <url><loc>https://gilead-biostats.github.io/gsm.app/LICENSE.html</loc></url>
+<url><loc>https://gilead-biostats.github.io/gsm.app/articles/br518.html</loc></url>
+<url><loc>https://gilead-biostats.github.io/gsm.app/articles/business_requirements.html</loc></url>
+<url><loc>https://gilead-biostats.github.io/gsm.app/articles/data-ingestion.html</loc></url>
+<url><loc>https://gilead-biostats.github.io/gsm.app/articles/data-preparation.html</loc></url>
 <url><loc>https://gilead-biostats.github.io/gsm.app/articles/index.html</loc></url>
 <url><loc>https://gilead-biostats.github.io/gsm.app/articles/plugins.html</loc></url>
 <url><loc>https://gilead-biostats.github.io/gsm.app/authors.html</loc></url>
@@ -36,7 +40,9 @@
 <url><loc>https://gilead-biostats.github.io/gsm.app/reference/NullifyEmpty.html</loc></url>
 <url><loc>https://gilead-biostats.github.io/gsm.app/reference/RecalculateDomainData.html</loc></url>
 <url><loc>https://gilead-biostats.github.io/gsm.app/reference/SimplifyArgs.html</loc></url>
+<url><loc>https://gilead-biostats.github.io/gsm.app/reference/SubsetChoices.html</loc></url>
 <url><loc>https://gilead-biostats.github.io/gsm.app/reference/UnNS.html</loc></url>
+<url><loc>https://gilead-biostats.github.io/gsm.app/reference/ValidateSelected.html</loc></url>
 <url><loc>https://gilead-biostats.github.io/gsm.app/reference/Widget_BarChart.html</loc></url>
 <url><loc>https://gilead-biostats.github.io/gsm.app/reference/Widget_BarChartOutput.html</loc></url>
 <url><loc>https://gilead-biostats.github.io/gsm.app/reference/Widget_GroupOverview-shiny.html</loc></url>
@@ -72,6 +78,8 @@
 <url><loc>https://gilead-biostats.github.io/gsm.app/reference/mod_ActionList_UI.html</loc></url>
 <url><loc>https://gilead-biostats.github.io/gsm.app/reference/mod_BarChart_Server.html</loc></url>
 <url><loc>https://gilead-biostats.github.io/gsm.app/reference/mod_BarChart_UI.html</loc></url>
+<url><loc>https://gilead-biostats.github.io/gsm.app/reference/mod_CascadingSelect_Server.html</loc></url>
+<url><loc>https://gilead-biostats.github.io/gsm.app/reference/mod_CascadingSelect_UI.html</loc></url>
 <url><loc>https://gilead-biostats.github.io/gsm.app/reference/mod_DomainData_Server.html</loc></url>
 <url><loc>https://gilead-biostats.github.io/gsm.app/reference/mod_DomainData_UI.html</loc></url>
 <url><loc>https://gilead-biostats.github.io/gsm.app/reference/mod_DomainDetails_Server.html</loc></url>
@@ -95,12 +103,16 @@
 <url><loc>https://gilead-biostats.github.io/gsm.app/reference/mod_Plugin_UI.html</loc></url>
 <url><loc>https://gilead-biostats.github.io/gsm.app/reference/mod_Plugins_Server.html</loc></url>
 <url><loc>https://gilead-biostats.github.io/gsm.app/reference/mod_Plugins_UI.html</loc></url>
+<url><loc>https://gilead-biostats.github.io/gsm.app/reference/mod_PotentialChoice_Server.html</loc></url>
+<url><loc>https://gilead-biostats.github.io/gsm.app/reference/mod_PotentialChoice_UI.html</loc></url>
 <url><loc>https://gilead-biostats.github.io/gsm.app/reference/mod_RAGPillSet_Server.html</loc></url>
 <url><loc>https://gilead-biostats.github.io/gsm.app/reference/mod_RAGPillSet_UI.html</loc></url>
 <url><loc>https://gilead-biostats.github.io/gsm.app/reference/mod_ScatterPlotSet_Server.html</loc></url>
 <url><loc>https://gilead-biostats.github.io/gsm.app/reference/mod_ScatterPlotSet_UI.html</loc></url>
 <url><loc>https://gilead-biostats.github.io/gsm.app/reference/mod_ScatterPlot_Server.html</loc></url>
 <url><loc>https://gilead-biostats.github.io/gsm.app/reference/mod_ScatterPlot_UI.html</loc></url>
+<url><loc>https://gilead-biostats.github.io/gsm.app/reference/mod_SelectState_Server.html</loc></url>
+<url><loc>https://gilead-biostats.github.io/gsm.app/reference/mod_StudyInformation_UI.html</loc></url>
 <url><loc>https://gilead-biostats.github.io/gsm.app/reference/mod_StudyOverview_Server.html</loc></url>
 <url><loc>https://gilead-biostats.github.io/gsm.app/reference/mod_StudyOverview_UI.html</loc></url>
 <url><loc>https://gilead-biostats.github.io/gsm.app/reference/mod_TimeSeries_Server.html</loc></url>
@@ -120,7 +132,6 @@
 <url><loc>https://gilead-biostats.github.io/gsm.app/reference/out_MetadataList.html</loc></url>
 <url><loc>https://gilead-biostats.github.io/gsm.app/reference/out_NavbarExtras.html</loc></url>
 <url><loc>https://gilead-biostats.github.io/gsm.app/reference/out_Placeholder.html</loc></url>
-<url><loc>https://gilead-biostats.github.io/gsm.app/reference/out_StudyInformation.html</loc></url>
 <url><loc>https://gilead-biostats.github.io/gsm.app/reference/out_gtInteractive.html</loc></url>
 <url><loc>https://gilead-biostats.github.io/gsm.app/reference/out_gtPlaceholder.html</loc></url>
 <url><loc>https://gilead-biostats.github.io/gsm.app/reference/out_gtSmartFmtNumbers.html</loc></url>
@@ -146,6 +157,7 @@
 <url><loc>https://gilead-biostats.github.io/gsm.app/reference/sample_dfResults.html</loc></url>
 <url><loc>https://gilead-biostats.github.io/gsm.app/reference/sample_fnFetchData.html</loc></url>
 <url><loc>https://gilead-biostats.github.io/gsm.app/reference/shared-params.html</loc></url>
+<url><loc>https://gilead-biostats.github.io/gsm.app/reference/splitByGrouping.html</loc></url>
 <url><loc>https://gilead-biostats.github.io/gsm.app/reference/srvr_CombineHashes.html</loc></url>
 <url><loc>https://gilead-biostats.github.io/gsm.app/reference/srvr_CompileUnsetInputs.html</loc></url>
 <url><loc>https://gilead-biostats.github.io/gsm.app/reference/srvr_DomainCounts.html</loc></url>
@@ -158,7 +170,6 @@
 <url><loc>https://gilead-biostats.github.io/gsm.app/reference/srvr_SyncTab.html</loc></url>
 <url><loc>https://gilead-biostats.github.io/gsm.app/reference/srvr_SyncVirtualSelectInput.html</loc></url>
 <url><loc>https://gilead-biostats.github.io/gsm.app/reference/srvr_dfDomain.html</loc></url>
-<url><loc>https://gilead-biostats.github.io/gsm.app/reference/srvr_rctv_chrParticipantIDs.html</loc></url>
 <url><loc>https://gilead-biostats.github.io/gsm.app/reference/srvr_rctv_lMetric.html</loc></url>
 <url><loc>https://gilead-biostats.github.io/gsm.app/reference/srvr_rctv_lMetric_base.html</loc></url>
 <url><loc>https://gilead-biostats.github.io/gsm.app/reference/validate_chrDomains.html</loc></url>
