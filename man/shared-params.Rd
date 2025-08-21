@@ -12,6 +12,8 @@ object.}
 \item{chrChoices}{\code{character} A (named, optionally) vector of choices for
 this input.}
 
+\item{chrColors}{\code{character} Colors to use for a scale, labels, etc.}
+
 \item{chrDomains}{\code{character} A (named) vector of domains to include in the
 app. The values of the vector will be used as labels, and the names will be
 used as IDs. The IDs will be passed to \code{fnFetchData()} to fetch data about

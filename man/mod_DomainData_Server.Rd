@@ -8,7 +8,10 @@ mod_DomainData_Server(
   id,
   rctv_dfDomain,
   rctv_strDomainHash,
-  rctv_strGroupLevel
+  rctv_dfDomain_Study,
+  rctv_strGroupLevel,
+  rctv_strGroupID,
+  rctv_strSubjectID
 )
 }
 \arguments{
@@ -22,6 +25,13 @@ that returns the the \code{\link[rlang:hash]{rlang::hash()}} of a domain datafra
 
 \item{rctv_strGroupLevel}{\verb{reactive character} A \code{\link[shiny:reactiveVal]{shiny::reactiveVal()}}
 object that returns the selected \code{GroupLevel}.}
+
+\item{rctv_strGroupID}{\verb{reactive character} A \code{\link[shiny:reactiveVal]{shiny::reactiveVal()}} object
+that returns the \code{GroupID} of the selected group (usually site), and can be
+used to update which group is selected.}
+
+\item{rctv_strSubjectID}{\verb{reactive character} A \code{\link[shiny:reactive]{shiny::reactive()}} object
+that returns the \code{SubjectID} of the selected participant.}
 }
 \value{
 A \code{\link[shiny:reactive]{shiny::reactive()}} with the SubjectID for each row that is

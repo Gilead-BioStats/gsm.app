@@ -10,6 +10,7 @@
 #' @param chrAllowedValues `character` A vector of allowed values for a vector.
 #' @param chrChoices `character` A (named, optionally) vector of choices for
 #'   this input.
+#' @param chrColors `character` Colors to use for a scale, labels, etc.
 #' @param chrDomains `character` A (named) vector of domains to include in the
 #'   app. The values of the vector will be used as labels, and the names will be
 #'   used as IDs. The IDs will be passed to `fnFetchData()` to fetch data about

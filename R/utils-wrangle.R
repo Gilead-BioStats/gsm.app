@@ -142,3 +142,24 @@ splitByGrouping <- function(df, strGroupingVar, strValueVar) {
     ~ sort(unique(.x[[strValueVar]]))
   )
 }
+
+#' Find categorical fields in a data frame
+#'
+#' @inheritParams shared-params
+#' @param chrExcludes `character` Terms to *not* include in the returned vector.
+#'
+#' @returns A character vector of categorical-like field names. Currently this
+#'   include all characters and factors for which at least 1 value is repeated.
+#' @keywords internal
+FindCategoricalFieldNames <- function(
+  df,
+  chrExcludes = c("SubjectID", "GroupID", "GroupLevel")
+) {
+  lglIsCategorical <- purrr::map_lgl(df, function(col) {
+    (is.character(col) || is.factor(col)) && (length(col) > length(unique(col)))
+  })
+  setdiff(
+    colnames(df)[lglIsCategorical],
+    chrExcludes
+  )
+}

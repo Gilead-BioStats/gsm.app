@@ -5,11 +5,11 @@
     Output
       <div class="tabbable">
         <ul class="nav nav-underline shiny-tab-input" id="testID-selected_tab" data-tabsetid="XXXX">
-          <li class="bslib-nav-item nav-item form-inline navbar-extras" id="metric-chooser-div">
+          <li class="bslib-nav-item nav-item form-inline inline-select" id="testID-metric">
             <div class="form-group shiny-input-container shiny-input-container-inline">
-              <label class="control-label shiny-label-null" for="testID-metric" id="testID-metric-label"></label>
-              <div id="testID-metric" class="virtual-select" style="display:inline-block;" data-update="change">
-                <script type="application/json" data-for="testID-metric">{"stateInput":true,"options":{"type":["transpose"],"choices":{"label":["Adverse Event Rate","Data Change Rate","Delayed Data Entry Rate","Delayed Query Resolution Rate","Grade 3+ Lab Abnormality Rate","Important Protocol Deviation Rate","Non-Important Protocol Deviation Rate","Query Rate","Serious Adverse Event Rate","Study Discontinuation Rate","Treatment Discontinuation Rate"],"value":["Analysis_kri0001","Analysis_kri0011","Analysis_kri0010","Analysis_kri0009","Analysis_kri0005","Analysis_kri0004","Analysis_kri0003","Analysis_kri0008","Analysis_kri0002","Analysis_kri0006","Analysis_kri0007"]}},"config":{"multiple":false,"search":false,"hideClearButton":true,"autoSelectFirstOption":true,"showSelectedOptionsFirst":false,"showValueAsTags":false,"optionsCount":10,"noOfDisplayValues":50,"allowNewOption":false,"disableSelectAll":true,"disableOptionGroupCheckbox":true,"disabled":false}}</script>
+              <label class="control-label shiny-label-null" for="testID-metric-select" id="testID-metric-select-label"></label>
+              <div id="testID-metric-select" class="virtual-select" style="display:inline-block;" data-update="change">
+                <script type="application/json" data-for="testID-metric-select">{"stateInput":true,"options":{"type":["transpose"],"choices":{"label":["Adverse Event Rate","Data Change Rate","Delayed Data Entry Rate","Delayed Query Resolution Rate","Grade 3+ Lab Abnormality Rate","Important Protocol Deviation Rate","Non-Important Protocol Deviation Rate","Query Rate","Serious Adverse Event Rate","Study Discontinuation Rate","Treatment Discontinuation Rate"],"value":["Analysis_kri0001","Analysis_kri0011","Analysis_kri0010","Analysis_kri0009","Analysis_kri0005","Analysis_kri0004","Analysis_kri0003","Analysis_kri0008","Analysis_kri0002","Analysis_kri0006","Analysis_kri0007"]}},"config":{"multiple":false,"search":false,"hideClearButton":true,"autoSelectFirstOption":true,"showSelectedOptionsFirst":false,"showValueAsTags":false,"optionsCount":10,"noOfDisplayValues":50,"allowNewOption":false,"disableSelectAll":true,"disableOptionGroupCheckbox":true,"disabled":false}}</script>
               </div>
             </div>
           </li>

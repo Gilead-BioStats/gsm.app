@@ -27,7 +27,7 @@
                   <a href="#tab-XXXX-3" data-toggle="tab" data-bs-toggle="tab" data-value="Domain Details">Domain Details</a>
                 </li>
                 <div class="bslib-nav-spacer"></div>
-                <li class="bslib-nav-item nav-item form-inline navbar-extras">
+                <li class="bslib-nav-item nav-item form-inline inline-select" id="group-level">
                   <div class="form-group shiny-input-container shiny-input-container-inline">
                     <label class="control-label" id="group-level-select-label" for="group-level-select">
                       <strong>Group Level</strong>
@@ -37,7 +37,7 @@
                     </div>
                   </div>
                 </li>
-                <li class="bslib-nav-item nav-item form-inline navbar-extras">
+                <li class="bslib-nav-item nav-item form-inline inline-select" id="group-group">
                   <div class="form-group shiny-input-container shiny-input-container-inline">
                     <label class="control-label" id="group-group-select-label" for="group-group-select">
                       <strong>Site</strong>
@@ -47,7 +47,7 @@
                     </div>
                   </div>
                 </li>
-                <li class="bslib-nav-item nav-item form-inline navbar-extras">
+                <li class="bslib-nav-item nav-item form-inline inline-select" id="participant">
                   <div class="form-group shiny-input-container shiny-input-container-inline">
                     <label class="control-label" id="participant-select-label" for="participant-select">
                       <strong>Participant</strong>
@@ -1454,11 +1454,11 @@
             <div class="tab-pane" data-value="Metric Details" id="tab-XXXX-2">
               <div class="tabbable">
                 <ul class="nav nav-underline shiny-tab-input" id="metric_details-selected_tab" data-tabsetid="XXXX">
-                  <li class="bslib-nav-item nav-item form-inline navbar-extras" id="metric-chooser-div">
+                  <li class="bslib-nav-item nav-item form-inline inline-select" id="metric_details-metric">
                     <div class="form-group shiny-input-container shiny-input-container-inline">
-                      <label class="control-label shiny-label-null" for="metric_details-metric" id="metric_details-metric-label"></label>
-                      <div id="metric_details-metric" class="virtual-select" style="display:inline-block;" data-update="change">
-                        <script type="application/json" data-for="metric_details-metric">{"stateInput":true,"options":{"type":["transpose"],"choices":{"label":["Adverse Event Rate","Data Change Rate","Delayed Data Entry Rate","Delayed Query Resolution Rate","Grade 3+ Lab Abnormality Rate","Important Protocol Deviation Rate","Non-Important Protocol Deviation Rate","Query Rate","Serious Adverse Event Rate","Study Discontinuation Rate","Treatment Discontinuation Rate"],"value":["Analysis_kri0001","Analysis_kri0011","Analysis_kri0010","Analysis_kri0009","Analysis_kri0005","Analysis_kri0004","Analysis_kri0003","Analysis_kri0008","Analysis_kri0002","Analysis_kri0006","Analysis_kri0007"]}},"config":{"multiple":false,"search":false,"hideClearButton":true,"autoSelectFirstOption":true,"showSelectedOptionsFirst":false,"showValueAsTags":false,"optionsCount":10,"noOfDisplayValues":50,"allowNewOption":false,"disableSelectAll":true,"disableOptionGroupCheckbox":true,"disabled":false}}</script>
+                      <label class="control-label shiny-label-null" for="metric_details-metric-select" id="metric_details-metric-select-label"></label>
+                      <div id="metric_details-metric-select" class="virtual-select" style="display:inline-block;" data-update="change">
+                        <script type="application/json" data-for="metric_details-metric-select">{"stateInput":true,"options":{"type":["transpose"],"choices":{"label":["Adverse Event Rate","Data Change Rate","Delayed Data Entry Rate","Delayed Query Resolution Rate","Grade 3+ Lab Abnormality Rate","Important Protocol Deviation Rate","Non-Important Protocol Deviation Rate","Query Rate","Serious Adverse Event Rate","Study Discontinuation Rate","Treatment Discontinuation Rate"],"value":["Analysis_kri0001","Analysis_kri0011","Analysis_kri0010","Analysis_kri0009","Analysis_kri0005","Analysis_kri0004","Analysis_kri0003","Analysis_kri0008","Analysis_kri0002","Analysis_kri0006","Analysis_kri0007"]}},"config":{"multiple":false,"search":false,"hideClearButton":true,"autoSelectFirstOption":true,"showSelectedOptionsFirst":false,"showValueAsTags":false,"optionsCount":10,"noOfDisplayValues":50,"allowNewOption":false,"disableSelectAll":true,"disableOptionGroupCheckbox":true,"disabled":false}}</script>
                       </div>
                     </div>
                   </li>

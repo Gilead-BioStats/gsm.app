@@ -272,7 +272,7 @@ test_that("524: The user can view an interactive KRI summary table.", {
     # Verify navigation and filtering
     expect_equal(app$get_value(input = "primary_nav_bar"), "Metric Details")
     expect_equal(
-      app$get_value(input = "metric_details-metric"),
+      app$get_value(input = "metric_details-metric-select"),
       "Analysis_kri0002"
     )
     expect_equal(app$get_value(input = "group-group-select"), "0X7798")
@@ -385,7 +385,7 @@ test_that("525: The user can view a set of interactive scatter plots, one for ea
     # Verify navigation and filtering
     expect_equal(app$get_value(input = "primary_nav_bar"), "Metric Details")
     expect_equal(
-      app$get_value(input = "metric_details-metric"),
+      app$get_value(input = "metric_details-metric-select"),
       "Analysis_kri0002"
     )
     expect_equal(app$get_value(input = "group-group-select"), "0X7798")

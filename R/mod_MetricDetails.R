@@ -16,16 +16,9 @@ mod_MetricDetails_UI <- function(id, dfMetrics) {
     dplyr::arrange(.data$Metric)
   bslib::navset_underline(
     id = ns("selected_tab"),
-    bslib::nav_item(
-      id = "metric-chooser-div",
-      class = "navbar-extras",
-      htmlDependency_Stylesheet("navbarExtras.css"),
-      shinyWidgets::virtualSelectInput(
-        inputId = ns("metric"),
-        label = NULL,
-        choices = rlang::set_names(dfMetrics$MetricID, dfMetrics$Metric),
-        inline = TRUE
-      )
+    mod_NavSelect_UI(
+      ns("metric"),
+      chrChoices = rlang::set_names(dfMetrics$MetricID, dfMetrics$Metric)
     ),
     bslib::nav_spacer(),
     bslib::nav_panel(
@@ -93,8 +86,8 @@ mod_MetricDetails_Server <- function(
       bindCache(rctv_strMetricID())
 
     observe({
-      req(input$metric)
-      rctv_strMetricID(input$metric)
+      req(input$`metric-select`)
+      rctv_strMetricID(input$`metric-select`)
     })
 
     # I can't get tests to see this happening so far. I tested manually and it
@@ -113,7 +106,7 @@ mod_MetricDetails_Server <- function(
           strMetricID <- dfMetrics$MetricID[[1]]
         }
         shinyWidgets::updateVirtualSelect(
-          inputId = "metric",
+          inputId = "metric-select",
           choices = rlang::set_names(dfMetrics$MetricID, dfMetrics$Metric),
           selected = strMetricID,
           session = session
@@ -125,7 +118,7 @@ mod_MetricDetails_Server <- function(
     # nocov end
 
     srvr_SyncVirtualSelectInput(
-      "metric",
+      "metric-select",
       rctv_strSelected = rctv_strMetricID,
       session = session
     )

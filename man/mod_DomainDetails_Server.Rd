@@ -8,9 +8,12 @@ mod_DomainDetails_Server(
   id,
   l_rctvDomains_Selection,
   l_rctvDomainHashes_Selection,
+  l_rctvDomains_Study,
   rctv_strDomainID,
   rctv_intDomainCounts,
   rctv_strGroupLevel,
+  rctv_strGroupID,
+  rctv_strSubjectID,
   chrDomains
 )
 }
@@ -32,6 +35,13 @@ that returns the count of rows for the current selection for all domains.}
 
 \item{rctv_strGroupLevel}{\verb{reactive character} A \code{\link[shiny:reactiveVal]{shiny::reactiveVal()}}
 object that returns the selected \code{GroupLevel}.}
+
+\item{rctv_strGroupID}{\verb{reactive character} A \code{\link[shiny:reactiveVal]{shiny::reactiveVal()}} object
+that returns the \code{GroupID} of the selected group (usually site), and can be
+used to update which group is selected.}
+
+\item{rctv_strSubjectID}{\verb{reactive character} A \code{\link[shiny:reactive]{shiny::reactive()}} object
+that returns the \code{SubjectID} of the selected participant.}
 
 \item{chrDomains}{\code{character} A (named) vector of domains to include in the
 app. The values of the vector will be used as labels, and the names will be

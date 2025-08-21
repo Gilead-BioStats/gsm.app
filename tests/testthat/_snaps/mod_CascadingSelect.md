@@ -3,7 +3,7 @@
     Code
       mod_CascadingSelect_UI("test", strLabel = "Test Label")
     Output
-      <li class="bslib-nav-item nav-item form-inline navbar-extras">
+      <li class="bslib-nav-item nav-item form-inline inline-select" id="test">
         <div class="form-group shiny-input-container shiny-input-container-inline">
           <label class="control-label" id="test-select-label" for="test-select">
             <strong>Test Label</strong>

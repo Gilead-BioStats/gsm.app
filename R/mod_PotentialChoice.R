@@ -3,15 +3,14 @@
 #' Renders a select input only if there is more than one choice.
 #'
 #' @inheritParams shared-params
-#' @returns An [input_NavbarExtra()] element or `NULL`.
+#' @returns A [mod_NavSelect_UI()] element or `NULL`.
 #' @keywords internal
 mod_PotentialChoice_UI <- function(id, chrChoices, strLabel) {
   if (length(chrChoices) > 1) {
-    ns <- NS(id)
-    input_NavbarExtra(
-      ns("select"),
+    mod_NavSelect_UI(
+      id,
       chrChoices = chrChoices,
-      strLabel = strLabel
+      strLabel = strong(strLabel)
     )
   }
 }

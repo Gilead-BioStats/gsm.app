@@ -220,9 +220,12 @@ gsmApp_Server <- function(
       "domain_details",
       l_rctvDomains_Selection = l_rctvDomains$Selection,
       l_rctvDomainHashes_Selection = l_rctvDomainHashes$Selection,
+      l_rctvDomains_Study = l_rctvDomains$Study,
       rctv_strDomainID = rctv_strDomainID,
       rctv_intDomainCounts = rctv_intDomainCounts,
       rctv_strGroupLevel = rctv_strGroupLevel,
+      rctv_strGroupID = rctv_strGroupID,
+      rctv_strSubjectID = rctv_strSubjectID,
       chrDomains = chrDomains
     )
 

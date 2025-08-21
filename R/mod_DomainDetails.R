@@ -51,9 +51,12 @@ mod_DomainDetails_Server <- function(
   id,
   l_rctvDomains_Selection,
   l_rctvDomainHashes_Selection,
+  l_rctvDomains_Study,
   rctv_strDomainID,
   rctv_intDomainCounts,
   rctv_strGroupLevel,
+  rctv_strGroupID,
+  rctv_strSubjectID,
   chrDomains
 ) {
   moduleServer(id, function(input, output, session) {
@@ -72,7 +75,10 @@ mod_DomainDetails_Server <- function(
         id = input$selected_tab,
         rctv_dfDomain = l_rctvDomains_Selection[[input$selected_tab]],
         rctv_strDomainHash = l_rctvDomainHashes_Selection[[input$selected_tab]],
-        rctv_strGroupLevel = rctv_strGroupLevel
+        rctv_dfDomain_Study = l_rctvDomains_Study[[input$selected_tab]],
+        rctv_strGroupLevel = rctv_strGroupLevel,
+        rctv_strGroupID = rctv_strGroupID,
+        rctv_strSubjectID = rctv_strSubjectID
       )
     })
     observe({
