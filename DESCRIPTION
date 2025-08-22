@@ -24,6 +24,8 @@ Imports:
     cli,
     dplyr,
     favawesome,
+    forcats,
+    ggplot2,
     glue,
     gsm.core (>= 1.1.0),
     gsm.kri (>= 1.1.0),
@@ -34,11 +36,13 @@ Imports:
     magrittr,
     purrr,
     rlang,
+    scales,
     shiny (>= 1.11.1),
     shinycssloaders,
     shinyjs,
     shinyWidgets,
     stringr,
+    tidyr,
     yaml
 Suggests: 
     gsm.mapping (>= 1.0.1),
