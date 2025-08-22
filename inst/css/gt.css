@@ -5,6 +5,9 @@
 .gt_shiny .rt-td-select {
   display: none;
 }
+.gt_shiny .rt-td-filter:first-of-type {
+  display: none;
+}
 
 /* Hover */
 .gt_shiny .rt-tbody .rt-tr:hover{

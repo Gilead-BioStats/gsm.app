@@ -199,7 +199,8 @@
 #'   (usually a div).
 #' @param strDomainID `character` The domain data.frame to load.
 #' @param strDomainLabel `character` The domain name to display. For example,
-#'   for ID `"AE"`, the label is `"Adverse Events"`.
+#'   for ID `"AE"`, the label is `"Adverse Events"`. Can also be a
+#'   [shiny::uiOutput()] which renders to an inline string.
 #' @param strEmpty `character` The value to return when everything is
 #'   deselected.
 #' @param strFavicon `character` The name of an icon to use in the browser tab

@@ -1,5 +1,6 @@
 skip_if_not_br()
 
+# Snapshots updated by #519.
 test_that("526: The user can view visualizations of a single KRI.", {
   app <- br_app(
     app_dir = "standard",
@@ -146,6 +147,7 @@ test_that("526: The user can view visualizations of a single KRI.", {
   app$stop()
 })
 
+# Snapshots updated by #519.
 test_that("527: The user can view an interactive scatter plot of the selected KRI's latest results.", {
   app <- br_app(
     app_dir = "standard",
@@ -195,6 +197,7 @@ test_that("527: The user can view an interactive scatter plot of the selected KR
   app$stop()
 })
 
+# Snapshots updated by #519.
 test_that("528: The user can view an interactive bar chart of the selected KRI's latest metric values.", {
   app <- br_app(
     app_dir = "standard",
@@ -247,6 +250,7 @@ test_that("528: The user can view an interactive bar chart of the selected KRI's
   app$stop()
 })
 
+# Snapshots updated by #519.
 test_that("529: The user can view an interactive bar chart of the selected KRI's latest scores.", {
   app <- br_app(
     app_dir = "standard",
@@ -299,6 +303,7 @@ test_that("529: The user can view an interactive bar chart of the selected KRI's
   app$stop()
 })
 
+# Snapshots updated by #519.
 test_that("530: The user can view an interactive time-series plot of the selected KRI's scores across all available data snapshots.", {
   app <- br_app(
     app_dir = "standard",
@@ -349,6 +354,7 @@ test_that("530: The user can view an interactive time-series plot of the selecte
   app$stop()
 })
 
+# Snapshots updated by #519.
 test_that("531: The user can view a table of the KRI results for each group.", {
   app <- br_app(
     app_dir = "standard",
@@ -467,6 +473,7 @@ test_that("532: When a group is selected, the user can view that group's metadat
   app$stop()
 })
 
+# Snapshots updated by #519.
 test_that("533: When a group is selected, the user can view a table of participants within that group.", {
   app <- br_app(
     app_dir = "standard",
@@ -535,6 +542,7 @@ test_that("533: When a group is selected, the user can view a table of participa
     )
   })
 
+  # Screenshots updated by BR #519.
   test_that("533.02: Clicking a participant in the participant table selects that participant and navigates to the Domain Details tab.", {
     selector <- "#group_details-participants-gt-table .rt-tbody .rt-tr-group:nth-child(1) .rt-tr .rt-td:nth-child(2) .rt-text-content"
     subject_id <- app$get_text(selector)

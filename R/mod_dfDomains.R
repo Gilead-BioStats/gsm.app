@@ -170,7 +170,6 @@ srvr_dfDomain <- function(
         )
       )
     }
-    # nocov end
     if (l_rctvDomainLoaded$Study() && NROW(rctv_dfStudy())) {
       return(
         FilterDomainData(
@@ -183,6 +182,7 @@ srvr_dfDomain <- function(
         )
       )
     }
+    # nocov end
     withProgress(
       message = glue::glue("Loading {strDomainID} data for participant {strSubjectID}."),
       {

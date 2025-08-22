@@ -1,4 +1,5 @@
-# Launch the ShinyApp (Do not remove this comment)
+# Launch the shiny::shinyApp (Do not remove this comment)
+
 if (
   grepl("gsm\\.app", getwd()) ||
     !("gsm.app" %in% list.files(.libPaths()))

@@ -1,5 +1,6 @@
 skip_if_not_br()
 
+# Screenshots updated by BR #519.
 test_that("534: The user can view raw domain data.", {
   app <- br_app(
     app_dir = "standard",
@@ -91,90 +92,91 @@ test_that("534: The user can view raw domain data.", {
   app$stop()
 })
 
-test_that("535: The user can view a summary of the number of records for each available data domain.", {
-  app <- br_app(
-    app_dir = "standard",
-    name = "535"
-  )
-  app$wait_for_idle()
-  app$set_inputs(primary_nav_bar = "Domain Details")
-  app$wait_for_idle()
+# Feature #535 superseded by BR #519.
+# test_that("535: The user can view a summary of the number of records for each available data domain.", {
+#   app <- br_app(
+#     app_dir = "standard",
+#     name = "535"
+#   )
+#   app$wait_for_idle()
+#   app$set_inputs(primary_nav_bar = "Domain Details")
+#   app$wait_for_idle()
 
-  test_that("535.01: The domain summary counts update based on the selected 'Group' and 'Participant' filters.", {
-    # Verify domain summary card is visible
-    domain_summary_selector <- "#domain_details-counts-card"
-    expect_equal(
-      app$get_text(paste(domain_summary_selector, "h5")),
-      "Domain Summary"
-    )
+#   test_that("535.01: The domain summary counts update based on the selected 'Group' and 'Participant' filters.", {
+#     # Verify domain summary card is visible
+#     domain_summary_selector <- "#domain_details-counts-card"
+#     expect_equal(
+#       app$get_text(paste(domain_summary_selector, "h5")),
+#       "Domain Summary"
+#     )
 
-    # Check counts against source data
-    domain_counts_actual <- get_domain_counts(app)
-    domain_counts_expected <- get_domain_counts_expected()
-    expect_mapequal(
-      domain_counts_actual,
-      domain_counts_expected
-    )
+#     # Check counts against source data
+#     domain_counts_actual <- get_domain_counts(app)
+#     domain_counts_expected <- get_domain_counts_expected()
+#     expect_mapequal(
+#       domain_counts_actual,
+#       domain_counts_expected
+#     )
 
-    expect_official_screenshot(
-      app,
-      name = c("01", "domain_summary"),
-      selector = domain_summary_selector
-    )
+#     expect_official_screenshot(
+#       app,
+#       name = c("01", "domain_summary"),
+#       selector = domain_summary_selector
+#     )
 
-    # Filter by group
-    target_group <- "0X7798"
-    app$set_inputs(`group-group-select` = target_group)
-    app$wait_for_idle()
-    expect_domain_counts(app, strGroupID = target_group)
-    expect_official_screenshot(app, name = c("01", "filter_by_group"))
+#     # Filter by group
+#     target_group <- "0X7798"
+#     app$set_inputs(`group-group-select` = target_group)
+#     app$wait_for_idle()
+#     expect_domain_counts(app, strGroupID = target_group)
+#     expect_official_screenshot(app, name = c("01", "filter_by_group"))
 
-    # Filter by participant
-    target_participant <- "S28299"
-    app$set_inputs(`participant-select` = target_participant)
-    app$wait_for_idle()
-    expect_domain_counts(
-      app,
-      strGroupID = target_group,
-      strSubjectID = target_participant
-    )
-    expect_official_screenshot(app, name = c("01", "filter_by_participant"))
+#     # Filter by participant
+#     target_participant <- "S28299"
+#     app$set_inputs(`participant-select` = target_participant)
+#     app$wait_for_idle()
+#     expect_domain_counts(
+#       app,
+#       strGroupID = target_group,
+#       strSubjectID = target_participant
+#     )
+#     expect_official_screenshot(app, name = c("01", "filter_by_participant"))
 
-    # Reset
-    app$set_inputs(`group-group-select` = "All")
-    app$wait_for_idle()
-    app$set_inputs(`participant-select` = "All")
-    app$wait_for_idle()
-  })
+#     # Reset
+#     app$set_inputs(`group-group-select` = "All")
+#     app$wait_for_idle()
+#     app$set_inputs(`participant-select` = "All")
+#     app$wait_for_idle()
+#   })
 
-  test_that("535.02: Clicking a domain in the summary list switches the view to that domain's data tab.", {
-    # Default tab is Adverse Events (AE)
-    target_domain <- "AE"
-    expect_equal(
-      app$get_value(input = "domain_details-selected_tab"),
-      target_domain
-    )
+#   test_that("535.02: Clicking a domain in the summary list switches the view to that domain's data tab.", {
+#     # Default tab is Adverse Events (AE)
+#     target_domain <- "AE"
+#     expect_equal(
+#       app$get_value(input = "domain_details-selected_tab"),
+#       target_domain
+#     )
 
-    # Click "Enrollment" in the summary list
-    target_domain <- "ENROLL"
-    app$click(
-      selector = glue::glue(
-        "#domain_details-counts-domain_list_choices-{target_domain}"
-      )
-    )
-    app$wait_for_idle()
+#     # Click "Enrollment" in the summary list
+#     target_domain <- "ENROLL"
+#     app$click(
+#       selector = glue::glue(
+#         "#domain_details-counts-domain_list_choices-{target_domain}"
+#       )
+#     )
+#     app$wait_for_idle()
 
-    # Verify active tab and data have updated
-    expect_equal(
-      app$get_value(input = "domain_details-selected_tab"),
-      target_domain
-    )
-    expect_domain_df_cols(app, target_domain)
-    expect_official_screenshot(
-      app,
-      name = c("02", target_domain)
-    )
-  })
+#     # Verify active tab and data have updated
+#     expect_equal(
+#       app$get_value(input = "domain_details-selected_tab"),
+#       target_domain
+#     )
+#     expect_domain_df_cols(app, target_domain)
+#     expect_official_screenshot(
+#       app,
+#       name = c("02", target_domain)
+#     )
+#   })
 
-  app$stop()
-})
+#   app$stop()
+# })
