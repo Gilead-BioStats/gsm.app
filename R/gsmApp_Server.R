@@ -226,7 +226,8 @@ gsmApp_Server <- function(
       rctv_strGroupLevel = rctv_strGroupLevel,
       rctv_strGroupID = rctv_strGroupID,
       rctv_strSubjectID = rctv_strSubjectID,
-      chrDomains = chrDomains
+      chrDomains = chrDomains,
+      rctv_strPrimaryNavBar
     )
 
     ## Plugins ----

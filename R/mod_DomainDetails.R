@@ -57,29 +57,36 @@ mod_DomainDetails_Server <- function(
   rctv_strGroupLevel,
   rctv_strGroupID,
   rctv_strSubjectID,
-  chrDomains
+  chrDomains,
+  rctv_strPrimaryNavBar
 ) {
   moduleServer(id, function(input, output, session) {
     observe({
-      purrr::imap(
-        rctv_intDomainCounts(),
-        function(intDomainCount, strDomainID) {
-          mod_DomainLabel_Server(strDomainID, reactive(intDomainCount))
-        }
-      )
+      # Don't read the counts until this tab is loaded.
+      if (req(rctv_strPrimaryNavBar()) == "Domain Details") {
+        purrr::imap(
+          rctv_intDomainCounts(),
+          function(intDomainCount, strDomainID) {
+            mod_DomainLabel_Server(strDomainID, reactive(intDomainCount))
+          }
+        )
+      }
     })
 
     observe({
       req(input$selected_tab)
-      mod_DomainData_Server(
-        id = input$selected_tab,
-        rctv_dfDomain = l_rctvDomains_Selection[[input$selected_tab]],
-        rctv_strDomainHash = l_rctvDomainHashes_Selection[[input$selected_tab]],
-        rctv_dfDomain_Study = l_rctvDomains_Study[[input$selected_tab]],
-        rctv_strGroupLevel = rctv_strGroupLevel,
-        rctv_strGroupID = rctv_strGroupID,
-        rctv_strSubjectID = rctv_strSubjectID
-      )
+      # Don't calculate domain data until this tab is focused.
+      if (req(rctv_strPrimaryNavBar()) == "Domain Details") {
+        mod_DomainData_Server(
+          id = input$selected_tab,
+          rctv_dfDomain = l_rctvDomains_Selection[[input$selected_tab]],
+          rctv_strDomainHash = l_rctvDomainHashes_Selection[[input$selected_tab]],
+          rctv_dfDomain_Study = l_rctvDomains_Study[[input$selected_tab]],
+          rctv_strGroupLevel = rctv_strGroupLevel,
+          rctv_strGroupID = rctv_strGroupID,
+          rctv_strSubjectID = rctv_strSubjectID
+        )
+      }
     })
     observe({
       req(rctv_strDomainID())

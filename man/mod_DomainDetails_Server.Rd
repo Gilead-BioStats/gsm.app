@@ -14,7 +14,8 @@ mod_DomainDetails_Server(
   rctv_strGroupLevel,
   rctv_strGroupID,
   rctv_strSubjectID,
-  chrDomains
+  chrDomains,
+  rctv_strPrimaryNavBar
 )
 }
 \arguments{

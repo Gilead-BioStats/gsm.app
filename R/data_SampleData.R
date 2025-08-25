@@ -141,7 +141,6 @@ sample_fnFetchData <- function(
 ) {
   strDomainID <- toupper(strDomainID)
   strDomainID <- rlang::arg_match(strDomainID)
-
   strGroupID <- NullifyEmpty(strGroupID)
   strSubjectID <- NullifyEmpty(strSubjectID)
 
@@ -190,6 +189,71 @@ sample_fnFetchData <- function(
   )
 
   return(df)
+}
+
+#' Count Data for a Domain
+#'
+#' This is a sample function demonstrating the type of function the user will
+#' supply to count rows of additional data available for a given domain.
+#'
+#' @inheritParams shared-params
+#'
+#' @returns An integer signifying the number of rows available for the specified
+#'   domain.
+#' @family sample data
+#' @export
+#'
+#' @examples
+#' sample_fnCountData("AE"))
+#' sample_fnCountData("AE", strGroupID = "0X103")
+#' sample_fnCountData("AE", strSubjectID = "1350")
+sample_fnCountData <- function(
+  strDomainID = c(
+    "AE",
+    "ENROLL",
+    "LB",
+    "PD",
+    "SDRGCOMP",
+    "STUDCOMP",
+    "SUBJ",
+    "DATACHG",
+    "DATAENT",
+    "QUERY"
+  ),
+  strGroupID = NULL,
+  strGroupLevel = "Site",
+  strSubjectID = NULL,
+  dSnapshotDate = NULL
+) {
+  strDomainID <- toupper(strDomainID)
+  strDomainID <- rlang::arg_match(strDomainID)
+  strGroupID <- NullifyEmpty(strGroupID)
+  strSubjectID <- NullifyEmpty(strSubjectID)
+
+  # Hard-code study-level data for faster lookups.
+  if (is.null(strGroupID) && is.null(strSubjectID)) {
+    sizes <- c(
+      "AE" = 512L,
+      "ENROLL" = 173L,
+      "LB" = 490680L,
+      "PD" = 508L,
+      "SDRGCOMP" = 83L,
+      "STUDCOMP" = 18L,
+      "SUBJ" = 170L,
+      "DATACHG" = 544448L,
+      "DATAENT" = 136112L,
+      "QUERY" = 34028L
+    )
+    return(unname(sizes[[strDomainID]]))
+  }
+  defaultCounter <- ConstructDataCounter(sample_fnFetchData)
+  defaultCounter(
+    strDomainID = strDomainID,
+    strGroupID = strGroupID,
+    strGroupLevel = strGroupLevel,
+    strSubjectID = strSubjectID,
+    dSnapshotDate = dSnapshotDate
+  )
 }
 
 #' Update Date-based Fields

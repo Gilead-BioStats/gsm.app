@@ -30,6 +30,7 @@ Other sample data:
 \code{\link{sample_dfBounds}},
 \code{\link{sample_dfMetrics}},
 \code{\link{sample_dfResults}},
+\code{\link{sample_fnCountData}()},
 \code{\link{sample_fnFetchData}()}
 }
 \concept{sample data}
