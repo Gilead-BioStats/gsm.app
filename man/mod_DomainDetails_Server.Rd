@@ -6,23 +6,24 @@
 \usage{
 mod_DomainDetails_Server(
   id,
-  l_rctvDomains_Selection,
+  l_rctvDomains,
   l_rctvDomainHashes_Selection,
-  l_rctvDomains_Study,
   rctv_strDomainID,
   rctv_intDomainCounts,
   rctv_strGroupLevel,
   rctv_strGroupID,
   rctv_strSubjectID,
   chrDomains,
-  rctv_strPrimaryNavBar
+  rctv_strPrimaryNavBar,
+  l_rctvDomainsLoaded
 )
 }
 \arguments{
 \item{id}{\code{character} The id for this element.}
 
-\item{l_rctvDomains_Selection}{\code{list} A named list of \code{\link[shiny:reactive]{shiny::reactive()}}
-objects, each of which returns a domain dataframe for the current filter.}
+\item{l_rctvDomains}{\code{list} A named list of lists of \code{\link[shiny:reactive]{shiny::reactive()}}
+objects. Each list contains a "Study" element, a "Group" element, and a
+"Selection" element, each of which returns a domain dataframe.}
 
 \item{l_rctvDomainHashes_Selection}{\code{list} A named list of
 \code{\link[shiny:reactive]{shiny::reactive()}} objects, each of which returns the \code{\link[rlang:hash]{rlang::hash()}} of a
@@ -48,6 +49,11 @@ that returns the \code{SubjectID} of the selected participant.}
 app. The values of the vector will be used as labels, and the names will be
 used as IDs. The IDs will be passed to \code{fnFetchData()} to fetch data about
 that domain.}
+
+\item{l_rctvDomainsLoaded}{\code{list} A named list of lists of
+\code{\link[shiny:reactive]{shiny::reactive()}} objects. Each list contains a "Study" element and an
+element per group level, each of which returns a \code{logical} (\code{FALSE} if the
+data has not been accessed, \code{TRUE} if it has).}
 }
 \description{
 Update Domain Details when the selected participant changes.

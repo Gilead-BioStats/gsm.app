@@ -43,17 +43,22 @@ mod_DomainData_Server <- function(
   rctv_dfDomain,
   rctv_strDomainHash,
   rctv_dfDomain_Study,
+  rctv_dfDomain_Group,
   rctv_strGroupLevel,
   rctv_strGroupID,
-  rctv_strSubjectID
+  rctv_strSubjectID,
+  l_rctvDomainLoaded
 ) {
   moduleServer(id, function(input, output, session) {
     mod_PrevalencePlot_Server(
       "prevalence_plot",
+      rctv_dfDomain,
+      rctv_dfDomain_Group,
       rctv_dfDomain_Study,
       rctv_strGroupLevel,
       rctv_strGroupID,
-      rctv_strSubjectID
+      rctv_strSubjectID,
+      l_rctvDomainLoaded
     )
 
     rctv_tblData <- reactive({

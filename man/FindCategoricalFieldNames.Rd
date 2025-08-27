@@ -6,7 +6,7 @@
 \usage{
 FindCategoricalFieldNames(
   df,
-  chrExcludes = c("SubjectID", "GroupID", "GroupLevel")
+  chrExcludes = c("SubjectID", "GroupID", "GroupLevel", "VizLevel")
 )
 }
 \arguments{

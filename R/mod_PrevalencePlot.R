@@ -3,117 +3,197 @@ mod_PrevalencePlot_UI <- function(id, strTitle = NULL) {
   out_Card(
     id = ns("card"),
     tagTitle = strTitle,
-    mod_ChartTitleSelect_Study_Categorical_UI(ns("category")),
+    div(
+      id = ns("title"),
+      class = "inline-select",
+      htmlDependency_Stylesheet("inlineSelect.css"),
+      shinyWidgets::virtualSelectInput(
+        ns("category"),
+        NULL,
+        "",
+        inline = TRUE
+      ),
+      mod_DynamicLabelKey_UI(ns("key"))
+    ),
     plotOutput(ns("plot"))
   )
 }
 
 mod_PrevalencePlot_Server <- function(
   id,
+  rctv_dfDomain,
+  rctv_dfDomain_Group,
   rctv_dfDomain_Study,
   rctv_strGroupLevel,
   rctv_strGroupID,
-  rctv_strSubjectID
+  rctv_strSubjectID,
+  l_rctvDomainLoaded
 ) {
   moduleServer(id, function(input, output, session) {
-    rctv_strCategory <- mod_ChartTitleSelect_Study_Categorical_Server(
-      "category",
-      rctv_dfDomain_Study,
-      rctv_strGroupLevel,
-      rctv_strGroupID,
-      rctv_strSubjectID
+    # The key (what's turned on/off) needs to be sorted out before we can know
+    # what else is happening, so put that at the top.
+    l_rctvActive <- mod_DynamicLabelKey_Server(
+      "key",
+      rctv_strGroupLevel = rctv_strGroupLevel,
+      rctv_strGroupID = rctv_strGroupID,
+      rctv_strSubjectID = rctv_strSubjectID
     )
-    rctv_dfDomain_Study_Subset <- reactive({
-      req(rctv_dfDomain_Study())
-      req(rctv_strCategory())
+
+    # Now we can prepare the dfs (but not yet subset the columns).
+    rctv_dfDomain_Study_Prepared <- reactiveVal(NULL)
+    observe({
       req(rctv_strGroupLevel())
-      rctv_dfDomain_Study() |>
-        dplyr::filter(.data$GroupLevel == rctv_strGroupLevel()) |>
-        dplyr::select(dplyr::all_of(
-          c("SubjectID", "GroupID", rctv_strCategory())
-        ))
+      if (length(NullifyEmpty(l_rctvActive$Study()))) {
+        df <- PreparePrevalenceData(
+          df = rctv_dfDomain_Study(),
+          strGroupLevel = rctv_strGroupLevel(),
+          strLevel = "Study"
+        )
+        rctv_dfDomain_Study_Prepared(df)
+      } else {
+        rctv_dfDomain_Study_Prepared(NULL)
+      }
     })
-    rctv_chrTopValues <- srvr_PullTopValues(
-      rctv_dfDomain_Study_Subset,
-      rctv_strCategory
+
+    rctv_dfDomain_Group_Prepared <- reactiveVal(NULL)
+    observe({
+      req(rctv_strGroupLevel())
+      req(rctv_strGroupID())
+      if (
+        length(NullifyEmpty(rctv_strGroupID())) &&
+        length(NullifyEmpty(l_rctvActive$Group()))
+      ) {
+        df <- PreparePrevalenceData(
+          df = rctv_dfDomain_Group(),
+          strGroupLevel = rctv_strGroupLevel(),
+          strLevel = "Group"
+        )
+        rctv_dfDomain_Group_Prepared(df)
+      } else {
+        rctv_dfDomain_Group_Prepared(NULL)
+      }
+    })
+
+    rctv_dfDomain_Participant_Prepared <- reactiveVal(NULL)
+    observe({
+      # Caution: rctv_dfDomain() isn't Participant when rctv_strSubjectID()
+      # isn't set, so we need to use these reqs to make sure we don't return
+      # anything in that case.
+      req(rctv_strGroupLevel())
+      req(rctv_strSubjectID())
+      if (
+        length(NullifyEmpty(rctv_strSubjectID())) &&
+        length(NullifyEmpty(l_rctvActive$Participant()))
+      ) {
+        df <- PreparePrevalenceData(
+          df = rctv_dfDomain(),
+          strGroupLevel = rctv_strGroupLevel(),
+          strLevel = "Participant"
+        )
+        rctv_dfDomain_Participant_Prepared(df)
+      } else {
+        rctv_dfDomain_Participant_Prepared(NULL)
+      }
+    })
+
+    rctv_dfDomain_Combined <- reactive({
+      combined <- purrr::list_rbind(list(
+        Study = rctv_dfDomain_Study_Prepared(),
+        Group = rctv_dfDomain_Group_Prepared(),
+        Participant = rctv_dfDomain_Participant_Prepared()
+      ))
+      if (NROW(combined)) {
+        combined <- dplyr::mutate(
+          combined,
+          VizLevel = factor(
+            .data$VizLevel,
+            levels = c("Study", "Group", "Participant")
+          ) |>
+            forcats::fct_drop()
+        )
+      }
+      combined
+    })
+
+    # Update these as a reactiveVal to make sure they don't change when new data
+    # is loaded but nothing really changes.
+    rctv_chrCategoricalFields <- reactiveVal()
+    observe({
+      req(NROW(rctv_dfDomain_Combined()) > 0)
+      chrCategoricalFields <- FindCategoricalFieldNames(
+        rctv_dfDomain_Combined()
+      )
+      chrCategoricalFields <- rlang::set_names(
+        chrCategoricalFields,
+        MakeParamLabelsChr(chrCategoricalFields, chrFieldNames)
+      )
+      current_fields <- rctv_chrCategoricalFields()
+      if (!setequal(chrCategoricalFields, current_fields)) {
+        rctv_chrCategoricalFields(chrCategoricalFields)
+      }
+    })
+
+    srvr_SyncVirtualSelectInput(
+      "category",
+      session = session,
+      rctv_chrChoices = rctv_chrCategoricalFields,
+      rctv_strSelected = reactive({rctv_chrCategoricalFields()[[1]]})
     )
-    rctv_dfDomain_Group <- reactive({
-      req(rctv_dfDomain_Study_Subset())
-      PreparePrevalenceData(
-        df = rctv_dfDomain_Study_Subset(),
-        strCategory = rctv_strCategory(),
-        strFieldName = "GroupID",
-        strFieldValue = NullifyEmpty(rctv_strGroupID()),
-        strLevel = rctv_strGroupLevel()
+
+    rctv_dfDomain_Combined_Subset <- reactive({
+      req(rctv_dfDomain_Combined())
+      req(input$category)
+      dplyr::select(
+        rctv_dfDomain_Combined(),
+        dplyr::any_of(c(input$category, "VizLevel"))
       )
     })
-    rctv_dfDomain_Subject <- reactive({
-      req(rctv_dfDomain_Study_Subset())
-      PreparePrevalenceData(
-        df = rctv_dfDomain_Study_Subset(),
-        strCategory = rctv_strCategory(),
-        strFieldName = "SubjectID",
-        strFieldValue = NullifyEmpty(rctv_strSubjectID()),
-        strLevel = "Subject"
-      )
-    })
+
+    rctv_chrTopValues <- srvr_PullTopValues(
+      rctv_dfDomain_Combined_Subset,
+      reactive(input$category)
+    )
 
     txt2pct <- scales::label_percent(1)
     output$plot <- renderPlot({
-      req(rctv_dfDomain_Study_Subset())
+      req(rctv_dfDomain_Combined_Subset())
       req(rctv_strGroupLevel())
-      req(rctv_strCategory())
+      req(input$category)
       req(rctv_chrTopValues())
-      strCategory <- rctv_strCategory()
+      strCategory <- input$category
       strGroupLevel <- rctv_strGroupLevel()
-      dfDomain_Study <- rctv_dfDomain_Study_Subset()
-      dfDomain_Group <- rctv_dfDomain_Group()
-      dfDomain_Subject <- rctv_dfDomain_Subject()
+      df <- rctv_dfDomain_Combined_Subset()
       chrTopValues <- rctv_chrTopValues()
-      chrLevels <- c(
-        "Study",
-        if (NROW(dfDomain_Group)) strGroupLevel,
-        if (NROW(dfDomain_Subject)) "Subject"
-      )
 
-      dfDomain_Combined <- dfDomain_Study %>%
-        dplyr::select(dplyr::all_of(strCategory)) %>%
-        dplyr::mutate(level = "Study") %>%
-        dplyr::bind_rows(
-          dfDomain_Group,
-          dfDomain_Subject
-        )
-
-      if (length(unique(dfDomain_Combined[[strCategory]])) > 6) {
+      if (length(unique(df[[strCategory]])) > 6) {
         chrTopValues <- utils::head(chrTopValues, 5)
       }
 
-      dfDomain_Combined %>%
+      df %>%
         dplyr::mutate(
-          level = factor(.data$level, levels = chrLevels),
-          category = forcats::fct_other(
+          VizCategory = forcats::fct_other(
             .data[[strCategory]],
             keep = chrTopValues
           )
         ) %>%
         dplyr::summarize(
           n = dplyr::n(),
-          .by = dplyr::all_of(c("level", "category"))
+          .by = dplyr::all_of(c("VizLevel", "VizCategory"))
         ) %>%
         dplyr::mutate(
           pct = .data$n / sum(.data$n),
-          .by = "level"
+          .by = "VizLevel"
         ) %>%
         tidyr::complete(
-          .data$level,
-          .data$category,
+          .data$VizLevel,
+          .data$VizCategory,
           fill = list(n = 0, pct = 0)
         ) %>%
         dplyr::mutate(
           fill_color = dplyr::case_match(
-            as.character(.data$level),
+            as.character(.data$VizLevel),
             "Study" ~ "#1b9e77",
-            "Subject" ~ "#7570b3",
+            "Participant" ~ "#7570b3",
             .default = "#d95f02"
           ) |>
             factor()
@@ -121,12 +201,12 @@ mod_PrevalencePlot_Server <- function(
         ggplot2::ggplot() +
         ggplot2::aes(
           x = .data$pct,
-          y = .data$category,
+          y = .data$VizCategory,
           fill = .data$fill_color,
           width = 0.9 * dplyr::case_match(
-            as.character(.data$level),
+            as.character(.data$VizLevel),
             "Study" ~ 1,
-            "Subject" ~ 0.25,
+            "Participant" ~ 0.25,
             .default = 0.5
           )
         ) +
@@ -137,10 +217,10 @@ mod_PrevalencePlot_Server <- function(
         ggplot2::geom_label(
           ggplot2::aes(
             label = txt2pct(.data$pct),
-            y = as.numeric(.data$category) + dplyr::case_match(
-              as.character(.data$level),
+            y = as.numeric(.data$VizCategory) + dplyr::case_match(
+              as.character(.data$VizLevel),
               "Study" ~ 0.3,
-              "Subject" ~ -0.3,
+              "Participant" ~ -0.3,
               .default = 0
             )
           ),
@@ -167,19 +247,18 @@ mod_PrevalencePlot_Server <- function(
 
 PreparePrevalenceData <- function(
   df,
-  strCategory,
-  strFieldName,
-  strFieldValue,
+  strGroupLevel,
   strLevel
 ) {
-  if (is.null(strFieldValue)) {
+  if (!NROW(df)) {
     return(NULL)
   }
-
-  df %>%
-    dplyr::filter(.data[[strFieldName]] == strFieldValue) %>%
-    dplyr::mutate(level = strLevel) %>%
-    dplyr::select(dplyr::all_of(c("level", strCategory)))
+  if ("GroupLevel" %in% colnames(df)) {
+    df <- dplyr::filter(df, .data$GroupLevel == strGroupLevel)
+  }
+  df |>
+    dplyr::select(-dplyr::any_of(c("GroupID", "GroupLevel", "SubjectID"))) |>
+    dplyr::mutate(VizLevel = strLevel)
 }
 
 #' Standard theme for gsm ggplot2 plots

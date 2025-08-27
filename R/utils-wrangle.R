@@ -153,10 +153,11 @@ splitByGrouping <- function(df, strGroupingVar, strValueVar) {
 #' @keywords internal
 FindCategoricalFieldNames <- function(
   df,
-  chrExcludes = c("SubjectID", "GroupID", "GroupLevel")
+  chrExcludes = c("SubjectID", "GroupID", "GroupLevel", "VizLevel")
 ) {
   lglIsCategorical <- purrr::map_lgl(df, function(col) {
-    (is.character(col) || is.factor(col)) && (length(col) > length(unique(col)))
+    # (is.character(col) || is.factor(col)) && (length(col) > length(unique(col)))
+    is.character(col) || is.factor(col)
   })
   setdiff(
     colnames(df)[lglIsCategorical],
