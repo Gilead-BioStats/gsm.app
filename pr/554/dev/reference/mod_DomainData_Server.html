@@ -52,9 +52,11 @@
 <span>  <span class="va">rctv_dfDomain</span>,</span>
 <span>  <span class="va">rctv_strDomainHash</span>,</span>
 <span>  <span class="va">rctv_dfDomain_Study</span>,</span>
+<span>  <span class="va">rctv_dfDomain_Group</span>,</span>
 <span>  <span class="va">rctv_strGroupLevel</span>,</span>
 <span>  <span class="va">rctv_strGroupID</span>,</span>
-<span>  <span class="va">rctv_strSubjectID</span></span>
+<span>  <span class="va">rctv_strSubjectID</span>,</span>
+<span>  <span class="va">l_rctvDomainLoaded</span></span>
 <span><span class="op">)</span></span></code></pre></div>
     </div>
 
@@ -90,6 +92,13 @@ used to update which group is selected.</p></dd>
 <dt id="arg-rctv-strsubjectid">rctv_strSubjectID<a class="anchor" aria-label="anchor" href="#arg-rctv-strsubjectid"></a></dt>
 <dd><p><code>reactive character</code> A <code><a href="https://rdrr.io/pkg/shiny/man/reactive.html" class="external-link">shiny::reactive()</a></code> object
 that returns the <code>SubjectID</code> of the selected participant.</p></dd>
+
+
+<dt id="arg-l-rctvdomainloaded">l_rctvDomainLoaded<a class="anchor" aria-label="anchor" href="#arg-l-rctvdomainloaded"></a></dt>
+<dd><p><code>list</code> A named list of <code><a href="https://rdrr.io/pkg/shiny/man/reactive.html" class="external-link">shiny::reactive()</a></code> objects.
+The list contains a "Study" element and an element per group level, each of
+which returns a <code>logical</code> (<code>FALSE</code> if the data has not been accessed,
+<code>TRUE</code> if it has).</p></dd>
 
 </dl></div>
     <div class="section level2">
