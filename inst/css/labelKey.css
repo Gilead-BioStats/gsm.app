@@ -2,13 +2,25 @@
   line-height: 36px;
 }
 
-.inline-select .btn {
+.label-key-container .form-group {
+  margin-bottom: 0;
+  display: inline-flex; /* Ensure it grows to fit its contents */
+  align-items: center;  /* Keep label and input aligned */
+  gap: 0.5rem; /* Space between label and input */
+}
+
+.label-key-container .control-label {
+  margin-bottom: 0 !important;
+  white-space: nowrap;
+}
+
+.label-key-container .btn {
   font-weight: bold;
   padding: 4px;
   text-wrap: none;
 }
 
-.inline-select .disabled {
+.label-key-container .disabled {
   color: black;
   background-color: white;
   border-color: black;
