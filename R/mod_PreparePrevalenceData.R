@@ -1,3 +1,8 @@
+#' Reactively prepare data for prevalence plots
+#'
+#' @inheritParams shared-params
+#' @returns A reactive that returns the prepared `data.frame`, or `NULL`.
+#' @keywords internal
 mod_PreparePrevalenceData_Server <- function(
   id,
   strLevel,
@@ -34,6 +39,11 @@ mod_PreparePrevalenceData_Server <- function(
   })
 }
 
+#' Prepare data for prevalence plots
+#'
+#' @inheritParams shared-params
+#' @returns The prepared `data.frame`, or `NULL`.
+#' @keywords internal
 PreparePrevalenceData <- function(df, strGroupLevel, strLevel) {
   if (!NROW(df)) {
     return(NULL)

@@ -12,7 +12,7 @@ mod_DomainData_UI <- function(id, strDomainLabel, strDomainID) {
     title = strDomainLabel,
     value = strDomainID,
     bslib::layout_columns(
-      mod_PrevalencePlot_UI(ns("prevalence_plot")),
+      mod_PrevalencePlotCard_UI(ns("prevalence_plot")),
       out_Card(
         tagTitle = NULL,
         shinycssloaders::withSpinner(
@@ -50,7 +50,7 @@ mod_DomainData_Server <- function(
   l_rctvDomainLoaded
 ) {
   moduleServer(id, function(input, output, session) {
-    mod_PrevalencePlot_Server(
+    mod_PrevalencePlotCard_Server(
       "prevalence_plot",
       rctv_dfDomain,
       rctv_dfDomain_Group,

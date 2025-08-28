@@ -29,6 +29,18 @@ NullifyEmpty <- function(strValue) {
   return(strValue)
 }
 
+#' Resolve a potential reactive object
+#'
+#' @param x An object that might be reactive.
+#' @returns Either `x` (if `x` isn't reactive) or `x()`.
+#' @keywords internal
+CallIfReactive <- function(x) {
+  if (is.reactive(x)) {
+    return(x())
+  }
+  return(x)
+}
+
 #' gsm Color Scheme
 #'
 #' Choose a color from the "official" colors of the gsm family of packages.

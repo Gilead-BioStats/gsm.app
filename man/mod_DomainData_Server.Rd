@@ -25,6 +25,12 @@ returns a domain dataframe.}
 \item{rctv_strDomainHash}{\verb{reactive character} A \code{\link[shiny:reactive]{shiny::reactive()}} object
 that returns the the \code{\link[rlang:hash]{rlang::hash()}} of a domain dataframe.}
 
+\item{rctv_dfDomain_Study}{\verb{reactive dataframe} A \code{\link[shiny:reactive]{shiny::reactive()}} object
+that returns a study-level domain dataframe.}
+
+\item{rctv_dfDomain_Group}{\verb{reactive dataframe} A \code{\link[shiny:reactive]{shiny::reactive()}} object
+that returns a group-level domain dataframe.}
+
 \item{rctv_strGroupLevel}{\verb{reactive character} A \code{\link[shiny:reactiveVal]{shiny::reactiveVal()}}
 object that returns the selected \code{GroupLevel}.}
 

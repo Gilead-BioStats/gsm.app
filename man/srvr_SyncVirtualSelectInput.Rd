@@ -7,9 +7,12 @@
 srvr_SyncVirtualSelectInput(
   id,
   session = getDefaultReactiveDomain(),
-  rctv_chrChoices = reactive(NULL, domain = session),
-  rctv_strLabel = reactive(NULL, domain = session),
-  rctv_strSelected = reactive(NULL, domain = session)
+  rctv_chrChoices = NULL,
+  rctv_strLabel = NULL,
+  rctv_strSelected = NULL,
+  rctv_lglDisable = NULL,
+  rctv_chrDisabledChoices = NULL,
+  rctv_lglOpen = NULL
 )
 }
 \arguments{
@@ -23,10 +26,17 @@ default should almost always be used).}
 \item{rctv_strLabel}{\verb{reactive character} Label to set.}
 
 \item{rctv_strSelected}{\verb{reactive character} Selected value to set.}
+
+\item{rctv_lglDisable}{\verb{reactive logical} Whether to disable the menu.}
+
+\item{rctv_chrDisabledChoices}{\verb{reactive character} Choices to disable.}
+
+\item{rctv_lglOpen}{\verb{reactive logical} Whether to open (\code{TRUE}) or close
+(\code{FALSE}) the menu.}
 }
 \value{
 A \code{\link[shiny:observe]{shiny::observe()}} that triggers
-\code{\link[shinyWidgets:updateVirtualSelect]{shinyWidgets::updateVirtualSelect()}} when the connected reactive changes.
+\code{\link[shinyWidgets:updateVirtualSelect]{shinyWidgets::updateVirtualSelect()}} when the connected reactives change.
 }
 \description{
 Synchronize virtualSelectInput with reactive

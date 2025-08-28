@@ -1,3 +1,9 @@
+#' Study, Group, and Participant label buttons
+#'
+#' @inheritParams shared-params
+#' @returns A [htmltools::span()] element containing a set of
+#'   [shinyWidgets::checkboxGroupButtons()].
+#' @keywords internal
 mod_DynamicLabelKey_UI <- function(id) {
   ns <- NS(id)
   span(
@@ -20,6 +26,12 @@ mod_DynamicLabelKey_UI <- function(id) {
   )
 }
 
+#' Activate/inactivate buttons and return values
+#'
+#' @inheritParams shared-params
+#' @returns A list of [shiny::reactive()] objects to determine whether the given
+#'   button is selected.
+#' @keywords internal
 mod_DynamicLabelKey_Server <- function(
   id,
   rctv_strGroupLevel,
@@ -109,33 +121,32 @@ srvr_UpdateLabelKey <- function(
   lglSelected = FALSE,
   session = getDefaultReactiveDomain()
 ) {
-  observe({
-    if (is.reactive(strLabel)) {
-      strLabel <- NullifyEmpty(strLabel())
-    }
-    if (length(strLabel)) {
-      if (is.reactive(lglSelected)) {
-        lglSelected <- lglSelected()
+  observe(
+    {
+      strLabel <- NullifyEmpty(CallIfReactive(strLabel))
+      if (length(strLabel)) {
+        lglSelected <- CallIfReactive(lglSelected)
+        strSelected <- if (lglSelected) {
+          strLabel
+        }
+        shinyWidgets::updateCheckboxGroupButtons(
+          session = session,
+          inputId = strInputId,
+          choices = strLabel,
+          selected = strSelected,
+          disabled = FALSE,
+          status = paste("label-key", tolower(strInputId), sep = "-")
+        )
+      } else {
+        shinyWidgets::updateCheckboxGroupButtons(
+          session = session,
+          inputId = strInputId,
+          choices = strInputId,
+          disabled = TRUE,
+          status = paste("label-key", tolower(strInputId), sep = "-")
+        )
       }
-      strSelected <- if (lglSelected) {
-        strLabel
-      }
-      shinyWidgets::updateCheckboxGroupButtons(
-        session = session,
-        inputId = strInputId,
-        choices = strLabel,
-        selected = strSelected,
-        disabled = FALSE,
-        status = paste("label-key", tolower(strInputId), sep = "-")
-      )
-    } else {
-      shinyWidgets::updateCheckboxGroupButtons(
-        session = session,
-        inputId = strInputId,
-        choices = strInputId,
-        disabled = TRUE,
-        status = paste("label-key", tolower(strInputId), sep = "-")
-      )
-    }
-  }, domain = session)
+    },
+    domain = session
+  )
 }
