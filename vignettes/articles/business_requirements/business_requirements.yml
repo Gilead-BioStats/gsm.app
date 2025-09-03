@@ -180,6 +180,3 @@
     - When a participant is selected, the user can turn the Participant bar and label
       on and off using the color-coded Participant key.
     - When there are more than 6 values, the plot shows the top 5 values plus 'Other'.
-  - issue: 555
-    title: Increase number of rows shown in domain details
-    acceptance_criteria: []
