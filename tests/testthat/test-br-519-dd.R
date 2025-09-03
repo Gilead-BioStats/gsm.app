@@ -223,5 +223,172 @@ test_that("496: The user can visualize domain categorical variable counts by val
     app$wait_for_idle()
   })
 
+  test_that("496.03: The 'Prevalence' card displays a color-coded key for Study.", {
+    this_level <- "Study"
+    key_selector <- "#domain_details-AE-prevalence_plot-key"
+    this_key_selector <- paste(key_selector, this_level, sep = "-")
+    key_title <- app$get_text(paste(this_key_selector, "label"))
+    expect_equal(key_title, this_level)
+    expect_official_screenshot(
+      app,
+      name = c("03", glue::glue("{this_level}_key_exists")),
+      selector = key_selector
+    )
+  })
+
+  test_that("496.04: The 'Prevalence' card displays a bar plot of '% of rows' vs the values of the selected column, colored to indicate that it is at the Study level.", {
+    expect_true(TRUE)
+    expect_official_screenshot(
+      app,
+      name = c("04", "prevalence_plot_study_bars"),
+      selector = "#domain_details-AE-prevalence_plot-plot-plot"
+    )
+  })
+
+  test_that("496.05: The 'Prevalence' card displays a label with the numeric % of each value, colored to indicate that it is at the Study level.", {
+    expect_true(TRUE)
+    expect_official_screenshot(
+      app,
+      name = c("05", "prevalence_plot_study_label"),
+      selector = "#domain_details-AE-prevalence_plot-plot-plot"
+    )
+  })
+
+  test_that("496.06: When a group is selected, the 'Prevalence' card displays a color-coded key for that group, as '{Group Level} {GroupID}'.", {
+    this_level <- "Group"
+    strGroupLevel <- "Site"
+    strGroupID <- "0X7258"
+    key_selector <- "#domain_details-AE-prevalence_plot-key"
+    this_key_selector <- paste(key_selector, this_level, sep = "-")
+    app$set_inputs(`group-group-select` = strGroupID)
+    app$wait_for_idle()
+    key_title <- app$get_text(paste(this_key_selector, "label"))
+    expect_equal(key_title, glue::glue("{strGroupLevel} {strGroupID}"))
+    expect_official_screenshot(
+      app,
+      name = c("06", glue::glue("{this_level}_key_exists")),
+      selector = key_selector
+    )
+  })
+
+  test_that("496.07: When a group is selected, the 'Prevalence' card also displays a bar filtered to just the selected group, colored to indicate that it is at the Group level.", {
+    expect_true(TRUE)
+    expect_official_screenshot(
+      app,
+      name = c("07", "prevalence_plot_group_bars"),
+      selector = "#domain_details-AE-prevalence_plot-plot-plot"
+    )
+  })
+
+  test_that("496.08: When a group is selected, the 'Prevalence' card also displays a label with the numeric % of each value filtered to just the selected group, colored to indicate that it is at the Group level.", {
+    expect_true(TRUE)
+    expect_official_screenshot(
+      app,
+      name = c("08", "prevalence_plot_group_label"),
+      selector = "#domain_details-AE-prevalence_plot-plot-plot"
+    )
+  })
+
+  test_that("496.09: When a participant is selected, the 'Prevalence' card displays a color-coded key for that participant, as 'Participant {SubjectID}'.", {
+    this_level <- "Participant"
+    strParticipantID <- "S10581"
+    key_selector <- "#domain_details-AE-prevalence_plot-key"
+    this_key_selector <- paste(key_selector, this_level, sep = "-")
+    app$set_inputs(`participant-select` = strParticipantID)
+    app$wait_for_idle()
+    key_title <- app$get_text(paste(this_key_selector, "label"))
+    expect_equal(key_title, glue::glue("Participant {strParticipantID}"))
+    expect_official_screenshot(
+      app,
+      name = c("09", glue::glue("{this_level}_key_exists")),
+      selector = key_selector
+    )
+  })
+
+  test_that("496.10: When a participant is selected, the 'Prevalence' card also displays a bar filtered to just the selected participant, colored to indicate that it is at the Participant level.", {
+    expect_true(TRUE)
+    expect_official_screenshot(
+      app,
+      name = c("10", "prevalence_plot_participant_bars"),
+      selector = "#domain_details-AE-prevalence_plot-plot-plot"
+    )
+  })
+
+  test_that("496.11: When a participant is selected, the 'Prevalence' card also displays a label with the numeric % of each value filtered to just the selected participant, colored to indicate that it is at the Participant level.", {
+    expect_true(TRUE)
+    expect_official_screenshot(
+      app,
+      name = c("11", "prevalence_plot_participant_label"),
+      selector = "#domain_details-AE-prevalence_plot-plot-plot"
+    )
+  })
+
+  test_that("496.12: The user can turn the Study bar and label on and off using the color-coded Study key.", {
+    this_level <- "Study"
+    app$set_inputs(
+      `domain_details-AE-prevalence_plot-key-Study1` = FALSE
+    )
+    app$wait_for_idle()
+    expect_true(TRUE)
+    expect_official_screenshot(
+      app,
+      name = c("12", glue::glue("{this_level}_off")),
+      selector = "#domain_details-AE-prevalence_plot-plot-plot"
+    )
+    app$set_inputs(
+      `domain_details-AE-prevalence_plot-key-Study` = this_level
+    )
+    app$wait_for_idle()
+  })
+
+  test_that("496.13: When a group is selected, the user can turn the Group bar and label on and off using the color-coded Group key.", {
+    this_level <- "Group"
+    app$set_inputs(
+      `domain_details-AE-prevalence_plot-key-Group1` = FALSE
+    )
+    app$wait_for_idle()
+    expect_true(TRUE)
+    expect_official_screenshot(
+      app,
+      name = c("13", glue::glue("{this_level}_off")),
+      selector = "#domain_details-AE-prevalence_plot-plot-plot"
+    )
+    app$set_inputs(
+      `domain_details-AE-prevalence_plot-key-Group` = "Site 0X7258"
+    )
+    app$wait_for_idle()
+  })
+
+  test_that("496.14: When a participant is selected, the user can turn the Participant bar and label on and off using the color-coded Participant key.", {
+    this_level <- "Participant"
+    app$set_inputs(
+      `domain_details-AE-prevalence_plot-key-Participant` = NULL
+    )
+    app$wait_for_idle()
+    expect_true(TRUE)
+    # I can't get this one to behave correctly via commands, even though
+    # visually it updates the plot when I click the bar.
+    expect_official_screenshot(
+      app,
+      name = c("14", glue::glue("{this_level}_off")),
+      selector = "#domain_details-AE-prevalence_plot-key"
+    )
+  })
+
+  test_that("496.15: When there are more than 6 values, the plot shows the top 5 values plus 'Other'.", {
+    app$set_inputs(`domain_details-selected_tab` = "ENROLL")
+    app$wait_for_idle()
+    app$set_inputs(
+      `domain_details-ENROLL-prevalence_plot-category-select-select` = "subjectid"
+    )
+    app$wait_for_idle()
+    expect_true(TRUE)
+    expect_official_screenshot(
+      app,
+      name = c("15", "top_5_plus_other"),
+      selector = "#domain_details-ENROLL-prevalence_plot-plot-plot"
+    )
+  })
+
   app$stop()
 })

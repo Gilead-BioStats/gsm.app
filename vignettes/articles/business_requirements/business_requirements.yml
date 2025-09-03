@@ -154,19 +154,19 @@
       categorical-like fields other than group level, group id, and subject id), defaulting
       to the first valid column.
     - The 'Prevalence' card displays a color-coded key for Study.
-    - When a group is selected, the 'Prevalence' card displays a color-coded key for
-      that group, as '{Group Level} {GroupID}'.
-    - When a participant is selected, the 'Prevalence' card displays a color-coded
-      key for that participant, as 'Participant {SubjectID}'.
     - The 'Prevalence' card displays a bar plot of '% of rows' vs the values of the
       selected column, colored to indicate that it is at the Study level.
     - The 'Prevalence' card displays a label with the numeric % of each value, colored
       to indicate that it is at the Study level.
+    - When a group is selected, the 'Prevalence' card displays a color-coded key for
+      that group, as '{Group Level} {GroupID}'.
     - When a group is selected, the 'Prevalence' card also displays a bar filtered
       to just the selected group, colored to indicate that it is at the Group level.
     - When a group is selected, the 'Prevalence' card also displays a label with the
       numeric % of each value filtered to just the selected group, colored to indicate
       that it is at the Group level.
+    - When a participant is selected, the 'Prevalence' card displays a color-coded
+      key for that participant, as 'Participant {SubjectID}'.
     - When a participant is selected, the 'Prevalence' card also displays a bar filtered
       to just the selected participant, colored to indicate that it is at the Participant
       level.
