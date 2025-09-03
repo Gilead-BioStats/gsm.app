@@ -56,6 +56,7 @@ Suggests:
     rvest,
     shinytest2 (>= 0.4.1),
     testthat (>= 3.0.0),
+    vdiffr,
     withr
 Config/Needs/data: 
     usethis, 

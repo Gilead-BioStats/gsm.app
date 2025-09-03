@@ -144,9 +144,7 @@ sample_fnFetchData <- function(
   strGroupID <- NullifyEmpty(strGroupID)
   strSubjectID <- NullifyEmpty(strSubjectID)
 
-  if (
-    !is.null(strGroupID) && strGroupID == "0X9640" && strDomainID == "LB"
-  ) {
+  if (!is.null(strGroupID) && strGroupID == "0X9640" && strDomainID == "LB") {
     gsmappAbort(
       c(
         "Site 0X9640 has data issues for the Lab domain.",
@@ -204,7 +202,7 @@ sample_fnFetchData <- function(
 #' @export
 #'
 #' @examples
-#' sample_fnCountData("AE"))
+#' sample_fnCountData("AE")
 #' sample_fnCountData("AE", strGroupID = "0X103")
 #' sample_fnCountData("AE", strSubjectID = "1350")
 sample_fnCountData <- function(

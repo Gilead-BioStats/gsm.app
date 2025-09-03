@@ -35,7 +35,7 @@ This is a sample function demonstrating the type of function the user will
 supply to count rows of additional data available for a given domain.
 }
 \examples{
-sample_fnCountData("AE"))
+sample_fnCountData("AE")
 sample_fnCountData("AE", strGroupID = "0X103")
 sample_fnCountData("AE", strSubjectID = "1350")
 }
