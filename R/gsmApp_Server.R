@@ -156,16 +156,34 @@ gsmApp_Server <- function(
     l_rctvDomains <- purrr::list_transpose(l_rctvDomains, simplify = FALSE)
     l_rctvDomainHashes <- purrr::list_transpose(l_rctvDomainHashes, simplify = FALSE)
 
-    ## Also fetch the counts.
-    rctv_intDomainCounts <- srvr_DomainCounts(
-      "domain_counts",
-      fnCountData = fnCountData,
-      chrDomains = chrDomains,
-      rctv_dSnapshotDate = rctv_dSnapshotDate,
-      rctv_strGroupID = rctv_strGroupID,
-      rctv_strGroupLevel = rctv_strGroupLevel,
-      rctv_strSubjectID = rctv_strSubjectID
-    )
+    ## Also fetch the counts, but only when on Domain Details tab.
+    rctv_intDomainCounts <- reactive({
+      # Only fetch domain counts when user is on Domain Details tab
+      req(rctv_strPrimaryNavBar() == "Domain Details")
+      
+      # Directly implement the domain counting logic
+      chrDomainIDs <- rlang::set_names(names(chrDomains), names(chrDomains))
+      purrr::map_int(
+        chrDomainIDs,
+        function(this_domain) {
+          fnCountData(
+            strDomainID = this_domain,
+            strGroupID = rctv_strGroupID(),
+            strGroupLevel = rctv_strGroupLevel(),
+            strSubjectID = rctv_strSubjectID(),
+            dSnapshotDate = rctv_dSnapshotDate()
+          )
+        }
+      )
+    }) %>%
+      bindCache(
+        rctv_strPrimaryNavBar(),
+        rctv_dSnapshotDate(),
+        rctv_strGroupID(),
+        rctv_strGroupLevel(),
+        rctv_strSubjectID(),
+        cache = "session"
+      )
 
     # Tabs ----
 
