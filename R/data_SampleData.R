@@ -258,6 +258,9 @@ ConstructDataCounter <- function(fnFetchData) {
   ) {
     tryCatch(
       {
+        cli::cli_alert_info(
+            'invoking data counter for domain "{strDomainID}"'
+        )
         NROW(fnFetchData(
           strDomainID = strDomainID,
           strGroupID = strGroupID,
