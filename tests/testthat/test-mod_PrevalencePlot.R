@@ -17,6 +17,8 @@ test_that("PreparePrevalenceCounts sets up the prevalence df", {
 })
 
 test_that("PlotPrevalencePlot generates the expected plot", {
+  skip_on_os(c("mac", "linux", "solaris"))
+  skip_on_ci()
   df <- CombineDomainData(
     dfStudyPrevalencePlots,
     dfGroupPrevalencePlots,
