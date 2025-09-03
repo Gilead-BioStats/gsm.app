@@ -132,3 +132,24 @@ test_that("ConstructDataCounter works", {
   expect_equal(DataCounter("AE", strGroupID = "0X902"), 41)
   expect_equal(DataCounter("SUBJ", strGroupID = "0X902"), 9)
 })
+
+test_that("sample_fnCountData returns expected counts", {
+  expect_equal(sample_fnCountData("SUBJ"), nrow(sample_fnFetchData("SUBJ")))
+  expect_equal(sample_fnCountData("AE"), nrow(sample_fnFetchData("AE")))
+  expect_equal(
+    sample_fnCountData("SUBJ", strGroupID = "0X1372"),
+    nrow(sample_fnFetchData("SUBJ", strGroupID = "0X1372"))
+  )
+  expect_equal(
+    sample_fnCountData("SUBJ", strSubjectID = "S47823"),
+    nrow(sample_fnFetchData("SUBJ", strSubjectID = "S47823"))
+  )
+  expect_equal(
+    sample_fnCountData("AE", dSnapshotDate = "2012-01-31"),
+    nrow(sample_fnFetchData("AE", dSnapshotDate = "2012-01-31"))
+  )
+  expect_equal(
+    sample_fnCountData("AE", strGroupLevel = "Country"),
+    nrow(sample_fnFetchData("AE", strGroupLevel = "Country"))
+  )
+})

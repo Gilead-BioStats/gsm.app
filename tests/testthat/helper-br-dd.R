@@ -32,8 +32,6 @@ get_domain_counts <- function(app) {
   rlang::set_names(counts, labels)
 }
 
-sample_fnCountData <- ConstructDataCounter(sample_fnFetchData)
-
 get_domain_counts_expected <- function(
   strGroupID = NULL,
   strSubjectID = NULL,

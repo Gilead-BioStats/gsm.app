@@ -229,7 +229,7 @@ sample_fnCountData <- function(
   strSubjectID <- NullifyEmpty(strSubjectID)
 
   # Hard-code study-level data for faster lookups.
-  if (is.null(strGroupID) && is.null(strSubjectID)) {
+  if (is.null(strGroupID) && is.null(strSubjectID) && is.null(dSnapshotDate)) {
     sizes <- c(
       "AE" = 512L,
       "ENROLL" = 173L,
@@ -237,7 +237,7 @@ sample_fnCountData <- function(
       "PD" = 508L,
       "SDRGCOMP" = 83L,
       "STUDCOMP" = 18L,
-      "SUBJ" = 170L,
+      "SUBJ" = 173L,
       "DATACHG" = 544448L,
       "DATAENT" = 136112L,
       "QUERY" = 34028L
