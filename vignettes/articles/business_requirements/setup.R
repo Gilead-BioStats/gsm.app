@@ -8,6 +8,7 @@ intBRs <- c(
 )
 
 # Generate/update business_requirements.yml
+pkgload::load_all()
 source(
   here::here(
     "vignettes",

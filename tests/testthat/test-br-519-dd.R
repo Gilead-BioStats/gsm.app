@@ -92,7 +92,7 @@ test_that("385: The user can filter domain data.", {
     expect_official_screenshot(
       app,
       name = c("01", "columns_have_filters"),
-      selector = select_tab("Domain Details")
+      selector = "#domain_details-AE-card"
     )
   })
 
@@ -101,7 +101,7 @@ test_that("385: The user can filter domain data.", {
     expect_official_screenshot(
       app,
       name = c("02", "unfiltered"),
-      selector = select_tab("Domain Details")
+      selector = "#domain_details-AE-card"
     )
 
     # Filter.
@@ -126,8 +126,101 @@ test_that("385: The user can filter domain data.", {
     expect_official_screenshot(
       app,
       name = c("02", "toxicity_grade_3"),
+      selector = "#domain_details-AE-card"
+    )
+  })
+
+  app$stop()
+})
+
+test_that("496: The user can visualize domain categorical variable counts by value.", {
+  app <- br_app(
+    app_dir = "standard",
+    name = "496"
+  )
+  app$wait_for_idle()
+  app$set_inputs(primary_nav_bar = "Domain Details")
+  app$wait_for_idle()
+
+  test_that("496.01: The 'Domain Details' tab includes a 'Prevalence' card for each domain.", {
+    domains <- c(
+      "AE",
+      "DATACHG",
+      "DATAENT",
+      "ENROLL",
+      "LB",
+      "PD",
+      "QUERY",
+      "STUDCOMP",
+      "SUBJ",
+      "SDRGCOMP"
+    )
+    prevalence_plot_selectors <- glue::glue(
+      "#domain_details-{domains}-prevalence_plot-card"
+    )
+
+    expect_no_error({
+      prevalence_plot_cards <- app$get_html(prevalence_plot_selectors)
+    })
+    expect_true(
+      all(nchar(prevalence_plot_cards) > 100)
+    )
+    plot_names <- glue::glue("{domains}_plot_exists")
+    expect_official_screenshot(
+      app,
+      name = c("01", plot_names[[1]]),
       selector = select_tab("Domain Details")
     )
+    vals <- app$get_values()
+    app$set_inputs(
+      `domain_details-selected_tab` = domains[[4]],
+      timeout_ = 10 * 1000
+    )
+    app$wait_for_idle()
+    expect_official_screenshot(
+      app,
+      name = c("01", plot_names[[4]]),
+      selector = select_tab("Domain Details")
+    )
+    # Reset
+    app$set_inputs(
+      `domain_details-selected_tab` = domains[[1]],
+      timeout_ = 10 * 1000
+    )
+    app$wait_for_idle()
+  })
+
+  test_that("496.02: The user can select a column to display in the 'Prevalence' card (out of all categorical-like fields other than group level, group id, and subject id), defaulting to the first valid column.", {
+    select_id <- "#domain_details-AE-prevalence_plot-category-select"
+    choices_selector <- paste(select_id, ".vscomp-option-text")
+    arrow_selector <- paste(select_id, ".vscomp-arrow")
+    dropdown_selector <- paste(select_id, ".vscomp-dropbox")
+
+    dfAE <- sample_fnFetchData("AE")
+    expected_choice_ids <- colnames(purrr::keep(dfAE, is.character)) %>%
+      setdiff(c("SubjectID", "GroupID", "GroupLevel"))
+    expected_choices <- MakeParamLabelsChr(expected_choice_ids, chrFieldNames)
+    actual_choices <- app$get_text(choices_selector) %>%
+      stringr::str_squish()
+    expect_setequal(actual_choices, expected_choices)
+    expect_equal(
+      app$get_value(
+        input = "domain_details-AE-prevalence_plot-category-select-select"
+      ),
+      expected_choice_ids[[1]]
+    )
+
+    app$click(selector = arrow_selector)
+    app$wait_for_idle()
+    expect_official_screenshot(
+      app,
+      name = c("02", "AE_prevalence_choices"),
+      selector = dropdown_selector
+    )
+
+    # Reset
+    app$click(selector = arrow_selector)
+    app$wait_for_idle()
   })
 
   app$stop()
