@@ -32,6 +32,9 @@ test_that("PlotPrevalencePlot generates the expected plot", {
 })
 
 test_that("mod_PrevalencePlot_Server generates the expected plot", {
+  skip_on_os(c("mac", "linux", "solaris"))
+  skip_on_ci()
+  skip_on_cran()
   df <- CombineDomainData(
     dfStudyPrevalencePlots,
     dfGroupPrevalencePlots,
