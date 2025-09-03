@@ -7,7 +7,7 @@ test_that("PreparePrevalenceCounts sets up the prevalence df", {
     dfStudyPrevalencePlots,
     dfGroupPrevalencePlots,
     dfParticipantPrevalencePlots
-  ) |>
+  ) %>%
     dplyr::select("VizLevel", "category")
   chrTopValues <- PullTopValues(df, "category")
   dfPrevalence <- PreparePrevalenceCounts(df, "category", chrTopValues)
@@ -23,7 +23,7 @@ test_that("PlotPrevalencePlot generates the expected plot", {
     dfStudyPrevalencePlots,
     dfGroupPrevalencePlots,
     dfParticipantPrevalencePlots
-  ) |>
+  ) %>%
     dplyr::select("VizLevel", "category")
   chrTopValues <- PullTopValues(df, "category")
   dfPrevalence <- PreparePrevalenceCounts(df, "category", chrTopValues)
@@ -36,7 +36,7 @@ test_that("mod_PrevalencePlot_Server generates the expected plot", {
     dfStudyPrevalencePlots,
     dfGroupPrevalencePlots,
     dfParticipantPrevalencePlots
-  ) |>
+  ) %>%
     dplyr::select("VizLevel", "category")
   rctv_dfDomain_Combined <- reactive(df)
   rctv_strCategory <- reactiveVal("category")

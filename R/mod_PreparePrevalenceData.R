@@ -51,7 +51,7 @@ PreparePrevalenceData <- function(df, strGroupLevel, strLevel) {
   if ("GroupLevel" %in% colnames(df)) {
     df <- dplyr::filter(df, .data$GroupLevel == strGroupLevel)
   }
-  df |>
-    dplyr::select(-dplyr::any_of(c("GroupID", "GroupLevel", "SubjectID"))) |>
+  df %>%
+    dplyr::select(-dplyr::any_of(c("GroupID", "GroupLevel", "SubjectID"))) %>%
     dplyr::mutate(VizLevel = strLevel)
 }

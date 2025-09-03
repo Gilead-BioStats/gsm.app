@@ -72,7 +72,7 @@ CombineDomainData <- function(
       VizLevel = factor(
         .data$VizLevel,
         levels = c("Study", "Group", "Participant")
-      ) |>
+      ) %>%
         forcats::fct_drop()
     )
   }

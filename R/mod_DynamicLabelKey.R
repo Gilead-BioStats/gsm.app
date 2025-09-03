@@ -51,7 +51,7 @@ mod_DynamicLabelKey_Server <- function(
       rctv_lglStudySelected(
         !is.null(strInput) || (is.null(strGroupID) && is.null(strSubjectID))
       )
-    }) |>
+    }) %>%
       bindEvent(rctv_strGroupID(), rctv_strSubjectID())
 
     rctv_lglGroupSelected <- reactiveVal(TRUE)
@@ -66,7 +66,7 @@ mod_DynamicLabelKey_Server <- function(
       rctv_lglGroupSelected(
         !is.null(strInput) || (length(strGroupID) && is.null(strSubjectID))
       )
-    }) |>
+    }) %>%
       bindEvent(rctv_strGroupID(), rctv_strSubjectID())
 
     rctv_lglParticipantSelected <- reactive({

@@ -89,7 +89,7 @@ PreparePrevalenceCounts <- function(
         "Study" ~ "#1b9e77",
         "Participant" ~ "#7570b3",
         .default = "#d95f02"
-      ) |>
+      ) %>%
         factor()
     )
 }

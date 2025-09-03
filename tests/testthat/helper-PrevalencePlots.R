@@ -8,10 +8,10 @@ dfStudyPrevalencePlots <- dplyr::tibble(
 dfGroupPrevalencePlots <- dplyr::filter(
   dfStudyPrevalencePlots,
   .data$GroupID == "A"
-) |>
+) %>%
   dplyr::mutate(VizLevel = "Group")
 dfParticipantPrevalencePlots <- dplyr::filter(
   dfGroupPrevalencePlots,
   .data$SubjectID == "A1"
-) |>
+) %>%
   dplyr::mutate(VizLevel = "Participant")
