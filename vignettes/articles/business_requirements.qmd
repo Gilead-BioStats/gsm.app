@@ -11,7 +11,7 @@ knitr::opts_chunk$set(
 ```
 
 ## Ready for Review
-- [518: Generate an app to help CMs explore snapshot data](br518.html)
+- [519: Users can easily explore Domain Details](br519.html)
 
-## To Do
-- 519: Users can easily explore Domain Details
+## Validated
+- [518: Generate an app to help CMs explore snapshot data](br518.html)
