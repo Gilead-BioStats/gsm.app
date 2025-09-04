@@ -180,3 +180,8 @@
     - When a participant is selected, the user can turn the Participant bar and label
       on and off using the color-coded Participant key.
     - When there are more than 6 values, the plot shows the top 5 values plus 'Other'.
+  - issue: 555
+    title: 'Feature: Increase number of rows shown in domain details'
+    acceptance_criteria:
+    - Domain data tables show up to 100 rows by default.
+    - Users can change the number of displayed rows to 20 or 1000.

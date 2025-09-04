@@ -392,3 +392,78 @@ test_that("496: The user can visualize domain categorical variable counts by val
 
   app$stop()
 })
+
+test_that("555: Increase number of rows shown in domain details.", {
+  app <- br_app(
+    app_dir = "standard",
+    name = "555"
+  )
+  app$wait_for_idle()
+  app$set_inputs(primary_nav_bar = "Domain Details")
+  app$wait_for_idle()
+  AE_gt_card_selector <- "#domain_details-AE-card"
+  pagination_selector <- paste(AE_gt_card_selector, ".rt-pagination-info")
+
+  test_that("555.01: Domain data tables show up to 100 rows by default.", {
+    expect_true(
+      grepl(
+        "1–100 of",
+        app$get_text(paste(pagination_selector, ".rt-page-info"))
+      )
+    )
+    expect_official_screenshot(
+      app,
+      name = c("01", "100_rows_default"),
+      selector = AE_gt_card_selector
+    )
+  })
+
+  test_that("555.02: Users can change the number of displayed rows to 20 or 1000.", {
+    pagination_select_selector <- paste(
+      pagination_selector,
+      ".rt-page-size-select"
+    )
+    pagination_options <- app$get_html(paste(
+      pagination_select_selector,
+      "option"
+    )) |>
+      stringr::str_extract('"(\\d+)"', group = 1)
+    expect_setequal(pagination_options, c("20", "100", "1000"))
+
+    set_pagination_js_template <- "
+      const el = document.querySelector('[{[pagination_select_selector]}]');
+      if (el) {
+        el.value = '[{[option]}]';
+        el.dispatchEvent(new Event('change', { bubbles: true }));
+      }
+    "
+
+    app$run_js(glue::glue(
+      set_pagination_js_template,
+      option = 20,
+      .open = "[{[",
+      .close = "]}]"
+    ))
+    app$wait_for_idle()
+    expect_official_screenshot(
+      app,
+      name = c("02", "20_rows"),
+      selector = AE_gt_card_selector
+    )
+
+    app$run_js(glue::glue(
+      set_pagination_js_template,
+      option = 1000,
+      .open = "[{[",
+      .close = "]}]"
+    ))
+    app$wait_for_idle()
+    expect_official_screenshot(
+      app,
+      name = c("02", "1000_rows"),
+      selector = AE_gt_card_selector
+    )
+  })
+
+  app$stop()
+})
