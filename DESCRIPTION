@@ -20,6 +20,7 @@ BugReports: https://github.com/Gilead-BioStats/gsm.app/issues
 Depends: 
     R (>= 4.0)
 Imports:
+    bsicons,
     bslib,
     cli,
     dplyr,

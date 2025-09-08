@@ -22,6 +22,15 @@ mod_DynamicLabelKey_UI <- function(id) {
         )
       }
     ),
+    bslib::tooltip(
+      bsicons::bs_icon("question-circle"),
+      paste(
+        "Click Study, Group, or Participant buttons to toggle display of those bars.",
+        "Gray buttons require a Site or Participant selection in the main app menu at the top-right."
+      ),
+      placement = "right",
+      id = ns("help")
+    ),
     htmlDependency_Stylesheet("labelKey.css")
   )
 }
@@ -80,13 +89,13 @@ mod_DynamicLabelKey_Server <- function(
       req(rctv_strGroupID())
       strGroupID <- NullifyEmpty(rctv_strGroupID())
       if (length(strGroupID)) {
-        glue::glue("{rctv_strGroupLevel()} {strGroupID}")
+        glue::glue("{rctv_strGroupLevel()}: {strGroupID}")
       }
     })
     rctv_strParticipantLabel <- reactive({
       req(rctv_strSubjectID())
       strSubjectID <- NullifyEmpty(rctv_strSubjectID())
-      glue::glue("Participant {strSubjectID}")
+      glue::glue("Participant: {strSubjectID}")
     })
 
     srvr_UpdateLabelKey(

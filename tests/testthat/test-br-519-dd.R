@@ -263,7 +263,7 @@ test_that("496: The user can visualize domain categorical variable counts by val
     app$set_inputs(`group-group-select` = strGroupID)
     app$wait_for_idle()
     key_title <- app$get_text(paste(this_key_selector, "label"))
-    expect_equal(key_title, glue::glue("{strGroupLevel} {strGroupID}"))
+    expect_equal(key_title, glue::glue("{strGroupLevel}: {strGroupID}"))
     expect_official_screenshot(
       app,
       name = c("06", glue::glue("{this_level}_key_exists")),
@@ -297,7 +297,7 @@ test_that("496: The user can visualize domain categorical variable counts by val
     app$set_inputs(`participant-select` = strParticipantID)
     app$wait_for_idle()
     key_title <- app$get_text(paste(this_key_selector, "label"))
-    expect_equal(key_title, glue::glue("Participant {strParticipantID}"))
+    expect_equal(key_title, glue::glue("Participant: {strParticipantID}"))
     expect_official_screenshot(
       app,
       name = c("09", glue::glue("{this_level}_key_exists")),

@@ -29,10 +29,10 @@ test_that("mod_DynamicLabelKey_Server dynamically updates its reactives", {
       expect_false(rctv_lglGroupSelected())
       session$setInputs(Group = "Group")
       expect_true(rctv_lglGroupSelected())
-      expect_equal(rctv_strGroupLabel(), "Site specified")
+      expect_equal(rctv_strGroupLabel(), "Site: specified")
 
       expect_true(rctv_lglParticipantSelected())
-      expect_equal(rctv_strParticipantLabel(), "Participant specified")
+      expect_equal(rctv_strParticipantLabel(), "Participant: specified")
       rctv_strSubjectID("All")
       expect_false(rctv_lglParticipantSelected())
       expect_equal(rctv_strParticipantLabel(), character())
