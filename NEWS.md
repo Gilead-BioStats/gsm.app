@@ -1,3 +1,5 @@
+# gsm.app (development version)
+
 # gsm.app 2.5.3
 
 This is a patch release to implement the qualification infrastructure. Most of the changes are invisible infrastructure changes.

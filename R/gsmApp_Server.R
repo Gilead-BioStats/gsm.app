@@ -218,12 +218,16 @@ gsmApp_Server <- function(
 
     mod_DomainDetails_Server(
       "domain_details",
-      l_rctvDomains_Selection = l_rctvDomains$Selection,
+      l_rctvDomains = l_rctvDomains,
       l_rctvDomainHashes_Selection = l_rctvDomainHashes$Selection,
       rctv_strDomainID = rctv_strDomainID,
       rctv_intDomainCounts = rctv_intDomainCounts,
       rctv_strGroupLevel = rctv_strGroupLevel,
-      chrDomains = chrDomains
+      rctv_strGroupID = rctv_strGroupID,
+      rctv_strSubjectID = rctv_strSubjectID,
+      chrDomains = chrDomains,
+      rctv_strPrimaryNavBar = rctv_strPrimaryNavBar,
+      l_rctvDomainsLoaded = l_rctvDomainsLoaded
     )
 
     ## Plugins ----

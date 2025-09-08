@@ -1,16 +1,15 @@
 #' Cascading Select Input UI
 #'
 #' @inheritParams shared-params
-#' @param strLabel `character` The initial label for the select input.
+#' @inheritParams mod_NavSelect_UI
 #'
 #' @returns A `bslib::nav_item()`.
 #' @keywords internal
 mod_CascadingSelect_UI <- function(id, strLabel, chrChoices = "All") {
-  ns <- NS(id)
-  input_NavbarExtra(
-    ns("select"),
+  mod_NavSelect_UI(
+    id,
     chrChoices = chrChoices,
-    strLabel = strLabel
+    strLabel = strong(strLabel)
   )
 }
 

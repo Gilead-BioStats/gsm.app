@@ -8,7 +8,12 @@ mod_DomainData_Server(
   id,
   rctv_dfDomain,
   rctv_strDomainHash,
-  rctv_strGroupLevel
+  rctv_dfDomain_Study,
+  rctv_dfDomain_Group,
+  rctv_strGroupLevel,
+  rctv_strGroupID,
+  rctv_strSubjectID,
+  l_rctvDomainLoaded
 )
 }
 \arguments{
@@ -20,8 +25,26 @@ returns a domain dataframe.}
 \item{rctv_strDomainHash}{\verb{reactive character} A \code{\link[shiny:reactive]{shiny::reactive()}} object
 that returns the the \code{\link[rlang:hash]{rlang::hash()}} of a domain dataframe.}
 
+\item{rctv_dfDomain_Study}{\verb{reactive dataframe} A \code{\link[shiny:reactive]{shiny::reactive()}} object
+that returns a study-level domain dataframe.}
+
+\item{rctv_dfDomain_Group}{\verb{reactive dataframe} A \code{\link[shiny:reactive]{shiny::reactive()}} object
+that returns a group-level domain dataframe.}
+
 \item{rctv_strGroupLevel}{\verb{reactive character} A \code{\link[shiny:reactiveVal]{shiny::reactiveVal()}}
 object that returns the selected \code{GroupLevel}.}
+
+\item{rctv_strGroupID}{\verb{reactive character} A \code{\link[shiny:reactiveVal]{shiny::reactiveVal()}} object
+that returns the \code{GroupID} of the selected group (usually site), and can be
+used to update which group is selected.}
+
+\item{rctv_strSubjectID}{\verb{reactive character} A \code{\link[shiny:reactive]{shiny::reactive()}} object
+that returns the \code{SubjectID} of the selected participant.}
+
+\item{l_rctvDomainLoaded}{\code{list} A named list of \code{\link[shiny:reactive]{shiny::reactive()}} objects.
+The list contains a "Study" element and an element per group level, each of
+which returns a \code{logical} (\code{FALSE} if the data has not been accessed,
+\code{TRUE} if it has).}
 }
 \value{
 A \code{\link[shiny:reactive]{shiny::reactive()}} with the SubjectID for each row that is

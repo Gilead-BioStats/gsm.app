@@ -17,6 +17,11 @@ test_that("NullifyEmpty does its job", {
   expect_identical(NullifyEmpty(letters), letters)
 })
 
+test_that("CallIfReactive resolves potential reactives", {
+  expect_identical("a", CallIfReactive("a"))
+  expect_identical("a", isolate(CallIfReactive(reactiveVal("a"))))
+})
+
 test_that("ColorScheme loads the expected colors", {
   expect_equal(ColorScheme("gray"), "#828282")
   expect_equal(ColorScheme("green"), "#3DAF06")

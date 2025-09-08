@@ -1,0 +1,65 @@
+.label-key-container {
+  line-height: 36px;
+}
+
+.label-key-container .form-group {
+  margin-bottom: 0;
+  display: inline-flex; /* Ensure it grows to fit its contents */
+  align-items: center;  /* Keep label and input aligned */
+  gap: 0.5rem; /* Space between label and input */
+}
+
+.label-key-container .control-label {
+  margin-bottom: 0 !important;
+  white-space: nowrap;
+}
+
+.label-key-container .btn {
+  font-weight: bold;
+  padding: 4px;
+  text-wrap: none;
+}
+
+.label-key-container .disabled {
+  color: black;
+  background-color: white;
+  border-color: black;
+  font-style: italic;
+  font-weight: normal;
+}
+
+.btn-label-key-study {
+  color: #1b9e77;
+  background-color: white;
+  border-color: black;
+}
+
+.btn-check:checked + .btn-label-key-study {
+  color: white;
+  background-color: #1b9e77;
+  border-color: #1b9e77;
+}
+
+.btn-label-key-group {
+  color: #d95f02;
+  background-color: white;
+  border-color: black;
+}
+
+.btn-check:checked + .btn-label-key-group {
+  color: white;
+  background-color: #d95f02;
+  border-color: #d95f02;
+}
+
+.btn-label-key-participant {
+  color: #7570b3;
+  background-color: white;
+  border-color: black;
+}
+
+.btn-check:checked + .btn-label-key-participant {
+  color: white;
+  background-color: #7570b3;
+  border-color: #7570b3;
+}

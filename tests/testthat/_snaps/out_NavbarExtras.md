@@ -4,7 +4,7 @@
       test_result
     Output
       [[1]]
-      <li class="bslib-nav-item nav-item form-inline navbar-extras">
+      <li class="bslib-nav-item nav-item form-inline inline-select" id="group-level">
         <div class="form-group shiny-input-container shiny-input-container-inline">
           <label class="control-label" id="group-level-select-label" for="group-level-select">
             <strong>Group Level</strong>
@@ -16,7 +16,7 @@
       </li>
       
       [[2]]
-      <li class="bslib-nav-item nav-item form-inline navbar-extras">
+      <li class="bslib-nav-item nav-item form-inline inline-select" id="group-group">
         <div class="form-group shiny-input-container shiny-input-container-inline">
           <label class="control-label" id="group-group-select-label" for="group-group-select">
             <strong>Site</strong>
@@ -28,7 +28,7 @@
       </li>
       
       [[3]]
-      <li class="bslib-nav-item nav-item form-inline navbar-extras">
+      <li class="bslib-nav-item nav-item form-inline inline-select" id="participant">
         <div class="form-group shiny-input-container shiny-input-container-inline">
           <label class="control-label" id="participant-select-label" for="participant-select">
             <strong>Participant</strong>

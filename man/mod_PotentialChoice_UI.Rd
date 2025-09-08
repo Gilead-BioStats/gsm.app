@@ -15,7 +15,7 @@ this input.}
 \item{strLabel}{\code{character} The label of a field.}
 }
 \value{
-An \code{\link[=input_NavbarExtra]{input_NavbarExtra()}} element or \code{NULL}.
+A \code{\link[=mod_NavSelect_UI]{mod_NavSelect_UI()}} element or \code{NULL}.
 }
 \description{
 Renders a select input only if there is more than one choice.

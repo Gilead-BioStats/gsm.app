@@ -12,6 +12,8 @@ out_gtInteractive <- function(gt_object, selection_mode = "single") {
       use_compact_mode = TRUE,
       use_text_wrapping = TRUE,
       use_page_size_select = TRUE,
+      page_size_default = 100,
+      page_size_values = c(20, 100, 1000),
       selection_mode = selection_mode,
       use_filters = TRUE
     ) %>%

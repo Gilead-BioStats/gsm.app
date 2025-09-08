@@ -49,31 +49,46 @@ mod_DomainDetails_UI <- function(
 #' @keywords internal
 mod_DomainDetails_Server <- function(
   id,
-  l_rctvDomains_Selection,
+  l_rctvDomains,
   l_rctvDomainHashes_Selection,
   rctv_strDomainID,
   rctv_intDomainCounts,
   rctv_strGroupLevel,
-  chrDomains
+  rctv_strGroupID,
+  rctv_strSubjectID,
+  chrDomains,
+  rctv_strPrimaryNavBar,
+  l_rctvDomainsLoaded
 ) {
   moduleServer(id, function(input, output, session) {
     observe({
-      purrr::imap(
-        rctv_intDomainCounts(),
-        function(intDomainCount, strDomainID) {
-          mod_DomainLabel_Server(strDomainID, reactive(intDomainCount))
-        }
-      )
+      # Don't read the counts until this tab is loaded.
+      if (req(rctv_strPrimaryNavBar()) == "Domain Details") {
+        purrr::imap(
+          rctv_intDomainCounts(),
+          function(intDomainCount, strDomainID) {
+            mod_DomainLabel_Server(strDomainID, reactive(intDomainCount))
+          }
+        )
+      }
     })
 
     observe({
       req(input$selected_tab)
-      mod_DomainData_Server(
-        id = input$selected_tab,
-        rctv_dfDomain = l_rctvDomains_Selection[[input$selected_tab]],
-        rctv_strDomainHash = l_rctvDomainHashes_Selection[[input$selected_tab]],
-        rctv_strGroupLevel = rctv_strGroupLevel
-      )
+      # Don't calculate domain data until this tab is focused.
+      if (req(rctv_strPrimaryNavBar()) == "Domain Details") {
+        mod_DomainData_Server(
+          id = input$selected_tab,
+          rctv_dfDomain = l_rctvDomains$Selection[[input$selected_tab]],
+          rctv_strDomainHash = l_rctvDomainHashes_Selection[[input$selected_tab]],
+          rctv_dfDomain_Study = l_rctvDomains$Study[[input$selected_tab]],
+          rctv_dfDomain_Group = l_rctvDomains$Group[[input$selected_tab]],
+          rctv_strGroupLevel = rctv_strGroupLevel,
+          rctv_strGroupID = rctv_strGroupID,
+          rctv_strSubjectID = rctv_strSubjectID,
+          l_rctvDomainLoaded = l_rctvDomainsLoaded[[input$selected_tab]]
+        )
+      }
     })
     observe({
       req(rctv_strDomainID())

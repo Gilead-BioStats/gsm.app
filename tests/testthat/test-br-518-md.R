@@ -20,7 +20,7 @@ test_that("526: The user can view visualizations of a single KRI.", {
     # Default KRI
     target_kri <- "Analysis_kri0001"
     expect_equal(
-      app$get_value(input = "metric_details-metric"),
+      app$get_value(input = "metric_details-metric-select"),
       target_kri
     )
     expect_equal(
@@ -33,14 +33,14 @@ test_that("526: The user can view visualizations of a single KRI.", {
 
     # Change KRI
     target_kri <- "Analysis_kri0002"
-    app$set_inputs(`metric_details-metric` = target_kri)
+    app$set_inputs(`metric_details-metric-select` = target_kri)
     app$wait_for_idle()
     app$wait_for_js(
       "isCanvasLoaded('metric_details-scatter_plot');",
       timeout = 2000
     )
     expect_equal(
-      app$get_value(input = "metric_details-metric"),
+      app$get_value(input = "metric_details-metric-select"),
       target_kri
     )
     expect_equal(
@@ -52,7 +52,7 @@ test_that("526: The user can view visualizations of a single KRI.", {
     expect_official_screenshot(app, name = c("01", "02", "changed_kri"))
 
     # Reset
-    app$set_inputs(`metric_details-metric` = "Analysis_kri0001")
+    app$set_inputs(`metric_details-metric-select` = "Analysis_kri0001")
     app$wait_for_idle()
     app$wait_for_js(
       "isCanvasLoaded('metric_details-scatter_plot');",
@@ -61,7 +61,7 @@ test_that("526: The user can view visualizations of a single KRI.", {
   })
 
   test_that("526.02: The KRI selection dropdown is filtered to show only KRIs relevant to the selected 'Group Level'.", {
-    dd_selector <- "#metric_details-metric"
+    dd_selector <- "#metric_details-metric-select"
     dd_text_selector <- paste(dd_selector, ".vscomp-option-text")
     dd_arrow_selector <- paste(dd_selector, ".vscomp-arrow")
     dd_choice_selector <- paste(dd_selector, ".vscomp-dropbox")
@@ -123,7 +123,7 @@ test_that("526: The user can view visualizations of a single KRI.", {
   test_that("526.03: The user can navigate to different visualizations of this KRI via tabs.", {
     tabs <- rvest::read_html(app$get_html("body")) %>%
       rvest::html_elements(
-        "#metric_details-selected_tab .nav-item:not(.navbar-extras) a"
+        "#metric_details-selected_tab .nav-item:not(.inline-select) a"
       ) %>%
       rvest::html_text2() %>%
       stringr::str_squish()

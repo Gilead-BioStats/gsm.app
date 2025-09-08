@@ -1,6 +1,6 @@
 Package: gsm.app
 Title: gsm Shiny Application
-Version: 2.5.3
+Version: 2.5.3.9000
 Authors@R: c(
     person("Jon", "Harmon", , "jon.harmon@atorusresearch.com", role = c("aut", "cre"),
            comment = c(ORCID = "0000-0003-4781-4346")),
@@ -20,10 +20,13 @@ BugReports: https://github.com/Gilead-BioStats/gsm.app/issues
 Depends: 
     R (>= 4.0)
 Imports:
+    bsicons,
     bslib,
     cli,
     dplyr,
     favawesome,
+    forcats,
+    ggplot2,
     glue,
     gsm.core (>= 1.1.0),
     gsm.kri (>= 1.1.0),
@@ -34,11 +37,13 @@ Imports:
     magrittr,
     purrr,
     rlang,
+    scales,
     shiny (>= 1.11.1),
     shinycssloaders,
     shinyjs,
     shinyWidgets,
     stringr,
+    tidyr,
     yaml
 Suggests: 
     gsm.mapping (>= 1.0.1),
@@ -52,6 +57,7 @@ Suggests:
     rvest,
     shinytest2 (>= 0.4.1),
     testthat (>= 3.0.0),
+    vdiffr,
     withr
 Config/Needs/data: 
     usethis, 
