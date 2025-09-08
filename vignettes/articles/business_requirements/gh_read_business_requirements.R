@@ -33,7 +33,8 @@ extract_feature <- function(lGHIssue_feature) {
   list(
     issue = lGHIssue_feature$number,
     title = lGHIssue_feature$title,
-    acceptance_criteria = extract_acceptance_criteria(lGHIssue_feature$body)
+    acceptance_criteria = extract_acceptance_criteria(lGHIssue_feature$body),
+    labels = purrr::map_chr(lGHIssue_feature$labels, "name")
   )
 }
 

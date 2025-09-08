@@ -67,37 +67,40 @@ qmd_output <- purrr::map_chr(br$features, function(feature) {
   # Generate unique IDs for this feature's collapsible element using the issue number.
   feature_target_id <- paste0("folder-", feature$issue)
   feature_target_class <- paste0(".", feature_target_id, "-contents")
-
-  acceptance_criteria_qmd <- paste(
-    purrr::imap_chr(feature$acceptance_criteria, function(ac, ac_idx) {
-      # Generate unique IDs for the acceptance criteria collapsible element.
-      ac_target_id <- glue::glue("folder-ac-{feature$issue}-{ac_idx}")
-      ac_target_class <- paste0(".", ac_target_id, "-contents")
-
-      ac_pad <- stringr::str_pad(ac_idx, width = 2, pad = "0")
-      img_pattern <- glue::glue("^{feature$issue}-{ac_pad}-")
-      relevant_img_names <- stringr::str_subset(names(all_imgs), img_pattern)
-
-      # Generate Quarto markdown for images.
-      img_qmd <- ""
-      if (length(relevant_img_names) > 0) {
-        img_qmd <- paste(
-          purrr::map_chr(relevant_img_names, function(img_name) {
-            caption <- stringr::str_remove(img_name, "^(\\d+-)+") %>%
-              stringr::str_replace_all(c("_" = " ", "-" = ": "))
-            img_path <- all_imgs[[img_name]]
-
-            glue::glue(
-              '![{caption}]({img_path}){{.lightbox}}'
-            )
-          }),
-          collapse = "\n\n"
-        )
-      }
-
-      # Generate Quarto markdown for the acceptance criteria folder.
-      glue::glue(
-        '
+  
+  if ("superseded" %in% feature$labels) {
+    acceptance_criteria_qmd <- "This feature has been superseded by one or more later features. See the GitHub issue for details."
+  } else {
+    acceptance_criteria_qmd <- paste(
+      purrr::imap_chr(feature$acceptance_criteria, function(ac, ac_idx) {
+        # Generate unique IDs for the acceptance criteria collapsible element.
+        ac_target_id <- glue::glue("folder-ac-{feature$issue}-{ac_idx}")
+        ac_target_class <- paste0(".", ac_target_id, "-contents")
+        
+        ac_pad <- stringr::str_pad(ac_idx, width = 2, pad = "0")
+        img_pattern <- glue::glue("^{feature$issue}-{ac_pad}-")
+        relevant_img_names <- stringr::str_subset(names(all_imgs), img_pattern)
+        
+        # Generate Quarto markdown for images.
+        img_qmd <- ""
+        if (length(relevant_img_names) > 0) {
+          img_qmd <- paste(
+            purrr::map_chr(relevant_img_names, function(img_name) {
+              caption <- stringr::str_remove(img_name, "^(\\d+-)+") %>%
+                stringr::str_replace_all(c("_" = " ", "-" = ": "))
+              img_path <- all_imgs[[img_name]]
+              
+              glue::glue(
+                '![{caption}]({img_path}){{.lightbox}}'
+              )
+            }),
+            collapse = "\n\n"
+          )
+        }
+        
+        # Generate Quarto markdown for the acceptance criteria folder.
+        glue::glue(
+          '
 :::::: {{.folder .acceptance}}
 ::::: {{.folder-header data-bs-toggle="collapse" data-bs-target="{ac_target_class}" aria-expanded="false" aria-controls="{ac_target_id}"}}
 :::: {{.folder-title-container}}
@@ -115,10 +118,11 @@ qmd_output <- purrr::map_chr(br$features, function(feature) {
 :::::
 ::::::
 '
-      )
-    }),
-    collapse = "\n\n"
-  )
+        )
+      }),
+      collapse = "\n\n"
+    )
+  }
 
   # Generate Quarto markdown for the main feature folder.
   glue::glue(
