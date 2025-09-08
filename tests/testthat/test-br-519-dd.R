@@ -354,7 +354,7 @@ test_that("496: The user can visualize domain categorical variable counts by val
       selector = "#domain_details-AE-prevalence_plot-plot-plot"
     )
     app$set_inputs(
-      `domain_details-AE-prevalence_plot-key-Group` = "Site 0X7258"
+      `domain_details-AE-prevalence_plot-key-Group` = "Site: 0X7258"
     )
     app$wait_for_idle()
   })
