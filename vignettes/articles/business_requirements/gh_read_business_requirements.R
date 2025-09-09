@@ -15,7 +15,7 @@ gh_read_br <- function(intIssue) {
   # Assemble final list
   list(
     issue = intIssue,
-    title = lGHIssue_BR$title,
+    title = stringr::str_remove(lGHIssue_BR$title, "^Business Requirement: "),
     description = lGHIssue_BR$body,
     features = lFeatures
   )

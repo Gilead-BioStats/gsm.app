@@ -1,5 +1,5 @@
 - issue: 518
-  title: 'Business Requirement: Generate an app to help CMs explore snapshot data'
+  title: Generate an app to help CMs explore snapshot data
   description: Generate a shiny app that presents the input and output of {[gsm.kri](https://github.com/Gilead-BioStats/gsm.kri)}
     in a way that allows clinical monitors (etc) to dive deeper and identify the sources
     of issues.
@@ -147,7 +147,7 @@
       menu in the navigation bar.
     labels: plugins
 - issue: 519
-  title: 'Business Requirement: Users can easily explore Domain Details'
+  title: Users can easily explore Domain Details
   description: Make it easier for users to explore the raw domain data presented on
     the Domain Details tab.
   features:

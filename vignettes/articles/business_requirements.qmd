@@ -3,15 +3,11 @@ title: "Business Requirements"
 format: html
 ---
 
-```{r, include = FALSE}
-knitr::opts_chunk$set(
-  collapse = TRUE,
-  comment = "#>"
-)
-```
-
 ## Ready for Review
+
 - [519: Users can easily explore Domain Details](br519.html)
 
 ## Validated
+
 - [518: Generate an app to help CMs explore snapshot data](br518.html)
+

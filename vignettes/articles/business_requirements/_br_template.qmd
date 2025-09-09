@@ -1,0 +1,185 @@
+---
+title: "BR_NUMBER: BR_TITLE"
+format: 
+  html:
+    lightbox: true
+fig-cap-location: top
+---
+
+```{r}
+#| echo: false
+# This is crazy but seems to maybe work, inspired by https://github.com/r-lib/nanoparquet/blob/e881a75cf4930156625c4b728a17f3cc6cd86796/vignettes/articles/benchmarks.qmd#L22
+my_path <- Sys.getenv("QUARTO_DOCUMENT_PATH")
+if (my_path == "") {
+  my_path <- getwd()
+}
+my_path <- fs::path(my_path)
+
+if (fs::dir_exists(fs::path(my_path, "business_requirements"))) {
+  br_path <- fs::path(my_path, "business_requirements")
+} else if (fs::file_exists("business_requirements.yml")) {
+  br_path <- my_path
+} else if (
+  fs::file_exists("articles/business_requirements/business_requirements.yml")
+) {
+  br_path <- fs::path("articles/business_requirements")
+} else {
+  br_path <- fs::path("vignettes/articles/business_requirements")
+}
+```
+
+```{r}
+#| echo: false
+#| message: false
+library(magrittr)
+br_issue_number <- BR_NUMBER
+brs <- yaml::read_yaml(fs::path(br_path, "business_requirements.yml"))
+br <- purrr::keep(
+  brs,
+  ~ .x$issue == br_issue_number
+)[[1]]
+
+img_path <- fs::path(br_path, "img")
+all_imgs <- fs::dir_ls(img_path, recurse = TRUE, type = "file", glob = "*.png")
+all_imgs <- fs::path_rel(all_imgs, start = my_path)
+names(all_imgs) <- fs::path_ext_remove(fs::path_file(all_imgs))
+```
+
+## Description
+
+[GitHub issue](https://github.com/Gilead-BioStats/gsm.app/issues/`r br$issue`)
+
+`r br$description`
+
+---
+
+## Features & Bug Fixes
+
+Explore the screenshot evidence presented here to determine if you agree that the app does what is described. 
+Click images for larger versions. 
+If you agree that the app does what is described, go to the linked GitHub issue for that feature or bug fix, and comment with your approval.
+If you do *not* agree, go to the linked GitHub issue for that feature or bug fix, and comment with what you believe is incorrect.
+
+```{r}
+#| echo: false
+#| output: asis
+qmd_output <- purrr::map_chr(br$features, function(feature) {
+  # Generate unique IDs for this feature's collapsible element using the issue number.
+  feature_target_id <- paste0("folder-", feature$issue)
+  feature_target_class <- paste0(".", feature_target_id, "-contents")
+  
+  if ("superseded" %in% feature$labels) {
+    acceptance_criteria_qmd <- "This feature has been superseded by one or more later features. See the GitHub issue for details."
+  } else {
+    acceptance_criteria_qmd <- paste(
+      purrr::imap_chr(feature$acceptance_criteria, function(ac, ac_idx) {
+        # Generate unique IDs for the acceptance criteria collapsible element.
+        ac_target_id <- glue::glue("folder-ac-{feature$issue}-{ac_idx}")
+        ac_target_class <- paste0(".", ac_target_id, "-contents")
+        
+        ac_pad <- stringr::str_pad(ac_idx, width = 2, pad = "0")
+        img_pattern <- glue::glue("^{feature$issue}-{ac_pad}-")
+        relevant_img_names <- stringr::str_subset(names(all_imgs), img_pattern)
+        
+        # Generate Quarto markdown for images.
+        img_qmd <- ""
+        if (length(relevant_img_names) > 0) {
+          img_qmd <- paste(
+            purrr::map_chr(relevant_img_names, function(img_name) {
+              caption <- stringr::str_remove(img_name, "^(\\d+-)+") %>%
+                stringr::str_replace_all(c("_" = " ", "-" = ": "))
+              img_path <- all_imgs[[img_name]]
+              
+              glue::glue(
+                '![{caption}]({img_path}){{.lightbox}}'
+              )
+            }),
+            collapse = "\n\n"
+          )
+        }
+        
+        # Generate Quarto markdown for the acceptance criteria folder.
+        glue::glue(
+          '
+:::::: {{.folder .acceptance}}
+::::: {{.folder-header data-bs-toggle="collapse" data-bs-target="{ac_target_class}" aria-expanded="false" aria-controls="{ac_target_id}"}}
+:::: {{.folder-title-container}}
+{ac}
+::::
+:::: {{.folder-btn-toggle}}
+::: {{.folder-toggle}}
+:::
+::::
+:::::
+::::: {{#{ac_target_id} .{sub("^[.]", "", ac_target_class)} .folder-collapse .collapse}}
+:::: {{.folder-body-container}}
+{img_qmd}
+::::
+:::::
+::::::
+'
+        )
+      }),
+      collapse = "\n\n"
+    )
+  }
+
+  # Generate Quarto markdown for the main feature folder.
+  glue::glue(
+    '
+::::::::: {{#anchor-{feature$issue} .folder .feature}}
+:::::::: {{.folder-header .collapsed data-bs-toggle="collapse" data-bs-target="{feature_target_class}" aria-expanded="false" aria-controls="{feature_target_id}"}}
+::::::: {{.folder-title-container}}
+{feature$issue}: {feature$title}
+:::::::
+::::::: {{.folder-btn-toggle}}
+:::::: {{.folder-toggle}}
+::::::
+:::::::
+::::::::
+:::::::: {{#{feature_target_id} .{sub("^[.]", "", feature_target_class)} .folder-collapse .collapse}}
+::::::: {{.folder-body-container}}
+[GitHub issue](https://github.com/Gilead-BioStats/gsm.app/issues/{feature$issue})
+
+{acceptance_criteria_qmd}
+:::::::
+::::::::
+:::::::::
+'
+  )
+})
+
+cat(qmd_output, sep = "\n\n")
+```
+
+<script>
+function handleHash() {
+  const hash = window.location.hash;
+  if (!hash) return; // Do nothing if there's no hash
+
+  // Construct a valid selector with the "anchor-" prefix
+  const selector = '#anchor-' + hash.substring(1);
+  const featureDiv = document.querySelector(selector);
+
+  if (featureDiv) {
+    const header = featureDiv.querySelector('.folder-header');
+    if (header) {
+      const isExpanded = header.getAttribute('aria-expanded') === 'true';
+      
+      // 1. Open the folder only if it's not already expanded
+      if (!isExpanded) {
+        header.click();
+      }
+
+      // 2. Scroll the element into view
+      featureDiv.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  }
+}
+
+// Run the function when the hash changes
+window.addEventListener('hashchange', handleHash);
+
+// Run the function on initial page load
+document.addEventListener('DOMContentLoaded', handleHash);
+</script>
