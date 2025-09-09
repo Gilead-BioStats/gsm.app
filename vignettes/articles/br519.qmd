@@ -127,7 +127,7 @@ qmd_output <- purrr::map_chr(br$features, function(feature) {
   # Generate Quarto markdown for the main feature folder.
   glue::glue(
     '
-::::::::: {{.folder .feature}}
+::::::::: {{#anchor-{feature$issue} .folder .feature}}
 :::::::: {{.folder-header .collapsed data-bs-toggle="collapse" data-bs-target="{feature_target_class}" aria-expanded="false" aria-controls="{feature_target_id}"}}
 ::::::: {{.folder-title-container}}
 {feature$issue}: {feature$title}
@@ -151,3 +151,35 @@ qmd_output <- purrr::map_chr(br$features, function(feature) {
 
 cat(qmd_output, sep = "\n\n")
 ```
+
+<script>
+function handleHash() {
+  const hash = window.location.hash;
+  if (!hash) return; // Do nothing if there's no hash
+
+  // Construct a valid selector with the "anchor-" prefix
+  const selector = '#anchor-' + hash.substring(1);
+  const featureDiv = document.querySelector(selector);
+
+  if (featureDiv) {
+    const header = featureDiv.querySelector('.folder-header');
+    if (header) {
+      const isExpanded = header.getAttribute('aria-expanded') === 'true';
+      
+      // 1. Open the folder only if it's not already expanded
+      if (!isExpanded) {
+        header.click();
+      }
+
+      // 2. Scroll the element into view
+      featureDiv.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  }
+}
+
+// Run the function when the hash changes
+window.addEventListener('hashchange', handleHash);
+
+// Run the function on initial page load
+document.addEventListener('DOMContentLoaded', handleHash);
+</script>
