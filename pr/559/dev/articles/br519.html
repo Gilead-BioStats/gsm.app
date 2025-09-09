@@ -83,7 +83,7 @@
 <hr></section><section class="level2"><h2 id="features-bug-fixes">Features &amp; Bug Fixes<a class="anchor" aria-label="anchor" href="#features-bug-fixes"></a>
 </h2>
 <p>Explore the screenshot evidence presented here to determine if you agree that the app does what is described. Click images for larger versions. If you agree that the app does what is described, go to the linked GitHub issue for that feature or bug fix, and comment with your approval. If you do <em>not</em> agree, go to the linked GitHub issue for that feature or bug fix, and comment with what you believe is incorrect.</p>
-<div class="folder feature">
+<div id="anchor-543" class="folder feature">
 <div class="folder-header collapsed" data-bs-toggle="collapse" data-bs-target=".folder-543-contents" aria-expanded="false" aria-controls="folder-543">
 <div class="folder-title-container">
 <p>543: Feature: The user can view counts of records for each available data domain.</p>
@@ -168,7 +168,7 @@
 </div>
 </div>
 </div>
-<div class="folder feature">
+<div id="anchor-385" class="folder feature">
 <div class="folder-header collapsed" data-bs-toggle="collapse" data-bs-target=".folder-385-contents" aria-expanded="false" aria-controls="folder-385">
 <div class="folder-title-container">
 <p>385: Feature: The user can filter domain data.</p>
@@ -229,7 +229,7 @@
 </div>
 </div>
 </div>
-<div class="folder feature">
+<div id="anchor-496" class="folder feature">
 <div class="folder-header collapsed" data-bs-toggle="collapse" data-bs-target=".folder-496-contents" aria-expanded="false" aria-controls="folder-496">
 <div class="folder-title-container">
 <p>496: Feature: The user can visualize domain categorical variable counts by value.</p>
@@ -550,7 +550,7 @@
 </div>
 </div>
 </div>
-<div class="folder feature">
+<div id="anchor-555" class="folder feature">
 <div class="folder-header collapsed" data-bs-toggle="collapse" data-bs-target=".folder-555-contents" aria-expanded="false" aria-controls="folder-555">
 <div class="folder-title-container">
 <p>555: Feature: Increase number of rows shown in domain details</p>
@@ -611,7 +611,37 @@
 </div>
 </div>
 </div>
-</section><script id="quarto-html-after-body" type="application/javascript">
+<script>
+function handleHash() {
+  const hash = window.location.hash;
+  if (!hash) return; // Do nothing if there's no hash
+
+  // Construct a valid selector with the "anchor-" prefix
+  const selector = '#anchor-' + hash.substring(1);
+  const featureDiv = document.querySelector(selector);
+
+  if (featureDiv) {
+    const header = featureDiv.querySelector('.folder-header');
+    if (header) {
+      const isExpanded = header.getAttribute('aria-expanded') === 'true';
+
+      // 1. Open the folder only if it's not already expanded
+      if (!isExpanded) {
+        header.click();
+      }
+
+      // 2. Scroll the element into view
+      featureDiv.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  }
+}
+
+// Run the function when the hash changes
+window.addEventListener('hashchange', handleHash);
+
+// Run the function on initial page load
+document.addEventListener('DOMContentLoaded', handleHash);
+</script></section><script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
       var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
       var mailtoRegex = new RegExp(/^mailto:/);
