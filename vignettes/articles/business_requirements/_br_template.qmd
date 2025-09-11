@@ -1,5 +1,5 @@
 ---
-title: "518: Generate an app to help CMs explore snapshot data"
+title: "BR_NUMBER: BR_TITLE"
 format: 
   html:
     lightbox: true
@@ -32,7 +32,7 @@ if (fs::dir_exists(fs::path(my_path, "business_requirements"))) {
 #| echo: false
 #| message: false
 library(magrittr)
-br_issue_number <- 518
+br_issue_number <- BR_NUMBER
 brs <- yaml::read_yaml(fs::path(br_path, "business_requirements.yml"))
 br <- purrr::keep(
   brs,
