@@ -117,7 +117,8 @@ PlotPrevalencePlot <- function(dfPrevalence, strCategory) {
     ) +
     ggplot2::geom_col(
       position = "identity",
-      color = "black"
+      color = "black",
+      linewidth = ggplot2::rel(0.5)
     ) +
     ggplot2::geom_label(
       ggplot2::aes(
