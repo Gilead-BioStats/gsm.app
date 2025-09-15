@@ -260,7 +260,7 @@ test_that("524: The user can view an interactive KRI summary table.", {
   test_that("524.05: Clicking a KRI cell in the summary table navigates the user to the 'Metric Details' tab, filtered to that KRI and group.", {
     # Click a specific cell in the table
     app$click(
-      selector = "#study_overview-table tr:nth-child(2) td:nth-child(6)"
+      selector = "#study_overview-table tr:nth-child(2) td:nth-child(7)"
     )
     app$wait_for_idle()
     app$run_js(file = test_path("fixtures", "WidgetPlotTestHelpers.js"))
