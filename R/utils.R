@@ -140,7 +140,7 @@ ExtractAppTitle <- function(dfGroups) {
   )
 
   appTitle <- dfStudy$Value[tolower(dfStudy$Param) == "nickname"] %|0|%
-    dfStudy$Value[tolower(dfStudy$Param) == "protocol_title"] %|0|%
+    dfStudy$GroupID[[1]] %|0|%
     dfStudy$Value[tolower(dfStudy$Param) == "studyid"] %|0|%
     "GSM Deep Dive"
   if (rlang::is_installed("stringr")) {
