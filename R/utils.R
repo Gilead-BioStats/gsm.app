@@ -133,14 +133,26 @@ MakeParamLabelsChr <- function(chrParams, lParamLabels = NULL) {
 #'   )
 #' )
 ExtractAppTitle <- function(dfGroups) {
-  dfStudy <- dfGroups[dfGroups$GroupLevel == "Study", ]
-  appTitle <- dfStudy$Value[tolower(dfStudy$Param) == "nickname"] %||%
-    dfStudy$Value[tolower(dfStudy$Param) == "protocol_title"] %||%
-    dfStudy$Value[tolower(dfStudy$Param) == "studyid"] %||%
+  dfStudy <- FilterBy(
+    dfGroups[!is.na(dfGroups$Value), ],
+    "Study",
+    "GroupLevel"
+  )
+
+  appTitle <- dfStudy$Value[tolower(dfStudy$Param) == "nickname"] %|0|%
+    dfStudy$GroupID[[1]] %|0|%
+    dfStudy$Value[tolower(dfStudy$Param) == "studyid"] %|0|%
     "GSM Deep Dive"
   if (rlang::is_installed("stringr")) {
     # Truncate to avoid overrun.
     return(stringr::str_trunc(appTitle, 30))
   }
   return(strtrim(appTitle, 30)) # nocov
+}
+
+`%|0|%` <- function(x, y) {
+  if (!length(x)) {
+    return(y)
+  }
+  return(x)
 }

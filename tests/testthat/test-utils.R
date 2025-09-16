@@ -80,4 +80,8 @@ test_that("ExtractAppTitle extracts titles", {
     ExtractAppTitle(data.frame()),
     "GSM Deep Dive"
   )
+  expect_identical(
+    ExtractAppTitle(data.frame(Param = "nickname", Value = NA)),
+    "GSM Deep Dive"
+  )
 })
