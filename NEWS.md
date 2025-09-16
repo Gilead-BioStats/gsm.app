@@ -1,4 +1,19 @@
-# gsm.app (development version)
+# gsm.app 2.6.0
+
+This release provides usability upgrades for the Domain Details tab. It also adds new contributor guidelines and standardized issue templates.
+
+## Business Requirement 519: Users can easily explore Domain Details
+
+- Users can view counts of records for each available data domain within the tab itself, rather than in a table devoted to counts. This freed up additional space for new features (#543).
+- Users can filter domain data using text boxes at the top of each column of each table (#385).
+- Users can visualize domain categorical variable counts by value in an interactive plot (#496).
+- More rows are shown by default in the Domain Details tables (#555).
+
+## Other changes
+
+- The Business Requirements articles now account for "superseded" features, and allows for "deep linking" to specific features within a business requirement (#559).
+- The contributing guidelines and issue templates have been standardized across the gsm projects (#560).
+- The default name for apps is now smarter about which options it chooses (#432).
 
 # gsm.app 2.5.3
 
