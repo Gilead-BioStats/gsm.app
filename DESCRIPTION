@@ -63,10 +63,10 @@ Config/Needs/data:
     usethis, 
     Gilead-BioStats/gsm.datasim@dev
 Remotes: 
-    gsm.core=Gilead-BioStats/gsm.core@main,
-    gsm.mapping=Gilead-BioStats/gsm.mapping@main,
-    gsm.kri=Gilead-BioStats/gsm.kri@main,
-    gsm.reporting=Gilead-BioStats/gsm.reporting@main
+    gsm.core=Gilead-BioStats/gsm.core@dev,
+    gsm.mapping=Gilead-BioStats/gsm.mapping@dev,
+    gsm.kri=Gilead-BioStats/gsm.kri@dev,
+    gsm.reporting=Gilead-BioStats/gsm.reporting@dev
 Config/testthat/edition: 3
 Encoding: UTF-8
 Language: en-US
