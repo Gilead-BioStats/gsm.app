@@ -43,14 +43,18 @@ test_that("534: The user can view raw domain data.", {
     expect_official_screenshot(app, name = c("03", "unfiltered"))
 
     # Filter by group
-    target_group <- "0X7798"
+    target_group <- sample_dfGroups[
+      sample_dfGroups$GroupLevel == "Site",
+    ]$GroupID[[2]]
     app$set_inputs(`group-group-select` = target_group)
     app$wait_for_idle()
     expect_domain_df_row(app, target_domain, strGroupID = target_group)
     expect_official_screenshot(app, name = c("03", "filter_by_group"))
 
     # Filter by participant
-    target_participant <- "S28299"
+    target_participant <- sample_dfAnalyticsInput$SubjectID[
+      sample_dfAnalyticsInput$GroupID == target_group
+    ][[1]]
     app$set_inputs(`participant-select` = target_participant)
     app$wait_for_idle()
     expect_domain_df_row(
@@ -70,7 +74,10 @@ test_that("534: The user can view raw domain data.", {
 
   test_that("534.04: The app displays an error message if it is unable to load data for a specific domain.", {
     # Trigger the error condition
-    app$set_inputs(`group-group-select` = "0X9640")
+    errorGroupID <- rev(sort(unique(sample_dfGroups$GroupID[
+      sample_dfGroups$GroupLevel == "Site"
+    ])))[[1]]
+    app$set_inputs(`group-group-select` = errorGroupID)
     app$wait_for_idle()
     app$set_inputs(`domain_details-selected_tab` = "LB")
     app$wait_for_idle()
@@ -79,11 +86,12 @@ test_that("534: The user can view raw domain data.", {
     expect_equal(app$get_text(".modal-title"), "Error loading LB data")
     expect_equal(
       stringr::str_squish(app$get_text(".modal-body")),
-      paste(
-        "Could not fetch LB data for Site 0X9640.",
-        "Site 0X9640 has data issues for the Lab domain.",
+      glue::glue(
+        "Could not fetch LB data for Site {errorGroupID}.",
+        "Site {errorGroupID} has data issues for the Lab domain.",
         "This is to demonstrate behavior with errors.",
-        "Please select another Site."
+        "Please select another Site.",
+        .sep = " "
       )
     )
     expect_official_screenshot(app, name = c("04", "error_modal"))

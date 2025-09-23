@@ -28,10 +28,12 @@ test_that("543: The user can view counts of records for each available data doma
     )
 
     # Filter by group
-    target_group <- "0X7798"
-    app$set_inputs(`group-group-select` = target_group)
+    targetGroupID <- sample_dfGroups[
+      sample_dfGroups$GroupLevel == "Site",
+    ]$GroupID[[2]]
+    app$set_inputs(`group-group-select` = targetGroupID)
     app$wait_for_idle()
-    expect_domain_counts(app, strGroupID = target_group)
+    expect_domain_counts(app, strGroupID = targetGroupID)
     expect_official_screenshot(
       app,
       name = c("02", "filter_by_group"),
@@ -39,13 +41,20 @@ test_that("543: The user can view counts of records for each available data doma
     )
 
     # Filter by participant
-    target_participant <- "S28299"
-    app$set_inputs(`participant-select` = target_participant)
+    targetSubjectID <- sample_dfAnalyticsInput %>%
+      dplyr::filter(
+        .data$GroupID == targetGroupID,
+        .data$MetricID == "Analysis_kri0001"
+      ) %>%
+      dplyr::count(.data$SubjectID, sort = TRUE) %>%
+      dplyr::slice(1) %>%
+      dplyr::pull("SubjectID")
+    app$set_inputs(`participant-select` = targetSubjectID)
     app$wait_for_idle()
     expect_domain_counts(
       app,
-      strGroupID = target_group,
-      strSubjectID = target_participant
+      strGroupID = targetGroupID,
+      strSubjectID = targetSubjectID
     )
     expect_official_screenshot(
       app,
@@ -141,6 +150,18 @@ test_that("496: The user can visualize domain categorical variable counts by val
   app$wait_for_idle()
   app$set_inputs(primary_nav_bar = "Domain Details")
   app$wait_for_idle()
+
+  targetGroupID <- sample_dfGroups[
+    sample_dfGroups$GroupLevel == "Site",
+  ]$GroupID[[2]]
+  targetSubjectID <- sample_dfAnalyticsInput %>%
+    dplyr::filter(
+      .data$GroupID == targetGroupID,
+      .data$MetricID == "Analysis_kri0001"
+    ) %>%
+    dplyr::count(.data$SubjectID, sort = TRUE) %>%
+    dplyr::slice(1) %>%
+    dplyr::pull("SubjectID")
 
   test_that("496.01: The 'Domain Details' tab includes a 'Prevalence' card for each domain.", {
     domains <- c(
@@ -257,7 +278,7 @@ test_that("496: The user can visualize domain categorical variable counts by val
   test_that("496.06: When a group is selected, the 'Prevalence' card displays a color-coded key for that group, as '{Group Level} {GroupID}'.", {
     this_level <- "Group"
     strGroupLevel <- "Site"
-    strGroupID <- "0X7258"
+    strGroupID <- targetGroupID
     key_selector <- "#domain_details-AE-prevalence_plot-key"
     this_key_selector <- paste(key_selector, this_level, sep = "-")
     app$set_inputs(`group-group-select` = strGroupID)
@@ -291,7 +312,7 @@ test_that("496: The user can visualize domain categorical variable counts by val
 
   test_that("496.09: When a participant is selected, the 'Prevalence' card displays a color-coded key for that participant, as 'Participant {SubjectID}'.", {
     this_level <- "Participant"
-    strParticipantID <- "S10581"
+    strParticipantID <- targetSubjectID
     key_selector <- "#domain_details-AE-prevalence_plot-key"
     this_key_selector <- paste(key_selector, this_level, sep = "-")
     app$set_inputs(`participant-select` = strParticipantID)
@@ -354,7 +375,9 @@ test_that("496: The user can visualize domain categorical variable counts by val
       selector = "#domain_details-AE-prevalence_plot-plot-plot"
     )
     app$set_inputs(
-      `domain_details-AE-prevalence_plot-key-Group` = "Site: 0X7258"
+      `domain_details-AE-prevalence_plot-key-Group` = glue::glue(
+        "Site: {targetGroupID}"
+      )
     )
     app$wait_for_idle()
   })
@@ -426,7 +449,7 @@ test_that("555: Increase number of rows shown in domain details.", {
     pagination_options <- app$get_html(paste(
       pagination_select_selector,
       "option"
-    )) |>
+    )) %>%
       stringr::str_extract('"(\\d+)"', group = 1)
     expect_setequal(pagination_options, c("20", "100", "1000"))
 

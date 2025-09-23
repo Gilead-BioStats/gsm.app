@@ -11,6 +11,7 @@ out_MainTabs <- function(
   dfResults,
   lPlugins = NULL
 ) {
+  strSiteRiskMetric <- "Analysis_srs0001"
   MainTabs <- list(
     bslib::nav_panel(
       title = "Study Overview",
@@ -18,7 +19,13 @@ out_MainTabs <- function(
     ),
     bslib::nav_panel(
       title = "Metric Details",
-      mod_MetricDetails_UI("metric_details", dfMetrics = dfMetrics),
+      mod_MetricDetails_UI(
+        "metric_details",
+        dfMetrics = dplyr::filter(
+          dfMetrics,
+          .data$MetricID != strSiteRiskMetric
+        )
+      ),
       mod_GroupDetails_UI("group_details", dfGroups)
     ),
     bslib::nav_panel(

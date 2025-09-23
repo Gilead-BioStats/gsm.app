@@ -64,6 +64,9 @@ test_that("mod_ScatterPlot_Server sets selected group", {
     "Analysis_kri0001"
   )
   dfGroups <- sample_dfGroups
+  targetGroupID <- sample_dfGroups[
+    sample_dfGroups$GroupLevel == "Site",
+  ]$GroupID[[2]]
   dfBounds <- FilterbyMetricID(sample_dfBounds, "Analysis_kri0001")
   lMetric <- as.list(FilterbyMetricID(sample_dfMetrics, "Analysis_kri0001"))
   testServer(
@@ -78,8 +81,8 @@ test_that("mod_ScatterPlot_Server sets selected group", {
     ),
     {
       expect_null(input$plot)
-      session$setInputs(plot = "0X7258")
-      expect_equal(rctv_strGroupID(), "0X7258")
+      session$setInputs(plot = targetGroupID)
+      expect_equal(rctv_strGroupID(), targetGroupID)
 
       session$setInputs(plot = NULL)
       expect_equal(rctv_strGroupID(), "All")

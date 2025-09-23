@@ -28,8 +28,8 @@ Imports:
     forcats,
     ggplot2,
     glue,
-    gsm.core (>= 1.1.0),
-    gsm.kri (>= 1.1.0),
+    gsm.core (>= 1.1.5),
+    gsm.kri (>= 1.3.1),
     gt (>= 1.0.0),
     htmltools,
     htmlwidgets,
@@ -46,7 +46,7 @@ Imports:
     tidyr,
     yaml
 Suggests: 
-    gsm.mapping (>= 1.0.1),
+    gsm.mapping (>= 1.1.1),
     gsm.reporting,
     here,
     knitr,
@@ -61,7 +61,7 @@ Suggests:
     withr
 Config/Needs/data: 
     usethis, 
-    Gilead-BioStats/gsm.datasim@dev
+    Gilead-BioStats/gsm.datasim@main
 Remotes: 
     gsm.core=Gilead-BioStats/gsm.core@main,
     gsm.mapping=Gilead-BioStats/gsm.mapping@main,
