@@ -4,7 +4,7 @@
       test_result
     Output
       <div class="tab-pane" title="Plugin Test" data-value="Plugin Test">
-        <div id="testID-plugin" class="shiny-html-output"></div>
+      <div id="testID-plugin" class="shiny-html-output"></div>
       </div>
 
 # FindUsedArgs matches args properly
