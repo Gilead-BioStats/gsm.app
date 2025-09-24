@@ -32,6 +32,7 @@ test_that("mod_MetricTable_Server starts as expected", {
       test_html <- test_result$html
       gt_id <- stringr::str_extract(test_html, 'div id="(\\w+)"', 1)
       test_html <- stringr::str_replace_all(test_html, gt_id, "gtRandID")
+      test_html <- scrub_repeated_newlines(test_html)
       expect_cleaned_html(
         test_html,
         call = call
@@ -66,6 +67,7 @@ test_that("mod_MetricTable_Server works with no flags", {
       test_html <- test_result$html
       gt_id <- stringr::str_extract(test_html, 'div id="(\\w+)"', 1)
       test_html <- stringr::str_replace_all(test_html, gt_id, "gtRandID")
+      test_html <- scrub_repeated_newlines(test_html)
       expect_cleaned_html(
         test_html,
         call = call
