@@ -13,7 +13,7 @@ argument in module server functions."></head><body>
 
     <a class="navbar-brand me-2" href="../index.html">gsm.app</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">2.5.3</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">2.6.0</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -71,6 +71,10 @@ object.</p></dd>
 <dt id="arg-chrchoices">chrChoices<a class="anchor" aria-label="anchor" href="#arg-chrchoices"></a></dt>
 <dd><p><code>character</code> A (named, optionally) vector of choices for
 this input.</p></dd>
+
+
+<dt id="arg-chrcolors">chrColors<a class="anchor" aria-label="anchor" href="#arg-chrcolors"></a></dt>
+<dd><p><code>character</code> Colors to use for a scale, labels, etc.</p></dd>
 
 
 <dt id="arg-chrdomains">chrDomains<a class="anchor" aria-label="anchor" href="#arg-chrdomains"></a></dt>
@@ -150,6 +154,26 @@ for the name of each list.</p></dd>
 <dd><p><code>data.frame</code> Set of predicted percentages/rates and upper-
 and lower-bounds across the full range of sample sizes/total exposure
 values for reporting. Created with <code><a href="https://gilead-biostats.github.io/gsm.reporting/reference/MakeBounds.html" class="external-link">gsm.reporting::MakeBounds()</a></code>.</p></dd>
+
+
+<dt id="arg-dfdomain">dfDomain<a class="anchor" aria-label="anchor" href="#arg-dfdomain"></a></dt>
+<dd><p><code>data.frame</code> Detailed data about a specific domain, such as
+"Adverse Events".</p></dd>
+
+
+<dt id="arg-dfdomain-group">dfDomain_Group<a class="anchor" aria-label="anchor" href="#arg-dfdomain-group"></a></dt>
+<dd><p><code>data.frame</code> Detailed data about a specific domain,
+such as "Adverse Events", at the group level.</p></dd>
+
+
+<dt id="arg-dfdomain-participant">dfDomain_Participant<a class="anchor" aria-label="anchor" href="#arg-dfdomain-participant"></a></dt>
+<dd><p><code>data.frame</code> Detailed data about a specific
+domain, such as "Adverse Events", at the participant level.</p></dd>
+
+
+<dt id="arg-dfdomain-study">dfDomain_Study<a class="anchor" aria-label="anchor" href="#arg-dfdomain-study"></a></dt>
+<dd><p><code>data.frame</code> Detailed data about a specific domain,
+such as "Adverse Events", at the study level.</p></dd>
 
 
 <dt id="arg-dfgroups">dfGroups<a class="anchor" aria-label="anchor" href="#arg-dfgroups"></a></dt>
@@ -253,6 +277,12 @@ function.</p></dd>
 <dd><p><code>integer</code> The number of groups with at least one red flag.</p></dd>
 
 
+<dt id="arg-l-rctvactive">l_rctvActive<a class="anchor" aria-label="anchor" href="#arg-l-rctvactive"></a></dt>
+<dd><p><code>list</code> A named list of <code><a href="https://rdrr.io/pkg/shiny/man/reactive.html" class="external-link">shiny::reactive()</a></code> objects, each
+of which returns a populated character vector or something that becomes
+<code>NULL</code> when passed through <code><a href="NullifyEmpty.html">NullifyEmpty()</a></code>.</p></dd>
+
+
 <dt id="arg-l-rctvdomainhashes">l_rctvDomainHashes<a class="anchor" aria-label="anchor" href="#arg-l-rctvdomainhashes"></a></dt>
 <dd><p><code>list</code> A named list of <code><a href="https://rdrr.io/pkg/shiny/man/reactive.html" class="external-link">shiny::reactive()</a></code> objects,
 each of which returns the <code><a href="https://rlang.r-lib.org/reference/hash.html" class="external-link">rlang::hash()</a></code> of a domain dataframe.</p></dd>
@@ -343,6 +373,14 @@ returns <code>TRUE</code> if all inputs required by the plugin are non-empty, an
 <code>FALSE</code> if one or more inputs are not ready.</p></dd>
 
 
+<dt id="arg-rctv-chrchoices">rctv_chrChoices<a class="anchor" aria-label="anchor" href="#arg-rctv-chrchoices"></a></dt>
+<dd><p><code>reactive character</code> Choices to set.</p></dd>
+
+
+<dt id="arg-rctv-chrdisabledchoices">rctv_chrDisabledChoices<a class="anchor" aria-label="anchor" href="#arg-rctv-chrdisabledchoices"></a></dt>
+<dd><p><code>reactive character</code> Choices to disable.</p></dd>
+
+
 <dt id="arg-rctv-dfbounds">rctv_dfBounds<a class="anchor" aria-label="anchor" href="#arg-rctv-dfbounds"></a></dt>
 <dd><p><code>reactive dataframe</code> A <code><a href="https://rdrr.io/pkg/shiny/man/reactive.html" class="external-link">shiny::reactive()</a></code> object that
 returns a set of predicted percentages/rates and upper- and lower-bounds
@@ -357,6 +395,22 @@ returns a generic dataframe.</p></dd>
 <dt id="arg-rctv-dfdomain">rctv_dfDomain<a class="anchor" aria-label="anchor" href="#arg-rctv-dfdomain"></a></dt>
 <dd><p><code>reactive dataframe</code> A <code><a href="https://rdrr.io/pkg/shiny/man/reactive.html" class="external-link">shiny::reactive()</a></code> object that
 returns a domain dataframe.</p></dd>
+
+
+<dt id="arg-rctv-dfdomain-combined">rctv_dfDomain_Combined<a class="anchor" aria-label="anchor" href="#arg-rctv-dfdomain-combined"></a></dt>
+<dd><p><code>reactive dataframe</code> A <code><a href="https://rdrr.io/pkg/shiny/man/reactive.html" class="external-link">shiny::reactive()</a></code>
+object that returns a study-, group-, and/or participant-level domain
+dataframe.</p></dd>
+
+
+<dt id="arg-rctv-dfdomain-group">rctv_dfDomain_Group<a class="anchor" aria-label="anchor" href="#arg-rctv-dfdomain-group"></a></dt>
+<dd><p><code>reactive dataframe</code> A <code><a href="https://rdrr.io/pkg/shiny/man/reactive.html" class="external-link">shiny::reactive()</a></code> object
+that returns a group-level domain dataframe.</p></dd>
+
+
+<dt id="arg-rctv-dfdomain-study">rctv_dfDomain_Study<a class="anchor" aria-label="anchor" href="#arg-rctv-dfdomain-study"></a></dt>
+<dd><p><code>reactive dataframe</code> A <code><a href="https://rdrr.io/pkg/shiny/man/reactive.html" class="external-link">shiny::reactive()</a></code> object
+that returns a study-level domain dataframe.</p></dd>
 
 
 <dt id="arg-rctv-dfresults">rctv_dfResults<a class="anchor" aria-label="anchor" href="#arg-rctv-dfresults"></a></dt>
@@ -384,6 +438,15 @@ that returns the count of rows for the current selection for all domains.</p></d
 returns a named list of column names to substitute into tables for display.</p></dd>
 
 
+<dt id="arg-rctv-lgldisable">rctv_lglDisable<a class="anchor" aria-label="anchor" href="#arg-rctv-lgldisable"></a></dt>
+<dd><p><code>reactive logical</code> Whether to disable the menu.</p></dd>
+
+
+<dt id="arg-rctv-lglopen">rctv_lglOpen<a class="anchor" aria-label="anchor" href="#arg-rctv-lglopen"></a></dt>
+<dd><p><code>reactive logical</code> Whether to open (<code>TRUE</code>) or close
+(<code>FALSE</code>) the menu.</p></dd>
+
+
 <dt id="arg-rctv-lglstate">rctv_lglState<a class="anchor" aria-label="anchor" href="#arg-rctv-lglstate"></a></dt>
 <dd><p><code>reactive logical</code> A <code><a href="https://rdrr.io/pkg/shiny/man/reactive.html" class="external-link">shiny::reactive()</a></code>] object that
 returns a Boolean value indicating whether something is "off" (<code>FALSE</code>) or
@@ -394,6 +457,11 @@ returns a Boolean value indicating whether something is "off" (<code>FALSE</code
 <dd><p><code>reactive list</code> A <code><a href="https://rdrr.io/pkg/shiny/man/reactive.html" class="external-link">shiny::reactive()</a></code> object that returns
 a named list of data describing a single metric, as well as things like
 which group is selected.</p></dd>
+
+
+<dt id="arg-rctv-strcategory">rctv_strCategory<a class="anchor" aria-label="anchor" href="#arg-rctv-strcategory"></a></dt>
+<dd><p><code>reactive character</code> A <code><a href="https://rdrr.io/pkg/shiny/man/reactive.html" class="external-link">shiny::reactive()</a></code> object
+that returns the currently selected category.</p></dd>
 
 
 <dt id="arg-rctv-strcurrenttab">rctv_strCurrentTab<a class="anchor" aria-label="anchor" href="#arg-rctv-strcurrenttab"></a></dt>
@@ -434,6 +502,10 @@ this argument is a <code><a href="https://rdrr.io/pkg/shiny/man/reactiveVal.html
 back to the calling function.</p></dd>
 
 
+<dt id="arg-rctv-strlabel">rctv_strLabel<a class="anchor" aria-label="anchor" href="#arg-rctv-strlabel"></a></dt>
+<dd><p><code>reactive character</code> Label to set.</p></dd>
+
+
 <dt id="arg-rctv-strmetricid">rctv_strMetricID<a class="anchor" aria-label="anchor" href="#arg-rctv-strmetricid"></a></dt>
 <dd><p><code>reactive character</code> A <code><a href="https://rdrr.io/pkg/shiny/man/reactive.html" class="external-link">shiny::reactive()</a></code> object
 that returns the selected <code>MetricID</code>.</p></dd>
@@ -443,6 +515,10 @@ that returns the selected <code>MetricID</code>.</p></dd>
 <dd><p><code>reactive character</code> A <code><a href="https://rdrr.io/pkg/shiny/man/reactive.html" class="external-link">shiny::reactive()</a></code> object that
 returns the name of an object, such as a particular dataframe in a named
 list.</p></dd>
+
+
+<dt id="arg-rctv-strselected">rctv_strSelected<a class="anchor" aria-label="anchor" href="#arg-rctv-strselected"></a></dt>
+<dd><p><code>reactive character</code> Selected value to set.</p></dd>
 
 
 <dt id="arg-rctv-strselection">rctv_strSelection<a class="anchor" aria-label="anchor" href="#arg-rctv-strselection"></a></dt>
@@ -476,6 +552,10 @@ the calling function if the calling function also has a <code>strArg</code> argu
 is unique.</p></dd>
 
 
+<dt id="arg-strcategory">strCategory<a class="anchor" aria-label="anchor" href="#arg-strcategory"></a></dt>
+<dd><p><code>character</code> A category to focus on.</p></dd>
+
+
 <dt id="arg-strclass">strClass<a class="anchor" aria-label="anchor" href="#arg-strclass"></a></dt>
 <dd><p><code>character</code> A descriptive label for this type of error, in
 lower_snake_case.</p></dd>
@@ -506,7 +586,8 @@ this color, or the <code>"light"</code> version. Default: <code>"dark"</code>.</
 
 <dt id="arg-strdomainlabel">strDomainLabel<a class="anchor" aria-label="anchor" href="#arg-strdomainlabel"></a></dt>
 <dd><p><code>character</code> The domain name to display. For example,
-for ID <code>"AE"</code>, the label is <code>"Adverse Events"</code>.</p></dd>
+for ID <code>"AE"</code>, the label is <code>"Adverse Events"</code>. Can also be a
+<code><a href="https://rdrr.io/pkg/shiny/man/htmlOutput.html" class="external-link">shiny::uiOutput()</a></code> which renders to an inline string.</p></dd>
 
 
 <dt id="arg-strempty">strEmpty<a class="anchor" aria-label="anchor" href="#arg-strempty"></a></dt>
@@ -568,6 +649,11 @@ this module or used by this JavaScript.</p></dd>
 
 <dt id="arg-strlabel">strLabel<a class="anchor" aria-label="anchor" href="#arg-strlabel"></a></dt>
 <dd><p><code>character</code> The label of a field.</p></dd>
+
+
+<dt id="arg-strlevel">strLevel<a class="anchor" aria-label="anchor" href="#arg-strlevel"></a></dt>
+<dd><p><code>character</code> The grouping level for this data (one of
+<code>"Study"</code>, <code>"Group"</code> or <code>"Participant"</code>, generally).</p></dd>
 
 
 <dt id="arg-strmetricid">strMetricID<a class="anchor" aria-label="anchor" href="#arg-strmetricid"></a></dt>

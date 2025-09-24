@@ -7,7 +7,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">gsm.app</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">2.5.3</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">2.6.0</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -50,9 +50,12 @@
     <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">srvr_SyncVirtualSelectInput</span><span class="op">(</span></span>
 <span>  <span class="va">id</span>,</span>
 <span>  session <span class="op">=</span> <span class="fu">getDefaultReactiveDomain</span><span class="op">(</span><span class="op">)</span>,</span>
-<span>  rctv_chrChoices <span class="op">=</span> <span class="fu">reactive</span><span class="op">(</span><span class="cn">NULL</span>, domain <span class="op">=</span> <span class="va">session</span><span class="op">)</span>,</span>
-<span>  rctv_strLabel <span class="op">=</span> <span class="fu">reactive</span><span class="op">(</span><span class="cn">NULL</span>, domain <span class="op">=</span> <span class="va">session</span><span class="op">)</span>,</span>
-<span>  rctv_strSelected <span class="op">=</span> <span class="fu">reactive</span><span class="op">(</span><span class="cn">NULL</span>, domain <span class="op">=</span> <span class="va">session</span><span class="op">)</span></span>
+<span>  rctv_chrChoices <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  rctv_strLabel <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  rctv_strSelected <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  rctv_lglDisable <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  rctv_chrDisabledChoices <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  rctv_lglOpen <span class="op">=</span> <span class="cn">NULL</span></span>
 <span><span class="op">)</span></span></code></pre></div>
     </div>
 
@@ -80,11 +83,24 @@ default should almost always be used).</p></dd>
 <dt id="arg-rctv-strselected">rctv_strSelected<a class="anchor" aria-label="anchor" href="#arg-rctv-strselected"></a></dt>
 <dd><p><code>reactive character</code> Selected value to set.</p></dd>
 
+
+<dt id="arg-rctv-lgldisable">rctv_lglDisable<a class="anchor" aria-label="anchor" href="#arg-rctv-lgldisable"></a></dt>
+<dd><p><code>reactive logical</code> Whether to disable the menu.</p></dd>
+
+
+<dt id="arg-rctv-chrdisabledchoices">rctv_chrDisabledChoices<a class="anchor" aria-label="anchor" href="#arg-rctv-chrdisabledchoices"></a></dt>
+<dd><p><code>reactive character</code> Choices to disable.</p></dd>
+
+
+<dt id="arg-rctv-lglopen">rctv_lglOpen<a class="anchor" aria-label="anchor" href="#arg-rctv-lglopen"></a></dt>
+<dd><p><code>reactive logical</code> Whether to open (<code>TRUE</code>) or close
+(<code>FALSE</code>) the menu.</p></dd>
+
 </dl></div>
     <div class="section level2">
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
     <p>A <code><a href="https://rdrr.io/pkg/shiny/man/observe.html" class="external-link">shiny::observe()</a></code> that triggers
-<code><a href="https://dreamrs.github.io/shinyWidgets/reference/updateVirtualSelect.html" class="external-link">shinyWidgets::updateVirtualSelect()</a></code> when the connected reactive changes.</p>
+<code><a href="https://dreamrs.github.io/shinyWidgets/reference/updateVirtualSelect.html" class="external-link">shinyWidgets::updateVirtualSelect()</a></code> when the connected reactives change.</p>
     </div>
 
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>

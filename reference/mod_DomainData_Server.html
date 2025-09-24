@@ -7,7 +7,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">gsm.app</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">2.5.3</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">2.6.0</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -51,7 +51,12 @@
 <span>  <span class="va">id</span>,</span>
 <span>  <span class="va">rctv_dfDomain</span>,</span>
 <span>  <span class="va">rctv_strDomainHash</span>,</span>
-<span>  <span class="va">rctv_strGroupLevel</span></span>
+<span>  <span class="va">rctv_dfDomain_Study</span>,</span>
+<span>  <span class="va">rctv_dfDomain_Group</span>,</span>
+<span>  <span class="va">rctv_strGroupLevel</span>,</span>
+<span>  <span class="va">rctv_strGroupID</span>,</span>
+<span>  <span class="va">rctv_strSubjectID</span>,</span>
+<span>  <span class="va">l_rctvDomainLoaded</span></span>
 <span><span class="op">)</span></span></code></pre></div>
     </div>
 
@@ -73,9 +78,37 @@ returns a domain dataframe.</p></dd>
 that returns the the <code><a href="https://rlang.r-lib.org/reference/hash.html" class="external-link">rlang::hash()</a></code> of a domain dataframe.</p></dd>
 
 
+<dt id="arg-rctv-dfdomain-study">rctv_dfDomain_Study<a class="anchor" aria-label="anchor" href="#arg-rctv-dfdomain-study"></a></dt>
+<dd><p><code>reactive dataframe</code> A <code><a href="https://rdrr.io/pkg/shiny/man/reactive.html" class="external-link">shiny::reactive()</a></code> object
+that returns a study-level domain dataframe.</p></dd>
+
+
+<dt id="arg-rctv-dfdomain-group">rctv_dfDomain_Group<a class="anchor" aria-label="anchor" href="#arg-rctv-dfdomain-group"></a></dt>
+<dd><p><code>reactive dataframe</code> A <code><a href="https://rdrr.io/pkg/shiny/man/reactive.html" class="external-link">shiny::reactive()</a></code> object
+that returns a group-level domain dataframe.</p></dd>
+
+
 <dt id="arg-rctv-strgrouplevel">rctv_strGroupLevel<a class="anchor" aria-label="anchor" href="#arg-rctv-strgrouplevel"></a></dt>
 <dd><p><code>reactive character</code> A <code><a href="https://rdrr.io/pkg/shiny/man/reactiveVal.html" class="external-link">shiny::reactiveVal()</a></code>
 object that returns the selected <code>GroupLevel</code>.</p></dd>
+
+
+<dt id="arg-rctv-strgroupid">rctv_strGroupID<a class="anchor" aria-label="anchor" href="#arg-rctv-strgroupid"></a></dt>
+<dd><p><code>reactive character</code> A <code><a href="https://rdrr.io/pkg/shiny/man/reactiveVal.html" class="external-link">shiny::reactiveVal()</a></code> object
+that returns the <code>GroupID</code> of the selected group (usually site), and can be
+used to update which group is selected.</p></dd>
+
+
+<dt id="arg-rctv-strsubjectid">rctv_strSubjectID<a class="anchor" aria-label="anchor" href="#arg-rctv-strsubjectid"></a></dt>
+<dd><p><code>reactive character</code> A <code><a href="https://rdrr.io/pkg/shiny/man/reactive.html" class="external-link">shiny::reactive()</a></code> object
+that returns the <code>SubjectID</code> of the selected participant.</p></dd>
+
+
+<dt id="arg-l-rctvdomainloaded">l_rctvDomainLoaded<a class="anchor" aria-label="anchor" href="#arg-l-rctvdomainloaded"></a></dt>
+<dd><p><code>list</code> A named list of <code><a href="https://rdrr.io/pkg/shiny/man/reactive.html" class="external-link">shiny::reactive()</a></code> objects.
+The list contains a "Study" element and an element per group level, each of
+which returns a <code>logical</code> (<code>FALSE</code> if the data has not been accessed,
+<code>TRUE</code> if it has).</p></dd>
 
 </dl></div>
     <div class="section level2">
