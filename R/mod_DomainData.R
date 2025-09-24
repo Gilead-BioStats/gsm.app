@@ -6,19 +6,25 @@
 #' @keywords internal
 mod_DomainData_UI <- function(id, strDomainLabel, strDomainID) {
   ns <- NS(id)
+  # This module really should be just the gt table, and then there should be a
+  # higher-level, enclosing module with the tab + columns.
   bslib::nav_panel(
     title = strDomainLabel,
     value = strDomainID,
-    out_Card(
-      tagTitle = NULL,
-      shinycssloaders::withSpinner(
-        mod_gtBidirectional_UI(ns("gt")),
-        type = 7,
-        id = ns("spinner"),
-        caption = "loading data...",
-        proxy.height = "200px"
+    bslib::layout_columns(
+      mod_PrevalencePlotCard_UI(ns("prevalence_plot")),
+      out_Card(
+        tagTitle = NULL,
+        shinycssloaders::withSpinner(
+          mod_gtBidirectional_UI(ns("gt")),
+          type = 7,
+          id = ns("spinner"),
+          caption = "loading data...",
+          proxy.height = "200px"
+        ),
+        id = ns("card")
       ),
-      id = ns("card")
+      col_widths = c(4, 8)
     )
   )
 }
@@ -36,9 +42,25 @@ mod_DomainData_Server <- function(
   id,
   rctv_dfDomain,
   rctv_strDomainHash,
-  rctv_strGroupLevel
+  rctv_dfDomain_Study,
+  rctv_dfDomain_Group,
+  rctv_strGroupLevel,
+  rctv_strGroupID,
+  rctv_strSubjectID,
+  l_rctvDomainLoaded
 ) {
   moduleServer(id, function(input, output, session) {
+    mod_PrevalencePlotCard_Server(
+      "prevalence_plot",
+      rctv_dfDomain,
+      rctv_dfDomain_Group,
+      rctv_dfDomain_Study,
+      rctv_strGroupLevel,
+      rctv_strGroupID,
+      rctv_strSubjectID,
+      l_rctvDomainLoaded
+    )
+
     rctv_tblData <- reactive({
       if (NROW(rctv_dfDomain())) {
         return({
@@ -64,7 +86,8 @@ mod_DomainData_Server <- function(
         df <- rctv_tblData() # Tested via UI
         gtObj <- gt::gt(df) %>% # Tested via UI
           out_gtInteractive(selection_mode = "multiple") %>% # Tested via UI
-          gt::cols_label( # Tested via UI
+          gt::cols_label(
+            # Tested via UI
             .list = gsm.kri::MakeParamLabelsList(colnames(df), chrFieldNames) # Tested via UI
           ) %>% # Tested via UI
           out_gtSmartFmtNumbers(intMaxDecimals = 10L) # Tested via UI

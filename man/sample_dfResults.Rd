@@ -5,7 +5,7 @@
 \alias{sample_dfResults}
 \title{KRI Results Dataset}
 \format{
-A tibble with 944 rows and
+A tibble with 1073 rows and
 10 columns:
 \describe{
 \item{GroupID}{grouping variable}
@@ -36,6 +36,7 @@ Other sample data:
 \code{\link{sample_dfBounds}},
 \code{\link{sample_dfGroups}},
 \code{\link{sample_dfMetrics}},
+\code{\link{sample_fnCountData}()},
 \code{\link{sample_fnFetchData}()}
 }
 \concept{sample data}

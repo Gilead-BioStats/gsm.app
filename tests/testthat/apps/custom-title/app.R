@@ -1,10 +1,8 @@
-# Launch the ShinyApp (Do not remove this comment)
-# To deploy, run: rsconnect::deployApp()
-# Or use the blue button on top of this file
+# Launch the shiny::shinyApp (Do not remove this comment)
 
 if (
   isTRUE(as.logical(Sys.getenv("TESTTHAT_IS_CHECKING", "false"))) ||
-  isTRUE(as.logical(Sys.getenv("R_COVR", "false")))
+    isTRUE(as.logical(Sys.getenv("R_COVR", "false")))
 ) {
   library("gsm.app")
 } else {

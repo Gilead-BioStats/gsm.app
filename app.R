@@ -1,4 +1,5 @@
-# Launch the ShinyApp (Do not remove this comment)
+# Launch the shiny::shinyApp (Do not remove this comment)
+
 if (
   grepl("gsm\\.app", getwd()) ||
     !("gsm.app" %in% list.files(.libPaths()))
@@ -31,6 +32,12 @@ ParticipantProfilePlugin <- plugin_Read(
 
 plugin_LoadDependencies(ParticipantProfilePlugin)
 
+# Use a larger cache (0.5 GB, vs default 200 MB) to hold more domain details in
+# RAM.
+shiny::shinyOptions(
+  cache = cachem::cache_mem(max_size = 512 * 1024^2)
+)
+
 run_gsm_app(
   dfAnalyticsInput = gsm.app::sample_dfAnalyticsInput,
   dfBounds = gsm.app::sample_dfBounds,
@@ -38,6 +45,7 @@ run_gsm_app(
   dfMetrics = gsm.app::sample_dfMetrics,
   dfResults = gsm.app::sample_dfResults,
   fnFetchData = sample_fnFetchData,
+  fnCountData = sample_fnCountData,
   lPlugins = list(ParticipantProfilePlugin),
   strFavicon = Sys.getenv("GSMAPP_FAVICON", "angles-up"),
   strFaviconColor = Sys.getenv("GSMAPP_FAVICONCOLOR", ColorScheme("red")),

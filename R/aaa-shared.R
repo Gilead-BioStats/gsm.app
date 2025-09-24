@@ -10,6 +10,7 @@
 #' @param chrAllowedValues `character` A vector of allowed values for a vector.
 #' @param chrChoices `character` A (named, optionally) vector of choices for
 #'   this input.
+#' @param chrColors `character` Colors to use for a scale, labels, etc.
 #' @param chrDomains `character` A (named) vector of domains to include in the
 #'   app. The values of the vector will be used as labels, and the names will be
 #'   used as IDs. The IDs will be passed to `fnFetchData()` to fetch data about
@@ -44,6 +45,14 @@
 #' @param dfBounds `data.frame` Set of predicted percentages/rates and upper-
 #'   and lower-bounds across the full range of sample sizes/total exposure
 #'   values for reporting. Created with [gsm.reporting::MakeBounds()].
+#' @param dfDomain `data.frame` Detailed data about a specific domain, such as
+#'   "Adverse Events".
+#' @param dfDomain_Group `data.frame` Detailed data about a specific domain,
+#'   such as "Adverse Events", at the group level.
+#' @param dfDomain_Participant `data.frame` Detailed data about a specific
+#'   domain, such as "Adverse Events", at the participant level.
+#' @param dfDomain_Study `data.frame` Detailed data about a specific domain,
+#'   such as "Adverse Events", at the study level.
 #' @param dfGroups `data.frame` Group-level metadata dictionary. See
 #'   `vignette("DataReporting", package = "gsm.reporting")` for an example.
 #' @param dfMetrics `data.frame` Metric-specific metadata for use in charts and
@@ -88,6 +97,9 @@
 #' @param intAmber `integer` The number of groups with at least one amber flag.
 #' @param intKRIColorCount `integer` A named vector of counts by color.
 #' @param intRed `integer` The number of groups with at least one red flag.
+#' @param l_rctvActive `list` A named list of [shiny::reactive()] objects, each
+#'   of which returns a populated character vector or something that becomes
+#'   `NULL` when passed through [NullifyEmpty()].
 #' @param l_rctvDomainHashes `list` A named list of [shiny::reactive()] objects,
 #'   each of which returns the [rlang::hash()] of a domain dataframe.
 #' @param l_rctvDomainHashes_Selection `list` A named list of
@@ -130,6 +142,8 @@
 #' @param rctv_bPluginReady `reactive Boolean` A [shiny::reactive()] object that
 #'   returns `TRUE` if all inputs required by the plugin are non-empty, and
 #'   `FALSE` if one or more inputs are not ready.
+#' @param rctv_chrChoices `reactive character` Choices to set.
+#' @param rctv_chrDisabledChoices `reactive character` Choices to disable.
 #' @param rctv_dfBounds `reactive dataframe` A [shiny::reactive()] object that
 #'   returns a set of predicted percentages/rates and upper- and lower-bounds
 #'   across the full range of sample sizes/total exposure values for reporting.
@@ -137,6 +151,13 @@
 #'   returns a generic dataframe.
 #' @param rctv_dfDomain `reactive dataframe` A [shiny::reactive()] object that
 #'   returns a domain dataframe.
+#' @param rctv_dfDomain_Combined `reactive dataframe` A [shiny::reactive()]
+#'   object that returns a study-, group-, and/or participant-level domain
+#'   dataframe.
+#' @param rctv_dfDomain_Group `reactive dataframe` A [shiny::reactive()] object
+#'   that returns a group-level domain dataframe.
+#' @param rctv_dfDomain_Study `reactive dataframe` A [shiny::reactive()] object
+#'   that returns a study-level domain dataframe.
 #' @param rctv_dfResults `reactive dataframe` A [shiny::reactive()] object that
 #'   returns a stacked summary of analysis pipeline output.
 #' @param rctv_dSnapshotDate `reactive Date` A [shiny::reactive()] object that
@@ -147,12 +168,17 @@
 #'   that returns the count of rows for the current selection for all domains.
 #' @param rctv_lColumnNames `reactive list` A [shiny::reactive()] object that
 #'   returns a named list of column names to substitute into tables for display.
+#' @param rctv_lglDisable `reactive logical` Whether to disable the menu.
+#' @param rctv_lglOpen `reactive logical` Whether to open (`TRUE`) or close
+#'   (`FALSE`) the menu.
 #' @param rctv_lglState `reactive logical` A [shiny::reactive()]] object that
 #'   returns a Boolean value indicating whether something is "off" (`FALSE`) or
 #'   "on" (`TRUE`).
 #' @param rctv_lMetric `reactive list` A [shiny::reactive()] object that returns
 #'   a named list of data describing a single metric, as well as things like
 #'   which group is selected.
+#' @param rctv_strCategory `reactive character` A [shiny::reactive()] object
+#'   that returns the currently selected category.
 #' @param rctv_strCurrentTab `reactive character` A [shiny::reactive()] object
 #'   that returns the currently selected tab.
 #' @param rctv_strDomainHash `reactive character` A [shiny::reactive()] object
@@ -170,11 +196,13 @@
 #'   returns the value(s) of an input to share with an interactive gt table. If
 #'   this argument is a [shiny::reactiveVal()], it will be used to push updates
 #'   back to the calling function.
+#' @param rctv_strLabel `reactive character` Label to set.
 #' @param rctv_strMetricID `reactive character` A [shiny::reactive()] object
 #'   that returns the selected `MetricID`.
 #' @param rctv_strName `reactive character` A [shiny::reactive()] object that
 #'   returns the name of an object, such as a particular dataframe in a named
 #'   list.
+#' @param rctv_strSelected `reactive character` Selected value to set.
 #' @param rctv_strSelection `reactiveVal` A `reactiveVal` from the parent scope
 #'   that this module will update with its selection.
 #' @param rctv_strSubjectID `reactive character` A [shiny::reactive()] object
@@ -188,6 +216,7 @@
 #'   the calling function if the calling function also has a `strArg` argument.
 #' @param strCache `character` An additional string to ensure that a cache key
 #'   is unique.
+#' @param strCategory `character` A category to focus on.
 #' @param strClass `character` A descriptive label for this type of error, in
 #'   lower_snake_case.
 #' @param strColorCode `character` The hex code (such as `"#FFFFFF"`) for a
@@ -199,7 +228,8 @@
 #'   (usually a div).
 #' @param strDomainID `character` The domain data.frame to load.
 #' @param strDomainLabel `character` The domain name to display. For example,
-#'   for ID `"AE"`, the label is `"Adverse Events"`.
+#'   for ID `"AE"`, the label is `"Adverse Events"`. Can also be a
+#'   [shiny::uiOutput()] which renders to an inline string.
 #' @param strEmpty `character` The value to return when everything is
 #'   deselected.
 #' @param strFavicon `character` The name of an icon to use in the browser tab
@@ -228,6 +258,8 @@
 #' @param strInputName `character` The name of an input. One of `"group"`,
 #'   `"level"`, `"participant"`, or `"domain"`.
 #' @param strLabel `character` The label of a field.
+#' @param strLevel `character` The grouping level for this data (one of
+#'   `"Study"`, `"Group"` or `"Participant"`, generally).
 #' @param strMetricID `character` A `MetricID` to focus on.
 #' @param strOutcome `character` Outcome variable. Default: `"Score"`.
 #' @param strPlotTitle `character` A title for a plot, usually the name of a

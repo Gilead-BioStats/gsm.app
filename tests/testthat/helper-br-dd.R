@@ -1,10 +1,10 @@
 # expect_domain_counts ----
 expect_domain_counts <- function(
-    app,
-    strGroupID = NULL,
-    strSubjectID = NULL,
-    strGroupLevel = "Site",
-    dSnapshotDate = "2012-03-31"
+  app,
+  strGroupID = NULL,
+  strSubjectID = NULL,
+  strGroupLevel = "Site",
+  dSnapshotDate = "2012-03-31"
 ) {
   domain_counts_actual <- get_domain_counts(app)
   domain_counts_expected <- get_domain_counts_expected(
@@ -19,21 +19,24 @@ expect_domain_counts <- function(
   )
 }
 
+get_domain_tab_labels <- function(app) {
+  app$get_text("#domain_details-selected_tab li") %>%
+    stringr::str_trim()
+}
+
 get_domain_counts <- function(app) {
-  selector <- "#domain_details-counts-card"
-  labels <- app$get_text(paste(selector, ".metadata-list-item-label a"))
-  counts <- app$get_text(paste(selector, ".metadata-list-item-value")) %>%
-    as.integer()
+  tab_labels <- get_domain_tab_labels(app)
+  tab_label_regex <- "^([^0-9]+) \\((\\d+)\\)$"
+  labels <- stringr::str_extract(tab_labels, tab_label_regex, 1)
+  counts <- as.integer(stringr::str_extract(tab_labels, tab_label_regex, 2))
   rlang::set_names(counts, labels)
 }
 
-sample_fnCountData <- ConstructDataCounter(sample_fnFetchData)
-
 get_domain_counts_expected <- function(
-    strGroupID = NULL,
-    strSubjectID = NULL,
-    strGroupLevel = "Site",
-    dSnapshotDate = "2012-03-31"
+  strGroupID = NULL,
+  strSubjectID = NULL,
+  strGroupLevel = "Site",
+  dSnapshotDate = "2012-03-31"
 ) {
   chrDomains <- c(
     `Adverse Events` = "AE",
@@ -126,7 +129,7 @@ get_expected_domain_df_row <- function(
   )
   # Need to do as.character col-by-col so, for example, dates are converted
   # properly.
-  row <- purrr::map_chr(df[row_number,], as.character)
+  row <- purrr::map_chr(df[row_number, ], as.character)
   names(row) <- MakeParamLabelsChr(names(row), chrFieldNames)
   row
 }

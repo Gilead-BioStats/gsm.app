@@ -5,6 +5,7 @@
 mod_StudyOverview_UI <- function(id, dfGroups, dfResults, dfMetrics) {
   ns <- NS(id)
   dfResults <- gsm.kri::FilterByLatestSnapshotDate(dfResults)
+  strSiteRiskMetric <- "Analysis_srs0001"
 
   bslib::layout_columns(
     col_widths = c(3, 9),
@@ -17,7 +18,10 @@ mod_StudyOverview_UI <- function(id, dfGroups, dfResults, dfMetrics) {
       ),
       bslib::nav_panel(
         title = "Scatter Plots",
-        mod_ScatterPlotSet_UI(ns("scatter"), dfMetrics)
+        mod_ScatterPlotSet_UI(
+          ns("scatter"),
+          dplyr::filter(dfMetrics, .data$MetricID != strSiteRiskMetric)
+        )
       )
     )
   )
@@ -37,6 +41,7 @@ mod_StudyOverview_Server <- function(
   rctv_strGroupLevel,
   rctv_strMetricID
 ) {
+  strSiteRiskMetric <- "Analysis_srs0001"
   moduleServer(id, function(input, output, session) {
     rctv_intClickCounter <- reactiveVal()
 
@@ -55,7 +60,7 @@ mod_StudyOverview_Server <- function(
     mod_ScatterPlotSet_Server(
       "scatter",
       dfResults = dfResults,
-      dfMetrics = dfMetrics,
+      dfMetrics = dplyr::filter(dfMetrics, .data$MetricID != strSiteRiskMetric),
       dfGroups = dfGroups,
       dfBounds = dfBounds,
       rctv_strGroupID = rctv_strGroupID,

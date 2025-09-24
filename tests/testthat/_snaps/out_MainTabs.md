@@ -475,13 +475,13 @@
         
         <tbody class="gt_table_body">
           <tr><td headers="Description" class="gt_row gt_left">Nickname</td>
-      <td headers="Value" class="gt_row gt_right">TREE-10</td></tr>
+      <td headers="Value" class="gt_row gt_right">TREE-71</td></tr>
           <tr><td headers="Description" class="gt_row gt_left">Status</td>
       <td headers="Value" class="gt_row gt_right">Active</td></tr>
           <tr><td headers="Description" class="gt_row gt_left">Site Activation</td>
-      <td headers="Value" class="gt_row gt_right">44 / 50 (88%)</td></tr>
+      <td headers="Value" class="gt_row gt_right">48 / 50 (96%)</td></tr>
           <tr><td headers="Description" class="gt_row gt_left">Participant Enrollment</td>
-      <td headers="Value" class="gt_row gt_right">173 / 250 (69.2%)</td></tr>
+      <td headers="Value" class="gt_row gt_right">179 / 250 (71.6%)</td></tr>
         </tbody>
         
         
@@ -943,9 +943,9 @@
           <tr><td headers="Description" class="gt_row gt_left">Studyid</td>
       <td headers="Value" class="gt_row gt_right">DEMO-001</td></tr>
           <tr><td headers="Description" class="gt_row gt_left">Nickname</td>
-      <td headers="Value" class="gt_row gt_right">TREE-10</td></tr>
+      <td headers="Value" class="gt_row gt_right">TREE-71</td></tr>
           <tr><td headers="Description" class="gt_row gt_left">Protocol Title</td>
-      <td headers="Value" class="gt_row gt_right">Protocol Title X</td></tr>
+      <td headers="Value" class="gt_row gt_right">Protocol Title I</td></tr>
           <tr><td headers="Description" class="gt_row gt_left">Status</td>
       <td headers="Value" class="gt_row gt_right">Active</td></tr>
           <tr><td headers="Description" class="gt_row gt_left">Num Plan Site</td>
@@ -953,37 +953,37 @@
           <tr><td headers="Description" class="gt_row gt_left">Num Plan Subj</td>
       <td headers="Value" class="gt_row gt_right">250</td></tr>
           <tr><td headers="Description" class="gt_row gt_left">Act Fpfv</td>
-      <td headers="Value" class="gt_row gt_right">2012-01-28</td></tr>
-          <tr><td headers="Description" class="gt_row gt_left">Est Fpfv</td>
       <td headers="Value" class="gt_row gt_right">2012-01-03</td></tr>
+          <tr><td headers="Description" class="gt_row gt_left">Est Fpfv</td>
+      <td headers="Value" class="gt_row gt_right">2012-01-14</td></tr>
           <tr><td headers="Description" class="gt_row gt_left">Est Lplv</td>
-      <td headers="Value" class="gt_row gt_right">2012-07-10</td></tr>
+      <td headers="Value" class="gt_row gt_right">2012-07-01</td></tr>
           <tr><td headers="Description" class="gt_row gt_left">Est Lpfv</td>
-      <td headers="Value" class="gt_row gt_right">2012-03-16</td></tr>
+      <td headers="Value" class="gt_row gt_right">2012-03-14</td></tr>
           <tr><td headers="Description" class="gt_row gt_left">Therapeutic Area</td>
       <td headers="Value" class="gt_row gt_right">Virology</td></tr>
           <tr><td headers="Description" class="gt_row gt_left">Protocol Indication</td>
-      <td headers="Value" class="gt_row gt_right">Hematology</td></tr>
+      <td headers="Value" class="gt_row gt_right">Lung Function</td></tr>
           <tr><td headers="Description" class="gt_row gt_left">Phase</td>
-      <td headers="Value" class="gt_row gt_right">P2</td></tr>
+      <td headers="Value" class="gt_row gt_right">P3</td></tr>
           <tr><td headers="Description" class="gt_row gt_left">Product</td>
-      <td headers="Value" class="gt_row gt_right">Product Name 30</td></tr>
+      <td headers="Value" class="gt_row gt_right">Product Name 6</td></tr>
           <tr><td headers="Description" class="gt_row gt_left">Site Target</td>
       <td headers="Value" class="gt_row gt_right">50</td></tr>
           <tr><td headers="Description" class="gt_row gt_left">Participant Target</td>
       <td headers="Value" class="gt_row gt_right">250</td></tr>
           <tr><td headers="Description" class="gt_row gt_left">Participants Enrolled</td>
-      <td headers="Value" class="gt_row gt_right">173</td></tr>
+      <td headers="Value" class="gt_row gt_right">179</td></tr>
           <tr><td headers="Description" class="gt_row gt_left">Sites Enrolled</td>
-      <td headers="Value" class="gt_row gt_right">44</td></tr>
+      <td headers="Value" class="gt_row gt_right">48</td></tr>
           <tr><td headers="Description" class="gt_row gt_left">Percent Sites Activated</td>
-      <td headers="Value" class="gt_row gt_right">88</td></tr>
+      <td headers="Value" class="gt_row gt_right">96</td></tr>
           <tr><td headers="Description" class="gt_row gt_left">Site Activation</td>
-      <td headers="Value" class="gt_row gt_right">44 / 50 (88%)</td></tr>
+      <td headers="Value" class="gt_row gt_right">48 / 50 (96%)</td></tr>
           <tr><td headers="Description" class="gt_row gt_left">Percent Participants Enrolled</td>
-      <td headers="Value" class="gt_row gt_right">69.2</td></tr>
+      <td headers="Value" class="gt_row gt_right">71.6</td></tr>
           <tr><td headers="Description" class="gt_row gt_left">Participant Enrollment</td>
-      <td headers="Value" class="gt_row gt_right">173 / 250 (69.2%)</td></tr>
+      <td headers="Value" class="gt_row gt_right">179 / 250 (71.6%)</td></tr>
         </tbody>
         
         
@@ -1392,11 +1392,11 @@
       <div class="tab-pane" title="Metric Details" data-value="Metric Details">
         <div class="tabbable">
           <ul class="nav nav-underline shiny-tab-input" id="metric_details-selected_tab" data-tabsetid="XXXX">
-            <li class="bslib-nav-item nav-item form-inline navbar-extras" id="metric-chooser-div">
+            <li class="bslib-nav-item nav-item form-inline inline-select" id="metric_details-metric">
               <div class="form-group shiny-input-container shiny-input-container-inline">
-                <label class="control-label shiny-label-null" for="metric_details-metric" id="metric_details-metric-label"></label>
-                <div id="metric_details-metric" class="virtual-select" style="display:inline-block;" data-update="change">
-                  <script type="application/json" data-for="metric_details-metric">{"stateInput":true,"options":{"type":["transpose"],"choices":{"label":["Adverse Event Rate","Data Change Rate","Delayed Data Entry Rate","Delayed Query Resolution Rate","Grade 3+ Lab Abnormality Rate","Important Protocol Deviation Rate","Non-Important Protocol Deviation Rate","Query Rate","Serious Adverse Event Rate","Study Discontinuation Rate","Treatment Discontinuation Rate"],"value":["Analysis_kri0001","Analysis_kri0011","Analysis_kri0010","Analysis_kri0009","Analysis_kri0005","Analysis_kri0004","Analysis_kri0003","Analysis_kri0008","Analysis_kri0002","Analysis_kri0006","Analysis_kri0007"]}},"config":{"multiple":false,"search":false,"hideClearButton":true,"autoSelectFirstOption":true,"showSelectedOptionsFirst":false,"showValueAsTags":false,"optionsCount":10,"noOfDisplayValues":50,"allowNewOption":false,"disableSelectAll":true,"disableOptionGroupCheckbox":true,"disabled":false}}</script>
+                <label class="control-label shiny-label-null" for="metric_details-metric-select" id="metric_details-metric-select-label"></label>
+                <div id="metric_details-metric-select" class="virtual-select" style="display:inline-block;" data-update="change">
+                  <script type="application/json" data-for="metric_details-metric-select">{"stateInput":true,"options":{"type":["transpose"],"choices":{"label":["Adverse Event Rate","Data Change Rate","Delayed Data Entry Rate","Delayed Query Resolution Rate","Grade 3+ Lab Abnormality Rate","Important Protocol Deviation Rate","Non-Important Protocol Deviation Rate","Query Rate","Serious Adverse Event Rate","Study Discontinuation Rate","Treatment Discontinuation Rate"],"value":["Analysis_kri0001","Analysis_kri0011","Analysis_kri0010","Analysis_kri0009","Analysis_kri0005","Analysis_kri0004","Analysis_kri0003","Analysis_kri0008","Analysis_kri0002","Analysis_kri0006","Analysis_kri0007"]}},"config":{"multiple":false,"search":false,"hideClearButton":true,"autoSelectFirstOption":true,"showSelectedOptionsFirst":false,"showValueAsTags":false,"optionsCount":10,"noOfDisplayValues":50,"allowNewOption":false,"disableSelectAll":true,"disableOptionGroupCheckbox":true,"disabled":false}}</script>
                 </div>
               </div>
             </li>
@@ -1557,59 +1557,115 @@
       
       [[3]]
       <div class="tab-pane" title="Domain Details" data-value="Domain Details">
-        <bslib-layout-columns class="bslib-grid grid bslib-mb-spacing html-fill-item" col-widths-sm="3,9" data-require-bs-caller="layout_columns()" data-require-bs-version="5">
-          <div class="bslib-grid-item bslib-gap-spacing html-fill-container">
-            <div>
-              <style>#domain_details-counts-card .bslib-full-screen-enter { bottom: unset !important; }</style>
-              <div class="card bslib-card bslib-mb-spacing bslib-card-input html-fill-item html-fill-container" data-bslib-card-init data-full-screen="false" data-require-bs-caller="card()" data-require-bs-version="5" id="domain_details-counts-card">
-                <div class="card-body bslib-gap-spacing html-fill-item html-fill-container" style="margin-top:auto;margin-bottom:auto;flex:1 1 auto;">
-                  <h5>Domain Summary</h5>
-                  <div id="domain_details-counts-domain_list" class="shiny-html-output"></div>
+        <div class="tabbable">
+          <ul class="nav nav-underline shiny-tab-input" id="domain_details-selected_tab" data-tabsetid="XXXX">
+            <li class="active">
+              <a href="#tab-XXXX-1" data-toggle="tab" data-bs-toggle="tab" data-value="AE">Adverse Events (<span id="domain_details-AE-count" class="shiny-text-output"></span>)</a>
+            </li>
+            <li>
+              <a href="#tab-XXXX-2" data-toggle="tab" data-bs-toggle="tab" data-value="DATACHG">Data Changes (<span id="domain_details-DATACHG-count" class="shiny-text-output"></span>)</a>
+            </li>
+            <li>
+              <a href="#tab-XXXX-3" data-toggle="tab" data-bs-toggle="tab" data-value="DATAENT">Data Entry (<span id="domain_details-DATAENT-count" class="shiny-text-output"></span>)</a>
+            </li>
+            <li>
+              <a href="#tab-XXXX-4" data-toggle="tab" data-bs-toggle="tab" data-value="ENROLL">Enrollment (<span id="domain_details-ENROLL-count" class="shiny-text-output"></span>)</a>
+            </li>
+            <li>
+              <a href="#tab-XXXX-5" data-toggle="tab" data-bs-toggle="tab" data-value="LB">Lab (<span id="domain_details-LB-count" class="shiny-text-output"></span>)</a>
+            </li>
+            <li>
+              <a href="#tab-XXXX-6" data-toggle="tab" data-bs-toggle="tab" data-value="PD">Protocol Deviations (<span id="domain_details-PD-count" class="shiny-text-output"></span>)</a>
+            </li>
+            <li>
+              <a href="#tab-XXXX-7" data-toggle="tab" data-bs-toggle="tab" data-value="QUERY">Queries (<span id="domain_details-QUERY-count" class="shiny-text-output"></span>)</a>
+            </li>
+            <li>
+              <a href="#tab-XXXX-8" data-toggle="tab" data-bs-toggle="tab" data-value="STUDCOMP">Study Completion (<span id="domain_details-STUDCOMP-count" class="shiny-text-output"></span>)</a>
+            </li>
+            <li>
+              <a href="#tab-XXXX-9" data-toggle="tab" data-bs-toggle="tab" data-value="SUBJ">Subject Metadata (<span id="domain_details-SUBJ-count" class="shiny-text-output"></span>)</a>
+            </li>
+            <li>
+              <a href="#tab-XXXX-10" data-toggle="tab" data-bs-toggle="tab" data-value="SDRGCOMP">Treatment Completion (<span id="domain_details-SDRGCOMP-count" class="shiny-text-output"></span>)</a>
+            </li>
+          </ul>
+          <div class="tab-content" data-tabsetid="XXXX">
+            <div class="tab-pane active" data-value="AE" id="tab-XXXX-1">
+              <bslib-layout-columns class="bslib-grid grid bslib-mb-spacing html-fill-item" col-widths-sm="4,8" data-require-bs-caller="layout_columns()" data-require-bs-version="5">
+                <div class="bslib-grid-item bslib-gap-spacing html-fill-container">
+                  <div>
+                    <style>#domain_details-AE-prevalence_plot-card .bslib-full-screen-enter { bottom: unset !important; }</style>
+                    <div class="card bslib-card bslib-mb-spacing bslib-card-input html-fill-item html-fill-container" data-bslib-card-init data-full-screen="false" data-require-bs-caller="card()" data-require-bs-version="5" id="domain_details-AE-prevalence_plot-card">
+                      <div class="card-body bslib-gap-spacing html-fill-item html-fill-container" style="margin-top:auto;margin-bottom:auto;flex:1 1 auto;">
+                        <div id="domain_details-AE-prevalence_plot-title">
+                          <span id="domain_details-AE-prevalence_plot-category-select" class="inline-select">
+                            <div class="form-group shiny-input-container shiny-input-container-inline">
+                              <label class="control-label shiny-label-null" for="domain_details-AE-prevalence_plot-category-select-select" id="domain_details-AE-prevalence_plot-category-select-select-label"></label>
+                              <div id="domain_details-AE-prevalence_plot-category-select-select" class="virtual-select" style="display:inline-block;" data-update="change">
+                                <script type="application/json" data-for="domain_details-AE-prevalence_plot-category-select-select">{"stateInput":true,"options":{"type":["vector"],"choices":[""]},"config":{"multiple":false,"search":false,"hideClearButton":true,"autoSelectFirstOption":true,"showSelectedOptionsFirst":false,"showValueAsTags":false,"optionsCount":10,"noOfDisplayValues":50,"allowNewOption":false,"disableSelectAll":true,"disableOptionGroupCheckbox":true,"disabled":false}}</script>
+                              </div>
+                            </div>
+                          </span>
+                          <span id="domain_details-AE-prevalence_plot-key" class="label-key-container">
+                            by
+                            <div class="form-group shiny-input-container shiny-input-checkboxgroup shiny-input-container-inline">
+                              <label class="control-label shiny-label-null" for="domain_details-AE-prevalence_plot-key-Study" id="domain_details-AE-prevalence_plot-key-Study-label"></label>
+                              <div id="domain_details-AE-prevalence_plot-key-Study" class="checkbox-group-buttons">
+                                <div aria-labelledby="domain_details-AE-prevalence_plot-key-Study-label" class="btn-group btn-group-container-sw" data-toggle="buttons" role="group">
+                                  <div class="btn-group btn-group-toggle" role="group">
+                                    <button class="btn checkbtn btn-label-key-study">
+                                      <input type="checkbox" autocomplete="off" name="domain_details-AE-prevalence_plot-key-Study" value="Study"/>
+                                      Study
+                                    </button>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                            <div class="form-group shiny-input-container shiny-input-checkboxgroup shiny-input-container-inline">
+                              <label class="control-label shiny-label-null" for="domain_details-AE-prevalence_plot-key-Group" id="domain_details-AE-prevalence_plot-key-Group-label"></label>
+                              <div id="domain_details-AE-prevalence_plot-key-Group" class="checkbox-group-buttons">
+                                <div aria-labelledby="domain_details-AE-prevalence_plot-key-Group-label" class="btn-group btn-group-container-sw" data-toggle="buttons" role="group">
+                                  <div class="btn-group btn-group-toggle" role="group">
+                                    <button class="btn checkbtn btn-label-key-group">
+                                      <input type="checkbox" autocomplete="off" name="domain_details-AE-prevalence_plot-key-Group" value="Group"/>
+                                      Group
+                                    </button>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                            <div class="form-group shiny-input-container shiny-input-checkboxgroup shiny-input-container-inline">
+                              <label class="control-label shiny-label-null" for="domain_details-AE-prevalence_plot-key-Participant" id="domain_details-AE-prevalence_plot-key-Participant-label"></label>
+                              <div id="domain_details-AE-prevalence_plot-key-Participant" class="checkbox-group-buttons">
+                                <div aria-labelledby="domain_details-AE-prevalence_plot-key-Participant-label" class="btn-group btn-group-container-sw" data-toggle="buttons" role="group">
+                                  <div class="btn-group btn-group-toggle" role="group">
+                                    <button class="btn checkbtn btn-label-key-participant">
+                                      <input type="checkbox" autocomplete="off" name="domain_details-AE-prevalence_plot-key-Participant" value="Participant"/>
+                                      Participant
+                                    </button>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                            <bslib-tooltip id="domain_details-AE-prevalence_plot-key-help" placement="right" bsOptions="[]" data-require-bs-version="5" data-require-bs-caller="tooltip()">
+                              <template>Click Study, Group, or Participant buttons to toggle display of those bars. Gray buttons require a Site or Participant selection in the main app menu at the top-right.</template>
+                              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" class="bi bi-question-circle " style="height:1em;width:1em;fill:currentColor;vertical-align:-0.125em;" aria-hidden="true" role="img" ><path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"></path>
+      <path d="M5.255 5.786a.237.237 0 0 0 .241.247h.825c.138 0 .248-.113.266-.25.09-.656.54-1.134 1.342-1.134.686 0 1.314.343 1.314 1.168 0 .635-.374.927-.965 1.371-.673.489-1.206 1.06-1.168 1.987l.003.217a.25.25 0 0 0 .25.246h.811a.25.25 0 0 0 .25-.25v-.105c0-.718.273-.927 1.01-1.486.609-.463 1.244-.977 1.244-2.056 0-1.511-1.276-2.241-2.673-2.241-1.267 0-2.655.59-2.75 2.286zm1.557 5.763c0 .533.425.927 1.01.927.609 0 1.028-.394 1.028-.927 0-.552-.42-.94-1.029-.94-.584 0-1.009.388-1.009.94z"></path></svg>
+                            </bslib-tooltip>
+                          </span>
+                        </div>
+                        <div class="shiny-plot-output html-fill-item" id="domain_details-AE-prevalence_plot-plot-plot" style="width:100%;height:400px;"></div>
+                      </div>
+                      <bslib-tooltip placement="auto" bsOptions="[]" data-require-bs-version="5" data-require-bs-caller="tooltip()">
+                        <template>Expand</template>
+                        <button aria-expanded="false" aria-label="Expand card" class="bslib-full-screen-enter badge rounded-pill"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" style="height:1em;width:1em;fill:currentColor;" aria-hidden="true" role="img"><path d="M20 5C20 4.4 19.6 4 19 4H13C12.4 4 12 3.6 12 3C12 2.4 12.4 2 13 2H21C21.6 2 22 2.4 22 3V11C22 11.6 21.6 12 21 12C20.4 12 20 11.6 20 11V5ZM4 19C4 19.6 4.4 20 5 20H11C11.6 20 12 20.4 12 21C12 21.6 11.6 22 11 22H3C2.4 22 2 21.6 2 21V13C2 12.4 2.4 12 3 12C3.6 12 4 12.4 4 13V19Z"/></svg></button>
+                      </bslib-tooltip>
+                      <script data-bslib-card-init>bslib.Card.initializeAllCards();</script>
+                    </div>
+                  </div>
                 </div>
-                <bslib-tooltip placement="auto" bsOptions="[]" data-require-bs-version="5" data-require-bs-caller="tooltip()">
-                  <template>Expand</template>
-                  <button aria-expanded="false" aria-label="Expand card" class="bslib-full-screen-enter badge rounded-pill"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" style="height:1em;width:1em;fill:currentColor;" aria-hidden="true" role="img"><path d="M20 5C20 4.4 19.6 4 19 4H13C12.4 4 12 3.6 12 3C12 2.4 12.4 2 13 2H21C21.6 2 22 2.4 22 3V11C22 11.6 21.6 12 21 12C20.4 12 20 11.6 20 11V5ZM4 19C4 19.6 4.4 20 5 20H11C11.6 20 12 20.4 12 21C12 21.6 11.6 22 11 22H3C2.4 22 2 21.6 2 21V13C2 12.4 2.4 12 3 12C3.6 12 4 12.4 4 13V19Z"/></svg></button>
-                </bslib-tooltip>
-                <script data-bslib-card-init>bslib.Card.initializeAllCards();</script>
-              </div>
-            </div>
-          </div>
-          <div class="bslib-grid-item bslib-gap-spacing html-fill-container">
-            <div class="tabbable">
-              <ul class="nav nav-underline shiny-tab-input" id="domain_details-selected_tab" data-tabsetid="XXXX">
-                <li class="active">
-                  <a href="#tab-XXXX-1" data-toggle="tab" data-bs-toggle="tab" data-value="AE">Adverse Events</a>
-                </li>
-                <li>
-                  <a href="#tab-XXXX-2" data-toggle="tab" data-bs-toggle="tab" data-value="DATACHG">Data Changes</a>
-                </li>
-                <li>
-                  <a href="#tab-XXXX-3" data-toggle="tab" data-bs-toggle="tab" data-value="DATAENT">Data Entry</a>
-                </li>
-                <li>
-                  <a href="#tab-XXXX-4" data-toggle="tab" data-bs-toggle="tab" data-value="ENROLL">Enrollment</a>
-                </li>
-                <li>
-                  <a href="#tab-XXXX-5" data-toggle="tab" data-bs-toggle="tab" data-value="LB">Lab</a>
-                </li>
-                <li>
-                  <a href="#tab-XXXX-6" data-toggle="tab" data-bs-toggle="tab" data-value="PD">Protocol Deviations</a>
-                </li>
-                <li>
-                  <a href="#tab-XXXX-7" data-toggle="tab" data-bs-toggle="tab" data-value="QUERY">Queries</a>
-                </li>
-                <li>
-                  <a href="#tab-XXXX-8" data-toggle="tab" data-bs-toggle="tab" data-value="STUDCOMP">Study Completion</a>
-                </li>
-                <li>
-                  <a href="#tab-XXXX-9" data-toggle="tab" data-bs-toggle="tab" data-value="SUBJ">Subject Metadata</a>
-                </li>
-                <li>
-                  <a href="#tab-XXXX-10" data-toggle="tab" data-bs-toggle="tab" data-value="SDRGCOMP">Treatment Completion</a>
-                </li>
-              </ul>
-              <div class="tab-content" data-tabsetid="XXXX">
-                <div class="tab-pane active" data-value="AE" id="tab-XXXX-1">
+                <div class="bslib-grid-item bslib-gap-spacing html-fill-container">
                   <div>
                     <style>#domain_details-AE-card .bslib-full-screen-enter { bottom: unset !important; }</style>
                     <div class="card bslib-card bslib-mb-spacing bslib-card-input html-fill-item html-fill-container" data-bslib-card-init data-full-screen="false" data-require-bs-caller="card()" data-require-bs-version="5" id="domain_details-AE-card">
@@ -1631,7 +1687,83 @@
                     </div>
                   </div>
                 </div>
-                <div class="tab-pane" data-value="DATACHG" id="tab-XXXX-2">
+              </bslib-layout-columns>
+            </div>
+            <div class="tab-pane" data-value="DATACHG" id="tab-XXXX-2">
+              <bslib-layout-columns class="bslib-grid grid bslib-mb-spacing html-fill-item" col-widths-sm="4,8" data-require-bs-caller="layout_columns()" data-require-bs-version="5">
+                <div class="bslib-grid-item bslib-gap-spacing html-fill-container">
+                  <div>
+                    <style>#domain_details-DATACHG-prevalence_plot-card .bslib-full-screen-enter { bottom: unset !important; }</style>
+                    <div class="card bslib-card bslib-mb-spacing bslib-card-input html-fill-item html-fill-container" data-bslib-card-init data-full-screen="false" data-require-bs-caller="card()" data-require-bs-version="5" id="domain_details-DATACHG-prevalence_plot-card">
+                      <div class="card-body bslib-gap-spacing html-fill-item html-fill-container" style="margin-top:auto;margin-bottom:auto;flex:1 1 auto;">
+                        <div id="domain_details-DATACHG-prevalence_plot-title">
+                          <span id="domain_details-DATACHG-prevalence_plot-category-select" class="inline-select">
+                            <div class="form-group shiny-input-container shiny-input-container-inline">
+                              <label class="control-label shiny-label-null" for="domain_details-DATACHG-prevalence_plot-category-select-select" id="domain_details-DATACHG-prevalence_plot-category-select-select-label"></label>
+                              <div id="domain_details-DATACHG-prevalence_plot-category-select-select" class="virtual-select" style="display:inline-block;" data-update="change">
+                                <script type="application/json" data-for="domain_details-DATACHG-prevalence_plot-category-select-select">{"stateInput":true,"options":{"type":["vector"],"choices":[""]},"config":{"multiple":false,"search":false,"hideClearButton":true,"autoSelectFirstOption":true,"showSelectedOptionsFirst":false,"showValueAsTags":false,"optionsCount":10,"noOfDisplayValues":50,"allowNewOption":false,"disableSelectAll":true,"disableOptionGroupCheckbox":true,"disabled":false}}</script>
+                              </div>
+                            </div>
+                          </span>
+                          <span id="domain_details-DATACHG-prevalence_plot-key" class="label-key-container">
+                            by
+                            <div class="form-group shiny-input-container shiny-input-checkboxgroup shiny-input-container-inline">
+                              <label class="control-label shiny-label-null" for="domain_details-DATACHG-prevalence_plot-key-Study" id="domain_details-DATACHG-prevalence_plot-key-Study-label"></label>
+                              <div id="domain_details-DATACHG-prevalence_plot-key-Study" class="checkbox-group-buttons">
+                                <div aria-labelledby="domain_details-DATACHG-prevalence_plot-key-Study-label" class="btn-group btn-group-container-sw" data-toggle="buttons" role="group">
+                                  <div class="btn-group btn-group-toggle" role="group">
+                                    <button class="btn checkbtn btn-label-key-study">
+                                      <input type="checkbox" autocomplete="off" name="domain_details-DATACHG-prevalence_plot-key-Study" value="Study"/>
+                                      Study
+                                    </button>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                            <div class="form-group shiny-input-container shiny-input-checkboxgroup shiny-input-container-inline">
+                              <label class="control-label shiny-label-null" for="domain_details-DATACHG-prevalence_plot-key-Group" id="domain_details-DATACHG-prevalence_plot-key-Group-label"></label>
+                              <div id="domain_details-DATACHG-prevalence_plot-key-Group" class="checkbox-group-buttons">
+                                <div aria-labelledby="domain_details-DATACHG-prevalence_plot-key-Group-label" class="btn-group btn-group-container-sw" data-toggle="buttons" role="group">
+                                  <div class="btn-group btn-group-toggle" role="group">
+                                    <button class="btn checkbtn btn-label-key-group">
+                                      <input type="checkbox" autocomplete="off" name="domain_details-DATACHG-prevalence_plot-key-Group" value="Group"/>
+                                      Group
+                                    </button>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                            <div class="form-group shiny-input-container shiny-input-checkboxgroup shiny-input-container-inline">
+                              <label class="control-label shiny-label-null" for="domain_details-DATACHG-prevalence_plot-key-Participant" id="domain_details-DATACHG-prevalence_plot-key-Participant-label"></label>
+                              <div id="domain_details-DATACHG-prevalence_plot-key-Participant" class="checkbox-group-buttons">
+                                <div aria-labelledby="domain_details-DATACHG-prevalence_plot-key-Participant-label" class="btn-group btn-group-container-sw" data-toggle="buttons" role="group">
+                                  <div class="btn-group btn-group-toggle" role="group">
+                                    <button class="btn checkbtn btn-label-key-participant">
+                                      <input type="checkbox" autocomplete="off" name="domain_details-DATACHG-prevalence_plot-key-Participant" value="Participant"/>
+                                      Participant
+                                    </button>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                            <bslib-tooltip id="domain_details-DATACHG-prevalence_plot-key-help" placement="right" bsOptions="[]" data-require-bs-version="5" data-require-bs-caller="tooltip()">
+                              <template>Click Study, Group, or Participant buttons to toggle display of those bars. Gray buttons require a Site or Participant selection in the main app menu at the top-right.</template>
+                              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" class="bi bi-question-circle " style="height:1em;width:1em;fill:currentColor;vertical-align:-0.125em;" aria-hidden="true" role="img" ><path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"></path>
+      <path d="M5.255 5.786a.237.237 0 0 0 .241.247h.825c.138 0 .248-.113.266-.25.09-.656.54-1.134 1.342-1.134.686 0 1.314.343 1.314 1.168 0 .635-.374.927-.965 1.371-.673.489-1.206 1.06-1.168 1.987l.003.217a.25.25 0 0 0 .25.246h.811a.25.25 0 0 0 .25-.25v-.105c0-.718.273-.927 1.01-1.486.609-.463 1.244-.977 1.244-2.056 0-1.511-1.276-2.241-2.673-2.241-1.267 0-2.655.59-2.75 2.286zm1.557 5.763c0 .533.425.927 1.01.927.609 0 1.028-.394 1.028-.927 0-.552-.42-.94-1.029-.94-.584 0-1.009.388-1.009.94z"></path></svg>
+                            </bslib-tooltip>
+                          </span>
+                        </div>
+                        <div class="shiny-plot-output html-fill-item" id="domain_details-DATACHG-prevalence_plot-plot-plot" style="width:100%;height:400px;"></div>
+                      </div>
+                      <bslib-tooltip placement="auto" bsOptions="[]" data-require-bs-version="5" data-require-bs-caller="tooltip()">
+                        <template>Expand</template>
+                        <button aria-expanded="false" aria-label="Expand card" class="bslib-full-screen-enter badge rounded-pill"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" style="height:1em;width:1em;fill:currentColor;" aria-hidden="true" role="img"><path d="M20 5C20 4.4 19.6 4 19 4H13C12.4 4 12 3.6 12 3C12 2.4 12.4 2 13 2H21C21.6 2 22 2.4 22 3V11C22 11.6 21.6 12 21 12C20.4 12 20 11.6 20 11V5ZM4 19C4 19.6 4.4 20 5 20H11C11.6 20 12 20.4 12 21C12 21.6 11.6 22 11 22H3C2.4 22 2 21.6 2 21V13C2 12.4 2.4 12 3 12C3.6 12 4 12.4 4 13V19Z"/></svg></button>
+                      </bslib-tooltip>
+                      <script data-bslib-card-init>bslib.Card.initializeAllCards();</script>
+                    </div>
+                  </div>
+                </div>
+                <div class="bslib-grid-item bslib-gap-spacing html-fill-container">
                   <div>
                     <style>#domain_details-DATACHG-card .bslib-full-screen-enter { bottom: unset !important; }</style>
                     <div class="card bslib-card bslib-mb-spacing bslib-card-input html-fill-item html-fill-container" data-bslib-card-init data-full-screen="false" data-require-bs-caller="card()" data-require-bs-version="5" id="domain_details-DATACHG-card">
@@ -1653,7 +1785,83 @@
                     </div>
                   </div>
                 </div>
-                <div class="tab-pane" data-value="DATAENT" id="tab-XXXX-3">
+              </bslib-layout-columns>
+            </div>
+            <div class="tab-pane" data-value="DATAENT" id="tab-XXXX-3">
+              <bslib-layout-columns class="bslib-grid grid bslib-mb-spacing html-fill-item" col-widths-sm="4,8" data-require-bs-caller="layout_columns()" data-require-bs-version="5">
+                <div class="bslib-grid-item bslib-gap-spacing html-fill-container">
+                  <div>
+                    <style>#domain_details-DATAENT-prevalence_plot-card .bslib-full-screen-enter { bottom: unset !important; }</style>
+                    <div class="card bslib-card bslib-mb-spacing bslib-card-input html-fill-item html-fill-container" data-bslib-card-init data-full-screen="false" data-require-bs-caller="card()" data-require-bs-version="5" id="domain_details-DATAENT-prevalence_plot-card">
+                      <div class="card-body bslib-gap-spacing html-fill-item html-fill-container" style="margin-top:auto;margin-bottom:auto;flex:1 1 auto;">
+                        <div id="domain_details-DATAENT-prevalence_plot-title">
+                          <span id="domain_details-DATAENT-prevalence_plot-category-select" class="inline-select">
+                            <div class="form-group shiny-input-container shiny-input-container-inline">
+                              <label class="control-label shiny-label-null" for="domain_details-DATAENT-prevalence_plot-category-select-select" id="domain_details-DATAENT-prevalence_plot-category-select-select-label"></label>
+                              <div id="domain_details-DATAENT-prevalence_plot-category-select-select" class="virtual-select" style="display:inline-block;" data-update="change">
+                                <script type="application/json" data-for="domain_details-DATAENT-prevalence_plot-category-select-select">{"stateInput":true,"options":{"type":["vector"],"choices":[""]},"config":{"multiple":false,"search":false,"hideClearButton":true,"autoSelectFirstOption":true,"showSelectedOptionsFirst":false,"showValueAsTags":false,"optionsCount":10,"noOfDisplayValues":50,"allowNewOption":false,"disableSelectAll":true,"disableOptionGroupCheckbox":true,"disabled":false}}</script>
+                              </div>
+                            </div>
+                          </span>
+                          <span id="domain_details-DATAENT-prevalence_plot-key" class="label-key-container">
+                            by
+                            <div class="form-group shiny-input-container shiny-input-checkboxgroup shiny-input-container-inline">
+                              <label class="control-label shiny-label-null" for="domain_details-DATAENT-prevalence_plot-key-Study" id="domain_details-DATAENT-prevalence_plot-key-Study-label"></label>
+                              <div id="domain_details-DATAENT-prevalence_plot-key-Study" class="checkbox-group-buttons">
+                                <div aria-labelledby="domain_details-DATAENT-prevalence_plot-key-Study-label" class="btn-group btn-group-container-sw" data-toggle="buttons" role="group">
+                                  <div class="btn-group btn-group-toggle" role="group">
+                                    <button class="btn checkbtn btn-label-key-study">
+                                      <input type="checkbox" autocomplete="off" name="domain_details-DATAENT-prevalence_plot-key-Study" value="Study"/>
+                                      Study
+                                    </button>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                            <div class="form-group shiny-input-container shiny-input-checkboxgroup shiny-input-container-inline">
+                              <label class="control-label shiny-label-null" for="domain_details-DATAENT-prevalence_plot-key-Group" id="domain_details-DATAENT-prevalence_plot-key-Group-label"></label>
+                              <div id="domain_details-DATAENT-prevalence_plot-key-Group" class="checkbox-group-buttons">
+                                <div aria-labelledby="domain_details-DATAENT-prevalence_plot-key-Group-label" class="btn-group btn-group-container-sw" data-toggle="buttons" role="group">
+                                  <div class="btn-group btn-group-toggle" role="group">
+                                    <button class="btn checkbtn btn-label-key-group">
+                                      <input type="checkbox" autocomplete="off" name="domain_details-DATAENT-prevalence_plot-key-Group" value="Group"/>
+                                      Group
+                                    </button>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                            <div class="form-group shiny-input-container shiny-input-checkboxgroup shiny-input-container-inline">
+                              <label class="control-label shiny-label-null" for="domain_details-DATAENT-prevalence_plot-key-Participant" id="domain_details-DATAENT-prevalence_plot-key-Participant-label"></label>
+                              <div id="domain_details-DATAENT-prevalence_plot-key-Participant" class="checkbox-group-buttons">
+                                <div aria-labelledby="domain_details-DATAENT-prevalence_plot-key-Participant-label" class="btn-group btn-group-container-sw" data-toggle="buttons" role="group">
+                                  <div class="btn-group btn-group-toggle" role="group">
+                                    <button class="btn checkbtn btn-label-key-participant">
+                                      <input type="checkbox" autocomplete="off" name="domain_details-DATAENT-prevalence_plot-key-Participant" value="Participant"/>
+                                      Participant
+                                    </button>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                            <bslib-tooltip id="domain_details-DATAENT-prevalence_plot-key-help" placement="right" bsOptions="[]" data-require-bs-version="5" data-require-bs-caller="tooltip()">
+                              <template>Click Study, Group, or Participant buttons to toggle display of those bars. Gray buttons require a Site or Participant selection in the main app menu at the top-right.</template>
+                              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" class="bi bi-question-circle " style="height:1em;width:1em;fill:currentColor;vertical-align:-0.125em;" aria-hidden="true" role="img" ><path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"></path>
+      <path d="M5.255 5.786a.237.237 0 0 0 .241.247h.825c.138 0 .248-.113.266-.25.09-.656.54-1.134 1.342-1.134.686 0 1.314.343 1.314 1.168 0 .635-.374.927-.965 1.371-.673.489-1.206 1.06-1.168 1.987l.003.217a.25.25 0 0 0 .25.246h.811a.25.25 0 0 0 .25-.25v-.105c0-.718.273-.927 1.01-1.486.609-.463 1.244-.977 1.244-2.056 0-1.511-1.276-2.241-2.673-2.241-1.267 0-2.655.59-2.75 2.286zm1.557 5.763c0 .533.425.927 1.01.927.609 0 1.028-.394 1.028-.927 0-.552-.42-.94-1.029-.94-.584 0-1.009.388-1.009.94z"></path></svg>
+                            </bslib-tooltip>
+                          </span>
+                        </div>
+                        <div class="shiny-plot-output html-fill-item" id="domain_details-DATAENT-prevalence_plot-plot-plot" style="width:100%;height:400px;"></div>
+                      </div>
+                      <bslib-tooltip placement="auto" bsOptions="[]" data-require-bs-version="5" data-require-bs-caller="tooltip()">
+                        <template>Expand</template>
+                        <button aria-expanded="false" aria-label="Expand card" class="bslib-full-screen-enter badge rounded-pill"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" style="height:1em;width:1em;fill:currentColor;" aria-hidden="true" role="img"><path d="M20 5C20 4.4 19.6 4 19 4H13C12.4 4 12 3.6 12 3C12 2.4 12.4 2 13 2H21C21.6 2 22 2.4 22 3V11C22 11.6 21.6 12 21 12C20.4 12 20 11.6 20 11V5ZM4 19C4 19.6 4.4 20 5 20H11C11.6 20 12 20.4 12 21C12 21.6 11.6 22 11 22H3C2.4 22 2 21.6 2 21V13C2 12.4 2.4 12 3 12C3.6 12 4 12.4 4 13V19Z"/></svg></button>
+                      </bslib-tooltip>
+                      <script data-bslib-card-init>bslib.Card.initializeAllCards();</script>
+                    </div>
+                  </div>
+                </div>
+                <div class="bslib-grid-item bslib-gap-spacing html-fill-container">
                   <div>
                     <style>#domain_details-DATAENT-card .bslib-full-screen-enter { bottom: unset !important; }</style>
                     <div class="card bslib-card bslib-mb-spacing bslib-card-input html-fill-item html-fill-container" data-bslib-card-init data-full-screen="false" data-require-bs-caller="card()" data-require-bs-version="5" id="domain_details-DATAENT-card">
@@ -1675,7 +1883,83 @@
                     </div>
                   </div>
                 </div>
-                <div class="tab-pane" data-value="ENROLL" id="tab-XXXX-4">
+              </bslib-layout-columns>
+            </div>
+            <div class="tab-pane" data-value="ENROLL" id="tab-XXXX-4">
+              <bslib-layout-columns class="bslib-grid grid bslib-mb-spacing html-fill-item" col-widths-sm="4,8" data-require-bs-caller="layout_columns()" data-require-bs-version="5">
+                <div class="bslib-grid-item bslib-gap-spacing html-fill-container">
+                  <div>
+                    <style>#domain_details-ENROLL-prevalence_plot-card .bslib-full-screen-enter { bottom: unset !important; }</style>
+                    <div class="card bslib-card bslib-mb-spacing bslib-card-input html-fill-item html-fill-container" data-bslib-card-init data-full-screen="false" data-require-bs-caller="card()" data-require-bs-version="5" id="domain_details-ENROLL-prevalence_plot-card">
+                      <div class="card-body bslib-gap-spacing html-fill-item html-fill-container" style="margin-top:auto;margin-bottom:auto;flex:1 1 auto;">
+                        <div id="domain_details-ENROLL-prevalence_plot-title">
+                          <span id="domain_details-ENROLL-prevalence_plot-category-select" class="inline-select">
+                            <div class="form-group shiny-input-container shiny-input-container-inline">
+                              <label class="control-label shiny-label-null" for="domain_details-ENROLL-prevalence_plot-category-select-select" id="domain_details-ENROLL-prevalence_plot-category-select-select-label"></label>
+                              <div id="domain_details-ENROLL-prevalence_plot-category-select-select" class="virtual-select" style="display:inline-block;" data-update="change">
+                                <script type="application/json" data-for="domain_details-ENROLL-prevalence_plot-category-select-select">{"stateInput":true,"options":{"type":["vector"],"choices":[""]},"config":{"multiple":false,"search":false,"hideClearButton":true,"autoSelectFirstOption":true,"showSelectedOptionsFirst":false,"showValueAsTags":false,"optionsCount":10,"noOfDisplayValues":50,"allowNewOption":false,"disableSelectAll":true,"disableOptionGroupCheckbox":true,"disabled":false}}</script>
+                              </div>
+                            </div>
+                          </span>
+                          <span id="domain_details-ENROLL-prevalence_plot-key" class="label-key-container">
+                            by
+                            <div class="form-group shiny-input-container shiny-input-checkboxgroup shiny-input-container-inline">
+                              <label class="control-label shiny-label-null" for="domain_details-ENROLL-prevalence_plot-key-Study" id="domain_details-ENROLL-prevalence_plot-key-Study-label"></label>
+                              <div id="domain_details-ENROLL-prevalence_plot-key-Study" class="checkbox-group-buttons">
+                                <div aria-labelledby="domain_details-ENROLL-prevalence_plot-key-Study-label" class="btn-group btn-group-container-sw" data-toggle="buttons" role="group">
+                                  <div class="btn-group btn-group-toggle" role="group">
+                                    <button class="btn checkbtn btn-label-key-study">
+                                      <input type="checkbox" autocomplete="off" name="domain_details-ENROLL-prevalence_plot-key-Study" value="Study"/>
+                                      Study
+                                    </button>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                            <div class="form-group shiny-input-container shiny-input-checkboxgroup shiny-input-container-inline">
+                              <label class="control-label shiny-label-null" for="domain_details-ENROLL-prevalence_plot-key-Group" id="domain_details-ENROLL-prevalence_plot-key-Group-label"></label>
+                              <div id="domain_details-ENROLL-prevalence_plot-key-Group" class="checkbox-group-buttons">
+                                <div aria-labelledby="domain_details-ENROLL-prevalence_plot-key-Group-label" class="btn-group btn-group-container-sw" data-toggle="buttons" role="group">
+                                  <div class="btn-group btn-group-toggle" role="group">
+                                    <button class="btn checkbtn btn-label-key-group">
+                                      <input type="checkbox" autocomplete="off" name="domain_details-ENROLL-prevalence_plot-key-Group" value="Group"/>
+                                      Group
+                                    </button>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                            <div class="form-group shiny-input-container shiny-input-checkboxgroup shiny-input-container-inline">
+                              <label class="control-label shiny-label-null" for="domain_details-ENROLL-prevalence_plot-key-Participant" id="domain_details-ENROLL-prevalence_plot-key-Participant-label"></label>
+                              <div id="domain_details-ENROLL-prevalence_plot-key-Participant" class="checkbox-group-buttons">
+                                <div aria-labelledby="domain_details-ENROLL-prevalence_plot-key-Participant-label" class="btn-group btn-group-container-sw" data-toggle="buttons" role="group">
+                                  <div class="btn-group btn-group-toggle" role="group">
+                                    <button class="btn checkbtn btn-label-key-participant">
+                                      <input type="checkbox" autocomplete="off" name="domain_details-ENROLL-prevalence_plot-key-Participant" value="Participant"/>
+                                      Participant
+                                    </button>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                            <bslib-tooltip id="domain_details-ENROLL-prevalence_plot-key-help" placement="right" bsOptions="[]" data-require-bs-version="5" data-require-bs-caller="tooltip()">
+                              <template>Click Study, Group, or Participant buttons to toggle display of those bars. Gray buttons require a Site or Participant selection in the main app menu at the top-right.</template>
+                              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" class="bi bi-question-circle " style="height:1em;width:1em;fill:currentColor;vertical-align:-0.125em;" aria-hidden="true" role="img" ><path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"></path>
+      <path d="M5.255 5.786a.237.237 0 0 0 .241.247h.825c.138 0 .248-.113.266-.25.09-.656.54-1.134 1.342-1.134.686 0 1.314.343 1.314 1.168 0 .635-.374.927-.965 1.371-.673.489-1.206 1.06-1.168 1.987l.003.217a.25.25 0 0 0 .25.246h.811a.25.25 0 0 0 .25-.25v-.105c0-.718.273-.927 1.01-1.486.609-.463 1.244-.977 1.244-2.056 0-1.511-1.276-2.241-2.673-2.241-1.267 0-2.655.59-2.75 2.286zm1.557 5.763c0 .533.425.927 1.01.927.609 0 1.028-.394 1.028-.927 0-.552-.42-.94-1.029-.94-.584 0-1.009.388-1.009.94z"></path></svg>
+                            </bslib-tooltip>
+                          </span>
+                        </div>
+                        <div class="shiny-plot-output html-fill-item" id="domain_details-ENROLL-prevalence_plot-plot-plot" style="width:100%;height:400px;"></div>
+                      </div>
+                      <bslib-tooltip placement="auto" bsOptions="[]" data-require-bs-version="5" data-require-bs-caller="tooltip()">
+                        <template>Expand</template>
+                        <button aria-expanded="false" aria-label="Expand card" class="bslib-full-screen-enter badge rounded-pill"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" style="height:1em;width:1em;fill:currentColor;" aria-hidden="true" role="img"><path d="M20 5C20 4.4 19.6 4 19 4H13C12.4 4 12 3.6 12 3C12 2.4 12.4 2 13 2H21C21.6 2 22 2.4 22 3V11C22 11.6 21.6 12 21 12C20.4 12 20 11.6 20 11V5ZM4 19C4 19.6 4.4 20 5 20H11C11.6 20 12 20.4 12 21C12 21.6 11.6 22 11 22H3C2.4 22 2 21.6 2 21V13C2 12.4 2.4 12 3 12C3.6 12 4 12.4 4 13V19Z"/></svg></button>
+                      </bslib-tooltip>
+                      <script data-bslib-card-init>bslib.Card.initializeAllCards();</script>
+                    </div>
+                  </div>
+                </div>
+                <div class="bslib-grid-item bslib-gap-spacing html-fill-container">
                   <div>
                     <style>#domain_details-ENROLL-card .bslib-full-screen-enter { bottom: unset !important; }</style>
                     <div class="card bslib-card bslib-mb-spacing bslib-card-input html-fill-item html-fill-container" data-bslib-card-init data-full-screen="false" data-require-bs-caller="card()" data-require-bs-version="5" id="domain_details-ENROLL-card">
@@ -1697,7 +1981,83 @@
                     </div>
                   </div>
                 </div>
-                <div class="tab-pane" data-value="LB" id="tab-XXXX-5">
+              </bslib-layout-columns>
+            </div>
+            <div class="tab-pane" data-value="LB" id="tab-XXXX-5">
+              <bslib-layout-columns class="bslib-grid grid bslib-mb-spacing html-fill-item" col-widths-sm="4,8" data-require-bs-caller="layout_columns()" data-require-bs-version="5">
+                <div class="bslib-grid-item bslib-gap-spacing html-fill-container">
+                  <div>
+                    <style>#domain_details-LB-prevalence_plot-card .bslib-full-screen-enter { bottom: unset !important; }</style>
+                    <div class="card bslib-card bslib-mb-spacing bslib-card-input html-fill-item html-fill-container" data-bslib-card-init data-full-screen="false" data-require-bs-caller="card()" data-require-bs-version="5" id="domain_details-LB-prevalence_plot-card">
+                      <div class="card-body bslib-gap-spacing html-fill-item html-fill-container" style="margin-top:auto;margin-bottom:auto;flex:1 1 auto;">
+                        <div id="domain_details-LB-prevalence_plot-title">
+                          <span id="domain_details-LB-prevalence_plot-category-select" class="inline-select">
+                            <div class="form-group shiny-input-container shiny-input-container-inline">
+                              <label class="control-label shiny-label-null" for="domain_details-LB-prevalence_plot-category-select-select" id="domain_details-LB-prevalence_plot-category-select-select-label"></label>
+                              <div id="domain_details-LB-prevalence_plot-category-select-select" class="virtual-select" style="display:inline-block;" data-update="change">
+                                <script type="application/json" data-for="domain_details-LB-prevalence_plot-category-select-select">{"stateInput":true,"options":{"type":["vector"],"choices":[""]},"config":{"multiple":false,"search":false,"hideClearButton":true,"autoSelectFirstOption":true,"showSelectedOptionsFirst":false,"showValueAsTags":false,"optionsCount":10,"noOfDisplayValues":50,"allowNewOption":false,"disableSelectAll":true,"disableOptionGroupCheckbox":true,"disabled":false}}</script>
+                              </div>
+                            </div>
+                          </span>
+                          <span id="domain_details-LB-prevalence_plot-key" class="label-key-container">
+                            by
+                            <div class="form-group shiny-input-container shiny-input-checkboxgroup shiny-input-container-inline">
+                              <label class="control-label shiny-label-null" for="domain_details-LB-prevalence_plot-key-Study" id="domain_details-LB-prevalence_plot-key-Study-label"></label>
+                              <div id="domain_details-LB-prevalence_plot-key-Study" class="checkbox-group-buttons">
+                                <div aria-labelledby="domain_details-LB-prevalence_plot-key-Study-label" class="btn-group btn-group-container-sw" data-toggle="buttons" role="group">
+                                  <div class="btn-group btn-group-toggle" role="group">
+                                    <button class="btn checkbtn btn-label-key-study">
+                                      <input type="checkbox" autocomplete="off" name="domain_details-LB-prevalence_plot-key-Study" value="Study"/>
+                                      Study
+                                    </button>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                            <div class="form-group shiny-input-container shiny-input-checkboxgroup shiny-input-container-inline">
+                              <label class="control-label shiny-label-null" for="domain_details-LB-prevalence_plot-key-Group" id="domain_details-LB-prevalence_plot-key-Group-label"></label>
+                              <div id="domain_details-LB-prevalence_plot-key-Group" class="checkbox-group-buttons">
+                                <div aria-labelledby="domain_details-LB-prevalence_plot-key-Group-label" class="btn-group btn-group-container-sw" data-toggle="buttons" role="group">
+                                  <div class="btn-group btn-group-toggle" role="group">
+                                    <button class="btn checkbtn btn-label-key-group">
+                                      <input type="checkbox" autocomplete="off" name="domain_details-LB-prevalence_plot-key-Group" value="Group"/>
+                                      Group
+                                    </button>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                            <div class="form-group shiny-input-container shiny-input-checkboxgroup shiny-input-container-inline">
+                              <label class="control-label shiny-label-null" for="domain_details-LB-prevalence_plot-key-Participant" id="domain_details-LB-prevalence_plot-key-Participant-label"></label>
+                              <div id="domain_details-LB-prevalence_plot-key-Participant" class="checkbox-group-buttons">
+                                <div aria-labelledby="domain_details-LB-prevalence_plot-key-Participant-label" class="btn-group btn-group-container-sw" data-toggle="buttons" role="group">
+                                  <div class="btn-group btn-group-toggle" role="group">
+                                    <button class="btn checkbtn btn-label-key-participant">
+                                      <input type="checkbox" autocomplete="off" name="domain_details-LB-prevalence_plot-key-Participant" value="Participant"/>
+                                      Participant
+                                    </button>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                            <bslib-tooltip id="domain_details-LB-prevalence_plot-key-help" placement="right" bsOptions="[]" data-require-bs-version="5" data-require-bs-caller="tooltip()">
+                              <template>Click Study, Group, or Participant buttons to toggle display of those bars. Gray buttons require a Site or Participant selection in the main app menu at the top-right.</template>
+                              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" class="bi bi-question-circle " style="height:1em;width:1em;fill:currentColor;vertical-align:-0.125em;" aria-hidden="true" role="img" ><path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"></path>
+      <path d="M5.255 5.786a.237.237 0 0 0 .241.247h.825c.138 0 .248-.113.266-.25.09-.656.54-1.134 1.342-1.134.686 0 1.314.343 1.314 1.168 0 .635-.374.927-.965 1.371-.673.489-1.206 1.06-1.168 1.987l.003.217a.25.25 0 0 0 .25.246h.811a.25.25 0 0 0 .25-.25v-.105c0-.718.273-.927 1.01-1.486.609-.463 1.244-.977 1.244-2.056 0-1.511-1.276-2.241-2.673-2.241-1.267 0-2.655.59-2.75 2.286zm1.557 5.763c0 .533.425.927 1.01.927.609 0 1.028-.394 1.028-.927 0-.552-.42-.94-1.029-.94-.584 0-1.009.388-1.009.94z"></path></svg>
+                            </bslib-tooltip>
+                          </span>
+                        </div>
+                        <div class="shiny-plot-output html-fill-item" id="domain_details-LB-prevalence_plot-plot-plot" style="width:100%;height:400px;"></div>
+                      </div>
+                      <bslib-tooltip placement="auto" bsOptions="[]" data-require-bs-version="5" data-require-bs-caller="tooltip()">
+                        <template>Expand</template>
+                        <button aria-expanded="false" aria-label="Expand card" class="bslib-full-screen-enter badge rounded-pill"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" style="height:1em;width:1em;fill:currentColor;" aria-hidden="true" role="img"><path d="M20 5C20 4.4 19.6 4 19 4H13C12.4 4 12 3.6 12 3C12 2.4 12.4 2 13 2H21C21.6 2 22 2.4 22 3V11C22 11.6 21.6 12 21 12C20.4 12 20 11.6 20 11V5ZM4 19C4 19.6 4.4 20 5 20H11C11.6 20 12 20.4 12 21C12 21.6 11.6 22 11 22H3C2.4 22 2 21.6 2 21V13C2 12.4 2.4 12 3 12C3.6 12 4 12.4 4 13V19Z"/></svg></button>
+                      </bslib-tooltip>
+                      <script data-bslib-card-init>bslib.Card.initializeAllCards();</script>
+                    </div>
+                  </div>
+                </div>
+                <div class="bslib-grid-item bslib-gap-spacing html-fill-container">
                   <div>
                     <style>#domain_details-LB-card .bslib-full-screen-enter { bottom: unset !important; }</style>
                     <div class="card bslib-card bslib-mb-spacing bslib-card-input html-fill-item html-fill-container" data-bslib-card-init data-full-screen="false" data-require-bs-caller="card()" data-require-bs-version="5" id="domain_details-LB-card">
@@ -1719,7 +2079,83 @@
                     </div>
                   </div>
                 </div>
-                <div class="tab-pane" data-value="PD" id="tab-XXXX-6">
+              </bslib-layout-columns>
+            </div>
+            <div class="tab-pane" data-value="PD" id="tab-XXXX-6">
+              <bslib-layout-columns class="bslib-grid grid bslib-mb-spacing html-fill-item" col-widths-sm="4,8" data-require-bs-caller="layout_columns()" data-require-bs-version="5">
+                <div class="bslib-grid-item bslib-gap-spacing html-fill-container">
+                  <div>
+                    <style>#domain_details-PD-prevalence_plot-card .bslib-full-screen-enter { bottom: unset !important; }</style>
+                    <div class="card bslib-card bslib-mb-spacing bslib-card-input html-fill-item html-fill-container" data-bslib-card-init data-full-screen="false" data-require-bs-caller="card()" data-require-bs-version="5" id="domain_details-PD-prevalence_plot-card">
+                      <div class="card-body bslib-gap-spacing html-fill-item html-fill-container" style="margin-top:auto;margin-bottom:auto;flex:1 1 auto;">
+                        <div id="domain_details-PD-prevalence_plot-title">
+                          <span id="domain_details-PD-prevalence_plot-category-select" class="inline-select">
+                            <div class="form-group shiny-input-container shiny-input-container-inline">
+                              <label class="control-label shiny-label-null" for="domain_details-PD-prevalence_plot-category-select-select" id="domain_details-PD-prevalence_plot-category-select-select-label"></label>
+                              <div id="domain_details-PD-prevalence_plot-category-select-select" class="virtual-select" style="display:inline-block;" data-update="change">
+                                <script type="application/json" data-for="domain_details-PD-prevalence_plot-category-select-select">{"stateInput":true,"options":{"type":["vector"],"choices":[""]},"config":{"multiple":false,"search":false,"hideClearButton":true,"autoSelectFirstOption":true,"showSelectedOptionsFirst":false,"showValueAsTags":false,"optionsCount":10,"noOfDisplayValues":50,"allowNewOption":false,"disableSelectAll":true,"disableOptionGroupCheckbox":true,"disabled":false}}</script>
+                              </div>
+                            </div>
+                          </span>
+                          <span id="domain_details-PD-prevalence_plot-key" class="label-key-container">
+                            by
+                            <div class="form-group shiny-input-container shiny-input-checkboxgroup shiny-input-container-inline">
+                              <label class="control-label shiny-label-null" for="domain_details-PD-prevalence_plot-key-Study" id="domain_details-PD-prevalence_plot-key-Study-label"></label>
+                              <div id="domain_details-PD-prevalence_plot-key-Study" class="checkbox-group-buttons">
+                                <div aria-labelledby="domain_details-PD-prevalence_plot-key-Study-label" class="btn-group btn-group-container-sw" data-toggle="buttons" role="group">
+                                  <div class="btn-group btn-group-toggle" role="group">
+                                    <button class="btn checkbtn btn-label-key-study">
+                                      <input type="checkbox" autocomplete="off" name="domain_details-PD-prevalence_plot-key-Study" value="Study"/>
+                                      Study
+                                    </button>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                            <div class="form-group shiny-input-container shiny-input-checkboxgroup shiny-input-container-inline">
+                              <label class="control-label shiny-label-null" for="domain_details-PD-prevalence_plot-key-Group" id="domain_details-PD-prevalence_plot-key-Group-label"></label>
+                              <div id="domain_details-PD-prevalence_plot-key-Group" class="checkbox-group-buttons">
+                                <div aria-labelledby="domain_details-PD-prevalence_plot-key-Group-label" class="btn-group btn-group-container-sw" data-toggle="buttons" role="group">
+                                  <div class="btn-group btn-group-toggle" role="group">
+                                    <button class="btn checkbtn btn-label-key-group">
+                                      <input type="checkbox" autocomplete="off" name="domain_details-PD-prevalence_plot-key-Group" value="Group"/>
+                                      Group
+                                    </button>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                            <div class="form-group shiny-input-container shiny-input-checkboxgroup shiny-input-container-inline">
+                              <label class="control-label shiny-label-null" for="domain_details-PD-prevalence_plot-key-Participant" id="domain_details-PD-prevalence_plot-key-Participant-label"></label>
+                              <div id="domain_details-PD-prevalence_plot-key-Participant" class="checkbox-group-buttons">
+                                <div aria-labelledby="domain_details-PD-prevalence_plot-key-Participant-label" class="btn-group btn-group-container-sw" data-toggle="buttons" role="group">
+                                  <div class="btn-group btn-group-toggle" role="group">
+                                    <button class="btn checkbtn btn-label-key-participant">
+                                      <input type="checkbox" autocomplete="off" name="domain_details-PD-prevalence_plot-key-Participant" value="Participant"/>
+                                      Participant
+                                    </button>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                            <bslib-tooltip id="domain_details-PD-prevalence_plot-key-help" placement="right" bsOptions="[]" data-require-bs-version="5" data-require-bs-caller="tooltip()">
+                              <template>Click Study, Group, or Participant buttons to toggle display of those bars. Gray buttons require a Site or Participant selection in the main app menu at the top-right.</template>
+                              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" class="bi bi-question-circle " style="height:1em;width:1em;fill:currentColor;vertical-align:-0.125em;" aria-hidden="true" role="img" ><path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"></path>
+      <path d="M5.255 5.786a.237.237 0 0 0 .241.247h.825c.138 0 .248-.113.266-.25.09-.656.54-1.134 1.342-1.134.686 0 1.314.343 1.314 1.168 0 .635-.374.927-.965 1.371-.673.489-1.206 1.06-1.168 1.987l.003.217a.25.25 0 0 0 .25.246h.811a.25.25 0 0 0 .25-.25v-.105c0-.718.273-.927 1.01-1.486.609-.463 1.244-.977 1.244-2.056 0-1.511-1.276-2.241-2.673-2.241-1.267 0-2.655.59-2.75 2.286zm1.557 5.763c0 .533.425.927 1.01.927.609 0 1.028-.394 1.028-.927 0-.552-.42-.94-1.029-.94-.584 0-1.009.388-1.009.94z"></path></svg>
+                            </bslib-tooltip>
+                          </span>
+                        </div>
+                        <div class="shiny-plot-output html-fill-item" id="domain_details-PD-prevalence_plot-plot-plot" style="width:100%;height:400px;"></div>
+                      </div>
+                      <bslib-tooltip placement="auto" bsOptions="[]" data-require-bs-version="5" data-require-bs-caller="tooltip()">
+                        <template>Expand</template>
+                        <button aria-expanded="false" aria-label="Expand card" class="bslib-full-screen-enter badge rounded-pill"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" style="height:1em;width:1em;fill:currentColor;" aria-hidden="true" role="img"><path d="M20 5C20 4.4 19.6 4 19 4H13C12.4 4 12 3.6 12 3C12 2.4 12.4 2 13 2H21C21.6 2 22 2.4 22 3V11C22 11.6 21.6 12 21 12C20.4 12 20 11.6 20 11V5ZM4 19C4 19.6 4.4 20 5 20H11C11.6 20 12 20.4 12 21C12 21.6 11.6 22 11 22H3C2.4 22 2 21.6 2 21V13C2 12.4 2.4 12 3 12C3.6 12 4 12.4 4 13V19Z"/></svg></button>
+                      </bslib-tooltip>
+                      <script data-bslib-card-init>bslib.Card.initializeAllCards();</script>
+                    </div>
+                  </div>
+                </div>
+                <div class="bslib-grid-item bslib-gap-spacing html-fill-container">
                   <div>
                     <style>#domain_details-PD-card .bslib-full-screen-enter { bottom: unset !important; }</style>
                     <div class="card bslib-card bslib-mb-spacing bslib-card-input html-fill-item html-fill-container" data-bslib-card-init data-full-screen="false" data-require-bs-caller="card()" data-require-bs-version="5" id="domain_details-PD-card">
@@ -1741,7 +2177,83 @@
                     </div>
                   </div>
                 </div>
-                <div class="tab-pane" data-value="QUERY" id="tab-XXXX-7">
+              </bslib-layout-columns>
+            </div>
+            <div class="tab-pane" data-value="QUERY" id="tab-XXXX-7">
+              <bslib-layout-columns class="bslib-grid grid bslib-mb-spacing html-fill-item" col-widths-sm="4,8" data-require-bs-caller="layout_columns()" data-require-bs-version="5">
+                <div class="bslib-grid-item bslib-gap-spacing html-fill-container">
+                  <div>
+                    <style>#domain_details-QUERY-prevalence_plot-card .bslib-full-screen-enter { bottom: unset !important; }</style>
+                    <div class="card bslib-card bslib-mb-spacing bslib-card-input html-fill-item html-fill-container" data-bslib-card-init data-full-screen="false" data-require-bs-caller="card()" data-require-bs-version="5" id="domain_details-QUERY-prevalence_plot-card">
+                      <div class="card-body bslib-gap-spacing html-fill-item html-fill-container" style="margin-top:auto;margin-bottom:auto;flex:1 1 auto;">
+                        <div id="domain_details-QUERY-prevalence_plot-title">
+                          <span id="domain_details-QUERY-prevalence_plot-category-select" class="inline-select">
+                            <div class="form-group shiny-input-container shiny-input-container-inline">
+                              <label class="control-label shiny-label-null" for="domain_details-QUERY-prevalence_plot-category-select-select" id="domain_details-QUERY-prevalence_plot-category-select-select-label"></label>
+                              <div id="domain_details-QUERY-prevalence_plot-category-select-select" class="virtual-select" style="display:inline-block;" data-update="change">
+                                <script type="application/json" data-for="domain_details-QUERY-prevalence_plot-category-select-select">{"stateInput":true,"options":{"type":["vector"],"choices":[""]},"config":{"multiple":false,"search":false,"hideClearButton":true,"autoSelectFirstOption":true,"showSelectedOptionsFirst":false,"showValueAsTags":false,"optionsCount":10,"noOfDisplayValues":50,"allowNewOption":false,"disableSelectAll":true,"disableOptionGroupCheckbox":true,"disabled":false}}</script>
+                              </div>
+                            </div>
+                          </span>
+                          <span id="domain_details-QUERY-prevalence_plot-key" class="label-key-container">
+                            by
+                            <div class="form-group shiny-input-container shiny-input-checkboxgroup shiny-input-container-inline">
+                              <label class="control-label shiny-label-null" for="domain_details-QUERY-prevalence_plot-key-Study" id="domain_details-QUERY-prevalence_plot-key-Study-label"></label>
+                              <div id="domain_details-QUERY-prevalence_plot-key-Study" class="checkbox-group-buttons">
+                                <div aria-labelledby="domain_details-QUERY-prevalence_plot-key-Study-label" class="btn-group btn-group-container-sw" data-toggle="buttons" role="group">
+                                  <div class="btn-group btn-group-toggle" role="group">
+                                    <button class="btn checkbtn btn-label-key-study">
+                                      <input type="checkbox" autocomplete="off" name="domain_details-QUERY-prevalence_plot-key-Study" value="Study"/>
+                                      Study
+                                    </button>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                            <div class="form-group shiny-input-container shiny-input-checkboxgroup shiny-input-container-inline">
+                              <label class="control-label shiny-label-null" for="domain_details-QUERY-prevalence_plot-key-Group" id="domain_details-QUERY-prevalence_plot-key-Group-label"></label>
+                              <div id="domain_details-QUERY-prevalence_plot-key-Group" class="checkbox-group-buttons">
+                                <div aria-labelledby="domain_details-QUERY-prevalence_plot-key-Group-label" class="btn-group btn-group-container-sw" data-toggle="buttons" role="group">
+                                  <div class="btn-group btn-group-toggle" role="group">
+                                    <button class="btn checkbtn btn-label-key-group">
+                                      <input type="checkbox" autocomplete="off" name="domain_details-QUERY-prevalence_plot-key-Group" value="Group"/>
+                                      Group
+                                    </button>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                            <div class="form-group shiny-input-container shiny-input-checkboxgroup shiny-input-container-inline">
+                              <label class="control-label shiny-label-null" for="domain_details-QUERY-prevalence_plot-key-Participant" id="domain_details-QUERY-prevalence_plot-key-Participant-label"></label>
+                              <div id="domain_details-QUERY-prevalence_plot-key-Participant" class="checkbox-group-buttons">
+                                <div aria-labelledby="domain_details-QUERY-prevalence_plot-key-Participant-label" class="btn-group btn-group-container-sw" data-toggle="buttons" role="group">
+                                  <div class="btn-group btn-group-toggle" role="group">
+                                    <button class="btn checkbtn btn-label-key-participant">
+                                      <input type="checkbox" autocomplete="off" name="domain_details-QUERY-prevalence_plot-key-Participant" value="Participant"/>
+                                      Participant
+                                    </button>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                            <bslib-tooltip id="domain_details-QUERY-prevalence_plot-key-help" placement="right" bsOptions="[]" data-require-bs-version="5" data-require-bs-caller="tooltip()">
+                              <template>Click Study, Group, or Participant buttons to toggle display of those bars. Gray buttons require a Site or Participant selection in the main app menu at the top-right.</template>
+                              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" class="bi bi-question-circle " style="height:1em;width:1em;fill:currentColor;vertical-align:-0.125em;" aria-hidden="true" role="img" ><path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"></path>
+      <path d="M5.255 5.786a.237.237 0 0 0 .241.247h.825c.138 0 .248-.113.266-.25.09-.656.54-1.134 1.342-1.134.686 0 1.314.343 1.314 1.168 0 .635-.374.927-.965 1.371-.673.489-1.206 1.06-1.168 1.987l.003.217a.25.25 0 0 0 .25.246h.811a.25.25 0 0 0 .25-.25v-.105c0-.718.273-.927 1.01-1.486.609-.463 1.244-.977 1.244-2.056 0-1.511-1.276-2.241-2.673-2.241-1.267 0-2.655.59-2.75 2.286zm1.557 5.763c0 .533.425.927 1.01.927.609 0 1.028-.394 1.028-.927 0-.552-.42-.94-1.029-.94-.584 0-1.009.388-1.009.94z"></path></svg>
+                            </bslib-tooltip>
+                          </span>
+                        </div>
+                        <div class="shiny-plot-output html-fill-item" id="domain_details-QUERY-prevalence_plot-plot-plot" style="width:100%;height:400px;"></div>
+                      </div>
+                      <bslib-tooltip placement="auto" bsOptions="[]" data-require-bs-version="5" data-require-bs-caller="tooltip()">
+                        <template>Expand</template>
+                        <button aria-expanded="false" aria-label="Expand card" class="bslib-full-screen-enter badge rounded-pill"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" style="height:1em;width:1em;fill:currentColor;" aria-hidden="true" role="img"><path d="M20 5C20 4.4 19.6 4 19 4H13C12.4 4 12 3.6 12 3C12 2.4 12.4 2 13 2H21C21.6 2 22 2.4 22 3V11C22 11.6 21.6 12 21 12C20.4 12 20 11.6 20 11V5ZM4 19C4 19.6 4.4 20 5 20H11C11.6 20 12 20.4 12 21C12 21.6 11.6 22 11 22H3C2.4 22 2 21.6 2 21V13C2 12.4 2.4 12 3 12C3.6 12 4 12.4 4 13V19Z"/></svg></button>
+                      </bslib-tooltip>
+                      <script data-bslib-card-init>bslib.Card.initializeAllCards();</script>
+                    </div>
+                  </div>
+                </div>
+                <div class="bslib-grid-item bslib-gap-spacing html-fill-container">
                   <div>
                     <style>#domain_details-QUERY-card .bslib-full-screen-enter { bottom: unset !important; }</style>
                     <div class="card bslib-card bslib-mb-spacing bslib-card-input html-fill-item html-fill-container" data-bslib-card-init data-full-screen="false" data-require-bs-caller="card()" data-require-bs-version="5" id="domain_details-QUERY-card">
@@ -1763,7 +2275,83 @@
                     </div>
                   </div>
                 </div>
-                <div class="tab-pane" data-value="STUDCOMP" id="tab-XXXX-8">
+              </bslib-layout-columns>
+            </div>
+            <div class="tab-pane" data-value="STUDCOMP" id="tab-XXXX-8">
+              <bslib-layout-columns class="bslib-grid grid bslib-mb-spacing html-fill-item" col-widths-sm="4,8" data-require-bs-caller="layout_columns()" data-require-bs-version="5">
+                <div class="bslib-grid-item bslib-gap-spacing html-fill-container">
+                  <div>
+                    <style>#domain_details-STUDCOMP-prevalence_plot-card .bslib-full-screen-enter { bottom: unset !important; }</style>
+                    <div class="card bslib-card bslib-mb-spacing bslib-card-input html-fill-item html-fill-container" data-bslib-card-init data-full-screen="false" data-require-bs-caller="card()" data-require-bs-version="5" id="domain_details-STUDCOMP-prevalence_plot-card">
+                      <div class="card-body bslib-gap-spacing html-fill-item html-fill-container" style="margin-top:auto;margin-bottom:auto;flex:1 1 auto;">
+                        <div id="domain_details-STUDCOMP-prevalence_plot-title">
+                          <span id="domain_details-STUDCOMP-prevalence_plot-category-select" class="inline-select">
+                            <div class="form-group shiny-input-container shiny-input-container-inline">
+                              <label class="control-label shiny-label-null" for="domain_details-STUDCOMP-prevalence_plot-category-select-select" id="domain_details-STUDCOMP-prevalence_plot-category-select-select-label"></label>
+                              <div id="domain_details-STUDCOMP-prevalence_plot-category-select-select" class="virtual-select" style="display:inline-block;" data-update="change">
+                                <script type="application/json" data-for="domain_details-STUDCOMP-prevalence_plot-category-select-select">{"stateInput":true,"options":{"type":["vector"],"choices":[""]},"config":{"multiple":false,"search":false,"hideClearButton":true,"autoSelectFirstOption":true,"showSelectedOptionsFirst":false,"showValueAsTags":false,"optionsCount":10,"noOfDisplayValues":50,"allowNewOption":false,"disableSelectAll":true,"disableOptionGroupCheckbox":true,"disabled":false}}</script>
+                              </div>
+                            </div>
+                          </span>
+                          <span id="domain_details-STUDCOMP-prevalence_plot-key" class="label-key-container">
+                            by
+                            <div class="form-group shiny-input-container shiny-input-checkboxgroup shiny-input-container-inline">
+                              <label class="control-label shiny-label-null" for="domain_details-STUDCOMP-prevalence_plot-key-Study" id="domain_details-STUDCOMP-prevalence_plot-key-Study-label"></label>
+                              <div id="domain_details-STUDCOMP-prevalence_plot-key-Study" class="checkbox-group-buttons">
+                                <div aria-labelledby="domain_details-STUDCOMP-prevalence_plot-key-Study-label" class="btn-group btn-group-container-sw" data-toggle="buttons" role="group">
+                                  <div class="btn-group btn-group-toggle" role="group">
+                                    <button class="btn checkbtn btn-label-key-study">
+                                      <input type="checkbox" autocomplete="off" name="domain_details-STUDCOMP-prevalence_plot-key-Study" value="Study"/>
+                                      Study
+                                    </button>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                            <div class="form-group shiny-input-container shiny-input-checkboxgroup shiny-input-container-inline">
+                              <label class="control-label shiny-label-null" for="domain_details-STUDCOMP-prevalence_plot-key-Group" id="domain_details-STUDCOMP-prevalence_plot-key-Group-label"></label>
+                              <div id="domain_details-STUDCOMP-prevalence_plot-key-Group" class="checkbox-group-buttons">
+                                <div aria-labelledby="domain_details-STUDCOMP-prevalence_plot-key-Group-label" class="btn-group btn-group-container-sw" data-toggle="buttons" role="group">
+                                  <div class="btn-group btn-group-toggle" role="group">
+                                    <button class="btn checkbtn btn-label-key-group">
+                                      <input type="checkbox" autocomplete="off" name="domain_details-STUDCOMP-prevalence_plot-key-Group" value="Group"/>
+                                      Group
+                                    </button>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                            <div class="form-group shiny-input-container shiny-input-checkboxgroup shiny-input-container-inline">
+                              <label class="control-label shiny-label-null" for="domain_details-STUDCOMP-prevalence_plot-key-Participant" id="domain_details-STUDCOMP-prevalence_plot-key-Participant-label"></label>
+                              <div id="domain_details-STUDCOMP-prevalence_plot-key-Participant" class="checkbox-group-buttons">
+                                <div aria-labelledby="domain_details-STUDCOMP-prevalence_plot-key-Participant-label" class="btn-group btn-group-container-sw" data-toggle="buttons" role="group">
+                                  <div class="btn-group btn-group-toggle" role="group">
+                                    <button class="btn checkbtn btn-label-key-participant">
+                                      <input type="checkbox" autocomplete="off" name="domain_details-STUDCOMP-prevalence_plot-key-Participant" value="Participant"/>
+                                      Participant
+                                    </button>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                            <bslib-tooltip id="domain_details-STUDCOMP-prevalence_plot-key-help" placement="right" bsOptions="[]" data-require-bs-version="5" data-require-bs-caller="tooltip()">
+                              <template>Click Study, Group, or Participant buttons to toggle display of those bars. Gray buttons require a Site or Participant selection in the main app menu at the top-right.</template>
+                              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" class="bi bi-question-circle " style="height:1em;width:1em;fill:currentColor;vertical-align:-0.125em;" aria-hidden="true" role="img" ><path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"></path>
+      <path d="M5.255 5.786a.237.237 0 0 0 .241.247h.825c.138 0 .248-.113.266-.25.09-.656.54-1.134 1.342-1.134.686 0 1.314.343 1.314 1.168 0 .635-.374.927-.965 1.371-.673.489-1.206 1.06-1.168 1.987l.003.217a.25.25 0 0 0 .25.246h.811a.25.25 0 0 0 .25-.25v-.105c0-.718.273-.927 1.01-1.486.609-.463 1.244-.977 1.244-2.056 0-1.511-1.276-2.241-2.673-2.241-1.267 0-2.655.59-2.75 2.286zm1.557 5.763c0 .533.425.927 1.01.927.609 0 1.028-.394 1.028-.927 0-.552-.42-.94-1.029-.94-.584 0-1.009.388-1.009.94z"></path></svg>
+                            </bslib-tooltip>
+                          </span>
+                        </div>
+                        <div class="shiny-plot-output html-fill-item" id="domain_details-STUDCOMP-prevalence_plot-plot-plot" style="width:100%;height:400px;"></div>
+                      </div>
+                      <bslib-tooltip placement="auto" bsOptions="[]" data-require-bs-version="5" data-require-bs-caller="tooltip()">
+                        <template>Expand</template>
+                        <button aria-expanded="false" aria-label="Expand card" class="bslib-full-screen-enter badge rounded-pill"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" style="height:1em;width:1em;fill:currentColor;" aria-hidden="true" role="img"><path d="M20 5C20 4.4 19.6 4 19 4H13C12.4 4 12 3.6 12 3C12 2.4 12.4 2 13 2H21C21.6 2 22 2.4 22 3V11C22 11.6 21.6 12 21 12C20.4 12 20 11.6 20 11V5ZM4 19C4 19.6 4.4 20 5 20H11C11.6 20 12 20.4 12 21C12 21.6 11.6 22 11 22H3C2.4 22 2 21.6 2 21V13C2 12.4 2.4 12 3 12C3.6 12 4 12.4 4 13V19Z"/></svg></button>
+                      </bslib-tooltip>
+                      <script data-bslib-card-init>bslib.Card.initializeAllCards();</script>
+                    </div>
+                  </div>
+                </div>
+                <div class="bslib-grid-item bslib-gap-spacing html-fill-container">
                   <div>
                     <style>#domain_details-STUDCOMP-card .bslib-full-screen-enter { bottom: unset !important; }</style>
                     <div class="card bslib-card bslib-mb-spacing bslib-card-input html-fill-item html-fill-container" data-bslib-card-init data-full-screen="false" data-require-bs-caller="card()" data-require-bs-version="5" id="domain_details-STUDCOMP-card">
@@ -1785,7 +2373,83 @@
                     </div>
                   </div>
                 </div>
-                <div class="tab-pane" data-value="SUBJ" id="tab-XXXX-9">
+              </bslib-layout-columns>
+            </div>
+            <div class="tab-pane" data-value="SUBJ" id="tab-XXXX-9">
+              <bslib-layout-columns class="bslib-grid grid bslib-mb-spacing html-fill-item" col-widths-sm="4,8" data-require-bs-caller="layout_columns()" data-require-bs-version="5">
+                <div class="bslib-grid-item bslib-gap-spacing html-fill-container">
+                  <div>
+                    <style>#domain_details-SUBJ-prevalence_plot-card .bslib-full-screen-enter { bottom: unset !important; }</style>
+                    <div class="card bslib-card bslib-mb-spacing bslib-card-input html-fill-item html-fill-container" data-bslib-card-init data-full-screen="false" data-require-bs-caller="card()" data-require-bs-version="5" id="domain_details-SUBJ-prevalence_plot-card">
+                      <div class="card-body bslib-gap-spacing html-fill-item html-fill-container" style="margin-top:auto;margin-bottom:auto;flex:1 1 auto;">
+                        <div id="domain_details-SUBJ-prevalence_plot-title">
+                          <span id="domain_details-SUBJ-prevalence_plot-category-select" class="inline-select">
+                            <div class="form-group shiny-input-container shiny-input-container-inline">
+                              <label class="control-label shiny-label-null" for="domain_details-SUBJ-prevalence_plot-category-select-select" id="domain_details-SUBJ-prevalence_plot-category-select-select-label"></label>
+                              <div id="domain_details-SUBJ-prevalence_plot-category-select-select" class="virtual-select" style="display:inline-block;" data-update="change">
+                                <script type="application/json" data-for="domain_details-SUBJ-prevalence_plot-category-select-select">{"stateInput":true,"options":{"type":["vector"],"choices":[""]},"config":{"multiple":false,"search":false,"hideClearButton":true,"autoSelectFirstOption":true,"showSelectedOptionsFirst":false,"showValueAsTags":false,"optionsCount":10,"noOfDisplayValues":50,"allowNewOption":false,"disableSelectAll":true,"disableOptionGroupCheckbox":true,"disabled":false}}</script>
+                              </div>
+                            </div>
+                          </span>
+                          <span id="domain_details-SUBJ-prevalence_plot-key" class="label-key-container">
+                            by
+                            <div class="form-group shiny-input-container shiny-input-checkboxgroup shiny-input-container-inline">
+                              <label class="control-label shiny-label-null" for="domain_details-SUBJ-prevalence_plot-key-Study" id="domain_details-SUBJ-prevalence_plot-key-Study-label"></label>
+                              <div id="domain_details-SUBJ-prevalence_plot-key-Study" class="checkbox-group-buttons">
+                                <div aria-labelledby="domain_details-SUBJ-prevalence_plot-key-Study-label" class="btn-group btn-group-container-sw" data-toggle="buttons" role="group">
+                                  <div class="btn-group btn-group-toggle" role="group">
+                                    <button class="btn checkbtn btn-label-key-study">
+                                      <input type="checkbox" autocomplete="off" name="domain_details-SUBJ-prevalence_plot-key-Study" value="Study"/>
+                                      Study
+                                    </button>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                            <div class="form-group shiny-input-container shiny-input-checkboxgroup shiny-input-container-inline">
+                              <label class="control-label shiny-label-null" for="domain_details-SUBJ-prevalence_plot-key-Group" id="domain_details-SUBJ-prevalence_plot-key-Group-label"></label>
+                              <div id="domain_details-SUBJ-prevalence_plot-key-Group" class="checkbox-group-buttons">
+                                <div aria-labelledby="domain_details-SUBJ-prevalence_plot-key-Group-label" class="btn-group btn-group-container-sw" data-toggle="buttons" role="group">
+                                  <div class="btn-group btn-group-toggle" role="group">
+                                    <button class="btn checkbtn btn-label-key-group">
+                                      <input type="checkbox" autocomplete="off" name="domain_details-SUBJ-prevalence_plot-key-Group" value="Group"/>
+                                      Group
+                                    </button>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                            <div class="form-group shiny-input-container shiny-input-checkboxgroup shiny-input-container-inline">
+                              <label class="control-label shiny-label-null" for="domain_details-SUBJ-prevalence_plot-key-Participant" id="domain_details-SUBJ-prevalence_plot-key-Participant-label"></label>
+                              <div id="domain_details-SUBJ-prevalence_plot-key-Participant" class="checkbox-group-buttons">
+                                <div aria-labelledby="domain_details-SUBJ-prevalence_plot-key-Participant-label" class="btn-group btn-group-container-sw" data-toggle="buttons" role="group">
+                                  <div class="btn-group btn-group-toggle" role="group">
+                                    <button class="btn checkbtn btn-label-key-participant">
+                                      <input type="checkbox" autocomplete="off" name="domain_details-SUBJ-prevalence_plot-key-Participant" value="Participant"/>
+                                      Participant
+                                    </button>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                            <bslib-tooltip id="domain_details-SUBJ-prevalence_plot-key-help" placement="right" bsOptions="[]" data-require-bs-version="5" data-require-bs-caller="tooltip()">
+                              <template>Click Study, Group, or Participant buttons to toggle display of those bars. Gray buttons require a Site or Participant selection in the main app menu at the top-right.</template>
+                              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" class="bi bi-question-circle " style="height:1em;width:1em;fill:currentColor;vertical-align:-0.125em;" aria-hidden="true" role="img" ><path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"></path>
+      <path d="M5.255 5.786a.237.237 0 0 0 .241.247h.825c.138 0 .248-.113.266-.25.09-.656.54-1.134 1.342-1.134.686 0 1.314.343 1.314 1.168 0 .635-.374.927-.965 1.371-.673.489-1.206 1.06-1.168 1.987l.003.217a.25.25 0 0 0 .25.246h.811a.25.25 0 0 0 .25-.25v-.105c0-.718.273-.927 1.01-1.486.609-.463 1.244-.977 1.244-2.056 0-1.511-1.276-2.241-2.673-2.241-1.267 0-2.655.59-2.75 2.286zm1.557 5.763c0 .533.425.927 1.01.927.609 0 1.028-.394 1.028-.927 0-.552-.42-.94-1.029-.94-.584 0-1.009.388-1.009.94z"></path></svg>
+                            </bslib-tooltip>
+                          </span>
+                        </div>
+                        <div class="shiny-plot-output html-fill-item" id="domain_details-SUBJ-prevalence_plot-plot-plot" style="width:100%;height:400px;"></div>
+                      </div>
+                      <bslib-tooltip placement="auto" bsOptions="[]" data-require-bs-version="5" data-require-bs-caller="tooltip()">
+                        <template>Expand</template>
+                        <button aria-expanded="false" aria-label="Expand card" class="bslib-full-screen-enter badge rounded-pill"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" style="height:1em;width:1em;fill:currentColor;" aria-hidden="true" role="img"><path d="M20 5C20 4.4 19.6 4 19 4H13C12.4 4 12 3.6 12 3C12 2.4 12.4 2 13 2H21C21.6 2 22 2.4 22 3V11C22 11.6 21.6 12 21 12C20.4 12 20 11.6 20 11V5ZM4 19C4 19.6 4.4 20 5 20H11C11.6 20 12 20.4 12 21C12 21.6 11.6 22 11 22H3C2.4 22 2 21.6 2 21V13C2 12.4 2.4 12 3 12C3.6 12 4 12.4 4 13V19Z"/></svg></button>
+                      </bslib-tooltip>
+                      <script data-bslib-card-init>bslib.Card.initializeAllCards();</script>
+                    </div>
+                  </div>
+                </div>
+                <div class="bslib-grid-item bslib-gap-spacing html-fill-container">
                   <div>
                     <style>#domain_details-SUBJ-card .bslib-full-screen-enter { bottom: unset !important; }</style>
                     <div class="card bslib-card bslib-mb-spacing bslib-card-input html-fill-item html-fill-container" data-bslib-card-init data-full-screen="false" data-require-bs-caller="card()" data-require-bs-version="5" id="domain_details-SUBJ-card">
@@ -1807,7 +2471,83 @@
                     </div>
                   </div>
                 </div>
-                <div class="tab-pane" data-value="SDRGCOMP" id="tab-XXXX-10">
+              </bslib-layout-columns>
+            </div>
+            <div class="tab-pane" data-value="SDRGCOMP" id="tab-XXXX-10">
+              <bslib-layout-columns class="bslib-grid grid bslib-mb-spacing html-fill-item" col-widths-sm="4,8" data-require-bs-caller="layout_columns()" data-require-bs-version="5">
+                <div class="bslib-grid-item bslib-gap-spacing html-fill-container">
+                  <div>
+                    <style>#domain_details-SDRGCOMP-prevalence_plot-card .bslib-full-screen-enter { bottom: unset !important; }</style>
+                    <div class="card bslib-card bslib-mb-spacing bslib-card-input html-fill-item html-fill-container" data-bslib-card-init data-full-screen="false" data-require-bs-caller="card()" data-require-bs-version="5" id="domain_details-SDRGCOMP-prevalence_plot-card">
+                      <div class="card-body bslib-gap-spacing html-fill-item html-fill-container" style="margin-top:auto;margin-bottom:auto;flex:1 1 auto;">
+                        <div id="domain_details-SDRGCOMP-prevalence_plot-title">
+                          <span id="domain_details-SDRGCOMP-prevalence_plot-category-select" class="inline-select">
+                            <div class="form-group shiny-input-container shiny-input-container-inline">
+                              <label class="control-label shiny-label-null" for="domain_details-SDRGCOMP-prevalence_plot-category-select-select" id="domain_details-SDRGCOMP-prevalence_plot-category-select-select-label"></label>
+                              <div id="domain_details-SDRGCOMP-prevalence_plot-category-select-select" class="virtual-select" style="display:inline-block;" data-update="change">
+                                <script type="application/json" data-for="domain_details-SDRGCOMP-prevalence_plot-category-select-select">{"stateInput":true,"options":{"type":["vector"],"choices":[""]},"config":{"multiple":false,"search":false,"hideClearButton":true,"autoSelectFirstOption":true,"showSelectedOptionsFirst":false,"showValueAsTags":false,"optionsCount":10,"noOfDisplayValues":50,"allowNewOption":false,"disableSelectAll":true,"disableOptionGroupCheckbox":true,"disabled":false}}</script>
+                              </div>
+                            </div>
+                          </span>
+                          <span id="domain_details-SDRGCOMP-prevalence_plot-key" class="label-key-container">
+                            by
+                            <div class="form-group shiny-input-container shiny-input-checkboxgroup shiny-input-container-inline">
+                              <label class="control-label shiny-label-null" for="domain_details-SDRGCOMP-prevalence_plot-key-Study" id="domain_details-SDRGCOMP-prevalence_plot-key-Study-label"></label>
+                              <div id="domain_details-SDRGCOMP-prevalence_plot-key-Study" class="checkbox-group-buttons">
+                                <div aria-labelledby="domain_details-SDRGCOMP-prevalence_plot-key-Study-label" class="btn-group btn-group-container-sw" data-toggle="buttons" role="group">
+                                  <div class="btn-group btn-group-toggle" role="group">
+                                    <button class="btn checkbtn btn-label-key-study">
+                                      <input type="checkbox" autocomplete="off" name="domain_details-SDRGCOMP-prevalence_plot-key-Study" value="Study"/>
+                                      Study
+                                    </button>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                            <div class="form-group shiny-input-container shiny-input-checkboxgroup shiny-input-container-inline">
+                              <label class="control-label shiny-label-null" for="domain_details-SDRGCOMP-prevalence_plot-key-Group" id="domain_details-SDRGCOMP-prevalence_plot-key-Group-label"></label>
+                              <div id="domain_details-SDRGCOMP-prevalence_plot-key-Group" class="checkbox-group-buttons">
+                                <div aria-labelledby="domain_details-SDRGCOMP-prevalence_plot-key-Group-label" class="btn-group btn-group-container-sw" data-toggle="buttons" role="group">
+                                  <div class="btn-group btn-group-toggle" role="group">
+                                    <button class="btn checkbtn btn-label-key-group">
+                                      <input type="checkbox" autocomplete="off" name="domain_details-SDRGCOMP-prevalence_plot-key-Group" value="Group"/>
+                                      Group
+                                    </button>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                            <div class="form-group shiny-input-container shiny-input-checkboxgroup shiny-input-container-inline">
+                              <label class="control-label shiny-label-null" for="domain_details-SDRGCOMP-prevalence_plot-key-Participant" id="domain_details-SDRGCOMP-prevalence_plot-key-Participant-label"></label>
+                              <div id="domain_details-SDRGCOMP-prevalence_plot-key-Participant" class="checkbox-group-buttons">
+                                <div aria-labelledby="domain_details-SDRGCOMP-prevalence_plot-key-Participant-label" class="btn-group btn-group-container-sw" data-toggle="buttons" role="group">
+                                  <div class="btn-group btn-group-toggle" role="group">
+                                    <button class="btn checkbtn btn-label-key-participant">
+                                      <input type="checkbox" autocomplete="off" name="domain_details-SDRGCOMP-prevalence_plot-key-Participant" value="Participant"/>
+                                      Participant
+                                    </button>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                            <bslib-tooltip id="domain_details-SDRGCOMP-prevalence_plot-key-help" placement="right" bsOptions="[]" data-require-bs-version="5" data-require-bs-caller="tooltip()">
+                              <template>Click Study, Group, or Participant buttons to toggle display of those bars. Gray buttons require a Site or Participant selection in the main app menu at the top-right.</template>
+                              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" class="bi bi-question-circle " style="height:1em;width:1em;fill:currentColor;vertical-align:-0.125em;" aria-hidden="true" role="img" ><path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"></path>
+      <path d="M5.255 5.786a.237.237 0 0 0 .241.247h.825c.138 0 .248-.113.266-.25.09-.656.54-1.134 1.342-1.134.686 0 1.314.343 1.314 1.168 0 .635-.374.927-.965 1.371-.673.489-1.206 1.06-1.168 1.987l.003.217a.25.25 0 0 0 .25.246h.811a.25.25 0 0 0 .25-.25v-.105c0-.718.273-.927 1.01-1.486.609-.463 1.244-.977 1.244-2.056 0-1.511-1.276-2.241-2.673-2.241-1.267 0-2.655.59-2.75 2.286zm1.557 5.763c0 .533.425.927 1.01.927.609 0 1.028-.394 1.028-.927 0-.552-.42-.94-1.029-.94-.584 0-1.009.388-1.009.94z"></path></svg>
+                            </bslib-tooltip>
+                          </span>
+                        </div>
+                        <div class="shiny-plot-output html-fill-item" id="domain_details-SDRGCOMP-prevalence_plot-plot-plot" style="width:100%;height:400px;"></div>
+                      </div>
+                      <bslib-tooltip placement="auto" bsOptions="[]" data-require-bs-version="5" data-require-bs-caller="tooltip()">
+                        <template>Expand</template>
+                        <button aria-expanded="false" aria-label="Expand card" class="bslib-full-screen-enter badge rounded-pill"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" style="height:1em;width:1em;fill:currentColor;" aria-hidden="true" role="img"><path d="M20 5C20 4.4 19.6 4 19 4H13C12.4 4 12 3.6 12 3C12 2.4 12.4 2 13 2H21C21.6 2 22 2.4 22 3V11C22 11.6 21.6 12 21 12C20.4 12 20 11.6 20 11V5ZM4 19C4 19.6 4.4 20 5 20H11C11.6 20 12 20.4 12 21C12 21.6 11.6 22 11 22H3C2.4 22 2 21.6 2 21V13C2 12.4 2.4 12 3 12C3.6 12 4 12.4 4 13V19Z"/></svg></button>
+                      </bslib-tooltip>
+                      <script data-bslib-card-init>bslib.Card.initializeAllCards();</script>
+                    </div>
+                  </div>
+                </div>
+                <div class="bslib-grid-item bslib-gap-spacing html-fill-container">
                   <div>
                     <style>#domain_details-SDRGCOMP-card .bslib-full-screen-enter { bottom: unset !important; }</style>
                     <div class="card bslib-card bslib-mb-spacing bslib-card-input html-fill-item html-fill-container" data-bslib-card-init data-full-screen="false" data-require-bs-caller="card()" data-require-bs-version="5" id="domain_details-SDRGCOMP-card">
@@ -1829,10 +2569,10 @@
                     </div>
                   </div>
                 </div>
-              </div>
+              </bslib-layout-columns>
             </div>
           </div>
-        </bslib-layout-columns>
+        </div>
       </div>
       
 

@@ -6,9 +6,9 @@
 # clindata is needed to generate this data, but is not a requirement for using
 # or testing the package, so it is not listed in the DESCRIPTION. Likewise for
 # gsm.mapping and gsm.reporting.
-# pak::pak("Gilead-BioStats/gsm.reporting")
-# pak::pak("Gilead-BioStats/gsm.datasim@dev")
-# pak::pak("Gilead-BioStats/gsm.mapping@dev")
+# pak::pak("Gilead-BioStats/gsm.reporting@main")
+# pak::pak("Gilead-BioStats/gsm.datasim@main")
+# pak::pak("Gilead-BioStats/gsm.mapping@main")
 # pak::pak("Gilead-BioStats/gsm.core@main")
 
 pkgload::load_all()
@@ -24,8 +24,20 @@ library(purrr)
 # Set up inputs ----
 
 chrDomainsUsed <- c(
-  "AE", "COUNTRY", "DATACHG", "DATAENT", "ENROLL", "LB", "PD", "QUERY",
-  "SDRGCOMP", "SITE", "STUDCOMP", "STUDY", "SUBJ", "Visit"
+  "AE",
+  "COUNTRY",
+  "DATACHG",
+  "DATAENT",
+  "ENROLL",
+  "LB",
+  "PD",
+  "QUERY",
+  "SDRGCOMP",
+  "SITE",
+  "STUDCOMP",
+  "STUDY",
+  "SUBJ",
+  "Visit"
 )
 
 strStudyID <- "DEMO-001"
@@ -61,7 +73,7 @@ intParticipantCountPerSite <- 5L
 intParticipantCount <- intSiteCount * intParticipantCountPerSite
 # Determined by iterating from 1-418 looking for >5 sites with red flags.
 # intSeed <- 1L
-intSeed <- 418L # 5 red sites, that'll do for now.
+intSeed <- 515L # Site: 5 Red, 13 Amber; Country: 0 Red, 1 Amber
 # I checked through intSeed == 1103L, none had more than 5 red sites, and none
 # had *any* red countries.
 bGoodEnough <- FALSE
@@ -137,28 +149,46 @@ while (!bGoodEnough) {
     dplyr::filter(.data$Reds >= 1) %>%
     dplyr::count(.data$GroupLevel)
 
+  AmberResults <- sample_dfResults %>%
+    dplyr::filter(.data$SnapshotDate == max(dSnapshotDate)) %>%
+    dplyr::summarize(
+      Ambers = sum(!is.na(.data$Flag) & abs(.data$Flag) == 1),
+      .by = c("GroupLevel", "GroupID")
+    ) %>%
+    dplyr::filter(.data$Ambers >= 1) %>%
+    dplyr::count(.data$GroupLevel)
+
   `%|0|%` <- function(x, y) {
-    if (!length(x)) return(y)
+    if (!length(x)) {
+      return(y)
+    }
     return(x)
   }
 
   RedCountries <- RedResults$n[RedResults$GroupLevel == "Country"] %|0|% 0L
+  AmberCountries <- AmberResults$n[AmberResults$GroupLevel == "Country"] %|0|%
+    0L
   RedSites <- RedResults$n[RedResults$GroupLevel == "Site"] %|0|% 0L
+  AmberSites <- AmberResults$n[AmberResults$GroupLevel == "Site"] %|0|% 0L
 
-  cli::cli_div(theme = list(span.strong = list(color = "green")))
+  cli::cli_div(
+    theme = list(
+      span.red = list(color = "#FF5859"),
+      span.amber = list(color = "#FEAA02")
+    )
+  )
+  AmberCountries_print <- stringr::str_pad(AmberCountries, 2, pad = "0")
+  AmberSites_print <- stringr::str_pad(AmberSites, 2, pad = "0")
   cli::cli_inform(c(
-    "{intSeed}: {.strong {RedSites}} + {.strong {RedCountries}}"
+    "{intSeed}: Site: {.red {RedSites}}+{.amber {AmberSites_print}} | Country: {.red {RedCountries}}+{.amber {AmberCountries_print}}"
   ))
 
-  # Require at least 1 at Country level plus 5 at sites. In an ideal world, I'd
-  # probably require at least 1 red for every metric.
+  # Require at least 1 flag at Country level plus 5 red at sites. In an ideal
+  # world, I'd probably require at least 1 red for every metric.
   if (
-    (
-      # Temporary good enough, no red countries:
-      # nrow(RedResults) == 2 &&
-      RedResults$n[RedResults$GroupLevel == "Site"] >= 5
-    ) ||
-    intSeed > 5000
+    (RedSites >= 5 &&
+      AmberCountries + RedCountries > 0) ||
+      intSeed > 5000
   ) {
     bGoodEnough <- TRUE
   } else {
@@ -166,22 +196,22 @@ while (!bGoodEnough) {
   }
 }
 
-  sample_dfBounds <- purrr::list_rbind(
-    purrr::map(lAllResults, "dfBounds")
-  )
-  sample_dfAnalyticsInput <- purrr::list_rbind(
-    purrr::map(lAllResults, "dfAnalyticsInput")
-  )
+sample_dfBounds <- purrr::list_rbind(
+  purrr::map(lAllResults, "dfBounds")
+)
+sample_dfAnalyticsInput <- purrr::list_rbind(
+  purrr::map(lAllResults, "dfAnalyticsInput")
+)
 
-  # We'll use lMapped as of the final snapshot date. In sample_fnFetchData, I'll
-  # have to recalculate some fields, like `Mapped_SUBJ$timeonstudy`.
-  lMapped <- lAllResults[[3]]$lMapped
+# We'll use lMapped as of the final snapshot date. In sample_fnFetchData, I'll
+# have to recalculate some fields, like `Mapped_SUBJ$timeonstudy`.
+lMapped <- lAllResults[[3]]$lMapped
 
-  sample_dfGroups <- dplyr::bind_rows(
-    lMapped$Mapped_COUNTRY,
-    lMapped$Mapped_SITE,
-    lMapped$Mapped_STUDY
-  )
+sample_dfGroups <- dplyr::bind_rows(
+  lMapped$Mapped_COUNTRY,
+  lMapped$Mapped_SITE,
+  lMapped$Mapped_STUDY
+)
 
 # lMapped for Domain Data ----
 
@@ -291,6 +321,11 @@ usethis::use_data(
 # Clean up ----
 rm(
   `%|0|%`,
+  AmberCountries,
+  AmberCountries_print,
+  AmberResults,
+  AmberSites,
+  AmberSites_print,
   bGoodEnough,
   # chrDateFields,
   chrFieldNames,

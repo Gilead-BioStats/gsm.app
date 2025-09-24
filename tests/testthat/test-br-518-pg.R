@@ -31,7 +31,10 @@ test_that("536: The user can view tabs provided by plugins.", {
     expect_official_screenshot(app, name = c("02", "01", "placeholder"))
 
     # Select a participant and verify plugin UI loads
-    app$set_inputs(`participant-select` = "S7900")
+    targetSubjectID <- sort(unique(sample_dfAnalyticsInput$SubjectID[
+      sample_dfAnalyticsInput$GroupLevel == "Site"
+    ]))[[2]]
+    app$set_inputs(`participant-select` = targetSubjectID)
     app$wait_for_idle()
     expect_equal(
       app$get_text("#plugins-001-plugin-metadata-card h5"),

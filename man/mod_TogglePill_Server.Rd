@@ -13,6 +13,8 @@ mod_TogglePill_Server(
 \arguments{
 \item{id}{\code{character} The id for this element.}
 
+\item{rctv_strLabel}{\verb{reactive character} Label to set.}
+
 \item{rctv_lglState}{\verb{reactive logical} A \code{\link[shiny:reactive]{shiny::reactive()}}] object that
 returns a Boolean value indicating whether something is "off" (\code{FALSE}) or
 "on" (\code{TRUE}).}

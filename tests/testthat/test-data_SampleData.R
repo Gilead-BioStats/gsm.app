@@ -23,12 +23,15 @@ test_that("sample_fnFetchData returns expected data", {
       "GroupLevel"
     )
   )
-  expect_equal(nrow(test_result), 173)
+  expect_equal(nrow(test_result), 179)
 })
 
 test_that("sample_fnFetchData returns expected data by Site", {
+  targetGroupID <- sample_dfGroups[
+    sample_dfGroups$GroupLevel == "Site",
+  ]$GroupID[[2]]
   expect_no_error({
-    test_result <- sample_fnFetchData("SUBJ", strGroupID = "0X1372")
+    test_result <- sample_fnFetchData("SUBJ", strGroupID = targetGroupID)
   })
   expect_s3_class(test_result, c("tbl_df", "tbl", "data.frame"))
 
@@ -51,12 +54,13 @@ test_that("sample_fnFetchData returns expected data by Site", {
       "GroupLevel"
     )
   )
-  expect_equal(nrow(test_result), 13)
+  expect_equal(nrow(test_result), 2)
 })
 
 test_that("sample_fnFetchData returns expected data by Subject", {
+  targetSubjectID <- sort(unique(sample_dfAnalyticsInput$SubjectID))[[2]]
   expect_no_error({
-    test_result <- sample_fnFetchData("SUBJ", strSubjectID = "S47823")
+    test_result <- sample_fnFetchData("SUBJ", strSubjectID = targetSubjectID)
   })
   expect_s3_class(test_result, c("tbl_df", "tbl", "data.frame"))
 
@@ -84,7 +88,7 @@ test_that("sample_fnFetchData returns expected data by Subject", {
 
 test_that("sample_fnFetchData throws an error in one situation", {
   expect_error(
-    sample_fnFetchData("LB", "0X9640"),
+    sample_fnFetchData("LB", "0X9917"),
     class = "gsm.app-error-sample_data-demo"
   )
 })
@@ -93,22 +97,22 @@ test_that("sample_fnFetchData can filter by date", {
   expect_no_error({
     test_result <- sample_fnFetchData("AE", dSnapshotDate = "2012-01-31")
   })
-  expect_equal(nrow(test_result), 169)
+  expect_equal(nrow(test_result), 113)
   expect_no_error({
     test_result <- sample_fnFetchData("AE", dSnapshotDate = "2012-02-29")
   })
-  expect_equal(nrow(test_result), 337)
+  expect_equal(nrow(test_result), 227)
   expect_no_error({
     test_result <- sample_fnFetchData("AE", dSnapshotDate = "2012-03-21")
   })
-  expect_equal(nrow(test_result), 512)
+  expect_equal(nrow(test_result), 514)
 })
 
 test_that("sample_fnFetchData accepts strGroupLevel arg", {
   expect_no_error({
     test_result <- sample_fnFetchData("AE", strGroupLevel = "Country")
   })
-  expect_equal(nrow(test_result), 512)
+  expect_equal(nrow(test_result), 514)
 })
 
 test_that("sample_fnFetchData deals with dSnapshotDate for SUBJ", {
@@ -127,8 +131,36 @@ test_that("sample_fnFetchData deals with dSnapshotDate for SUBJ", {
 })
 
 test_that("ConstructDataCounter works", {
+  targetGroupID <- sample_dfGroups[
+    sample_dfGroups$GroupLevel == "Site",
+  ]$GroupID[[2]]
   DataCounter <- ConstructDataCounter(sample_fnFetchData)
-  expect_equal(DataCounter("AE"), 512)
-  expect_equal(DataCounter("AE", strGroupID = "0X902"), 41)
-  expect_equal(DataCounter("SUBJ", strGroupID = "0X902"), 9)
+  expect_equal(DataCounter("AE"), 514)
+  expect_equal(DataCounter("AE", strGroupID = targetGroupID), 7)
+  expect_equal(DataCounter("SUBJ", strGroupID = targetGroupID), 2)
+})
+
+test_that("sample_fnCountData returns expected counts", {
+  targetGroupID <- sample_dfGroups[
+    sample_dfGroups$GroupLevel == "Site",
+  ]$GroupID[[2]]
+  targetSubjectID <- sort(unique(sample_dfAnalyticsInput$SubjectID))[[2]]
+  expect_equal(sample_fnCountData("SUBJ"), nrow(sample_fnFetchData("SUBJ")))
+  expect_equal(sample_fnCountData("AE"), nrow(sample_fnFetchData("AE")))
+  expect_equal(
+    sample_fnCountData("SUBJ", strGroupID = targetGroupID),
+    nrow(sample_fnFetchData("SUBJ", strGroupID = targetGroupID))
+  )
+  expect_equal(
+    sample_fnCountData("SUBJ", strSubjectID = targetSubjectID),
+    nrow(sample_fnFetchData("SUBJ", strSubjectID = targetSubjectID))
+  )
+  expect_equal(
+    sample_fnCountData("AE", dSnapshotDate = "2012-01-31"),
+    nrow(sample_fnFetchData("AE", dSnapshotDate = "2012-01-31"))
+  )
+  expect_equal(
+    sample_fnCountData("AE", strGroupLevel = "Country"),
+    nrow(sample_fnFetchData("AE", strGroupLevel = "Country"))
+  )
 })

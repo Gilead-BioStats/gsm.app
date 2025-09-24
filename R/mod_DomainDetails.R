@@ -19,19 +19,27 @@ mod_DomainDetails_UI <- function(
   )
 ) {
   ns <- NS(id)
-  domain_tabs <- purrr::imap(chrDomains, function(strDomainLabel, strDomainID) {
-    mod_DomainData_UI(ns(strDomainID), strDomainLabel, strDomainID)
-  }) %>%
+  chrDomainLabels <- purrr::imap(
+    chrDomains,
+    function(strDomainLabel, strDomainID) {
+      mod_DomainLabel_UI(ns(strDomainID), strDomainLabel, strDomainID)
+    }
+  ) %>%
     unname()
-  bslib::layout_columns(
-    col_widths = c(3, 9),
-    mod_DomainSummary_UI(ns("counts")),
-    bslib::navset_underline(
-      id = ns("selected_tab"),
-      !!!domain_tabs
-    )
+  domain_tabs <- purrr::map2(
+    chrDomainLabels,
+    names(chrDomains),
+    function(strDomainLabel, strDomainID) {
+      mod_DomainData_UI(ns(strDomainID), strDomainLabel, strDomainID)
+    }
+  ) %>%
+    unname()
+  bslib::navset_underline(
+    id = ns("selected_tab"),
+    !!!domain_tabs
   )
 }
+
 
 #' Domain Details server
 #'
@@ -41,31 +49,46 @@ mod_DomainDetails_UI <- function(
 #' @keywords internal
 mod_DomainDetails_Server <- function(
   id,
-  l_rctvDomains_Selection,
+  l_rctvDomains,
   l_rctvDomainHashes_Selection,
   rctv_strDomainID,
   rctv_intDomainCounts,
   rctv_strGroupLevel,
-  chrDomains
+  rctv_strGroupID,
+  rctv_strSubjectID,
+  chrDomains,
+  rctv_strPrimaryNavBar,
+  l_rctvDomainsLoaded
 ) {
   moduleServer(id, function(input, output, session) {
     observe({
-      req(input$selected_tab)
-      mod_DomainData_Server(
-        id = input$selected_tab,
-        rctv_dfDomain = l_rctvDomains_Selection[[input$selected_tab]],
-        rctv_strDomainHash = l_rctvDomainHashes_Selection[[input$selected_tab]],
-        rctv_strGroupLevel = rctv_strGroupLevel
-      )
+      # Don't read the counts until this tab is loaded.
+      if (req(rctv_strPrimaryNavBar()) == "Domain Details") {
+        purrr::imap(
+          rctv_intDomainCounts(),
+          function(intDomainCount, strDomainID) {
+            mod_DomainLabel_Server(strDomainID, reactive(intDomainCount))
+          }
+        )
+      }
     })
+
     observe({
-      req(rctv_strDomainID())
-      mod_DomainSummary_Server(
-        "counts",
-        rctv_strDomainID,
-        rctv_intDomainCounts,
-        chrDomains
-      )
+      req(input$selected_tab)
+      # Don't calculate domain data until this tab is focused.
+      if (req(rctv_strPrimaryNavBar()) == "Domain Details") {
+        mod_DomainData_Server(
+          id = input$selected_tab,
+          rctv_dfDomain = l_rctvDomains$Selection[[input$selected_tab]],
+          rctv_strDomainHash = l_rctvDomainHashes_Selection[[input$selected_tab]],
+          rctv_dfDomain_Study = l_rctvDomains$Study[[input$selected_tab]],
+          rctv_dfDomain_Group = l_rctvDomains$Group[[input$selected_tab]],
+          rctv_strGroupLevel = rctv_strGroupLevel,
+          rctv_strGroupID = rctv_strGroupID,
+          rctv_strSubjectID = rctv_strSubjectID,
+          l_rctvDomainLoaded = l_rctvDomainsLoaded[[input$selected_tab]]
+        )
+      }
     })
     observe({
       req(rctv_strDomainID())
@@ -79,15 +102,14 @@ mod_DomainDetails_Server <- function(
         input$selected_tab,
         ignoreInit = TRUE
       )
-    # tested in shinytest2
+    # Not really tested because nothing sets rctv_strDomainID() externally yet.
     observe({
       req(rctv_strDomainID())
       req(input$selected_tab)
       input_val <- NullifyEmpty(rctv_strDomainID())
       if (!is.null(input_val) && input_val != input$selected_tab) {
-        bslib::nav_select("selected_tab", input_val, session = session)
+        bslib::nav_select("selected_tab", input_val, session = session) # nocov
       }
     })
-    # end of "untested"
   })
 }

@@ -88,3 +88,40 @@ test_that("FilterByGroupAndLevel adds GroupLevel when necessary", {
     )
   )
 })
+
+test_that("FilterBySubjectID filters by SubjectID", {
+  df <- data.frame(SubjectID = 1:5, GroupLevel = "Site")
+  expect_equal(
+    FilterBySubjectID(df, 2),
+    df[df$SubjectID == 2,]
+  )
+})
+
+test_that("splitByGrouping splits by grouping", {
+  df <- data.frame(
+    GroupID = c("a", rep("b", 2), rep("c", 3)),
+    Value = c("a thing", paste("b thing", 1:2), paste("c thing", 1:3))
+  )
+  lExpected <- list(
+    a = "a thing",
+    b = paste("b thing", 1:2),
+    c = paste("c thing", 1:3)
+  )
+  expect_equal(
+    splitByGrouping(df, "GroupID", "Value"),
+    lExpected
+  )
+})
+
+test_that("FindCategoricalFieldNames finds categorical fields", {
+  df <- data.frame(
+    a = letters,
+    b = 1:26,
+    c = factor(letters)
+  )
+  expect_setequal(FindCategoricalFieldNames(df), c("a", "c"))
+  expect_setequal(
+    FindCategoricalFieldNames(df, chrExcludes = c("c", "d")),
+    c("a")
+  )
+})

@@ -1,4 +1,7 @@
 test_that("gsmApp_Server initializes correctly", {
+  targetGroupID <- sample_dfGroups[
+    sample_dfGroups$GroupLevel == "Site",
+  ]$GroupID[[2]]
   server <- gsmApp_Server(
     dfAnalyticsInput = sample_dfAnalyticsInput,
     dfBounds = sample_dfBounds,
@@ -20,9 +23,9 @@ test_that("gsmApp_Server initializes correctly", {
       expect_equal(input$`group-group-select`, "All")
 
       session$setInputs(
-        `group-group-select` = "0X7258"
+        `group-group-select` = targetGroupID
       )
-      expect_equal(input$`group-group-select`, "0X7258")
+      expect_equal(input$`group-group-select`, targetGroupID)
     }
   )
 })
@@ -30,6 +33,9 @@ test_that("gsmApp_Server initializes correctly", {
 test_that("gsmApp_Server triggers reset", {
   # This doesn't really TEST the functionality, only that it triggers. Needs UI
   # integration (shinytest2 integration tests) to fully test.
+  targetGroupID <- sample_dfGroups[
+    sample_dfGroups$GroupLevel == "Site",
+  ]$GroupID[[2]]
   server <- gsmApp_Server(
     dfAnalyticsInput = sample_dfAnalyticsInput,
     dfBounds = sample_dfBounds,
@@ -52,8 +58,8 @@ test_that("gsmApp_Server triggers reset", {
       expect_equal(input$`group-group-select`, "All")
 
       # Change something from default.
-      session$setInputs(`group-group-select` = "0X7258")
-      expect_equal(input$`group-group-select`, "0X7258")
+      session$setInputs(`group-group-select` = targetGroupID)
+      expect_equal(input$`group-group-select`, targetGroupID)
 
       session$setInputs(reset = 1L)
       # Ideally we'd check inputs here, but testServer doesn't see the change.

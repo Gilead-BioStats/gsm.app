@@ -5,7 +5,7 @@
 \alias{sample_dfGroups}
 \title{Group Metadata Dataset}
 \format{
-A tibble with 566 rows and
+A tibble with 574 rows and
 4 columns:
 \describe{
 \item{GroupID}{grouping variable}
@@ -30,6 +30,7 @@ Other sample data:
 \code{\link{sample_dfBounds}},
 \code{\link{sample_dfMetrics}},
 \code{\link{sample_dfResults}},
+\code{\link{sample_fnCountData}()},
 \code{\link{sample_fnFetchData}()}
 }
 \concept{sample data}

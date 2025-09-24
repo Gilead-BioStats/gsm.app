@@ -13,6 +13,7 @@ maybe_skip_br_tests <- function() {
   skip_if_not(
     # as.logical(Sys.getenv("RUN_BR_TESTS", "false")),
     TRUE,
+    # FALSE,
     "BR tests are super slow"
   )
 }
@@ -63,4 +64,10 @@ expect_css_class <- function(html, selector, css_class) {
   } else {
     fail("No classes found")
   }
+}
+
+# Other general ----
+
+select_tab <- function(tab_name) {
+  glue::glue('div.tab-pane[data-value="{tab_name}"]')
 }

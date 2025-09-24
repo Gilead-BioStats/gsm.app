@@ -12,6 +12,8 @@ object.}
 \item{chrChoices}{\code{character} A (named, optionally) vector of choices for
 this input.}
 
+\item{chrColors}{\code{character} Colors to use for a scale, labels, etc.}
+
 \item{chrDomains}{\code{character} A (named) vector of domains to include in the
 app. The values of the vector will be used as labels, and the names will be
 used as IDs. The IDs will be passed to \code{fnFetchData()} to fetch data about
@@ -60,6 +62,18 @@ for the name of each list.}
 \item{dfBounds}{\code{data.frame} Set of predicted percentages/rates and upper-
 and lower-bounds across the full range of sample sizes/total exposure
 values for reporting. Created with \code{\link[gsm.reporting:MakeBounds]{gsm.reporting::MakeBounds()}}.}
+
+\item{dfDomain}{\code{data.frame} Detailed data about a specific domain, such as
+"Adverse Events".}
+
+\item{dfDomain_Group}{\code{data.frame} Detailed data about a specific domain,
+such as "Adverse Events", at the group level.}
+
+\item{dfDomain_Participant}{\code{data.frame} Detailed data about a specific
+domain, such as "Adverse Events", at the participant level.}
+
+\item{dfDomain_Study}{\code{data.frame} Detailed data about a specific domain,
+such as "Adverse Events", at the study level.}
 
 \item{dfGroups}{\code{data.frame} Group-level metadata dictionary. See
 \code{vignette("DataReporting", package = "gsm.reporting")} for an example.}
@@ -124,6 +138,10 @@ function.}
 
 \item{intRed}{\code{integer} The number of groups with at least one red flag.}
 
+\item{l_rctvActive}{\code{list} A named list of \code{\link[shiny:reactive]{shiny::reactive()}} objects, each
+of which returns a populated character vector or something that becomes
+\code{NULL} when passed through \code{\link[=NullifyEmpty]{NullifyEmpty()}}.}
+
 \item{l_rctvDomainHashes}{\code{list} A named list of \code{\link[shiny:reactive]{shiny::reactive()}} objects,
 each of which returns the \code{\link[rlang:hash]{rlang::hash()}} of a domain dataframe.}
 
@@ -182,6 +200,10 @@ data and the plugin's expected domains.}
 returns \code{TRUE} if all inputs required by the plugin are non-empty, and
 \code{FALSE} if one or more inputs are not ready.}
 
+\item{rctv_chrChoices}{\verb{reactive character} Choices to set.}
+
+\item{rctv_chrDisabledChoices}{\verb{reactive character} Choices to disable.}
+
 \item{rctv_dfBounds}{\verb{reactive dataframe} A \code{\link[shiny:reactive]{shiny::reactive()}} object that
 returns a set of predicted percentages/rates and upper- and lower-bounds
 across the full range of sample sizes/total exposure values for reporting.}
@@ -191,6 +213,16 @@ returns a generic dataframe.}
 
 \item{rctv_dfDomain}{\verb{reactive dataframe} A \code{\link[shiny:reactive]{shiny::reactive()}} object that
 returns a domain dataframe.}
+
+\item{rctv_dfDomain_Combined}{\verb{reactive dataframe} A \code{\link[shiny:reactive]{shiny::reactive()}}
+object that returns a study-, group-, and/or participant-level domain
+dataframe.}
+
+\item{rctv_dfDomain_Group}{\verb{reactive dataframe} A \code{\link[shiny:reactive]{shiny::reactive()}} object
+that returns a group-level domain dataframe.}
+
+\item{rctv_dfDomain_Study}{\verb{reactive dataframe} A \code{\link[shiny:reactive]{shiny::reactive()}} object
+that returns a study-level domain dataframe.}
 
 \item{rctv_dfResults}{\verb{reactive dataframe} A \code{\link[shiny:reactive]{shiny::reactive()}} object that
 returns a stacked summary of analysis pipeline output.}
@@ -207,6 +239,11 @@ that returns the count of rows for the current selection for all domains.}
 \item{rctv_lColumnNames}{\verb{reactive list} A \code{\link[shiny:reactive]{shiny::reactive()}} object that
 returns a named list of column names to substitute into tables for display.}
 
+\item{rctv_lglDisable}{\verb{reactive logical} Whether to disable the menu.}
+
+\item{rctv_lglOpen}{\verb{reactive logical} Whether to open (\code{TRUE}) or close
+(\code{FALSE}) the menu.}
+
 \item{rctv_lglState}{\verb{reactive logical} A \code{\link[shiny:reactive]{shiny::reactive()}}] object that
 returns a Boolean value indicating whether something is "off" (\code{FALSE}) or
 "on" (\code{TRUE}).}
@@ -214,6 +251,9 @@ returns a Boolean value indicating whether something is "off" (\code{FALSE}) or
 \item{rctv_lMetric}{\verb{reactive list} A \code{\link[shiny:reactive]{shiny::reactive()}} object that returns
 a named list of data describing a single metric, as well as things like
 which group is selected.}
+
+\item{rctv_strCategory}{\verb{reactive character} A \code{\link[shiny:reactive]{shiny::reactive()}} object
+that returns the currently selected category.}
 
 \item{rctv_strCurrentTab}{\verb{reactive character} A \code{\link[shiny:reactive]{shiny::reactive()}} object
 that returns the currently selected tab.}
@@ -239,12 +279,16 @@ returns the value(s) of an input to share with an interactive gt table. If
 this argument is a \code{\link[shiny:reactiveVal]{shiny::reactiveVal()}}, it will be used to push updates
 back to the calling function.}
 
+\item{rctv_strLabel}{\verb{reactive character} Label to set.}
+
 \item{rctv_strMetricID}{\verb{reactive character} A \code{\link[shiny:reactive]{shiny::reactive()}} object
 that returns the selected \code{MetricID}.}
 
 \item{rctv_strName}{\verb{reactive character} A \code{\link[shiny:reactive]{shiny::reactive()}} object that
 returns the name of an object, such as a particular dataframe in a named
 list.}
+
+\item{rctv_strSelected}{\verb{reactive character} Selected value to set.}
 
 \item{rctv_strSelection}{\code{reactiveVal} A \code{reactiveVal} from the parent scope
 that this module will update with its selection.}
@@ -265,6 +309,8 @@ the calling function if the calling function also has a \code{strArg} argument.}
 \item{strCache}{\code{character} An additional string to ensure that a cache key
 is unique.}
 
+\item{strCategory}{\code{character} A category to focus on.}
+
 \item{strClass}{\code{character} A descriptive label for this type of error, in
 lower_snake_case.}
 
@@ -282,7 +328,8 @@ this color, or the \code{"light"} version. Default: \code{"dark"}.}
 \item{strDomainID}{\code{character} The domain data.frame to load.}
 
 \item{strDomainLabel}{\code{character} The domain name to display. For example,
-for ID \code{"AE"}, the label is \code{"Adverse Events"}.}
+for ID \code{"AE"}, the label is \code{"Adverse Events"}. Can also be a
+\code{\link[shiny:htmlOutput]{shiny::uiOutput()}} which renders to an inline string.}
 
 \item{strEmpty}{\code{character} The value to return when everything is
 deselected.}
@@ -324,6 +371,9 @@ this module or used by this JavaScript.}
 \code{"level"}, \code{"participant"}, or \code{"domain"}.}
 
 \item{strLabel}{\code{character} The label of a field.}
+
+\item{strLevel}{\code{character} The grouping level for this data (one of
+\code{"Study"}, \code{"Group"} or \code{"Participant"}, generally).}
 
 \item{strMetricID}{\code{character} A \code{MetricID} to focus on.}
 

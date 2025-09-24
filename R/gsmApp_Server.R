@@ -154,7 +154,10 @@ gsmApp_Server <- function(
 
     ## We actually USE l_rctvDomains transposed from what's easy to build.
     l_rctvDomains <- purrr::list_transpose(l_rctvDomains, simplify = FALSE)
-    l_rctvDomainHashes <- purrr::list_transpose(l_rctvDomainHashes, simplify = FALSE)
+    l_rctvDomainHashes <- purrr::list_transpose(
+      l_rctvDomainHashes,
+      simplify = FALSE
+    )
 
     ## Also fetch the counts.
     rctv_intDomainCounts <- srvr_DomainCounts(
@@ -182,12 +185,15 @@ gsmApp_Server <- function(
     )
 
     ## Metric Details ----
+
+    # Temporarily hard-code, eventually this will be an input, probably.
+    strSiteRiskMetric <- "Analysis_srs0001"
     srvr_MetricDetails(
       dfAnalyticsInput = FilterByLatestIfPresent(dfAnalyticsInput),
-      dfBounds = dfBounds,
+      dfBounds = dplyr::filter(dfBounds, .data$MetricID != strSiteRiskMetric),
       dfGroups = dfGroups,
-      dfMetrics = dfMetrics,
-      dfResults = dfResults,
+      dfMetrics = dplyr::filter(dfMetrics, .data$MetricID != strSiteRiskMetric),
+      dfResults = dplyr::filter(dfResults, .data$MetricID != strSiteRiskMetric),
       rctv_strMetricID = rctv_strMetricID,
       rctv_strPrimaryNavBar = rctv_strPrimaryNavBar,
       rctv_strGroupID = rctv_strGroupID,
@@ -218,12 +224,16 @@ gsmApp_Server <- function(
 
     mod_DomainDetails_Server(
       "domain_details",
-      l_rctvDomains_Selection = l_rctvDomains$Selection,
+      l_rctvDomains = l_rctvDomains,
       l_rctvDomainHashes_Selection = l_rctvDomainHashes$Selection,
       rctv_strDomainID = rctv_strDomainID,
       rctv_intDomainCounts = rctv_intDomainCounts,
       rctv_strGroupLevel = rctv_strGroupLevel,
-      chrDomains = chrDomains
+      rctv_strGroupID = rctv_strGroupID,
+      rctv_strSubjectID = rctv_strSubjectID,
+      chrDomains = chrDomains,
+      rctv_strPrimaryNavBar = rctv_strPrimaryNavBar,
+      l_rctvDomainsLoaded = l_rctvDomainsLoaded
     )
 
     ## Plugins ----

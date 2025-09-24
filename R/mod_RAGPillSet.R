@@ -42,10 +42,6 @@ mod_RAGPillSet_Server <- function(
   strLabel = "KRIs"
 ) {
   moduleServer(id, function(input, output, session) {
-    # observe({
-    #   cli::cli_inform("{rctv_strGroupSubset()}")
-    # })
-
     rctv_intRed <- reactive({
       dfResults %>%
         dplyr::filter(

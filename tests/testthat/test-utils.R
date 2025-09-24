@@ -17,6 +17,11 @@ test_that("NullifyEmpty does its job", {
   expect_identical(NullifyEmpty(letters), letters)
 })
 
+test_that("CallIfReactive resolves potential reactives", {
+  expect_identical("a", CallIfReactive("a"))
+  expect_identical("a", isolate(CallIfReactive(reactiveVal("a"))))
+})
+
 test_that("ColorScheme loads the expected colors", {
   expect_equal(ColorScheme("gray"), "#828282")
   expect_equal(ColorScheme("green"), "#3DAF06")
@@ -73,6 +78,10 @@ test_that("ExtractAppTitle extracts titles", {
   )
   expect_identical(
     ExtractAppTitle(data.frame()),
+    "GSM Deep Dive"
+  )
+  expect_identical(
+    ExtractAppTitle(data.frame(Param = "nickname", Value = NA)),
     "GSM Deep Dive"
   )
 })

@@ -5,7 +5,7 @@
 \alias{sample_dfBounds}
 \title{Metric Bounds Dataset}
 \format{
-A tibble with 59865 rows and
+A tibble with 59688 rows and
 8 columns:
 \describe{
 \item{Threshold}{number of standard deviations that the upper and lower bounds are based on}
@@ -34,6 +34,7 @@ Other sample data:
 \code{\link{sample_dfGroups}},
 \code{\link{sample_dfMetrics}},
 \code{\link{sample_dfResults}},
+\code{\link{sample_fnCountData}()},
 \code{\link{sample_fnFetchData}()}
 }
 \concept{sample data}

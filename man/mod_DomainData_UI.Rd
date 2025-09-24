@@ -10,7 +10,8 @@ mod_DomainData_UI(id, strDomainLabel, strDomainID)
 \item{id}{\code{character} The id for this element.}
 
 \item{strDomainLabel}{\code{character} The domain name to display. For example,
-for ID \code{"AE"}, the label is \code{"Adverse Events"}.}
+for ID \code{"AE"}, the label is \code{"Adverse Events"}. Can also be a
+\code{\link[shiny:htmlOutput]{shiny::uiOutput()}} which renders to an inline string.}
 
 \item{strDomainID}{\code{character} The domain data.frame to load.}
 }

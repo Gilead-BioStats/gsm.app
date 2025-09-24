@@ -9,7 +9,7 @@ mod_CascadingSelect_UI(id, strLabel, chrChoices = "All")
 \arguments{
 \item{id}{\code{character} The id for this element.}
 
-\item{strLabel}{\code{character} The initial label for the select input.}
+\item{strLabel}{\code{character} The label of a field.}
 
 \item{chrChoices}{\code{character} A (named, optionally) vector of choices for
 this input.}

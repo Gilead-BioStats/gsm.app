@@ -12,12 +12,16 @@ test_that("mod_DomainDetails_Server sets domain", {
     mod_DomainDetails_Server,
     args = list(
       id = "domainDetailsTest",
-      l_rctvDomains_Selection = list(),
+      l_rctvDomains = list(),
       l_rctvDomainHashes_Selection = list(),
       rctv_strDomainID = reactiveVal("z"),
       rctv_intDomainCounts = reactiveVal(c(1L, 1L, 1L)),
       rctv_strGroupLevel = reactiveVal("Site"),
-      chrDomains = c(a = "a", b = "b", z = "z")
+      chrDomains = c(a = "a", b = "b", z = "z"),
+      rctv_strGroupID = reactiveVal(),
+      rctv_strSubjectID = reactiveVal(),
+      rctv_strPrimaryNavBar = reactiveVal("Domain Details"),
+      l_rctvDomainsLoaded = list(Study = reactiveVal(TRUE))
     ),
     {
       # Initialize input.

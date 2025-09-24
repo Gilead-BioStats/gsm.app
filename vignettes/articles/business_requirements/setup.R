@@ -2,12 +2,14 @@
 # data from GitHub to generate reports for these issues. Right now this needs to
 # be manually executed once by a dev whenever this issue list (or the associated
 # tests) changes.
-intBRs <- c(
-  518,
-  519
+lBRStatuses <- list(
+  "Ready for Review" = c(519),
+  "Validated" = c(518)
 )
+intBRs <- sort(unname(unlist(lBRStatuses)))
 
 # Generate/update business_requirements.yml
+pkgload::load_all()
 source(
   here::here(
     "vignettes",
@@ -28,6 +30,26 @@ yaml::write_yaml(
   )
 )
 
-# TODO: Generate/update {issue_number}.qmd.
+# Generate/update BR articles.
+source(
+  here::here(
+    "vignettes",
+    "articles",
+    "business_requirements",
+    "generate_br_pages.R"
+  ),
+  local = TRUE
+)
 
-rm(intBRs, lBRs)
+# Generate/update BR index page.
+source(
+  here::here(
+    "vignettes",
+    "articles",
+    "business_requirements",
+    "generate_br_index.R"
+  ),
+  local = TRUE
+)
+
+rm(intBRs, lBRs, lBRStatuses)

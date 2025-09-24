@@ -260,7 +260,7 @@ test_that("524: The user can view an interactive KRI summary table.", {
   test_that("524.05: Clicking a KRI cell in the summary table navigates the user to the 'Metric Details' tab, filtered to that KRI and group.", {
     # Click a specific cell in the table
     app$click(
-      selector = "#study_overview-table tr:nth-child(2) td:nth-child(6)"
+      selector = "#study_overview-table tr:nth-child(2) td:nth-child(7)"
     )
     app$wait_for_idle()
     app$run_js(file = test_path("fixtures", "WidgetPlotTestHelpers.js"))
@@ -272,14 +272,23 @@ test_that("524: The user can view an interactive KRI summary table.", {
     # Verify navigation and filtering
     expect_equal(app$get_value(input = "primary_nav_bar"), "Metric Details")
     expect_equal(
-      app$get_value(input = "metric_details-metric"),
+      app$get_value(input = "metric_details-metric-select"),
       "Analysis_kri0002"
     )
-    expect_equal(app$get_value(input = "group-group-select"), "0X7798")
+    targetGroupID <- sample_dfResults %>%
+      dplyr::filter(
+        .data$GroupLevel == "Site",
+        .data$MetricID == "Analysis_kri0002",
+        abs(.data$Flag) == 2
+      ) %>%
+      dplyr::slice(2) %>%
+      dplyr::pull("GroupID")
+    expect_equal(app$get_value(input = "group-group-select"), targetGroupID)
 
     expect_official_screenshot(
       app,
-      name = "05-table_click_navigation"
+      name = "05-table_click_navigation",
+      selector = ".navbar"
     )
   })
 
@@ -309,7 +318,10 @@ test_that("525: The user can view a set of interactive scatter plots, one for ea
     plots <- rvest::read_html(app$get_html("body")) %>%
       rvest::html_elements(plot_pattern)
     n_metrics_site <- sample_dfMetrics %>%
-      dplyr::filter(.data$GroupLevel == "Site") %>%
+      dplyr::filter(
+        .data$GroupLevel == "Site",
+        .data$MetricID != "Analysis_srs0001"
+      ) %>%
       dplyr::pull("MetricID") %>%
       unique() %>%
       length()
@@ -333,7 +345,10 @@ test_that("525: The user can view a set of interactive scatter plots, one for ea
       rvest::html_elements(plot_selector)
     plot_ids_site <- rvest::html_attr(plots_site, "id")
     n_metrics_site <- sample_dfMetrics %>%
-      dplyr::filter(.data$GroupLevel == "Site") %>%
+      dplyr::filter(
+        .data$GroupLevel == "Site",
+        .data$MetricID != "Analysis_srs0001"
+      ) %>%
       dplyr::pull("MetricID") %>%
       unique() %>%
       length()
@@ -371,10 +386,20 @@ test_that("525: The user can view a set of interactive scatter plots, one for ea
   })
 
   test_that("525.03: Clicking a point in a scatter plot navigates the user to the 'Metric Details' tab, filtered to that KRI and group.", {
+    targetGroupID <- sample_dfResults %>%
+      dplyr::filter(
+        .data$GroupLevel == "Site",
+        .data$MetricID == "Analysis_kri0002",
+        abs(.data$Flag) == 2
+      ) %>%
+      dplyr::slice(2) %>%
+      dplyr::pull("GroupID")
+
     # Click a point on the second scatter plot
-    app$run_js(
-      "clickWidgetPlotGroup('study_overview-scatter-Analysis_kri0002', '0X7798');"
+    js <- glue::glue(
+      "clickWidgetPlotGroup('study_overview-scatter-Analysis_kri0002', '{targetGroupID}');"
     )
+    app$run_js(js)
     app$wait_for_idle()
     app$wait_for_js(
       "isCanvasLoaded('metric_details-scatter_plot');",
@@ -384,14 +409,15 @@ test_that("525: The user can view a set of interactive scatter plots, one for ea
     # Verify navigation and filtering
     expect_equal(app$get_value(input = "primary_nav_bar"), "Metric Details")
     expect_equal(
-      app$get_value(input = "metric_details-metric"),
+      app$get_value(input = "metric_details-metric-select"),
       "Analysis_kri0002"
     )
-    expect_equal(app$get_value(input = "group-group-select"), "0X7798")
+    expect_equal(app$get_value(input = "group-group-select"), targetGroupID)
 
     expect_official_screenshot(
       app,
-      name = "03-plot_click_navigation"
+      name = "03-plot_click_navigation",
+      selector = ".navbar"
     )
   })
 
