@@ -22,8 +22,10 @@ test_that("mod_DomainData_Server sets placeholder when no data is available", {
     ),
     {
       test_html <- output$`gt-table`$html
+      # Pre-clean since this is already plain character.
       gt_id <- stringr::str_extract(test_html, 'div id="(\\w+)"', 1)
       test_html <- stringr::str_replace_all(test_html, gt_id, "gtRandID")
+      test_html <- scrub_repeated_newlines(test_html)
       expect_cleaned_html(
         test_html,
         call = call

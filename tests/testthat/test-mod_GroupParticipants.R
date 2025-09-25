@@ -25,7 +25,9 @@ test_that("mod_GroupParticipants_Server starts as expected", {
       rctv_dfAnalyticsInput = reactive(dfAnalyticsInput),
       rctv_lColumnNames = reactive({
         list(
-          Numerator = "Num", Denominator = "Den", Metric = "Metr"
+          Numerator = "Num",
+          Denominator = "Den",
+          Metric = "Metr"
         )
       })
     ),
@@ -36,6 +38,7 @@ test_that("mod_GroupParticipants_Server starts as expected", {
       test_html <- test_result$html
       gt_id <- stringr::str_extract(test_html, 'div id="(\\w+)"', 1)
       test_html <- stringr::str_replace_all(test_html, gt_id, "gtRandID")
+      test_html <- scrub_repeated_newlines(test_html)
       expect_cleaned_html(
         test_html,
         call = call
@@ -48,6 +51,7 @@ test_that("mod_GroupParticipants_Server starts as expected", {
       test_html <- test_result$html
       gt_id <- stringr::str_extract(test_html, 'div id="(\\w+)"', 1)
       test_html <- stringr::str_replace_all(test_html, gt_id, "gtRandID")
+      test_html <- scrub_repeated_newlines(test_html)
       expect_cleaned_html(
         test_html,
         call = call
@@ -63,6 +67,9 @@ test_that("mod_GroupParticipants_Server returns selected participant", {
   ) %>%
     FilterByLatestIfPresent()
 
+  targetN <- 3L
+  targetSubjectID <- dfAnalyticsInput$SubjectID[[targetN]]
+
   testServer(
     mod_GroupParticipants_Server,
     args = list(
@@ -72,7 +79,9 @@ test_that("mod_GroupParticipants_Server returns selected participant", {
       rctv_dfAnalyticsInput = reactive(dfAnalyticsInput),
       rctv_lColumnNames = reactive({
         list(
-          Numerator = "Num", Denominator = "Den", Metric = "Metr"
+          Numerator = "Num",
+          Denominator = "Den",
+          Metric = "Metr"
         )
       })
     ),
@@ -81,8 +90,8 @@ test_that("mod_GroupParticipants_Server returns selected participant", {
       expect_null(session$returned())
       # Without this I don't think the gt data registers properly.
       session$flushReact()
-      session$setInputs(`gt-table` = 3L)
-      expect_equal(session$returned(), "S97178")
+      session$setInputs(`gt-table` = targetN)
+      expect_equal(session$returned(), targetSubjectID)
       session$setInputs(`gt-table` = 0L)
       expect_equal(session$returned(), "All")
       session$setInputs(`gt-table` = NULL)

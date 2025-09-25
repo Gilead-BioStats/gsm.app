@@ -119,8 +119,8 @@
 #'
 #' @examples
 #' head(sample_fnFetchData("AE"))
-#' head(sample_fnFetchData("AE", strGroupID = "0X103"))
-#' head(sample_fnFetchData("AE", strSubjectID = "1350"))
+#' head(sample_fnFetchData("AE", strGroupID = "0X6161"))
+#' head(sample_fnFetchData("AE", strSubjectID = "S60729"))
 sample_fnFetchData <- function(
   strDomainID = c(
     "AE",
@@ -144,10 +144,10 @@ sample_fnFetchData <- function(
   strGroupID <- NullifyEmpty(strGroupID)
   strSubjectID <- NullifyEmpty(strSubjectID)
 
-  if (!is.null(strGroupID) && strGroupID == "0X9640" && strDomainID == "LB") {
+  if (!is.null(strGroupID) && strGroupID == "0X9917" && strDomainID == "LB") {
     gsmappAbort(
       c(
-        "Site 0X9640 has data issues for the Lab domain.",
+        "Site 0X9917 has data issues for the Lab domain.",
         "This is to demonstrate behavior with errors.",
         "Please select another Site."
       ),
@@ -231,16 +231,16 @@ sample_fnCountData <- function(
   # Hard-code study-level data for faster lookups.
   if (is.null(strGroupID) && is.null(strSubjectID) && is.null(dSnapshotDate)) {
     sizes <- c(
-      "AE" = 512L,
-      "ENROLL" = 173L,
-      "LB" = 490680L,
-      "PD" = 508L,
-      "SDRGCOMP" = 83L,
-      "STUDCOMP" = 18L,
-      "SUBJ" = 173L,
-      "DATACHG" = 544448L,
-      "DATAENT" = 136112L,
-      "QUERY" = 34028L
+      "AE" = 514L,
+      "ENROLL" = 179L,
+      "LB" = 437805L,
+      "PD" = 510L,
+      "SDRGCOMP" = 78L,
+      "STUDCOMP" = 19L,
+      "SUBJ" = 179L,
+      "DATACHG" = 454208L,
+      "DATAENT" = 113552L,
+      "QUERY" = 28388L
     )
     return(unname(sizes[[strDomainID]]))
   }

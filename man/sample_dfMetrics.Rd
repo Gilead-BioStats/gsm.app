@@ -5,8 +5,8 @@
 \alias{sample_dfMetrics}
 \title{Metric Metadata Dataset}
 \format{
-A tibble with 22 rows and
-16 columns:
+A tibble with 23 rows and
+17 columns:
 \describe{
 \item{MetricID}{unique metric identifier}
 \item{File}{yaml file for workflow}

@@ -13,7 +13,8 @@ scrub_html <- function(chrLines) {
     scrub_tab_ids() %>%
     scrub_tabset_ids() %>%
     scrub_collapse_ids() %>%
-    scrub_extra_black_style()
+    scrub_extra_black_style() %>%
+    scrub_repeated_newlines()
 }
 
 scrub_card_ids <- function(chrLines) {
@@ -38,4 +39,16 @@ scrub_collapse_ids <- function(chrLines) {
 
 scrub_extra_black_style <- function(chrLines) {
   gsub('style="color: black; width: auto', 'style="width: auto', chrLines)
+}
+
+scrub_repeated_newlines <- function(chrLines) {
+  # We don't care about whitespace differences here, but it can cause
+  # strangeness on different systems, so let's just dump it all.
+  strAllLines <- paste(chrLines, collapse = "\n")
+  strAllLines <- stringr::str_squish(strAllLines)
+  strAllLines <- stringr::str_replace_all(strAllLines, "\\> \\<", "\\>\n\\<")
+  chrLines <- strsplit(strAllLines, "\\n")[[1]]
+  chrLines <- chrLines[nchar(chrLines) > 0]
+  chrLines <- chrLines[chrLines != " "]
+  return(chrLines)
 }

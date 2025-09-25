@@ -69,6 +69,7 @@ test_that("526: The user can view visualizations of a single KRI.", {
     # Site level
     site_metrics <- sample_dfMetrics %>%
       dplyr::filter(.data$GroupLevel == "Site") %>%
+      dplyr::filter(.data$MetricID != "Analysis_srs0001") %>%
       dplyr::pull(.data$Metric)
     dropdown_options_site <- app$get_text(dd_text_selector) %>%
       stringr::str_squish()
@@ -163,6 +164,10 @@ test_that("527: The user can view an interactive scatter plot of the selected KR
     timeout = 2000
   )
 
+  targetGroupID <- sample_dfGroups[
+    sample_dfGroups$GroupLevel == "Site",
+  ]$GroupID[[2]]
+
   test_that("527.01: The interactive scatter plot is based on `gsm.kri::Widget_ScatterPlot()`.", {
     expect_css_class(
       app$get_html("body"),
@@ -173,13 +178,12 @@ test_that("527: The user can view an interactive scatter plot of the selected KR
   })
 
   test_that("527.02: The selected group is highlighted in the interactive scatter plot.", {
-    target_group <- "0X4579"
-    app$set_inputs(`group-group-select` = target_group)
+    app$set_inputs(`group-group-select` = targetGroupID)
     app$wait_for_idle()
     selected_group_js <- app$get_js(
       "document.querySelector('#metric_details-scatter_plot-plot canvas').chart.data._config_.selectedGroupIDs"
     )
-    expect_equal(selected_group_js, target_group)
+    expect_equal(selected_group_js, targetGroupID)
     expect_official_screenshot(app, name = c("02", "scatter_plot-selected"))
 
     # Reset
@@ -188,9 +192,12 @@ test_that("527: The user can view an interactive scatter plot of the selected KR
   })
 
   test_that("527.03: Clicking a group in the scatter plot updates the group drop-down.", {
-    app$run_js("clickWidgetPlotGroup('metric_details-scatter_plot', '0X4579');")
+    js <- glue::glue(
+      "clickWidgetPlotGroup('metric_details-scatter_plot', '{targetGroupID}');"
+    )
+    app$run_js(js)
     app$wait_for_idle()
-    expect_equal(app$get_value(input = "group-group-select"), "0X4579")
+    expect_equal(app$get_value(input = "group-group-select"), targetGroupID)
     expect_official_screenshot(app, name = c("03", "scatter_plot-click"))
   })
 
@@ -213,6 +220,9 @@ test_that("528: The user can view an interactive bar chart of the selected KRI's
     "isCanvasLoaded('metric_details-bar_chart_metric');",
     timeout = 2000
   )
+  targetGroupID <- sample_dfGroups[
+    sample_dfGroups$GroupLevel == "Site",
+  ]$GroupID[[2]]
 
   test_that("528.01: The interactive bar chart (value) is based on `gsm.kri::Widget_BarChart()`.", {
     expect_css_class(
@@ -224,13 +234,12 @@ test_that("528: The user can view an interactive bar chart of the selected KRI's
   })
 
   test_that("528.02: The selected group is highlighted in the interactive bar chart (value).", {
-    target_group <- "0X4579"
-    app$set_inputs(`group-group-select` = target_group)
+    app$set_inputs(`group-group-select` = targetGroupID)
     app$wait_for_idle()
     selected_group_js <- app$get_js(
       "document.querySelector('#metric_details-bar_chart_metric-plot canvas').chart.data._config_.selectedGroupIDs"
     )
-    expect_equal(selected_group_js, target_group)
+    expect_equal(selected_group_js, targetGroupID)
     expect_official_screenshot(app, name = c("02", "bar_chart-values-selected"))
 
     # Reset
@@ -239,11 +248,12 @@ test_that("528: The user can view an interactive bar chart of the selected KRI's
   })
 
   test_that("528.03: Clicking a group in the bar chart (value) updates the group drop-down.", {
-    app$run_js(
-      "clickWidgetPlotGroup('metric_details-bar_chart_metric', '0X4579');"
+    js <- glue::glue(
+      "clickWidgetPlotGroup('metric_details-bar_chart_metric', '{targetGroupID}');"
     )
+    app$run_js(js)
     app$wait_for_idle()
-    expect_equal(app$get_value(input = "group-group-select"), "0X4579")
+    expect_equal(app$get_value(input = "group-group-select"), targetGroupID)
     expect_official_screenshot(app, name = c("03", "bar_chart-values-click"))
   })
 
@@ -267,6 +277,10 @@ test_that("529: The user can view an interactive bar chart of the selected KRI's
     timeout = 2000
   )
 
+  targetGroupID <- sample_dfGroups[
+    sample_dfGroups$GroupLevel == "Site",
+  ]$GroupID[[2]]
+
   test_that("529.01: The interactive bar chart (score) is based on `gsm.kri::Widget_BarChart()`.", {
     expect_css_class(
       app$get_html("body"),
@@ -277,13 +291,12 @@ test_that("529: The user can view an interactive bar chart of the selected KRI's
   })
 
   test_that("529.02: The selected group is highlighted in the interactive bar chart (score).", {
-    target_group <- "0X4579"
-    app$set_inputs(`group-group-select` = target_group)
+    app$set_inputs(`group-group-select` = targetGroupID)
     app$wait_for_idle()
     selected_group_js <- app$get_js(
       "document.querySelector('#metric_details-bar_chart_score-plot canvas').chart.data._config_.selectedGroupIDs"
     )
-    expect_equal(selected_group_js, target_group)
+    expect_equal(selected_group_js, targetGroupID)
     expect_official_screenshot(app, name = c("02", "bar_chart-scores-selected"))
 
     # Reset
@@ -292,11 +305,12 @@ test_that("529: The user can view an interactive bar chart of the selected KRI's
   })
 
   test_that("529.03: Clicking a group in the bar chart (score) updates the group drop-down.", {
-    app$run_js(
-      "clickWidgetPlotGroup('metric_details-bar_chart_score', '0X4579');"
+    js <- glue::glue(
+      "clickWidgetPlotGroup('metric_details-bar_chart_score', '{targetGroupID}');"
     )
+    app$run_js(js)
     app$wait_for_idle()
-    expect_equal(app$get_value(input = "group-group-select"), "0X4579")
+    expect_equal(app$get_value(input = "group-group-select"), targetGroupID)
     expect_official_screenshot(app, name = c("03", "bar_chart-scores-click"))
   })
 
@@ -320,6 +334,15 @@ test_that("530: The user can view an interactive time-series plot of the selecte
     timeout = 2000
   )
 
+  targetGroupID <- sample_dfResults %>%
+    dplyr::filter(
+      MetricID == "Analysis_kri0001",
+      abs(.data$Flag) > 0
+    ) %>%
+    dplyr::count(.data$GroupID, sort = TRUE) %>%
+    utils::head(1) %>%
+    dplyr::pull("GroupID")
+
   test_that("530.01: The interactive time-series plot is based on `gsm.kri::Widget_TimeSeries()`.", {
     expect_css_class(
       app$get_html("body"),
@@ -330,13 +353,12 @@ test_that("530: The user can view an interactive time-series plot of the selecte
   })
 
   test_that("530.02: The selected group is highlighted in the interactive time-series plot.", {
-    target_group <- "0X4579"
-    app$set_inputs(`group-group-select` = target_group)
+    app$set_inputs(`group-group-select` = targetGroupID)
     app$wait_for_idle()
     selected_group_js <- app$get_js(
       "document.querySelector('#metric_details-time_series-plot canvas').chart.data._config_.selectedGroupIDs"
     )
-    expect_equal(selected_group_js, target_group)
+    expect_equal(selected_group_js, targetGroupID)
     expect_official_screenshot(app, name = c("02", "time_series-selected"))
 
     # Reset
@@ -345,9 +367,13 @@ test_that("530: The user can view an interactive time-series plot of the selecte
   })
 
   test_that("530.03: Clicking a group in the time-series plot updates the group drop-down.", {
-    app$run_js("clickTimeSeriesGroup('metric_details-time_series', '0X4579');")
+    # Find a site with flags in multiple snapshots, if possible.
+    js <- glue::glue(
+      "clickTimeSeriesGroup('metric_details-time_series', '{targetGroupID}');"
+    )
+    app$run_js(js)
     app$wait_for_idle()
-    expect_equal(app$get_value(input = "group-group-select"), "0X4579")
+    expect_equal(app$get_value(input = "group-group-select"), targetGroupID)
     expect_official_screenshot(app, name = c("03", "time_series-click"))
   })
 
@@ -365,6 +391,15 @@ test_that("531: The user can view a table of the KRI results for each group.", {
   app$wait_for_idle()
   app$set_inputs(`metric_details-selected_tab` = "Analysis Output")
   app$wait_for_idle()
+
+  targetGroupID <- sample_dfResults %>%
+    dplyr::filter(
+      MetricID == "Analysis_kri0001",
+      abs(.data$Flag) > 0
+    ) %>%
+    dplyr::count(.data$GroupID, sort = TRUE) %>%
+    utils::head(1) %>%
+    dplyr::pull("GroupID")
 
   test_that("531.01: The KRI results table is generated by `gsm.kri::Report_MetricTable()`.", {
     expect_css_class(
@@ -389,15 +424,14 @@ test_that("531: The user can view a table of the KRI results for each group.", {
   })
 
   test_that("531.02: The selected group is highlighted in the KRI results table.", {
-    target_group <- "0X7798"
-    app$set_inputs(`group-group-select` = target_group)
+    app$set_inputs(`group-group-select` = targetGroupID)
     app$wait_for_idle()
     selected_group <- rvest::read_html(app$get_html("body")) %>%
       rvest::html_element("#metric_details-analysis_output-gt-table") %>%
       rvest::html_element(".rt-tr-selected .rt-td:nth-child(2)") %>%
       rvest::html_text2() %>%
       stringr::str_extract("^\\S+")
-    expect_equal(selected_group, target_group)
+    expect_equal(selected_group, targetGroupID)
     expect_official_screenshot(app, name = c("02", "analysis_output-selected"))
 
     # Reset
@@ -427,10 +461,12 @@ test_that("532: When a group is selected, the user can view that group's metadat
   app$wait_for_idle()
   app$set_inputs(primary_nav_bar = "Metric Details")
   app$wait_for_idle()
+  targetGroupID <- sample_dfGroups[
+    sample_dfGroups$GroupLevel == "Site",
+  ]$GroupID[[2]]
 
   test_that("532.01: The group metadata contains all information about this Group from the `dfGroups` input table.", {
-    target_group <- "0X7798"
-    app$set_inputs(`group-group-select` = target_group)
+    app$set_inputs(`group-group-select` = targetGroupID)
     app$wait_for_idle()
     group_details_selector <- "#group_details-card_group_metadata_list"
     expect_equal(
@@ -443,7 +479,7 @@ test_that("532: When a group is selected, the user can view that group's metadat
     expected_metadata <- sample_dfGroups %>%
       dplyr::filter(
         .data$GroupLevel == "Site",
-        .data$GroupID == target_group
+        .data$GroupID == targetGroupID
       ) %>%
       dplyr::select("Param", "Value") %>%
       dplyr::mutate(
@@ -482,15 +518,17 @@ test_that("533: When a group is selected, the user can view a table of participa
   app$wait_for_idle()
   app$set_inputs(primary_nav_bar = "Metric Details")
   app$wait_for_idle()
-  target_group <- "0X7798"
-  app$set_inputs(`group-group-select` = target_group)
+  targetGroupID <- sample_dfGroups[
+    sample_dfGroups$GroupLevel == "Site",
+  ]$GroupID[[2]]
+  app$set_inputs(`group-group-select` = targetGroupID)
   app$wait_for_idle()
 
   test_that("533.01: The participant table shows each participant's numerator, denominator, and metric values for the selected KRI.", {
     participants_selector <- "#group_details-participants-"
     expect_equal(
       app$get_text(paste0(participants_selector, "title")),
-      glue::glue("Site: {target_group}")
+      glue::glue("Site: {targetGroupID}")
     )
     expect_equal(
       app$get_text(paste0(participants_selector, "subtitle")),
@@ -501,7 +539,7 @@ test_that("533: When a group is selected, the user can view a table of participa
         .data$SnapshotDate == "2012-03-31",
         .data$GroupLevel == "Site",
         .data$MetricID == "Analysis_kri0001",
-        .data$GroupID == target_group,
+        .data$GroupID == targetGroupID,
         .data$Denominator > 15
       ) %>%
       dplyr::arrange(dplyr::desc(.data$Metric)) %>%
