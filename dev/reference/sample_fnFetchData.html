@@ -9,7 +9,7 @@ supply to find additional data about a given domain."><meta name="robots" conten
 
     <a class="navbar-brand me-2" href="../index.html">gsm.app</a>
 
-    <small class="nav-text text-danger me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="In-development version">2.5.3.9000</small>
+    <small class="nav-text text-danger me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="In-development version">2.6.1</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -107,24 +107,36 @@ and taken from <code>dfMetrics$GroupLevel</code> if available.</p></dd>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 6 × 12</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   SubjectID GroupID aeser aest_dt    aeen_dt    mdrpt_nsv mdrsoc_nsv aetoxgr</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;date&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;date&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">1</span> S94810    0X4579  Y     2012-01-09 2012-01-11 term2     soc1       1      </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">2</span> S62733    0X4178  Y     2012-01-30 2012-02-01 term1     soc1       5      </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">3</span> S87058    0X7258  N     2012-01-20 2012-01-23 term2     soc1       2      </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">4</span> S94810    0X4579  N     2012-01-08 2012-01-09 term1     soc1       4      </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">5</span> S54148    0X902   N     2012-01-09 2012-01-11 term2     soc1       4      </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">6</span> S54148    0X902   N     2012-01-04 2012-01-05 term1     soc2       1      </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">1</span> S62489    0X2275  Y     2012-01-15 2012-01-18 term1     soc2       5      </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">2</span> S29180    0X2275  N     2012-01-10 2012-01-12 term2     soc2       2      </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">3</span> S91137    0X9558  Y     2012-01-19 2012-01-21 term2     soc2       2      </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">4</span> S66326    0X6641  Y     2012-01-22 2012-01-24 term1     soc2       1      </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">5</span> S37493    0X6161  N     2012-01-28 2012-01-31 term2     soc2       2      </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">6</span> S65380    0X2352  N     2012-01-29 2012-01-30 term2     soc2       4      </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 4 more variables: aeongo &lt;chr&gt;, aerel &lt;chr&gt;, mincreated_dts &lt;dttm&gt;,</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   GroupLevel &lt;chr&gt;</span></span>
-<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="fu">sample_fnFetchData</span><span class="op">(</span><span class="st">"AE"</span>, strGroupID <span class="op">=</span> <span class="st">"0X103"</span><span class="op">)</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 0 × 12</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 12 variables: SubjectID &lt;chr&gt;, GroupID &lt;chr&gt;, aeser &lt;chr&gt;, aest_dt &lt;date&gt;,</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   aeen_dt &lt;date&gt;, mdrpt_nsv &lt;chr&gt;, mdrsoc_nsv &lt;chr&gt;, aetoxgr &lt;chr&gt;,</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   aeongo &lt;chr&gt;, aerel &lt;chr&gt;, mincreated_dts &lt;dttm&gt;, GroupLevel &lt;chr&gt;</span></span>
-<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="fu">sample_fnFetchData</span><span class="op">(</span><span class="st">"AE"</span>, strSubjectID <span class="op">=</span> <span class="st">"1350"</span><span class="op">)</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 0 × 12</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 12 variables: SubjectID &lt;chr&gt;, GroupID &lt;chr&gt;, aeser &lt;chr&gt;, aest_dt &lt;date&gt;,</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   aeen_dt &lt;date&gt;, mdrpt_nsv &lt;chr&gt;, mdrsoc_nsv &lt;chr&gt;, aetoxgr &lt;chr&gt;,</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   aeongo &lt;chr&gt;, aerel &lt;chr&gt;, mincreated_dts &lt;dttm&gt;, GroupLevel &lt;chr&gt;</span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="fu">sample_fnFetchData</span><span class="op">(</span><span class="st">"AE"</span>, strGroupID <span class="op">=</span> <span class="st">"0X6161"</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 6 × 12</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   SubjectID GroupID aeser aest_dt    aeen_dt    mdrpt_nsv mdrsoc_nsv aetoxgr</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;date&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;date&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">1</span> S37493    0X6161  N     2012-01-28 2012-01-31 term2     soc2       2      </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">2</span> S60729    0X6161  Y     2012-01-24 2012-01-25 term2     soc1       5      </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">3</span> S37493    0X6161  Y     2012-01-17 2012-01-18 term2     soc2       2      </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">4</span> S25765    0X6161  N     2012-01-14 2012-01-16 term1     soc2       5      </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">5</span> S37493    0X6161  Y     2012-01-23 2012-01-25 term2     soc2       3      </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">6</span> S20555    0X6161  N     2012-01-17 2012-01-19 term1     soc1       2      </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 4 more variables: aeongo &lt;chr&gt;, aerel &lt;chr&gt;, mincreated_dts &lt;dttm&gt;,</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   GroupLevel &lt;chr&gt;</span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="fu">sample_fnFetchData</span><span class="op">(</span><span class="st">"AE"</span>, strSubjectID <span class="op">=</span> <span class="st">"S60729"</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 4 × 12</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   SubjectID GroupID aeser aest_dt    aeen_dt    mdrpt_nsv mdrsoc_nsv aetoxgr</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;date&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;date&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">1</span> S60729    0X6161  Y     2012-01-24 2012-01-25 term2     soc1       5      </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">2</span> S60729    0X6161  N     2012-01-19 2012-01-20 term1     soc2       4      </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">3</span> S60729    0X6161  N     2012-03-31 2012-04-03 term2     soc1       2      </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">4</span> S60729    0X6161  Y     2012-03-21 2012-03-24 term1     soc2       4      </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 4 more variables: aeongo &lt;chr&gt;, aerel &lt;chr&gt;, mincreated_dts &lt;dttm&gt;,</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   GroupLevel &lt;chr&gt;</span></span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
