@@ -1,3 +1,5 @@
+# gsm.app (development version)
+
 # gsm.app 2.6.0
 
 This release provides usability upgrades for the Domain Details tab. It also adds new contributor guidelines and standardized issue templates.
