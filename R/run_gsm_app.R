@@ -1,3 +1,5 @@
+# nocov
+
 #' Run the app
 #'
 #' @description
@@ -86,7 +88,8 @@ run_gsm_app <- function(
 run_sample_gsm_app <- function(
   strFavicon = "angles-up",
   strFaviconColor = "#FF5859"
-) { # nocov start
+) {
+  # nocov start
   run_gsm_app(
     dfAnalyticsInput = gsm.app::sample_dfAnalyticsInput,
     dfBounds = gsm.app::sample_dfBounds,

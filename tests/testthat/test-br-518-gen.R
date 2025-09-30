@@ -1,4 +1,5 @@
-skip_if_not_br()
+skip_if_not_qualifying()
+skip_if_not_installed("shinytest2")
 
 test_that("520: The app always indicates the study with which it is associated.", {
   test_that("520.01: By default, the app displays a title generated from the study information in dfGroups.", {

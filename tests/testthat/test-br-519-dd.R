@@ -1,4 +1,5 @@
-skip_if_not_br()
+skip_if_not_qualifying()
+skip_if_not_installed("shinytest2")
 
 test_that("543: The user can view counts of records for each available data domain.", {
   app <- br_app(

@@ -20,7 +20,7 @@ Load the package dependencies of a plugin. This is designed to be used in an
 rsconnect.
 }
 \examples{
-\dontshow{if (interactive()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
+\dontshow{if (interactive()) withAutoprint(\{ # examplesIf}
 plugin_LoadDependencies(list(packages = list(list(name = "gsm.app"))))
 \dontshow{\}) # examplesIf}
 }

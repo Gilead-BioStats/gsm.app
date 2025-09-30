@@ -94,7 +94,7 @@ to click to diver deeper into aspects of the data.
 sample data provided in this package.
 }
 \examples{
-\dontshow{if (interactive()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
+\dontshow{if (interactive()) withAutoprint(\{ # examplesIf}
 # Sample app will launch in a new browser window.
 run_sample_gsm_app()
 \dontshow{\}) # examplesIf}

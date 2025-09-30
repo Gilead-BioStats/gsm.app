@@ -46,6 +46,7 @@ Imports:
     tidyr,
     yaml
 Suggests: 
+    fs,
     gsm.mapping (>= 1.1.1),
     gsm.reporting,
     here,
@@ -72,6 +73,6 @@ Encoding: UTF-8
 Language: en-US
 LazyData: true
 Roxygen: list(markdown = TRUE)
-RoxygenNote: 7.3.2
+RoxygenNote: 7.3.3
 VignetteBuilder: knitr
 Config/Needs/website: rmarkdown

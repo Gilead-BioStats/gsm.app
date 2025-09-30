@@ -3,8 +3,7 @@
 # be manually executed once by a dev whenever this issue list (or the associated
 # tests) changes.
 lBRStatuses <- list(
-  "Ready for Review" = c(519),
-  "Validated" = c(518)
+  "Validated" = c(518, 519)
 )
 intBRs <- sort(unname(unlist(lBRStatuses)))
 

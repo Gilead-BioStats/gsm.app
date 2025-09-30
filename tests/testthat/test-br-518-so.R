@@ -1,4 +1,6 @@
-skip_if_not_br()
+skip_if_not_qualifying()
+skip_if_not_installed("rvest")
+skip_if_not_installed("shinytest2")
 
 test_that("523: The user can view a card with a high-level overview of the study metadata.", {
   app <- br_app(

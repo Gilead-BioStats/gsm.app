@@ -1,4 +1,5 @@
-skip_if_not_br()
+skip_if_not_qualifying()
+skip_if_not_installed("shinytest2")
 
 test_that("536: The user can view tabs provided by plugins.", {
   app <- br_app(

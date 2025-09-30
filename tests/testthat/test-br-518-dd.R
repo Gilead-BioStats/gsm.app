@@ -1,4 +1,5 @@
-skip_if_not_br()
+skip_if_not_qualifying()
+skip_if_not_installed("shinytest2")
 
 # Screenshots updated by BR #519.
 test_that("534: The user can view raw domain data.", {

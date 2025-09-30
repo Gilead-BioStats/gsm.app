@@ -1,20 +1,21 @@
 # Standard skips ----
 
-skip_if_not_br <- function() {
-  maybe_skip_br_tests()
+skip_if_not_qualifying <- function() {
+  if (testing_entire_package()) {
+    skip("Not qualifying.")
+  }
   skip_on_windows_ci()
-  skip_if_not_installed("shinytest2")
-  skip_if_not_installed("rvest")
   skip_on_cran()
+  skip_on_covr()
 }
 
-maybe_skip_br_tests <- function() {
-  # I'm still including this, but I'd like to TRY to run them all everywhere.
-  skip_if_not(
-    # as.logical(Sys.getenv("RUN_BR_TESTS", "false")),
-    TRUE,
-    # FALSE,
-    "BR tests are super slow"
+testing_entire_package <- function() {
+  !is_checking() && !testing_active_file()
+}
+
+testing_active_file <- function() {
+  any(
+    grepl("test_active_file", as.character(sys.calls()))
   )
 }
 

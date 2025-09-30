@@ -1,4 +1,6 @@
-skip_if_not_br()
+skip_if_not_qualifying()
+skip_if_not_installed("rvest")
+skip_if_not_installed("shinytest2")
 
 # Snapshots updated by #519.
 test_that("526: The user can view visualizations of a single KRI.", {
