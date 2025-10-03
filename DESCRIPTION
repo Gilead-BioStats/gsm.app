@@ -60,19 +60,18 @@ Suggests:
     testthat (>= 3.0.0),
     vdiffr,
     withr
-Config/Needs/data: 
-    usethis, 
-    Gilead-BioStats/gsm.datasim@main
+VignetteBuilder: 
+    knitr
 Remotes: 
     gsm.core=Gilead-BioStats/gsm.core@main,
-    gsm.mapping=Gilead-BioStats/gsm.mapping@main,
     gsm.kri=Gilead-BioStats/gsm.kri@main,
+    gsm.mapping=Gilead-BioStats/gsm.mapping@main,
     gsm.reporting=Gilead-BioStats/gsm.reporting@main
+Config/Needs/data: usethis, Gilead-BioStats/gsm.datasim@main
+Config/Needs/website: gh, readr, rmarkdown
 Config/testthat/edition: 3
 Encoding: UTF-8
 Language: en-US
 LazyData: true
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.3.3
-VignetteBuilder: knitr
-Config/Needs/website: rmarkdown

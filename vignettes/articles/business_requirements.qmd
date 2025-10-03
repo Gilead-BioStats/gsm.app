@@ -1,9 +1,0 @@
----
-title: "Business Requirements"
-format: html
----
-
-## Validated
-
-- [518: Generate an app to help CMs explore snapshot data](br518.html)
-- [519: Users can easily explore Domain Details](br519.html)
