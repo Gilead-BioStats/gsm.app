@@ -1,28 +1,28 @@
-SyncBRSnapshots <- function(path = ".") {
-  strToPath <- CopyRawImages(path)
+SyncBRSnapshots <- function(strPkgPath = here::here()) {
+  strToPath <- CopyRawImages(strPkgPath)
   FlattenImgSubdirs(strToPath)
 }
 
-CopyRawImages <- function(path) {
-  strFromPath <- EnsureImgFromPath(path)
-  strToPath <- EnsureImgPathEmpty(path)
+CopyRawImages <- function(strPkgPath) {
+  strFromPath <- EnsureImgFromPath(strPkgPath)
+  strToPath <- EnsureImgPathEmpty(strPkgPath)
   fs::dir_copy(strFromPath, strToPath)
   return(strToPath)
 }
 
-EnsureImgFromPath <- function(path) {
-  strFromPath <- fs::path(path, "tests", "testthat", "_snaps", "br")
+EnsureImgFromPath <- function(strPkgPath) {
+  strFromPath <- fs::path(strPkgPath, "tests", "testthat", "_snaps", "br")
   if (!dir.exists(strFromPath)) {
     cli::cli_abort(c(
-      "Snapshot directory not found at '{path}'",
+      "Snapshot directory not found at '{strPkgPath}'",
       i = "Did you run the QC tests?"
     ))
   }
   strFromPath
 }
 
-EnsureImgPathEmpty <- function(path) {
-  strToPath <- RequirementArticleExtrasPath(path, "img")
+EnsureImgPathEmpty <- function(strPkgPath) {
+  strToPath <- RequirementArticleExtrasPath(strPkgPath, "img")
   if (fs::dir_exists(strToPath)) {
     fs::dir_delete(strToPath)
   }
