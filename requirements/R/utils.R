@@ -28,8 +28,7 @@ ReadTemplate <- function(strTemplateName, strPkgPath = here::here()) {
       strPkgPath,
       "requirements",
       "templates",
-      strTemplateName,
-      strPkgPath = strPkgPath
+      strTemplateName
     )
   )
 }
