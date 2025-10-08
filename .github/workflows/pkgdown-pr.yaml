@@ -11,6 +11,7 @@ jobs:
     env:
       GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
       PKGDOWN_DEV_MODE: devel
+      RUN_QC_TESTS: true
     permissions:
       contents: write
     steps:

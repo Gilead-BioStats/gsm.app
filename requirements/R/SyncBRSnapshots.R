@@ -1,4 +1,10 @@
-SyncBRSnapshots <- function(strPkgPath = here::here()) {
+SyncBRSnapshots <- function(
+  strPkgPath = here::here(),
+  lglRunTests = as.logical(Sys.getenv("RUN_QC_TESTS", "false"))
+) {
+  if (lglRunTests) {
+    TestCheckBR(strPkgPath)
+  }
   strToPath <- CopyRawImages(strPkgPath)
   FlattenImgSubdirs(strToPath)
 }

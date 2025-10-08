@@ -10,13 +10,17 @@ skip_if_not_qualifying <- function() {
 }
 
 testing_entire_package <- function() {
-  !is_checking() && !testing_active_file()
+  !is_checking() && !testing_active_file() && !is_qcing()
 }
 
 testing_active_file <- function() {
   any(
     grepl("test_active_file", as.character(sys.calls()))
   )
+}
+
+is_qcing <- function() {
+  isTRUE(as.logical(Sys.getenv("TESTTHAT_IS_QCING", "false")))
 }
 
 skip_on_windows_ci <- function() {
@@ -49,12 +53,8 @@ br_app <- function(app_dir, name, width = 1300, ...) {
 # Screenshots ----
 
 expect_official_screenshot <- function(app, name, ...) {
-  # if (isTRUE(as.logical(Sys.getenv("SHINYTEST2_TEST_SCREENSHOT")))) {
   name <- paste(name, collapse = "-")
   app$expect_screenshot(name = name, ...)
-  # } else {
-  #   succeed("Skipping screenshot test on this platform.")
-  # }
 }
 
 # Other expectations ----
