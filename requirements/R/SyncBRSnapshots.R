@@ -26,7 +26,7 @@ EnsureImgFromPath <- function(strPkgPath) {
   )
   if (!dir.exists(strFromPath)) {
     cli::cli_abort(c(
-      "Snapshot directory not found at '{strPkgPath}'",
+      "Snapshot directory not found at '{strFromPath}'",
       i = "Did you run the QC tests?"
     ))
   }
