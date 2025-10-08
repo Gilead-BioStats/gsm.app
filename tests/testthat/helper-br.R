@@ -4,13 +4,12 @@ skip_if_not_qualifying <- function() {
   if (testing_entire_package()) {
     skip("Not qualifying.")
   }
-  skip_on_windows_ci()
   skip_on_cran()
   skip_on_covr()
 }
 
 testing_entire_package <- function() {
-  !is_checking() && !testing_active_file() && !is_qcing()
+  !testing_qc() && !testing_active_file()
 }
 
 testing_active_file <- function() {
@@ -19,18 +18,8 @@ testing_active_file <- function() {
   )
 }
 
-is_qcing <- function() {
+testing_qc <- function() {
   isTRUE(as.logical(Sys.getenv("TESTTHAT_IS_QCING", "false")))
-}
-
-skip_on_windows_ci <- function() {
-  # Ironically, the tests time out on the Windows runner on GitHub, even
-  # though they run fine on my local Windows machine.
-  skip_if(
-    Sys.info()[["sysname"]] == "Windows" &&
-      isTRUE(as.logical(Sys.getenv("CI", "false"))),
-    "BR tests time out on GitHub Windows runner"
-  )
 }
 
 # App Driver ----
