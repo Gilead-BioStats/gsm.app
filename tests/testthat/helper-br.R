@@ -49,12 +49,12 @@ br_app <- function(app_dir, name, width = 1300, ...) {
 # Screenshots ----
 
 expect_official_screenshot <- function(app, name, ...) {
-  if (isTRUE(as.logical(Sys.getenv("SHINYTEST2_TEST_SCREENSHOT")))) {
-    name <- paste(name, collapse = "-")
-    app$expect_screenshot(name = name, ...)
-  } else {
-    succeed("Skipping screenshot test on this platform.")
-  }
+  # if (isTRUE(as.logical(Sys.getenv("SHINYTEST2_TEST_SCREENSHOT")))) {
+  name <- paste(name, collapse = "-")
+  app$expect_screenshot(name = name, ...)
+  # } else {
+  #   succeed("Skipping screenshot test on this platform.")
+  # }
 }
 
 # Other expectations ----
