@@ -36,3 +36,7 @@ ReadTemplate <- function(strTemplateName, strPkgPath = here::here()) {
 ReadRequirementsConfig <- function(strPkgPath = here::here()) {
   yaml::read_yaml(fs::path(strPkgPath, "_requirements.yml"))
 }
+
+CompileVariantDir <- function() {
+  paste("br", shinytest2::platform_variant(), sep = "-")
+}

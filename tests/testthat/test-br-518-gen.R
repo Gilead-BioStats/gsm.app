@@ -233,7 +233,7 @@ test_that("521: The user can filter the data.", {
           selector = ".navbar"
         ),
         "521-05-02-after_reset.png",
-        variant = "br"
+        variant = CompileVariantDir()
       )
     } else {
       succeed("Skipping screenshot test on this platform.")

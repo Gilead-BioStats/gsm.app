@@ -1,6 +1,6 @@
 # Hide any existing br snapshots for cases where qualification won't run.
 if (testing_entire_package()) {
-  br_snap_folder <- test_path("_snaps", "br")
+  br_snap_folder <- test_path("_snaps", CompileVariantDir())
   if (fs::dir_exists(br_snap_folder)) {
     br_snap_holder <- test_path("br_hold")
     if (fs::dir_exists(br_snap_holder)) {

@@ -31,10 +31,14 @@ skip_on_windows_ci <- function() {
 
 # App Driver ----
 
+CompileVariantDir <- function() {
+  paste("br", shinytest2::platform_variant(), sep = "-")
+}
+
 br_app <- function(app_dir, name, width = 1300, ...) {
   shinytest2::AppDriver$new(
     app_dir = test_path("apps", app_dir),
-    variant = "br",
+    variant = CompileVariantDir(),
     name = name,
     width = width,
     height = 800,

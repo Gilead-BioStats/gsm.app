@@ -11,7 +11,13 @@ CopyRawImages <- function(strPkgPath) {
 }
 
 EnsureImgFromPath <- function(strPkgPath) {
-  strFromPath <- fs::path(strPkgPath, "tests", "testthat", "_snaps", "br")
+  strFromPath <- fs::path(
+    strPkgPath,
+    "tests",
+    "testthat",
+    "_snaps",
+    CompileVariantDir()
+  )
   if (!dir.exists(strFromPath)) {
     cli::cli_abort(c(
       "Snapshot directory not found at '{strPkgPath}'",
