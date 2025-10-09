@@ -46,7 +46,15 @@ expect_official_screenshot <- function(app, name, ...) {
   if (on_ci()) {
     snapper <- getOption("testthat.snapshotter")
     if (!is.null(snapper)) {
-      path <- fs::path(snapper$snap_dir, snapper$file, name, ext = "png")
+      snap_dir <- fs::path(snapper$snap_dir, CompileVariantDir(), snapper$file)
+      fs::dir_create(snap_dir)
+      if (!is.null(app$.__enclos_env__$private$name)) {
+        name <- paste(app$.__enclos_env__$private$name, name, sep = "-")
+      }
+      path <- fs::path(snap_dir, name, ext = "png")
+      if (fs::file_exists(path)) {
+        fs::file_delete(path)
+      }
       app$get_screenshot(
         file = path,
         ...
