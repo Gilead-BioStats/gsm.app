@@ -11,7 +11,6 @@ jobs:
     env:
       GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
       PKGDOWN_DEV_MODE: devel
-      RUN_QC_TESTS: true
     permissions:
       contents: write
 
@@ -30,6 +29,9 @@ jobs:
         with:
           extra-packages: any::pkgdown, local::.
           needs: website
+
+      - name: Run BR tests
+        run: Rscript -e "source('requirements/RunTests.R')"
 
       - name: Create BR articles
         run: Rscript -e "source('requirements/run.R')"
