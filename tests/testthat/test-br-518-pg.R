@@ -2,6 +2,7 @@ skip_if_not_qualifying()
 skip_if_not_installed("shinytest2")
 
 test_that("536: The user can view tabs provided by plugins.", {
+  succeed()
   app <- br_app(
     app_dir = "plugin",
     name = "536",

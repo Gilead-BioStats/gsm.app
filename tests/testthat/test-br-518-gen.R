@@ -2,6 +2,7 @@ skip_if_not_qualifying()
 skip_if_not_installed("shinytest2")
 
 test_that("520: The app always indicates the study with which it is associated.", {
+  succeed()
   test_that("520.01: By default, the app displays a title generated from the study information in dfGroups.", {
     expected_title <- sample_dfGroups$Value[
       sample_dfGroups$GroupLevel == "Study" &
@@ -26,6 +27,7 @@ test_that("520: The app always indicates the study with which it is associated."
 })
 
 test_that("521: The user can filter the data.", {
+  succeed()
   test_that("521.01: If the data contains more than one group level (e.g., 'Site' vs 'Country'), a 'Group Level' filter is displayed.", {
     # Multiple group levels.
     app <- br_app(
@@ -244,6 +246,7 @@ test_that("521: The user can filter the data.", {
 })
 
 test_that("522: The user can drill down into views of different aspects of the data.", {
+  succeed()
   app <- br_app(
     app_dir = "standard",
     name = "522"

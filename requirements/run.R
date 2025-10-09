@@ -7,9 +7,6 @@ purrr::walk(
   }
 )
 
-# Package must be loaded for testing.
-pkgload::load_all()
-
 # Fetch and format the list of issues from the GitHub repo, using
 # `./_requirements.yml` for configuration by default, then save for use by later
 # pieces & by the QMDs themselves.

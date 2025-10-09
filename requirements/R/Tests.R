@@ -11,7 +11,11 @@ TestCheckQCFile <- function(strTestFile, strPkgPath = here::here()) {
   CheckReadyToTest(strPkgPath)
   withr::local_envvar(TESTTHAT_IS_QCING = "true")
   cli::cli_inform("Running tests in {.file {strTestFile}}")
-  testthat::test_file(strTestFile, package = GetCurrentPackage(strPkgPath))
+  testthat::test_file(
+    strTestFile,
+    package = GetCurrentPackage(strPkgPath),
+    reporter = testthat::TapReporter$new()
+  )
 }
 
 CheckReadyToTest <- function(strPkgPath = here::here()) {
