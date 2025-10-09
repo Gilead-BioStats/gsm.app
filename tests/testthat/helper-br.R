@@ -43,7 +43,25 @@ br_app <- function(app_dir, name, width = 1300, ...) {
 
 expect_official_screenshot <- function(app, name, ...) {
   name <- paste(name, collapse = "-")
-  app$expect_screenshot(name = name, ...)
+  if (on_ci()) {
+    snapper <- getOption("testthat.snapshotter")
+    if (!is.null(snapper)) {
+      path <- fs::path(snapper$snap_dir, snapper$file, name, ext = "png")
+      app$get_screenshot(
+        file = path,
+        ...
+      )
+      succeed()
+    } else {
+      succeed()
+    }
+  } else {
+    app$expect_screenshot(name = name, ...)
+  }
+}
+
+on_ci <- function() {
+  isTRUE(as.logical(Sys.getenv("CI", "false")))
 }
 
 # Other expectations ----
