@@ -1,0 +1,8 @@
+project:
+  number: 41
+  status_field_name: Status
+issues:
+  type: Requirement
+  statuses:
+  - Under Review
+  - Done

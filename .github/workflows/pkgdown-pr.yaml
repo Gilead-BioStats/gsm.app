@@ -27,8 +27,11 @@ jobs:
           extra-packages: any::pkgdown, local::.
           needs: website
 
-      - name: Sync BR Snapshots
-        run: Rscript -e "source('vignettes/articles/business_requirements/sync_br_imgs.R')"
+      - name: Run BR tests
+        run: Rscript -e "source('requirements/RunTests.R')"
+
+      - name: Create BR articles
+        run: Rscript -e "source('requirements/run.R')"
 
       - name: Build site
         run: pkgdown::build_site_github_pages(new_process = FALSE, install = FALSE)

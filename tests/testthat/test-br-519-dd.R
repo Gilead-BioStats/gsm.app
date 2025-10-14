@@ -1,6 +1,8 @@
-skip_if_not_br()
+skip_if_not_qualifying()
+skip_if_not_installed("shinytest2")
 
 test_that("543: The user can view counts of records for each available data domain.", {
+  succeed()
   app <- br_app(
     app_dir = "standard",
     name = "543"
@@ -82,6 +84,7 @@ test_that("543: The user can view counts of records for each available data doma
 })
 
 test_that("385: The user can filter domain data.", {
+  succeed()
   app <- br_app(
     app_dir = "standard",
     name = "385"
@@ -143,6 +146,7 @@ test_that("385: The user can filter domain data.", {
 })
 
 test_that("496: The user can visualize domain categorical variable counts by value.", {
+  succeed()
   app <- br_app(
     app_dir = "standard",
     name = "496"
@@ -417,6 +421,7 @@ test_that("496: The user can visualize domain categorical variable counts by val
 })
 
 test_that("555: Increase number of rows shown in domain details.", {
+  succeed()
   app <- br_app(
     app_dir = "standard",
     name = "555"

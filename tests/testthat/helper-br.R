@@ -1,39 +1,37 @@
 # Standard skips ----
 
-skip_if_not_br <- function() {
-  maybe_skip_br_tests()
-  skip_on_windows_ci()
-  skip_if_not_installed("shinytest2")
-  skip_if_not_installed("rvest")
+skip_if_not_qualifying <- function() {
+  if (testing_entire_package()) {
+    skip("Not qualifying.")
+  }
   skip_on_cran()
+  skip_on_covr()
 }
 
-maybe_skip_br_tests <- function() {
-  # I'm still including this, but I'd like to TRY to run them all everywhere.
-  skip_if_not(
-    # as.logical(Sys.getenv("RUN_BR_TESTS", "false")),
-    TRUE,
-    # FALSE,
-    "BR tests are super slow"
+testing_entire_package <- function() {
+  !testing_qc() && !testing_active_file()
+}
+
+testing_active_file <- function() {
+  any(
+    grepl("test_active_file", as.character(sys.calls()))
   )
 }
 
-skip_on_windows_ci <- function() {
-  # Ironically, the tests time out on the Windows runner on GitHub, even
-  # though they run fine on my local Windows machine.
-  skip_if(
-    Sys.info()[["sysname"]] == "Windows" &&
-      isTRUE(as.logical(Sys.getenv("CI", "false"))),
-    "BR tests time out on GitHub Windows runner"
-  )
+testing_qc <- function() {
+  isTRUE(as.logical(Sys.getenv("TESTTHAT_IS_QCING", "false")))
 }
 
 # App Driver ----
 
+CompileVariantDir <- function() {
+  paste("br", shinytest2::platform_variant(), sep = "-")
+}
+
 br_app <- function(app_dir, name, width = 1300, ...) {
   shinytest2::AppDriver$new(
     app_dir = test_path("apps", app_dir),
-    variant = "br",
+    variant = CompileVariantDir(),
     name = name,
     width = width,
     height = 800,
@@ -44,12 +42,34 @@ br_app <- function(app_dir, name, width = 1300, ...) {
 # Screenshots ----
 
 expect_official_screenshot <- function(app, name, ...) {
-  if (isTRUE(as.logical(Sys.getenv("SHINYTEST2_TEST_SCREENSHOT")))) {
-    name <- paste(name, collapse = "-")
-    app$expect_screenshot(name = name, ...)
+  name <- paste(name, collapse = "-")
+  if (on_ci()) {
+    snapper <- getOption("testthat.snapshotter")
+    if (!is.null(snapper)) {
+      snap_dir <- fs::path(snapper$snap_dir, CompileVariantDir(), snapper$file)
+      fs::dir_create(snap_dir)
+      if (!is.null(app$.__enclos_env__$private$name)) {
+        name <- paste(app$.__enclos_env__$private$name, name, sep = "-")
+      }
+      path <- fs::path(snap_dir, name, ext = "png")
+      if (fs::file_exists(path)) {
+        fs::file_delete(path)
+      }
+      app$get_screenshot(
+        file = path,
+        ...
+      )
+      succeed()
+    } else {
+      succeed()
+    }
   } else {
-    succeed("Skipping screenshot test on this platform.")
+    app$expect_screenshot(name = name, ...)
   }
+}
+
+on_ci <- function() {
+  isTRUE(as.logical(Sys.getenv("CI", "false")))
 }
 
 # Other expectations ----

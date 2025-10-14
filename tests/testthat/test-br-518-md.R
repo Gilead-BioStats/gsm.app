@@ -1,7 +1,10 @@
-skip_if_not_br()
+skip_if_not_qualifying()
+skip_if_not_installed("rvest")
+skip_if_not_installed("shinytest2")
 
 # Snapshots updated by #519.
 test_that("526: The user can view visualizations of a single KRI.", {
+  succeed()
   app <- br_app(
     app_dir = "standard",
     name = "526",
@@ -150,6 +153,7 @@ test_that("526: The user can view visualizations of a single KRI.", {
 
 # Snapshots updated by #519.
 test_that("527: The user can view an interactive scatter plot of the selected KRI's latest results.", {
+  succeed()
   app <- br_app(
     app_dir = "standard",
     name = "527",
@@ -206,6 +210,7 @@ test_that("527: The user can view an interactive scatter plot of the selected KR
 
 # Snapshots updated by #519.
 test_that("528: The user can view an interactive bar chart of the selected KRI's latest metric values.", {
+  succeed()
   app <- br_app(
     app_dir = "standard",
     name = "528"
@@ -262,6 +267,7 @@ test_that("528: The user can view an interactive bar chart of the selected KRI's
 
 # Snapshots updated by #519.
 test_that("529: The user can view an interactive bar chart of the selected KRI's latest scores.", {
+  succeed()
   app <- br_app(
     app_dir = "standard",
     name = "529"
@@ -319,6 +325,7 @@ test_that("529: The user can view an interactive bar chart of the selected KRI's
 
 # Snapshots updated by #519.
 test_that("530: The user can view an interactive time-series plot of the selected KRI's scores across all available data snapshots.", {
+  succeed()
   app <- br_app(
     app_dir = "standard",
     name = "530"
@@ -382,6 +389,7 @@ test_that("530: The user can view an interactive time-series plot of the selecte
 
 # Snapshots updated by #519.
 test_that("531: The user can view a table of the KRI results for each group.", {
+  succeed()
   app <- br_app(
     app_dir = "standard",
     name = "531"
@@ -454,6 +462,7 @@ test_that("531: The user can view a table of the KRI results for each group.", {
 })
 
 test_that("532: When a group is selected, the user can view that group's metadata.", {
+  succeed()
   app <- br_app(
     app_dir = "standard",
     name = "532"
@@ -511,6 +520,7 @@ test_that("532: When a group is selected, the user can view that group's metadat
 
 # Snapshots updated by #519.
 test_that("533: When a group is selected, the user can view a table of participants within that group.", {
+  succeed()
   app <- br_app(
     app_dir = "standard",
     name = "533"

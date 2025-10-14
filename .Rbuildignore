@@ -18,3 +18,5 @@ _\.new\.png$
 ^vignettes/\.quarto$
 ^[.]?air[.]toml$
 ^\.vscode$
+^requirements$
+^_requirements\.yml$

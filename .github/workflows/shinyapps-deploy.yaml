@@ -54,7 +54,7 @@ jobs:
 
       - name: Remove files for shinyapps to not see
         run: |
-          rm -rf .github data-raw tests
+          rm -rf .github data-raw tests requirements
           rm -f _pkgdown.yml .gitignore principles.md
 
       - uses: r-lib/actions/setup-r@v2

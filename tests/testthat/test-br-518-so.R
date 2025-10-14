@@ -1,6 +1,9 @@
-skip_if_not_br()
+skip_if_not_qualifying()
+skip_if_not_installed("rvest")
+skip_if_not_installed("shinytest2")
 
 test_that("523: The user can view a card with a high-level overview of the study metadata.", {
+  succeed()
   app <- br_app(
     app_dir = "standard",
     name = "523"
@@ -44,6 +47,7 @@ test_that("523: The user can view a card with a high-level overview of the study
 })
 
 test_that("524: The user can view an interactive KRI summary table.", {
+  succeed()
   app <- br_app(
     app_dir = "standard",
     name = "524"
@@ -296,6 +300,7 @@ test_that("524: The user can view an interactive KRI summary table.", {
 })
 
 test_that("525: The user can view a set of interactive scatter plots, one for each KRI.", {
+  succeed()
   app <- br_app(
     app_dir = "standard",
     name = "525"

@@ -83,6 +83,7 @@ mod_DomainData_Server <- function(
 
     rctv_gtObject <- reactive({
       if (!is.null(rctv_dfDomain())) {
+        # nocov start
         df <- rctv_tblData() # Tested via UI
         gtObj <- gt::gt(df) %>% # Tested via UI
           out_gtInteractive(selection_mode = "multiple") %>% # Tested via UI
@@ -96,6 +97,7 @@ mod_DomainData_Server <- function(
           gtObj <- gt::cols_align(gtObj, "center", "SubjectID") # Tested via UI
         }
         return(gtObj) # Tested via UI
+        # nocov end
       }
       return(
         out_gtPlaceholder(

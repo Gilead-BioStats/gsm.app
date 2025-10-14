@@ -1,5 +1,5 @@
 ---
-title: "518: Generate an app to help CMs explore snapshot data"
+title: "BR_NUMBER: BR_TITLE"
 format: 
   html:
     lightbox: true
@@ -15,16 +15,16 @@ if (my_path == "") {
 }
 my_path <- fs::path(my_path)
 
-if (fs::dir_exists(fs::path(my_path, "business_requirements"))) {
-  br_path <- fs::path(my_path, "business_requirements")
-} else if (fs::file_exists("business_requirements.yml")) {
+if (fs::dir_exists(fs::path(my_path, "requirements"))) {
+  br_path <- fs::path(my_path, "requirements")
+} else if (fs::file_exists("requirement_issues.yml")) {
   br_path <- my_path
 } else if (
-  fs::file_exists("articles/business_requirements/business_requirements.yml")
+  fs::file_exists("articles/requirements/requirement_issues.yml")
 ) {
-  br_path <- fs::path("articles/business_requirements")
+  br_path <- fs::path("articles/requirements")
 } else {
-  br_path <- fs::path("vignettes/articles/business_requirements")
+  br_path <- fs::path("vignettes/articles/requirements")
 }
 ```
 
@@ -32,8 +32,8 @@ if (fs::dir_exists(fs::path(my_path, "business_requirements"))) {
 #| echo: false
 #| message: false
 library(magrittr)
-br_issue_number <- 518
-brs <- yaml::read_yaml(fs::path(br_path, "business_requirements.yml"))
+br_issue_number <- BR_NUMBER
+brs <- yaml::read_yaml(fs::path(br_path, "requirement_issues.yml"))
 br <- purrr::keep(
   brs,
   ~ .x$issue == br_issue_number
