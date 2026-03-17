@@ -6,7 +6,7 @@
       <bslib-layout-columns class="bslib-grid grid bslib-mb-spacing html-fill-item" col-widths-sm="3,9" data-require-bs-caller="layout_columns()" data-require-bs-version="5">
       <div class="bslib-grid-item bslib-gap-spacing html-fill-container">
       <div class="card bslib-card bslib-mb-spacing bslib-card-input html-fill-item html-fill-container" data-bslib-card-init data-require-bs-caller="card()" data-require-bs-version="5" id="testID-study_information">
-      <div class="card-header">
+      <div class="card-header bslib-gap-spacing">
       <h5>Study Information</h5>
       <h6 class="card-subtitle mb-2 text-muted">Snapshot Date: 2012-03-31</h6>
       </div>
@@ -105,8 +105,8 @@
       <div class="card bslib-card bslib-mb-spacing bslib-card-input html-fill-item html-fill-container" data-bslib-card-init data-full-screen="false" data-require-bs-caller="card()" data-require-bs-version="5" id="testID-table">
       <div class="card-body bslib-gap-spacing html-fill-item html-fill-container" style="margin-top:auto;margin-bottom:auto;flex:1 1 auto;">
       <div id="testID-table-kri_counts">
-      <a class="action-button badge rounded-pill toggle-pill text-dark fs-6 p-2" href="#" id="testID-table-kri_counts-red-toggle_pill" style="background-color: #FF5859; opacity: 0.5;">0 Red KRIs</a>
-      <a class="action-button badge rounded-pill toggle-pill text-dark fs-6 p-2" href="#" id="testID-table-kri_counts-amber-toggle_pill" style="background-color: #FEAA02; opacity: 0.5;">2 Amber KRIs</a>
+      <a class="action-button action-link badge rounded-pill toggle-pill text-dark fs-6 p-2" href="#" id="testID-table-kri_counts-red-toggle_pill" style="background-color: #FF5859; opacity: 0.5;"><span class="action-label">0 Red KRIs</span></a>
+      <a class="action-button action-link badge rounded-pill toggle-pill text-dark fs-6 p-2" href="#" id="testID-table-kri_counts-amber-toggle_pill" style="background-color: #FEAA02; opacity: 0.5;"><span class="action-label">2 Amber KRIs</span></a>
       </div>
       <div class="Widget_GroupOverview html-widget html-widget-output shiny-report-size html-fill-item" id="testID-table-group_overview" style="width:100%;height:100%;"></div>
       <div class="footnote">Click cells for associated risk signal details.</div>
