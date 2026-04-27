@@ -20,3 +20,5 @@ _\.new\.png$
 ^\.vscode$
 ^requirements$
 ^_requirements\.yml$
+^\.positai$
+^\.claude$
