@@ -31,8 +31,6 @@
       </div>
       </div>
       </li> [[4]] <li class="bslib-nav-item nav-item form-inline navbar-extras">
-      <button class="btn btn-default action-button btn-primary" id="reset" type="button">
-      <i class="fas fa-rotate" role="presentation" aria-label="rotate icon" title="Reset all inputs"></i>
-      </button>
+      <button class="btn btn-default action-button btn-primary" id="reset" type="button"><span class="action-icon"><i class="fas fa-rotate" role="presentation" aria-label="rotate icon" title="Reset all inputs"></i></span></button>
       </li>
 

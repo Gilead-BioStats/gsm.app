@@ -50,7 +50,7 @@ jobs:
         if: github.event_name == 'push' && github.ref == 'refs/heads/main'
         run: echo "DEPLOYMENT_TYPE=prod" >> $GITHUB_ENV
 
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
 
       - name: Remove files for shinyapps to not see
         run: |

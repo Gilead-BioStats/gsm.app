@@ -84,11 +84,11 @@ PreparePrevalenceCounts <- function(
       fill = list(n = 0, pct = 0)
     ) %>%
     dplyr::mutate(
-      fill_color = dplyr::case_match(
+      fill_color = RecodeValues(
         as.character(.data$VizLevel),
         "Study" ~ "#1b9e77",
         "Participant" ~ "#7570b3",
-        .default = "#d95f02"
+        default = "#d95f02"
       ) %>%
         factor()
     )
@@ -108,11 +108,11 @@ PlotPrevalencePlot <- function(dfPrevalence, strCategory) {
       y = .data$VizCategory,
       fill = .data$fill_color,
       width = 0.9 *
-        dplyr::case_match(
+        RecodeValues(
           as.character(.data$VizLevel),
           "Study" ~ 1,
           "Participant" ~ 0.25,
-          .default = 0.5
+          default = 0.5
         )
     ) +
     ggplot2::geom_col(
@@ -124,11 +124,11 @@ PlotPrevalencePlot <- function(dfPrevalence, strCategory) {
       ggplot2::aes(
         label = scales::label_percent(1)(.data$pct),
         y = as.numeric(.data$VizCategory) +
-          dplyr::case_match(
+          RecodeValues(
             as.character(.data$VizLevel),
             "Study" ~ 0.3,
             "Participant" ~ -0.3,
-            .default = 0
+            default = 0
           )
       ),
       x = 1.1,

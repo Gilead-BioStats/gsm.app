@@ -6,7 +6,7 @@
       <div>
       <style>#myUI-gt_card .bslib-full-screen-enter { bottom: unset !important; }</style>
       <div class="card bslib-card bslib-mb-spacing bslib-card-input html-fill-item html-fill-container" data-bslib-card-init data-full-screen="false" data-require-bs-caller="card()" data-require-bs-version="5" id="myUI-gt_card">
-      <div class="card-header">
+      <div class="card-header bslib-gap-spacing">
       <h5>
       <span id="myUI-title" class="shiny-text-output"></span>
       </h5>

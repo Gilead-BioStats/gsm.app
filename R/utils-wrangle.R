@@ -164,3 +164,20 @@ FindCategoricalFieldNames <- function(
     chrExcludes
   )
 }
+
+#' Choose between recode functions based on dplyr version
+#'
+#' @param x (`vector`) The vector to recode.
+#' @param ... Recode pairs in the form of `old ~ new`. See [dplyr::case_match()]
+#'   or [dplyr::recode_values()] for details.
+#' @param default (`scalar`) The default value to use for unmatched cases. See
+#'   [dplyr::case_match()] or [dplyr::recode_values()] for details.
+#' @returns A vector with the same size as `x` with values recoded according to
+#'   the specified pairs and default.
+#' @keywords internal
+RecodeValues <- function(x, ..., default = NULL) {
+  if (rlang::is_installed("dplyr", version = "1.2.0")) {
+    return(rlang::exec(dplyr::recode_values, x, ..., default = default))
+  }
+  rlang::exec(dplyr::case_match, x, .default = default, ...) # nocov
+}
