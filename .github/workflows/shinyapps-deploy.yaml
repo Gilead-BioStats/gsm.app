@@ -60,6 +60,7 @@ jobs:
 
       - name: Install R and dependencies
         uses: gilead-biostats/gsm.utils/install@actions-v1
+        with:
           r-version: 'oldrel'
 
       - name: Install plugin dependencies
