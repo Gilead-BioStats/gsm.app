@@ -50,19 +50,17 @@ jobs:
         if: github.event_name == 'push' && github.ref == 'refs/heads/main'
         run: echo "DEPLOYMENT_TYPE=prod" >> $GITHUB_ENV
 
-      - uses: actions/checkout@v6
+      - name: Check out repo
+        uses: gilead-biostats/gsm.utils/checkout@actions-v1
 
       - name: Remove files for shinyapps to not see
         run: |
           rm -rf .github data-raw tests requirements
           rm -f _pkgdown.yml .gitignore principles.md
 
-      - uses: r-lib/actions/setup-r@v2
-        with:
-          use-public-rspm: true
+      - name: Install R and dependencies
+        uses: gilead-biostats/gsm.utils/install@actions-v1
           r-version: 'oldrel'
-
-      - uses: r-lib/actions/setup-r-dependencies@v2
 
       - name: Install plugin dependencies
         run: |
