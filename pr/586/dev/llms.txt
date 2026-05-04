@@ -1,0 +1,83 @@
+# gsm.app: Shiny applications for `gsm` assessments
+
+gsm.app produces Shiny applications with drill-down functionality for
+[`gsm`](https://github.com/Gilead-BioStats/gsm.core) Assessments.
+
+You can explore a sample app produced by the development version of
+gsm.app [here](https://rinpharma.shinyapps.io/gsm-app-dev).
+
+## Installation
+
+You can install the development version of gsm.app from
+[GitHub](https://github.com/) with:
+
+``` r
+
+# install.packages("pak")
+pak::pak("Gilead-BioStats/gsm.app")
+```
+
+## Code of Conduct
+
+Please note that the gsm.app project is released with a [Contributor
+Code of
+Conduct](https://gilead-biostats.github.io/gsm.app/CODE_OF_CONDUCT.html).
+By contributing to this project, you agree to abide by its terms.
+
+# Package index
+
+## All functions
+
+- [`AsFunction()`](https://gilead-biostats.github.io/gsm.app/dev/reference/AsFunction.md)
+  : Load a Function for a Plugin
+- [`ColorScheme()`](https://gilead-biostats.github.io/gsm.app/dev/reference/ColorScheme.md)
+  : gsm Color Scheme
+- [`ConstructDataCounter()`](https://gilead-biostats.github.io/gsm.app/dev/reference/ConstructDataCounter.md)
+  : Construct a Data Count Function
+- [`ExtractAppTitle()`](https://gilead-biostats.github.io/gsm.app/dev/reference/ExtractAppTitle.md)
+  : Extract an App Title from dfGroups
+- [`mod_ActionList_Server()`](https://gilead-biostats.github.io/gsm.app/dev/reference/mod_ActionList_Server.md)
+  : List of ActionLinks Server
+- [`mod_ActionList_UI()`](https://gilead-biostats.github.io/gsm.app/dev/reference/mod_ActionList_UI.md)
+  : List of ActionLinks UI
+- [`out_Card()`](https://gilead-biostats.github.io/gsm.app/dev/reference/out_Card.md)
+  : Standardized card
+- [`out_MetadataList()`](https://gilead-biostats.github.io/gsm.app/dev/reference/out_MetadataList.md)
+  : Metadata list card
+- [`plugin_Define()`](https://gilead-biostats.github.io/gsm.app/dev/reference/plugin_Define.md)
+  : Define a plugin
+- [`plugin_GetDependencySources()`](https://gilead-biostats.github.io/gsm.app/dev/reference/plugin_GetDependencySources.md)
+  : Get Plugin Package Dependency Sources
+- [`plugin_InstallDependencySources()`](https://gilead-biostats.github.io/gsm.app/dev/reference/plugin_InstallDependencySources.md)
+  : Install Plugin Package Dependencies
+- [`plugin_LoadDependencies()`](https://gilead-biostats.github.io/gsm.app/dev/reference/plugin_LoadDependencies.md)
+  : Load Plugin Dependencies
+- [`plugin_Read()`](https://gilead-biostats.github.io/gsm.app/dev/reference/plugin_Read.md)
+  : Read a Plugin Definition
+- [`run_gsm_app()`](https://gilead-biostats.github.io/gsm.app/dev/reference/run_gsm_app.md)
+  [`run_sample_gsm_app()`](https://gilead-biostats.github.io/gsm.app/dev/reference/run_gsm_app.md)
+  : Run the app
+- [`sample_dfAnalyticsInput`](https://gilead-biostats.github.io/gsm.app/dev/reference/sample_dfAnalyticsInput.md)
+  : Analytics Input Dataset
+- [`sample_dfBounds`](https://gilead-biostats.github.io/gsm.app/dev/reference/sample_dfBounds.md)
+  : Metric Bounds Dataset
+- [`sample_dfGroups`](https://gilead-biostats.github.io/gsm.app/dev/reference/sample_dfGroups.md)
+  : Group Metadata Dataset
+- [`sample_dfMetrics`](https://gilead-biostats.github.io/gsm.app/dev/reference/sample_dfMetrics.md)
+  : Metric Metadata Dataset
+- [`sample_dfResults`](https://gilead-biostats.github.io/gsm.app/dev/reference/sample_dfResults.md)
+  : KRI Results Dataset
+- [`sample_fnCountData()`](https://gilead-biostats.github.io/gsm.app/dev/reference/sample_fnCountData.md)
+  : Count Data for a Domain
+- [`sample_fnFetchData()`](https://gilead-biostats.github.io/gsm.app/dev/reference/sample_fnFetchData.md)
+  : Fetch Data for a Domain
+
+# Articles
+
+### All vignettes
+
+- [Data Ingestion for GSM
+  App](https://gilead-biostats.github.io/gsm.app/dev/articles/data-ingestion.md):
+- [Data Preparation and App
+  Deployment](https://gilead-biostats.github.io/gsm.app/dev/articles/data-preparation.md):
+- [Plugins](https://gilead-biostats.github.io/gsm.app/dev/articles/plugins.md):
