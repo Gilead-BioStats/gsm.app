@@ -1,0 +1,183 @@
+# Plugins
+
+``` r
+
+library(gsm.app)
+```
+
+## Introduction
+
+The plugin system provides a flexible way to tailor applications to
+specific needs by incorporating additional features and dependencies.
+
+## Defining a Plugin
+
+A plugin is defined by a folder containing:
+
+- A YAML file with metadata and dependency information.
+- Optional R scripts that define the necessary UI and server functions
+  for the plugin.
+
+For example, this is the`ParticipantProfile.yml` file for our sample
+Participant Profile plugin:
+
+``` yaml
+meta:
+  Type: Plugin
+  ID: ParticipantProfile
+  Name: Participant Profile
+shiny:
+  UI: mod_ParticipantProfile_UI
+  Server: mod_ParticipantProfile_Server
+spec:
+  SUBJ:
+    _all:
+      required: true
+  AE:
+    _all:
+      required: true
+  ENROLL:
+    _all:
+      required: true
+  STUDCOMP:
+    _all:
+      required: true
+required_inputs:
+  - Participant
+```
+
+### meta
+
+The `meta` section must contain a `Name:`. The `Name:` appears in the
+resulting app as the label for the tab containing the plugin.
+
+### shiny
+
+The `shiny` section specifies the names of the plugin module’s UI and
+server functions. These functions can come from a package (included in
+`packages`, see below), or be defined in one or more R scripts in the
+plugin folder.
+
+### spec
+
+The `spec` section specifies the data domains that are used by the
+plugin. These domains must be loaded into the app via the `chrDomains`
+argument to
+[`run_gsm_app()`](https://gilead-biostats.github.io/gsm.app/dev/reference/run_gsm_app.md),
+or generated from those domains with via workflows supplied to the
+`lWorkflows` argument of
+[`plugin_Read()`](https://gilead-biostats.github.io/gsm.app/dev/reference/plugin_Read.md).
+See `vignette("DataAnalysis", "gsm.core")` for more information about
+workflows.
+
+### required_inputs
+
+The `required_inputs` section lists any inputs (“Domain”, “Metric”,
+“Participant”, “Group”, “Group Level”, or “Snapshot Date”) that must
+have a non-empty value before the plugin can load. “None” and “All”
+count as “empty” for this check. If the user has not set a value for
+that input, the app will display a placeholder instructing the user to
+make a selection.
+
+### packages
+
+The `packages` section specifies packages used by the plugin. This field
+is particularly important for deploying the app or using the app with a
+CI/CD system.
+
+## Updating Inputs Inside a Plugin
+
+If plugins have any of these arguments, the corresponding reactive will
+be passed to the plugin:
+
+- `rctv_dSnapshotDate` (a
+  [`shiny::reactiveVal()`](https://rdrr.io/pkg/shiny/man/reactiveVal.html)
+  which will be connected to the “Snapshot Date” input)
+- `rctv_strDomainID` (a
+  [`shiny::reactiveVal()`](https://rdrr.io/pkg/shiny/man/reactiveVal.html)
+  connected to the “Domain” input)
+- `rctv_strGroupID` (a
+  [`shiny::reactiveVal()`](https://rdrr.io/pkg/shiny/man/reactiveVal.html)
+  connected to the “Group” input)
+- `rctv_strGroupLevel` (a
+  [`shiny::reactiveVal()`](https://rdrr.io/pkg/shiny/man/reactiveVal.html)
+  connected to the “Group Level” input)
+- `rctv_strMetricID` (a
+  [`shiny::reactiveVal()`](https://rdrr.io/pkg/shiny/man/reactiveVal.html)
+  connected to the “Metric” input)
+- `rctv_strSubjectID` (a
+  [`shiny::reactiveVal()`](https://rdrr.io/pkg/shiny/man/reactiveVal.html)
+  connected to the “Participant” input)
+
+For the input-connected `reactiveVal()`s, setting a value will pass the
+value back up to the main app. For example, to set the `Participant`
+drop-down menu to subject “0008”, call `rctv_strSubjectID("0008")`
+inside your plugin.
+
+We recommend avoiding setting values to `NULL` from inside your app, to
+avoid issues with synchronization.
+
+## Launching an App with a Plugin
+
+Use `plugin_Read(strPath)` to read a plugin definition and prepare it
+for use in an app. Supply a list of one or more plugin definitions to
+the
+[`run_gsm_app()`](https://gilead-biostats.github.io/gsm.app/dev/reference/run_gsm_app.md)
+function through the `lPlugins` argument.
+
+For example, this code launches an app with our sample Participant
+Profile plugin:
+
+``` r
+
+subjPlugin <- plugin_Read(
+  system.file("plugins", "ParticipantProfile", package = "gsm.app")
+)
+run_gsm_app(
+  dfAnalyticsInput = gsm.app::sample_dfAnalyticsInput,
+  dfBounds = gsm.app::sample_dfBounds,
+  dfGroups = gsm.app::sample_dfGroups,
+  dfMetrics = gsm.app::sample_dfMetrics,
+  dfResults = gsm.app::sample_dfResults,
+  fnFetchData = sample_fnFetchData,
+  lPlugins = list(subjPlugin)
+)
+```
+
+Note that `subjPlugin` must be supplied inside an enclosing
+[`list()`](https://rdrr.io/r/base/list.html), to allow for multiple
+plugin definitions.
+
+## Deploying an App with a Plugin
+
+If you wish to deploy an app that uses one or more plugins using {renv}
+and/or {rsconnect}, you need to let the system know about the plugins
+used by your app. The
+[`plugin_LoadDependencies()`](https://gilead-biostats.github.io/gsm.app/dev/reference/plugin_LoadDependencies.md)
+function serves to alert such systems of your requirements.
+
+``` r
+
+plugin_LoadDependencies(subjPlugin)
+```
+
+## Plugins in CI/CD
+
+To integrate plugins into a CI/CD pipeline, use the
+[`plugin_InstallDependencySources()`](https://gilead-biostats.github.io/gsm.app/dev/reference/plugin_InstallDependencySources.md)
+function to install plugin dependencies. This function requires the
+{pak} package.
+
+``` r
+
+plugin_InstallDependencySources(subjPlugin)
+```
+
+See the [`shinyapps-deploy.yaml` file used by this
+package](https://github.com/Gilead-BioStats/gsm.app/blob/dev/.github/workflows/shinyapps-deploy.yaml)
+for an example use of this function.
+
+If you wish to use something other than
+[`pak::pak()`](https://pak.r-lib.org/reference/pak.html) to install the
+dependencies, you can get a character vector of dependency sources with
+[`plugin_GetDependencySources()`](https://gilead-biostats.github.io/gsm.app/dev/reference/plugin_GetDependencySources.md).
