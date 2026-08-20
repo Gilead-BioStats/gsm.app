@@ -28,7 +28,7 @@ value for single-select lists and no values for multiple select lists.}
 \code{\link[shinyWidgets:virtualSelectInput]{shinyWidgets::virtualSelectInput()}}.}
 }
 \value{
-A \code{\link[htmltools:builder]{htmltools::span()}} element containing necessary elements for an
+A \code{\link[htmltools:span]{htmltools::span()}} element containing necessary elements for an
 inline \code{\link[shinyWidgets:virtualSelectInput]{shinyWidgets::virtualSelectInput()}}.
 }
 \description{

@@ -16,9 +16,9 @@ mod_WidgetPlot_UI(
 \item{id}{\code{character} The id for this element.}
 
 \item{fnHtmlDependency}{\code{function} A function that returns an
-\code{\link[htmltools:htmlDependency]{htmltools::htmlDependency()}} or multiple wrapped in \code{\link[shiny:reexports]{shiny::tagList()}}.}
+\code{\link[htmltools:htmlDependency]{htmltools::htmlDependency()}} or multiple wrapped in \code{\link[shiny:tagList]{shiny::tagList()}}.}
 
-\item{fnWidgetOutput}{\code{function} An \code{\link[htmlwidgets:htmlwidgets-shiny]{htmlwidgets::shinyWidgetOutput()}}
+\item{fnWidgetOutput}{\code{function} An \code{\link[htmlwidgets:shinyWidgetOutput]{htmlwidgets::shinyWidgetOutput()}}
 function.}
 
 \item{strPlotTitle}{\code{character} A title for a plot, usually the name of a

@@ -31,13 +31,13 @@ sample_dfResults
 Information about the status of each group in the sample data.
 }
 \seealso{
-Other sample data: 
+Other sample data:
 \code{\link{sample_dfAnalyticsInput}},
 \code{\link{sample_dfBounds}},
 \code{\link{sample_dfGroups}},
 \code{\link{sample_dfMetrics}},
-\code{\link{sample_fnCountData}()},
-\code{\link{sample_fnFetchData}()}
+\code{\link[=sample_fnCountData]{sample_fnCountData()}},
+\code{\link[=sample_fnFetchData]{sample_fnFetchData()}}
 }
 \concept{sample data}
 \keyword{datasets}

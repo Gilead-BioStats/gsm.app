@@ -11,12 +11,12 @@ mod_DomainLabel_UI(id, strDomainLabel, strDomainID)
 
 \item{strDomainLabel}{\code{character} The domain name to display. For example,
 for ID \code{"AE"}, the label is \code{"Adverse Events"}. Can also be a
-\code{\link[shiny:htmlOutput]{shiny::uiOutput()}} which renders to an inline string.}
+\code{\link[shiny:uiOutput]{shiny::uiOutput()}} which renders to an inline string.}
 
 \item{strDomainID}{\code{character} The domain data.frame to load.}
 }
 \value{
-A \code{\link[shiny:reexports]{shiny::HTML()}} that includes a dynamic \code{\link[shiny:htmlOutput]{shiny::uiOutput()}} with
+A \code{\link[shiny:HTML]{shiny::HTML()}} that includes a dynamic \code{\link[shiny:uiOutput]{shiny::uiOutput()}} with
 the count of rows in this domain.
 }
 \description{

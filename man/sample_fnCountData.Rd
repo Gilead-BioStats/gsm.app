@@ -40,12 +40,12 @@ sample_fnCountData("AE", strGroupID = "0X103")
 sample_fnCountData("AE", strSubjectID = "1350")
 }
 \seealso{
-Other sample data: 
+Other sample data:
 \code{\link{sample_dfAnalyticsInput}},
 \code{\link{sample_dfBounds}},
 \code{\link{sample_dfGroups}},
 \code{\link{sample_dfMetrics}},
 \code{\link{sample_dfResults}},
-\code{\link{sample_fnFetchData}()}
+\code{\link[=sample_fnFetchData]{sample_fnFetchData()}}
 }
 \concept{sample data}

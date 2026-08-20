@@ -10,7 +10,7 @@ mod_DynamicLabelKey_UI(id)
 \item{id}{\code{character} The id for this element.}
 }
 \value{
-A \code{\link[htmltools:builder]{htmltools::span()}} element containing a set of
+A \code{\link[htmltools:span]{htmltools::span()}} element containing a set of
 \code{\link[shinyWidgets:checkboxGroupButtons]{shinyWidgets::checkboxGroupButtons()}}.
 }
 \description{

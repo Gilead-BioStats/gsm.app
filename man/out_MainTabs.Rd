@@ -24,7 +24,7 @@ Created with \code{\link[gsm.reporting:BindResults]{gsm.reporting::BindResults()
 \item{lPlugins}{\code{list} Optional list of plugins to include in the app.}
 }
 \value{
-A list of \code{\link[bslib:nav-items]{bslib::nav_panel()}} elements, containing the main tabbed
+A list of \code{\link[bslib:nav_panel]{bslib::nav_panel()}} elements, containing the main tabbed
 content.
 }
 \description{

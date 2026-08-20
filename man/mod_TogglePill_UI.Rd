@@ -15,7 +15,7 @@ mod_TogglePill_UI(id, strLabel, strColorCode)
 color.}
 }
 \value{
-A \code{\link[htmltools:tagList]{htmltools::tagList()}} with a specialized \code{\link[shiny:actionButton]{shiny::actionLink()}}
+A \code{\link[htmltools:tagList]{htmltools::tagList()}} with a specialized \code{\link[shiny:actionLink]{shiny::actionLink()}}
 and the necessary CSS and JavaScript to manage the link.
 }
 \description{

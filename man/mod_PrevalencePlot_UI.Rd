@@ -10,7 +10,7 @@ mod_PrevalencePlot_UI(id)
 \item{id}{\code{character} The id for this element.}
 }
 \value{
-A \code{\link[shiny:plotOutput]{shiny::plotOutput()}} object.
+A \code{\link[gsm.vizr:barsOutput]{gsm.vizr::barsOutput()}} object.
 }
 \description{
 Plot part of the prevalence plot UI

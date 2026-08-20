@@ -39,12 +39,12 @@ head(sample_fnFetchData("AE", strGroupID = "0X6161"))
 head(sample_fnFetchData("AE", strSubjectID = "S60729"))
 }
 \seealso{
-Other sample data: 
+Other sample data:
 \code{\link{sample_dfAnalyticsInput}},
 \code{\link{sample_dfBounds}},
 \code{\link{sample_dfGroups}},
 \code{\link{sample_dfMetrics}},
 \code{\link{sample_dfResults}},
-\code{\link{sample_fnCountData}()}
+\code{\link[=sample_fnCountData]{sample_fnCountData()}}
 }
 \concept{sample data}

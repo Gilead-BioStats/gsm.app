@@ -18,10 +18,10 @@ labels.}
 }
 \value{
 A \code{\link[htmltools:tagList]{htmltools::tagList()}} of labels and values, where the labels are
-\code{\link[shiny:actionButton]{shiny::actionLink()}} items.
+\code{\link[shiny:actionLink]{shiny::actionLink()}} items.
 }
 \description{
-Display a vertical list of \code{\link[shiny:actionButton]{shiny::actionLink()}} items, along with a
+Display a vertical list of \code{\link[shiny:actionLink]{shiny::actionLink()}} items, along with a
 corresponding vertical list of values associated with those links.
 }
 \examples{

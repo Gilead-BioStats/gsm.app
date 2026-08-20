@@ -11,12 +11,12 @@ mod_DomainData_UI(id, strDomainLabel, strDomainID)
 
 \item{strDomainLabel}{\code{character} The domain name to display. For example,
 for ID \code{"AE"}, the label is \code{"Adverse Events"}. Can also be a
-\code{\link[shiny:htmlOutput]{shiny::uiOutput()}} which renders to an inline string.}
+\code{\link[shiny:uiOutput]{shiny::uiOutput()}} which renders to an inline string.}
 
 \item{strDomainID}{\code{character} The domain data.frame to load.}
 }
 \value{
-A \code{\link[bslib:nav-items]{bslib::nav_panel()}} with either a placeholder, or a
+A \code{\link[bslib:nav_panel]{bslib::nav_panel()}} with either a placeholder, or a
 \code{\link[gt:gt_output]{gt::gt_output()}} table.
 }
 \description{

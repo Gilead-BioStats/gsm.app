@@ -10,7 +10,7 @@ mod_SelectDataCategory_UI(id)
 \item{id}{\code{character} The id for this element.}
 }
 \value{
-A \code{\link[htmltools:builder]{htmltools::span()}} element containing necessary elements for an
+A \code{\link[htmltools:span]{htmltools::span()}} element containing necessary elements for an
 inline \code{\link[shinyWidgets:virtualSelectInput]{shinyWidgets::virtualSelectInput()}}.
 }
 \description{
