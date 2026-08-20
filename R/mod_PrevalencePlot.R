@@ -106,7 +106,11 @@ BuildPrevalenceSpec <- function(strCategory) {
     position = "dodge",
     scales = list(
       x = list(label = MakeParamLabelsChr(strCategory, chrFieldNames)),
-      y = list(label = "% of rows"),
+      # ticks$format is currently inert: gsm.viz's getScales.js only reads a
+      # value-axis tick format when stat == "percent" or position == "fill",
+      # neither true for this dodge/identity chart. Kept as the correct,
+      # forward-compatible value for when gsm.viz adds support for it.
+      y = list(label = "% of rows", ticks = list(format = ".0%")),
       fill = list(
         # Dodge moves the VizLevel encoding onto colour and position, so unlike
         # the width-encoded predecessor this chart needs a legend. The empty
@@ -120,7 +124,7 @@ BuildPrevalenceSpec <- function(strCategory) {
       )
     ),
     annotations = list(
-      labels = list(segment = list(display = TRUE, formatter = ".0%"))
+      labels = list(segment = list(display = TRUE, format = ".0%"))
     )
   )
 }

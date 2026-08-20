@@ -55,6 +55,16 @@ test_that("BuildPrevalenceSpec labels both axes and suppresses the legend captio
   expect_identical(spec$scales$fill$label, "")
 })
 
+test_that("BuildPrevalenceSpec formats the y-axis ticks and segment labels as percentages", {
+  spec <- BuildPrevalenceSpec("category")
+  expect_identical(spec$scales$y$ticks$format, ".0%")
+  expect_identical(spec$annotations$labels$segment$format, ".0%")
+  # `formatter` is a distinct key (JS function or {token} template) that
+  # gsm.viz emits verbatim when it has no {tokens} -- confirm it's gone, not
+  # just shadowed by the new `format` key.
+  expect_null(spec$annotations$labels$segment$formatter)
+})
+
 test_that("BuildPrevalenceSpec keeps the chart non-interactive", {
   spec <- BuildPrevalenceSpec("category")
   expect_null(spec$callbacks)
