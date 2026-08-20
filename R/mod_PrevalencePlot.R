@@ -94,6 +94,46 @@ PreparePrevalenceCounts <- function(
     )
 }
 
+#' Build the gsm.viz bars spec for the prevalence plot
+#'
+#' The predecessor overlaid the three `VizLevel` series at one y position and
+#' told them apart by bar width. `bars` has no per-series width control, so the
+#' series would fully occlude each other under `position = "identity"`; dodge
+#' carries the same comparison with position instead of width.
+#'
+#' @inheritParams shared-params
+#'
+#' @returns A [gsm.vizr::bars_spec()] list.
+#' @keywords internal
+BuildPrevalenceSpec <- function(strCategory) {
+  gsm.vizr::bars_spec(
+    x = "VizCategory",
+    y = "pct",
+    fill = "VizLevel",
+    stat = "identity",
+    orientation = "horizontal",
+    position = "dodge",
+    scales = list(
+      x = list(label = MakeParamLabelsChr(strCategory, chrFieldNames)),
+      y = list(label = "% of rows"),
+      fill = list(
+        # Dodge moves the VizLevel encoding onto colour and position, so unlike
+        # the width-encoded predecessor this chart needs a legend. The empty
+        # label keeps the legend while dropping its caption.
+        label = "",
+        colors = list(
+          Study = "#1b9e77",
+          Group = "#d95f02",
+          Participant = "#7570b3"
+        )
+      )
+    ),
+    annotations = list(
+      labels = list(segment = list(display = TRUE, formatter = ".0%"))
+    )
+  )
+}
+
 #' Generate the prevalence ggplot
 #'
 #' @param dfPrevalence `data.frame` The prepared data.
