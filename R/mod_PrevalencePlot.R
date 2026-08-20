@@ -104,6 +104,9 @@ BuildPrevalenceSpec <- function(strCategory) {
     stat = "identity",
     orientation = "horizontal",
     position = "dodge",
+    # pct is per-VizLevel (each series already sums to 100%), so the
+    # stack/dodge toggle's Stack views would mix incomparable series.
+    interactive = FALSE,
     scales = list(
       x = list(label = MakeParamLabelsChr(strCategory, chrFieldNames)),
       # ticks$format is currently inert: gsm.viz's getScales.js only reads a

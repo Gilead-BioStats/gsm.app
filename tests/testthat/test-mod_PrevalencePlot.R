@@ -69,6 +69,9 @@ test_that("BuildPrevalenceSpec keeps the chart non-interactive", {
   spec <- BuildPrevalenceSpec("category")
   expect_null(spec$callbacks)
   expect_null(spec$selection)
+  # Without this, gsm.viz defaults to TRUE and renders a Stack/Side-by-side
+  # toggle; stacking these per-VizLevel pct series is meaningless.
+  expect_false(spec$interactive)
 })
 
 test_that("PlotPrevalencePlot returns a bars htmlwidget", {
