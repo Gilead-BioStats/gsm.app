@@ -67,7 +67,7 @@ Remotes:
     gsm.kri=Gilead-Public/gsm.kri@main,
     gsm.mapping=Gilead-Public/gsm.mapping@main,
     gsm.reporting=Gilead-Public/gsm.reporting@main,
-    gsm.vizr=Gilead-Public/gsm.vizr@feat/4-widget-relocation
+    gsm.vizr=Gilead-Public/gsm.vizr@for-gsm.app-589
 Config/Needs/data: usethis, Gilead-BioStats/gsm.datasim@main
 Config/Needs/website: gh, pkgload, readr, rmarkdown, quarto, whisker
 Config/testthat/edition: 3
