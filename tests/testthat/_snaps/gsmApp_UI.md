@@ -801,7 +801,7 @@
       </bslib-tooltip>
       </span>
       </div>
-      <div class="shiny-plot-output html-fill-item" id="domain_details-AE-prevalence_plot-plot-plot" style="width:100%;height:400px;"></div>
+      <div class="bars html-widget html-widget-output shiny-report-size html-fill-item" id="domain_details-AE-prevalence_plot-plot-plot" style="width:100%;height:500px;"></div>
       </div>
       <bslib-tooltip placement="auto" bsOptions="[]" data-require-bs-version="5" data-require-bs-caller="tooltip()">
       <template>Expand</template>
@@ -891,7 +891,7 @@
       </bslib-tooltip>
       </span>
       </div>
-      <div class="shiny-plot-output html-fill-item" id="domain_details-ENROLL-prevalence_plot-plot-plot" style="width:100%;height:400px;"></div>
+      <div class="bars html-widget html-widget-output shiny-report-size html-fill-item" id="domain_details-ENROLL-prevalence_plot-plot-plot" style="width:100%;height:500px;"></div>
       </div>
       <bslib-tooltip placement="auto" bsOptions="[]" data-require-bs-version="5" data-require-bs-caller="tooltip()">
       <template>Expand</template>
@@ -981,7 +981,7 @@
       </bslib-tooltip>
       </span>
       </div>
-      <div class="shiny-plot-output html-fill-item" id="domain_details-LB-prevalence_plot-plot-plot" style="width:100%;height:400px;"></div>
+      <div class="bars html-widget html-widget-output shiny-report-size html-fill-item" id="domain_details-LB-prevalence_plot-plot-plot" style="width:100%;height:500px;"></div>
       </div>
       <bslib-tooltip placement="auto" bsOptions="[]" data-require-bs-version="5" data-require-bs-caller="tooltip()">
       <template>Expand</template>
@@ -1071,7 +1071,7 @@
       </bslib-tooltip>
       </span>
       </div>
-      <div class="shiny-plot-output html-fill-item" id="domain_details-PD-prevalence_plot-plot-plot" style="width:100%;height:400px;"></div>
+      <div class="bars html-widget html-widget-output shiny-report-size html-fill-item" id="domain_details-PD-prevalence_plot-plot-plot" style="width:100%;height:500px;"></div>
       </div>
       <bslib-tooltip placement="auto" bsOptions="[]" data-require-bs-version="5" data-require-bs-caller="tooltip()">
       <template>Expand</template>
@@ -1161,7 +1161,7 @@
       </bslib-tooltip>
       </span>
       </div>
-      <div class="shiny-plot-output html-fill-item" id="domain_details-SDRGCOMP-prevalence_plot-plot-plot" style="width:100%;height:400px;"></div>
+      <div class="bars html-widget html-widget-output shiny-report-size html-fill-item" id="domain_details-SDRGCOMP-prevalence_plot-plot-plot" style="width:100%;height:500px;"></div>
       </div>
       <bslib-tooltip placement="auto" bsOptions="[]" data-require-bs-version="5" data-require-bs-caller="tooltip()">
       <template>Expand</template>
@@ -1251,7 +1251,7 @@
       </bslib-tooltip>
       </span>
       </div>
-      <div class="shiny-plot-output html-fill-item" id="domain_details-STUDCOMP-prevalence_plot-plot-plot" style="width:100%;height:400px;"></div>
+      <div class="bars html-widget html-widget-output shiny-report-size html-fill-item" id="domain_details-STUDCOMP-prevalence_plot-plot-plot" style="width:100%;height:500px;"></div>
       </div>
       <bslib-tooltip placement="auto" bsOptions="[]" data-require-bs-version="5" data-require-bs-caller="tooltip()">
       <template>Expand</template>
@@ -1341,7 +1341,7 @@
       </bslib-tooltip>
       </span>
       </div>
-      <div class="shiny-plot-output html-fill-item" id="domain_details-SUBJ-prevalence_plot-plot-plot" style="width:100%;height:400px;"></div>
+      <div class="bars html-widget html-widget-output shiny-report-size html-fill-item" id="domain_details-SUBJ-prevalence_plot-plot-plot" style="width:100%;height:500px;"></div>
       </div>
       <bslib-tooltip placement="auto" bsOptions="[]" data-require-bs-version="5" data-require-bs-caller="tooltip()">
       <template>Expand</template>
@@ -1431,7 +1431,7 @@
       </bslib-tooltip>
       </span>
       </div>
-      <div class="shiny-plot-output html-fill-item" id="domain_details-DATACHG-prevalence_plot-plot-plot" style="width:100%;height:400px;"></div>
+      <div class="bars html-widget html-widget-output shiny-report-size html-fill-item" id="domain_details-DATACHG-prevalence_plot-plot-plot" style="width:100%;height:500px;"></div>
       </div>
       <bslib-tooltip placement="auto" bsOptions="[]" data-require-bs-version="5" data-require-bs-caller="tooltip()">
       <template>Expand</template>
@@ -1521,7 +1521,7 @@
       </bslib-tooltip>
       </span>
       </div>
-      <div class="shiny-plot-output html-fill-item" id="domain_details-DATAENT-prevalence_plot-plot-plot" style="width:100%;height:400px;"></div>
+      <div class="bars html-widget html-widget-output shiny-report-size html-fill-item" id="domain_details-DATAENT-prevalence_plot-plot-plot" style="width:100%;height:500px;"></div>
       </div>
       <bslib-tooltip placement="auto" bsOptions="[]" data-require-bs-version="5" data-require-bs-caller="tooltip()">
       <template>Expand</template>
@@ -1611,7 +1611,7 @@
       </bslib-tooltip>
       </span>
       </div>
-      <div class="shiny-plot-output html-fill-item" id="domain_details-QUERY-prevalence_plot-plot-plot" style="width:100%;height:400px;"></div>
+      <div class="bars html-widget html-widget-output shiny-report-size html-fill-item" id="domain_details-QUERY-prevalence_plot-plot-plot" style="width:100%;height:500px;"></div>
       </div>
       <bslib-tooltip placement="auto" bsOptions="[]" data-require-bs-version="5" data-require-bs-caller="tooltip()">
       <template>Expand</template>

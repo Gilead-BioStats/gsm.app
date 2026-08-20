@@ -1,11 +1,11 @@
 #' Plot part of the prevalence plot UI
 #'
 #' @inheritParams shared-params
-#' @returns A [shiny::plotOutput()] object.
+#' @returns A [gsm.vizr::barsOutput()] object.
 #' @keywords internal
 mod_PrevalencePlot_UI <- function(id) {
   ns <- NS(id)
-  plotOutput(ns("plot"))
+  gsm.vizr::barsOutput(ns("plot"))
 }
 
 #' Server side of the plot part of the prevalence plot module
@@ -41,7 +41,7 @@ mod_PrevalencePlot_Server <- function(
       PreparePrevalenceCounts(df, strCategory, chrTopValues)
     })
 
-    output$plot <- renderPlot({
+    output$plot <- gsm.vizr::renderBars({
       req(rctv_dfPrevalence())
       req(rctv_strCategory())
       PlotPrevalencePlot(rctv_dfPrevalence(), rctv_strCategory())
@@ -82,15 +82,6 @@ PreparePrevalenceCounts <- function(
       .data$VizLevel,
       .data$VizCategory,
       fill = list(n = 0, pct = 0)
-    ) %>%
-    dplyr::mutate(
-      fill_color = RecodeValues(
-        as.character(.data$VizLevel),
-        "Study" ~ "#1b9e77",
-        "Participant" ~ "#7570b3",
-        default = "#d95f02"
-      ) %>%
-        factor()
     )
 }
 
@@ -134,66 +125,13 @@ BuildPrevalenceSpec <- function(strCategory) {
   )
 }
 
-#' Generate the prevalence ggplot
+#' Generate the prevalence chart
 #'
 #' @param dfPrevalence `data.frame` The prepared data.
 #' @inheritParams shared-params
 #'
-#' @returns A [ggplot2::ggplot()].
+#' @returns A [gsm.vizr::bars()] htmlwidget.
 #' @keywords internal
 PlotPrevalencePlot <- function(dfPrevalence, strCategory) {
-  ggplot2::ggplot(dfPrevalence) +
-    ggplot2::aes(
-      x = .data$pct,
-      y = .data$VizCategory,
-      fill = .data$fill_color,
-      width = 0.9 *
-        RecodeValues(
-          as.character(.data$VizLevel),
-          "Study" ~ 1,
-          "Participant" ~ 0.25,
-          default = 0.5
-        )
-    ) +
-    ggplot2::geom_col(
-      position = "identity",
-      color = "black",
-      linewidth = ggplot2::rel(0.5)
-    ) +
-    ggplot2::geom_label(
-      ggplot2::aes(
-        label = scales::label_percent(1)(.data$pct),
-        y = as.numeric(.data$VizCategory) +
-          RecodeValues(
-            as.character(.data$VizLevel),
-            "Study" ~ 0.3,
-            "Participant" ~ -0.3,
-            default = 0
-          )
-      ),
-      x = 1.1,
-      color = "white",
-      size = 14,
-      size.unit = "pt",
-      fontface = "bold"
-    ) +
-    ggplot2::scale_x_continuous(
-      breaks = NULL,
-      limits = c(0, 1.2)
-    ) +
-    ggplot2::scale_fill_identity() +
-    theme_gsm() +
-    ggplot2::labs(
-      x = "% of rows",
-      y = MakeParamLabelsChr(strCategory, chrFieldNames)
-    ) +
-    ggplot2::theme(legend.position = "none")
-}
-
-#' Standard theme for gsm ggplot2 plots
-#'
-#' @returns A [ggplot2::theme()].
-#' @keywords internal
-theme_gsm <- function() {
-  ggplot2::theme_minimal(base_size = 20)
+  gsm.vizr::bars(dfPrevalence, BuildPrevalenceSpec(strCategory))
 }

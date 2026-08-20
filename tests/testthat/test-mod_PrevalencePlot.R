@@ -16,48 +16,6 @@ test_that("PreparePrevalenceCounts sets up the prevalence df", {
   })
 })
 
-test_that("PlotPrevalencePlot generates the expected plot", {
-  skip_on_os(c("mac", "linux", "solaris"))
-  skip_on_ci()
-  df <- CombineDomainData(
-    dfStudyPrevalencePlots,
-    dfGroupPrevalencePlots,
-    dfParticipantPrevalencePlots
-  ) %>%
-    dplyr::select("VizLevel", "category")
-  chrTopValues <- PullTopValues(df, "category")
-  dfPrevalence <- PreparePrevalenceCounts(df, "category", chrTopValues)
-  test_plot <- PlotPrevalencePlot(dfPrevalence, "category")
-  vdiffr::expect_doppelganger("Full sample prevalence plot", test_plot)
-})
-
-test_that("mod_PrevalencePlot_Server generates the expected plot", {
-  skip_on_os(c("mac", "linux", "solaris"))
-  skip_on_ci()
-  skip_on_cran()
-  df <- CombineDomainData(
-    dfStudyPrevalencePlots,
-    dfGroupPrevalencePlots,
-    dfParticipantPrevalencePlots
-  ) %>%
-    dplyr::select("VizLevel", "category")
-  rctv_dfDomain_Combined <- reactive(df)
-  rctv_strCategory <- reactiveVal("category")
-  testServer(
-    mod_PrevalencePlot_Server,
-    args = list(
-      rctv_dfDomain_Combined = rctv_dfDomain_Combined,
-      rctv_strCategory = rctv_strCategory
-    ),
-    {
-      # We'll see how well this works on GHA.
-      expect_snapshot({
-        output$plot$src
-      })
-    }
-  )
-})
-
 test_that("BuildPrevalenceSpec maps the aesthetics for a horizontal dodge", {
   spec <- BuildPrevalenceSpec("category")
   # orientation does not swap x and y: x stays the category aesthetic.
@@ -101,4 +59,42 @@ test_that("BuildPrevalenceSpec keeps the chart non-interactive", {
   spec <- BuildPrevalenceSpec("category")
   expect_null(spec$callbacks)
   expect_null(spec$selection)
+})
+
+test_that("PlotPrevalencePlot returns a bars htmlwidget", {
+  df <- CombineDomainData(
+    dfStudyPrevalencePlots,
+    dfGroupPrevalencePlots,
+    dfParticipantPrevalencePlots
+  ) %>%
+    dplyr::select("VizLevel", "category")
+  dfPrevalence <- PreparePrevalenceCounts(
+    df,
+    "category",
+    PullTopValues(df, "category")
+  )
+  test_result <- PlotPrevalencePlot(dfPrevalence, "category")
+  expect_s3_class(test_result, "htmlwidget")
+  expect_identical(attr(test_result, "package"), "gsm.vizr")
+})
+
+test_that("PreparePrevalenceCounts no longer emits the ggplot identity column", {
+  # fill_color existed solely to feed scale_fill_identity(); fill = VizLevel
+  # carries the mapping now.
+  df <- CombineDomainData(
+    dfStudyPrevalencePlots,
+    dfGroupPrevalencePlots,
+    dfParticipantPrevalencePlots
+  ) %>%
+    dplyr::select("VizLevel", "category")
+  dfPrevalence <- PreparePrevalenceCounts(
+    df,
+    "category",
+    PullTopValues(df, "category")
+  )
+  expect_false("fill_color" %in% colnames(dfPrevalence))
+  expect_setequal(
+    colnames(dfPrevalence),
+    c("VizLevel", "VizCategory", "n", "pct")
+  )
 })
