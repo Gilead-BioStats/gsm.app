@@ -96,6 +96,11 @@ renderWidgetPlot <- function(
 
 #' Get dependencies for a gsm widget
 #'
+#' Reads the widget's dependency manifest from gsm.vizr, which owns the gsm.viz
+#' bundle and the shared control-lib scripts as a published runtime surface.
+#' gsm.app ships its own forked widget JS and YAML; this supplies only the
+#' renderer assets those forks call into.
+#'
 #' @inheritParams shared-params
 #' @param excludes An optional vector of named dependencies to *not* include.
 #'
@@ -104,7 +109,11 @@ renderWidgetPlot <- function(
 #' @keywords internal
 gsmDependencies <- function(strWidgetName, excludes = character()) {
   gsm_dependencies <- yaml::read_yaml(
-    system.file("htmlwidgets", paste0(strWidgetName, ".yaml"), package = "gsm.kri")
+    system.file(
+      "htmlwidgets",
+      paste0(strWidgetName, ".yaml"),
+      package = "gsm.vizr"
+    )
   )$dependencies
   dependency_is_included <- function(dependency) {
     !(dependency$name %in% excludes)
@@ -114,7 +123,7 @@ gsmDependencies <- function(strWidgetName, excludes = character()) {
     gsm_dependencies,
     function(dependency) {
       rlang::inject({
-        htmltools::htmlDependency(!!!dependency, package = "gsm.kri")
+        htmltools::htmlDependency(!!!dependency, package = "gsm.vizr")
       })
     }
   )
