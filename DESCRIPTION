@@ -26,10 +26,10 @@ Imports:
     dplyr,
     favawesome,
     forcats,
-    ggplot2,
     glue,
     gsm.core (>= 1.1.5),
     gsm.kri (>= 1.3.1),
+    gsm.vizr (>= 0.1.0),
     gt (>= 1.0.0),
     htmltools,
     htmlwidgets,
@@ -37,7 +37,6 @@ Imports:
     magrittr,
     purrr,
     rlang,
-    scales,
     shiny (>= 1.11.1),
     shinycssloaders,
     shinyjs,
@@ -59,15 +58,15 @@ Suggests:
     rvest,
     shinytest2 (>= 0.4.1),
     testthat (>= 3.0.0),
-    vdiffr,
     withr
 VignetteBuilder: 
     knitr
-Remotes: 
-    gsm.core=Gilead-BioStats/gsm.core@main,
-    gsm.kri=Gilead-BioStats/gsm.kri@main,
-    gsm.mapping=Gilead-BioStats/gsm.mapping@main,
-    gsm.reporting=Gilead-BioStats/gsm.reporting@main
+Remotes:
+    gsm.core=Gilead-Public/gsm.core@main,
+    gsm.kri=Gilead-Public/gsm.kri@main,
+    gsm.mapping=Gilead-Public/gsm.mapping@main,
+    gsm.reporting=Gilead-Public/gsm.reporting@main,
+    gsm.vizr=Gilead-Public/gsm.vizr@main
 Config/Needs/data: usethis, Gilead-BioStats/gsm.datasim@main
 Config/Needs/website: gh, pkgload, readr, rmarkdown, quarto, whisker
 Config/testthat/edition: 3
@@ -75,4 +74,4 @@ Encoding: UTF-8
 Language: en-US
 LazyData: true
 Roxygen: list(markdown = TRUE)
-RoxygenNote: 7.3.3
+Config/roxygen2/version: 8.0.0

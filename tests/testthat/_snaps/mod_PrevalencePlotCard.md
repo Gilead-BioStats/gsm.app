@@ -64,7 +64,7 @@
                 </bslib-tooltip>
               </span>
             </div>
-            <div class="shiny-plot-output html-fill-item" id="test-plot-plot" style="width:100%;height:400px;"></div>
+            <div class="bars html-widget html-widget-output shiny-report-size html-fill-item" id="test-plot-plot" style="width:100%;height:500px;"></div>
           </div>
           <bslib-tooltip placement="auto" bsOptions="[]" data-require-bs-version="5" data-require-bs-caller="tooltip()">
             <template>Expand</template>

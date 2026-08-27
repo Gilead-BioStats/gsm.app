@@ -21,7 +21,7 @@ used as IDs. The IDs will be passed to \code{fnFetchData()} to fetch data about
 that domain.}
 }
 \value{
-A \code{\link[bslib:navset]{bslib::navset_underline()}} with a tab for each available domain.
+A \code{\link[bslib:navset_underline]{bslib::navset_underline()}} with a tab for each available domain.
 }
 \description{
 Domain Details UI

@@ -16,6 +16,9 @@ A list of \code{htmltools::htmlDependency} objects for use in
 \code{\link[htmlwidgets:createWidget]{htmlwidgets::createWidget()}}.
 }
 \description{
-Get dependencies for a gsm widget
+Reads the widget's dependency manifest from gsm.vizr, which owns the gsm.viz
+bundle and the shared control-lib scripts as a published runtime surface.
+gsm.app ships its own forked widget JS and YAML; this supplies only the
+renderer assets those forks call into.
 }
 \keyword{internal}

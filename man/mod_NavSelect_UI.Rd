@@ -15,7 +15,7 @@ this input.}
 \item{strLabel}{\code{character} The initial label for the select input.}
 }
 \value{
-A \code{\link[bslib:nav-items]{bslib::nav_item()}} with a formatted
+A \code{\link[bslib:nav_item]{bslib::nav_item()}} with a formatted
 \code{\link[shinyWidgets:virtualSelectInput]{shinyWidgets::virtualSelectInput()}}.
 }
 \description{

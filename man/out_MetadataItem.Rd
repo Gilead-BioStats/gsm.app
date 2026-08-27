@@ -12,7 +12,7 @@ out_MetadataItem(strLabel, strValue)
 \item{strValue}{\code{character} The value of a field.}
 }
 \value{
-A \code{\link[htmltools:builder]{htmltools::div()}} with the label, a spacer, and the value.
+A \code{\link[htmltools:div]{htmltools::div()}} with the label, a spacer, and the value.
 }
 \description{
 Metadata list item

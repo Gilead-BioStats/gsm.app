@@ -25,7 +25,7 @@ string and have \code{"px"} appended.}
 \item{excludes}{An optional vector of named dependencies to \emph{not} include.}
 
 \item{...}{
-  Arguments passed on to \code{\link[htmlwidgets:htmlwidgets-shiny]{htmlwidgets::shinyWidgetOutput}}
+  Arguments passed on to \code{\link[htmlwidgets:shinyWidgetOutput]{htmlwidgets::shinyWidgetOutput}}
   \describe{
     \item{\code{inline}}{use an inline (\code{span()}) or block container (\code{div()})
 for the output}
@@ -39,7 +39,7 @@ Examples of fill containers include \code{bslib::card()} and
   }}
 }
 \value{
-A \code{\link[htmltools:tagList]{htmltools::tagList()}} with the \code{\link[htmlwidgets:htmlwidgets-shiny]{htmlwidgets::shinyWidgetOutput()}}
+A \code{\link[htmltools:tagList]{htmltools::tagList()}} with the \code{\link[htmlwidgets:shinyWidgetOutput]{htmlwidgets::shinyWidgetOutput()}}
 and its dependencies.
 }
 \description{

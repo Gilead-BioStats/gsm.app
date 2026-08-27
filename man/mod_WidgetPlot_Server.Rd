@@ -23,7 +23,7 @@ mod_WidgetPlot_Server(
 a widget.}
 
 \item{fn_WidgetOutput}{A function that uses
-\code{\link[htmlwidgets:htmlwidgets-shiny]{htmlwidgets::shinyWidgetOutput()}} to create the shiny version of a widget.}
+\code{\link[htmlwidgets:shinyWidgetOutput]{htmlwidgets::shinyWidgetOutput()}} to create the shiny version of a widget.}
 
 \item{rctv_dfResults}{\verb{reactive dataframe} A \code{\link[shiny:reactive]{shiny::reactive()}} object that
 returns a stacked summary of analysis pipeline output.}

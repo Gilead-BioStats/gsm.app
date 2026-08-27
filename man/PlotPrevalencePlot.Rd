@@ -2,7 +2,7 @@
 % Please edit documentation in R/mod_PrevalencePlot.R
 \name{PlotPrevalencePlot}
 \alias{PlotPrevalencePlot}
-\title{Generate the prevalence ggplot}
+\title{Generate the prevalence chart}
 \usage{
 PlotPrevalencePlot(dfPrevalence, strCategory)
 }
@@ -12,9 +12,9 @@ PlotPrevalencePlot(dfPrevalence, strCategory)
 \item{strCategory}{\code{character} A category to focus on.}
 }
 \value{
-A \code{\link[ggplot2:ggplot]{ggplot2::ggplot()}}.
+A \code{\link[gsm.vizr:bars]{gsm.vizr::bars()}} htmlwidget.
 }
 \description{
-Generate the prevalence ggplot
+Generate the prevalence chart
 }
 \keyword{internal}

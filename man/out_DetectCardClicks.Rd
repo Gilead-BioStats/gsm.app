@@ -14,7 +14,7 @@ out_DetectCardClicks(strContainerID, strInputID)
 this module or used by this JavaScript.}
 }
 \value{
-A \code{\link[shiny:reexports]{shiny::tagList()}} with the JavaScript required to enable card
+A \code{\link[shiny:tagList]{shiny::tagList()}} with the JavaScript required to enable card
 click detection within the specified container. Clicks will be reported to
 the Shiny input named \code{strInputID}.
 }

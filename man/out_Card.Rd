@@ -13,7 +13,7 @@ out_Card(
 }
 \arguments{
 \item{tagTitle}{\verb{html tag} A string or other html to use as the title of the
-card. Will be wrapped inside \code{\link[bslib:card_body]{bslib::card_title()}}.}
+card. Will be wrapped inside \code{\link[bslib:card_title]{bslib::card_title()}}.}
 
 \item{...}{\verb{html tags} Objects to place in the card.}
 
@@ -31,7 +31,7 @@ A \code{\link[bslib:card]{bslib::card()}}.
 }
 \description{
 A standardized \code{\link[bslib:card]{bslib::card()}} for gsm.app modules and modules in plugins for
-gsm.app. The \code{tagTitle} is applied as a \code{\link[bslib:card_body]{bslib::card_title()}}, and
+gsm.app. The \code{tagTitle} is applied as a \code{\link[bslib:card_title]{bslib::card_title()}}, and
 \code{full_screen} is set to \code{TRUE} by default.
 }
 \examples{

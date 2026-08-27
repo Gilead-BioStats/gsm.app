@@ -115,7 +115,7 @@ domain. If the function throws an error, the error is elevated to the user,
 so you can use errors to pass requirements through to the user.}
 
 \item{fnHtmlDependency}{\code{function} A function that returns an
-\code{\link[htmltools:htmlDependency]{htmltools::htmlDependency()}} or multiple wrapped in \code{\link[shiny:reexports]{shiny::tagList()}}.}
+\code{\link[htmltools:htmlDependency]{htmltools::htmlDependency()}} or multiple wrapped in \code{\link[shiny:tagList]{shiny::tagList()}}.}
 
 \item{fnServer}{\code{function} A Shiny server function that takes arguments
 \code{input}, \code{output}, and \code{session}. This function will be called at the start
@@ -127,7 +127,7 @@ for the plugin, or the name of such a function in the current session.}
 \item{fnShinyUI}{\verb{function or character} A shiny module UI function for the
 plugin, or the name of such a function in the current session.}
 
-\item{fnWidgetOutput}{\code{function} An \code{\link[htmlwidgets:htmlwidgets-shiny]{htmlwidgets::shinyWidgetOutput()}}
+\item{fnWidgetOutput}{\code{function} An \code{\link[htmlwidgets:shinyWidgetOutput]{htmlwidgets::shinyWidgetOutput()}}
 function.}
 
 \item{id}{\code{character} The id for this element.}
@@ -329,7 +329,7 @@ this color, or the \code{"light"} version. Default: \code{"dark"}.}
 
 \item{strDomainLabel}{\code{character} The domain name to display. For example,
 for ID \code{"AE"}, the label is \code{"Adverse Events"}. Can also be a
-\code{\link[shiny:htmlOutput]{shiny::uiOutput()}} which renders to an inline string.}
+\code{\link[shiny:uiOutput]{shiny::uiOutput()}} which renders to an inline string.}
 
 \item{strEmpty}{\code{character} The value to return when everything is
 deselected.}
